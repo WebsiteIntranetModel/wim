@@ -2,7 +2,7 @@ version: "2"
 
 services:
   web:
-    build: .
+    build: docker_build/develop
     volumes:
      - ./public_html:/var/www/html
      - ./dev-scripts/:/root/dev-scripts
