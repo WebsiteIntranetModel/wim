@@ -20,7 +20,7 @@ before_install:
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
   - docker-compose --version
-  - docker-compose -f docker-compose-travis.yml up -d
+  - docker-compose -f docker-compose.yml up -d
   - docker ps -a
 
 script:
