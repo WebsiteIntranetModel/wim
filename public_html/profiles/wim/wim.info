@@ -1,0 +1,4 @@
+name = Website Intranet Model
+description = Installation profile for the WIM distribution.
+version = 0.1
+core = 7.x
