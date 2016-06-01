@@ -3,8 +3,9 @@
 # Install script for in the docker container.
 cd /var/www/html/;
 
+# Check if first argument given is "reinstall". In that case we drop the database,
+# remove settings.php and the files folder.
 if [ ${1:-"install"} = "reinstall" ]; then
-  # We received an argument to re-install the site.
   drush sql-drop -y;
   rm -f sites/default/settings.php;
   rm -f sites/default/settings.local.php;
@@ -12,8 +13,9 @@ if [ ${1:-"install"} = "reinstall" ]; then
   echo "Database dropped, files folder and settings.php removed"
 fi
 
+# Check if second argument is "include", defaults to "exclude". We copy the
+# local settings.php to the place where it will be included in settings.php.
 if [ ${2:-"exclude"} = "include" ]; then
-  # We received an argument to re-install the site.
   cp sites/default/example.settings.local.php sites/default/settings.local.php
   echo "Moved settings.local.php so it can be included in the settings.php file."
 fi
