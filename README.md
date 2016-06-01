@@ -1,5 +1,5 @@
 # Website Intranet Model #
-Check [wimgemeenten.nl](http://www.wimgemeenten.nl) for more information. Please note that this file is in Dutch.
+Check [wimgemeenten.nl](http://www.wimgemeenten.nl) for more information. Please note that this website is in Dutch.
 
 Useful links for developers:
 - [Travis CI](https://travis-ci.org/WebsiteIntranetModel/wim/builds)
@@ -61,6 +61,7 @@ docker exec -it wim_web_1 bash
 Here you can use _drush_ and _drupal list_.
 
 **If you want to re-install, use the install script with the _reinstall_ parameter:**
+
 Add _include_ as second parameter to include local development settings to the settings.php file. Skip it if you don't want this.
 
 ```
