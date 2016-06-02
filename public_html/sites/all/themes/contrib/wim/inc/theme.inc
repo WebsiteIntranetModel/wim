@@ -1,7 +1,13 @@
 <?php
 
 /**
+ * @file
+ * Implementations of theme hooks.
+ */
+
+/**
  * Overrides theme_breadcrumb().
+ *
  * - Add <nav> wrapper.
  * - Add heading.
  */
@@ -15,6 +21,7 @@ function dimpact_breadcrumb($vars) {
 
 /**
  * Overrides theme_mark().
+ *
  * - Use <mark> element.
  */
 function dimpact_mark($vars) {
@@ -71,6 +78,7 @@ function dimpact_tablesort_indicator($vars) {
 
 /**
  * Overrides theme_links().
+ *
  * This version is from the Edge module. The patch was RTBC for Drupal 7, but it
  * was "too late." In addition to being more efficient it fixes a couple bugs.
  */
@@ -127,7 +135,6 @@ function dimpact_links($vars) {
         $class[] = drupal_html_class($key);
       }
 
-
       // Add odd/even, first, and last classes.
       $class[] = ($i % 2 ? 'odd' : 'even');
       if ($i == 1) {
@@ -172,11 +179,14 @@ function dimpact_links($vars) {
 
 /**
  * Overrides theme_more_link().
+ *
  * - Removes the wrapping DIV and adds to class to the link itself.
  * - Made the text and title attribute configurable.
+ *
  * @todo Make Views use this.
  */
 function dimpact_more_link($vars) {
+  // @codingStandardsIgnoreStart
   $title = !empty($vars['title']) ? t($vars['title']) : t('More');
   return l($title, $vars['url'], array(
     'attributes' => array(
@@ -185,10 +195,12 @@ function dimpact_more_link($vars) {
       )
     )
   );
+  // @codingStandardsIgnoreEnd
 }
 
 /**
  * Overrides theme_form().
+ *
  * - Removes the wrapper DIV.
  */
 function dimpact_form($vars) {
@@ -205,6 +217,7 @@ function dimpact_form($vars) {
 
 /**
  * Overrides theme_item_list().
+ *
  * - Use an early D8 version of this. It includes bug fixes.
  * - Remove the div.item-list wrapper.
  */
@@ -282,6 +295,7 @@ function dimpact_item_list($variables) {
 
 /**
  * Overrides dimpact_pager().
+ *
  * - Simplify the list item classes.
  * - Remove the arrows from the labels.
  * - Add rel="next/prev" attributes.
@@ -299,15 +313,14 @@ function dimpact_pager($variables) {
   // Calculate various markers within this pager piece:
   // Middle is used to "center" pages around the current page.
   $pager_middle = ceil($quantity / 2);
-  // current is the page we are currently paged to
+  // Current is the page we are currently paged to.
   $pager_current = $pager_page_array[$element] + 1;
-  // first is the first page listed by this pager piece (re quantity)
+  // First is the first page listed by this pager piece (re quantity).
   $pager_first = $pager_current - $pager_middle + 1;
-  // last is the last page listed by this pager piece (re quantity)
+  // Last is the last page listed by this pager piece (re quantity).
   $pager_last = $pager_current + $quantity - $pager_middle;
-  // max is the maximum page number
+  // Max is the maximum page number.
   $pager_max = $pager_total[$element];
-  // End of marker calculations.
 
   // Prepare for generation loop.
   $i = $pager_first;
@@ -321,12 +334,29 @@ function dimpact_pager($variables) {
     $pager_last = $pager_last + (1 - $i);
     $i = 1;
   }
-  // End of generation loop preparation.
 
-  $li_first = theme('pager_first', array('text' => (isset($tags[0]) ? $tags[0] : t('First')), 'element' => $element, 'parameters' => $parameters));
-  $li_previous = theme('pager_previous', array('text' => (isset($tags[1]) ? $tags[1] : t('Previous')), 'element' => $element, 'interval' => 1, 'parameters' => $parameters));
-  $li_next = theme('pager_next', array('text' => (isset($tags[3]) ? $tags[3] : t('Next')), 'element' => $element, 'interval' => 1, 'parameters' => $parameters));
-  $li_last = theme('pager_last', array('text' => (isset($tags[4]) ? $tags[4] : t('Last')), 'element' => $element, 'parameters' => $parameters));
+  $li_first = theme('pager_first', array(
+    'text' => (isset($tags[0]) ? $tags[0] : t('First')),
+    'element' => $element,
+    'parameters' => $parameters,
+  ));
+  $li_previous = theme('pager_previous', array(
+    'text' => (isset($tags[1]) ? $tags[1] : t('Previous')),
+    'element' => $element,
+    'interval' => 1,
+    'parameters' => $parameters,
+  ));
+  $li_next = theme('pager_next', array(
+    'text' => (isset($tags[3]) ? $tags[3] : t('Next')),
+    'element' => $element,
+    'interval' => 1,
+    'parameters' => $parameters,
+  ));
+  $li_last = theme('pager_last', array(
+    'text' => (isset($tags[4]) ? $tags[4] : t('Last')),
+    'element' => $element,
+    'parameters' => $parameters,
+  ));
 
   if ($pager_total[$element] > 1) {
     if ($li_first) {
@@ -354,7 +384,12 @@ function dimpact_pager($variables) {
         if ($i < $pager_current) {
           $items[] = array(
             'class' => array('item'),
-            'data' => theme('pager_previous', array('text' => $i, 'element' => $element, 'interval' => ($pager_current - $i), 'parameters' => $parameters)),
+            'data' => theme('pager_previous', array(
+              'text' => $i,
+              'element' => $element,
+              'interval' => ($pager_current - $i),
+              'parameters' => $parameters,
+            )),
           );
         }
         if ($i == $pager_current) {
@@ -366,7 +401,12 @@ function dimpact_pager($variables) {
         if ($i > $pager_current) {
           $items[] = array(
             'class' => array('item'),
-            'data' => theme('pager_next', array('text' => $i, 'element' => $element, 'interval' => ($i - $pager_current), 'parameters' => $parameters)),
+            'data' => theme('pager_next', array(
+              'text' => $i,
+              'element' => $element,
+              'interval' => ($i - $pager_current),
+              'parameters' => $parameters,
+            )),
           );
         }
       }
@@ -398,6 +438,7 @@ function dimpact_pager($variables) {
 
 /**
  * Overrides theme_pager_next().
+ *
  * - Adds rel="next" to the link.
  */
 function dimpact_pager_next($variables) {
@@ -408,16 +449,25 @@ function dimpact_pager_next($variables) {
   global $pager_page_array, $pager_total;
   $output = '';
 
-  // If we are anywhere but the last page
+  // If we are anywhere but the last page.
   if ($pager_page_array[$element] < ($pager_total[$element] - 1)) {
     $page_new = pager_load_array($pager_page_array[$element] + $interval, $element, $pager_page_array);
     // If the next page is the last page, mark the link as such.
     if ($page_new[$element] == ($pager_total[$element] - 1)) {
-      $output = theme('pager_last', array('text' => $text, 'element' => $element, 'parameters' => $parameters));
+      $output = theme('pager_last', array(
+        'text' => $text,
+        'element' => $element,
+        'parameters' => $parameters,
+      ));
     }
     // The next page is not the last page.
     else {
-      $output = theme('pager_link', array('text' => $text, 'page_new' => $page_new, 'element' => $element, 'parameters' => $parameters));
+      $output = theme('pager_link', array(
+        'text' => $text,
+        'page_new' => $page_new,
+        'element' => $element,
+        'parameters' => $parameters,
+      ));
     }
   }
 
@@ -426,6 +476,7 @@ function dimpact_pager_next($variables) {
 
 /**
  * Overrides theme_pager_previous().
+ *
  * - Adds rel="prev" to the link.
  */
 function dimpact_pager_previous($variables) {
@@ -436,17 +487,26 @@ function dimpact_pager_previous($variables) {
   global $pager_page_array;
   $output = '';
 
-  // If we are anywhere but the first page
+  // If we are anywhere but the first page.
   if ($pager_page_array[$element] > 0) {
     $page_new = pager_load_array($pager_page_array[$element] - $interval, $element, $pager_page_array);
 
     // If the previous page is the first page, mark the link as such.
     if ($page_new[$element] == 0) {
-      $output = theme('pager_first', array('text' => $text, 'element' => $element, 'parameters' => $parameters));
+      $output = theme('pager_first', array(
+        'text' => $text,
+        'element' => $element,
+        'parameters' => $parameters,
+      ));
     }
     // The previous page is not the first page.
     else {
-      $output = theme('pager_link', array('text' => $text, 'page_new' => $page_new, 'element' => $element, 'parameters' => $parameters));
+      $output = theme('pager_link', array(
+        'text' => $text,
+        'page_new' => $page_new,
+        'element' => $element,
+        'parameters' => $parameters,
+      ));
     }
   }
 
@@ -469,13 +529,12 @@ function dimpact_date_display_single($variables) {
   return '<span class="date-display-single"' . drupal_attributes($attributes) . '>' . $date . $timezone . '</span>';
 }
 
-
 /**
  * Format the items shown in the node.
  */
 function dimpact_service_links_node_format($variables) {
   $dimpact_service_links_display_style = variable_get('dimpact_service_links_display_style');
-  // if display style is overlay
+  // If display style is overlay.
   if ($dimpact_service_links_display_style == 1) {
     $dimpact_share_this_link_widget = '<div class="dimpact_service_links_share_this">' . t('Share this') . '</div>';
     $dimpact_share_this_hide_class = 'dimpact_hide_service_links';
@@ -492,7 +551,7 @@ function dimpact_service_links_node_format($variables) {
 
   if ($view_mode == 'rss') {
     $result = array();
-    foreach($links as $l) {
+    foreach ($links as $l) {
       $result[] = l($l['title'], $l['href'], $l);
     }
 
@@ -500,13 +559,16 @@ function dimpact_service_links_node_format($variables) {
   }
 
   if (isset($label) && !empty($label)) {
-    return $dimpact_share_this_link_widget . '<div class="service-links ' . $dimpact_share_this_hide_class . '"><div class="service-label">'. t('@label', array('@label' => $label)) .' </div>'. theme('links', array('links' => $links)) .'</div>';
+    return $dimpact_share_this_link_widget . '<div class="service-links ' . $dimpact_share_this_hide_class . '"><div class="service-label">' . t('@label', array('@label' => $label)) . ' </div>' . theme('links', array('links' => $links)) . '</div>';
   }
   else {
-    return $dimpact_share_this_link_widget . '<div class="service-links ' . $dimpact_share_this_hide_class . '">'. theme('links', array('links' => $links)) .'</div>';
+    return $dimpact_share_this_link_widget . '<div class="service-links ' . $dimpact_share_this_hide_class . '">' . theme('links', array('links' => $links)) . '</div>';
   }
 }
 
+/**
+ * Format the items shown in site map box.
+ */
 function dimpact_site_map_box($variables) {
   $title = '';
   $content = $variables['content'];
@@ -527,7 +589,9 @@ function dimpact_site_map_box($variables) {
   return $output;
 }
 
-
+/**
+ * Format menu link items.
+ */
 function dimpact_menu_link(array $variables) {
   $element = $variables['element'];
   $sub_menu = '';
@@ -541,7 +605,7 @@ function dimpact_menu_link(array $variables) {
   // Toptaken menus are treated differently.
   if (strpos($element['#theme'], 'toptaken') !== FALSE) {
     if (isset($element['#localized_options']['content']) && ($file = file_load($element['#localized_options']['content']['image']))) {
-      $image = '<span><img src="' . image_style_url('origineel', $file->uri). '" alt="' . check_plain($file->alt) . '" title="' . check_plain($file->title) . '"></span>';
+      $image = '<span><img src="' . image_style_url('origineel', $file->uri) . '" alt="' . check_plain($file->alt) . '" title="' . check_plain($file->title) . '"></span>';
       $element['#localized_options']['html'] = TRUE;
       $output = l($image . check_plain($element['#title']), $element['#href'], $element['#localized_options']);
     }
@@ -579,39 +643,35 @@ function dimpact_qt_quicktabs($variables) {
         $item['class'] = array('active');
       }
       $item['data'] = drupal_render($tab) . drupal_render($element['container']['divs'][$key]);
-			// $item['data'] = drupal_render($tab);
+      // $item['data'] = drupal_render($tab);
       $list['items'][] = $item;
     }
   }
-  // return theme('item_list', $list);
 
-  $output = '<div '. drupal_attributes($element['#options']['attributes']) .'>';
-  // $output .= drupal_render($element['tabs']);
+  $output = '<div ' . drupal_attributes($element['#options']['attributes']) . '>';
+  // $output .= drupal_render($element['tabs']);.
   $output .= theme('item_list', $list);
-  // $output .= drupal_render($element['container']);
+  // $output .= drupal_render($element['container']);.
   $output .= '</div>';
   return $output;
 }
 
-
 /**
  * Override or insert javascript on the site.
  *
- * @param $js
+ * @param array $javascript
  *   An array of all JavaScript being presented on the page.
  */
 function dimpact_js_alter(&$javascript) {
-	// Use our own vesion of quicktabs.js
-	$old_path = drupal_get_path('module', 'quicktabs');
-	$new_path = drupal_get_path('theme', 'dimpact');
-	$file = '/js/quicktabs.js';
-	$javascript[$old_path . $file] = drupal_js_defaults($new_path . $file);
+  // Use our own vesion of quicktabs.js.
+  $old_path = drupal_get_path('module', 'quicktabs');
+  $new_path = drupal_get_path('theme', 'dimpact');
+  $file = '/js/quicktabs.js';
+  $javascript[$old_path . $file] = drupal_js_defaults($new_path . $file);
 }
 
 /**
- * Override required asterisk on forms
- *
- * @param $variables
+ * Override required asterisk on forms.
  */
 function dimpact_form_required_marker($variables) {
   // This is also used in the installer, pre-database setup.
