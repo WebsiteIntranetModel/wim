@@ -1,0 +1,13 @@
+diff --git a/includes/file.inc b/includes/file.inc
+index 803661f..28afc99 100644
+--- a/includes/file.inc
++++ b/includes/file.inc
+@@ -2106,7 +2106,7 @@ function file_download_access($uri) {
+ function file_scan_directory($dir, $mask, $options = array(), $depth = 0) {
+   // Merge in defaults.
+   $options += array(
+-    'nomask' => '/(\.\.?|CVS)$/',
++    'nomask' => '/(\.\.?|CVS|node_modules|bower_components)$/',
+     'callback' => 0,
+     'recurse' => TRUE,
+     'key' => 'uri',
