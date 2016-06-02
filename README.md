@@ -1,4 +1,7 @@
 # Website Intranet Model #
+
+[![Build Status](https://travis-ci.org/WebsiteIntranetModel/wim.svg?branch=master)](https://travis-ci.org/WebsiteIntranetModel/wim)
+
 Check [wimgemeenten.nl](http://www.wimgemeenten.nl) for more information. Please note that this website is in Dutch.
 
 Useful links for developers:
@@ -79,6 +82,11 @@ Add _include_ as second parameter to include local development settings to the s
 docker exec -it wim_web_1 bash /root/dev-scripts/install/install-script.sh reinstall include
 ```
 
+**If you want to check coding standards:**
+```
+docker exec -it wim_web_1 bash /root/dev-scripts/check-coding-standards.sh
+```
+
 **If you want to start the proxy:**
 ```
 docker start proxy
@@ -88,5 +96,3 @@ docker start proxy
 ```
 mailcatcher.wim.dev
 ```
-
-[![Build Status](https://travis-ci.org/WebsiteIntranetModel/wim.svg?branch=master)](https://travis-ci.org/WebsiteIntranetModel/wim)
