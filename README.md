@@ -39,7 +39,7 @@ Note that the docker projects have to be somewhere in your /Users/ directory in 
     
     Add _include_ as second parameter to include local development settings to the settings.php file. Skip it if you don't want this.
     ```
-    docker exec -it wim_web_1 bash /root/dev-scripts/install/install_script.sh install include
+    docker exec -it wim_web_1 bash /root/dev-scripts/install/install-script.sh install include
     ```
 
 7. Add the proxy container.
