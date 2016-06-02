@@ -36,7 +36,7 @@ Note that the docker projects have to be somewhere in your /Users/ directory in 
     ```
 
 6. Run the install script on the docker web container, the name could be slightly different on your machine, in the example below the name is wim_web_1.
-    
+
     Add _include_ as second parameter to include local development settings to the settings.php file. Skip it if you don't want this.
     ```
     docker exec -it wim_web_1 bash /root/dev-scripts/install/install-script.sh install include
@@ -45,6 +45,17 @@ Note that the docker projects have to be somewhere in your /Users/ directory in 
 7. Add the proxy container.
     ```
     docker run -d -p 80:80 --name=proxy -v /var/run/docker.sock:/tmp/docker.sock:ro jwilder/nginx-proxy
+    ```
+
+8. Running into trouble?
+
+    **wim_db_1 port in use**
+    Edit the docker-compose.yml file in the root of the repo and change the database port mapping `3308:3006` to for example `3309:3306` or another unused port.
+
+    **502 Bad Gateway**
+    Execute the following command from out the node_modules folder to remove the .info files that conflict with Drupal.
+    ```
+    find . -type f -name '*.info' -exec rm -rf {} \;
     ```
 
 ## Usage ##
