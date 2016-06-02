@@ -1,0 +1,79 @@
+// Google Tag Manager
+noscript
+  iframe(src='//www.googletagmanager.com/ns.html?id=GTM-5BGZV3', height='0', width='0', style='display:none;visibility:hidden')
+script.
+  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-5BGZV3');
+// End Google Tag Manager
+
+.header__wrapper
+  .header__innerwrapper.container
+    .row
+      .col-xs-12
+        if page
+          h1.header__title #{page}
+        else
+          h1.header__title Drupal Social
+
+.nav-button-wrapper
+  button#js-showSidebar.hamburger-button(role='tab') 
+    i.material-icons(title='show navigation') menu
+
+ul#nav-mobile.side-nav.fixed
+  li.logo
+    a#logo-container.brand-logo(href='index.html')
+      object#front-page-logo(type='image/svg+xml', data='images/social-logo-blue.svg') Your browser does not support SVG
+  li.bold(class=(page == "Getting Started" ? "active" : ""))
+    a.waves-effect.waves-teal(href='getting-started.html') STARTERKIT
+
+  li.no-padding
+    ul.collapsible.collapsible-accordion
+      li.bold
+        a.collapsible-header(class=(page == "Sass" || page == "Typography" || page == "Color" || page == "Shadow" || page == "Grid" || page == "Media CSS" || page == "Table" || page == "Helpers" ? "active" : "")+" waves-effect waves-teal")
+          | General guidelines
+        .collapsible-body
+          ul
+            li(class=(page == "Color" ? "active" : ""))
+              a(href='color.html') WIM 2.0
+            li(class=(page == "Color" ? "active" : ""))
+              a(href='color.html') Do's and don'ts
+            li(class=(page == "Grid" ? "active" : ""))
+              a(href='grid.html') Layouts
+            li(class=(page == "Typography" ? "active" : ""))
+              a(href='typography.html') Maintanance
+      li.bold
+        a.collapsible-header(class=(page == "Forms" || page == "Buttons" || page == "Tabs" || page == "Cards" || page == "Chips" || page == "Preloader" || page == "Pagination" || page == "Collections" || page == "Badges" || page == "Breadcrumbs" || page == "Footer" ? "active" : "" || page == "Icons" ? "active" : "")+" waves-effect waves-teal")
+          | Theming guidelines 
+        .collapsible-body
+          ul
+            li(class=(page == "Navigation" ? "active" : ""))
+              a(href='navigation.html') HTML5 Doctype
+            li(class=(page == "Breadcrumbs" ? "active" : ""))
+              a(href='breadcrumbs.html') Landmarks and Roles
+            li(class=(page == "Cards" ? "active" : ""))
+              a(href='cards.html') Form fields and inputs
+            li(class=(page == "Forms" ? "active" : ""))
+              a(href='forms.html') Tab Order and Focus
+            li(class=(page == "Tabs" ? "active" : ""))
+              a(href='tabs.html') Form field helper text
+            li(class=(page == "Pagination" ? "active" : ""))
+              a(href='pagination.html') Figures
+            li(class=(page == "Pagination" ? "active" : ""))
+              a(href='pagination.html') Hiding content
+            li(class=(page == "Pagination" ? "active" : ""))
+              a(href='pagination.html') Using images: DOM or CSS?
+            li(class=(page == "Pagination" ? "active" : ""))
+              a(href='pagination.html') Embrace the focus ring
+            li(class=(page == "Pagination" ? "active" : ""))
+              a(href='pagination.html') Don't over engineer
+  li.bold(class=(page == "Layouts" ? "active" : ""))
+    a.waves-effect.waves-teal(href='layouts.html') Components
+  
+
+  li.bold(class=(page == "Prototype" ? "active" : ""))
+    a.waves-effect.waves-teal(href='prototype.html') Prototype
+
+.mask-modal
