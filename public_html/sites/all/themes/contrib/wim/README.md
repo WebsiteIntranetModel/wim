@@ -2,17 +2,17 @@
 
 
 ## Do's & Don'ts ##
-1. **Sustainability**
+1.  **Sustainability**
 
-Do not change files in this theme!
+    Do not change files in this theme!
 
-2. **Personalization**
+2.  **Personalization**
 
-Create a new sub theme dependent on the WIM theme with the provided STARTERKIT to make sure you get default theming for new features in future updates.
+    Create a new sub theme dependent on the WIM theme with the provided STARTERKIT to make sure you get default theming for new features in future updates.
 
-3. ** Writing CSS **
+3.  **Writing CSS**
 
-Use the CSS selectors as provided by the WIM theme to override CSS in a healthy way. *Never use !important overrides*, since this will risk unforseen regression in future updates.
+    Use the CSS selectors as provided by the WIM theme to override CSS in a healthy way. **Never use !important overrides**, since this will risk unforseen regression in future updates.
 
 
 ## Steps ##
@@ -39,7 +39,7 @@ Use the CSS selectors as provided by the WIM theme to override CSS in a healthy 
 
 5.  Start the gulp init task.
 
-    __This will download the latest bootstrap-sass files and move it from node_modules folder to your theme's sass base.__
+    *This will download the latest bootstrap-sass files and move it from node_modules folder to your theme's sass base.*
 
     ```
     $ gulp init
