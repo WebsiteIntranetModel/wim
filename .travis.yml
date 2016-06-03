@@ -26,4 +26,5 @@ before_install:
 script:
   - docker exec -i wim_web_1 bash /root/dev-scripts/install/install-script.sh
   - docker exec -i wim_web_1 bash /root/dev-scripts/check-coding-standards.sh
+  - docker exec -i wim_web_1 bash /root/dev-scripts/tests/unit-tests.sh
   - docker ps
