@@ -32,7 +32,5 @@ class WIMExampleTestCase extends DrupalUnitTestCase {
    */
   public function testAddingDigits() {
     $this->assertTrue(1 + 1 == 2, '1+1 is indeed 2');
-    $this->assertFalse(1 + 1 == 2, '1+1 is not 2');
   }
-
 }
