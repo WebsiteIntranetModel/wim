@@ -83,8 +83,11 @@ docker exec -it wim_web_1 bash /root/dev-scripts/install/install-script.sh reins
 ```
 
 **If you want to check coding standards:**
+
+Add _full_ as parameter if you want to see a detailed list of errors, skip it to see just a summary of files with issues.
+
 ```
-docker exec -it wim_web_1 bash /root/dev-scripts/check-coding-standards.sh
+docker exec -it wim_web_1 bash /root/dev-scripts/check-coding-standards.sh full
 ```
 
 **If you want to start the proxy:**
