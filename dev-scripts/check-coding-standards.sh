@@ -1,6 +1,6 @@
 #!/bin/sh
 
-REPORT=--report-summary
+REPORT=--report=summary
 
 if [ ${1:-"summary"} = "full" ]; then
   REPORT=--report-full
