@@ -30,12 +30,7 @@ var gulp          = require('gulp'),
 var folder = {
   css: 'css',
   scss: 'css/src',
-  bootstrap_scss: 'node_modules/bootstrap-sass/assets/stylesheets/bootstrap',
-  bootstrap_js: 'node_modules/bootstrap-sass/assets/javascripts',
   js: 'js',
-  // js_comp: 'js/components', // Drupal 8 OS specific
-  // js_vendor: '../../core/assets/vendor', // Drupal 8 core specific
-  // js_drupal: '../../core', // Drupal 8 core specific
   jade: 'jade',
   dist: 'dist'
 }
@@ -43,12 +38,10 @@ var folder = {
 var glob = {
   css: folder.css + '/*.css',
   scss: folder.css + '/src/**/*.scss',
-  bootstrap_scss: folder.bootstrap_scss + '/**/*.scss',
   js: folder.js + '/**/*.js',
   jade: folder.jade + '/*.jade',
   font: 'font/**/*',
   images: 'images/**/*',
-  // content: 'content/**/*',
   libs: 'libs/**/*'
 };
 
@@ -108,89 +101,6 @@ gulp.task('jade', function() {
     .pipe(gulp.dest(folder.dist)); // tell gulp our output folder
 });
 
-
-
-// ===================================================
-// Scripts
-// ===================================================
-
-// get component scripts and make available for dist in one file
-// gulp.task('script-components', function() {
-//   return gulp.src([
-//     folder.js_comp + "/initial.js",
-//     folder.js_comp + "/jquery.easing.1.3.js",
-//     folder.js_comp + "/animation.js",
-//     folder.js_comp + "/velocity.min.js",
-//     folder.js_comp + "/hammer.min.js",
-//     folder.js_comp + "/jquery.hammer.js",
-//     folder.js_comp + "/global.js",
-//     folder.js_comp + "/responsive-dom.js",
-//     folder.js_comp + "/jquery.timeago.min.js",
-//     folder.js_comp + "/collapsible.js",
-//     folder.js_comp + "/scrollspy.js",
-//     folder.js_comp + "/pushpin.js",
-//     folder.js_comp + "/sideNav.js",
-//     folder.js_comp + "/buttons.js",
-//     folder.js_comp + "/waves.js",
-//     folder.js_comp + "/tabs.js",
-//     folder.js_comp + "/offcanvas.js",
-//     folder.js_comp + "/forms.js",
-//     folder.js_comp + "/character_counter.js"
-//     ])
-//     .pipe( concat('components.js') )
-//     .pipe( gulp.dest(folder.js) )
-//     //.pipe( uglify() )
-//     .pipe( gulp.dest(folder.dist + '/js') );
-// });
-
-// get project scripts and make available for dist in one file
-// gulp.task('script-materialize', function() {
-//   return gulp.src([
-//     folder.js_materialize + "/navbar-search.js",
-//     ])
-//     .pipe( concat('materialize.js') )
-//     .pipe( gulp.dest(folder.js) )
-//     //.pipe( uglify() )
-//     .pipe( gulp.dest(folder.dist + '/js') );
-// });
-
-//copy vendor scripts from drupal to make them available for the styleguide
-// gulp.task('script-vendor', function() {
-//   return gulp.src([
-//     folder.js_vendor + '/domready/ready.min.js',
-//     folder.js_vendor + '/jquery/jquery.min.js',
-//     folder.js_vendor + '/jquery-once/jquery.once.min.js',
-//     'js/vendor/jquery.touch-swipe.js'
-//   ])
-//   .pipe( concat('vendor.js') )
-//   .pipe( gulp.dest(folder.dist + '/js') );
-// });
-//
-// gulp.task('jqueryminmap', function() {
-//   return gulp.src(folder.js_vendor + '/jquery/jquery.min.map')
-//   .pipe( gulp.dest(folder.dist + '/js') );
-// });
-
-//copy vendor scripts from drupal to make them available for the styleguide
-// gulp.task('script-drupal', function() {
-//   return gulp.src([
-//     folder.js_drupal + '/misc/drupalSettingsLoader.js',
-//     folder.js_drupal + '/misc/drupal.js',
-//     folder.js_drupal + '/misc/debounce.js',
-//     folder.js_drupal + '/misc/forms.js',
-//     folder.js_drupal + '/modules/user/user.js',
-//     folder.js_drupal + '/modules/file/file.js'
-//   ])
-//   .pipe( concat('drupal-core.js') )
-//   .pipe( gulp.dest(folder.dist + '/js') );
-// });
-
-//copy init script to the styleguide
-// gulp.task('script-init', function() {
-//   return gulp.src([folder.js + "/init.js"])
-//   .pipe( gulp.dest(folder.dist + '/js') );
-// });
-
 // ===================================================
 // Fonts
 // ===================================================
@@ -213,13 +123,6 @@ gulp.task('images', function() {
   return stream;
 });
 
-// gulp.task('content', function() {
-//   stream = gulp.src(glob.content)
-//     .pipe( gulp.dest(folder.dist + '/content') )
-//     .pipe( connect.reload() );
-//   return stream;
-// });
-
 // ===================================================
 // Extras
 // ===================================================
@@ -229,25 +132,6 @@ gulp.task('libs', function() {
     .pipe( gulp.dest(folder.dist + '/libs') )
   return stream;
 });
-
-
-// ===================================================
-// Import Bootstrap assets
-// ===================================================
-
-gulp.task('bootstrap-sass', function() {
-  stream = gulp.src(glob.bootstrap_scss)
-    .pipe( gulp.dest(folder.scss + '/bootstrap') )
-  return stream;
-});
-
-gulp.task('bootstrap-js', function() {
-  stream = gulp.src(folder.bootstrap_js + '/bootstrap.min.js')
-    .pipe( gulp.dest(folder.js) )
-    .pipe( gulp.dest(folder.dist + "/js") )
-  return stream;
-});
-
 
 // ===================================================
 // Set up a server
@@ -275,18 +159,6 @@ gulp.task('watch', function() {
     folder.jade + '/**/*'
   ], ['jade']);
 
-  // gulp.watch([
-  //   folder.js_comp + '/**/*.js'
-  // ], ['scripts']);
-  //
-  // gulp.watch([
-  //   folder.js_materialize + '/**/*.js'
-  // ], ['script-materialize']);
-  //
-  // gulp.watch([
-  //   folder.js + "/init.js"
-  // ], ['script-init']);
-
   gulp.watch([
     glob.font
   ], ['font']);
@@ -294,10 +166,6 @@ gulp.task('watch', function() {
   gulp.watch([
     glob.images
   ], ['images']);
-
-  // gulp.watch([
-  //   glob.content
-  // ], ['content']);
 
 });
 
@@ -314,13 +182,6 @@ gulp.task('deploy', ['build'], function() {
 // ===================================================
 // Run this one time when you install the project so you have all files in the dist folder
 // ===================================================
-// gulp.task('init', ['images', 'content', 'libs', 'font', 'jqueryminmap']);
-gulp.task('init', ['images', 'libs', 'font', 'bootstrap-sass', 'bootstrap-js']);
-
-// gulp.task('scripts', ['script-components', 'script-materialize', 'script-vendor', 'script-drupal', 'script-init']);
-
-// gulp.task('build', ['css', 'jade' , 'scripts', 'font', 'images']);
+gulp.task('init', ['images', 'libs', 'font']);
 gulp.task('build', ['css', 'jade', 'font', 'images']);
-
-// gulp.task('default', ['css', 'jade' , 'scripts', 'connect', 'watch']);
 gulp.task('default', ['css', 'jade', 'connect', 'watch']);
