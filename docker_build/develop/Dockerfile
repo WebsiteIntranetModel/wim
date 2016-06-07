@@ -11,6 +11,10 @@ RUN composer global install --prefer-dist
 # Unfortunately, adding the composer vendor dir to the PATH doesn't seem to work. So:
 RUN ln -s /root/.composer/vendor/bin/behat /usr/local/bin/behat
 RUN ln -s /root/.composer/vendor/bin/phpunit /usr/local/bin/phpunit
+RUN ln -s /root/.composer/vendor/bin/phpcs /usr/local/bin/phpcs
+
+# Register the Drupal and DrupalPractice Standard with PHPCS.
+RUN phpcs --config-set installed_paths /root/.composer/vendor/drupal/coder/coder_sniffer
 
 # Xdebug.
 RUN pecl install xdebug

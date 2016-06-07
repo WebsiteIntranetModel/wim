@@ -1,6 +1,11 @@
 <?php
 
 /**
+ * @file
+ * Implementations of alter hooks.
+ */
+
+/**
  * Implements hook_html_head_alter().
  */
 function dimpact_html_head_alter(&$head_elements) {
@@ -72,6 +77,7 @@ function dimpact_html_head_alter(&$head_elements) {
     '#suffix' => '<![endif]-->',
   );
 
+  // @codingStandardsIgnoreStart
   // Apple Touch Icons. See: http://mathiasbynens.be/notes/touch-icons
   // Note: When a subtheme is active, this pulls the icons from the subtheme,
   // not the base theme. Make sure these files exist.
@@ -118,6 +124,7 @@ function dimpact_html_head_alter(&$head_elements) {
 //      'href' => $path . '/img/apple/apple-touch-icon-precomposed.png'
 //    ),
 //  );
+  // @codingStandardsIgnoreEnd
 }
 
 /**
@@ -184,7 +191,8 @@ function dimpact_page_alter(&$page) {
  * Implements hook_node_view_alter().
  */
 function dimpact_node_view_alter(&$build) {
-  // If teaser and there are links to be rendered, have node.tpl.php render node teaser link and no other link.
+  // If teaser and there are links to be rendered, have node.tpl.php render node
+  // teaser link and no other link.
   if ($build['#view_mode'] == 'teaser' && isset($build['#theme']) && $build['#theme'] == 'node') {
     // Hide all groups except node.
     if (isset($build['links'])) {
