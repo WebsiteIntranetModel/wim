@@ -1,3 +1,6 @@
 @import "project/variables";
-@import "project/mixins";
+
+@import "project/mixins/breakpoints";
+@import "project/mixins/elevation";
+
 @import "styleguide/styleguide";

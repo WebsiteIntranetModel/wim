@@ -1,0 +1,31 @@
+.dropdown-menu > li > a {
+  background-color: $brand-dark;
+  color: white;
+  font-size: 1.3rem;
+  padding: 10px;
+
+  &:before {
+    @extend .icon;
+    @extend .icon-search;
+  }
+
+}
+
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+  text-decoration: underline;
+  background-color: $brand-primary;
+  color: white;
+}
+
+.dropdown-menu > .active > a,
+.dropdown-menu > .active > a:hover {
+  background-color: $brand-primary;
+  color: white;
+}
+
+.dropdown-menu {
+  min-width: 100%;
+  padding: 0;
+  border: 0;
+}
