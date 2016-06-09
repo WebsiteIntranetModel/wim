@@ -14,10 +14,12 @@
   },
   "devDependencies": {
     "autoprefixer": "^6.3.6",
+    "prismjs": "^1.5.1",
     "jquery": "^1.9.0",
     "bootstrap": "^3.3.6",
     "css-mqpacker": "^5.0.1",
     "gulp": "^3.9.1",
+    "gulp-ignore": "^2.0.1",
     "gulp-concat": "^2.6.0",
     "gulp-connect": "^4.0.0",
     "gulp-cssnano": "^2.1.2",

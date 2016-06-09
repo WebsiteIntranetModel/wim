@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
-    <title>Index - WIM</title>
+    <title>Home - WIM</title>
     <link rel="apple-touch-icon" sizes="57x57" href="images/favicon/apple-touch-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="images/favicon/apple-touch-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="images/favicon/apple-touch-icon-72x72.png">
@@ -24,13 +24,12 @@
     <meta name="msapplication-TileColor" content="#29abe2">
     <meta name="msapplication-TileImage" content="images/favicon/mstile-144x144.png">
     <meta name="theme-color" content="#ffffff">
-    <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet" media="screen">
-    <link href="css/project.css" type="text/css" rel="stylesheet" media="screen">
-    <link href="css/styleguide.css" type="text/css" rel="stylesheet" media="screen">
-    <link href="css/styleguide/prism.css" type="text/css" rel="stylesheet" media="screen">
+    <link href="/css/bootstrap.min.css" type="text/css" rel="stylesheet" media="screen">
+    <link href="/css/project.css" type="text/css" rel="stylesheet" media="screen">
+    <link href="/css/styleguide.css" type="text/css" rel="stylesheet" media="screen">
+    <link href="/css/prism.css" type="text/css" rel="stylesheet" media="screen">
   </head>
   <body class="styleguide">
-    <header class="styleguide-header"></header>
     <div class="region region-page-top">
       <ul class="nav">
         <li>Item 1</li>
@@ -38,28 +37,8 @@
     </div>
     <div class="main-wrapper container">
       <header id="header" class="navbar container navbar-default">
-        <div class="navbar-header"><a href="/" title="Home" class="logo navbar-btn pull-left"><img src="http://wim.dev/sites/all/themes/contrib/wim/logo.png" alt="Home"></a>
-          <div class="region region-header">
-            <section id="block-search-form" class="block block-search clearfix">
-              <form id="search-block-form" action="/" method="post" accept-charset="UTF-8" class="form-search content-search">
-                <div>
-                  <div>
-                    <h2 class="element-invisible">Search form</h2>
-                    <div class="input-group">
-                      <input id="edit-search-block-form--2" title="Enter the terms you wish to search for." placeholder="Search" type="text" name="search_block_form" value="" size="15" maxlength="128" class="form-control form-text"><span class="input-group-btn">
-                        <button type="submit" class="btn btn-primary"><span aria-hidden="true" class="icon glyphicon glyphicon-search"></span></button></span>
-                    </div>
-                    <div id="edit-actions" class="form-actions form-wrapper form-group">
-                      <button id="edit-submit" type="submit" name="op" value="Search" class="element-invisible btn btn-primary form-submit">Search</button>
-                    </div>
-                    <input type="hidden" name="form_build_id" value="form-eKjd5JK4AUqqjNsAX-5IOAaiqn5HaDTOy_4VNhjIXGk">
-                    <input type="hidden" name="form_token" value="g9A8vZlcxhDNOT2E_98AApiJYdKL3wGvrIPW4X2gGvY">
-                    <input type="hidden" name="form_id" value="search_block_form">
-                  </div>
-                </div>
-              </form>
-            </section>
-          </div>
+        <div class="navbar-header"><a href="/index.html" title="Home" class="logo navbar-btn pull-left"><img src="http://wim.dev/sites/all/themes/contrib/wim/logo.png" alt="Home"></a>
+          <div class="region region-header"></div>
           <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
         </div>
         <div class="navbar-collapse collapse">
@@ -67,90 +46,35 @@
             <ul class="menu nav navbar-nav">
               <li class="first expanded dropdown"><a href="/node/3" title="" data-target="#" data-toggle="dropdown" class="dropdown-toggle">Styleguide<span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li class="first leaf"><a href="/node/6">Atoms</a></li>
-                  <li class="leaf"><a href="/node/5">Molecules</a></li>
-                  <li class="last leaf"><a href="/node/7">Organisms</a></li>
+                  <li class="first leaf"><a href="/styleguide/atoms.html">Atoms</a></li>
+                  <li class="leaf"><a href="/styleguide/molecules.html">Molecules</a></li>
+                  <li class="last leaf"><a href="/styleguide/organisms">Organisms</a></li>
                 </ul>
               </li>
-              <li class="leaf"><a href="/node/4">Accessibility</a></li>
-              <li class="leaf"><a href="/node/2">Dimpact</a></li>
-              <li class="last leaf"><a href="/node/1">WIM</a></li>
+              <li class="leaf"><a href="/accessibility.html">Accessibility</a></li>
+              <li class="leaf"><a href="/wim.html">WIM - Drupal Distribution</a></li>
+              <li class="last leaf"><a href="/dimpact.html">Dimpact</a></li>
             </ul>
           </nav>
         </div>
       </header>
-      <div id="page-banner" role="banner">
-        <!-- Create region for banner and render it here. We moved header to the navbar header section.-->
-      </div>
+      <div id="page-banner" role="banner"> </div>
+      <!-- Create region for banner and render it here. We moved header to the navbar header section.-->
       <div role="main" class="main-container container">
         <div class="row">
-          <aside role="complementary" class="col-sm-3">
-            <div class="region region-sidebar-first">
-              <section id="block-system-management" class="block block-system block-menu clearfix">
-                <h2 class="block-title">Index</h2>
-                <ul class="menu nav">
-                  <li><a href="/colors.html">Colors</a></li>
-                  <li><a href="/Typography.html">Typography</a></li>
-                  <li><a href="/icons.html">Iconen</a></li>
-                  <li><a href="/buttons.html">Buttons</a></li>
-                  <li><a href="/form-elements.html">Form elements</a></li>
-                  <li><a href="/labels.html">Labels</a></li>
-                  <li><a href="/messages.html">Messages</a></li>
-                  <li><a href="/tables.html">Tables</a></li>
-                </ul>
-              </section>
-            </div>
-          </aside>
           <!-- /#sidebar-first-->
-          <section class="col-sm-9"><a id="main-content"></a>
+          <section class="col-sm-12"><a id="main-content"></a>
             <div class="region region-content">
               <section id="block-system-main" class="block block-system clearfix">
-                <h1>Index</h1>
+                <h1>Home</h1>
               </section>
             </div>
           </section>
         </div>
       </div>
     </div>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/project.js"></script>
-    <script src="js/prism.js"></script>
-    <script>
-      // Escape code
-      // ============================================================
-      
-      var $lang_markup       = document.querySelectorAll('pre code.language-markup')
-          $lang_js           = document.querySelectorAll('script.atomic-js'),
-          $lang_jscode       = document.querySelectorAll('pre code.language-javascript')
-          lang_markupsnippet = [],
-          lang_jsnippet      = [];
-      
-      
-      // Markup
-      // order matters!
-      // ============================================================
-      
-      for(var i = 0, l = $lang_markup.length; i < l; i++) {
-        lang_markupsnippet.push(
-          $lang_markup[i].innerHTML.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-        );
-        $lang_markup[i].innerHTML = lang_markupsnippet[i];
-      }
-      
-      
-      // JavaScript
-      // order matters!
-      // ============================================================
-      for(var i = 0, l = $lang_jscode.length; i < l; i++) {
-        lang_jsnippet.push(
-          $lang_jscode[i].innerHTML.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-        );
-      }
-      
-      for(var i = 0, l = $lang_js.length; i < l; i++) {
-        $lang_js[i].innerHTML = lang_jsnippet[i];
-      }
-    </script>
+    <script src="/js/prism.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
   </body>
 </html>

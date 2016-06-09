@@ -1,0 +1,5 @@
+node_modules
+.DS_Store
+
+# comment out this folder if you want the dist in your repository
+dist

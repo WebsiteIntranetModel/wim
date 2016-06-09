@@ -6,6 +6,7 @@ var gulp          = require('gulp'),
     postcss       = require('gulp-postcss'),
     sass          = require('gulp-sass'),
     sourcemaps    = require('gulp-sourcemaps'),
+    gulpignore    = require('gulp-ignore'),
     autoprefixer  = require('autoprefixer'),
     mqpacker      = require('css-mqpacker'),
     precss        = require('precss'),
@@ -36,7 +37,9 @@ var folder = {
   font: 'fonts',
   bootstrap_font: 'node_modules/bootstrap/dist/fonts/',
   bootstrap_css: 'node_modules/bootstrap/dist/css/',
+  prism_css: 'node_modules/prismjs/themes/',
   bootstrap_js: 'node_modules/bootstrap/dist/js/',
+  prism_js: 'node_modules/prismjs/',
   jquery_js: 'node_modules/jquery/dist/',
 }
 
@@ -44,7 +47,7 @@ var glob = {
   css: folder.css + '/*.css',
   scss: folder.css + '/src/**/*.scss',
   js: folder.js + '/**/*.js',
-  jade: folder.jade + '/*.jade',
+  jade: [folder.jade + '/**/*.jade', '!/**/_*.jade'],
   images: 'images/**/*',
   libs: 'libs/**/*'
 };
@@ -101,6 +104,26 @@ gulp.task('script-drupal', function() {
   ])
   .pipe( concat('drupal-core.js') )
   .pipe( gulp.dest(folder.dist + '/js') );
+});
+
+// ===================================================
+// Import Prism CSS
+// ===================================================
+
+gulp.task('prism-css', function() {
+  stream = gulp.src(folder.prism_css + '/prism.css')
+    .pipe( gulp.dest(folder.dist + '/css/')  )
+  return stream;
+});
+
+// ===================================================
+// Import Prism JS
+// ===================================================
+
+gulp.task('prism-js', function() {
+  stream = gulp.src(folder.prism_js + '/prism.js')
+    .pipe( gulp.dest(folder.dist + '/js/')  )
+  return stream;
 });
 
 // ===================================================
@@ -221,6 +244,6 @@ gulp.task('deploy', ['build'], function() {
 // ===================================================
 // Run this one time when you install the project so you have all files in the dist folder
 // ===================================================
-gulp.task('init', ['images', 'libs', 'jquery-js', 'bootstrap-css', 'bootstrap-font', 'bootstrap-js']);
-gulp.task('build', ['css', 'jade', 'images']);
+gulp.task('init', ['script-drupal', 'jquery-js', 'bootstrap-css', 'prism-js', 'prism-css', 'bootstrap-font', 'bootstrap-js']);
+gulp.task('build', ['css', 'jade', 'images', 'script-drupal', 'prism-js', 'prism-css', 'jquery-js', 'bootstrap-css', 'bootstrap-font', 'bootstrap-js']);
 gulp.task('default', ['css', 'jade', 'connect', 'watch']);

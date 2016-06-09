@@ -1,23 +1,39 @@
 aside.col-sm-3(role='complementary')
   .region.region-sidebar-first
     section#block-system-management.block.block-system.block-menu.clearfix
+        
+      if section == "atoms"
+        h2.block-title Atoms
+        ul.menu.nav
+          li
+            a(href='/colors.html') Colors
+          li
+            a(href='/styleguide/atoms/typography.html') Typography
+          li
+            a(href='/icons.html') Icons
+          li
+            a(href='/buttons.html') Buttons
+          li
+            a(href='/form-elements.html') Form elements
+          li
+            a(href='/labels.html') Labels
+          li
+            a(href='/messages.html') Messages
+          li
+            a(href='/tables.html') Tables
       
+      if section == "molecules"
+        h2.block-title Molecules
+        ul.menu.nav
+          li
+            a(href='/menu.html') Menu
+          li
+            a(href='/forms.html') Forms
       
-      h2.block-title #{page}
-      ul.menu.nav
-        li
-          a(href='/colors.html') Colors
-        li
-          a(href='/Typography.html') Typography
-        li
-          a(href='/icons.html') Iconen
-        li
-          a(href='/buttons.html') Buttons
-        li
-          a(href='/form-elements.html') Form elements
-        li
-          a(href='/labels.html') Labels
-        li
-          a(href='/messages.html') Messages
-        li
-          a(href='/tables.html') Tables
+      if section == "organisms"
+        h2.block-title Organisms
+        ul.menu.nav
+          li
+            a(href='#') ...
+          li
+            a(href='#') ...

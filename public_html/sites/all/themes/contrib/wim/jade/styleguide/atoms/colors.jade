@@ -1,10 +1,12 @@
 - var pagetype = "styleguide"
-- var page = "Home"
+- var section = "atoms"
+- var page = "Colors"
 
 doctype html
 html(lang="en")
   head
-    include ./layout/_head.jade
+    include ../../layout/_head.jade
+    
   body(class='#{pagetype}')
       
     .region.region-page-top
@@ -12,11 +14,14 @@ html(lang="en")
         li Item 1
 
     .main-wrapper.container
-      include ./layout/_navbar.jade
+      include ../../layout/_navbar.jade
       
       #page-banner(role='banner') 
       // Create region for banner and render it here. We moved header to the navbar header section.
         
-      include ./layout/_main.jade
-
-    include ./layout/_scripts.jade
+      include ../../layout/_main.jade
+        
+        block content
+          p Lorem ipsum dolor sit amet.
+        
+    include ../../layout/_scripts.jade
