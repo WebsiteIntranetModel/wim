@@ -1,7 +1,7 @@
 header#header.navbar.container.navbar-default
   .navbar-header
-    a.logo.navbar-btn.pull-left(href='#{base}index.html', title='Home')
-      img(src='#{base}../logo.png', alt='Home')
+    a.logo.navbar-btn.pull-left(href='index.html', title='Home')
+      img(src='../logo.png', alt='Home')
     .region.region-header
     button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
       span.sr-only Toggle navigation
@@ -12,19 +12,19 @@ header#header.navbar.container.navbar-default
     nav(role='navigation')
       ul.menu.nav.navbar-nav
         li.first.expanded.dropdown
-          a.dropdown-toggle(href='/node/3', title='', data-target='#', data-toggle='dropdown')
+          a.dropdown-toggle(href='#', title='', data-target='#', data-toggle='dropdown')
             | Styleguide
             span.caret
           ul.dropdown-menu
             li.first.leaf
-              a(href='#{base}styleguide/atoms.html') Atoms
+              a(href='styleguide/atoms.html') Atoms
             li.leaf
-              a(href='#{base}styleguide/molecules.html') Molecules
+              a(href='styleguide/molecules.html') Molecules
             li.last.leaf
-              a(href='#{base}styleguide/organisms') Organisms
+              a(href='styleguide/organisms') Organisms
         li.leaf
-          a(href='#{base}accessibility.html') Accessibility
+          a(href='accessibility.html') Accessibility
         li.leaf
-          a(href='#{base}wim.html') WIM - Drupal Distribution
+          a(href='wim.html') WIM - Drupal Distribution
         li.last.leaf
-          a(href='#{base}dimpact.html') Dimpact
+          a(href='dimpact.html') Dimpact

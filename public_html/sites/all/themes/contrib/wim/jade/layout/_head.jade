@@ -27,7 +27,9 @@ meta(name='msapplication-TileColor', content='#29abe2')
 meta(name='msapplication-TileImage', content='images/favicon/mstile-144x144.png')
 meta(name='theme-color', content='#ffffff')
 
-link(href='#{base}css/bootstrap.min.css', type='text/css', rel='stylesheet', media='screen')
-link(href='#{base}css/project.css', type='text/css', rel='stylesheet', media='screen')
+base(href="#{base}")
+
+link(href='css/bootstrap.min.css', type='text/css', rel='stylesheet', media='screen')
+link(href='css/project.css', type='text/css', rel='stylesheet', media='screen')
 if section == "atoms" || section == "molecules" || section == "organisms"
-  link(href='#{base}css/prism.css', type='text/css', rel='stylesheet', media='screen')
+  link(href='css/prism.css', type='text/css', rel='stylesheet', media='screen')
