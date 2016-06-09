@@ -32,7 +32,12 @@ var folder = {
   scss: 'css/src',
   js: 'js',
   jade: 'jade',
-  dist: 'dist'
+  dist: 'dist',
+  font: 'fonts',
+  bootstrap_font: 'node_modules/bootstrap/dist/fonts/',
+  bootstrap_css: 'node_modules/bootstrap/dist/css/',
+  bootstrap_js: 'node_modules/bootstrap/dist/js/',
+  jquery_js: 'node_modules/jquery/dist/',
 }
 
 var glob = {
@@ -40,7 +45,6 @@ var glob = {
   scss: folder.css + '/src/**/*.scss',
   js: folder.js + '/**/*.js',
   jade: folder.jade + '/*.jade',
-  font: 'font/**/*',
   images: 'images/**/*',
   libs: 'libs/**/*'
 };
@@ -86,6 +90,56 @@ gulp.task('css', function () {
 });
 
 // ===================================================
+// Scripts
+// ===================================================
+
+//copy vendor scripts from drupal to make them available for the styleguide
+gulp.task('script-drupal', function() {
+  return gulp.src([
+    folder.js_drupal + '/misc/drupal.js',
+    folder.js_drupal + '/misc/forms.js',
+  ])
+  .pipe( concat('drupal-core.js') )
+  .pipe( gulp.dest(folder.dist + '/js') );
+});
+
+// ===================================================
+// Import jQuery JS
+// ===================================================
+
+gulp.task('jquery-js', function() {
+  stream = gulp.src(folder.jquery_js + '/jquery.min.js')
+    .pipe( gulp.dest(folder.js) )
+    .pipe( gulp.dest(folder.dist + '/js/')  )
+  return stream;
+});
+
+// ===================================================
+// Import Bootstrap assets
+// ===================================================
+
+gulp.task('bootstrap-css', function() {
+  stream = gulp.src(folder.bootstrap_css + '/bootstrap.min.css')
+    .pipe( gulp.dest(folder.css) )
+    .pipe( gulp.dest(folder.dist + '/css/')  )
+  return stream;
+});
+
+gulp.task('bootstrap-js', function() {
+  stream = gulp.src(folder.bootstrap_js + '/bootstrap.min.js')
+    .pipe( gulp.dest(folder.js) )
+    .pipe( gulp.dest(folder.dist + "/js") )
+  return stream;
+});
+
+gulp.task('bootstrap-font', function() {
+  stream = gulp.src(folder.bootstrap_font + '/*')
+    .pipe( gulp.dest(folder.font) )
+    .pipe( gulp.dest(folder.dist + "/fonts") )
+  return stream;
+});
+
+// ===================================================
 // Template file (Jade)
 // ===================================================
 
@@ -99,17 +153,6 @@ gulp.task('jade', function() {
       pretty: true
     })) // pipe to jade plugin
     .pipe(gulp.dest(folder.dist)); // tell gulp our output folder
-});
-
-// ===================================================
-// Fonts
-// ===================================================
-
-gulp.task('font', function() {
-  stream = gulp.src(glob.font)
-    .pipe( gulp.dest(folder.dist + '/font') )
-    .pipe( connect.reload() );
-  return stream;
 });
 
 // ===================================================
@@ -160,10 +203,6 @@ gulp.task('watch', function() {
   ], ['jade']);
 
   gulp.watch([
-    glob.font
-  ], ['font']);
-
-  gulp.watch([
     glob.images
   ], ['images']);
 
@@ -182,6 +221,6 @@ gulp.task('deploy', ['build'], function() {
 // ===================================================
 // Run this one time when you install the project so you have all files in the dist folder
 // ===================================================
-gulp.task('init', ['images', 'libs', 'font']);
-gulp.task('build', ['css', 'jade', 'font', 'images']);
+gulp.task('init', ['images', 'libs', 'jquery-js', 'bootstrap-css', 'bootstrap-font', 'bootstrap-js']);
+gulp.task('build', ['css', 'jade', 'images']);
 gulp.task('default', ['css', 'jade', 'connect', 'watch']);

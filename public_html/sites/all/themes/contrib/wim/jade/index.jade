@@ -1,5 +1,5 @@
 - var pagetype = "styleguide"
-- var page = "Open Social"
+- var page = "Index"
 
 doctype html
 html(lang="en")
@@ -9,53 +9,58 @@ html(lang="en")
     header.styleguide-header
       include ./layout/_navbar.jade
       
-    main.styleguide-container(role='main')
+    .region.region-page-top
+      ul.nav
+        li Item 1
 
-      #index-banner.section
-        .container
-          br
-          br
-          br
-          .center
-            p
-              :markdown
-                **A modern responsive Drupal theme for Open Social.**
-                
-                This theme is built upon [Drupal bootstrap](https://www.drupal.org/project/bootstrap) and makes use of [Material Design principles](https://www.google.com/design/spec/material-design/introduction.html).
-                
-                We are currently working on the alpha release which in planned for the end of June.
+    .main-wrapper.container
+          header#header.navbar.container.navbar-default
+            .navbar-header
+              a.logo.navbar-btn.pull-left(href='/', title='Home')
+                img(src='http://wim.dev/sites/all/themes/contrib/wim/logo.png', alt='Home')
+              .region.region-header
+                section#block-search-form.block.block-search.clearfix
+                  form#search-block-form.form-search.content-search(action='/', method='post', accept-charset='UTF-8')
+                    div
+                      div
+                        h2.element-invisible Search form
+                        .input-group
+                          input#edit-search-block-form--2.form-control.form-text(title='Enter the terms you wish to search for.', placeholder='Search', type='text', name='search_block_form', value='', size='15', maxlength='128')
+                          span.input-group-btn
+                            button.btn.btn-primary(type='submit')
+                              span.icon.glyphicon.glyphicon-search(aria-hidden='true')
+                        #edit-actions.form-actions.form-wrapper.form-group
+                          button#edit-submit.element-invisible.btn.btn-primary.form-submit(type='submit', name='op', value='Search') Search
+                        input(type='hidden', name='form_build_id', value='form-eKjd5JK4AUqqjNsAX-5IOAaiqn5HaDTOy_4VNhjIXGk')
+                        input(type='hidden', name='form_token', value='g9A8vZlcxhDNOT2E_98AApiJYdKL3wGvrIPW4X2gGvY')
+                        input(type='hidden', name='form_id', value='search_block_form')
+              button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+                span.sr-only Toggle navigation
+                span.icon-bar
+                span.icon-bar
+                span.icon-bar
+            .navbar-collapse.collapse
+              nav(role='navigation')
+                ul.menu.nav.navbar-nav
+                  li.first.expanded.dropdown
+                    a.dropdown-toggle(href='/node/3', title='', data-target='#', data-toggle='dropdown')
+                      | Styleguide
+                      span.caret
+                    ul.dropdown-menu
+                      li.first.leaf
+                        a(href='/node/6') Atoms
+                      li.leaf
+                        a(href='/node/5') Molecules
+                      li.last.leaf
+                        a(href='/node/7') Organisms
+                  li.leaf
+                    a(href='/node/4') Accessibility
+                  li.leaf
+                    a(href='/node/2') Dimpact
+                  li.last.leaf
+                    a(href='/node/1') WIM
+          #page-banner(role='banner')
+            // Create region for banner and render it here. We moved header to the navbar header section.
+          include ./layout/_main.jade
 
-  
     include ./layout/_scripts.jade
-    
-    footer.styleguide-footer.brand-secondary
-      .repo-link
-        .container
-          .row
-            .col-xs-12
-              .commit
-                span.hidden-mobile Latest commit on Github by &nbsp; &nbsp; 
-                a.sha.hidden-mobile(href='')
-                span.hidden-mobile -&nbsp;
-                span.date.hidden-mobile
-                a#github-button.btn.btn-flat.pull-right.waves-effect.waves-light(href='https://github.com/goalgorilla/drupal_social/tree/gh-pages') View repository
-      .container
-        .row
-          .col-xs-12.col-sm-8
-            h5.white-text Contribute
-            p.grey-text.text-lighten-4 Do you want to join us in this effort? We are welcoming your feedback, (development) time and/or financial support. For <a href="https://www.drupal.org/project/issues/social" class="social-blue-text text-lighten-4"> feedback we will use D.O</a> for other questions or suggestions please <a href="mailto:taco@goalgorilla.com" class="social-blue-text text-lighten-4">contact us</a>.
-            p 
-              a.btn.btn-default(href='https://github.com/goalgorilla/drupal_social/wiki/Contributing-to-Open-Social') Read more
-            
-          .col-xs-12.col-sm-3.col-sm-push-1
-            h5.white-text Connect
-            ul
-              li
-                a.white-text(href='#') item
-              li
-                a.white-text(href='#') item
-              li
-                a.white-text(href='#') item
-      .footer-copyright
-        .container 
-          a(href='http://www.goalgorilla.com') 
