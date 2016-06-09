@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
-    <title>Home - WIM</title>
+    <title>Molecules - WIM</title>
     <link rel="apple-touch-icon" sizes="57x57" href="images/favicon/apple-touch-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="images/favicon/apple-touch-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="images/favicon/apple-touch-icon-72x72.png">
@@ -26,6 +26,7 @@
     <meta name="theme-color" content="#ffffff">
     <link href="/css/bootstrap.min.css" type="text/css" rel="stylesheet" media="screen">
     <link href="/css/project.css" type="text/css" rel="stylesheet" media="screen">
+    <link href="/css/prism.css" type="text/css" rel="stylesheet" media="screen">
   </head>
   <body class="styleguide">
     <div class="region region-page-top">
@@ -60,14 +61,20 @@
       <!-- Create region for banner and render it here. We moved header to the navbar header section.-->
       <div role="main" class="main-container container">
         <div class="row">
-          <!-- /#sidebar-first-->
-          <section class="col-sm-12"><a id="main-content"></a>
-            <div class="region region-content">
-              <section id="block-system-main" class="block block-system clearfix">
-                <h1>Home</h1>
+          <aside role="complementary" class="col-sm-3">
+            <div class="region region-sidebar-first">
+              <section id="block-system-management" class="block block-system block-menu clearfix">
+                <h2 class="block-title">Molecules</h2>
+                <ul class="menu nav">
+                  <li><a href="/styleguide/molecules/menu.html">Menu</a></li>
+                  <li><a href="/styleguide/molecules/forms.html">Forms</a></li>
+                  <li><a href="#">...</a></li>
+                </ul>
               </section>
             </div>
-          </section>
+          </aside>
+          <!-- /#sidebar-first-->
+          <section class="col-sm-9"></section>
         </div>
       </div>
     </div>
