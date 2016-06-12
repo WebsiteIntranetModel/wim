@@ -6,6 +6,7 @@
 
   li a {
     padding: 10px;
+    text-decoration: none;
   }
 
   a:hover {
@@ -14,7 +15,7 @@
 
   a:before {
     @extend .icon;
-    @extend .icon-search;
+    @extend .icon-chevron-right;
   }
 
 }

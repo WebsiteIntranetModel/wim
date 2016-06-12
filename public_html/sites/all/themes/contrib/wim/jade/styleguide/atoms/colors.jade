@@ -11,8 +11,8 @@ html(lang="en")
   body(class='#{pagetype}')
       
     .region.region-page-top
-      ul.nav
-        li Item 1
+      include ../../layout/_top.jade
+        
 
     .main-wrapper.container
       include ../../layout/_navbar.jade
@@ -23,6 +23,52 @@ html(lang="en")
       include ../../layout/_main.jade
         
         block content
-          p Lorem ipsum dolor sit amet.
+          p These colors are available and configurable in the WIM scss base. Mind contrast ratio when picking background and text colors. 
+          
+          
+          div.media
+            div.media-left
+              svg(fill="#660066", style="width:50px;height:50px;" xmlns="http://www.w3.org/2000/svg", viewBox="0 0 100 100")
+                rect(width="100", height="100")
+            div.media-body
+              p
+                strong $brand-primary
+              p #660066
+          
+          div.media
+            div.media-left
+              svg(fill="#efe5ef", style="width:50px;height:50px;" xmlns="http://www.w3.org/2000/svg", viewBox="0 0 100 100")
+                rect(width="100", height="100")
+            div.media-body
+              p
+                strong $brand-light
+              p #efe5ef
+
+          div.media
+            div.media-left
+              svg(fill="#d0d0d0", style="width:50px;height:50px;" xmlns="http://www.w3.org/2000/svg", viewBox="0 0 100 100")
+                rect(width="100", height="100")
+            div.media-body
+              p
+                strong $brand-dark
+              p #330033
+          div.media
+            div.media-left
+              svg(fill="#efefef", style="width:50px;height:50px;" xmlns="http://www.w3.org/2000/svg", viewBox="0 0 100 100")
+                rect(width="100", height="100")
+            div.media-body
+              p
+                strong $brand-grey-light
+              p #efefef
+          
+          div.media
+            div.media-left
+              svg(fill="#d0d0d0", style="width:50px;height:50px;" xmlns="http://www.w3.org/2000/svg", viewBox="0 0 100 100")
+                rect(width="100", height="100")
+            div.media-body
+              p
+                strong $brand-grey-normal
+              p #d0d0d0
+              
         
     include ../../layout/_scripts.jade

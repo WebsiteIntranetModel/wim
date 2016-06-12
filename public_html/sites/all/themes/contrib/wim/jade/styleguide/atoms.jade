@@ -10,8 +10,8 @@ html(lang="en")
   body(class='#{pagetype}')
       
     .region.region-page-top
-      ul.nav
-        li Item 1
+      include ../layout/_top.jade
+        
 
     .main-wrapper.container
       include ../layout/_navbar.jade
@@ -20,5 +20,9 @@ html(lang="en")
       // Create region for banner and render it here. We moved header to the navbar header section.
         
       include ../layout/_main.jade
-
+        
+        block content
+          p In chemistry, atoms are the basic building blocks of matter. They have distinct properties and can’t be broken down further without losing their meaning.Translated to interfaces, atoms are basic tags, such as form labels, inputs or buttons. They also include more abstract elements like color palettes, fonts, and animations.
+          p Atoms are abstract and aren’t often terribly useful on their own, but they provide a useful reference and allow you to see all your global styles laid out at a glance.
+          
     include ../layout/_scripts.jade

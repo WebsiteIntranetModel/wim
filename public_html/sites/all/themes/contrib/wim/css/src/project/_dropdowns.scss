@@ -1,4 +1,5 @@
 .dropdown-menu > li > a {
+  text-decoration: none;
   background-color: $brand-dark;
   color: white;
   font-size: 1.3rem;
@@ -6,7 +7,8 @@
 
   &:before {
     @extend .icon;
-    @extend .icon-search;
+    @extend .icon-chevron-right;
+    color: white;
   }
 
 }
@@ -25,12 +27,12 @@
 }
 
 .outline {
-
+  outline: inherit;
 }
 
 .dropdown-menu > li > a:active,
 .dropdown-menu > li > a:focus {
-  // @extend .outline;
+  @extend .outline;
 }
 
 .dropdown-menu {

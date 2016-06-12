@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
-    <title>Icons - WIM</title>
+    <title>Vertical tabs - WIM</title>
     <link rel="apple-touch-icon" sizes="57x57" href="images/favicon/apple-touch-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="images/favicon/apple-touch-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="images/favicon/apple-touch-icon-72x72.png">
@@ -62,16 +62,11 @@
           <aside role="complementary" class="col-sm-3">
             <div class="region region-sidebar-first">
               <section id="block-system-management" class="block block-system block-menu clearfix">
-                <h2 class="block-title">Atoms</h2>
+                <h2 class="block-title">Molecules</h2>
                 <ul class="menu nav">
-                  <li><a href="styleguide/atoms/colors.html">Colors</a></li>
-                  <li><a href="styleguide/atoms/typography.html">Typography</a></li>
-                  <li><a href="styleguide/atoms/icons.html">Icons</a></li>
-                  <li><a href="styleguide/atoms/buttons.html">Buttons</a></li>
-                  <li><a href="styleguide/atoms/form-elements.html">Form elements</a></li>
-                  <li><a href="styleguide/atoms/labels.html">Labels</a></li>
-                  <li><a href="styleguide/atoms/messages.html">Messages</a></li>
-                  <li><a href="styleguide/atoms/tables.html">Tables</a></li>
+                  <li><a href="styleguide/molecules/menu.html">Menu</a></li>
+                  <li><a href="styleguide/molecules/forms.html">Forms</a></li>
+                  <li><a href="styleguide/molecules/vertical-tabs.html">Vertical tabs</a></li>
                   <li><a href="#">...</a></li>
                 </ul>
               </section>
@@ -81,9 +76,34 @@
           <section class="col-sm-9"><a id="main-content"></a>
             <div class="region region-content">
               <section id="block-system-main" class="block block-system clearfix">
-                <h1>Icons</h1>
-                <p></p>
-                <p><a href="http://getbootstrap.com/components/#glyphicons">Visit the Bootstrap documentations</a></p>
+                <h1>Vertical tabs</h1>
+                <p>The vertical tabs component is used for the display of main tasks (toptaken) in the site. </p>
+                <h3>Demo: </h3>
+                <div class="tabbable tabs-left vertical-tabs clearfix">
+                  <ul class="nav nav-tabs vertical-tabs-list">
+                    <li tabindex="-1" class="vertical-tab-button first active selected"><a href="#" data-toggle="tab" aria-expanded="true"><span>Section 1</span></a></li>
+                    <li tabindex="-1" class="vertical-tab-button"><a href="#" data-toggle="tab" aria-expanded="false"><span>Section 2</span></a></li>
+                    <li tabindex="-1" class="vertical-tab-button"><a href="#" data-toggle="tab" aria-expanded="false"><span>Section 3</span></a></li>
+                    <li tabindex="-1" class="vertical-tab-button last"><a href="#" data-toggle="tab" aria-expanded="false"><span>Section 4</span></a></li>
+                  </ul>
+                  <div style="min-height: 298px; border-top-left-radius: 0px;" class="vertical-tabs-panes vertical-tabs-processed tab-content">
+                    <fieldset class="tab-pane vertical-tabs-pane active">
+                      <div class="panel-body fade">Body of section 1</div>
+                    </fieldset>
+                    <fieldset class="tab-pane vertical-tabs-pane">
+                      <div class="panel-body fade">Body of section 2</div>
+                    </fieldset>
+                    <fieldset class="tab-pane vertical-tabs-pane">
+                      <div class="panel-body fade">Body of section 3</div>
+                    </fieldset>
+                    <fieldset class="tab-pane vertical-tabs-pane">
+                      <div class="panel-body fade">Body of section 4</div>
+                    </fieldset>
+                    <input type="hidden" name="additional_settings__active_tab" value="edit-menu" class="vertical-tabs-active-tab">
+                  </div>
+                  <h3>Code: </h3>
+                  <pre class="language-html"><code class="language-html">code</code></pre>
+                </div>
               </section>
             </div>
           </section>

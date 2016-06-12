@@ -11,8 +11,8 @@ html(lang="en")
   body(class='#{pagetype}')
       
     .region.region-page-top
-      ul.nav
-        li Item 1
+      include ../../layout/_top.jade
+        
 
     .main-wrapper.container
       include ../../layout/_navbar.jade
@@ -23,6 +23,67 @@ html(lang="en")
       include ../../layout/_main.jade
         
         block content
-          p Lorem ipsum dolor sit amet.
-        
+          h2 Input
+          p
+            :markdown
+              Input fields allow user input. The border should light up simply and clearly indicating which field the user is currently editing. You must have put a `.form-control` class on each input.
+          h3 Demo: 
+          input.form-text(type="text")
+          
+          h3 Code:     
+          pre.language-html
+            code.language-html
+              | Code
+              
+          h2 Textarea
+          p
+            :markdown
+              Textareas allow larger expandable user input. The border should light up simply and clearly indicating which field the user is currently editing. You must have a `.form-control` class on the textarea element.
+          h3 Demo: 
+          textarea.form-textarea
+          
+          h3 Code: 
+          pre.language-html
+            code.language-html 
+              | Code
+              
+          h2 Select
+          p
+            :markdown
+              Select allows user input through specified options. Make sure you add the class `.form-control` to the select element.
+
+          h3 Demo: 
+          select.form-select
+            option Option 1
+            option Option 2
+            option Option 3
+            
+          h3 Code: 
+          pre.language-html
+            code.language-html
+              | Code
+          
+          h2 Radio
+          p
+            :markdown
+              Add radio buttons to a group by adding the name attribute along with the same corresponding value for each of the radio buttons in the group. Create disabled radio buttons by adding the `disabled` attribute as shown below.
+
+          h3 Demo: 
+          .form-group
+            .radio
+              input.form-radio#option1(type="radio", name="group1")
+              label(for="option1") Option 1
+            .radio
+              input.form-radio#option2(type="radio", name="group1") 
+              label(for="option2") Option 2
+            .radio
+              input.form-radio#option3(type="radio", name="group1")
+              label(for="option3") Option 3
+
+            
+          h3 Code: 
+          pre.language-html
+            code.language-html
+              | Code
+              
     include ../../layout/_scripts.jade

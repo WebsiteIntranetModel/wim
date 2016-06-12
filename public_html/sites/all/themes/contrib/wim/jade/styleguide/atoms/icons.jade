@@ -11,8 +11,7 @@ html(lang="en")
   body(class='#{pagetype}')
       
     .region.region-page-top
-      ul.nav
-        li Item 1
+      include ../../layout/_top.jade
 
     .main-wrapper.container
       include ../../layout/_navbar.jade
@@ -23,6 +22,8 @@ html(lang="en")
       include ../../layout/_main.jade
         
         block content
-          p Lorem ipsum dolor sit amet.
+          p
+          p
+            a(href="http://getbootstrap.com/components/#glyphicons") Visit the Bootstrap documentations
         
     include ../../layout/_scripts.jade

@@ -26,15 +26,12 @@
     <meta name="theme-color" content="#ffffff">
     <base href="../../">
     <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet" media="screen">
+    <link href="/sites/all/themes/contrib/bootstrap/css/3.3.5/overrides.min.css" type="text/css" rel="stylesheet" media="screen">
     <link href="css/project.css" type="text/css" rel="stylesheet" media="screen">
     <link href="css/prism.css" type="text/css" rel="stylesheet" media="screen">
   </head>
   <body class="styleguide">
-    <div class="region region-page-top">
-      <ul class="nav">
-        <li>Item 1</li>
-      </ul>
-    </div>
+    <div class="region region-page-top"><span>Region top</span></div>
     <div class="main-wrapper container">
       <header id="header" class="navbar container navbar-default">
         <div class="navbar-header"><a href="index.html" title="Home" class="logo navbar-btn pull-left"><img src="../logo.png" alt="Home"></a>
@@ -48,7 +45,7 @@
                 <ul class="dropdown-menu">
                   <li class="first leaf"><a href="styleguide/atoms.html">Atoms</a></li>
                   <li class="leaf"><a href="styleguide/molecules.html">Molecules</a></li>
-                  <li class="last leaf"><a href="styleguide/organisms">Organisms</a></li>
+                  <li class="last leaf"><a href="styleguide/organisms.html">Organisms</a></li>
                 </ul>
               </li>
               <li class="leaf"><a href="accessibility.html">Accessibility</a></li>
@@ -95,5 +92,43 @@
     <script src="js/prism.js"></script>
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/prism.js">
+      <script>
+        // Escape code
+        // ============================================================
+        
+        var $lang_markup       = document.querySelectorAll('pre code.language-markup')
+            $lang_js           = document.querySelectorAll('script.atomic-js'),
+            $lang_jscode       = document.querySelectorAll('pre code.language-javascript')
+            lang_markupsnippet = [],
+            lang_jsnippet      = [];
+        
+        
+        // Markup
+        // order matters!
+        // ============================================================
+        
+        for(var i = 0, l = $lang_markup.length; i < l; i++) {
+          lang_markupsnippet.push(
+            $lang_markup[i].innerHTML.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+          );
+          $lang_markup[i].innerHTML = lang_markupsnippet[i];
+        }
+        
+        
+        // JavaScript
+        // order matters!
+        // ============================================================
+        for(var i = 0, l = $lang_jscode.length; i < l; i++) {
+          lang_jsnippet.push(
+            $lang_jscode[i].innerHTML.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+          );
+        }
+        
+        for(var i = 0, l = $lang_js.length; i < l; i++) {
+          $lang_js[i].innerHTML = lang_jsnippet[i];
+        }
+      </script>
+    </script>
   </body>
 </html>

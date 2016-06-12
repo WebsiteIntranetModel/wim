@@ -8,7 +8,7 @@
 
 // Atoms
 // see styleguide
-// @import 'project/input';
+@import 'project/forms';
 @import 'project/icons';
 
 // Molecules
@@ -16,6 +16,7 @@
 @import 'project/block';
 @import 'project/menu';
 @import 'project/dropdowns';
+@import 'project/vertical-tabs';
 
 // Organisms
 @import 'project/footer';

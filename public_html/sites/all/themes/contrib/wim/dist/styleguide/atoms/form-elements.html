@@ -26,15 +26,12 @@
     <meta name="theme-color" content="#ffffff">
     <base href="../../">
     <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet" media="screen">
+    <link href="/sites/all/themes/contrib/bootstrap/css/3.3.5/overrides.min.css" type="text/css" rel="stylesheet" media="screen">
     <link href="css/project.css" type="text/css" rel="stylesheet" media="screen">
     <link href="css/prism.css" type="text/css" rel="stylesheet" media="screen">
   </head>
   <body class="styleguide">
-    <div class="region region-page-top">
-      <ul class="nav">
-        <li>Item 1</li>
-      </ul>
-    </div>
+    <div class="region region-page-top"><span>Region top</span></div>
     <div class="main-wrapper container">
       <header id="header" class="navbar container navbar-default">
         <div class="navbar-header"><a href="index.html" title="Home" class="logo navbar-btn pull-left"><img src="../logo.png" alt="Home"></a>
@@ -48,7 +45,7 @@
                 <ul class="dropdown-menu">
                   <li class="first leaf"><a href="styleguide/atoms.html">Atoms</a></li>
                   <li class="leaf"><a href="styleguide/molecules.html">Molecules</a></li>
-                  <li class="last leaf"><a href="styleguide/organisms">Organisms</a></li>
+                  <li class="last leaf"><a href="styleguide/organisms.html">Organisms</a></li>
                 </ul>
               </li>
               <li class="leaf"><a href="accessibility.html">Accessibility</a></li>
@@ -85,7 +82,52 @@
             <div class="region region-content">
               <section id="block-system-main" class="block block-system clearfix">
                 <h1>Form elements</h1>
-                <p>Lorem ipsum dolor sit amet.</p>
+                <h2>Input</h2>
+                <p><p>Input fields allow user input. The border should light up simply and clearly indicating which field the user is currently editing. You must have put a <code>.form-control</code> class on each input.</p>
+                </p>
+                <h3>Demo: </h3>
+                <input type="text" class="form-text">
+                <h3>Code:     </h3>
+                <pre class="language-html"><code class="language-html">Code</code></pre>
+                <h2>Textarea</h2>
+                <p><p>Textareas allow larger expandable user input. The border should light up simply and clearly indicating which field the user is currently editing. You must have a <code>.form-control</code> class on the textarea element.</p>
+                </p>
+                <h3>Demo: </h3>
+                <textarea class="form-textarea"></textarea>
+                <h3>Code: </h3>
+                <pre class="language-html"><code class="language-html"> 
+Code</code></pre>
+                <h2>Select</h2>
+                <p><p>Select allows user input through specified options. Make sure you add the class <code>.form-control</code> to the select element.</p>
+                </p>
+                <h3>Demo: </h3>
+                <select class="form-select">
+                  <option>Option 1</option>
+                  <option>Option 2</option>
+                  <option>Option 3</option>
+                </select>
+                <h3>Code: </h3>
+                <pre class="language-html"><code class="language-html">Code</code></pre>
+                <h2>Radio</h2>
+                <p><p>Add radio buttons to a group by adding the name attribute along with the same corresponding value for each of the radio buttons in the group. Create disabled radio buttons by adding the <code>disabled</code> attribute as shown below.</p>
+                </p>
+                <h3>Demo: </h3>
+                <div class="form-group">
+                  <div class="radio">
+                    <input id="option1" type="radio" name="group1" class="form-radio">
+                    <label for="option1">Option 1</label>
+                  </div>
+                  <div class="radio">
+                    <input id="option2" type="radio" name="group1" class="form-radio">
+                    <label for="option2">Option 2</label>
+                  </div>
+                  <div class="radio">
+                    <input id="option3" type="radio" name="group1" class="form-radio">
+                    <label for="option3">Option 3</label>
+                  </div>
+                </div>
+                <h3>Code: </h3>
+                <pre class="language-html"><code class="language-html">Code</code></pre>
               </section>
             </div>
           </section>
@@ -95,5 +137,43 @@
     <script src="js/prism.js"></script>
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/prism.js">
+      <script>
+        // Escape code
+        // ============================================================
+        
+        var $lang_markup       = document.querySelectorAll('pre code.language-markup')
+            $lang_js           = document.querySelectorAll('script.atomic-js'),
+            $lang_jscode       = document.querySelectorAll('pre code.language-javascript')
+            lang_markupsnippet = [],
+            lang_jsnippet      = [];
+        
+        
+        // Markup
+        // order matters!
+        // ============================================================
+        
+        for(var i = 0, l = $lang_markup.length; i < l; i++) {
+          lang_markupsnippet.push(
+            $lang_markup[i].innerHTML.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+          );
+          $lang_markup[i].innerHTML = lang_markupsnippet[i];
+        }
+        
+        
+        // JavaScript
+        // order matters!
+        // ============================================================
+        for(var i = 0, l = $lang_jscode.length; i < l; i++) {
+          lang_jsnippet.push(
+            $lang_jscode[i].innerHTML.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+          );
+        }
+        
+        for(var i = 0, l = $lang_js.length; i < l; i++) {
+          $lang_js[i].innerHTML = lang_jsnippet[i];
+        }
+      </script>
+    </script>
   </body>
 </html>

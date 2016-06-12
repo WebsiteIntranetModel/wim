@@ -4,9 +4,14 @@ body {
 
 a {
   color: $brand-primary;
+  
+  p & {
+    text-decoration: underline;
+  }
 
   &:hover,
   &:focus {
+    text-decoration: none;
     color: $brand-dark;
   }
 }
