@@ -23,7 +23,16 @@ header#header.navbar.container.navbar-default
             li.last.leaf
               a(href='styleguide/organisms.html') Organisms
         li.leaf
-          a(href='accessibility.html') Accessibility
+          a.dropdown-toggle(href='#', title='', data-target='#', data-toggle='dropdown')
+            | Styleguide
+            span.caret
+          ul.dropdown-menu
+            li.first.leaf
+              a(href='accessibility/introduction.html') Introduction
+            li.leaf
+              a(href='accessibility/tooling.html') Tooling
+            li.last.leaf
+              a(href='accessibility/guidelines.html') Guidelines
         li.leaf
           a(href='wim.html') WIM - Drupal Distribution
         li.last.leaf

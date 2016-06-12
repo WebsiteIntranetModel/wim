@@ -43,3 +43,32 @@ aside.col-sm-3(role='complementary')
             a(href='#') ...
           li
             a(href='#') ...
+      
+      if section == "accessibility" && page != "Guidelines"
+        h2.block-title Accessibility
+        ul.menu.nav
+          li
+            a(href='accessibility/introduction.html') Introduction
+          li
+            a(href='accessibility/tooling.html') Tooling
+          li
+            a(href='accessibility/guidelines.html') Guidelines
+
+      if section == "accessibility" && page == "Guidelines"
+        h2.block-title Guidelines
+        ul.menu.nav
+          li
+            a(href='accessibility/introduction.html') Introduction
+          li
+            a(href='accessibility/tooling.html') Tooling
+          li
+            a(href='accessibility/guidelines.html') Guidelines
+            ul.menu.nav
+              li
+                a(href='accessibility/guidelines.html#1.1') 1.1 Text alternatives
+              li
+                a(href='accessibility/guidelines.html#1.2') 1.2 Time-based Media
+              li
+                a(href='accessibility/guidelines.html#1.3') 1.3 Adaptable
+              li
+                a(href='#') ...
