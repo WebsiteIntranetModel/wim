@@ -4,7 +4,7 @@ services:
   web:
     build: docker_build/develop
     volumes:
-     - ./:/var/www/html/profiles/wim
+     - ../../:/var/www/html/
      - ./dev-scripts/:/root/dev-scripts
     links:
      - db
@@ -34,6 +34,34 @@ services:
       - VIRTUAL_PORT=1080
     ports:
       - "1080"
+    network_mode: "bridge"
+
+  selenium:
+    image: selenium/standalone-firefox-debug:2.48.2
+    links:
+     - web:web
+    ports:
+     - "4444"
+     - "5900"
+    container_name: wim_selenium
+    cap_add:
+     - NET_ADMIN
+     - NET_RAW
+    network_mode: "bridge"
+
+  behat:
+    build: docker_build/develop
+    container_name: wim_behat
+    volumes:
+     - ../../:/var/www/html/
+     - ./dev-scripts/:/root/dev-scripts
+     - ./behat/:/root/behat
+    links:
+     - web:web
+     - db:db
+     - selenium:selenium
+    environment:
+     - DRUPAL_SETTINGS=development
     network_mode: "bridge"
 
 volumes:
