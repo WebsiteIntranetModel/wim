@@ -6,7 +6,7 @@
  */
 
 /**
- * Implements hook_form_FORM_ID_alter();
+ * Implements hook_form_FORM_ID_alter() for install_configure_form().
  */
 function wim_form_install_configure_form_alter(&$form, $form_state) {
   // Add a placeholder as example that one can choose an arbitrary site name.
