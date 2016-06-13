@@ -3,3 +3,5 @@ distribution_name = Website Intranet Model
 description = Installation profile for the WIM distribution.
 exclusive = TRUE
 core = 7.x
+
+files[] = wim.test

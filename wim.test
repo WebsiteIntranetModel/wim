@@ -1,0 +1,31 @@
+<?php
+
+/**
+ * @file
+ * Contains unit tests for the WIM profile.
+ */
+
+/**
+ * Example unit test that always passes.
+ */
+class WIMExampleTestCase extends DrupalUnitTestCase {
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function getInfo() {
+    return array(
+      'name' => 'Example test',
+      'description' => 'Simple example test.',
+      'group' => 'WIM',
+    );
+  }
+
+  /**
+   * Just an example test.
+   */
+  public function testExample() {
+    $this->pass('This test always passes');
+  }
+
+}
