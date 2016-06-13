@@ -7,7 +7,6 @@ php:
 
 env:
   DOCKER_COMPOSE_VERSION: 1.6.2
-  CI_HOME: /var/wim/profiles/wim
 
 services:
   - docker
@@ -27,6 +26,8 @@ before_install:
   - docker ps -a
 
 script:
+  - cd /var/wim/profiles/wim
+  - ls -la
   - docker exec -i wim_web_1 bash /root/dev-scripts/install/install-script.sh
   - docker exec -i wim_web_1 bash /root/dev-scripts/check-coding-standards.sh
   - docker exec -i wim_web_1 bash /root/dev-scripts/tests/unit-tests.sh
