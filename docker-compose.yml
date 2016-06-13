@@ -36,5 +36,13 @@ services:
       - "1080"
     network_mode: "bridge"
 
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    ports:
+      - "80:80"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    network_mode: "bridge"
+
 volumes:
   db_data:
