@@ -12,8 +12,8 @@ services:
   - docker
 
 before_install:
-  - mkdir -p /var/wim/profiles
-  - ln -s $TRAVIS_BUILD_DIR /var/wim/profiles/wim
+  - sudo mkdir -p /var/wim/profiles
+  - sudo ln -s ${TRAVIS_BUILD_DIR} /var/wim/profiles/wim
   - cd /var/wim/profiles/wim
   - sudo apt-get update
   - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-engine
