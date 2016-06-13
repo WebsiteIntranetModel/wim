@@ -1,0 +1,25 @@
+name = WIM 2.0 base theme
+description = Uses the Bootstrap Framework SCSS source files and must be compiled wit gulp (not for beginners).
+core = 7.x
+base theme = bootstrap
+
+; ========================================
+; Regions
+; ========================================
+
+regions[navigation] = Navigation
+regions[header] = Top Bar
+regions[highlighted] = Highlighted
+regions[help] = Help
+regions[content] = Content
+regions[sidebar_first] = Primary
+regions[sidebar_second] = Secondary
+regions[footer] = Footer
+regions[page_top] = Page top
+regions[page_bottom] = Page bottom
+
+; ========================================
+; Stylesheets
+; ========================================
+
+stylesheets[all][0] = css/project.css

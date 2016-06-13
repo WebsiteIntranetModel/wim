@@ -1,0 +1,53 @@
+- var base = "../../"
+- var pagetype = "styleguide"
+- var section = "atoms"
+- var page = "Buttons"
+
+doctype html
+html(lang="en")
+  head
+    include ../../layout/_head.jade
+    
+  body(class='#{pagetype}')
+      
+    .region.region-page-top
+      include ../../layout/_top.jade
+        
+
+    .main-wrapper.container
+      include ../../layout/_navbar.jade
+      
+      #page-banner(role='banner') 
+      // Create region for banner and render it here. We moved header to the navbar header section.
+        
+      include ../../layout/_main.jade
+        
+        block content
+          :markdown
+            Use the button classes on an `<a>`, `<button>`, or `<input>` element. Use logical elements for your buttons. If it is not a link do not use a `<button>` tag instead. If the `<a>` elements are used to act as buttons – triggering in-page functionality, rather than navigating to another document or section within the current page – they should also be given an appropriate `role="button"`.
+          
+          p
+            a(href="http://getbootstrap.com/css/#buttons") Visit the Bootstrap documentation
+          
+          h3 Demo:
+          button.btn.btn-default(type="button") Default
+          button.btn.btn-primary(type="button") Primary
+          button.btn.btn-success(type="button") Success
+          button.btn.btn-info(type="button") Info
+          button.btn.btn-warning(type="button") Warning
+          button.btn.btn-danger(type="button") Danger
+          button.btn.btn-link(type="button") Link
+          
+          h3 Code:
+          pre.language-html
+            code.language-html
+              <button type="button" class="btn btn-default">Default</button>
+              <button type="button" class="btn btn-primary">Primary</button>
+              <button type="button" class="btn btn-success">Success</button>
+              <button type="button" class="btn btn-info">Info</button>
+              <button type="button" class="btn btn-warning">Warning</button>
+              <button type="button" class="btn btn-danger">Danger</button>
+              <button type="button" class="btn btn-link">Link</button>
+      
+      
+    include ../../layout/_scripts.jade

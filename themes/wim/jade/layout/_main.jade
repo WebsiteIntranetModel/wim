@@ -1,0 +1,21 @@
+.main-container.container(role='main')
+  .row
+    if section == "atoms" || section == "molecules" || section == "organisms" || section == "accessibility"
+      include ../layout/_sidebarfirst.jade
+      
+      // /#sidebar-first
+      section.col-sm-9
+        a#main-content
+        .region.region-content
+          section#block-system-main.block.block-system.clearfix
+            h1 #{page}
+            block content
+
+    else 
+      // /#sidebar-first
+      section.col-sm-12
+        a#main-content
+        .region.region-content
+          section#block-system-main.block.block-system.clearfix
+            h1 #{page}
+            block content

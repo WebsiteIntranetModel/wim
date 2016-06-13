@@ -1,0 +1,74 @@
+aside.col-sm-3(role='complementary')
+  .region.region-sidebar-first
+    section#block-system-management.block.block-system.block-menu.clearfix
+        
+      if section == "atoms"
+        h2.block-title Atoms
+        ul.menu.nav
+          li
+            a(href='styleguide/atoms/colors.html') Colors
+          li
+            a(href='styleguide/atoms/typography.html') Typography
+          li
+            a(href='styleguide/atoms/icons.html') Icons
+          li
+            a(href='styleguide/atoms/buttons.html') Buttons
+          li
+            a(href='styleguide/atoms/form-elements.html') Form elements
+          li
+            a(href='styleguide/atoms/labels.html') Labels
+          li
+            a(href='styleguide/atoms/messages.html') Messages
+          li
+            a(href='styleguide/atoms/tables.html') Tables
+          li
+            a(href='#') ...
+            
+      if section == "molecules"
+        h2.block-title Molecules
+        ul.menu.nav
+          li
+            a(href='styleguide/molecules/menu.html') Menu
+          li
+            a(href='styleguide/molecules/forms.html') Forms
+          li
+            a(href='styleguide/molecules/vertical-tabs.html') Vertical tabs
+          li
+            a(href='#') ...
+            
+      if section == "organisms"
+        h2.block-title Organisms
+        ul.menu.nav
+          li
+            a(href='#') ...
+          li
+            a(href='#') ...
+      
+      if section == "accessibility" && page != "Guidelines"
+        h2.block-title Accessibility
+        ul.menu.nav
+          li
+            a(href='accessibility/introduction.html') Introduction
+          li
+            a(href='accessibility/tooling.html') Tooling
+          li
+            a(href='accessibility/guidelines.html') Guidelines
+
+      if section == "accessibility" && page == "Guidelines"
+        h2.block-title Guidelines
+        ul.menu.nav
+          li
+            a(href='accessibility/introduction.html') Introduction
+          li
+            a(href='accessibility/tooling.html') Tooling
+          li
+            a(href='accessibility/guidelines.html') Guidelines
+            ul.menu.nav
+              li
+                a(href='accessibility/guidelines.html#1.1') 1.1 Text alternatives
+              li
+                a(href='accessibility/guidelines.html#1.2') 1.2 Time-based Media
+              li
+                a(href='accessibility/guidelines.html#1.3') 1.3 Adaptable
+              li
+                a(href='#') ...

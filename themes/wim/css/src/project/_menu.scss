@@ -1,0 +1,21 @@
+.menu:not(.navbar-nav) {
+
+  li {
+    margin-bottom: 1px;
+  }
+
+  li a {
+    padding: 10px;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  a:before {
+    @extend .icon;
+    @extend .icon-chevron-right;
+  }
+
+}

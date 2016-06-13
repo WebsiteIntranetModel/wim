@@ -1,0 +1,24 @@
+- var base = "./"
+- var pagetype = "styleguide"
+- var page = "Web Accessibility"
+
+doctype html
+html(lang="en")
+  head
+    include ./layout/_head.jade
+  body(class='#{pagetype}')
+      
+    .region.region-page-top
+      include ./layout/_top.jade
+
+    .main-wrapper.container
+      include ./layout/_navbar.jade
+      
+      #page-banner(role='banner') 
+      // Create region for banner and render it here. We moved header to the navbar header section.
+        
+      include ./layout/_main.jade
+        block content
+          p Web Accessibility is about allowing people with and without disabilities to have access to the information they want and need from your website. With reports of 1 in 5 people in North America claiming some sort of disability, 20% of the population is just too large of a group to ignore. Siteimprove Accessibility gives you a complete overview of your site’s web accessibility issues, plus clear explanations of how they affect your users, and specific recommendations on how to fix them.
+    
+    include ./layout/_scripts.jade

@@ -1,0 +1,27 @@
+- var base = "../"
+- var pagetype = "styleguide"
+- var section = "molecules"
+- var page = "Molecules"
+
+doctype html
+html(lang="en")
+  head
+    include ../layout/_head.jade
+  body(class='#{pagetype}')
+      
+    .region.region-page-top
+      include ../layout/_top.jade
+
+    .main-wrapper.container
+      include ../layout/_navbar.jade
+      
+      #page-banner(role='banner') 
+      // Create region for banner and render it here. We moved header to the navbar header section.
+        
+      include ../layout/_main.jade
+         block content
+          p In chemistry, molecules are groups of atoms bonded together, which take on new properties as a result.
+          p In interfaces, molecules are groups of elements that function together as a unit. For example, a form label, search input, and button atom can combine them together to form a search form molecule.
+          p Building up from atoms to molecules encourages a ‘do one thing and do it well’ mentality, and encourages creating reusable interface patterns.
+    
+    include ../layout/_scripts.jade
