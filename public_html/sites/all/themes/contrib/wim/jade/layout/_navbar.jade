@@ -1,7 +1,7 @@
 header#header.navbar.container.navbar-default
   .navbar-header
     a.logo.navbar-btn.pull-left(href='index.html', title='Home')
-      img(src='../logo.png', alt='Home')
+      img(src='#{base}logo.png', alt='Home')
     .region.region-header
     button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
       span.sr-only Toggle navigation
@@ -11,6 +11,8 @@ header#header.navbar.container.navbar-default
   .navbar-collapse.collapse
     nav(role='navigation')
       ul.menu.nav.navbar-nav
+        li.leaf
+          a(href='starterkit.html') Themer's Starterkit
         li.first.expanded.dropdown
           a.dropdown-toggle(href='#', title='', data-target='#', data-toggle='dropdown')
             | Styleguide
@@ -24,7 +26,7 @@ header#header.navbar.container.navbar-default
               a(href='styleguide/organisms.html') Organisms
         li.leaf
           a.dropdown-toggle(href='#', title='', data-target='#', data-toggle='dropdown')
-            | Styleguide
+            | Accessibility
             span.caret
           ul.dropdown-menu
             li.first.leaf
@@ -33,7 +35,4 @@ header#header.navbar.container.navbar-default
               a(href='accessibility/tooling.html') Tooling
             li.last.leaf
               a(href='accessibility/guidelines.html') Guidelines
-        li.leaf
-          a(href='wim.html') WIM - Drupal Distribution
-        li.last.leaf
-          a(href='dimpact.html') Dimpact
+        
