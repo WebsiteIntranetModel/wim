@@ -62,6 +62,13 @@ services:
      - selenium:selenium
     environment:
      - DRUPAL_SETTINGS=development
+
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    ports:
+      - "80:80"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
     network_mode: "bridge"
 
 volumes:

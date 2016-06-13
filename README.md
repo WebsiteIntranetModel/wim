@@ -10,17 +10,20 @@ Useful links for developers:
 
 # Installation #
 
-## Docker toolbox ##
-Download and install the [toolbox](https://www.docker.com/docker-toolbox).
+## Prerequisites ##
+Download and install the [Docker Toolbox](https://www.docker.com/products/docker-toolbox).
 
-Note that the docker projects have to be somewhere in your /Users/ directory in order to work (limitation for Mac and Windows). Note that /Users/<name>/Sites/Docker is fine.
+Note that the docker projects have to be somewhere under your home directory in order to work (limitation for Mac and Windows).
 
 
 ## Steps ##
 
 1. Start a docker machine (docker quickstart icon).
 
-2. Clone this repository to the directory of your choice (e.g. ~/Sites/wim).
+2. Clone this repository to the directory of your choice (within your home directory):
+    ```
+    git clone git://github.com/WebsiteIntranetModel/wim.git profiles/wim
+    ```
 
 3. Go inside the folder in which you cloned this repository (where the docker-compose.yml file is).
 
@@ -45,21 +48,10 @@ Note that the docker projects have to be somewhere in your /Users/ directory in 
     docker exec -it wim_web_1 bash /root/dev-scripts/install/install-script.sh install include
     ```
 
-7. Add the proxy container.
-    ```
-    docker run -d -p 80:80 --name=proxy -v /var/run/docker.sock:/tmp/docker.sock:ro jwilder/nginx-proxy
-    ```
-
-8. Running into trouble?
+7. Running into trouble?
 
     **wim_db_1 port in use**
     Edit the docker-compose.yml file in the root of the repo and change the database port mapping `3308:3006` to for example `3309:3306` or another unused port.
-
-    **502 Bad Gateway**
-    Execute the following command from out the node_modules folder to remove the .info files that conflict with Drupal.
-    ```
-    find . -type f -name '*.info' -exec rm -rf {} \;
-    ```
 
 ## Usage ##
 
@@ -88,11 +80,6 @@ Add _full_ as parameter if you want to see a detailed list of errors, skip it to
 
 ```
 docker exec -it wim_web_1 bash /root/dev-scripts/check-coding-standards.sh full
-```
-
-**If you want to start the proxy:**
-```
-docker start proxy
 ```
 
 **To view emails go to:**
