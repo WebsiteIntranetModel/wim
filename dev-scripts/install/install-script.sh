@@ -8,7 +8,7 @@ PROFILE_PATH=profiles/wim;
 # remove settings.php and the files folder.
 if [ "$BUILD_ENVIRONMENT" = "travis" ]; then
   echo "I'm here, all is fine";
-  PROFILE_PATH=/var/www/html;
+  PROFILE_PATH=/var/wim/profiles/wim;
 fi
 
 ls -la;
