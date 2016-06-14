@@ -2,13 +2,13 @@
 
 # Install script for in the docker container.
 cd /var/www/html/;
-PATH=profiles/wim
+PATH=profiles/wim;
 
 # Check if first argument given is "reinstall". In that case we drop the database,
 # remove settings.php and the files folder.
 if [ "$BUILD_ENVIRONMENT" = "travis" ]; then
   echo "I'm here, all is fine";
-  PATH=/var/www/html
+  PATH=/var/www/html;
 fi
 
 ls -la;
