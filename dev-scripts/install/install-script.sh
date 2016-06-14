@@ -8,7 +8,7 @@ PATH=profiles/wim
 # remove settings.php and the files folder.
 if [ "$BUILD_ENVIRONMENT" = "travis" ]; then
   echo "I'm here, all is fine";
-  PATH=.
+  PATH=/var/www/html
 fi
 
 ls -la;
@@ -32,7 +32,7 @@ if [ ${2:-"exclude"} = "include" ]; then
 fi
 
 # Build the site using drush make
-drush make $PATH/build-wim.make .
+drush make ${PATH}/build-wim.make .
 echo "Drush make complete"
 
 # Install the site using the WIM installation profile.
