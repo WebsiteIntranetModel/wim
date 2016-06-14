@@ -7,9 +7,12 @@ echo "$BUILD_ENVIRONMENT";
 
 # Check if first argument given is "reinstall". In that case we drop the database,
 # remove settings.php and the files folder.
-if [ ${BUILD_ENVIRONMENT:-"default"} = "travis" ]; then
+if [ "$BUILD_ENVIRONMENT" = "travis" ]; then
+  echo "I'm here, all is fine";
   cd ../../;
 fi
+
+ls -la;
 
 # Check if first argument given is "reinstall". In that case we drop the database,
 # remove settings.php and the files folder.
