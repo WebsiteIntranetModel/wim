@@ -9,9 +9,13 @@ PROFILE_PATH=profiles/wim;
 if [ "$BUILD_ENVIRONMENT" = "travis" ]; then
   echo "I'm here, all is fine";
   PROFILE_PATH=/var/wim/profiles/wim;
-fi
 
-ls -la;
+  cd ${PROFILE_PATH};
+  ls -la;
+
+  cd /var/wim;
+  ls -la;
+fi
 
 # Check if first argument given is "reinstall". In that case we drop the database,
 # remove settings.php and the files folder.
