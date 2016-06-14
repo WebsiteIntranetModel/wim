@@ -12,8 +12,9 @@ services:
   - docker
 
 before_install:
-  - mkdir -p ~/profiles
-  - sudo ln -s ${TRAVIS_BUILD_DIR} ~/profiles/wim
+  - cd ../..
+  - mv ./WebsiteIntranetModel ./profiles
+  - cd -
   - sudo apt-get update
   - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-engine
   - docker --version
@@ -22,15 +23,10 @@ before_install:
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
   - docker-compose --version
-  - cd ~/profiles/wim
   - docker-compose -f docker-compose.yml up -d
   - docker ps -a
 
 script:
-  - cd ~/profiles/wim
-  - docker exec -i wim_web_1 ls -la /var/www/html
-  - docker exec -i wim_web_1 ls -la /var/www/html/profiles
-  - docker exec -i wim_web_1 ls -la /var/www/html/profiles/wim
   - docker exec -i wim_web_1 bash /root/dev-scripts/install/install-script.sh
   - docker exec -i wim_web_1 bash /root/dev-scripts/check-coding-standards.sh
   - docker exec -i wim_web_1 bash /root/dev-scripts/tests/unit-tests.sh
