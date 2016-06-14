@@ -1,0 +1,40 @@
+version: "2"
+
+services:
+  web:
+    build: docker_build/develop
+    volumes:
+     - ./:/var/www/html/
+     - ./dev-scripts/:/root/dev-scripts
+    links:
+     - db
+     - mailcatcher
+    environment:
+     - VIRTUAL_HOST=wim.dev
+     - DRUPAL_SETTINGS=development
+    ports:
+     - "80"
+    network_mode: "bridge"
+
+  db:
+    image: mysql:5.6
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=wim
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "3308:3306"
+    network_mode: "bridge"
+
+  mailcatcher:
+    image: schickling/mailcatcher
+    environment:
+      - VIRTUAL_HOST=mailcatcher.wim.dev
+      - VIRTUAL_PORT=1080
+    ports:
+      - "1080"
+    network_mode: "bridge"
+
+volumes:
+  db_data:

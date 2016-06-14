@@ -3,6 +3,8 @@
 # Install script for in the docker container.
 cd /var/www/html/;
 
+ls -la;
+
 # Check if first argument given is "reinstall". In that case we drop the database,
 # remove settings.php and the files folder.
 if [ ${1:-"install"} = "reinstall" ]; then
