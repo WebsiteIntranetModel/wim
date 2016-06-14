@@ -28,6 +28,9 @@ before_install:
 
 script:
   - cd ~/profiles/wim
+  - docker exec -i wim_web_1 ls -la /var/www/html
+  - docker exec -i wim_web_1 ls -la /var/www/html/profiles
+  - docker exec -i wim_web_1 ls -la /var/www/html/profiles/wim
   - docker exec -i wim_web_1 bash /root/dev-scripts/install/install-script.sh
   - docker exec -i wim_web_1 bash /root/dev-scripts/check-coding-standards.sh
   - docker exec -i wim_web_1 bash /root/dev-scripts/tests/unit-tests.sh
