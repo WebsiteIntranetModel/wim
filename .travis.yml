@@ -22,12 +22,12 @@ before_install:
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
   - docker-compose --version
-  - docker-compose -f docker-compose-travis.yml up -d
+  - cd /var/wim/profiles/wim
+  - docker-compose -f docker-compose.yml up -d
   - docker ps -a
 
 script:
   - cd /var/wim/profiles/wim
-  - ls -la
   - docker exec -i wim_web_1 bash /root/dev-scripts/install/install-script.sh
   - docker exec -i wim_web_1 bash /root/dev-scripts/check-coding-standards.sh
   - docker exec -i wim_web_1 bash /root/dev-scripts/tests/unit-tests.sh
