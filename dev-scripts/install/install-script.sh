@@ -3,7 +3,13 @@
 # Install script for in the docker container.
 cd /var/www/html/;
 
-ls -la;
+echo "$BUILD_ENVIRONMENT";
+
+# Check if first argument given is "reinstall". In that case we drop the database,
+# remove settings.php and the files folder.
+if [ ${BUILD_ENVIRONMENT:-"default"} = "travis" ]; then
+  cd ../../;
+fi
 
 # Check if first argument given is "reinstall". In that case we drop the database,
 # remove settings.php and the files folder.

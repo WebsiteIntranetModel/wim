@@ -4,7 +4,7 @@ services:
   web:
     build: docker_build/develop
     volumes:
-     - ./:/var/www/html/
+     - ../../:/var/www/html/
      - ./dev-scripts/:/root/dev-scripts
     links:
      - db
@@ -12,6 +12,7 @@ services:
     environment:
      - VIRTUAL_HOST=wim.dev
      - DRUPAL_SETTINGS=development
+     - BUILD_ENVIRONMENT=travis
     ports:
      - "80"
     network_mode: "bridge"
