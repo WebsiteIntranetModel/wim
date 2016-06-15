@@ -1,0 +1,56 @@
+.tabs-left > .nav-tabs > li > a {
+  background: $brand-light;
+  color: black;
+  border-radius: 0;
+  margin-bottom: 0;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.tabs-left > .nav-tabs > li {
+  margin-bottom: 1px;
+}
+
+.tabs-left > .nav-tabs > li > a:focus,
+.tabs-left > .nav-tabs > li > a:hover {
+  background: $brand-primary;
+  color: white;
+
+  &:after {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 24px;
+    background-color: $brand-primary;
+    position: absolute;
+    right: -12px;
+    top: 14px;
+    transform: rotate(45deg);
+  }
+}
+
+.tabs-left > .nav-tabs > .active {
+  margin: 0;
+  // margin-bottom: 1px;
+}
+
+.tabs-left > .nav-tabs > .active > a,
+.tabs-left > .nav-tabs > .active > a:focus,
+.tabs-left > .nav-tabs > .active > a:hover {
+  background: $brand-primary;
+  color: white;
+  border: 0;
+  box-shadow: none;
+
+  &:after {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 24px;
+    background-color: $brand-primary;
+    position: absolute;
+    right: -12px;
+    top: 14px;
+    transform: rotate(45deg);
+  }
+}

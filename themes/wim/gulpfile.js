@@ -22,7 +22,6 @@ var gulp          = require('gulp'),
     nano          = require('gulp-cssnano'),
     connect       = require('gulp-connect'),
     plumber       = require('gulp-plumber');
-    // deploy        = require('gulp-gh-pages');
 
 // ===================================================
 // Config
@@ -92,19 +91,6 @@ gulp.task('css', function () {
 
 });
 
-// ===================================================
-// Scripts
-// ===================================================
-
-//copy vendor scripts from drupal to make them available for the styleguide
-gulp.task('script-drupal', function() {
-  return gulp.src([
-    folder.js_drupal + '/misc/drupal.js',
-    folder.js_drupal + '/misc/forms.js',
-  ])
-  .pipe( concat('drupal-core.js') )
-  .pipe( gulp.dest(folder.dist + '/js') );
-});
 
 // ===================================================
 // Import Prism CSS
@@ -244,6 +230,6 @@ gulp.task('deploy', ['build'], function() {
 // ===================================================
 // Run this one time when you install the project so you have all files in the dist folder
 // ===================================================
-gulp.task('init', ['script-drupal', 'jquery-js', 'bootstrap-css', 'prism-js', 'prism-css', 'bootstrap-font', 'bootstrap-js']);
-gulp.task('build', ['css', 'jade', 'images', 'script-drupal', 'prism-js', 'prism-css', 'jquery-js', 'bootstrap-css', 'bootstrap-font', 'bootstrap-js']);
-gulp.task('default', ['css', 'jade', 'connect', 'watch']);
+gulp.task('init', ['jquery-js', 'bootstrap-css', 'prism-js', 'prism-css', 'bootstrap-font', 'bootstrap-js']);
+gulp.task('build', ['css', 'jade', 'images', 'prism-js', 'prism-css', 'jquery-js', 'bootstrap-css', 'bootstrap-font', 'bootstrap-js']);
+gulp.task('default', ['watch']);

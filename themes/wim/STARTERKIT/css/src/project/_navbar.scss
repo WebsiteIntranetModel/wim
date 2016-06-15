@@ -1,0 +1,49 @@
+.container.navbar-default {
+  border: 0;
+  background-color: white;
+  margin: 0 auto;
+  max-width: $container-large-desktop;
+}
+
+.container > .navbar-collapse {
+  clear: both;
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+.navbar-default .navbar-collapse {
+  background: $brand-primary;
+  border-top: 4px solid $brand-light;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: white;
+  text-decoration: none;
+}
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus,
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  color: white;
+  background: $brand-dark;
+
+  @include breakpoint($screen-md) {
+    border-top: 4px solid #ddd;
+    margin-top: -4px;
+  }
+
+}
+
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+  color: white;
+  background: $brand-dark;
+
+  outline-color: rgb(59, 153, 252);
+  outline-offset: -2px;
+  outline-style: auto;
+  outline-width: 5px;
+}

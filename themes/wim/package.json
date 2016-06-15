@@ -23,7 +23,6 @@
     "gulp-concat": "^2.6.0",
     "gulp-connect": "^4.0.0",
     "gulp-cssnano": "^2.1.2",
-    "gulp-gh-pages": "^0.5.4",
     "gulp-jade": "^1.1.0",
     "gulp-notify": "^2.2.0",
     "gulp-plumber": "^1.1.0",

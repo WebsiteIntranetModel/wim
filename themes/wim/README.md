@@ -2,6 +2,7 @@
 Check [wimgemeenten.nl](http://www.wimgemeenten.nl) for more information. Please note that this website is in Dutch.
 
 Useful links for developers:
+- [Github](https://github.com/WebsiteIntranetModel/wim)
 - [Travis CI](https://travis-ci.org/WebsiteIntranetModel/wim/builds)
 - [Docker Hub](https://hub.docker.com/r/goalgorilla/wim/builds/)
 
