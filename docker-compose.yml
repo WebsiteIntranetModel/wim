@@ -4,7 +4,7 @@ services:
   web:
     build: docker_build/develop
     volumes:
-     - ./public_html:/var/www/html
+     - ../../:/var/www/html/
      - ./dev-scripts/:/root/dev-scripts
     links:
      - db
@@ -34,6 +34,14 @@ services:
       - VIRTUAL_PORT=1080
     ports:
       - "1080"
+    network_mode: "bridge"
+
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    ports:
+      - "80:80"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
     network_mode: "bridge"
 
 volumes:

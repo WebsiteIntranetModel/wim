@@ -1,5 +1,0 @@
-# Run simpletest patch that exits with 1 if failures detected.
-2189345-39_0.patch
-
-# Fix malformed theme info.
-malformed_theme_info-619542-146.patch

@@ -1,0 +1,28 @@
+- var base = "../"
+- var pagetype = "styleguide"
+- var section = "organisms"
+- var page = "Organisms"
+
+doctype html
+html(lang="en")
+  head
+    include ../layout/_head.jade
+  body(class='#{pagetype}')
+      
+    .region.region-page-top
+      include ../layout/_top.jade
+        
+
+    .main-wrapper.container
+      include ../layout/_navbar.jade
+
+      #page-banner(role='banner') 
+      // Create region for banner and render it here. We moved header to the navbar header section.
+        
+      include ../layout/_main.jade
+        block content
+          p Organisms are groups of molecules (and possibly atoms) joined together to form distinct section of an interface.
+          p Organisms can consist of similar and/or disparate molecule types. For example, a masthead organism might consist of a logo, navigation, and search form, while a ‘product grid’ organism might consist of the same product info molecule repeated over and over.
+          p Building up from molecules to organisms encourages creating standalone, portable, reusable components.
+          
+    include ../layout/_scripts.jade
