@@ -22,7 +22,7 @@ Note that the docker projects have to be somewhere under your home directory in 
 
 2. Clone this repository to the directory of your choice (within your home directory):
     ```
-    git clone git://github.com/WebsiteIntranetModel/wim.git profiles/wim
+    git clone git://github.com:WebsiteIntranetModel/wim.git profiles/wim
     ```
 
 3. Go inside the folder in which you cloned this repository (where the docker-compose.yml file is).
