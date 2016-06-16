@@ -8,12 +8,11 @@ files[] = wim.test
 
 ; Install necessary core modules.
 dependencies[] = menu
-dependencies[] = toolbar
 dependencies[] = image
 
 ; Install contributed modules.
-dependencies[] = features
 dependencies[] = ctools
+dependencies[] = features
 dependencies[] = strongarm
 
 ; Install Features

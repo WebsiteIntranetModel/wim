@@ -22,4 +22,4 @@ features[variable][] = node_preview_news
 features[variable][] = node_submitted_news
 features_exclude[field_base][body] = body
 features_exclude[dependencies][date] = date
-project path = profiles/wim/modules/wim_features
+project path = profiles/wim/modules/features

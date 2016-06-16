@@ -4,4 +4,3 @@
  * Code for the WIM Core feature.
  */
 
-include_once 'wim_core.features.inc';
