@@ -13,6 +13,8 @@ dependencies[] = image
 
 ; Install contributed modules.
 dependencies[] = features
+dependencies[] = ctools
+dependencies[] = strongarm
 
 ; Install Features
 dependencies[] = wim_core
