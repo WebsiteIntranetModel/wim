@@ -37,6 +37,12 @@ fi
 
 # Build the site using drush make
 drush make ${PROFILE_PATH}/build-wim.make .
+
+# Check if third argument is "develop". In that case we download the develop
+# modules.
+if [ ${3:-"default"} = "develop" ]; then
+  drush make --no-core ${PROFILE_PATH}/drupal-org-dev.make .
+fi
 echo "Drush make complete"
 
 # Install the site using the WIM installation profile.
@@ -50,6 +56,12 @@ echo "Correct ownership of the docroot has been set"
 # Set correct permission for the settings.php file.
 chmod 444 sites/default/settings.php
 echo "Restored read-only permissions for settings.php"
+
+#Check if third argument is "develop" then enable develop modules.
+if [ ${3:-"default"} = "develop" ]; then
+  drush dis toolbar -y
+  drush en admin_menu, devel, field_ui, diff -y
+fi
 
 # Clear drush cache.
 drush cc drush
