@@ -5,3 +5,15 @@ exclusive = TRUE
 core = 7.x
 
 files[] = wim.test
+
+; Install necessary core modules.
+dependencies[] = menu
+dependencies[] = toolbar
+dependencies[] = image
+
+; Install contributed modules.
+dependencies[] = features
+
+; Install Features
+dependencies[] = wim_core
+dependencies[] = wim_news

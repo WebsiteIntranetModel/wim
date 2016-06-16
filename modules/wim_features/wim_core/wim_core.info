@@ -1,0 +1,12 @@
+name = WIM Core
+description = Core feature for WIM
+core = 7.x
+package = WIM
+version = 7.x-1.0
+dependencies[] = features
+dependencies[] = image
+dependencies[] = text
+features[features_api][] = api:2
+features[field_base][] = body
+features[field_base][] = field_image
+project path = profiles/wim/modules/wim_features

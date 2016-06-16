@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the WIM News feature.
+ */
+
+include_once 'wim_news.features.inc';
