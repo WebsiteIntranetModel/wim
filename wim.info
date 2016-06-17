@@ -8,13 +8,18 @@ files[] = wim.test
 
 ; Install necessary core modules.
 dependencies[] = image
+dependencies[] = list
 dependencies[] = menu
+dependencies[] = options
 
 ; Install contributed modules.
 dependencies[] = ctools
 dependencies[] = features
+dependencies[] = jquery_update
+dependencies[] = magic
 dependencies[] = strongarm
 
 ; Install Features
 dependencies[] = wim_core
 dependencies[] = wim_news
+dependencies[] = wim_page
