@@ -6,15 +6,15 @@ core = 7.x
 
 files[] = wim.test
 
-; Install necessary core modules.
+; Core.
 dependencies[] = image
 dependencies[] = menu
 
-; Install contributed modules.
+; Contrib.
 dependencies[] = ctools
 dependencies[] = features
 dependencies[] = strongarm
 
-; Install Features
+; Features
 dependencies[] = wim_core
 dependencies[] = wim_news
