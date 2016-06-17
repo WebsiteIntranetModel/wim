@@ -7,8 +7,8 @@ core = 7.x
 files[] = wim.test
 
 ; Install necessary core modules.
-dependencies[] = menu
 dependencies[] = image
+dependencies[] = menu
 
 ; Install contributed modules.
 dependencies[] = ctools
