@@ -4,7 +4,7 @@ core = 7.x
 ; Default configuration
 defaults[projects][subdir] = contrib
 
-; Contrib.
+; Contrib
 projects[ctools] = 1.9
 projects[date] = 2.9
 projects[features] = 2.10

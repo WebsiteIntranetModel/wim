@@ -6,11 +6,11 @@ core = 7.x
 
 files[] = wim.test
 
-; Core.
+; Core
 dependencies[] = image
 dependencies[] = menu
 
-; Contrib.
+; Contrib
 dependencies[] = ctools
 dependencies[] = features
 dependencies[] = strongarm
