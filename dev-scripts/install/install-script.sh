@@ -60,7 +60,7 @@ echo "Restored read-only permissions for settings.php"
 #Check if third argument is "develop" then enable develop modules.
 if [ ${3:-"default"} = "develop" ]; then
   drush dis toolbar -y
-  drush en admin_menu, devel, field_ui, diff -y
+  drush en admin_menu, devel, field_ui, diff, module_filter -y
 fi
 
 # Clear drush cache.
