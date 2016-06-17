@@ -48,6 +48,11 @@ Note that the docker projects have to be somewhere under your home directory in 
     docker exec -it wim_web_1 bash /root/dev-scripts/install/install-script.sh install include
     ```
 
+    Add develop as third parameter to install development modules from drupal-org-dev.make file.
+    ```
+    docker exec -it wim_web_1 bash /root/dev-scripts/install/install-script.sh reinstall include develop
+    ```
+
 7. Running into trouble?
 
     **wim_db_1 port in use**
