@@ -4,3 +4,28 @@
  * @file
  * Install, update and uninstall functions for the WIM distribution.
  */
+
+/**
+ * Implements hook_install().
+ *
+ * Perform actions to set up the site for this profile.
+ *
+ * @see system_install()
+ */
+function wim_install() {
+  // Set admin and default themes.
+  _wim_set_up_theme();
+}
+
+/**
+ * Set the default theme.
+ */
+function _wim_set_up_theme() {
+  $admin_theme = 'seven';
+  $default_theme = 'wim';
+
+  theme_enable(array($default_theme));
+  variable_set('theme_default', $default_theme);
+  variable_set('admin_theme', $admin_theme);
+  variable_set('node_admin_theme', '1');
+}
