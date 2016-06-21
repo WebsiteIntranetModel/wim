@@ -12,6 +12,7 @@ dependencies[] = wim_core
 features[ctools][] = strongarm:strongarm:1
 features[features_api][] = api:2
 features[field_instance][] = node-news-body
+features[field_instance][] = node-news-field_attachment
 features[field_instance][] = node-news-field_image
 features[field_instance][] = node-news-field_publication_date
 features[node][] = news
