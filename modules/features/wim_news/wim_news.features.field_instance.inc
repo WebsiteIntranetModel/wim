@@ -54,6 +54,48 @@ function wim_news_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-news-field_attachment'.
+  $field_instances['node-news-field_attachment'] = array(
+    'bundle' => 'news',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'inline',
+        'module' => 'file',
+        'settings' => array(),
+        'type' => 'file_default',
+        'weight' => 3,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_attachment',
+    'label' => 'Attachment',
+    'required' => 0,
+    'settings' => array(
+      'description_field' => 0,
+      'file_directory' => 'news/attachment',
+      'file_extensions' => 'txt pdf doc ppt',
+      'max_filesize' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'file',
+      'settings' => array(
+        'progress_indicator' => 'throbber',
+      ),
+      'type' => 'file_generic',
+      'weight' => -1,
+    ),
+  );
+
   // Exported field_instance: 'node-news-field_image'.
   $field_instances['node-news-field_image'] = array(
     'bundle' => 'news',
@@ -161,6 +203,7 @@ function wim_news_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('Attachment');
   t('Body');
   t('Image');
   t('Publication date');
