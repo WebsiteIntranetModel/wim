@@ -16,5 +16,6 @@ features[field_base][] = field_attachment
 features[field_base][] = field_image
 features[field_base][] = field_promoted
 features[field_base][] = field_publication_date
+features[field_base][] = field_tags
 features[taxonomy][] = tags
 project path = profiles/wim/modules/features
