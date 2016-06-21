@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * Default theme implementation to display the News node.
+ * Default theme implementation to display the Basic Page node.
  *
  * Available variables:
  * - $title: the (sanitized) title of the node.
