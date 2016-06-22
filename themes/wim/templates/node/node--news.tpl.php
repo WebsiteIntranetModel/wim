@@ -85,7 +85,6 @@
   hide($content['comments']);
   hide($content['links']);
   hide($content['field_tags']);
-  hide($content['field_image']);
   hide($content['field_publication_date']);
   if (!empty($content['field_publication_date'])): ?>
     <div class="submitted">
