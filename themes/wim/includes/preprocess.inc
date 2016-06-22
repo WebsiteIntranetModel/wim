@@ -15,4 +15,7 @@ function wim_preprocess_node(&$variables) {
 
   // Hook suggestion node--content_type--view_mode.tpl.php.
   $variables['theme_hook_suggestions'][] = 'node__' . $node->type . '__' . strtr($view_mode, '_', '-');
+
+  // Add read more link variable to template.
+  $variables['read_more_link'] = l(t('Read more'), $variables['node_url']);
 }

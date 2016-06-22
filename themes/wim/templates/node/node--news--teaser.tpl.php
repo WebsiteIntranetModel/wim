@@ -14,6 +14,7 @@
  *   calling format_date() with the desired parameters on the $created variable.
  * - $name: Themed username of node author output from theme_username().
  * - $node_url: Direct URL of the current node.
+ * - $read_more_link: Link to the current node.
  * - $display_submitted: Whether submission information should be displayed.
  * - $submitted: Submission information created from $name and $date during
  *   template_preprocess_node().
@@ -101,6 +102,7 @@
   hide($content['links']);
   hide($content['field_tags']);
   print render($content);
+  print render($read_more_link);
   ?>
   <?php if (!empty($content['field_tags']) || !empty($content['links'])): ?>
     <footer>
