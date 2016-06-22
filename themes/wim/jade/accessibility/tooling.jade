@@ -20,6 +20,28 @@ html(lang="en")
         
       include ../layout/_main.jade
         block content 
-          p Lorem ipsum dolor sit amet.
-          
+          p
+            img(src="http://squizlabs.github.io/HTML_CodeSniffer/images/bookmarklet-feature.png", alt="Preview of HTML Code Sniffer")
+          h3 HTML Code Sniffer
+          p HTML_CodeSniffer is a client-side script that checks HTML source code and detects violations of a defined coding standard. 
+          p If you want to beat SiteImprove to not get any negative reports back on your work, start using this tool before you commit your code to the project.
+          ol
+            li Add the bookmarklet
+            li Click the bookmarklet while viewing the page you want to test
+            li Configure the tool for "WCAG 2.0 Level AA"
+            li See what goes wrong and correct it with the suggested solution
+
+          p
+            a(href="http://squizlabs.github.io/HTML_CodeSniffer/" target="_blank") Install the bookmarklet here
+          hr
+          p
+            img(style="max-width: 550px; width: 100%;", src="http://www.lancaster.ac.uk/media/lancaster-university/content-assets/images/web-toolkit/siteimprove/siteimprove-landing.png", alt="")
+          h3 SiteImprove
+          p The SiteImprove tool reviews our nighly_build on a daily basis. The nightly build is accessible via this URL:
+          p 
+            a(href="http://nightly_build.wimci.goalgorilla.com/", target="_blank") http://nightly_build.wimci.goalgorilla.com/
+          P 
+            strong Make sure your IP is whitelisted! Otherwise you can not access the URL above.
+          p The nightly build will provide the latest version of our master branch and this will be reviewed every day by the software. An accessibility report for all pages will be created and send to the team
+          p We will investigate the issues and put them in Jira if they need to be corrected. 
     include ../layout/_scripts.jade
