@@ -27,3 +27,4 @@ dependencies[] = views
 dependencies[] = wim_core
 dependencies[] = wim_news
 dependencies[] = wim_page
+dependencies[] = wim_product
