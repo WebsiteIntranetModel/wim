@@ -138,7 +138,7 @@ function wim_news_field_default_field_instances() {
         'module' => 'image',
         'settings' => array(
           'image_link' => 'content',
-          'image_style' => 'medium',
+          'image_style' => 'teaser',
         ),
         'type' => 'image',
         'weight' => 1,
