@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * Default theme implementation to display the News teaser node.
+ * Default theme implementation to display the node short.
  *
  * Available variables:
  * - $title: the (sanitized) title of the node.
