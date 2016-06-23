@@ -14,3 +14,23 @@ function wim_core_entity_info_alter(&$entity_info) {
     'custom settings' => FALSE,
   );
 }
+
+/**
+ * Implements hook_image_default_styles().
+ */
+function wim_core_image_default_styles() {
+  $styles = array();
+
+  $styles['teaser'] = array(
+    'label' => 'Teaser (150x150)',
+    'effects' => array(
+      array(
+        'name' => 'image_scale_and_crop',
+        'data' => array('width' => 150, 'height' => 150),
+        'weight' => 0,
+      ),
+    ),
+  );
+
+  return $styles;
+}

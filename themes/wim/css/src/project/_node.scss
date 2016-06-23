@@ -3,3 +3,57 @@
     margin-bottom: 1em;
   }
 }
+.field-label-inline{
+  .field-items{
+    .field-item{
+      display: inline-block;
+      padding:0 3px;
+      &:not(:last-child){
+        &:after{
+          content: ", ";
+        }
+      }
+    }
+  }
+}
+.node-teaser{
+  border-bottom: 1px solid $brand-border;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  .teaser-image{
+    @include breakpoint($screen-xs){
+      float: left;
+      width: 140px;
+      margin-right: 1em;
+    }
+    .field-type-image{
+      @include breakpoint($screen-xs){
+        margin-bottom: 0;
+      }
+      img{
+        width: 100%;
+      }
+    }
+  }
+  .teaser-body{
+    overflow: hidden;
+    h3{
+      margin-top: 0;
+      font-weight: normal;
+    }
+    .field{
+      display: inline;
+      padding-right: 5px;
+      *{
+        display: inline;
+      }
+    }
+    .field-type-datetime{
+      font-weight: 700;
+      &:after{
+        content: " —";
+        font-weight: normal;
+      }
+    }
+  }
+}
