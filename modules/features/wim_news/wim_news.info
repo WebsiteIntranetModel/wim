@@ -19,6 +19,7 @@ features[field_instance][] = node-news-body
 features[field_instance][] = node-news-field_attachment
 features[field_instance][] = node-news-field_image
 features[field_instance][] = node-news-field_news_category
+features[field_instance][] = node-news-field_promoted
 features[field_instance][] = node-news-field_publication_date
 features[field_instance][] = node-news-field_tags
 features[node][] = news
