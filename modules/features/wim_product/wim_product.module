@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the WIM Product feature.
+ */
+
+include_once 'wim_product.features.inc';
