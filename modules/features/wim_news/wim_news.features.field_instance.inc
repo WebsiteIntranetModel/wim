@@ -171,6 +171,49 @@ function wim_news_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-news-field_news_category'.
+  $field_instances['node-news-field_news_category'] = array(
+    'bundle' => 'news',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 5,
+      ),
+      'short' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_news_category',
+    'label' => 'Category',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 1,
+    ),
+  );
+
   // Exported field_instance: 'node-news-field_publication_date'.
   $field_instances['node-news-field_publication_date'] = array(
     'bundle' => 'news',
@@ -298,6 +341,7 @@ function wim_news_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('Attachment');
   t('Body');
+  t('Category');
   t('Image');
   t('Publication date');
   t('Tags');
