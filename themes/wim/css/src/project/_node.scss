@@ -21,11 +21,18 @@
   margin-bottom: 10px;
   padding-bottom: 10px;
   .teaser-image{
-    float: left;
-    width: 140px;
-    margin-right: 1em;
+    @include breakpoint($screen-xs){
+      float: left;
+      width: 140px;
+      margin-right: 1em;
+    }
     .field-type-image{
-      margin-bottom: 0;
+      @include breakpoint($screen-xs){
+        margin-bottom: 0;
+      }
+      img{
+        width: 100%;
+      }
     }
   }
   .teaser-body{
