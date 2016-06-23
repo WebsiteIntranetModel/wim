@@ -28,6 +28,9 @@ function wim_news_strongarm() {
       'diff_standard' => array(
         'custom_settings' => FALSE,
       ),
+      'short' => array(
+        'custom_settings' => TRUE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(

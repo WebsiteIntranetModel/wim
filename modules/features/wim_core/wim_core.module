@@ -4,3 +4,13 @@
  * @file
  * Code for the WIM Core feature.
  */
+
+/**
+ * Implements hook_entity_info_alter().
+ */
+function wim_core_entity_info_alter(&$entity_info) {
+  $entity_info['node']['view modes']['short'] = array(
+    'label' => t('Short'),
+    'custom settings' => FALSE,
+  );
+}
