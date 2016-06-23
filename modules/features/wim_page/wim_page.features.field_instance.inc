@@ -214,7 +214,7 @@ function wim_page_field_default_field_instances() {
     'bundle' => 'page',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Enter a comma-separated list of tags.',
     'display' => array(
       'default' => array(
         'label' => 'inline',
@@ -253,6 +253,7 @@ function wim_page_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('Body');
   t('Check if You want to stick this node on top of lists');
+  t('Enter a comma-separated list of tags.');
   t('Image');
   t('Promoted');
   t('Publication date');
