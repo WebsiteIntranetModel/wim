@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * Default theme implementation to display the News teaser node.
+ * Default theme implementation to display the node teaser.
  *
  * Available variables:
  * - $title: the (sanitized) title of the node.
@@ -81,34 +81,25 @@
  */
 ?>
 <article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
-  <?php if ((!$page && !empty($title)) || !empty($title_prefix) || !empty($title_suffix) || $display_submitted): ?>
-    <header>
-      <?php print render($title_prefix); ?>
-      <?php if (!$page && !empty($title)): ?>
-        <h2<?php print $title_attributes; ?>><a href="<?php print $node_url; ?>"><?php print $title; ?></a></h2>
-      <?php endif; ?>
-      <?php print render($title_suffix); ?>
-      <?php if ($display_submitted): ?>
-        <span class="submitted">
-      <?php print $user_picture; ?>
-      <?php print $submitted; ?>
-    </span>
-      <?php endif; ?>
-    </header>
-  <?php endif; ?>
   <?php
   // Hide comments, tags, and links now so that we can render them later.
   hide($content['comments']);
   hide($content['links']);
-  hide($content['field_tags']);
-  print render($content);
-  print render($read_more_link);
-  ?>
-  <?php if (!empty($content['field_tags']) || !empty($content['links'])): ?>
-    <footer>
-      <?php print render($content['field_tags']); ?>
-      <?php print render($content['links']); ?>
-    </footer>
+  hide($content['field_image']);
+  hide($content['field_tags']); ?>
+  <?php if (!empty($content['field_image'])): ?>
+    <div class="teaser-image">
+      <?php print render($content['field_image']); ?>
+    </div>
   <?php endif; ?>
-  <?php print render($content['comments']); ?>
+  <div class="teaser-body">
+    <?php if (!$page && !empty($title)): ?>
+      <h3<?php print $title_attributes; ?>>
+        <a href="<?php print $node_url; ?>"><?php print $title; ?></a>
+      </h3>
+    <?php endif; ?>
+    <?php print render($content);
+    print render($read_more_link);
+    ?>
+  </div>
 </article>
