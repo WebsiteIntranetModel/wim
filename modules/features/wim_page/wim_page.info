@@ -18,6 +18,7 @@ features[field_instance][] = node-page-body
 features[field_instance][] = node-page-field_image
 features[field_instance][] = node-page-field_promoted
 features[field_instance][] = node-page-field_publication_date
+features[field_instance][] = node-page-field_tags
 features[node][] = page
 features[variable][] = field_bundle_settings_node__page
 features[variable][] = menu_options_page
