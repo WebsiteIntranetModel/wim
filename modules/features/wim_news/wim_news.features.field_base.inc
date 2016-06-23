@@ -27,7 +27,7 @@ function wim_news_field_default_field_bases() {
     'settings' => array(
       'allowed_values' => array(
         0 => array(
-          'vocabulary' => 'news_category',
+          'vocabulary' => 'news_categories',
           'parent' => 0,
         ),
       ),

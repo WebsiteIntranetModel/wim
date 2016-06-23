@@ -9,9 +9,9 @@
  */
 function wim_news_taxonomy_default_vocabularies() {
   return array(
-    'news_category' => array(
-      'name' => 'News Category',
-      'machine_name' => 'news_category',
+    'news_categories' => array(
+      'name' => 'News Categories',
+      'machine_name' => 'news_categories',
       'description' => '',
       'hierarchy' => 0,
       'module' => 'taxonomy',
