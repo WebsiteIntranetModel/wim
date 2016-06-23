@@ -72,6 +72,7 @@ function wim_news_views_default_views() {
   $handler->display->display_options['sorts']['field_promoted_value']['id'] = 'field_promoted_value';
   $handler->display->display_options['sorts']['field_promoted_value']['table'] = 'field_data_field_promoted';
   $handler->display->display_options['sorts']['field_promoted_value']['field'] = 'field_promoted_value';
+  $handler->display->display_options['sorts']['field_promoted_value']['order'] = 'DESC';
   /* Sort criterion: Content: Publication date (field_publication_date) */
   $handler->display->display_options['sorts']['field_publication_date_value']['id'] = 'field_publication_date_value';
   $handler->display->display_options['sorts']['field_publication_date_value']['table'] = 'field_data_field_publication_date';
