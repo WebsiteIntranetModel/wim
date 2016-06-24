@@ -32,4 +32,4 @@ script:
   - docker exec -i wim_web_1 bash /root/dev-scripts/tests/unit-tests.sh
   - docker ps
   - sleep 30
-  - docker exec -it wim_behat sh /root/dev-scripts/behatstability.sh
+  - docker exec -it wim_web sh /root/dev-scripts/behatstability.sh
