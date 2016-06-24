@@ -15,6 +15,7 @@ dependencies[] = options
 dependencies[] = taxonomy
 
 ; Contrib
+dependencies[] = admin_menu
 dependencies[] = ctools
 dependencies[] = date_views
 dependencies[] = features

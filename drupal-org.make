@@ -5,6 +5,7 @@ core = 7.x
 defaults[projects][subdir] = contrib
 
 ; Contrib
+projects[admin_menu] = 3.0-rc5
 projects[ctools] = 1.9
 projects[date] = 2.9
 projects[features] = 2.10
