@@ -56,4 +56,10 @@
       }
     }
   }
+  &.node-teaser-short {
+    font-size: 13px;
+  }
+}
+.more-link a::after {
+  content: "&#187;";
 }
