@@ -1,7 +1,12 @@
 .block {
   .block-title {
     padding: 10px;
-    background-color: $brand-light;
-    margin-bottom: 0;
+    border-top: 1px solid $brand-light;
+    background: $brand-block-title-bg;
+    margin-bottom: 10px;
+    font-size: 130%;
+  }
+  & > .view {
+    margin: 0 10px;
   }
 }
