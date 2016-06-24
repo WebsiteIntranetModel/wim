@@ -22,7 +22,7 @@ Note that the docker projects have to be somewhere under your home directory in 
 
 2. Clone this repository to the directory of your choice (within your home directory):
     ```
-    git clone git://github.com/WebsiteIntranetModel/wim.git profiles/wim
+    git clone git://github.com:WebsiteIntranetModel/wim.git profiles/wim
     ```
 
 3. Go inside the folder in which you cloned this repository (where the docker-compose.yml file is).
@@ -46,6 +46,11 @@ Note that the docker projects have to be somewhere under your home directory in 
     Add _include_ as second parameter to include local development settings to the settings.php file. Skip it if you don't want this.
     ```
     docker exec -it wim_web_1 bash /root/dev-scripts/install/install-script.sh install include
+    ```
+
+    Add develop as third parameter to install development modules from drupal-org-dev.make file.
+    ```
+    docker exec -it wim_web_1 bash /root/dev-scripts/install/install-script.sh reinstall include develop
     ```
 
 7. Running into trouble?

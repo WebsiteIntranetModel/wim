@@ -2,6 +2,20 @@
 
 # Install script for in the docker container.
 cd /var/www/html/;
+PROFILE_PATH=profiles/wim;
+
+# Check if first argument given is "reinstall". In that case we drop the database,
+# remove settings.php and the files folder.
+if [ "$BUILD_ENVIRONMENT" = "travis" ]; then
+  echo "I'm here, all is fine";
+  PROFILE_PATH=/var/wim/profiles/wim;
+
+  cd ${PROFILE_PATH};
+  ls -la;
+
+  cd /var/wim;
+  ls -la;
+fi
 
 # Check if first argument given is "reinstall". In that case we drop the database,
 # remove settings.php and the files folder.
@@ -22,7 +36,13 @@ if [ ${2:-"exclude"} = "include" ]; then
 fi
 
 # Build the site using drush make
-drush make profiles/wim/build-wim.make .
+drush make ${PROFILE_PATH}/build-wim.make .
+
+# Check if third argument is "develop". In that case we download the develop
+# modules.
+if [ ${3:-"default"} = "develop" ]; then
+  drush make --no-core ${PROFILE_PATH}/drupal-org-dev.make .
+fi
 echo "Drush make complete"
 
 # Install the site using the WIM installation profile.
@@ -36,6 +56,12 @@ echo "Correct ownership of the docroot has been set"
 # Set correct permission for the settings.php file.
 chmod 444 sites/default/settings.php
 echo "Restored read-only permissions for settings.php"
+
+#Check if third argument is "develop" then enable develop modules.
+if [ ${3:-"default"} = "develop" ]; then
+  drush dis toolbar -y
+  drush en admin_menu, devel, field_ui, diff, module_filter, views_ui -y
+fi
 
 # Clear drush cache.
 drush cc drush
