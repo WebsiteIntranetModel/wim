@@ -15,7 +15,7 @@
 function wim_install() {
   // Set admin and default themes.
   _wim_set_up_theme();
-  // Set roles and permissions
+  // Set roles and permissions.
   _wim_set_up_roles_and_permissions();
 }
 
@@ -39,7 +39,8 @@ function _wim_set_up_roles_and_permissions() {
   // Base role weight: 0 and 1 is occupied by built-in roles.
   $weight = 2;
 
-  // Create a default role for site administrators, with all available permissions assigned.
+  // Create a default role for site administrators,
+  // with all available permissions assigned.
   $admin_role = new stdClass();
   $admin_role->name = st('Administrator');
   $admin_role->weight = $weight++;
@@ -59,8 +60,7 @@ function _wim_set_up_roles_and_permissions() {
   $cm_role->weight = $weight++;
   user_role_save($cm_role);
 
-  // Permissions
-
+  // Permissions.
   // Authenticated role.
   $authenticated_permissions = array(
     'access content',
@@ -72,11 +72,10 @@ function _wim_set_up_roles_and_permissions() {
 
   // Content Moderator role.
   $cm_permissions = array(
-    //'access administration menu',
+    // 'access administration menu',.
     'access administration pages',
     'access user profiles',
     'administer taxonomy',
-
     // Node access.
     'create news content',
     'create page content',
