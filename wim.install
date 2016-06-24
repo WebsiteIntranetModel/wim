@@ -15,6 +15,8 @@
 function wim_install() {
   // Set admin and default themes.
   _wim_set_up_theme();
+  // Set roles and permissions
+  _wim_set_up_roles_and_permissions();
 }
 
 /**
@@ -28,4 +30,70 @@ function _wim_set_up_theme() {
   variable_set('theme_default', $default_theme);
   variable_set('admin_theme', $admin_theme);
   variable_set('node_admin_theme', '1');
+}
+
+/**
+ * Creates user roles and assign them permissions.
+ */
+function _wim_set_up_roles_and_permissions() {
+  // Base role weight: 0 and 1 is occupied by built-in roles.
+  $weight = 2;
+
+  // Create a default role for site administrators, with all available permissions assigned.
+  $admin_role = new stdClass();
+  $admin_role->name = st('Administrator');
+  $admin_role->weight = $weight++;
+  user_role_save($admin_role);
+
+  // Set this as the administrator role.
+  variable_set('user_admin_role', $admin_role->rid);
+
+  // Assign user 1 the "administrator" role.
+  db_insert('users_roles')
+    ->fields(array('uid' => 1, 'rid' => $admin_role->rid))
+    ->execute();
+
+  // Create a role for Content Moderator.
+  $cm_role = new stdClass();
+  $cm_role->name = st('Content Moderator');
+  $cm_role->weight = $weight++;
+  user_role_save($cm_role);
+
+  // Permissions
+
+  // Authenticated role.
+  $authenticated_permissions = array(
+    'access content',
+  );
+  user_role_grant_permissions(DRUPAL_AUTHENTICATED_RID, $authenticated_permissions);
+
+  // Administrator role.
+  user_role_grant_permissions($admin_role->rid, array_keys(module_invoke_all('permission')));
+
+  // Content Moderator role.
+  $cm_permissions = array(
+    //'access administration menu',
+    'access administration pages',
+    'access user profiles',
+    'administer taxonomy',
+
+    // Node access.
+    'create news content',
+    'create page content',
+    'create product content',
+    'delete any news content',
+    'delete any page content',
+    'delete any product content',
+    'edit any news content',
+    'edit any page content',
+    'edit any product content',
+  );
+
+  // Access to the taxonomy vocabularies.
+  foreach (taxonomy_get_vocabularies() as $vocabulary) {
+    $cm_permissions[] = "delete terms in $vocabulary->vid";
+    $cm_permissions[] = "edit terms in $vocabulary->vid";
+  }
+
+  user_role_grant_permissions($cm_role->rid, $cm_permissions);
 }
