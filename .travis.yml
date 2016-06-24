@@ -31,6 +31,8 @@ script:
   - docker exec -i wim_web_1 bash /root/dev-scripts/check-coding-standards.sh
   - docker exec -i wim_web_1 bash /root/dev-scripts/tests/unit-tests.sh
   - docker exec -i wim_behat bash /root/dev-scripts/behatstability.sh
+  - docker logs wim_web_1
+  - docker logs wim_selenium
   - docker logs wim_behat
   - docker ps
   - sleep 30
