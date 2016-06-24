@@ -72,7 +72,7 @@ function _wim_set_up_roles_and_permissions() {
 
   // Content Moderator role.
   $cm_permissions = array(
-    // 'access administration menu',.
+    'access administration menu',
     'access administration pages',
     'access user profiles',
     'administer taxonomy',
