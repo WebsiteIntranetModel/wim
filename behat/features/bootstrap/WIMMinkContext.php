@@ -1,25 +1,21 @@
 <?php
 
-use Drupal\DrupalExtension\Context\MinkContext;
-use Behat\Behat\Context\Context;
-use Behat\Behat\Context\SnippetAcceptingContext;
-use Behat\Gherkin\Node\PyStringNode;
-use Behat\Gherkin\Node\TableNode;
-use Drupal\DrupalExtension\Context\DrupalContext;
-use Behat\MinkExtension\Context\RawMinkContext;
-use PHPUnit_Framework_Assert as PHPUnit;
-use Drupal\DrupalExtension\Hook\Scope\EntityScope;
+/**
+ * @file
+ * This file contains function for Mink.
+ */
 
+use Drupal\DrupalExtension\Context\MinkContext;
 
 /**
  * Defines application features from the specific context.
  */
-class WIMMinkContext extends MinkContext{
+class WIMMinkContext extends MinkContext {
 
   /**
-   * @override MinkContext::assertRegionHeading()
-   *
    * Makes the step case insensitive.
+   *
+   * @override MinkContext::assertRegionHeading()
    */
   public function assertRegionHeading($heading, $region) {
     $regionObj = $this->getRegion($region);
@@ -37,4 +33,5 @@ class WIMMinkContext extends MinkContext{
 
     throw new \Exception(sprintf('The heading "%s" was not found in the "%s" region on the page %s', $heading, $region, $this->getSession()->getCurrentUrl()));
   }
+
 }
