@@ -16,3 +16,8 @@ projects[views] = 3.14
 
 ; Themes
 projects[bootstrap] = 3.5
+
+; Patches
+; Fixing bug when Features module can't include file containing exported taxonomy vocabulary because it hasn't included file integrating Features with Taxonomy yet.
+; https://www.drupal.org/node/2143765#comment-10088780
+projects[features][patch][2143765_7] = https://www.drupal.org/files/issues/features-hook_modules_enabled_include_file_issue-2143765-7.patch
