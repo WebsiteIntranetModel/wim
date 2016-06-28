@@ -45,7 +45,7 @@ RUN composer global install --prefer-dist
 # Unfortunately, adding the composer vendor dir to the PATH doesn't seem to work. So:
 RUN ln -s /root/.composer/vendor/bin/drush /usr/local/bin/drush
 
-ADD ../../ /var/www/html/
+ADD . /var/www/html/profiles/wim
 RUN chown -R www-data:www-data *
 
 RUN if [ ! -f /root/.composer/vendor/drush/drush/lib/Console_Table-1.1.3/Table.php ]; then pear install Console_Table; fi
