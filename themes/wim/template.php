@@ -11,3 +11,5 @@ $includes = drupal_get_path('theme', 'wim') . '/includes/';
 
 // Include preprocess.
 require_once $includes . 'preprocess.inc';
+// Include theme.
+require_once $includes . 'theme.inc';
