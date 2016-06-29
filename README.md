@@ -41,21 +41,21 @@ Note that the docker projects have to be somewhere under your home directory in 
     docker-machine ls
     ```
 
-6. Run the install script on the docker web container, the name could be slightly different on your machine, in the example below the name is wim_web_1.
+6. Run the install script on the docker web container.
 
     Add _include_ as second parameter to include local development settings to the settings.php file. Skip it if you don't want this.
     ```
-    docker exec -it wim_web_1 bash /root/dev-scripts/install/install-script.sh install include
+    docker exec -it wim_web bash /root/dev-scripts/install/install-script.sh install include
     ```
 
     Add develop as third parameter to install development modules from drupal-org-dev.make file.
     ```
-    docker exec -it wim_web_1 bash /root/dev-scripts/install/install-script.sh reinstall include develop
+    docker exec -it wim_web bash /root/dev-scripts/install/install-script.sh reinstall include develop
     ```
 
 7. Running into trouble?
 
-    **wim_db_1 port in use**
+    **wim_db port in use**
     Edit the docker-compose.yml file in the root of the repo and change the database port mapping `3308:3006` to for example `3309:3306` or another unused port.
 
 ## Usage ##
@@ -67,7 +67,7 @@ docker ps
 
 **SSH into the container:**
 ```
-docker exec -it wim_web_1 bash
+docker exec -it wim_web bash
 ```
 Here you can use _drush_ and _drupal list_.
 
@@ -76,7 +76,7 @@ Here you can use _drush_ and _drupal list_.
 Add _include_ as second parameter to include local development settings to the settings.php file. Skip it if you don't want this.
 
 ```
-docker exec -it wim_web_1 bash /root/dev-scripts/install/install-script.sh reinstall include
+docker exec -it wim_web bash /root/dev-scripts/install/install-script.sh reinstall include
 ```
 
 **If you want to check coding standards:**
@@ -84,7 +84,7 @@ docker exec -it wim_web_1 bash /root/dev-scripts/install/install-script.sh reins
 Add _full_ as parameter if you want to see a detailed list of errors, skip it to see just a summary of files with issues.
 
 ```
-docker exec -it wim_web_1 bash /root/dev-scripts/check-coding-standards.sh full
+docker exec -it wim_web bash /root/dev-scripts/check-coding-standards.sh full
 ```
 
 **To view emails go to:**

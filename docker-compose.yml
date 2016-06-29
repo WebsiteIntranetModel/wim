@@ -4,17 +4,17 @@ services:
   web:
     build: docker_build/develop
     volumes:
-     - ../../:/var/www/html/
-     - ./dev-scripts/:/root/dev-scripts
+      - ../../:/var/www/html/
+      - ./dev-scripts/:/root/dev-scripts
     links:
-     - db
-     - mailcatcher
+      - db
+      - mailcatcher
     environment:
-     - VIRTUAL_HOST=wim.dev
-     - DRUPAL_SETTINGS=development
+      - VIRTUAL_HOST=wim.dev
+      - DRUPAL_SETTINGS=development
     ports:
-     - "80"
-    network_mode: "bridge"
+      - "80"
+    container_name: wim_web
 
   db:
     image: mysql:5.6
@@ -25,7 +25,7 @@ services:
       - db_data:/var/lib/mysql
     ports:
       - "3308:3306"
-    network_mode: "bridge"
+    container_name: wim_db
 
   mailcatcher:
     image: schickling/mailcatcher
@@ -34,15 +34,27 @@ services:
       - VIRTUAL_PORT=1080
     ports:
       - "1080"
-    network_mode: "bridge"
+    container_name: wim_mailcatcher
 
-  nginx-proxy:
+  selenium:
+    image: selenium/standalone-firefox-debug:2.48.2
+    ports:
+      - "4444"
+      - "5900"
+    container_name: wim_selenium
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    links:
+      - web
+
+  proxy:
     image: jwilder/nginx-proxy
     ports:
       - "80:80"
+    container_name: wim_proxy
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
-    network_mode: "bridge"
 
 volumes:
   db_data:
