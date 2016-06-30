@@ -14,9 +14,10 @@ default:
         bootstrap: '/var/www/html/profiles/wim/behat/features/bootstrap'
       contexts:
         - FeatureContext
-        - WIMMinkContext
-        - Drupal\DrupalExtension\Context\MessageContext
         - Drupal\DrupalExtension\Context\DrupalContext
+        - Drupal\DrupalExtension\Context\MinkContext
+        - Drupal\DrupalExtension\Context\MessageContext
+        - Drupal\DrupalExtension\Context\DrushContext
   extensions:
       Behat\MinkExtension:
         default_session: 'selenium2'
@@ -34,10 +35,6 @@ default:
           message_selector: '.alert'
           error_message_selector: '.alert.alert-danger'
           success_message_selector: '.alert.alert-success'
-        text:
-          username_field: 'Username or email address'
-          log_in: "Log in"
-          log_out: "Logout"
         region_map:
           'Header': '#header'
           'Main content': '#block-system-main'
