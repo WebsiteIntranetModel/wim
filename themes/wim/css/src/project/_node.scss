@@ -20,6 +20,17 @@
   border-bottom: 1px solid $brand-border;
   margin-bottom: 10px;
   padding-bottom: 10px;
+
+  .teaser-body{
+    overflow: hidden;
+    h3{
+      margin-top: 0;
+      font-weight: normal;
+    }
+  }
+  &:last-child{
+    border-bottom: none;
+  }
   .teaser-image{
     @include breakpoint($screen-xs){
       float: left;
@@ -35,29 +46,24 @@
       }
     }
   }
-  .teaser-body{
-    overflow: hidden;
-    h3{
-      margin-top: 0;
-      font-weight: normal;
-    }
-    .field{
-      display: inline;
-      padding-right: 5px;
-      *{
-        display: inline;
-      }
-    }
-    .field-type-datetime{
-      font-weight: 700;
-      &:after{
-        content: " —";
-        font-weight: normal;
-      }
-    }
-  }
   &.node-teaser-short {
     font-size: 13px;
+    .teaser-body{
+      .field{
+        display: inline;
+        padding-right: 5px;
+        *{
+          display: inline;
+        }
+      }
+      .field-type-datetime{
+        font-weight: 700;
+        &:after{
+          content: " —";
+          font-weight: normal;
+        }
+      }
+    }
   }
 }
 .more-link a::after {

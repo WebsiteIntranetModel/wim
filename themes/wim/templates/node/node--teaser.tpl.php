@@ -97,8 +97,13 @@
       <h3<?php print $title_attributes; ?>>
         <a href="<?php print $node_url; ?>"><?php print $title; ?></a>
       </h3>
-    <?php endif; ?>
-    <?php print render($content);
+    <?php endif;
+    hide($content['field_publication_date']);
+    if (!empty($content['field_publication_date'])): ?>
+      <div class="submitted">
+        <?php print render($content['field_publication_date']); ?>
+      </div>
+    <?php endif; print render($content);
     print render($read_more_link);
     ?>
   </div>
