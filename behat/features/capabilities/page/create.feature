@@ -7,6 +7,8 @@ Feature: Create basic page
   Scenario: Successfully create page
     Given I am logged in as a "content moderator"
     And I am at "node/add/page"
+    Then I should see "Promoted"
+    Then I should see "Image"
     When I fill in the following:
       | Title | This is a test basic page |
       | Body  | Body description text     |
@@ -17,3 +19,7 @@ Feature: Create basic page
     And I should see "Publication date: Saturday, June 27, 2026"
     And I should see "Body description text"
     And I should not see "BSCPGTEST"
+
+    Given I am an anonymous user
+    And I visit "node/add/page"
+    Then I should see the heading "Access denied"
