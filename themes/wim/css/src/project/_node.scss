@@ -49,6 +49,9 @@
   &.node-teaser-short {
     font-size: 13px;
     .teaser-body{
+      h3{
+        margin-bottom: 0;
+      }
       .field{
         display: inline;
         padding-right: 5px;
