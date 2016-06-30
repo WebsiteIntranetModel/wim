@@ -1,5 +1,5 @@
-name = WIM Basic Page
-description = Keeps Basic Page feature
+name = WIM Basic page
+description = Keeps Basic page feature
 core = 7.x
 package = WIM
 version = 7.x-1.0
