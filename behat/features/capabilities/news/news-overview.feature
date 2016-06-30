@@ -23,6 +23,6 @@ Feature: News overview
     Given I am an anonymous user
     And I am on "news"
     Then I should see the heading "News"
-    Then I should see 10 "article" elements
-    Then I should see "next"
-    Then I should see "last"
+    Then I should see 10 "article.node-teaser" elements
+    Then the "article.node-teaser" element should contain "Read more"
+    Then I should see an ".pagination" element
