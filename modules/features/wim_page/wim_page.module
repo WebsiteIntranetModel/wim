@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * Code for the WIM Basic Page feature.
+ * Code for the WIM Basic page feature.
  */
 
 include_once 'wim_page.features.inc';
