@@ -42,7 +42,7 @@ function _wim_set_up_roles_and_permissions() {
   // Create a default role for site administrators,
   // with all available permissions assigned.
   $admin_role = new stdClass();
-  $admin_role->name = st('Administrator');
+  $admin_role->name = st('administrator');
   $admin_role->weight = $weight++;
   user_role_save($admin_role);
 
@@ -56,7 +56,7 @@ function _wim_set_up_roles_and_permissions() {
 
   // Create a role for Content Moderator.
   $cm_role = new stdClass();
-  $cm_role->name = st('Content Moderator');
+  $cm_role->name = st('content moderator');
   $cm_role->weight = $weight++;
   user_role_save($cm_role);
 
@@ -77,6 +77,7 @@ function _wim_set_up_roles_and_permissions() {
     'access administration pages',
     'access user profiles',
     'administer taxonomy',
+    'access content overview',
     // Node access.
     'create news content',
     'create page content',
