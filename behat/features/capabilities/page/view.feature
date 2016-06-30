@@ -7,8 +7,8 @@ Feature: View basic page
   Scenario: As a AN I should be able to see page
     Given I am an anonymous user
     Given I am viewing a "page":
-      | title                   | TITLE-ONE     |
-      | body                    | BODY-CONTENT1 |
+      | title                   | TITLE-ONE           |
+      | body                    | BODY-CONTENT1       |
       | field_publication_date  | 2026-06-27 00:00:00 |
     Then I should not see the link "Edit"
     And I should not see "BSCPGTEST"
