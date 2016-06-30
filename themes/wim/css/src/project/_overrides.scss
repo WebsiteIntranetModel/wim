@@ -1,7 +1,11 @@
 .form-group.error .help-block,
 .form-group.error .help-inline,
 .form-group.has-error .help-block,
-.form-group.has-error .help-inline,
-.submitted {
+.form-group.has-error .help-inline {
   color: $brand-body;
+}
+.submitted{
+  color: #000000;
+  font-style: normal;
+  margin: 1em -0px;
 }
