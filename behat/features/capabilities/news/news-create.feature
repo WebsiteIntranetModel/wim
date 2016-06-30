@@ -8,6 +8,10 @@ Feature: Create News
   Scenario: Successfully create news
     Given I am logged in as a "Content Moderator"
     And I am on "node/add/news"
+    Then I should see "Category"
+    Then I should see "Promoted"
+    Then I should see "Add a new file"
+    Then I should see "Image"
     When I fill in the following:
       | Title | Test news        |
       | Date  | 06/30/2016       |
