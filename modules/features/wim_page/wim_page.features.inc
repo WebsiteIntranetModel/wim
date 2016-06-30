@@ -19,7 +19,7 @@ function wim_page_ctools_plugin_api($module = NULL, $api = NULL) {
 function wim_page_node_info() {
   $items = array(
     'page' => array(
-      'name' => t('Basic Page'),
+      'name' => t('Basic page'),
       'base' => 'node_content',
       'description' => '',
       'has_title' => '1',
