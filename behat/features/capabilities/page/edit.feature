@@ -4,7 +4,7 @@ Feature: Edit basic page
   Role: CM
   Goal/desire: Edit basic page
 
-  Scenario: As a CM I shoud be able to successfully edit page
+  Scenario: As a CM I should be able to successfully edit page
     Given "page" content:
           | title      | body          | Date        |
           | TITLE-ONE  | BODY-CONTENT1 | 06/27/2026  |
@@ -14,10 +14,10 @@ Feature: Edit basic page
     And I click "edit" in the "TITLE-ONE" row
     Then I should not see "Access denied"
     When I fill in the following:
-          | Title | TITLE-TWO |
-          | Body  | BODY-CONTENT2             |
-          | Tags  | BSCPGTEST                 |
-          | Date  | 06/30/2016                |
+          | Title | TITLE-TWO     |
+          | Body  | BODY-CONTENT2 |
+          | Tags  | BSCPGTEST     |
+          | Date  | 06/30/2016    |
     And I press "Save"
     And I should see the success message "Basic page TITLE-TWO has been updated."
     And I click "TITLE-TWO" in the "TITLE-TWO" row
