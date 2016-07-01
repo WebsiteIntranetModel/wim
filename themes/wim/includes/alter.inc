@@ -23,6 +23,5 @@ function wim_form_views_exposed_form_alter(&$form, &$form_state) {
  * Implements hook_date_popup_process_alter().
  */
 function wim_date_popup_process_alter(&$element, &$form_state, $context) {
-  unset($element['date']['#description']);
-  unset($element['time']['#description']);
+  unset($element['date']['#description'], $element['time']['#description']);
 }
