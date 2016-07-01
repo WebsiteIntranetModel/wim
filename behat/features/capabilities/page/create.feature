@@ -1,4 +1,4 @@
-@page @stability @api
+@page @page-create @stability @api
 Feature: Create basic page
   Benefit: In order to show textual information on the site
   Role: CM

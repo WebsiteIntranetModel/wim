@@ -1,4 +1,4 @@
-@page @stability @api
+@page @page-edit @stability @api
 Feature: Edit basic page
   Benefit: In order to change textual information on the site
   Role: CM
