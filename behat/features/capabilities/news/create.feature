@@ -7,10 +7,11 @@ Feature: Create News
   Scenario: Successfully create news
     Given I am logged in as a "content moderator"
     And I am on "node/add/news"
-    Then I should see "Category"
-    Then I should see "Promoted"
-    Then I should see "Add a new file"
-    Then I should see "Image"
+    Then I should not see "Access denied"
+    And I should see "Category"
+    And I should see "Promoted"
+    And I should see "Add a new file"
+    And I should see "Image"
     When I fill in the following:
       | Title | TEST NEWS    |
       | Date  | 06/30/2016   |
@@ -26,3 +27,24 @@ Feature: Create News
     Given I am an anonymous user
     And I visit "node/add/news"
     Then I should see the heading "Access denied"
+
+  Scenario: Successfully set category for news
+    Given I am logged in as a "content moderator"
+    Given news_categories terms:
+      | name      |
+      | CATEGORY1 |
+      | CATEGORY2 |
+    And I am on "node/add/news"
+    Then I should not see "Access denied"
+    When I fill in the following:
+      | Title | TEST CATEGORY NEWS |
+      | Date  | 06/30/2016         |
+      | Body  | BODY CONTENT       |
+    Then I select "CATEGORY1" from "Category"
+    Then I press "Save"
+    Then I should see the success message "News TEST CATEGORY NEWS has been created."
+    Then I should see the link "Edit"
+    When I click "Edit"
+    Then I should see "CATEGORY1"
+    Then the "select[name='field_news_category[und]'] option[selected='selected']" element should contain "CATEGORY1"
+    Then the "select[name='field_news_category[und]'] option[selected='selected']" element should not contain "CATEGORY2"
