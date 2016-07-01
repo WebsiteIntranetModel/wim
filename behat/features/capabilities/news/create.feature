@@ -21,7 +21,7 @@ Feature: Create News
     Then I should see the success message "News TEST NEWS has been created."
     And I should see the heading "TEST NEWS"
     And I should see "BODY CONTENT"
-    And I should see "Thursday, June 30, 2016"
+    And I should see "30 June 2016"
     And I should see "tag1"
 
     Given I am an anonymous user
