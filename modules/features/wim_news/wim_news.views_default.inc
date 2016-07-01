@@ -106,25 +106,50 @@ function wim_news_views_default_views() {
     'news' => 'news',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Filter criterion: Date: Date (node) */
-  $handler->display->display_options['filters']['date_filter']['id'] = 'date_filter';
-  $handler->display->display_options['filters']['date_filter']['table'] = 'node';
-  $handler->display->display_options['filters']['date_filter']['field'] = 'date_filter';
-  $handler->display->display_options['filters']['date_filter']['operator'] = 'between';
-  $handler->display->display_options['filters']['date_filter']['group'] = 1;
-  $handler->display->display_options['filters']['date_filter']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['date_filter']['expose']['operator_id'] = 'date_filter_op';
-  $handler->display->display_options['filters']['date_filter']['expose']['label'] = 'Publication date';
-  $handler->display->display_options['filters']['date_filter']['expose']['operator'] = 'date_filter_op';
-  $handler->display->display_options['filters']['date_filter']['expose']['identifier'] = 'date';
-  $handler->display->display_options['filters']['date_filter']['expose']['remember_roles'] = array(
+  /* Filter criterion: Content: Publication date (field_publication_date) */
+  $handler->display->display_options['filters']['field_publication_date_value']['id'] = 'field_publication_date_value';
+  $handler->display->display_options['filters']['field_publication_date_value']['table'] = 'field_data_field_publication_date';
+  $handler->display->display_options['filters']['field_publication_date_value']['field'] = 'field_publication_date_value';
+  $handler->display->display_options['filters']['field_publication_date_value']['operator'] = '>=';
+  $handler->display->display_options['filters']['field_publication_date_value']['group'] = 1;
+  $handler->display->display_options['filters']['field_publication_date_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_publication_date_value']['expose']['operator_id'] = 'field_publication_date_value_op';
+  $handler->display->display_options['filters']['field_publication_date_value']['expose']['label'] = 'From ';
+  $handler->display->display_options['filters']['field_publication_date_value']['expose']['operator'] = 'field_publication_date_value_op';
+  $handler->display->display_options['filters']['field_publication_date_value']['expose']['identifier'] = 'field_publication_date_value';
+  $handler->display->display_options['filters']['field_publication_date_value']['expose']['remember_roles'] = array(
     2 => '2',
     1 => 0,
+    3 => 0,
+    4 => 0,
   );
-  $handler->display->display_options['filters']['date_filter']['form_type'] = 'date_popup';
-  $handler->display->display_options['filters']['date_filter']['date_fields'] = array(
-    'field_data_field_publication_date.field_publication_date_value' => 'field_data_field_publication_date.field_publication_date_value',
+  $handler->display->display_options['filters']['field_publication_date_value']['group_info']['label'] = 'Publication date (field_publication_date)';
+  $handler->display->display_options['filters']['field_publication_date_value']['group_info']['identifier'] = 'field_publication_date_value';
+  $handler->display->display_options['filters']['field_publication_date_value']['group_info']['remember'] = FALSE;
+  $handler->display->display_options['filters']['field_publication_date_value']['group_info']['group_items'] = array(
+    1 => array(),
+    2 => array(),
+    3 => array(),
   );
+  $handler->display->display_options['filters']['field_publication_date_value']['form_type'] = 'date_popup';
+  /* Filter criterion: Content: Publication date (field_publication_date) */
+  $handler->display->display_options['filters']['field_publication_date_value_1']['id'] = 'field_publication_date_value_1';
+  $handler->display->display_options['filters']['field_publication_date_value_1']['table'] = 'field_data_field_publication_date';
+  $handler->display->display_options['filters']['field_publication_date_value_1']['field'] = 'field_publication_date_value';
+  $handler->display->display_options['filters']['field_publication_date_value_1']['operator'] = '<=';
+  $handler->display->display_options['filters']['field_publication_date_value_1']['group'] = 1;
+  $handler->display->display_options['filters']['field_publication_date_value_1']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_publication_date_value_1']['expose']['operator_id'] = 'field_publication_date_value_1_op';
+  $handler->display->display_options['filters']['field_publication_date_value_1']['expose']['label'] = 'To';
+  $handler->display->display_options['filters']['field_publication_date_value_1']['expose']['operator'] = 'field_publication_date_value_1_op';
+  $handler->display->display_options['filters']['field_publication_date_value_1']['expose']['identifier'] = 'field_publication_date_value_1';
+  $handler->display->display_options['filters']['field_publication_date_value_1']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+  );
+  $handler->display->display_options['filters']['field_publication_date_value_1']['form_type'] = 'date_popup';
   /* Filter criterion: Content: Category (field_news_category) */
   $handler->display->display_options['filters']['field_news_category_tid']['id'] = 'field_news_category_tid';
   $handler->display->display_options['filters']['field_news_category_tid']['table'] = 'field_data_field_news_category';

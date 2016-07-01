@@ -22,11 +22,11 @@ Feature: Edit Product
     And I press "Save"
     And I should see the success message "Product PRODUCT TITLE2 has been updated."
     And I click "PRODUCT TITLE2" in the "PRODUCT TITLE2" row
-    And I should see "Thursday, June 30, 2016"
+    And I should see "30 June 2016"
     And I should see "PRODUCT TITLE2"
     And I should see "BODY-CONTENT2"
     And I should see "TAG2"
     And I should not see "PRODUCT TITLE1"
     And I should not see "TAG1"
     And I should not see "BODY-CONTENT1"
-    And I should not see "Saturday, June 27, 2026"
+    And I should not see "27 June 2026"

@@ -15,4 +15,4 @@ Feature: View product
     And I should see "TAG1"
     And I should see "TITLE-ONE"
     And I should see "BODY-CONTENT1"
-    And I should see "Saturday, June 27, 2026"
+    And I should see "27 June 2026"

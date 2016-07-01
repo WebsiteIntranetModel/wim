@@ -29,4 +29,4 @@ Feature: Edit News
     And I should not see "NEWS TITLE1"
     And I should not see "TAG1"
     And I should not see "BODY-CONTENT1"
-    And I should not see "Monday, June 27, 2016"
+    And I should not see "27 June 2026"
