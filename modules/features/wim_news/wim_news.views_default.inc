@@ -106,22 +106,6 @@ function wim_news_views_default_views() {
     'news' => 'news',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Filter criterion: Content: Category (field_news_category) */
-  $handler->display->display_options['filters']['field_news_category_tid']['id'] = 'field_news_category_tid';
-  $handler->display->display_options['filters']['field_news_category_tid']['table'] = 'field_data_field_news_category';
-  $handler->display->display_options['filters']['field_news_category_tid']['field'] = 'field_news_category_tid';
-  $handler->display->display_options['filters']['field_news_category_tid']['group'] = 1;
-  $handler->display->display_options['filters']['field_news_category_tid']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_news_category_tid']['expose']['operator_id'] = 'field_news_category_tid_op';
-  $handler->display->display_options['filters']['field_news_category_tid']['expose']['label'] = 'Category';
-  $handler->display->display_options['filters']['field_news_category_tid']['expose']['operator'] = 'field_news_category_tid_op';
-  $handler->display->display_options['filters']['field_news_category_tid']['expose']['identifier'] = 'field_news_category_tid';
-  $handler->display->display_options['filters']['field_news_category_tid']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-  );
-  $handler->display->display_options['filters']['field_news_category_tid']['type'] = 'select';
-  $handler->display->display_options['filters']['field_news_category_tid']['vocabulary'] = 'news_categories';
   /* Filter criterion: Date: Date (node) */
   $handler->display->display_options['filters']['date_filter']['id'] = 'date_filter';
   $handler->display->display_options['filters']['date_filter']['table'] = 'node';
@@ -141,6 +125,22 @@ function wim_news_views_default_views() {
   $handler->display->display_options['filters']['date_filter']['date_fields'] = array(
     'field_data_field_publication_date.field_publication_date_value' => 'field_data_field_publication_date.field_publication_date_value',
   );
+  /* Filter criterion: Content: Category (field_news_category) */
+  $handler->display->display_options['filters']['field_news_category_tid']['id'] = 'field_news_category_tid';
+  $handler->display->display_options['filters']['field_news_category_tid']['table'] = 'field_data_field_news_category';
+  $handler->display->display_options['filters']['field_news_category_tid']['field'] = 'field_news_category_tid';
+  $handler->display->display_options['filters']['field_news_category_tid']['group'] = 1;
+  $handler->display->display_options['filters']['field_news_category_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_news_category_tid']['expose']['operator_id'] = 'field_news_category_tid_op';
+  $handler->display->display_options['filters']['field_news_category_tid']['expose']['label'] = 'Category';
+  $handler->display->display_options['filters']['field_news_category_tid']['expose']['operator'] = 'field_news_category_tid_op';
+  $handler->display->display_options['filters']['field_news_category_tid']['expose']['identifier'] = 'field_news_category_tid';
+  $handler->display->display_options['filters']['field_news_category_tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+  );
+  $handler->display->display_options['filters']['field_news_category_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_news_category_tid']['vocabulary'] = 'news_categories';
   $handler->display->display_options['path'] = 'news';
 
   /* Display: Latest News */
