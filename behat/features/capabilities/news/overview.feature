@@ -1,4 +1,4 @@
-@api @news @stability @overview
+@api @news @news-overview @stability @overview
 Feature: News overview
   Benefit: In order to find more information
   Role: As a User

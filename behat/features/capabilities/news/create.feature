@@ -1,4 +1,4 @@
-@api @news @stability @CM @create
+@api @news @news-create @stability @CM @create
 Feature: Create News
   Benefit: In order to add news
   Role: As a CM
