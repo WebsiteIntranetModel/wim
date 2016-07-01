@@ -1,0 +1,24 @@
+.view-news{
+  .view-filters{
+    margin-bottom: 2em;
+    .views-widget{
+      .date-padding{
+        float: none;
+      }
+    }
+    .views-widget-filter-date_filter{
+      padding-right: 0;
+      .views-widget{
+        & > div {
+          display: inline-block;
+        }
+      }
+    }
+    .views-submit-button{
+      display: none;
+    }
+    .btn{
+      margin-top: 1.6em;
+    }
+  }
+}
