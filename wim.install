@@ -17,6 +17,8 @@ function wim_install() {
   _wim_set_up_theme();
   // Set roles and permissions.
   _wim_set_up_roles_and_permissions();
+  // Set date formats.
+  _wim_set_date_formats();
 }
 
 /**
@@ -26,7 +28,7 @@ function _wim_set_up_theme() {
   $admin_theme = 'seven';
   $default_theme = 'wim';
 
-  theme_enable(array($default_theme));
+  theme_enable(array($default_theme, $admin_theme));
   variable_set('theme_default', $default_theme);
   variable_set('admin_theme', $admin_theme);
   variable_set('node_admin_theme', '1');
@@ -97,4 +99,57 @@ function _wim_set_up_roles_and_permissions() {
   }
 
   user_role_grant_permissions($cm_role->rid, $cm_permissions);
+}
+
+/**
+ * Set date formats.
+ */
+function _wim_set_date_formats() {
+  $types = array(
+    'single_day' => array(
+      'title' => 'Single day',
+      'locked' => 0,
+      'is_new' => 1,
+      'type' => 'single_day',
+      'date_format' => 'd M',
+    ),
+  );
+  $date_formats = array(
+    'long' => array(
+      'format' => 'd M Y - H:i',
+      'type' => 'long',
+      'locked' => 0,
+      'is_new' => 1,
+    ),
+    'medium' => array(
+      'format' => 'd F Y',
+      'type' => 'medium',
+      'locked' => 0,
+      'is_new' => 1,
+    ),
+    'short' => array(
+      'format' => 'd-m-Y',
+      'type' => 'short',
+      'locked' => 0,
+      'is_new' => 1,
+    ),
+    'single_day' => array(
+      'format' => 'd M',
+      'type' => 'single_day',
+      'locked' => 0,
+      'is_new' => 1,
+    ),
+  );
+
+  // Create new format types.
+  foreach ($types as $format_type) {
+    system_date_format_type_save($format_type);
+    variable_set('date_format_' . $format_type['type'], $format_type['date_format']);
+  }
+
+  // Update date types with new date formats.
+  foreach ($date_formats as $date_format) {
+    system_date_format_save($date_format);
+    variable_set('date_format_' . $date_format['type'], $date_format['format']);
+  }
 }
