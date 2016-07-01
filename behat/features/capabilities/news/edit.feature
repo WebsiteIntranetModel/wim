@@ -1,4 +1,4 @@
-@api @news @stability @CM @edit
+@api @news @news-edit @stability @CM @edit
 Feature: Edit News
   Benefit: In order to edit news
   Role: As a CM
