@@ -22,7 +22,7 @@ default:
       Behat\MinkExtension:
         default_session: 'selenium2'
         base_url: 'http://web/'
-        files_path: '/var/www/html/sites/default/files/'
+        files_path: '/var/www/html/profiles/wim/behat/fixtures'
         goutte: ~
         selenium2:
           wd_host: 'http://selenium:4444/wd/hub/'
