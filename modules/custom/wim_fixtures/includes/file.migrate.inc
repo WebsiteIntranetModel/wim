@@ -72,13 +72,16 @@ class WIMFile extends FileMigration {
   }
 
   /**
-   * Implementation of prepareRow(). This method is called from the source
+   * Implementation of prepareRow().
+   *
+   * This method is called from the source
    * plugin upon first pulling the raw data from the source.
    *
-   * @param stdClass $row
-   *  Object containing raw source data.
+   * @param object $row
+   *   Object containing raw source data.
+   *
    * @return bool
-   *  TRUE to process this row, FALSE to have the source skip it.
+   *   TRUE to process this row, FALSE to have the source skip it.
    */
   public function prepareRow($row) {
     if (parent::prepareRow($row) === FALSE) {
