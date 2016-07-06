@@ -9,7 +9,7 @@
  */
 function wim_fixtures_migrate_api() {
   $data_sources = DRUPAL_ROOT . '/' .
-  drupal_get_path('module', 'wim_fixtures') . '/data_sources/images/';
+  drupal_get_path('module', 'wim_fixtures') . '/data_sources/files';
   $api = array(
     'api' => 2,
     'groups' => array(
@@ -46,6 +46,18 @@ function wim_fixtures_migrate_api() {
         'group_name' => 'WIMMigrate',
         'content_type' => 'page',
         'file_name' => 'basic-page.csv',
+      ),
+      'WIM_Product' => array(
+        'class_name' => 'BasicPageMigration',
+        'group_name' => 'WIMMigrate',
+        'content_type' => 'product',
+        'file_name' => 'product.csv',
+      ),
+      'WIM_News' => array(
+        'class_name' => 'NewsMigration',
+        'group_name' => 'WIMMigrate',
+        'content_type' => 'news',
+        'file_name' => 'news.csv',
       ),
     ),
   );
