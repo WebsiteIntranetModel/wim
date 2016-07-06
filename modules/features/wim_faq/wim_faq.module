@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the WIM FAQ feature.
+ */
+
+include_once 'wim_faq.features.inc';
