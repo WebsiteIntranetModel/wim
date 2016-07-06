@@ -48,7 +48,7 @@ class WIMFile extends FileMigration {
     );
 
     // Edit to include the desired extensions.
-    $allowed = 'jpg jpeg gif png pdf docx';
+    $allowed = 'jpg jpeg gif png pdf docx txt';
     if (module_exists('file_entity')) {
       $allowed = variable_get('file_entity_default_allowed_extensions', $allowed);
     }

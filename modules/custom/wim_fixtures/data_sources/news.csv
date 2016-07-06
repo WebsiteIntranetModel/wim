@@ -1,0 +1,3 @@
+"id", "title", "body", "field_image", "field_tags", "field_publication_date", "field_attachment", "field_news_category", "field_promoted", "author"
+"1", "News 1", "logem ipsum", "/drupal-icon.png", "2,4", "2026-06-27 00:00:00", "/demo.txt", "2", "1", "1"
+"2", "News 2", "logem ipsum", "/drupal-icon.png", "1,3", "2016-06-27 00:00:00", "/demo.txt", "3", "0", "2"
