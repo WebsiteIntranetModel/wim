@@ -14,12 +14,13 @@ Feature: Create basic page
       | Body  | Body description text     |
       | Tags  | BSCPGTEST, BSCPGTAG       |
       | Date  | 06/27/2026                |
-    And I attach the file "/fixtures/drupal-icon.png" to "Image"
+    And I attach the file "/fixtures/images/drupal-icon.png" to "Image"
     And I press "Save"
     And I should see the success message "Basic page This is a test basic page has been created."
-    And I should see "Publication date: 27 June 2026"
+    And I should see "27 June 2026"
     And I should see "Body description text"
-    And I should not see "BSCPGTEST"
+    And I should see "BSCPGTEST"
+    And I should see "BSCPGTAG"
     And I am at "admin/structure/taxonomy/tags"
     Then I should see "edit" in the "BSCPGTAG" row
     Then I should see "edit" in the "BSCPGTEST" row

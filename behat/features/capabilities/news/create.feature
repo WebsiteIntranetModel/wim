@@ -17,12 +17,16 @@ Feature: Create News
       | Date  | 06/30/2016   |
       | Body  | BODY CONTENT |
       | Tags  | tag1, tag2   |
+    And I attach the file "/fixtures/images/drupal-icon.png" to "Image"
+    And I attach the file "/fixtures/files/pdf-file.pdf" to "Add a new file"
     And I press "Save"
     Then I should see the success message "News TEST NEWS has been created."
     And I should see the heading "TEST NEWS"
     And I should see "BODY CONTENT"
     And I should see "30 June 2016"
     And I should see "tag1"
+    And I should see an ".field-name-field-image img" element
+    And I should see "pdf-file.pdf"
 
     Given I am an anonymous user
     And I visit "node/add/news"
