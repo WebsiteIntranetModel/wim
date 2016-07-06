@@ -20,7 +20,8 @@ Note that the docker projects have to be somewhere under your home directory in 
 
 1. Start a docker machine (docker quickstart icon).
 
-2. Clone this repository to the directory of your choice (within your home directory):
+2. Clone this repository to the directory of your choice (within your home directory).
+    **Mind that it should be cloned into the _profiles/wim_ folder in order to work well.**
     ```
     git clone git://github.com:WebsiteIntranetModel/wim.git profiles/wim
     ```

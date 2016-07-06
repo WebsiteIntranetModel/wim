@@ -22,7 +22,7 @@ function wim_product_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 0,
+        'weight' => 1,
       ),
       'teaser' => array(
         'label' => 'hidden',
@@ -68,7 +68,7 @@ function wim_product_field_default_field_instances() {
           'image_style' => '',
         ),
         'type' => 'image',
-        'weight' => 2,
+        'weight' => 0,
       ),
       'teaser' => array(
         'label' => 'hidden',
@@ -157,7 +157,7 @@ function wim_product_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'inline',
+        'label' => 'hidden',
         'module' => 'date',
         'settings' => array(
           'format_type' => 'medium',
@@ -224,8 +224,8 @@ function wim_product_field_default_field_instances() {
         'label' => 'inline',
         'module' => 'taxonomy',
         'settings' => array(),
-        'type' => 'taxonomy_term_reference_link',
-        'weight' => 1,
+        'type' => 'taxonomy_term_reference_plain',
+        'weight' => 2,
       ),
       'teaser' => array(
         'label' => 'above',
