@@ -6,11 +6,11 @@ Feature: View News
 
   Scenario: As a AN I should be able to see News
     Given I am an anonymous user
-    Given tags terms:
+    And tags terms:
       | name |
       | TAG1 |
       | TAG2 |
-    Given I am viewing a "news":
+    And I am viewing a "news":
       | title                  | NEWS-TEST-TITLE |
       | body                   | BODY-CONTENT1   |
       | field_publication_date | 2026-06-27      |
@@ -22,5 +22,3 @@ Feature: View News
     And I should see "27 June 2026"
     And I should see "TAG1"
     And I should see "TAG2"
-
-    # @TODO: add tests for viewing image and attachments.

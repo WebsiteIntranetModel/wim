@@ -20,7 +20,7 @@ Feature: Edit FAQ
       | Additional information | ADDITIONAL INFO2 |
       | Tags                   | TAG2             |
     And I press "Save"
-    Then I should see "FAQ QUESTION2 has been updated."
+    Then I should see the success message "FAQ QUESTION2 has been updated."
     And I click "QUESTION2" in the "QUESTION2" row
     And I should see "QUESTION2"
     And I should see "ANSWER2"

@@ -8,15 +8,12 @@ Feature: Create FAQ
     Given I am logged in as a "content moderator"
     And I am on "node/add/faq"
     Then I should not see "Access denied"
-    And I should see "Question"
-    And I should see "Answer"
-    And I should see "Additional information"
-    And I should see "Tags"
     When I fill in the following:
       | Question               | TEST FAQ QUESTION      |
       | Answer                 | ANSWER                 |
       | Additional information | ADDITIONAL INFORMATION |
       | Tags                   | tag1, tag2             |
+    And I wait for AJAX to finish
     And I press "Save"
     Then I should see the success message "FAQ TEST FAQ QUESTION has been created."
     And I should see the heading "TEST FAQ QUESTION"

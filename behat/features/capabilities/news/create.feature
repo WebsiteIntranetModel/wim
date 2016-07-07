@@ -8,17 +8,14 @@ Feature: Create News
     Given I am logged in as a "content moderator"
     And I am on "node/add/news"
     Then I should not see "Access denied"
-    And I should see "Category"
-    And I should see "Promoted"
-    And I should see "Add a new file"
-    And I should see "Image"
     And I click "Edit summary"
     When I fill in the following:
-      | Title   | TEST NEWS    |
-      | Date    | 06/30/2016   |
-      | Summary | SUMMARY-TEXT |
-      | Body    | BODY CONTENT |
-      | Tags    | tag1, tag2   |
+      | Title    | TEST NEWS    |
+      | Date     | 06/30/2016   |
+      | Summary  | SUMMARY-TEXT |
+      | Body     | BODY CONTENT |
+      | Tags     | tag1, tag2   |
+      | Promoted | 1            |
     And I attach the file "/fixtures/images/drupal-icon.png" to "Image"
     And I attach the file "/fixtures/files/pdf-file.pdf" to "Add a new file"
     And I press "Save"
@@ -36,7 +33,7 @@ Feature: Create News
 
   Scenario: Successfully set category for news
     Given I am logged in as a "content moderator"
-    Given news_categories terms:
+    And news_categories terms:
       | name      |
       | CATEGORY1 |
       | CATEGORY2 |
@@ -46,11 +43,10 @@ Feature: Create News
       | Title | TEST CATEGORY NEWS |
       | Date  | 06/30/2016         |
       | Body  | BODY CONTENT       |
-    Then I select "CATEGORY1" from "Category"
+    And I select "CATEGORY1" from "Category"
     Then I press "Save"
-    Then I should see the success message "News TEST CATEGORY NEWS has been created."
-    Then I should see the link "Edit"
+    And I should see the success message "News TEST CATEGORY NEWS has been created."
+    And I should see the link "Edit"
     When I click "Edit"
-    Then I should see "CATEGORY1"
-    Then the "select[name='field_news_category[und]'] option[selected='selected']" element should contain "CATEGORY1"
-    Then the "select[name='field_news_category[und]'] option[selected='selected']" element should not contain "CATEGORY2"
+    And the "CATEGORY1" option from "Category" is selected
+    And the "CATEGORY2" option from "Category" is not selected
