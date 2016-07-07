@@ -12,11 +12,13 @@ Feature: Create News
     And I should see "Promoted"
     And I should see "Add a new file"
     And I should see "Image"
+    And I click "Edit summary"
     When I fill in the following:
-      | Title | TEST NEWS    |
-      | Date  | 06/30/2016   |
-      | Body  | BODY CONTENT |
-      | Tags  | tag1, tag2   |
+      | Title   | TEST NEWS    |
+      | Date    | 06/30/2016   |
+      | Summary | SUMMARY-TEXT |
+      | Body    | BODY CONTENT |
+      | Tags    | tag1, tag2   |
     And I attach the file "/fixtures/images/drupal-icon.png" to "Image"
     And I attach the file "/fixtures/files/pdf-file.pdf" to "Add a new file"
     And I press "Save"
