@@ -77,7 +77,6 @@ function _wim_set_up_roles_and_permissions() {
   $cm_permissions = array(
     'access administration menu',
     'access administration pages',
-    'view the administration theme',
     'access user profiles',
     'administer taxonomy',
     'access content overview',

@@ -20,7 +20,7 @@ Feature: Edit Product
       | Date     | 06/30/2016     |
       | Promoted | 0              |
     And I press "Save"
-    And I should see "Product PRODUCT TITLE2 has been updated."
+    And I should see the success message "Product PRODUCT TITLE2 has been updated."
     And I click "PRODUCT TITLE2" in the "PRODUCT TITLE2" row
     And I should see "30 June 2016"
     And I should see "PRODUCT TITLE2"

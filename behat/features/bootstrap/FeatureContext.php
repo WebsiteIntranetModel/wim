@@ -10,6 +10,7 @@ use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\Testwork\Hook\Scope\BeforeSuiteScope;
 use Behat\Testwork\Hook\Scope\AfterSuiteScope;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
+use Behat\Mink\Exception\ElementNotFoundException;
 
 /**
  * Defines application features from the specific context.
@@ -148,6 +149,70 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
   protected static function revertMigration($machine_name) {
     $migration = Migration::getInstance($machine_name);
     $migration->processRollback(array('force' => TRUE));
+  }
+
+  /**
+   * Checks if an option is selected in the dropdown.
+   *
+   * @param string $option
+   *   The option string to be searched for.
+   * @param string $select
+   *   The dropdown field selector.
+   *
+   * @throws \Exception
+   *
+   * @Then /^the "(?P<option>(?:[^"]|\\")*)" option from "(?P<select>(?:[^"]|\\")*)" (?:is|should be) selected$/
+   */
+  public function theOptionFromShouldBeSelected($option, $select) {
+    // Get the object of the dropdown field.
+    $dropDown = $this->getSession()->getPage()->findField($select);
+    if (empty($dropDown)) {
+      throw new \Exception('The page does not have the dropdown with label "' . $select . '"');
+    }
+    $optionField = $dropDown->find('named', array(
+      'option',
+      $option,
+    ));
+
+    if (NULL === $optionField) {
+      throw new ElementNotFoundException($this->getSession(), 'select option field', 'id|name|label|value', $option);
+    }
+
+    if (!$optionField->isSelected()) {
+      throw new \Exception('Select option field with value|text "' . $option . '" is not selected in the select "' . $select . '"');
+    }
+  }
+
+  /**
+   * Checks if an option is not selected in the dropdown.
+   *
+   * @param string $option
+   *   The option string to be searched for.
+   * @param string $select
+   *   The dropdown field selector.
+   *
+   * @throws \Exception
+   *
+   * @Then /^the "(?P<option>(?:[^"]|\\")*)" option from "(?P<select>(?:[^"]|\\")*)" (?:is not|should not be) selected$/
+   */
+  public function theOptionFromShouldNotBeSelected($option, $select) {
+    // Get the object of the dropdown field.
+    $dropDown = $this->getSession()->getPage()->findField($select);
+    if (empty($dropDown)) {
+      throw new \Exception('The page does not have the dropdown with label "' . $select . '"');
+    }
+    $optionField = $dropDown->find('named', array(
+      'option',
+      $option,
+    ));
+
+    if (NULL === $optionField) {
+      throw new ElementNotFoundException($this->getSession(), 'select option field', 'id|name|label|value', $option);
+    }
+
+    if ($optionField->isSelected()) {
+      throw new \Exception('Select option field with value|text "' . $option . '" is selected in the select "' . $select . '"');
+    }
   }
 
 }

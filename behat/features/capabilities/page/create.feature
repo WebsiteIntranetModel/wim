@@ -8,7 +8,6 @@ Feature: Create basic page
     Given I am logged in as a "content moderator"
     And I am at "node/add/page"
     Then I should see "Promoted"
-    Then I should see "Image"
     When I fill in the following:
       | Title | This is a test basic page |
       | Body  | Body description text     |
