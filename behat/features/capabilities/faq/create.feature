@@ -12,7 +12,7 @@ Feature: Create FAQ
       | Question               | TEST FAQ QUESTION      |
       | Answer                 | ANSWER                 |
       | Additional information | ADDITIONAL INFORMATION |
-      | Tags                   | tag1, tag2             |
+      | Tags                   | Tag1, Tag2             |
     And I wait for AJAX to finish
     And I press "Save"
     Then I should see the success message "FAQ TEST FAQ QUESTION has been created."
