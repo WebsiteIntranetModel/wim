@@ -14,11 +14,10 @@ Feature: View FAQ
       | title                            | FAQ-QUESTION    |
       | body                             | ANSWER-CONTENT  |
       | field_faq_additional_information | ADDITIONAL-INFO |
-      | field_tags                       | TAG1, TAG2      |
+      | field_tags                       | Tag1, Tag2      |
     Then I should not see the link "Edit"
     And I should not see "BSCPGTEST"
     And I should see "FAQ-QUESTION"
     And I should see "ANSWER-CONTENT"
     And I should see "ADDITIONAL-INFO"
-    And I should see "TAG1"
-    And I should see "TAG2"
+    And I should see the link Tag1

@@ -7,7 +7,7 @@ Feature: Edit Product
   Scenario: Successfully edit product
     Given "product" content:
       | title          | body          | Date       | field_tags | field_promoted | status |
-      | PRODUCT TITLE1 | BODY-CONTENT1 | 06/27/2026 | TAG1       | 1              | 1      |
+      | PRODUCT TITLE1 | BODY-CONTENT1 | 06/27/2026 | Tag1       | 1              | 1      |
     Given I am logged in as a "content moderator"
     When I go to "admin/content"
     Then I should not see "Access denied"
@@ -16,7 +16,7 @@ Feature: Edit Product
     When I fill in the following:
       | Title    | PRODUCT TITLE2 |
       | Body     | BODY-CONTENT2  |
-      | Tags     | TAG2           |
+      | Tags     | Tag2           |
       | Date     | 06/30/2016     |
       | Promoted | 0              |
     And I press "Save"
@@ -25,8 +25,8 @@ Feature: Edit Product
     And I should see "30 June 2016"
     And I should see "PRODUCT TITLE2"
     And I should see "BODY-CONTENT2"
-    And I should see "TAG2"
+    And I should see "Tag2"
     And I should not see "PRODUCT TITLE1"
-    And I should not see "TAG1"
+    And I should not see "Tag1"
     And I should not see "BODY-CONTENT1"
     And I should not see "27 June 2026"
