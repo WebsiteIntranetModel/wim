@@ -349,7 +349,7 @@ function wim_news_field_default_field_instances() {
         'label' => 'inline',
         'module' => 'taxonomy',
         'settings' => array(),
-        'type' => 'taxonomy_term_reference_plain',
+        'type' => 'taxonomy_term_reference_link',
         'weight' => 3,
       ),
       'short' => array(
