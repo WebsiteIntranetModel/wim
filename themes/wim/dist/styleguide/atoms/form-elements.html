@@ -74,7 +74,6 @@
                   <li><a href="styleguide/atoms/icons.html">Icons</a></li>
                   <li><a href="styleguide/atoms/buttons.html">Buttons</a></li>
                   <li><a href="styleguide/atoms/form-elements.html">Form elements</a></li>
-                  <li><a href="styleguide/atoms/labels.html">Labels</a></li>
                   <li><a href="styleguide/atoms/messages.html">Messages</a></li>
                   <li><a href="styleguide/atoms/tables.html">Tables</a></li>
                   <li><a href="#">...</a></li>
@@ -91,14 +90,14 @@
                 <p><p>Input fields allow user input. The border should light up simply and clearly indicating which field the user is currently editing. You must have put a <code>.form-control</code> class on each input.</p>
                 </p>
                 <h3>Demo: </h3>
-                <input type="text" class="form-text">
+                <input type="text" class="form-text form-control">
                 <h3>Code:     </h3>
                 <pre class="language-html"><code class="language-html">Code</code></pre>
                 <h2>Textarea</h2>
                 <p><p>Textareas allow larger expandable user input. The border should light up simply and clearly indicating which field the user is currently editing. You must have a <code>.form-control</code> class on the textarea element.</p>
                 </p>
                 <h3>Demo: </h3>
-                <textarea class="form-textarea"></textarea>
+                <textarea class="form-textarea form-control"></textarea>
                 <h3>Code: </h3>
                 <pre class="language-html"><code class="language-html"> 
 Code</code></pre>
@@ -106,7 +105,7 @@ Code</code></pre>
                 <p><p>Select allows user input through specified options. Make sure you add the class <code>.form-control</code> to the select element.</p>
                 </p>
                 <h3>Demo: </h3>
-                <select class="form-select">
+                <select class="form-select form-control">
                   <option>Option 1</option>
                   <option>Option 2</option>
                   <option>Option 3</option>
@@ -119,16 +118,19 @@ Code</code></pre>
                 <h3>Demo: </h3>
                 <div class="form-group">
                   <div class="radio">
-                    <input id="option1" type="radio" name="group1" class="form-radio">
-                    <label for="option1">Option 1</label>
+                    <label for="option1">
+                      <input id="option1" type="radio" name="group1" class="form-radio">Option 1
+                    </label>
                   </div>
                   <div class="radio">
-                    <input id="option2" type="radio" name="group1" class="form-radio">
-                    <label for="option2">Option 2</label>
+                    <label for="option2">
+                      <input id="option2" type="radio" name="group1" class="form-radio">Option 2
+                    </label>
                   </div>
                   <div class="radio">
-                    <input id="option3" type="radio" name="group1" class="form-radio">
-                    <label for="option3">Option 3</label>
+                    <label for="option3">
+                      <input id="option3" type="radio" name="group1" class="form-radio">Option 3
+                    </label>
                   </div>
                 </div>
                 <h3>Code: </h3>

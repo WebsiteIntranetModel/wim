@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Slab:400,700');
+@import url('https://fonts.googleapis.com/css?family=Droid+Sans:400,700');
 
 html {
   font-size: 62.5%;
@@ -7,7 +8,7 @@ html {
 body {
   font-size: 13px;
   font-size: 1.3rem;
-  font-family: 'Roboto Slab', 'Droid Sans', Arial, sans-serif;
+  font-family: 'Droid Sans', Arial, sans-serif;
   word-wrap: break-word;
   text-rendering: optimizeLegibility;
 } /* =13px */
@@ -34,7 +35,10 @@ h4 {
   font-size: 14px;
   font-size: 1.4rem;
 } /* =14px */
-
+h1,h2,h3,h4,h5,h6{
+  font-family: 'Roboto Slab', 'Droid Sans', Arial, sans-serif;
+  font-weight: 400;
+}
 
 a {
   color: black;
