@@ -21,7 +21,7 @@ Feature: News overview
     And I am an anonymous user
     And I am on "news"
     Then I should see the heading "News"
-    And I should see 10 "article.node-teaser" elements
+    And I should not see "No results"
     And the "article.node-teaser" element should contain "Read more"
     And I should see an ".pagination" element
 
