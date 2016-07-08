@@ -1,0 +1,51 @@
+#accordion,
+.views-bootstrap-accordion-plugin-style {
+  .panel-default > .panel-heading + .panel-collapse > .panel-body{
+    border-top: none ;
+  }
+  > div {
+    &:first-child {
+      .ui-accordion-header {
+        border-top: 1px solid $brand-light;
+      }
+    }
+  }
+  .panel {
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .panel-body {
+    border-bottom: 1px solid $brand-light;
+    padding: 1em 0;
+  }
+  .panel-heading {
+    padding: 5px 0 5px 0px;
+    background: none;
+    border: none;
+    font-size: 15px;
+    line-height: 24px;
+    font-family: 'Roboto Slab', 'Droid Sans', Arial, sans-serif;
+    border-bottom: 1px solid $brand-light;
+    border-radius: 0;
+    h4{
+      text-decoration: none;
+    }
+    a {
+      color: $brand-primary;
+      text-decoration: none;
+      &:before {
+        font-size: 14px;
+        content: "\e259";
+        font-family: 'Glyphicons Halflings';
+        line-height: 1;
+      }
+      &.collapsed {
+        &:before {
+          content: "\e258";
+        }
+
+      }
+    }
+  }
+}
