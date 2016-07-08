@@ -14,7 +14,7 @@ projects[magic] = 2.2
 projects[migrate] = 2.8
 projects[strongarm] = 2.0
 projects[views] = 3.14
-projects[views_accordion] = 1.1
+projects[views_bootstrap] = 3.1
 
 ; Themes
 projects[bootstrap] = 3.5
