@@ -6,11 +6,11 @@ Feature: FAQ overview
 
   Scenario: Visitor views a FAQ
     Given "faq" content:
-      | title      | body     | status |
-      | QUESTION 1 | ANSWER 1 | 1      |
-      | QUESTION 2 | ANSWER 2 | 1      |
-      | QUESTION 3 | ANSWER 3 | 1      |
-      | QUESTION 4 | ANSWER 4 | 1      |
+      | title      | body     | status | field_show_on_overview |
+      | QUESTION 1 | ANSWER 1 | 1      | 1                      |
+      | QUESTION 2 | ANSWER 2 | 1      | 1                      |
+      | QUESTION 3 | ANSWER 3 | 1      | 1                      |
+      | QUESTION 4 | ANSWER 4 | 1      | 1                      |
     When I am on "faq"
     Then I should see the heading "FAQ"
     And I should see 4 ".view-display-id-faq_overview .views-row" elements
@@ -21,3 +21,17 @@ Feature: FAQ overview
     And I wait for "5" seconds
     Then I should see "ANSWER 2"
     And I should not see "ANSWER 1"
+
+  Scenario: CM mark FAQ items to show them on the overview
+    Given "faq" content:
+      | title      | body     | status | field_show_on_overview |
+      | QUESTION 1 | ANSWER 1 | 1      | 1                      |
+    When I am on "faq"
+    Then I should see "QUESTION 1"
+    Given I am logged in as a "content moderator"
+    When I go to "admin/content"
+    Then I click "edit" in the "QUESTION 1" row
+    And I uncheck the box "Show this FAQ in the FAQ overview"
+    And I press "Save"
+    When I go to "faq"
+    Then I should not see "QUESTION 1"

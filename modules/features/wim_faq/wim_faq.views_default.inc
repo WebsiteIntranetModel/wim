@@ -25,11 +25,7 @@ function wim_faq_views_default_views() {
   $handler->display->display_options['title'] = 'FAQ';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
-  $handler->display->display_options['cache']['type'] = 'time';
-  $handler->display->display_options['cache']['results_lifespan'] = '3600';
-  $handler->display->display_options['cache']['results_lifespan_custom'] = '0';
-  $handler->display->display_options['cache']['output_lifespan'] = '3600';
-  $handler->display->display_options['cache']['output_lifespan_custom'] = '0';
+  $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'full';
@@ -82,6 +78,13 @@ function wim_faq_views_default_views() {
   $handler->display->display_options['filters']['type']['field'] = 'type';
   $handler->display->display_options['filters']['type']['value'] = array(
     'faq' => 'faq',
+  );
+  /* Filter criterion: Content: Show this FAQ in the FAQ overview (field_show_on_overview) */
+  $handler->display->display_options['filters']['field_show_on_overview_value']['id'] = 'field_show_on_overview_value';
+  $handler->display->display_options['filters']['field_show_on_overview_value']['table'] = 'field_data_field_show_on_overview';
+  $handler->display->display_options['filters']['field_show_on_overview_value']['field'] = 'field_show_on_overview_value';
+  $handler->display->display_options['filters']['field_show_on_overview_value']['value'] = array(
+    1 => '1',
   );
 
   /* Display: Overview page */
