@@ -85,6 +85,9 @@
   hide($content['comments']);
   hide($content['links']);
   hide($content['field_tags']);
+  if ($product_link) {
+    print $product_link;
+  }
   print render($content);
   ?>
   <?php if (!empty($content['field_tags']) || !empty($content['links'])): ?>
