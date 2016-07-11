@@ -28,11 +28,8 @@ function wim_faq_views_default_views() {
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['exposed_form']['type'] = 'basic';
-  $handler->display->display_options['pager']['type'] = 'full';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '20';
+  $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['pager']['options']['offset'] = '0';
-  $handler->display->display_options['pager']['options']['id'] = '0';
-  $handler->display->display_options['pager']['options']['quantity'] = '9';
   $handler->display->display_options['style_plugin'] = 'views_bootstrap_accordion_plugin_style';
   $handler->display->display_options['style_options']['title_field'] = 'title';
   $handler->display->display_options['row_plugin'] = 'fields';
@@ -87,8 +84,101 @@ function wim_faq_views_default_views() {
     1 => '1',
   );
 
-  /* Display: Overview page */
-  $handler = $view->new_display('page', 'Overview page', 'faq_overview');
+  /* Display: FAQ Overview */
+  $handler = $view->new_display('page', 'FAQ Overview', 'faq_overview');
+  $handler->display->display_options['defaults']['use_more'] = FALSE;
+  $handler->display->display_options['defaults']['use_more_always'] = FALSE;
+  $handler->display->display_options['defaults']['use_more_always'] = FALSE;
+  $handler->display->display_options['use_more_always'] = TRUE;
+  $handler->display->display_options['defaults']['use_more_text'] = FALSE;
+  $handler->display->display_options['defaults']['header'] = FALSE;
+  /* Header: Global: Unfiltered text */
+  $handler->display->display_options['header']['area_text_custom']['id'] = 'area_text_custom';
+  $handler->display->display_options['header']['area_text_custom']['table'] = 'views';
+  $handler->display->display_options['header']['area_text_custom']['field'] = 'area_text_custom';
+  $handler->display->display_options['header']['area_text_custom']['label'] = 'Back to categories link';
+  $handler->display->display_options['header']['area_text_custom']['content'] = '<h2>Category: %1</h2>
+<a calss="category-overview" href="/faq">Back to categories</a>';
+  $handler->display->display_options['header']['area_text_custom']['tokenize'] = TRUE;
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: Content: Category (field_faq_category) */
+  $handler->display->display_options['arguments']['field_faq_category_tid']['id'] = 'field_faq_category_tid';
+  $handler->display->display_options['arguments']['field_faq_category_tid']['table'] = 'field_data_field_faq_category';
+  $handler->display->display_options['arguments']['field_faq_category_tid']['field'] = 'field_faq_category_tid';
+  $handler->display->display_options['arguments']['field_faq_category_tid']['default_action'] = 'empty';
+  $handler->display->display_options['arguments']['field_faq_category_tid']['exception']['value'] = 'all-categories';
+  $handler->display->display_options['arguments']['field_faq_category_tid']['default_argument_type'] = 'taxonomy_tid';
+  $handler->display->display_options['arguments']['field_faq_category_tid']['default_argument_options']['term_page'] = FALSE;
+  $handler->display->display_options['arguments']['field_faq_category_tid']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['field_faq_category_tid']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_faq_category_tid']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['field_faq_category_tid']['specify_validation'] = TRUE;
+  $handler->display->display_options['arguments']['field_faq_category_tid']['validate']['type'] = 'taxonomy_term';
+  $handler->display->display_options['arguments']['field_faq_category_tid']['validate_options']['vocabularies'] = array(
+    'faq_categories' => 'faq_categories',
+  );
+  $handler->display->display_options['arguments']['field_faq_category_tid']['validate_options']['type'] = 'convert';
+  $handler->display->display_options['arguments']['field_faq_category_tid']['validate_options']['transform'] = TRUE;
+  $handler->display->display_options['arguments']['field_faq_category_tid']['validate']['fail'] = 'empty';
+  $handler->display->display_options['path'] = 'faq/%';
+
+  /* Display: Categories Overview */
+  $handler = $view->new_display('page', 'Categories Overview', 'categories_overview');
+  $handler->display->display_options['defaults']['css_class'] = FALSE;
+  $handler->display->display_options['css_class'] = 'categories-overview';
+  $handler->display->display_options['defaults']['query'] = FALSE;
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['distinct'] = TRUE;
+  $handler->display->display_options['query']['options']['pure_distinct'] = TRUE;
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['row_options']['hide_empty'] = TRUE;
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['header'] = FALSE;
+  /* Header: Global: Text area */
+  $handler->display->display_options['header']['area']['id'] = 'area';
+  $handler->display->display_options['header']['area']['table'] = 'views';
+  $handler->display->display_options['header']['area']['field'] = 'area';
+  $handler->display->display_options['header']['area']['label'] = 'Select a category.';
+  $handler->display->display_options['header']['area']['content'] = 'Select a category.';
+  $handler->display->display_options['header']['area']['format'] = 'plain_text';
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  /* Relationship: Content: Category (field_faq_category) */
+  $handler->display->display_options['relationships']['field_faq_category_tid']['id'] = 'field_faq_category_tid';
+  $handler->display->display_options['relationships']['field_faq_category_tid']['table'] = 'field_data_field_faq_category';
+  $handler->display->display_options['relationships']['field_faq_category_tid']['field'] = 'field_faq_category_tid';
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Taxonomy term: Name */
+  $handler->display->display_options['fields']['name']['id'] = 'name';
+  $handler->display->display_options['fields']['name']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['fields']['name']['field'] = 'name';
+  $handler->display->display_options['fields']['name']['relationship'] = 'field_faq_category_tid';
+  $handler->display->display_options['fields']['name']['label'] = '';
+  $handler->display->display_options['fields']['name']['alter']['make_link'] = TRUE;
+  $handler->display->display_options['fields']['name']['alter']['path'] = 'faq/[name]';
+  $handler->display->display_options['fields']['name']['alter']['replace_spaces'] = TRUE;
+  $handler->display->display_options['fields']['name']['alter']['path_case'] = 'lower';
+  $handler->display->display_options['fields']['name']['element_label_colon'] = FALSE;
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Sort criterion: Taxonomy term: Name */
+  $handler->display->display_options['sorts']['name']['id'] = 'name';
+  $handler->display->display_options['sorts']['name']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['sorts']['name']['field'] = 'name';
+  $handler->display->display_options['sorts']['name']['relationship'] = 'field_faq_category_tid';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Taxonomy vocabulary: Machine name */
+  $handler->display->display_options['filters']['machine_name']['id'] = 'machine_name';
+  $handler->display->display_options['filters']['machine_name']['table'] = 'taxonomy_vocabulary';
+  $handler->display->display_options['filters']['machine_name']['field'] = 'machine_name';
+  $handler->display->display_options['filters']['machine_name']['relationship'] = 'field_faq_category_tid';
+  $handler->display->display_options['filters']['machine_name']['value'] = array(
+    'faq_categories' => 'faq_categories',
+  );
   $handler->display->display_options['path'] = 'faq';
   $export['faq'] = $view;
 

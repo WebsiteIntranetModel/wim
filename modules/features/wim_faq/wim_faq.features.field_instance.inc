@@ -39,7 +39,7 @@ function wim_faq_field_default_field_instances() {
     'label' => 'Answer',
     'required' => 0,
     'settings' => array(
-      'display_summary' => 1,
+      'display_summary' => 0,
       'text_processing' => 1,
       'user_register_form' => FALSE,
     ),
@@ -95,6 +95,42 @@ function wim_faq_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-faq-field_faq_category'.
+  $field_instances['node-faq-field_faq_category'] = array(
+    'bundle' => 'faq',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 3,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_faq_category',
+    'label' => 'Category',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 3,
+    ),
+  );
+
   // Exported field_instance: 'node-faq-field_show_on_overview'.
   $field_instances['node-faq-field_show_on_overview'] = array(
     'bundle' => 'faq',
@@ -110,7 +146,7 @@ function wim_faq_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 3,
+        'weight' => 4,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -173,7 +209,7 @@ function wim_faq_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 3,
+      'weight' => 5,
     ),
   );
 
@@ -181,6 +217,7 @@ function wim_faq_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('Additional information');
   t('Answer');
+  t('Category');
   t('Show this FAQ in the FAQ overview');
   t('Tags');
 
