@@ -8,7 +8,7 @@ Feature: Login
   Scenario: Successfully login with username
     Given I am an anonymous user
     And I am on the homepage
-    When I go to "/user/login"
+    When I go to "?q=/user/login"
     And I fill in the following:
         | Username | admin |
         | Password | admin |
