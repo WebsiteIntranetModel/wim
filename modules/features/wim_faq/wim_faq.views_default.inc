@@ -98,7 +98,7 @@ function wim_faq_views_default_views() {
   $handler->display->display_options['header']['area_text_custom']['field'] = 'area_text_custom';
   $handler->display->display_options['header']['area_text_custom']['label'] = 'Back to categories link';
   $handler->display->display_options['header']['area_text_custom']['content'] = '<h2>Category: %1</h2>
-<a calss="category-overview" href="/faq">Back to categories</a>';
+<div class="back-link"><a calss="category-overview" href="/faq">Back to categories</a></div>';
   $handler->display->display_options['header']['area_text_custom']['tokenize'] = TRUE;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
   $handler->display->display_options['defaults']['arguments'] = FALSE;
