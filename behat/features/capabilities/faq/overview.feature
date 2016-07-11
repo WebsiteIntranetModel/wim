@@ -13,8 +13,8 @@ Feature: FAQ overview
       | QUESTION 4 | ANSWER 4 | 1      | 1                      |
     When I am on "faq"
     Then I should see the heading "FAQ"
-    And I should see 4 ".view-display-id-faq_overview .views-row" elements
     When I click "QUESTION 1"
+    And I wait for "5" seconds
     Then I should see "ANSWER 1"
     And I should not see "ANSWER 2"
     When I click "QUESTION 2"
