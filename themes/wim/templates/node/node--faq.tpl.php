@@ -80,14 +80,16 @@
  */
 ?>
 <article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
+  <?php if ($product_link): ?>
+    <div class="back-link">
+      <?php print $product_link; ?>
+    </div>
+  <?php endif; ?>
   <?php
   // Hide comments, tags, and links now so that we can render them later.
   hide($content['comments']);
   hide($content['links']);
   hide($content['field_tags']);
-  if ($product_link) {
-    print $product_link;
-  }
   print render($content);
   ?>
   <?php if (!empty($content['field_tags']) || !empty($content['links'])): ?>
