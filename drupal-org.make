@@ -12,6 +12,7 @@ projects[features] = 2.10
 projects[jquery_update] = 2.7
 projects[magic] = 2.2
 projects[migrate] = 2.8
+projects[link] = 1.4
 projects[strongarm] = 2.0
 projects[views] = 3.14
 projects[views_bootstrap] = 3.1
