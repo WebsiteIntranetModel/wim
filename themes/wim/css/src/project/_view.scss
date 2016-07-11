@@ -1,20 +1,20 @@
-.view-news{
-  .view-filters{
+.view-news {
+  .view-filters {
     margin-bottom: 2em;
-    .views-widget{
-      .date-padding{
+    .views-widget {
+      .date-padding {
         float: none;
       }
     }
-    .views-widget-filter-date_filter{
+    .views-widget-filter-date_filter {
       padding-right: 0;
-      .views-widget{
+      .views-widget {
         & > div {
           display: inline-block;
         }
       }
     }
-    .views-submit-button{
+    .views-submit-button {
       display: none;
     }
     .btn {
@@ -22,29 +22,20 @@
     }
   }
 }
-.block{
-  .view-faq{
+
+.block {
+  .view-faq {
     margin: 0 0 1em 0;
     .view-header {
       & > p {
         margin-bottom: 1.6em;
       }
-      h2{
+      h2 {
         margin-top: 0;
       }
-      .back-link{
-        margin:15px 0;
-        &:before {
-          font-size: 12px;
-          content: "\e257";
-          font-family: 'Glyphicons Halflings';
-          line-height: 1;
-          margin-right: 3px;
-        }
-      }
     }
-    .view-content{
-      .views-row{
+    .view-content {
+      .views-row {
         padding: 10px 0;
         background: none;
         border: none;
@@ -53,7 +44,7 @@
         font-family: 'Roboto Slab', 'Droid Sans', Arial, sans-serif;
         border-bottom: 1px solid $brand-light;
         border-radius: 0;
-        &:first-child{
+        &:first-child {
           border-top: 1px solid $brand-light;
         }
         a {
