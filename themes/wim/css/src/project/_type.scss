@@ -70,3 +70,14 @@ a[href] {
   margin: 0 0 1em;
   padding: 0;
 }
+
+.back-link{
+  margin:15px 0;
+  &:before {
+    font-size: 12px;
+    content: "\e257";
+    font-family: 'Glyphicons Halflings';
+    line-height: 1;
+    margin-right: 3px;
+  }
+}

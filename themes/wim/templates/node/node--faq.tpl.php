@@ -93,5 +93,10 @@
       <?php print render($content['links']); ?>
     </footer>
   <?php endif; ?>
+  <?php if ($product_link): ?>
+    <div class="back-link">
+      <?php print $product_link; ?>
+    </div>
+  <?php endif; ?>
   <?php print render($content['comments']); ?>
 </article>
