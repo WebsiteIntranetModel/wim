@@ -18,6 +18,7 @@ dependencies[] = taxonomy
 dependencies[] = admin_menu
 dependencies[] = ctools
 dependencies[] = date_views
+dependencies[] = entityreference
 dependencies[] = features
 dependencies[] = jquery_update
 dependencies[] = magic

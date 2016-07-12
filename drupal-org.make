@@ -9,6 +9,7 @@ projects[admin_menu] = 3.0-rc5
 projects[ctools] = 1.9
 projects[date] = 2.9
 projects[features] = 2.10
+projects[entityreference] = 1.1
 projects[jquery_update] = 2.7
 projects[magic] = 2.2
 projects[migrate] = 2.8
