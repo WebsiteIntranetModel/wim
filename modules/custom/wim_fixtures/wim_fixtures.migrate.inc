@@ -73,7 +73,7 @@ function wim_fixtures_migrate_api() {
         'dependencies' => array(
           'WIM_Term_Categories',
           'WIM_Term_Tags',
-          'WIM_User'
+          'WIM_User',
         ),
       ),
       'WIM_Faq' => array(
