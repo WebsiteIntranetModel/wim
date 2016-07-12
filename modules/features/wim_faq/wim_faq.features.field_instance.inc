@@ -213,6 +213,50 @@ function wim_faq_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-faq-field_weight'.
+  $field_instances['node-faq-field_weight'] = array(
+    'bundle' => 'faq',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => NULL,
+        'settings' => array(),
+        'type' => 'number_integer',
+        'weight' => 5,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_weight',
+    'label' => 'Weight',
+    'required' => 0,
+    'settings' => array(
+      'range' => 20,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'weight',
+      'settings' => array(
+        'range' => 20,
+      ),
+      'type' => 'weight_selector',
+      'weight' => 6,
+    ),
+  );
+
   // Translatables
   // Included for use with string extractors like potx.
   t('Additional information');
@@ -220,6 +264,7 @@ function wim_faq_field_default_field_instances() {
   t('Category');
   t('Show this FAQ in the FAQ overview');
   t('Tags');
+  t('Weight');
 
   return $field_instances;
 }
