@@ -4,6 +4,7 @@ Feature: Edit News
   Role: As a CM
   Goal/desire: I want to edit News
 
+  @fixtures
   Scenario: Successfully edit news
     Given "news" content:
       | title       | body          | field_publication_date | field_tags | field_promoted | status |

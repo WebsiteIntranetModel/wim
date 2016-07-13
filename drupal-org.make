@@ -14,6 +14,7 @@ projects[field_group] = 1.5
 projects[entity] = 1.7
 projects[entityreference] = 1.1
 projects[jquery_update] = 2.7
+projects[location] = 3.7
 projects[magic] = 2.2
 projects[migrate] = 2.8
 projects[link] = 1.4

@@ -34,6 +34,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
    */
   public static function enableFixtureModules(BeforeSuiteScope $scope) {
     module_enable(array('migrate', 'wim_fixtures'));
+    variable_set('admin_menu_position_fixed', 0);
   }
 
   /**
@@ -45,6 +46,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
     $machine_names = self::getAllFixtureMigrations();
     self::revertMigrations($machine_names);
     module_disable(array('migrate', 'wim_fixtures'));
+    variable_del('admin_menu_position_fixed');
   }
 
   /**
