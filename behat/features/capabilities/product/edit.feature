@@ -12,6 +12,8 @@ Feature: Edit Product
     Given I am logged in as a "content moderator"
     When I go to "admin/content"
     Then I should not see "Access denied"
+    And I select "Product" from "type"
+    And I press "Filter"
     And I click "edit" in the "PRODUCT TITLE1" row
     Then I should not see "Access denied"
     When I fill in the following:
