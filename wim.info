@@ -29,6 +29,7 @@ dependencies[] = strongarm
 dependencies[] = views
 
 ; Features
+dependencies[] = wim_agenda
 dependencies[] = wim_core
 dependencies[] = wim_faq
 dependencies[] = wim_news

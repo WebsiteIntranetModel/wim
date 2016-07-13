@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the WIM Agenda feature.
+ */
+
+include_once 'wim_agenda.features.inc';
