@@ -85,12 +85,15 @@ function _wim_set_up_roles_and_permissions() {
     'create news content',
     'create page content',
     'create product content',
+    'create faq content',
     'delete any news content',
     'delete any page content',
     'delete any product content',
+    'delete any faq content',
     'edit any news content',
     'edit any page content',
     'edit any product content',
+    'edit any faq content',
   );
 
   // Access to the taxonomy vocabularies.

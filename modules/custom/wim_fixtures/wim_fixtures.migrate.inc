@@ -9,7 +9,7 @@
  */
 function wim_fixtures_migrate_api() {
   $data_sources = DRUPAL_ROOT . '/' .
-  drupal_get_path('module', 'wim_fixtures') . '/data_sources/files';
+    drupal_get_path('module', 'wim_fixtures') . '/data_sources/files';
   $api = array(
     'api' => 2,
     'groups' => array(
@@ -41,23 +41,51 @@ function wim_fixtures_migrate_api() {
         'destination_vocabulary' => 'news_categories',
         'file_name' => 'news-category-terms.csv',
       ),
+      'WIM_Faq_Categories' => array(
+        'class_name' => 'WIMTermMigration',
+        'group_name' => 'WIMMigrate',
+        'destination_vocabulary' => 'faq_categories',
+        'file_name' => 'faq-category-terms.csv',
+      ),
       'WIM_Basic_Page' => array(
         'class_name' => 'BasicPageMigration',
         'group_name' => 'WIMMigrate',
         'content_type' => 'page',
         'file_name' => 'basic-page.csv',
+        'dependencies' => array(
+          'WIM_User',
+        ),
       ),
       'WIM_Product' => array(
         'class_name' => 'BasicPageMigration',
         'group_name' => 'WIMMigrate',
         'content_type' => 'product',
         'file_name' => 'product.csv',
+        'dependencies' => array(
+          'WIM_User',
+        ),
       ),
       'WIM_News' => array(
         'class_name' => 'NewsMigration',
         'group_name' => 'WIMMigrate',
         'content_type' => 'news',
         'file_name' => 'news.csv',
+        'dependencies' => array(
+          'WIM_Term_Categories',
+          'WIM_Term_Tags',
+          'WIM_User',
+        ),
+      ),
+      'WIM_Faq' => array(
+        'class_name' => 'FaqMigration',
+        'group_name' => 'WIMMigrate',
+        'content_type' => 'faq',
+        'file_name' => 'faq.csv',
+        'dependencies' => array(
+          'WIM_Faq_Categories',
+          'WIM_Term_Tags',
+          'WIM_User',
+        ),
       ),
     ),
   );

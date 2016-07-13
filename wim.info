@@ -18,14 +18,19 @@ dependencies[] = taxonomy
 dependencies[] = admin_menu
 dependencies[] = ctools
 dependencies[] = date_views
+dependencies[] = entity
+dependencies[] = entityreference
 dependencies[] = features
+dependencies[] = field_group
 dependencies[] = jquery_update
 dependencies[] = magic
+dependencies[] = link
 dependencies[] = strongarm
 dependencies[] = views
 
 ; Features
 dependencies[] = wim_core
+dependencies[] = wim_faq
 dependencies[] = wim_news
 dependencies[] = wim_page
 dependencies[] = wim_product

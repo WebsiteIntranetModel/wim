@@ -18,10 +18,10 @@ Feature: News overview
       | TEST NEWS 9  | BODY-CONTENT9  | 1      | 2016-09-07             |
       | TEST NEWS 10 | BODY-CONTENT10 | 1      | 2016-10-03             |
       | TEST NEWS 11 | BODY-CONTENT11 | 1      | 2016-11-15             |
-    Given I am an anonymous user
+    And I am an anonymous user
     And I am on "news"
     Then I should see the heading "News"
-    And I should see 10 "article.node-teaser" elements
+    And I should not see "No results"
     And the "article.node-teaser" element should contain "Read more"
     And I should see an ".pagination" element
 
@@ -29,7 +29,7 @@ Feature: News overview
     Given news_categories terms:
       | name      |
       | CATEGORY1 |
-    Given "News" content:
+    And "News" content:
       | title       | body          | status | field_publication_date |
       | TEST NEWS 3 | BODY-CONTENT3 | 1      | 2016-03-20             |
       | TEST NEWS 4 | BODY-CONTENT4 | 1      | 2016-04-28             |

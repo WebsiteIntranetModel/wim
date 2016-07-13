@@ -14,14 +14,14 @@ Feature: Create Product
       | Title | TEST PRODUCT |
       | Date  | 06/27/2026   |
       | Body  | BODY CONTENT |
-      | Tags  | TAG1, TAG2   |
+      | Tags  | Tag1, Tag2   |
     And I press "Save"
     Then I should see the success message "Product TEST PRODUCT has been created."
     And I should see the heading "TEST PRODUCT"
     And I should see "BODY CONTENT"
     And I should see "27 June 2026"
-    And I should see "TAG1"
-    And I should see "TAG2"
+    And I should see "Tag1"
+    And I should see "Tag2"
 
     Given I am an anonymous user
     And I visit "node/add/product"
