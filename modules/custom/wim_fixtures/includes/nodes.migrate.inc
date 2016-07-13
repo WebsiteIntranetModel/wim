@@ -35,6 +35,7 @@ class BasicPageMigration extends NodeMigration {
       array('id', t('Id')),
       array('title', t('Node title')),
       array('body', t('Node body')),
+      array('body:summary', t('Node summary')),
       array('field_image', t('Node image')),
       array('field_tags', t('Node tags')),
       array('field_publication_date', t('Custom publication date')),
@@ -62,6 +63,7 @@ class BasicPageMigration extends NodeMigration {
     $this->addSimpleMappings(array(
       'title',
       'body',
+      'body:summary',
       'field_publication_date',
       'field_promoted',
     ));
@@ -71,7 +73,7 @@ class BasicPageMigration extends NodeMigration {
     $this->addFieldMapping('field_image:file_class')
       ->defaultValue('MigrateFileFid');
     $this->addFieldMapping('field_image:preserve_files')
-      ->defaultValue(TRUE);
+      ->defaultValue(FALSE);
     $this->addFieldMapping('uid', 'author')
       ->sourceMigration('WIM_User')->defaultValue(1);
     $this->addFieldMapping('field_tags', 'field_tags')->separator(',')
@@ -112,6 +114,7 @@ class NewsMigration extends NodeMigration {
       array('id', t('Id')),
       array('title', t('Node title')),
       array('body', t('Node body')),
+      array('body:summary', t('Node summary')),
       array('field_image', t('Node image')),
       array('field_tags', t('Node tags')),
       array('field_publication_date', t('Custom publication date')),
@@ -141,6 +144,7 @@ class NewsMigration extends NodeMigration {
     $this->addSimpleMappings(array(
       'title',
       'body',
+      'body:summary',
       'field_publication_date',
       'field_promoted',
     ));

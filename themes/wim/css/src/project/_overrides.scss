@@ -4,8 +4,13 @@
 .form-group.has-error .help-inline {
   color: $brand-body;
 }
-.submitted{
+
+.submitted {
   color: #888;
   font-style: normal;
   margin: 1em 0px;
+}
+
+body #admin-menu {
+  position: absolute;
 }
