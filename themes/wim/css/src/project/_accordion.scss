@@ -8,6 +8,7 @@
     border: none;
     border-radius: 0;
     box-shadow: none;
+    border-bottom: 1px solid $brand-light;
     & + .panel {
       margin-top: 0;
     }
@@ -16,7 +17,6 @@
     }
   }
   .panel-body {
-    border-bottom: 1px solid $brand-light;
     padding: 1em 0;
   }
   .panel-heading {
@@ -26,7 +26,6 @@
     font-size: 15px;
     line-height: 24px;
     font-family: 'Roboto Slab', 'Droid Sans', Arial, sans-serif;
-    border-bottom: 1px solid $brand-light;
     border-radius: 0;
     h4 {
       text-decoration: none;
