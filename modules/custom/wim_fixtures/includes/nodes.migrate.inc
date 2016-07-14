@@ -268,6 +268,7 @@ class AgendaMigration extends NodeMigration {
       array('body', t('Body')),
       array('body:summary', t('Node summary')),
       array('field_image', t('Node Image')),
+      array('field_agenda_date', t('Date')),
       array('name', t('Location name')),
       array('city', t('City')),
       array('street', t('Street')),
@@ -296,6 +297,7 @@ class AgendaMigration extends NodeMigration {
       'title',
       'body',
       'body:summary',
+      'field_agenda_date',
     ));
 
     $this->addFieldMapping('uid', 'author')
