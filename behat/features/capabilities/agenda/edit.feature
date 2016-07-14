@@ -5,27 +5,25 @@ Feature: Edit Agenda
   Goal/desire: I want to edit Agenda
 
   Scenario: Successfully edit Agenda
-    Given "agenda" content:
-      | title         | body                 | status | Date       | Time  |
-      | AGENDA TITLE1 | AGENDA-BODY-CONTENT1 | 1      | 06/27/2026 | 10:00 |
-    And I am logged in as a "content moderator"
+    Given I am logged in as a "content moderator"
     When I go to "admin/content"
     Then I should not see "Access denied"
     And I select "Agenda" from "type"
     And I press "Filter"
-    And I should see "AGENDA TITLE1"
-    And I click "edit" in the "AGENDA TITLE1" row
+    And I should see "Test Agenda 2"
+    And I click "edit" in the "Test Agenda 2" row
     Then I should not see "Access denied"
     When I fill in the following:
-      | Title | AGENDA TITLE2        |
+      | Title | Test Agenda Edited 2 |
       | Body  | AGENDA-BODY-CONTENT2 |
       | Date  | 06/30/2016           |
       | Time  | 10:00                |
     And I press "Save"
-    Then I should see the success message "Agenda AGENDA TITLE2 has been updated."
-    When I click "AGENDA TITLE2" in the "AGENDA TITLE2" row
-    Then I should see the heading "AGENDA TITLE2"
+    Then I should see the success message "Agenda Test Agenda Edited 2 has been updated."
+    When I click "Test Agenda Edited 2" in the "Test Agenda Edited 2" row
+    Then I should see the heading "Test Agenda Edited 2"
     And I should see "AGENDA-BODY-CONTENT2"
-    And I should not see "AGENDA TITLE1"
-    And I should not see "AGENDA-BODY-CONTENT1"
-    And I should not see "27 June 2026"
+    And I should see "30 June 2016 - 10:00"
+    And I should not see "Test Agenda 2"
+    And I should not see "Agenda 2 body content."
+    And I should not see "06 July 2026 - 08:00"

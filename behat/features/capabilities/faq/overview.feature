@@ -1,4 +1,4 @@
-@api @faq @faq-overview @stability @overview @fixtures
+@api @faq @faq-overview @stability @overview
 Feature: FAQ overview
   Benefit: In order to get answers on questions
   Role: As a User

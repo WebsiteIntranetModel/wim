@@ -4,7 +4,6 @@ Feature: Edit Product
   Role: As a CM
   Goal/desire: I want to edit Products
 
-  @fixtures
   Scenario: Successfully edit product
     Given "product" content:
       | title          | body          | Date       | field_tags | field_promoted | status |

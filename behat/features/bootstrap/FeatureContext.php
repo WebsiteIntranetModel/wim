@@ -35,6 +35,11 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
   public static function enableFixtureModules(BeforeSuiteScope $scope) {
     module_enable(array('migrate', 'wim_fixtures'));
     variable_set('admin_menu_position_fixed', 0);
+
+    $machine_names = self::getAllFixtureMigrations(TRUE);
+    foreach ($machine_names as $machine_name) {
+      self::runMigration($machine_name);
+    }
   }
 
   /**
@@ -47,18 +52,6 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
     self::revertMigrations($machine_names);
     module_disable(array('migrate', 'wim_fixtures'));
     variable_del('admin_menu_position_fixed');
-  }
-
-  /**
-   * This will be run when Behat finds fixtures tag in scenario.
-   *
-   * @BeforeScenario @fixtures
-   */
-  public static function runAllMigrations(BeforeScenarioScope $scope) {
-    $machine_names = self::getAllFixtureMigrations(TRUE);
-    foreach ($machine_names as $machine_name) {
-      self::runMigration($machine_name);
-    }
   }
 
   /**
@@ -215,6 +208,33 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
     if ($optionField->isSelected()) {
       throw new \Exception('Select option field with value|text "' . $option . '" is selected in the select "' . $select . '"');
     }
+  }
+
+  /**
+   * Viewing node type with given title.
+   *
+   * @param string $type
+   *   The node type.
+   * @param string $title
+   *   The node title.
+   *
+   * @throws \Exception
+   *
+   * @Given I am viewing :type (content ) node with the title :title
+   */
+  public function iAmViewingANodeWithTheTitle($type, $title) {
+    // Fetch node with given title.
+    $result = db_query("SELECT n.nid FROM {node} n WHERE n.title = :title AND n.type = :type", array(
+      ":title" => $title,
+      ":type" => $type
+    ));
+    $nid = $result->fetchField();
+
+    if (!$nid) {
+      throw new \Exception('The node "' . $type . '" with the title "' . $title . '" was not found.');
+    }
+
+    $this->getSession()->visit($this->locatePath('/node/' . $nid));
   }
 
 }
