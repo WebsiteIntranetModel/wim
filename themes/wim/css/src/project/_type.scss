@@ -79,5 +79,8 @@ a[href] {
     font-family: 'Glyphicons Halflings';
     line-height: 1;
     margin-right: 3px;
+    color: $brand-primary;
+    position: relative;
+    top: 1px;
   }
 }
