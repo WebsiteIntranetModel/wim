@@ -87,6 +87,16 @@ function wim_fixtures_migrate_api() {
           'WIM_User',
         ),
       ),
+      'WIM_Agenda' => array(
+        'class_name' => 'AgendaMigration',
+        'group_name' => 'WIMMigrate',
+        'content_type' => 'agenda',
+        'file_name' => 'agenda.csv',
+        'dependencies' => array(
+          'WIM_File',
+          'WIM_User',
+        ),
+      ),
     ),
   );
 

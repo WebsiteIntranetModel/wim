@@ -15,7 +15,6 @@ Feature: Login
     And I press "Log in"
     Then I should see "admin"
 
-  @fixtures
   Scenario: Check if demo users are there
     Given I am logged in as a "administrator"
     And I am on "admin/people"

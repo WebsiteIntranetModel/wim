@@ -242,3 +242,79 @@ class FaqMigration extends NodeMigration {
   }
 
 }
+
+/**
+ * Class AgendaMigration.
+ *
+ * Add demo content for Agenda.
+ */
+class AgendaMigration extends NodeMigration {
+
+  /**
+   * Constructor.
+   *
+   * @param array $arguments
+   *   Arguments.
+   */
+  public function __construct(array $arguments) {
+
+    parent::__construct($arguments);
+    $this->fileName = $arguments['file_name'];
+    $this->contentType = $arguments['content_type'];
+
+    $columns = array(
+      array('id', t('Id')),
+      array('title', t('Title')),
+      array('body', t('Body')),
+      array('body:summary', t('Node summary')),
+      array('field_image', t('Node Image')),
+      array('field_agenda_date', t('Date')),
+      array('name', t('Location name')),
+      array('city', t('City')),
+      array('street', t('Street')),
+      array('postal_code', t('Postal Code')),
+      array('country', t('County')),
+    );
+
+    $this->source = new MigrateSourceCSV(
+      $this->dataSources . $this->fileName,
+      $columns,
+      array('header_rows' => 1)
+    );
+
+    $this->destination = new MigrateDestinationNode($this->contentType);
+    $this->map = new MigrateSQLMap($this->machineName, array(
+      'id' => array(
+        'type' => 'varchar',
+        'length' => 6,
+        'not null' => TRUE,
+        'description' => t('ID'),
+      ),
+    ), MigrateDestinationNode::getKeySchema());
+
+    // Mapped fields.
+    $this->addSimpleMappings(array(
+      'title',
+      'body',
+      'body:summary',
+      'field_agenda_date',
+    ));
+
+    $this->addFieldMapping('uid', 'author')
+      ->sourceMigration('WIM_User')->defaultValue(1);
+
+    $this->addFieldMapping('field_image', 'field_image')
+      ->sourceMigration('WIM_File');
+    $this->addFieldMapping('field_image:alt')->defaultValue('');
+    $this->addFieldMapping('field_image:file_class')
+      ->defaultValue('MigrateFileFid');
+
+    $this->addFieldMapping('field_location')->defaultValue('TRUE');
+    $this->addFieldMapping('field_location:name', 'name');
+    $this->addFieldMapping('field_location:city', 'city');
+    $this->addFieldMapping('field_location:street', 'street');
+    $this->addFieldMapping('field_location:postal_code', 'postal_code');
+    $this->addFieldMapping('field_location:country', 'country');
+  }
+
+}

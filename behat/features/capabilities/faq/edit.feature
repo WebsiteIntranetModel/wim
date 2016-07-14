@@ -4,7 +4,6 @@ Feature: Edit FAQ
   Role: As a CM
   Goal/desire: I want to edit FAQ
 
-  @fixtures
   Scenario: Successfully edit FAQ
     Given I am logged in as a "content moderator"
     When I go to "admin/content"
