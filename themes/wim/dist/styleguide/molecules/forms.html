@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
-    <title>Messages - WIM</title>
+    <title>Forms - WIM</title>
     <link rel="apple-touch-icon" sizes="57x57" href="images/favicon/apple-touch-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="images/favicon/apple-touch-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="images/favicon/apple-touch-icon-72x72.png">
@@ -60,22 +60,18 @@
           </nav>
         </div>
       </header>
-      <div id="page-banner" role="banner"> </div>
+      <div id="page-banner" role="banner"></div>
       <!-- Create region for banner and render it here. We moved header to the navbar header section.-->
       <div role="main" class="main-container container">
         <div class="row">
           <aside role="complementary" class="col-sm-3">
             <div class="region region-sidebar-first">
               <section id="block-system-management" class="block block-system block-menu clearfix">
-                <h1 class="block-title">Atoms</h1>
+                <h1 class="block-title">Molecules</h1>
                 <ul class="menu nav">
-                  <li><a href="styleguide/atoms/colors.html">Colors</a></li>
-                  <li><a href="styleguide/atoms/typography.html">Typography</a></li>
-                  <li><a href="styleguide/atoms/icons.html">Icons</a></li>
-                  <li><a href="styleguide/atoms/buttons.html">Buttons</a></li>
-                  <li><a href="styleguide/atoms/form-elements.html">Form elements</a></li>
-                  <li><a href="styleguide/atoms/messages.html">Messages</a></li>
-                  <li><a href="styleguide/atoms/tables.html">Tables</a></li>
+                  <li><a href="styleguide/molecules/forms.html">Forms</a></li>
+                  <li><a href="styleguide/molecules/vertical-tabs.html">Vertical tabs</a></li>
+                  <li><a href="styleguide/molecules/teasers.html">Teasers</a></li>
                   <li><a href="#">...</a></li>
                 </ul>
               </section>
@@ -85,8 +81,30 @@
           <section class="col-sm-9"><a id="main-content"></a>
             <div class="region region-content">
               <section id="block-system-main" class="block block-system clearfix">
-                <h1>Messages</h1>
-                <p>Lorem ipsum dolor sit amet.</p>
+                <h1>Forms</h1>
+                <p>Individual form controls automatically receive some global styling. All textual 'input', 'textarea', and 'select' elements with '.form-control' are set to width: 100%; by default. Wrap labels and controls in '.form-group' for optimum spacing.</p>
+                <h3>Demo:</h3>
+                <form>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input id="exampleInputEmail1" type="email" placeholder="Email" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input id="exampleInputPassword1" type="password" placeholder="Password" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputFile">File input</label>
+                    <input id="exampleInputFile" type="file">
+                    <p class="help-block">Example block-level help text here.</p>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox"> Check me out
+                    </label>
+                  </div>
+                  <button type="submit" class="btn btn-default">Submit</button>
+                </form>
               </section>
             </div>
           </section>
