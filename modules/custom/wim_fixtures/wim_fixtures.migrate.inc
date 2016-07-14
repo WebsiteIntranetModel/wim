@@ -54,6 +54,8 @@ function wim_fixtures_migrate_api() {
         'file_name' => 'basic-page.csv',
         'dependencies' => array(
           'WIM_User',
+          'WIM_File',
+          'WIM_Term_Tags',
         ),
       ),
       'WIM_Product' => array(
@@ -63,6 +65,8 @@ function wim_fixtures_migrate_api() {
         'file_name' => 'product.csv',
         'dependencies' => array(
           'WIM_User',
+          'WIM_File',
+          'WIM_Term_Tags',
         ),
       ),
       'WIM_News' => array(
@@ -74,6 +78,7 @@ function wim_fixtures_migrate_api() {
           'WIM_Term_Categories',
           'WIM_Term_Tags',
           'WIM_User',
+          'WIM_File',
         ),
       ),
       'WIM_Faq' => array(
