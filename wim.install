@@ -123,7 +123,7 @@ function _wim_set_date_formats() {
   );
   $date_formats = array(
     'long' => array(
-      'format' => 'd M Y - H:i',
+      'format' => 'd F Y - H:i',
       'type' => 'long',
       'locked' => 0,
       'is_new' => 1,
