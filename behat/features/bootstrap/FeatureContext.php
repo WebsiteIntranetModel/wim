@@ -9,7 +9,6 @@ use Drupal\DrupalExtension\Context\RawDrupalContext;
 use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\Testwork\Hook\Scope\BeforeSuiteScope;
 use Behat\Testwork\Hook\Scope\AfterSuiteScope;
-use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Behat\Mink\Exception\ElementNotFoundException;
 
 /**
@@ -222,11 +221,11 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
    *
    * @Given I am viewing :type (content ) node with the title :title
    */
-  public function iAmViewingANodeWithTheTitle($type, $title) {
+  public function viewingNodeWithTheTitle($type, $title) {
     // Fetch node with given title.
     $result = db_query("SELECT n.nid FROM {node} n WHERE n.title = :title AND n.type = :type", array(
       ":title" => $title,
-      ":type" => $type
+      ":type" => $type,
     ));
     $nid = $result->fetchField();
 
