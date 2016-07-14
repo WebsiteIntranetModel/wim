@@ -17,6 +17,7 @@ features[field_instance][] = node-agenda-body
 features[field_instance][] = node-agenda-field_agenda_date
 features[field_instance][] = node-agenda-field_image
 features[field_instance][] = node-agenda-field_location
+features[field_instance][] = node-agenda-field_tags
 features[node][] = agenda
 features[variable][] = field_bundle_settings_node__agenda
 features[variable][] = menu_options_agenda

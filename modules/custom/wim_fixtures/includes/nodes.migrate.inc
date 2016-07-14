@@ -274,6 +274,7 @@ class AgendaMigration extends NodeMigration {
       array('street', t('Street')),
       array('postal_code', t('Postal Code')),
       array('country', t('County')),
+      array('field_tags', t('Tags')),
     );
 
     $this->source = new MigrateSourceCSV(
@@ -315,6 +316,11 @@ class AgendaMigration extends NodeMigration {
     $this->addFieldMapping('field_location:street', 'street');
     $this->addFieldMapping('field_location:postal_code', 'postal_code');
     $this->addFieldMapping('field_location:country', 'country');
+
+    $this->addFieldMapping('field_tags', 'field_tags')->separator(',')
+      ->sourceMigration('WIM_Term_Tags');
+    $this->addFieldMapping('field_tags:source_type')
+      ->defaultValue('tid');
   }
 
 }

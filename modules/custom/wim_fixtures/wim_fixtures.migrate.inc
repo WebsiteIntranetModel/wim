@@ -94,6 +94,7 @@ function wim_fixtures_migrate_api() {
         'file_name' => 'agenda.csv',
         'dependencies' => array(
           'WIM_File',
+          'WIM_Term_Tags',
           'WIM_User',
         ),
       ),

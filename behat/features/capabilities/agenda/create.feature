@@ -17,6 +17,7 @@ Feature: Create Agenda
       | Street        | Jodenbreestraat 4      |
       | City          | Amsterdam              |
       | Postal code   | 1011                   |
+      | Tags          | Tag1, Tag2             |
     And I attach the file "/fixtures/images/drupal-icon.png" to "Image"
     And I select "Netherlands" from "Country"
     And I wait for AJAX to finish
