@@ -167,3 +167,37 @@ function wim_form_element_label(&$variables) {
   // The leading whitespace helps visually separate fields from inline labels.
   return ' <label' . drupal_attributes($attributes) . '>' . $output . "</label>\n";
 }
+
+/**
+ * Returns HTML for a date element formatted as a single date.
+ *
+ * Wrap day and month.
+ *
+ * @see theme_date_display_single
+ *
+ * @return string
+ *    A HTML for single date element.
+ */
+function wim_date_display_single($variables) {
+  $date = $variables['date'];
+  $timezone = $variables['timezone'];
+  $attributes = $variables['attributes'];
+  $format = $variables['dates']['format'];
+  $single_day_format = variable_get('date_format_single_day', 'd M');
+  $show_remaining_days = isset($variables['show_remaining_days']) ? $variables['show_remaining_days'] : '';
+
+  if ($format === $single_day_format) {
+    $date_timestamp = strtotime($date);
+    $day = format_date($date_timestamp, 'custom', 'd');
+    $month = format_date($date_timestamp, 'custom', 'M');
+    $date = '<span class="day">' . $day . '</span><span class="month">' . $month . '</span>';
+  }
+
+  $output = '<span class="date-display-single"' . drupal_attributes($attributes) . '>' . $date . $timezone . '</span>';
+  if (!empty($variables['add_microdata'])) {
+    $output .= '<meta' . drupal_attributes($variables['microdata']['value']['#attributes']) . '/>';
+  }
+
+  // Add remaining message and return.
+  return $output . $show_remaining_days;
+}
