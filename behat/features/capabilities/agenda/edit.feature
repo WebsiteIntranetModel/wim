@@ -30,3 +30,19 @@ Feature: Edit Agenda
     And I should not see "Agenda 2 body content."
     And I should not see "06 July 2026 - 08:00"
     And I should not see the link "Tag2"
+
+  Scenario: Successfully edit Agenda category and Announcement type
+    Given I am logged in as a "content moderator"
+    When I go to "admin/content"
+    And I select "Agenda" from "type"
+    And I press "Filter"
+    Then I click "edit" in the "Test Announcement 3" row
+    And the "Tax decision" option from "Announcement type" should be selected
+    And the "Announcement" option from "Category" should be selected
+    When I select "Agenda" from "Category"
+    Then I should not see "Announcement type"
+    And I press the "Save" button
+    And I should see "Agenda Test Announcement 3 has been updated."
+    When I click "edit" in the "Test Announcement 3" row
+    Then the "Agenda" option from "Category" should be selected
+    And I should not see "Announcement type"
