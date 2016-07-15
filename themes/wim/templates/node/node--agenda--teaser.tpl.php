@@ -81,13 +81,6 @@
  */
 ?>
 <article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
-  <?php
-  // Hide comments, tags, and links now so that we can render them later.
-  hide($content['comments']);
-  hide($content['links']);
-  hide($content['field_image']);
-  hide($content['field_tags']);
-  hide($content['field_agenda_date']); ?>
   <div class="fields-wrapper">
     <?php print render($content['field_agenda_date']); ?>
     <?php if (!empty($content['field_image'])): ?>
@@ -102,6 +95,12 @@
         <a href="<?php print $node_url; ?>"><?php print $title; ?></a>
       </h3>
     <?php endif;
+    // Hide comments, tags, and links now so that we can render them later.
+    hide($content['comments']);
+    hide($content['links']);
+    hide($content['field_image']);
+    hide($content['field_tags']);
+    hide($content['field_agenda_date']);
     print render($content);
     print render($read_more_link);
     ?>

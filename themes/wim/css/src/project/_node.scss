@@ -68,6 +68,34 @@
       }
     }
   }
+  &.node-agenda{
+    position: relative;
+    .fields-wrapper{
+      float: left;
+      min-height: 60px;
+      min-width: 60px;
+    }
+    .date-display-single{
+      position: absolute;
+      left: 5px;
+      top: 5px;
+      background-color: #FFFFFF;
+      width: 40px;
+      height: 46px;
+      text-align: center;
+      border: 1px solid $brand-grey-light;
+      span{
+        display:block;
+        &.day{
+          font-size: 20px;
+          line-height: 24px;
+        }
+        &.month{
+          font-size: 12px;
+        }
+      }
+    }
+  }
   &.node-teaser-short {
     font-size: 13px;
     .teaser-body{
@@ -93,6 +121,7 @@
     }
   }
 }
+
 .page-news{
   .page-header{
     padding: 10px;
@@ -109,6 +138,30 @@
       width: 50%;
       margin: 0 auto;
       float: none;
+    }
+  }
+}
+.node-type-agenda{
+  .field-label-above{
+    margin: 1em -0;
+    .field-label{
+      padding: 10px;
+      border-top: 1px solid $brand-light;
+      background: $brand-block-title-bg;
+      margin-bottom: 10px;
+      font-size: 100%;
+      font-weight: normal;
+    }
+    a{
+      text-decoration: underline;
+    }
+    &.field-name-field-tags{
+     .field-item{
+       display: inline-block;
+       &:not(:first-child){
+         padding-left: 5px;
+       }
+     }
     }
   }
 }

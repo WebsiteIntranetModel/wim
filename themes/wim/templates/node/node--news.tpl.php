@@ -81,16 +81,16 @@
 ?>
 <article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
   <?php
-  // Hide comments, tags, and links now so that we can render them later.
-  hide($content['comments']);
-  hide($content['links']);
-  hide($content['field_tags']);
-  hide($content['field_publication_date']);
   if (!empty($content['field_publication_date'])): ?>
     <div class="submitted">
       <?php print render($content['field_publication_date']); ?>
     </div>
   <?php endif;
+  // Hide comments, tags, and links now so that we can render them later.
+  hide($content['comments']);
+  hide($content['links']);
+  hide($content['field_tags']);
+  hide($content['field_publication_date']);
   print render($content);
   ?>
   <?php if (!empty($content['field_tags']) || !empty($content['links'])): ?>
