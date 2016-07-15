@@ -81,12 +81,6 @@
  */
 ?>
 <article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
-  <?php
-  // Hide comments, tags, and links now so that we can render them later.
-  hide($content['comments']);
-  hide($content['links']);
-  hide($content['field_image']);
-  hide($content['field_tags']); ?>
   <?php if (!empty($content['field_image'])): ?>
     <div class="teaser-image">
       <?php print render($content['field_image']); ?>
@@ -103,7 +97,13 @@
       <div class="submitted">
         <?php print render($content['field_publication_date']); ?>
       </div>
-    <?php endif; print render($content);
+    <?php endif;
+    // Hide comments, tags, and links now so that we can render them later.
+    hide($content['comments']);
+    hide($content['links']);
+    hide($content['field_image']);
+    hide($content['field_tags']);
+    print render($content);
     print render($read_more_link);
     ?>
   </div>
