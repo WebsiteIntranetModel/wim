@@ -92,6 +92,7 @@
         }
         &.month{
           font-size: 12px;
+          font-weight: normal;
         }
       }
     }
@@ -116,6 +117,28 @@
         &:after{
           content: " —";
           font-weight: normal;
+        }
+      }
+    }
+    &.node-agenda{
+      min-height: 56px;
+      .teaser-body{
+        .field{
+          display: block;
+          padding-right: 0;
+          *{
+            display: block;
+          }
+        }
+        padding-left: 50px;
+        .field-type-datetime{
+          &:after{
+            display: none;
+          }
+          .date-display-single{
+            left: 0;
+            top: 0;
+          }
         }
       }
     }
