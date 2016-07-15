@@ -87,7 +87,8 @@
   hide($content['links']);
   hide($content['field_image']);
   hide($content['field_tags']);
-  hide($content['field_agenda_date']); ?>
+  hide($content['field_agenda_date']);
+  ?>
   <div class="fields-wrapper">
     <?php print render($content['field_agenda_date']); ?>
     <?php if (!empty($content['field_image'])): ?>
