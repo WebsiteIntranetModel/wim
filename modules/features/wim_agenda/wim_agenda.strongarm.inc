@@ -29,7 +29,7 @@ function wim_agenda_strongarm() {
         'custom_settings' => FALSE,
       ),
       'short' => array(
-        'custom_settings' => FALSE,
+        'custom_settings' => TRUE,
       ),
     ),
     'extra_fields' => array(
@@ -38,7 +38,7 @@ function wim_agenda_strongarm() {
           'weight' => '0',
         ),
         'locations' => array(
-          'weight' => '30',
+          'weight' => '6',
         ),
       ),
       'display' => array(),

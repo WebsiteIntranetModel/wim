@@ -57,10 +57,43 @@ function wim_agenda_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'agenda' => 'agenda',
   );
+  /* Filter criterion: Content: Category (field_agenda_category) */
+  $handler->display->display_options['filters']['field_agenda_category_value']['id'] = 'field_agenda_category_value';
+  $handler->display->display_options['filters']['field_agenda_category_value']['table'] = 'field_data_field_agenda_category';
+  $handler->display->display_options['filters']['field_agenda_category_value']['field'] = 'field_agenda_category_value';
+  $handler->display->display_options['filters']['field_agenda_category_value']['value'] = array(
+    'agenda' => 'agenda',
+  );
 
-  /* Display: Page */
-  $handler = $view->new_display('page', 'Page', 'page');
+  /* Display: Overview */
+  $handler = $view->new_display('page', 'Overview', 'agenda_overview');
   $handler->display->display_options['path'] = 'agenda';
+
+  /* Display: Upcoming Agenda */
+  $handler = $view->new_display('block', 'Upcoming Agenda', 'upcoming_agenda');
+  $handler->display->display_options['defaults']['use_more'] = FALSE;
+  $handler->display->display_options['use_more'] = TRUE;
+  $handler->display->display_options['defaults']['use_more_always'] = FALSE;
+  $handler->display->display_options['defaults']['use_more_always'] = FALSE;
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['defaults']['use_more_text'] = FALSE;
+  $handler->display->display_options['use_more_text'] = 'Complete agenda >>';
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '5';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'node';
+  $handler->display->display_options['row_options']['view_mode'] = 'short';
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Sort criterion: Content: Date -  start date (field_agenda_date) */
+  $handler->display->display_options['sorts']['field_agenda_date_value']['id'] = 'field_agenda_date_value';
+  $handler->display->display_options['sorts']['field_agenda_date_value']['table'] = 'field_data_field_agenda_date';
+  $handler->display->display_options['sorts']['field_agenda_date_value']['field'] = 'field_agenda_date_value';
   $export['agenda'] = $view;
 
   return $export;
