@@ -275,6 +275,7 @@ class AgendaMigration extends NodeMigration {
       array('postal_code', t('Postal Code')),
       array('country', t('County')),
       array('field_tags', t('Tags')),
+      array('field_agenda_category', t('Category')),
     );
 
     $this->source = new MigrateSourceCSV(
@@ -299,6 +300,7 @@ class AgendaMigration extends NodeMigration {
       'body',
       'body:summary',
       'field_agenda_date',
+      'field_agenda_category',
     ));
 
     $this->addFieldMapping('uid', 'author')

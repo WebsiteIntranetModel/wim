@@ -38,7 +38,7 @@ function wim_agenda_strongarm() {
           'weight' => '0',
         ),
         'locations' => array(
-          'weight' => '30',
+          'weight' => '6',
         ),
       ),
       'display' => array(),
