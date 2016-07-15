@@ -57,6 +57,13 @@ function wim_agenda_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'agenda' => 'agenda',
   );
+  /* Filter criterion: Content: Category (field_agenda_category) */
+  $handler->display->display_options['filters']['field_agenda_category_value']['id'] = 'field_agenda_category_value';
+  $handler->display->display_options['filters']['field_agenda_category_value']['table'] = 'field_data_field_agenda_category';
+  $handler->display->display_options['filters']['field_agenda_category_value']['field'] = 'field_agenda_category_value';
+  $handler->display->display_options['filters']['field_agenda_category_value']['value'] = array(
+    'agenda' => 'agenda',
+  );
 
   /* Display: Overview */
   $handler = $view->new_display('page', 'Overview', 'agenda_overview');
