@@ -11,7 +11,7 @@ Feature: View product
       | body                    | BODY-CONTENT1       |
       | field_tags              | Tag1                |
       | field_publication_date  | 2026-06-27 00:00:00 |
-    Then I should not see the link "Edit"
+    Then I should not see the link "Edit" in the "Main content"
     And I should see "TITLE-ONE"
     And I should see "BODY-CONTENT1"
     And I should see "27 June 2026"

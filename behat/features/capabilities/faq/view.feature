@@ -15,7 +15,7 @@ Feature: View FAQ
       | body                             | ANSWER-CONTENT  |
       | field_faq_additional_information | ADDITIONAL-INFO |
       | field_tags                       | Tag1, Tag2      |
-    Then I should not see the link "Edit"
+    Then I should not see the link "Edit" in the "Main content"
     And I should not see "BSCPGTEST"
     And I should see "FAQ-QUESTION"
     And I should see "ANSWER-CONTENT"
