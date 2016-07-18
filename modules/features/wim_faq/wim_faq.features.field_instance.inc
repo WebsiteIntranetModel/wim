@@ -106,7 +106,7 @@ function wim_faq_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 3,
+        'weight' => 5,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -131,6 +131,43 @@ function wim_faq_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-faq-field_location'.
+  $field_instances['node-faq-field_location'] = array(
+    'bundle' => 'faq',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'location_cck',
+        'settings' => array(),
+        'type' => 'location_default',
+        'weight' => 2,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_location',
+    'label' => 'Location',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'location_cck',
+      'settings' => array(),
+      'type' => 'location',
+      'weight' => 7,
+    ),
+  );
+
   // Exported field_instance: 'node-faq-field_show_on_overview'.
   $field_instances['node-faq-field_show_on_overview'] = array(
     'bundle' => 'faq',
@@ -146,7 +183,7 @@ function wim_faq_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 4,
+        'weight' => 6,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -185,7 +222,7 @@ function wim_faq_field_default_field_instances() {
         'module' => 'taxonomy',
         'settings' => array(),
         'type' => 'taxonomy_term_reference_link',
-        'weight' => 2,
+        'weight' => 3,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -226,10 +263,9 @@ function wim_faq_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => NULL,
         'settings' => array(),
-        'type' => 'number_integer',
-        'weight' => 5,
+        'type' => 'hidden',
+        'weight' => 4,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -253,7 +289,7 @@ function wim_faq_field_default_field_instances() {
         'range' => 20,
       ),
       'type' => 'weight_selector',
-      'weight' => 6,
+      'weight' => 8,
     ),
   );
 
@@ -262,6 +298,7 @@ function wim_faq_field_default_field_instances() {
   t('Additional information');
   t('Answer');
   t('Category');
+  t('Location');
   t('Show this FAQ in the FAQ overview');
   t('Tags');
   t('Weight');
