@@ -22,6 +22,7 @@ features[field_base][] = field_weight
 features[field_instance][] = node-faq-body
 features[field_instance][] = node-faq-field_faq_additional_information
 features[field_instance][] = node-faq-field_faq_category
+features[field_instance][] = node-faq-field_location
 features[field_instance][] = node-faq-field_show_on_overview
 features[field_instance][] = node-faq-field_tags
 features[field_instance][] = node-faq-field_weight

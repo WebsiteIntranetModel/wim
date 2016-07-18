@@ -37,6 +37,9 @@ function wim_faq_strongarm() {
         'title' => array(
           'weight' => '0',
         ),
+        'locations' => array(
+          'weight' => '6',
+        ),
       ),
       'display' => array(),
     ),

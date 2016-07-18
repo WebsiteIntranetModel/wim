@@ -19,6 +19,8 @@ function wim_install() {
   _wim_set_up_roles_and_permissions();
   // Set date formats.
   _wim_set_date_formats();
+  // Set blocks.
+  _wim_set_blocks();
 }
 
 /**
@@ -159,4 +161,53 @@ function _wim_set_date_formats() {
     system_date_format_save($date_format);
     variable_set('date_format_' . $date_format['type'], $date_format['format']);
   }
+}
+
+/**
+ * Set blocks.
+ */
+function _wim_set_blocks() {
+  $default_theme = variable_get('theme_default', 'wim');
+  $blocks = array(
+    array(
+      'module' => 'views',
+      'delta' => 'agenda-upcoming_agenda',
+      'theme' => $default_theme,
+      'status' => BLOCK_CUSTOM_ENABLED,
+      'weight' => 0,
+      'region' => 'sidebar_first',
+      'pages' => "admin/*\nnode/*/edit\nnode/add/*",
+      'title' => '',
+      'cache' => DRUPAL_NO_CACHE,
+    ),
+    array(
+      'module' => 'views',
+      'delta' => 'news-latest_news',
+      'theme' => $default_theme,
+      'status' => BLOCK_CUSTOM_ENABLED,
+      'weight' => 0,
+      'region' => 'sidebar_second',
+      'pages' => "admin/*\nnode/*/edit\nnode/add/*",
+      'title' => '',
+      'cache' => DRUPAL_NO_CACHE,
+    ),
+  );
+
+  $query = db_insert('block')->fields(array(
+    'module',
+    'delta',
+    'theme',
+    'status',
+    'weight',
+    'region',
+    'pages',
+    'title',
+    'cache',
+  ));
+
+  foreach ($blocks as $block) {
+    $query->values($block);
+  }
+  $query->execute();
+
 }
