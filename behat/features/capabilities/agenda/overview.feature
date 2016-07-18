@@ -9,6 +9,6 @@ Feature: Agenda overview
     When I am on "agenda"
     Then I should see the heading "Agenda"
     And I should not see "No results"
-    And the "article.node-teaser" element should contain "Read more"
+    And the ".region-content article.node-teaser" element should contain "Read more"
     And I should see "Test Agenda 1"
     And I should not see "Test Announcement 1"
