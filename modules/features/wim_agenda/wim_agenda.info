@@ -23,6 +23,7 @@ features[field_instance][] = node-agenda-field_agenda_category
 features[field_instance][] = node-agenda-field_agenda_date
 features[field_instance][] = node-agenda-field_image
 features[field_instance][] = node-agenda-field_location
+features[field_instance][] = node-agenda-field_promoted
 features[field_instance][] = node-agenda-field_tags
 features[node][] = agenda
 features[taxonomy][] = announcement
