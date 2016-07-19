@@ -39,6 +39,11 @@ function wim_agenda_views_default_views() {
   $handler->display->display_options['fields']['title']['label'] = '';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  /* Sort criterion: Content: Promoted (field_promoted) */
+  $handler->display->display_options['sorts']['field_promoted_value']['id'] = 'field_promoted_value';
+  $handler->display->display_options['sorts']['field_promoted_value']['table'] = 'field_data_field_promoted';
+  $handler->display->display_options['sorts']['field_promoted_value']['field'] = 'field_promoted_value';
+  $handler->display->display_options['sorts']['field_promoted_value']['order'] = 'DESC';
   /* Sort criterion: Content: Date -  start date (field_agenda_date) */
   $handler->display->display_options['sorts']['field_agenda_date_value']['id'] = 'field_agenda_date_value';
   $handler->display->display_options['sorts']['field_agenda_date_value']['table'] = 'field_data_field_agenda_date';
@@ -97,6 +102,11 @@ function wim_agenda_views_default_views() {
   $handler->display->display_options['footer']['area_text_custom']['label'] = 'Add Agenda node';
   $handler->display->display_options['footer']['area_text_custom']['content'] = '<![CONTENT_IS_REPLACED_IN_CODE]!>';
   $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Sort criterion: Content: Promoted (field_promoted) */
+  $handler->display->display_options['sorts']['field_promoted_value']['id'] = 'field_promoted_value';
+  $handler->display->display_options['sorts']['field_promoted_value']['table'] = 'field_data_field_promoted';
+  $handler->display->display_options['sorts']['field_promoted_value']['field'] = 'field_promoted_value';
+  $handler->display->display_options['sorts']['field_promoted_value']['order'] = 'DESC';
   /* Sort criterion: Content: Date -  start date (field_agenda_date) */
   $handler->display->display_options['sorts']['field_agenda_date_value']['id'] = 'field_agenda_date_value';
   $handler->display->display_options['sorts']['field_agenda_date_value']['table'] = 'field_data_field_agenda_date';

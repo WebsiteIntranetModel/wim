@@ -71,7 +71,7 @@ function wim_agenda_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 6,
+        'weight' => 7,
       ),
       'short' => array(
         'label' => 'above',
@@ -117,7 +117,7 @@ function wim_agenda_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 5,
+        'weight' => 6,
       ),
       'short' => array(
         'label' => 'above',
@@ -328,6 +328,54 @@ function wim_agenda_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-agenda-field_promoted'.
+  $field_instances['node-agenda-field_promoted'] = array(
+    'bundle' => 'agenda',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => 'Check if You want to stick this node on top of lists',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 5,
+      ),
+      'short' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_promoted',
+    'label' => 'Promoted',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 10,
+    ),
+  );
+
   // Exported field_instance: 'node-agenda-field_tags'.
   $field_instances['node-agenda-field_tags'] = array(
     'bundle' => 'agenda',
@@ -379,9 +427,11 @@ function wim_agenda_field_default_field_instances() {
   t('Announcement type');
   t('Body');
   t('Category');
+  t('Check if You want to stick this node on top of lists');
   t('Date');
   t('Image');
   t('Location');
+  t('Promoted');
   t('Tags');
 
   return $field_instances;
