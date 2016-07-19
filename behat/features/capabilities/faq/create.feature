@@ -14,6 +14,7 @@ Feature: Create FAQ
       | Additional information | ADDITIONAL INFORMATION |
       | Tags                   | Tag1, Tag2             |
     And I wait for AJAX to finish
+    And I select "Other" from "Category"
     And I press "Save"
     Then I should see the success message "FAQ TEST FAQ QUESTION has been created."
     And I should see the heading "TEST FAQ QUESTION"
@@ -26,7 +27,7 @@ Feature: Create FAQ
   Scenario: Successfully set category for FAQ
     Given I am logged in as a "content moderator"
     And faq_categories terms:
-      | name      |
+      | name          |
       | FAQ-CATEGORY1 |
       | FAQ-CATEGORY2 |
     And I am on "node/add/faq"
