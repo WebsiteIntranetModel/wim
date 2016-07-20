@@ -20,5 +20,7 @@ features[field_base][] = field_location
 features[field_base][] = field_promoted
 features[field_base][] = field_publication_date
 features[field_base][] = field_tags
+features[menu_custom][] = menu-meta-menu
 features[taxonomy][] = tags
+features_exclude[dependencies][menu] = menu
 project path = profiles/wim/modules/features
