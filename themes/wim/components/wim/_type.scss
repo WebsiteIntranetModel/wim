@@ -5,7 +5,7 @@ html {
 body {
   font-size: 13px;
   font-size: 1.3rem;
-  font-family: 'Droid Sans', Arial, sans-serif;
+  font-family: $font-family-base;
   word-wrap: break-word;
   text-rendering: optimizeLegibility;
 } /* =13px */

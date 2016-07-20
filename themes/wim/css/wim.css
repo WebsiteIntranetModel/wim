@@ -1,4 +1,14 @@
 @charset "UTF-8";
+.dropdown-menu > li > a:active,
+.dropdown-menu > li > a:focus, .navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+  outline-color: #3b99fc;
+  outline-offset: -2px;
+  outline-style: auto;
+  outline-width: 5px;
+}
+
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 html {
   font-family: sans-serif;
@@ -601,7 +611,7 @@ body {
   font-size: 14px;
   line-height: 1.42857;
   color: #333333;
-  background-color: #fff;
+  background-color: #dddddd;
 }
 
 input,
@@ -2806,7 +2816,7 @@ th {
 }
 
 .table .table {
-  background-color: #fff;
+  background-color: #dddddd;
 }
 
 .table-condensed > thead > tr > th,
@@ -6048,10 +6058,6 @@ pre code {
   clip: auto;
 }
 
-body {
-  background-color: #dddddd;
-}
-
 .main-wrapper {
   padding: 0;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
@@ -6114,7 +6120,7 @@ html {
 body {
   font-size: 13px;
   font-size: 1.3rem;
-  font-family: 'Droid Sans', Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   word-wrap: break-word;
   text-rendering: optimizeLegibility;
 }
@@ -6278,11 +6284,6 @@ a[href]:hover, a[href]:focus {
 .dropdown-menu > .active > a:hover {
   background-color: #660066;
   color: white;
-}
-
-.outline, .dropdown-menu > li > a:active,
-.dropdown-menu > li > a:focus {
-  outline: inherit;
 }
 
 .dropdown-menu {
@@ -6462,10 +6463,6 @@ a[href]:hover, a[href]:focus {
 .navbar-default .navbar-nav > .open > a:focus {
   color: white;
   background: #330033;
-  outline-color: #3b99fc;
-  outline-offset: -2px;
-  outline-style: auto;
-  outline-width: 5px;
 }
 
 .block-search {

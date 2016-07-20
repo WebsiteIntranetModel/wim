@@ -1,3 +1,15 @@
+%outline {
+  outline-color: rgb(59, 153, 252);
+  outline-offset: -2px;
+  outline-style: auto;
+  outline-width: 5px;
+}
+
+
+%inline-clear {
+  clear: both;
+}
+
 // Check for export, otherwise build a media query
 @mixin MQ($width) {
 
@@ -27,9 +39,6 @@
   }
 }
 
-%inline-clear {
-  clear: both;
-}
 
 @mixin center($xy:xy) {
   @if $xy == xy {
@@ -50,7 +59,3 @@
     transform: translateY(-50%);
   }
 }
-
-// @import "border-radius";
-// @import "breakpoints";
-// @import "style-variant";

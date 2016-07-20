@@ -41,10 +41,5 @@
 .navbar-default .navbar-nav > .open > a:focus {
   color: white;
   background: $brand-dark;
-
-  outline-color: rgb(59, 153, 252);
-  outline-offset: -2px;
-  outline-style: auto;
-  outline-width: 5px;
-
+  @extend %outline;
 }

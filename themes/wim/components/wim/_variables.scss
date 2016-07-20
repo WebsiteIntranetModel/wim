@@ -8,29 +8,25 @@ $enable-transitions:        false !default;
 $enable-hover-media-query:  false !default;
 $enable-grid-classes:       true !default;
 
-$bootstrap-sass-asset-helper: false !default;
 
-$brand-primary: #660066;
-
-$brand-grey-light: #efefef;
-$brand-grey-normal: #d0d0d0;
-
+// Custom classes (should be removed)
 $brand-light: #efe5ef;
 $brand-dark: #330033;
-
-$brand-background: #dddddd;
 $brand-heading: #660066;
 $brand-button: #660066;
 $brand-border: #eaeaea;
 $brand-block-title-bg: #fdfbfd;
-
 $brand-body: #333;
 
-// Grid sizing variables for breakpoints
-$screen-xs:                  480px !default;
-$screen-sm:                  768px !default;
-$screen-md:                  992px !default;
-$screen-lg:                  1200px !default;
 
-// Bootstrap default variables
+// Bootstrap variable overrides
 $container-large-desktop: 1170px;
+$bootstrap-sass-asset-helper: false !default;
+$brand-primary: #660066;
+$brand-grey-light: #efefef;
+$brand-grey-normal: #d0d0d0;
+$screen-xs: 480px !default;
+$screen-sm: 768px !default;
+$screen-md: 992px !default;
+$screen-lg: 1200px !default;
+$body-bg: #dddddd;
