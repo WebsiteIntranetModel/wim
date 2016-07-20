@@ -23,6 +23,8 @@ function wim_install() {
   _wim_set_blocks();
   // Add menu items.
   _wim_import_menu_items();
+  // Set variables values.
+  _wim_set_variables();
 }
 
 /**
@@ -236,18 +238,76 @@ function _wim_import_menu_items() {
     // Meta menu links.
     'menu-meta-menu' => array(
       array(
-        'link_title' => 'Home',
+        'link_title' => st('Home'),
         'link_path' => '<front>',
         'menu_name' => 'menu-meta-menu',
         'weight' => 0,
         'expanded' => 0,
       ),
     ),
+    'main-menu' => array(
+      array(
+        'link_title' => st('Home'),
+        'link_path' => '<front>',
+        'menu_name' => 'main-menu',
+        'weight' => 0,
+        'expanded' => 0,
+      ),
+      array(
+        'link_title' => st('Actual'),
+        'link_path' => 'news',
+        'menu_name' => 'main-menu',
+        'weight' => 1,
+        'expanded' => 0,
+        'customized' => 1,
+        'children' => array(
+          array(
+            'link_title' => st('News'),
+            'link_path' => 'news',
+            'menu_name' => 'main-menu',
+            'weight' => 1,
+            'expanded' => 0,
+            'depth' => 2,
+            'customized' => 1,
+          ),
+          array(
+            'link_title' => st('Agenda'),
+            'link_path' => 'agenda',
+            'menu_name' => 'main-menu',
+            'weight' => 1,
+            'expanded' => 0,
+            'depth' => 2,
+            'customized' => 1,
+          ),
+        ),
+      ),
+    ),
   );
 
   foreach ($menus as $menu_name => $items) {
     foreach ($items as $item) {
-      menu_link_save($item);
+      $plid = menu_link_save($item);
+
+      // If item has children add them.
+      if (isset($item['children']) && $plid) {
+        foreach ($item['children'] as $child_item) {
+          $child_item['plid'] = $plid;
+          menu_link_save($child_item);
+        }
+      }
     }
+  }
+}
+
+/**
+ * Set variables.
+ */
+function _wim_set_variables() {
+  $variables = array(
+    'menu_secondary_links_source' => '',
+  );
+
+  foreach ($variables as $variable => $value) {
+    variable_set($variable, $value);
   }
 }
