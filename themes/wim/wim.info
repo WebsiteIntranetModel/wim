@@ -7,6 +7,7 @@ base theme = bootstrap
 ; Regions
 ; ========================================
 
+regions[meta_left] = Meta Left
 regions[navigation] = Navigation
 regions[header] = Top Bar
 regions[highlighted] = Highlighted
