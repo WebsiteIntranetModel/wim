@@ -3197,7 +3197,7 @@ pre code {
   font-style: normal;
 }
 
-.fa, .more-link a:after, #block-views-agenda-upcoming-agenda .view-footer a:before {
+.fa, .more-link a:after, #block-views-agenda-upcoming-agenda .view-footer a:before, .menu:not(.navbar-nav) a:before, .dropdown-menu > li > a:before {
   display: inline-block;
   font: normal normal normal 14px/1 FontAwesome;
   font-size: inherit;
@@ -3270,11 +3270,11 @@ pre code {
   float: right;
 }
 
-.fa.fa-pull-left, .more-link a.fa-pull-left:after, #block-views-agenda-upcoming-agenda .view-footer a.fa-pull-left:before {
+.fa.fa-pull-left, .more-link a.fa-pull-left:after, #block-views-agenda-upcoming-agenda .view-footer a.fa-pull-left:before, .menu:not(.navbar-nav) a.fa-pull-left:before, .dropdown-menu > li > a.fa-pull-left:before {
   margin-right: .3em;
 }
 
-.fa.fa-pull-right, .more-link a.fa-pull-right:after, #block-views-agenda-upcoming-agenda .view-footer a.fa-pull-right:before {
+.fa.fa-pull-right, .more-link a.fa-pull-right:after, #block-views-agenda-upcoming-agenda .view-footer a.fa-pull-right:before, .menu:not(.navbar-nav) a.fa-pull-right:before, .dropdown-menu > li > a.fa-pull-right:before {
   margin-left: .3em;
 }
 
@@ -3287,11 +3287,11 @@ pre code {
   float: left;
 }
 
-.fa.pull-left, .more-link a.pull-left:after, #block-views-agenda-upcoming-agenda .view-footer a.pull-left:before {
+.fa.pull-left, .more-link a.pull-left:after, #block-views-agenda-upcoming-agenda .view-footer a.pull-left:before, .menu:not(.navbar-nav) a.pull-left:before, .dropdown-menu > li > a.pull-left:before {
   margin-right: .3em;
 }
 
-.fa.pull-right, .more-link a.pull-right:after, #block-views-agenda-upcoming-agenda .view-footer a.pull-right:before {
+.fa.pull-right, .more-link a.pull-right:after, #block-views-agenda-upcoming-agenda .view-footer a.pull-right:before, .menu:not(.navbar-nav) a.pull-right:before, .dropdown-menu > li > a.pull-right:before {
   margin-left: .3em;
 }
 
@@ -4357,7 +4357,7 @@ pre code {
   content: "";
 }
 
-.fa-angle-right:before {
+.fa-angle-right:before, .menu:not(.navbar-nav) a:before, .dropdown-menu > li > a:before {
   content: "";
 }
 
@@ -6280,7 +6280,8 @@ a[href]:hover, a[href]:focus {
   color: white;
 }
 
-.outline {
+.outline, .dropdown-menu > li > a:active,
+.dropdown-menu > li > a:focus {
   outline: inherit;
 }
 
@@ -6758,15 +6759,6 @@ body #admin-menu {
   font-family: 'Glyphicons Halflings';
   line-height: 1;
 }
-
-/*
-* Add your custom styles here!
-* 1. It is forbidden to use !important. Try to use the proper selectors to target your elements:)
-* 2. When you update WIM, run 'npm install' afterwards to make sure you have the latest node_modules.
-* 3. Don't modify files outside of the '/components/css/theme' folder. Otherwise you will break the update path.
-* 4. Keep your SCSS base structured and organised.
-* 5. Have fun!
-*/
 
 @media screen and (min-width: 480px){
   .node-teaser .teaser-image{
@@ -7867,4 +7859,4 @@ body #admin-menu {
   }
 }
 
-/*# sourceMappingURL=project.css.map */
+/*# sourceMappingURL=wim.css.map */

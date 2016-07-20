@@ -1,0 +1,90 @@
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 13px;
+  font-size: 1.3rem;
+  font-family: 'Droid Sans', Arial, sans-serif;
+  word-wrap: break-word;
+  text-rendering: optimizeLegibility;
+} /* =13px */
+
+h1 {
+  font-size: 24px;
+  font-size: 2.4rem;
+} /* =24px */
+
+h2 {
+  font-size: 21px;
+  font-size: 2.1rem;
+} /* =18px */
+
+h3 {
+  font-weight: bold;
+  font-size: 16px;
+  font-size: 1.6rem;
+} /* =14px */
+
+
+h4 {
+  text-decoration: underline;
+  font-size: 14px;
+  font-size: 1.4rem;
+} /* =14px */
+h1,h2,h3,h4,h5,h6{
+  font-family: 'Roboto Slab', 'Droid Sans', Arial, sans-serif;
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+a {
+  color: black;
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    color: black
+  }
+}
+
+a[href] {
+  color: $brand-primary;
+
+  p & {
+    text-decoration: underline;
+  }
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    color: $brand-dark;
+  }
+}
+
+.page-header {
+  border: 0;
+  margin: 0 0 1em;
+  padding: 0;
+}
+.more-link{
+  a{
+    &:after{
+      content: "\f101";
+      @extend .fa;
+    }
+  }
+}
+.back-link{
+  margin:15px 0;
+  &:before {
+    font-size: 12px;
+    content: "\e257";
+    font-family: 'Glyphicons Halflings';
+    line-height: 1;
+    margin-right: 3px;
+    color: $brand-primary;
+    position: relative;
+    top: 1px;
+  }
+}
