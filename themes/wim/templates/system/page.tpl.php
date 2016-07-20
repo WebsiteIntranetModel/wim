@@ -74,6 +74,9 @@
  */
 ?>
 <div class="main-wrapper <?php print $container_class; ?>">
+  <div class="meta-wrapper">
+    <?php print render($page['meta_left']); ?>
+  </div>
   <header id="header" class="<?php print $navbar_classes; ?>">
       <div class="navbar-header">
 

@@ -21,6 +21,8 @@ function wim_install() {
   _wim_set_date_formats();
   // Set blocks.
   _wim_set_blocks();
+  // Add menu items.
+  _wim_import_menu_items();
 }
 
 /**
@@ -169,6 +171,7 @@ function _wim_set_date_formats() {
 function _wim_set_blocks() {
   $default_theme = variable_get('theme_default', 'wim');
   $blocks = array(
+    // Views blocks.
     array(
       'module' => 'views',
       'delta' => 'agenda-upcoming_agenda',
@@ -191,6 +194,18 @@ function _wim_set_blocks() {
       'title' => '',
       'cache' => DRUPAL_NO_CACHE,
     ),
+    // Menus.
+    array(
+      'module' => 'menu',
+      'delta' => 'menu-meta-menu',
+      'theme' => $default_theme,
+      'status' => BLOCK_CUSTOM_ENABLED,
+      'weight' => 0,
+      'region' => 'meta_left',
+      'pages' => '',
+      'title' => '<none>',
+      'cache' => DRUPAL_NO_CACHE,
+    ),
   );
 
   $query = db_insert('block')->fields(array(
@@ -210,4 +225,29 @@ function _wim_set_blocks() {
   }
   $query->execute();
 
+}
+
+/**
+ * Import menu items.
+ */
+function _wim_import_menu_items() {
+  // List of menus with items.
+  $menus = array(
+    // Meta menu links.
+    'menu-meta-menu' => array(
+      array(
+        'link_title' => 'Home',
+        'link_path' => '<front>',
+        'menu_name' => 'menu-meta-menu',
+        'weight' => 0,
+        'expanded' => 0,
+      ),
+    ),
+  );
+
+  foreach ($menus as $menu_name => $items) {
+    foreach ($items as $item) {
+      menu_link_save($item);
+    }
+  }
 }
