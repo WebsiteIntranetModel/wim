@@ -36,6 +36,7 @@ default:
           error_message_selector: '.alert.alert-danger'
           success_message_selector: '.alert.alert-success'
         region_map:
+          'Meta left': '.region-meta-left'
           'Header': '#header'
           'Main content': '#block-system-main'
           'Sidebar first': '.region-sidebar-first'
