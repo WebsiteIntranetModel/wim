@@ -23,6 +23,7 @@
 @import "contrib/bootstrap/navs";
 @import "contrib/bootstrap/dropdowns";
 @import "contrib/bootstrap/badges";
+@import "contrib/bootstrap/alerts";
 @import "contrib/bootstrap/list-group";
 @import "contrib/bootstrap/input-groups";
 @import "contrib/bootstrap/buttons";
@@ -32,9 +33,11 @@
 @import "contrib/bootstrap/tables";
 @import "contrib/bootstrap/popovers";
 @import "contrib/bootstrap/code";
+@import "contrib/bootstrap/panels";
 
 // Astractions
 @import 'wim/fontawesome/font-awesome';
+@import 'wim/overrides-min';
 @import 'wim/layout';
 @import 'wim/font';
 @import 'wim/type';
