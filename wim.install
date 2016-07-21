@@ -256,7 +256,7 @@ function _wim_import_menu_items() {
         'link_path' => 'news',
         'menu_name' => 'main-menu',
         'weight' => 1,
-        'expanded' => 0,
+        'expanded' => 1,
         'customized' => 1,
         'children' => array(
           array(
