@@ -30,7 +30,7 @@ stylesheets[all][] = css/style.css
 ; Scripts
 ; ========================================
 
-scripts[0] = js/bootstrap.min.js
+scripts[] = js/bootstrap.min.js
 
 ; ========================================
 ; Settings
