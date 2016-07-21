@@ -1,0 +1,38 @@
+.dropdown-menu > li > a {
+  text-decoration: none;
+  background-color: $brand-dark;
+  color: white;
+  font-size: 1.3rem;
+  padding: 10px;
+
+  &:before {
+    color: white;
+    @extend .fa;
+    @extend .fa-angle-right;
+  }
+
+}
+
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+  text-decoration: underline;
+  background-color: $brand-primary;
+  color: white;
+}
+
+.dropdown-menu > .active > a,
+.dropdown-menu > .active > a:hover {
+  background-color: $brand-primary;
+  color: white;
+}
+
+.dropdown-menu > li > a:active,
+.dropdown-menu > li > a:focus {
+  @extend %outline;
+}
+
+.dropdown-menu {
+  min-width: 100%;
+  padding: 0;
+  border: 0;
+}

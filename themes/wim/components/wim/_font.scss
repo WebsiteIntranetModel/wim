@@ -1,0 +1,40 @@
+@font-face {
+  font-family: 'Droid Sans';
+  src: url('../font/DroidSans-webfont.eot');
+  src: url('../font/DroidSans-webfont.eot?#iefix') format('embedded-opentype'),
+       url('../font/DroidSans-webfont.woff') format('woff'),
+       url('../font/DroidSans-webfont.ttf') format('truetype'),
+       url('../font/DroidSans-webfont.svg#droid_sansregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Droid Sans';
+  src: url('../font/DroidSans-Bold-webfont.eot');
+  src: url('../font/DroidSans-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+       url('../font/DroidSans-Bold-webfont.woff') format('woff'),
+       url('../font/DroidSans-Bold-webfont.ttf') format('truetype'),
+       url('../font/DroidSans-Bold-webfont.svg#droid_sansbold') format('svg');
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Roboto Slab';
+  src: url('../font/RobotoSlab-Regular-webfont.eot');
+  src: url('../font/RobotoSlab-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+       url('../font/RobotoSlab-Regular-webfont.woff') format('woff'),
+       url('../font/RobotoSlab-Regular-webfont.ttf') format('truetype'),
+       url('../font/RobotoSlab-Regular-webfont.svg#roboto_slabregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Roboto Slab';
+  src: url('../font/RobotoSlab-Bold-webfont.eot');
+  src: url('../font/RobotoSlab-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+       url('../font/RobotoSlab-Bold-webfont.woff') format('woff'),
+       url('../font/RobotoSlab-Bold-webfont.ttf') format('truetype'),
+       url('../font/RobotoSlab-Bold-webfont.svg#roboto_slabbold') format('svg');
+  font-weight: bold;
+  font-style: normal;
+}

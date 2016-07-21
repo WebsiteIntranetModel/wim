@@ -1,0 +1,32 @@
+// Quickly modify global styling by enabling or disabling optional features.
+
+$enable-flex:               true !default;
+$enable-rounded:            true !default;
+$enable-shadows:            false !default;
+$enable-gradients:          false !default;
+$enable-transitions:        false !default;
+$enable-hover-media-query:  false !default;
+$enable-grid-classes:       true !default;
+
+
+// Custom classes (should be removed)
+$brand-light: #efe5ef;
+$brand-dark: #330033;
+$brand-heading: #660066;
+$brand-button: #660066;
+$brand-border: #eaeaea;
+$brand-block-title-bg: #fdfbfd;
+$brand-body: #333;
+
+
+// Bootstrap variable overrides
+$container-large-desktop: 1170px;
+$bootstrap-sass-asset-helper: false !default;
+$brand-primary: #660066;
+$brand-grey-light: #efefef;
+$brand-grey-normal: #d0d0d0;
+$screen-xs: 480px !default;
+$screen-sm: 768px !default;
+$screen-md: 992px !default;
+$screen-lg: 1200px !default;
+$body-bg: #dddddd;
