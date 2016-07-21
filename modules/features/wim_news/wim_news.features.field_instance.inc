@@ -96,7 +96,7 @@ function wim_news_field_default_field_instances() {
     'settings' => array(
       'description_field' => 0,
       'file_directory' => 'news/attachment',
-      'file_extensions' => 'txt pdf doc ppt',
+      'file_extensions' => 'tx t pdf doc docx ppt pptx mp3 mp4 avi',
       'max_filesize' => '',
       'user_register_form' => FALSE,
     ),
