@@ -23,8 +23,6 @@ function wim_install() {
   _wim_set_blocks();
   // Add menu items.
   _wim_import_menu_items();
-  // Set variables values.
-  _wim_set_variables();
 }
 
 /**
@@ -296,18 +294,5 @@ function _wim_import_menu_items() {
         }
       }
     }
-  }
-}
-
-/**
- * Set variables.
- */
-function _wim_set_variables() {
-  $variables = array(
-    'menu_secondary_links_source' => '',
-  );
-
-  foreach ($variables as $variable => $value) {
-    variable_set($variable, $value);
   }
 }

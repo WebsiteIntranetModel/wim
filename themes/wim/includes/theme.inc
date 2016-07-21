@@ -242,10 +242,10 @@ function wim_menu_link__main_menu($variables) {
       $sub_menu = '<ul class="dropdown-menu">' . $parent . drupal_render($element['#below']) . '</ul>';
 
       // Generate as standard dropdown.
-      $element['#title'] .= ' <span class="caret"></span>';
-      $element['#attributes']['class'][] = 'dropdown';
+      $element['#attributes']['class'][] = 'parent-dropdown';
       $element['#localized_options']['html'] = TRUE;
     }
+    $element['#attributes']['class'] = array_diff($element['#attributes']['class'], array('expanded'));
   }
 
   // On primary navigation menu, class 'active' is not set on active menu item.
