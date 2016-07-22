@@ -17,7 +17,7 @@ Feature: Edit Agenda
       | Title | Test Agenda Edited 2 |
       | Body  | AGENDA-BODY-CONTENT2 |
       | Date  | 06/30/2016           |
-      | Time  | 10:00                |
+      | Time  | 10:00:00             |
       | Tags  | Tag3                 |
     And I press "Save"
     Then I should see the success message "Agenda Test Agenda Edited 2 has been updated."

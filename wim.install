@@ -85,6 +85,7 @@ function _wim_set_up_roles_and_permissions() {
     'administer taxonomy',
     'access content overview',
     'administer blocks',
+    'administer menu',
     // Node access.
     'create news content',
     'create page content',
