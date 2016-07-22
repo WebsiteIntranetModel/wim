@@ -9362,7 +9362,7 @@ body #admin-menu {
   top: -20px;
   margin: 0;
   padding: 0;
-  position: absolute;
+  position: absolute !important;
   z-index: 1600;
 }
 
