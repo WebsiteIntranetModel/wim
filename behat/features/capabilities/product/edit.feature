@@ -20,6 +20,7 @@ Feature: Edit Product
       | Body     | BODY-CONTENT2  |
       | Tags     | Tag2           |
       | Date     | 06/30/2016     |
+      | Time     | 10:00:00       |
       | Promoted | 0              |
     And I press "Save"
     And I should see the success message "Product PRODUCT TITLE2 has been updated."
