@@ -50,6 +50,51 @@
 
 }
 
+.navbar-default .navbar-nav > li {
+  &:hover > a {
+    background: $link-hover-color;
+    color: white;
+  }
+  &:hover {
+    .dropdown-menu {
+      display: block;
+    }
+  }
+  &.parent-dropdown {
+    & > a{
+      position: relative;
+
+      @media (max-width: $screen-sm-min - 1) {
+        &:after{
+          position: absolute;
+          font-family: 'Glyphicons Halflings';
+          font-style: normal;
+          font-weight: normal;
+          line-height: 1;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+          right: 10px;
+          top: 50%;
+          transform: translateY(-50%);
+          content: "\e259";
+        }
+      }
+    }
+    &.expanded{
+      @media (max-width: $screen-sm-min - 1) {
+        & > a{
+          &:after{
+            content: "\e260";
+          }
+        }
+      }
+      .dropdown-menu {
+        display: block;
+      }
+    }
+  }
+}
+
 .navbar-default .navbar-nav > .open > a,
 .navbar-default .navbar-nav > .open > a:hover,
 .navbar-default .navbar-nav > .open > a:focus {

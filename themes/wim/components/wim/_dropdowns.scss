@@ -1,21 +1,32 @@
+.dropdown-menu{
+  @media (max-width: $screen-sm-min - 1) {
+    position: static;
+  }
+}
+.dropdown-menu > li{
+  &.mobile{
+    @media (min-width: $screen-sm-min) {
+      display: none;
+    }
+  }
+}
 .dropdown-menu > li > a {
   text-decoration: none;
-  background-color: $brand-dark;
+  background-color: $link-hover-color;
   color: white;
   font-size: 1.3rem;
-  padding: 10px;
+  padding: 10px 20px;
 
   &:before {
     color: white;
     @extend .fa;
     @extend .fa-angle-right;
+    margin-right: 3px;
   }
-
 }
 
 .dropdown-menu > li > a:hover,
 .dropdown-menu > li > a:focus {
-  text-decoration: underline;
   background-color: $brand-primary;
   color: white;
 }

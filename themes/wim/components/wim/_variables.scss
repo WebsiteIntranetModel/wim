@@ -903,3 +903,19 @@ $brand-block-title-bg: #fdfbfd;
 $brand-body: #333;
 $brand-grey-light: #efefef;
 $brand-grey-normal: #d0d0d0;
+
+// For detecting site width
+body:before {
+  content: "smartphone";
+  display: none;
+}
+@media (min-width: $screen-sm-min) {
+  body:before {
+    content: "tablet";
+  }
+}
+@media (min-width: $screen-md-min) {
+  body:before {
+    content: "desktop";
+  }
+}

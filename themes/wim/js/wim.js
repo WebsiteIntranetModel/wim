@@ -8,6 +8,9 @@
 (function ($) {
   function isMobile() {
     var breakpoint = window.getComputedStyle(document.querySelector('body'), ':before').getPropertyValue('content').replace(/\"/g, '');
+    if(breakpoint != "desktop"){
+      return true;
+    }
     return false;
   }
 
@@ -15,12 +18,12 @@
     attach: function (context, settings) {
       var $navMenu = $('.navbar-nav.primary'),
         expandedClass = 'expanded',
-        $navMenuDropdownItems = $('.parent-dropdown', $navMenu);
+        $navMenuDropdownItems = $('.parent-dropdown > a', $navMenu);
 
       $navMenuDropdownItems.once('nav-item-dropdown').click(function (e) {
         if (isMobile()) {
           event.preventDefault();
-          $(this).toggleClass(expandedClass);
+          $(this).parent().toggleClass(expandedClass);
         }
       });
     }
