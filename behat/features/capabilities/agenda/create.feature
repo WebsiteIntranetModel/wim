@@ -12,7 +12,7 @@ Feature: Create Agenda
       | Title         | TEST AGENDA            |
       | Body          | TEST AGENDA BODY       |
       | Date          | 06/30/2016             |
-      | Time          | 10:00                  |
+      | Time          | 10:00:00               |
       | Location name | Rembrandt House Museum |
       | Street        | Jodenbreestraat 4      |
       | City          | Amsterdam              |

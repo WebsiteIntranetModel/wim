@@ -16,11 +16,11 @@ Useful links for developers:
 
 2.  **Personalization**
 
-    Create a new sub theme dependent on the WIM theme with the provided STARTERKIT to make sure you get default theming for new features in future updates.
+    Create your overrides within the /components/theme folder and keep them there. You will risk breaking the update path when you modify files outside of that folder. 
 
-3.  **Writing CSS**
+3.  **Writing SCSS**
 
-    Use the CSS selectors as provided by the WIM theme to override CSS in a healthy way. **Never use !important overrides**, since this will risk unforseen regression in future updates of the distribution.
+    Use the CSS selectors as provided by the WIM theme to override CSS in a healthy way. **Never use !important overrides**, since this will risk regression in future updates of the distribution.
 
 
 ## Steps ##
@@ -29,43 +29,27 @@ Useful links for developers:
     ```
     $ cd public_html/
     ```
-
-2.  Make sure you've got the jquery_update module enabled, because Bootstrap depends on a higher version than is included in Drupal core.
+2.  Navigate into the WIM sub theme folder
     ```
-    $ drush en jquery_update
-    ```
-
-3.  Make sure you've got the magic module enabled, because we want to use the theme settings as provided by wim.info and make use of the CSS and JS aggregation that this module offers.
-    ```
-    $ drush en magic
+    $ cd profiles/wim/themes/wim/
     ```
 
-4.  Enable the WIM sub theme (enabling the bootstrap theme is not necessary)
-    ```
-    $ drush en wim
-    ```
-
-5.  Navigate into the WIM sub theme folder
-    ```
-    $ cd sites/all/themes/contrib/wim/
-    ```
-
-6.  Install necessary node packages defined in package.json
+3.  Install necessary node packages defined in package.json
     ```
     $ npm install
     ```
 
-7.  Initialize the project.
+4.  Initialize the project.
 
-    *This will download the latest bootstrap-sass files and move it from the node_modules folder to your theme's sass base (./css/src/bootstrap).*
+    *This will download the latest bootstrap-sass files and move it from the node_modules folder to the theme it's SCSS base.*
 
     ```
     $ gulp init
     ```
 
-8.  Fire the default gulp task and start theming!
+5.  Fire the default gulp task and start theming!
     ```
     $ gulp
     ```
 
-9.  (Optional) View the accessibility styleguide locally on `http://localhost:5000`
+6.  (Optional) View the styleguide on `http://localhost:5000`

@@ -130,3 +130,60 @@ function wim_date_display_single($variables) {
   // Add remaining message and return.
   return $output . $show_remaining_days;
 }
+
+/**
+ * Bootstrap theme wrapper function for the primary menu links.
+ *
+ * @see bootstrap_menu_tree__primary()
+ */
+function wim_menu_tree__primary(&$variables) {
+  return '<ul class="menu nav navbar-nav primary">' . $variables['tree'] . '</ul>';
+}
+
+/**
+ * Returns HTML for a menu link and submenu.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - element: Structured array data for a menu link.
+ *
+ * @return string
+ *   The constructed HTML.
+ *
+ * @see bootstrap_menu_link()
+ *
+ * @ingroup theme_functions
+ */
+function wim_menu_link__main_menu($variables) {
+  $element = $variables['element'];
+  $sub_menu = '';
+
+  if ($element['#below']) {
+    // Prevent dropdown functions from being added to management menu so it
+    // does not affect the navbar module.
+    if ((!empty($element['#original_link']['depth'])) && ($element['#original_link']['depth'] == 1)) {
+      // Build parent item for mobile.
+      $parent = '<li class="mobile parent-subitem">' . l($element['#title'], $element['#href']) . '</li>';
+
+      unset($element['#below']['#theme_wrappers']);
+
+      // Add our own wrapper.
+      $sub_menu = '<ul class="dropdown-menu">' . $parent . drupal_render($element['#below']) . '</ul>';
+
+      // Generate as standard dropdown.
+      $element['#attributes']['class'][] = 'parent-dropdown';
+      $element['#localized_options']['html'] = TRUE;
+    }
+    $element['#attributes']['class'] = array_diff($element['#attributes']['class'], array('expanded'));
+  }
+
+  // On primary navigation menu, class 'active' is not set on active menu item.
+  // @see https://drupal.org/node/1896674
+  if (($element['#href'] == $_GET['q'] || ($element['#href'] == '<front>' && drupal_is_front_page())) && (empty($element['#localized_options']['language']))) {
+    $element['#attributes']['class'][] = 'active';
+  }
+
+  $output = l($element['#title'], $element['#href'], $element['#localized_options']);
+
+  return '<li' . drupal_attributes($element['#attributes']) . '>' . $output . $sub_menu . "</li>\n";
+}

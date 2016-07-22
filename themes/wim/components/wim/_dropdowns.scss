@@ -1,0 +1,49 @@
+.dropdown-menu{
+  @media (max-width: $screen-sm-min - 1) {
+    position: static;
+  }
+}
+.dropdown-menu > li{
+  &.mobile{
+    @media (min-width: $screen-sm-min) {
+      display: none;
+    }
+  }
+}
+.dropdown-menu > li > a {
+  text-decoration: none;
+  background-color: $link-hover-color;
+  color: white;
+  font-size: 1.3rem;
+  padding: 10px 20px;
+
+  &:before {
+    color: white;
+    @extend .fa;
+    @extend .fa-angle-right;
+    margin-right: 3px;
+  }
+}
+
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+  background-color: $brand-primary;
+  color: white;
+}
+
+.dropdown-menu > .active > a,
+.dropdown-menu > .active > a:hover {
+  background-color: $brand-primary;
+  color: white;
+}
+
+.dropdown-menu > li > a:active,
+.dropdown-menu > li > a:focus {
+  @extend %outline;
+}
+
+.dropdown-menu {
+  min-width: 100%;
+  padding: 0;
+  border: 0;
+}

@@ -13,6 +13,7 @@ Feature: Create basic page
       | Body  | Body description text     |
       | Tags  | BSCPGTEST, BSCPGTAG       |
       | Date  | 06/27/2026                |
+      | Time  | 11:10:00                  |
     And I attach the file "/fixtures/images/drupal-icon.png" to "Image"
     And I press "Save"
     And I should see the success message "Basic page This is a test basic page has been created."

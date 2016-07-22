@@ -1,4 +1,4 @@
-name = WIM 2.0 base theme
+name = WIM base theme
 description = Uses the Bootstrap Framework SCSS source files and must be compiled wit gulp (not for beginners).
 core = 7.x
 base theme = bootstrap
@@ -23,4 +23,105 @@ regions[page_bottom] = Page bottom
 ; Stylesheets
 ; ========================================
 
-stylesheets[all][0] = css/project.css
+stylesheets[all][] = css/wim.css
+stylesheets[all][] = css/style.css
+
+; ========================================
+; Scripts
+; ========================================
+
+scripts[] = js/bootstrap.min.js
+scripts[] = js/wim.js
+
+; ========================================
+; Settings
+; ========================================
+
+settings[toggle_logo] = 1
+settings[toggle_name] = 0
+settings[toggle_slogan] = 0
+settings[toggle_node_user_picture] = 1
+settings[toggle_comment_user_picture] = 1
+settings[toggle_comment_user_verification] = 1
+settings[toggle_favicon] = 1
+settings[toggle_main_menu] = 1
+settings[toggle_secondary_menu] = 1
+settings[default_logo] = 1
+settings[logo_path] = ''
+settings[logo_upload] = ''
+settings[default_favicon] = 1
+settings[favicon_path] = ''
+settings[favicon_upload] = ''
+settings[bootstrap__active_tab] = edit-general
+settings[bootstrap_fluid_container] = 0
+settings[bootstrap_button_size] = ''
+settings[bootstrap_button_colorize] = 1
+settings[bootstrap_button_iconize] = 0
+settings[bootstrap_forms_required_has_error] = 0
+settings[bootstrap_forms_smart_descriptions] = 1
+settings[bootstrap_forms_smart_descriptions_limit] = 250
+settings[bootstrap_forms_smart_descriptions_allowed_tags] = b, code, em, i, kbd, span, strong
+settings[bootstrap_image_shape] = ''
+settings[bootstrap_image_responsive] = 1
+settings[bootstrap_table_bordered] = 0
+settings[bootstrap_table_condensed] = 0
+settings[bootstrap_table_hover] = 1
+settings[bootstrap_table_striped] = 1
+settings[bootstrap_table_responsive] = 1
+settings[bootstrap_breadcrumb] = 1
+settings[bootstrap_breadcrumb_home] = 0
+settings[bootstrap_breadcrumb_title] = 1
+settings[bootstrap_navbar_position] = ''
+settings[bootstrap_navbar_inverse] = 0
+settings[bootstrap_pager_first_and_last] = 1
+settings[bootstrap_region_well-navigation] = ''
+settings[bootstrap_region_well-header] = ''
+settings[bootstrap_region_well-highlighted] = ''
+settings[bootstrap_region_well-help] = ''
+settings[bootstrap_region_well-content] = ''
+settings[bootstrap_region_well-sidebar_first] = ''
+settings[bootstrap_region_well-sidebar_second] = ''
+settings[bootstrap_region_well-footer] = ''
+settings[bootstrap_region_well-page_top] = ''
+settings[bootstrap_region_well-page_bottom] = ''
+settings[bootstrap_anchors_fix] = 0
+settings[bootstrap_anchors_smooth_scrolling] = 0
+settings[bootstrap_forms_has_error_value_toggle] = 1
+settings[bootstrap_popover_enabled] = 0
+settings[bootstrap_popover_animation] = 1
+settings[bootstrap_popover_html] = 0
+settings[bootstrap_popover_placement] = right
+settings[bootstrap_popover_selector] = ''
+settings[bootstrap_popover_trigger][click] = click
+settings[bootstrap_popover_trigger][hover] = 0
+settings[bootstrap_popover_trigger][focus] = 0
+settings[bootstrap_popover_trigger][manual] = 0
+settings[bootstrap_popover_trigger_autoclose] = 1
+settings[bootstrap_popover_title] = ''
+settings[bootstrap_popover_content] = ''
+settings[bootstrap_popover_delay] = 0
+settings[bootstrap_popover_container] = body
+settings[bootstrap_tooltip_enabled] = 0
+settings[bootstrap_tooltip_animation] = 1
+settings[bootstrap_tooltip_html] = 0
+settings[bootstrap_tooltip_placement] = auto left
+settings[bootstrap_tooltip_selector] =
+settings[bootstrap_tooltip_trigger][hover] = hover
+settings[bootstrap_tooltip_trigger][focus] = focus
+settings[bootstrap_tooltip_trigger][click] = 0
+settings[bootstrap_tooltip_trigger][manual] = 0
+settings[bootstrap_tooltip_delay] = 0
+settings[bootstrap_tooltip_container] = body
+settings[bootstrap_toggle_jquery_error] = 0
+settings[bootstrap_cdn_provider] = ''
+settings[bootstrap_cdn_custom_css] = https://cdn.jsdelivr.net/bootstrap/3.3.5/css/bootstrap.css
+settings[bootstrap_cdn_custom_css_min] = https://cdn.jsdelivr.net/bootstrap/3.3.5/css/bootstrap.min.css
+settings[bootstrap_cdn_custom_js] = https://cdn.jsdelivr.net/bootstrap/3.3.5/js/bootstrap.js
+settings[bootstrap_cdn_custom_js_min] = https://cdn.jsdelivr.net/bootstrap/3.3.5/js/bootstrap.min.js
+settings[bootstrap_cdn_jsdelivr_version] = 3.3.5
+settings[bootstrap_cdn_jsdelivr_theme] = bootstrap
+settings[magic_css_excludes] = ''
+settings[magic_footer_js] = 0
+settings[magic_library_head] = 0
+settings[magic_experimental_js] = 0
+settings[magic_js_excludes] = ''

@@ -236,4 +236,26 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
     $this->getSession()->visit($this->locatePath('/node/' . $nid));
   }
 
+  /**
+   * I mouseover the link (link) in the (menu title) region.
+   *
+   * @param string $link
+   *   The menu link.
+   * @param string $region
+   *   The region.
+   *
+   * @throws \Exception
+   *
+   * @When /^I mouseover the link "(?P<text>[^"]*)" in the "(?P<region>[^"]*)"(?:| region)$/
+   */
+  public function iMouseOverTheLinkInTheRegion($link, $region) {
+    $session = $this->getSession();
+    $regionObj = $session->getPage()->find('region', $region);
+    $link_element = $regionObj->findLink($link);
+    if (NULL === $link_element) {
+      throw new \Exception(sprintf('Link "%s" is not found in the "%s" region on the page %s.', $link, $region, $session->getCurrentUrl()));
+    }
+    $link_element->mouseOver();
+  }
+
 }
