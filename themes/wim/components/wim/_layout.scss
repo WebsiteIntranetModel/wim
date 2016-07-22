@@ -1,6 +1,6 @@
 .main-wrapper {
   padding: 0;
-  box-shadow: 0 0 10px rgba(0,0,0,0.15);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
   margin-top: 10px;
   border-radius: 3px;
 }
@@ -19,4 +19,26 @@
   border-radius: 3px;
   padding-top: 15px;
   padding-bottom: 15px;
+}
+
+.container-nopadding {
+  padding: 0 !important;
+}
+
+// For detecting site width
+body:before {
+  content: "smartphone";
+  display: none;
+}
+
+@media (min-width: $screen-sm-min) {
+  body:before {
+    content: "tablet";
+  }
+}
+
+@media (min-width: $screen-md-min) {
+  body:before {
+    content: "desktop";
+  }
 }
