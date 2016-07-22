@@ -1,0 +1,19 @@
+.region-meta-left {
+  float: left;
+  padding-top: 10px;
+  ul.menu {
+    li {
+      display: inline;
+      a {
+        display: inline-block;
+        padding: 0 4px;
+        &:before {
+          display: none;
+        }
+        &:hover {
+          background: none;
+        }
+      }
+    }
+  }
+}
