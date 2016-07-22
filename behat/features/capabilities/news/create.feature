@@ -12,6 +12,7 @@ Feature: Create News
     When I fill in the following:
       | Title    | TEST NEWS    |
       | Date     | 06/30/2016   |
+      | Time     | 02:22:00     |
       | Summary  | SUMMARY-TEXT |
       | Body     | BODY CONTENT |
       | Tags     | Tag1, Tag2   |
@@ -42,6 +43,7 @@ Feature: Create News
     When I fill in the following:
       | Title | TEST CATEGORY NEWS |
       | Date  | 06/30/2016         |
+      | Time  | 04:00:00           |
       | Body  | BODY CONTENT       |
     And I select "CATEGORY1" from "Category"
     Then I press "Save"
