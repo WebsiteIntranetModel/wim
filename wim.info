@@ -24,6 +24,7 @@ dependencies[] = features
 dependencies[] = field_group
 dependencies[] = jquery_update
 dependencies[] = magic
+dependencies[] = menu_block
 dependencies[] = link
 dependencies[] = strongarm
 dependencies[] = views
