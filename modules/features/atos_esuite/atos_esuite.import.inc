@@ -19,11 +19,11 @@ function atos_esuite_import_batch_start() {
   );
   $batch['operations'][] = array(
     'atos_esuite_import_batch_worker',
-    array(ATOS_FAQ),
+    array(ATOS_ESUITE_FAQ),
   );
   $batch['operations'][] = array(
     'atos_esuite_import_batch_worker',
-    array(ATOS_PRODUCT),
+    array(ATOS_ESUITE_PRODUCT),
   );
   batch_set($batch);
 
@@ -91,8 +91,8 @@ function atos_esuite_import_batch_worker($type, &$context) {
  */
 function _atos_esuite_delete_nodes($start_time, $type) {
   $mapping = array(
-    ATOS_PRODUCT => 'product',
-    ATOS_FAQ => 'faq',
+    ATOS_ESUITE_PRODUCT => 'product',
+    ATOS_ESUITE_FAQ => 'faq',
   );
   // We need to add deduct time from start time,
   // because every time when batch processing a bunch it takes new REQUEST_TIME.
