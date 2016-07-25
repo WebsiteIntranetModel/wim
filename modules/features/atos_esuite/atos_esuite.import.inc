@@ -59,7 +59,7 @@ function atos_esuite_import_batch_worker($type, &$context) {
     'type' => $type,
   );
 
-  $url = "$url?" . http_build_query($query, '', '&');
+  $url = url($url, array('external' => TRUE, 'query' => $query));
   if ($result = _atos_esuite_process_feed($url)) {
     list($done, $errors, $total) = $result;
     $context['sandbox']['done'] += $done;
@@ -78,7 +78,13 @@ function atos_esuite_import_batch_worker($type, &$context) {
 
   $context['finished'] = $context['sandbox']['last'] >= $context['sandbox']['max'];
   if ($context['finished']) {
-    _atos_esuite_delete_nodes($context['sandbox']['starttime'], $type);
+    if ($context['sandbox']['done'] > 0) {
+      _atos_esuite_delete_nodes($context['sandbox']['starttime'], $type);
+    }
+    else {
+      drupal_set_message(t('Import failed. Please check logs.', 'error'));
+      drupal_mail('atos_esuite', 'failed', variable_get('site_mail'), LANGUAGE_NONE);
+    }
     $context['results']['count'] = $context['sandbox']['done'];
   }
 }
@@ -88,8 +94,11 @@ function atos_esuite_import_batch_worker($type, &$context) {
  *
  * @param int $start_time
  *    Timestamp.
+ * @param int $type
+ *    Type of node.
  */
 function _atos_esuite_delete_nodes($start_time, $type) {
+  $deleted = array();
   $mapping = array(
     ATOS_ESUITE_PRODUCT => 'product',
     ATOS_ESUITE_FAQ => 'faq',
@@ -132,6 +141,10 @@ function _atos_esuite_delete_nodes($start_time, $type) {
     }
     lock_release('atos_esuite_delete');
   }
+
+  if (count($deleted)) {
+    atos_esuite_notify($deleted, $type);
+  }
 }
 
 /**
@@ -163,16 +176,27 @@ function _atos_esuite_process_feed($url) {
   if (isset($results->{$total_items})) {
     $total_items = (int) $results->{$total_items};
   }
+  else {
+    watchdog('atos esuite import', 'There is something strange with the feed. Check :url', array(':url' => $url));
+  }
 
-  foreach ($results->result as $data) {
-    try {
-      $atos_id = atos_esuite_map_node($data->asXML());
-      ++$imported;
-    }
-    catch (Exception $e) {
-      ++$errors;
+  if (isset($results->result)) {
+    foreach ($results->result as $data) {
+      try {
+        $atos_id = atos_esuite_map_node($data->asXML());
+        ++$imported;
+      }
+      catch (Exception $e) {
+        ++$errors;
+      }
     }
   }
+
+  watchdog('atos esuite batch report', 'Total items: :total. Errors: :errors. Imported: :imported.', array(
+    ':total' => $total_items,
+    ':errors' => $errors,
+    ':imported' => $imported,
+  ));
 
   return array($imported, $errors, $total_items);
 }

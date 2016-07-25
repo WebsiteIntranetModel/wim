@@ -48,3 +48,5 @@ features[field_instance][] = node-product-field_product_request_online
 features[field_instance][] = node-product-field_related_faq
 features[field_instance][] = node-product-field_related_product
 project path = profiles/wim/modules/features
+
+configure = admin/config/content/atos-esuite
