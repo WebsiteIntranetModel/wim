@@ -1,3 +1,36 @@
 .footer {
   border: 0;
+  padding: 20px 0;
+  .region-footer-second,
+  .region-footer-third,
+  .region-footer-first {
+    @extend .col-sm-4;
+  }
+  .block {
+    margin-bottom: 20px;
+    .block-title {
+      padding: 0;
+      background: none;
+      border-top: none;
+      color: $footer-block-title-colors;
+    }
+  }
+  .menu {
+    padding-left: 2.8em;
+    li {
+      list-style: disc;
+      display: list-item;
+      line-height: 1.6em;
+      a {
+        padding: 0;
+        display: inline;
+        &:before {
+          display: none;
+        }
+        &:hover{
+          background: none;
+        }
+      }
+    }
+  }
 }
