@@ -7,20 +7,6 @@
 include_once 'wim_agenda.features.inc';
 
 /**
- * Implements hook_form_FORM_ID_alter().
- */
-function wim_agenda_form_agenda_node_form_alter(&$form, &$form_state, $form_id) {
-
-  // Show the "Announcement type" when Announcement category is selected.
-  $form['field_agenda_announcement_type']['#states'] = array(
-    'visible' => array(
-      'select[name="field_agenda_category[und]"]' => array('value' => 'announcement'),
-    ),
-  );
-
-}
-
-/**
  * Implements hook_views_pre_build().
  */
 function wim_agenda_views_pre_build(&$view) {

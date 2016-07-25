@@ -47,12 +47,6 @@ function wim_fixtures_migrate_api() {
         'destination_vocabulary' => 'faq_categories',
         'file_name' => 'faq-category-terms.csv',
       ),
-      'WIM_Announcement' => array(
-        'class_name' => 'WIMTermMigration',
-        'group_name' => 'WIMMigrate',
-        'destination_vocabulary' => 'announcement',
-        'file_name' => 'announcement-terms.csv',
-      ),
       'WIM_Basic_Page' => array(
         'class_name' => 'BasicPageMigration',
         'group_name' => 'WIMMigrate',
@@ -107,7 +101,6 @@ function wim_fixtures_migrate_api() {
           'WIM_File',
           'WIM_Term_Tags',
           'WIM_User',
-          'WIM_Announcement',
         ),
       ),
     ),

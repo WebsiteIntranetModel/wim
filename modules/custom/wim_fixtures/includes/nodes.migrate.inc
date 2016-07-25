@@ -275,8 +275,6 @@ class AgendaMigration extends NodeMigration {
       array('postal_code', t('Postal Code')),
       array('country', t('County')),
       array('field_tags', t('Tags')),
-      array('field_agenda_category', t('Category')),
-      array('field_agenda_announcement_type', t('Announcement type')),
       array('field_promoted', t('Promoted flag')),
       array('author', t('Node creator')),
     );
@@ -303,7 +301,6 @@ class AgendaMigration extends NodeMigration {
       'body',
       'body:summary',
       'field_agenda_date',
-      'field_agenda_category',
       'field_promoted',
     ));
 
@@ -328,10 +325,6 @@ class AgendaMigration extends NodeMigration {
     $this->addFieldMapping('field_tags:source_type')
       ->defaultValue('tid');
 
-    $this->addFieldMapping('field_agenda_announcement_type', 'field_agenda_announcement_type')->separator(',')
-      ->sourceMigration('WIM_Announcement');
-    $this->addFieldMapping('field_agenda_announcement_type:source_type')
-      ->defaultValue('tid');
   }
 
 }
