@@ -82,7 +82,7 @@ function atos_esuite_import_batch_worker($type, &$context) {
       _atos_esuite_delete_nodes($context['sandbox']['starttime'], $type);
     }
     else {
-      drupal_set_message(t('Import failed. Please check logs.', 'error'));
+      drupal_set_message(t('Import failed. Please check logs.'), 'error');
       drupal_mail('atos_esuite', 'failed', variable_get('site_mail'), LANGUAGE_NONE);
     }
     $context['results']['count'] = $context['sandbox']['done'];
