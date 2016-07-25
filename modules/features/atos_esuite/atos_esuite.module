@@ -1,0 +1,110 @@
+<?php
+/**
+ * @file
+ * Code for the Atos Esuite feature.
+ */
+
+define('ATOS_ESUITE_FAQ', 'vac');
+define('ATOS_ESUITE_PRODUCT', 'pdc');
+
+include_once 'atos_esuite.features.inc';
+/**
+ * @file
+ * Main module.
+ */
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function atos_esuite_ctools_plugin_directory($module, $plugin) {
+  if ($module === 'entityreference') {
+    return 'plugins/' . $plugin;
+  }
+}
+
+/**
+ * Implements hook_permission().
+ */
+function atos_esuite_permission() {
+  return array(
+    'start atos import' => array(
+      'title' => t('Start Atos import'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_menu().
+ */
+function atos_esuite_menu() {
+  $items = array();
+
+  $items['admin/config/content/atos-esuite'] = array(
+    'title' => 'Atos eSuite',
+    'description' => 'Atos import settings.',
+    'page arguments' => array('atos_esuite_admin_settings_form'),
+    'page callback' => 'drupal_get_form',
+    'access arguments' => array('start atos import'),
+    'type' => MENU_NORMAL_ITEM,
+    'file' => 'atos_esuite.admin.inc',
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_node_delete().
+ */
+function atos_esuite_node_delete($node) {
+  if (in_array($node->type, array('product', 'faq'))) {
+    db_delete('atos_esuite')->condition('nid', $node->nid)->execute();
+  }
+}
+
+/**
+ * Implements hook_cron().
+ */
+function atos_esuite_cron() {
+  module_load_include('inc', 'atos_esuite', 'atos_esuite.import');
+  atos_esuite_import_batch_start();
+}
+
+/**
+ * Helper function to get node id by identifier from atos_esuite table.
+ *
+ * @param string $id
+ *    Atos identifier.
+ *
+ * @return string
+ *    Node id.
+ */
+function atos_esuite_get_nid_by_id($id) {
+  $q = db_select('atos_esuite', 'a')
+    ->fields('a', array('identifier', 'nid'))
+    ->condition('a.identifier', $id);
+  $rs = $q->execute()->fetch();
+  if ($rs) {
+    return $rs->nid;
+  }
+  return $id;
+}
+
+/**
+ * Helper function to get identifier by node id from atos_esuite table.
+ *
+ * @param string $nid
+ *    Node id.
+ *
+ * @return string
+ *    Atos identifier.
+ */
+function atos_esuite_get_id_by_nid($nid) {
+  $q = db_select('atos_esuite', 'a')
+    ->fields('a', array('identifier', 'nid'))
+    ->condition('a.nid', $nid);
+  $result = $q->execute()->fetch();
+  if ($result) {
+    return $result->identifier;
+  }
+  return $nid;
+}
