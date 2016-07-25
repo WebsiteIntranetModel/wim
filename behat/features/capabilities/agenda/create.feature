@@ -20,7 +20,6 @@ Feature: Create Agenda
       | Tags          | Tag1, Tag2             |
       | Promoted      | 0                      |
     And I attach the file "/fixtures/images/drupal-icon.png" to "Image"
-    And I select "Announcement" from "Category"
     And I select "Netherlands" from "Country"
     And I wait for AJAX to finish
     And I press "Save"

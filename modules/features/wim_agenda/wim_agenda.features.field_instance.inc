@@ -60,94 +60,6 @@ function wim_agenda_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-agenda-field_agenda_announcement_type'.
-  $field_instances['node-agenda-field_agenda_announcement_type'] = array(
-    'bundle' => 'agenda',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 7,
-      ),
-      'short' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_agenda_announcement_type',
-    'label' => 'Announcement type',
-    'required' => 0,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(),
-      'type' => 'options_select',
-      'weight' => 2,
-    ),
-  );
-
-  // Exported field_instance: 'node-agenda-field_agenda_category'.
-  $field_instances['node-agenda-field_agenda_category'] = array(
-    'bundle' => 'agenda',
-    'default_value' => array(
-      0 => array(
-        'value' => 'agenda',
-      ),
-    ),
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 6,
-      ),
-      'short' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_agenda_category',
-    'label' => 'Category',
-    'required' => 1,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(),
-      'type' => 'options_select',
-      'weight' => 1,
-    ),
-  );
-
   // Exported field_instance: 'node-agenda-field_agenda_date'.
   $field_instances['node-agenda-field_agenda_date'] = array(
     'bundle' => 'agenda',
@@ -424,9 +336,7 @@ function wim_agenda_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('Announcement type');
   t('Body');
-  t('Category');
   t('Check if You want to stick this node on top of lists');
   t('Date');
   t('Image');
