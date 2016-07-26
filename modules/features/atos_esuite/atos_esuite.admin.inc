@@ -53,6 +53,11 @@ function atos_esuite_admin_settings_form($form, &$form_state) {
  * Run all submit handler for atos_esuite page.
  */
 function atos_esuite_batch_run_all_submit($form, &$form_state) {
-  module_load_include('inc', 'atos_esuite', 'atos_esuite.import');
-  atos_esuite_import_batch_start();
+  if (variable_get('atos_esuite_url', '')) {
+    module_load_include('inc', 'atos_esuite', 'atos_esuite.import');
+    atos_esuite_import_batch_start();
+  }
+  else {
+    drupal_set_message(t('Atos search callback is not set or settings are not saved. Please set correct callback.'), 'error');
+  }
 }
