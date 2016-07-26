@@ -13,6 +13,23 @@
 class EntityReferenceFieldBehaviorAtos extends EntityReference_BehaviorHandler_Abstract {
 
   /**
+   * Alter schema.
+   *
+   * This method gets called from entityreference_field_schema() which
+   * is a hook_field_schema() implementation.
+   *
+   * First of all we need to modify the default entityreference field schema
+   * that accepts only integer values to prepare it for our varchar ids.
+   */
+  public function schema_alter(&$schema, $field) { // @codingStandardsIgnoreLine
+    $schema['columns']['target_id']['type'] = 'varchar';
+    $schema['columns']['target_id']['length'] = 255;
+    $schema['columns']['target_id']['default'] = '';
+    // Varchar cannot be unsigned so we unset this.
+    unset($schema['columns']['target_id']['unsigned']);
+  }
+
+  /**
    * Act on loading entity reference fields of entities.
    *
    * @see hook_field_load()

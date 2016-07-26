@@ -15,11 +15,6 @@ function atos_esuite_schema() {
     'fields' => array(
       'identifier' => array(
         'description' => 'Item identifier',
-        'type' => 'int',
-        'not null' => TRUE,
-      ),
-      'type' => array(
-        'description' => 'Item type',
         'type' => 'varchar',
         'length' => '255',
         'not null' => TRUE,
