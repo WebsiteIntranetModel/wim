@@ -16,7 +16,7 @@ Feature: Edit Product
     And I click "edit" in the "PRODUCT TITLE1" row
     Then I should not see "Access denied"
     When I fill in the following:
-      | Title    | PRODUCT TITLE2 |
+      | title    | PRODUCT TITLE2 |
       | Body     | BODY-CONTENT2  |
       | Tags     | Tag2           |
       | Date     | 06/30/2016     |

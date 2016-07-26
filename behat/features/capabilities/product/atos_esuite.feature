@@ -8,7 +8,7 @@ Feature: Check Atos E-Suite fields
     Given I am logged in as a "content moderator"
     And I am on "node/add/product"
     When I fill in the following:
-      | edit-title                                      | TEST ATOS ESUITE PRODUCT |
+      | title                                           | TEST ATOS ESUITE PRODUCT |
       | edit-field-product-related-laws-und-0-title     | Related Law              |
       | edit-field-product-related-laws-und-0-url       | <front>                  |
       | edit-field-product-request-online-und-0-title   | Related Law              |
