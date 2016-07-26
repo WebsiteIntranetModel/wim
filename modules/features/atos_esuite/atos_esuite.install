@@ -5,6 +5,14 @@
  */
 
 /**
+ * Implements hook_install().
+ */
+function atos_esuite_install() {
+  $role = user_role_load_by_name('content moderator');
+  user_role_grant_permissions($role->rid, array('start atos import'));
+}
+
+/**
  * Implements hook_schema().
  */
 function atos_esuite_schema() {
