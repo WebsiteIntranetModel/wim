@@ -21,10 +21,10 @@ function sduconnect_single_import($collection, $id, $type, $queue_references = T
     if (empty($node->nid)) {
       $not_found = TRUE;
     }
-    if ($type == 'removed') {
+    if ($type === 'removed') {
       if (empty($node->nid)) {
         throw new Exception(t('Item %id is listed as removed, but was not found in Drupal.', array(
-          '%id' => $id
+          '%id' => $id,
         )));
       }
       node_delete($node->nid);
@@ -49,9 +49,11 @@ function sduconnect_single_import($collection, $id, $type, $queue_references = T
       }
     }
     $nid = $node->nid;
-    $log = t('Processed item %id: %title', array('%id' => $id, '%title' => $node->title));
-  }
-  catch (Exception $e) {
+    $log = t('Processed item %id: %title', array(
+      '%id' => $id,
+      '%title' => $node->title,
+    ));
+  } catch (Exception $e) {
     if ($e->getCode() == 404) {
       $not_found = TRUE;
     }
@@ -188,7 +190,7 @@ function sduconnect_single_download($collection_type, $collection_id, $id) {
   $xpath = new DOMXPath($dom);
   if ($xpath->query('//response/error')->length) {
     $code = $xpath->query('//response/error/code')->item(0)->nodeValue;
-    throw new Exception($url, intval($xml->error->code));
+    throw new Exception($url, (int) $code);
   }
   return $xpath;
 }

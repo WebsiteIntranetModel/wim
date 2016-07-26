@@ -27,7 +27,7 @@ function sduconnect_settings_form($form, &$form_state) {
  */
 function sduconnect_settings_form_validate($form, &$form_state) {
   $values = $form_state['values'];
-  if (!preg_match('/^[1-9][0-9]*$/', $values['sduconnect_account'])) {
+  if (!preg_match('/^[1-9]\d*$/', $values['sduconnect_account'])) {
     form_set_error('sduconnect_account', t('This is not a valid account number.'));
   }
 }
@@ -66,7 +66,10 @@ function sduconnect_collection_form($form, &$form_state, $collection = NULL) {
 
   if (module_exists('domain')) {
     $domains = db_select('domain', 'd')
-      ->fields('d', array('domain_id', 'sitename'))
+      ->fields('d', array(
+        'domain_id',
+        'sitename',
+      ))
       ->orderBy('d.is_default', 'desc')
       ->orderBy('d.sitename', 'asc')
       ->execute()
@@ -83,7 +86,13 @@ function sduconnect_collection_form($form, &$form_state, $collection = NULL) {
   $form['frequency'] = array(
     '#type' => 'radios',
     '#title' => t('Frequency'),
-    '#options' => drupal_map_assoc(array(3600, 3600 * 3, 3600 * 6, 3600 * 12, 3600 * 24), 'format_interval'),
+    '#options' => drupal_map_assoc(array(
+      3600,
+      3600 * 3,
+      3600 * 6,
+      3600 * 12,
+      3600 * 24,
+    ), 'format_interval'),
     '#default_value' => $collection ? $collection->frequency : 3600,
     '#description' => t('Time to wait between imports.'),
   );
@@ -112,7 +121,7 @@ function sduconnect_collection_form($form, &$form_state, $collection = NULL) {
  */
 function sduconnect_collection_form_validate($form, &$form_state) {
   $values = $form_state['values'];
-  if (!preg_match('/^[1-9][0-9]*$/', $values['external_id'])) {
+  if (!preg_match('/^[1-9]\d*$/', $values['external_id'])) {
     form_set_error('external_id', t('This is not a valid collection id.'));
   }
 }
@@ -129,7 +138,9 @@ function sduconnect_collection_form_submit($form, &$form_state) {
   $collection->name = $values['name'];
   $collection->frequency = $values['frequency'];
   $collection->import_private = $values['import_private'];
-  $collection->domains = array_filter(array_values($values['domains']));
+  if (module_exists('domains')) {
+    $collection->domains = array_filter(array_values($values['domains']));
+  }
   sduconnect_collection_save($collection);
 
   drupal_set_message(t('The collection %name has been saved.', array('%name' => $collection->name)));

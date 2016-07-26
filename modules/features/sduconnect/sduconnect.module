@@ -5,6 +5,18 @@
  * SduConnect PDC/VAC import module.
  */
 
+define('SDUCONNECT_FAQ', 'vac');
+define('SDUCONNECT_PRODUCT', 'pdc');
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function sduconnect_ctools_plugin_directory($module, $plugin) {
+  if ($module === 'entityreference') {
+    return 'plugins/' . $plugin;
+  }
+}
+
 /**
  * Implement hook_permission().
  */
@@ -162,19 +174,19 @@ function sduconnect_process_queue_item($item) {
  * Implements hook_node_delete().
  */
 function sduconnect_node_delete($node) {
-  $cid = db_select('sduconnect_item', 'i')
-    ->fields('i', array('cid'))
-    ->condition('i.nid', $node->nid)
-    ->execute()
-    ->fetchField();
-  if ($cid) {
-    db_delete('sduconnect_item')
-      ->condition('nid', $node->nid)
-      ->execute();
-    db_update('sduconnect_collection')
-      ->expression('items', 'items - 1')
-      ->condition('cid', $cid)
-      ->execute();
+  if (in_array($node->type, array('product', 'faq'))) {
+    $cid = db_select('sduconnect_item', 'i')
+      ->fields('i', array('cid'))
+      ->condition('i.nid', $node->nid)
+      ->execute()
+      ->fetchField();
+    if ($cid) {
+      db_delete('sduconnect_item')->condition('nid', $node->nid)->execute();
+      db_update('sduconnect_collection')
+        ->expression('items', 'items - 1')
+        ->condition('cid', $cid)
+        ->execute();
+    }
   }
 }
 

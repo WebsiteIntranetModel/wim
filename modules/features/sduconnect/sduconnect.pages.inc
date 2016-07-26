@@ -11,8 +11,7 @@
 function sduconnect_admin_page() {
   $page = array();
 
-  $query = db_select('queue', 'q')
-    ->condition('q.name', 'sduconnect');
+  $query = db_select('queue', 'q')->condition('q.name', 'sduconnect');
   $query->addExpression('COUNT(*)');
   $queue_items = $query->execute()->fetchField();
   $page['info'] = array(
@@ -63,7 +62,7 @@ function sduconnect_admin_page() {
       array('data' => t('Updated till'), 'width' => 140),
       array('data' => t('Items'), 'width' => 53),
       array('data' => t('Frequency'), 'width' => 87),
-      array('width' => 140, 'data' => t('Actions'))
+      array('width' => 140, 'data' => t('Actions')),
     ),
     '#empty' => t('There are no collections created yet.'),
   );
@@ -81,8 +80,8 @@ function sduconnect_log_page() {
   $interval = variable_get('sduconnect_delete_logs_after', 86400 * 30);
   $page['info'] = array(
     '#markup' => '<p>' . t('Log entries will be deleted after @interval.', array(
-      '@interval' => format_interval($interval)
-    )) . '</p>',
+        '@interval' => format_interval($interval),
+      )) . '</p>',
   );
 
   $types = array(
@@ -139,7 +138,7 @@ function sduconnect_log_page() {
       array('data' => t('Date'), 'width' => 140),
       array('data' => t('Type'), 'width' => 140),
       array('data' => t('Message')),
-      array('width' => 140, 'data' => t('Actions'))
+      array('width' => 140, 'data' => t('Actions')),
     ),
     '#empty' => t('No log messages found.'),
   );
@@ -154,17 +153,16 @@ function sduconnect_log_page() {
  * Page callback for node/%/sduconnect-xml.
  */
 function sduconnect_page_xml($node) {
-  $item = db_select('sduconnect_item', 'i')
-    ->fields('i', array('cid', 'external_id'))
-    ->condition('i.nid', $node->nid)
-    ->execute()
-    ->fetchObject();
+  $item = db_select('sduconnect_item', 'i')->fields('i', array(
+      'cid',
+      'external_id',
+    ))->condition('i.nid', $node->nid)->execute()->fetchObject();
   if (!$item) {
     return MENU_NOT_FOUND;
   }
   $collection = sduconnect_collection_load($item->cid);
   $account_id = variable_get('sduconnect_account', '');
-  $version = $collection->type == 'pdc' ? '1.2' : '1.1';
+  $version = $collection->type === 'pdc' ? '1.2' : '1.1';
   $url = "https://rest.sduconnect.nl/single/{$collection->type}/$version/account/$account_id/collectie/{$collection->external_id}/item/{$item->external_id}.xml";
   $data = drupal_http_request($url);
   if ($data->code != 200) {

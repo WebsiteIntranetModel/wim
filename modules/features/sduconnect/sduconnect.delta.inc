@@ -26,6 +26,7 @@ function sduconnect_delta_import($collection) {
     }
 
     $ids = sduconnect_delta_download($collection->type, $collection->external_id, $from_time);
+    // @todo move deletion out of queue
     $queue = DrupalQueue::get('sduconnect');
     foreach (array('added', 'changed', 'removed') as $type) {
       foreach ($ids->{$type} as $id) {
@@ -83,11 +84,11 @@ function sduconnect_delta_download($collection_type, $collection_id, $from_date)
   );
   $data = drupal_http_request($url, $options);
   if ($data->code != 200) {
-    throw new Exception($url, intval($data->code));
+    throw new Exception($url, (int) ($data->code));
   }
   $xml = new SimpleXMLElement($data->data);
   if (!empty($xml->error)) {
-    throw new Exception($url, intval($xml->error->code));
+    throw new Exception($url, (int) ($xml->error->code));
   }
   $output = new stdClass();
   $output->servertime = strtotime($xml->servertime);

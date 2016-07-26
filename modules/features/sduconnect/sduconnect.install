@@ -163,12 +163,3 @@ function sduconnect_schema() {
 
   return $schema;
 }
-
-/**
- * Create sduconnect_related table.
- */
-function sduconnect_update_7100() {
-  $schema = sduconnect_schema();
-  $table = $schema['sduconnect_related'];
-  db_create_table('sduconnect_related', $table);
-}
