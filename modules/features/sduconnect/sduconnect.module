@@ -18,7 +18,7 @@ function sduconnect_ctools_plugin_directory($module, $plugin) {
 }
 
 /**
- * Implement hook_permission().
+ * Implements hook_permission().
  */
 function sduconnect_permission() {
   return array(
@@ -160,6 +160,7 @@ function sduconnect_cron_queue_info() {
  * Callback for queue worker.
  *
  * @param object $item
+ *   Worker item.
  */
 function sduconnect_process_queue_item($item) {
   module_load_include('inc', 'sduconnect', 'sduconnect.single');
@@ -193,11 +194,14 @@ function sduconnect_node_delete($node) {
 /**
  * Load collection.
  *
- * This function is used as wildcard loader in the menu definitions. Therefore
- * it must always reside in the .module-file.
+ * This function is used as wildcard loader in the menu definitions.
+ * Therefore it must always reside in the .module-file.
  *
  * @param int $cid
+ *   Collection ID.
+ *
  * @return object
+ *   Collection object.
  */
 function sduconnect_collection_load($cid) {
   $collection = db_select('sduconnect_collection', 'sc')
@@ -219,7 +223,10 @@ function sduconnect_collection_load($cid) {
  * Save collection.
  *
  * @param object $collection
+ *   Collection object.
+ *
  * @return object
+ *   Collection object.
  */
 function sduconnect_collection_save($collection) {
   drupal_write_record('sduconnect_collection', $collection, empty($collection->cid) ? array() : array('cid'));
@@ -240,9 +247,50 @@ function sduconnect_collection_save($collection) {
  * Delete collection.
  *
  * @param int $cid
+ *   Collection ID.
  */
 function sduconnect_collection_delete($cid) {
   db_delete('sduconnect_collection')->condition('cid', $cid)->execute();
   db_delete('sduconnect_domain')->condition('cid', $cid)->execute();
   db_delete('sduconnect_item')->condition('cid', $cid)->execute();
+}
+
+/**
+ * Helper function to get node id by identifier from sduconnect table.
+ *
+ * @param string $id
+ *    SDU identifier.
+ *
+ * @return string
+ *    Node id.
+ */
+function sduconnect_get_nid_by_id($id) {
+  $q = db_select('sduconnect_item', 's')
+    ->fields('s', array('external_id', 'nid'))
+    ->condition('s.external_id', $id);
+  $result = $q->execute()->fetch();
+  if ($result) {
+    return $result->identifier;
+  }
+  return $id;
+}
+
+/**
+ * Helper function to get identifier by node id from sduconnect table.
+ *
+ * @param string $nid
+ *    Node id.
+ *
+ * @return string
+ *    SDU identifier.
+ */
+function sduconnect_get_id_by_nid($nid) {
+  $q = db_select('sduconnect_item', 's')
+    ->fields('s', array('external_id', 'nid'))
+    ->condition('s.nid', $nid);
+  $result = $q->execute()->fetch();
+  if ($result) {
+    return $result->identifier;
+  }
+  return $nid;
 }
