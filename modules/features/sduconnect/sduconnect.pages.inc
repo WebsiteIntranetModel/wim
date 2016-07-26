@@ -67,7 +67,6 @@ function sduconnect_admin_page() {
     '#empty' => t('There are no collections created yet.'),
   );
 
-
   return $page;
 }
 
@@ -80,8 +79,8 @@ function sduconnect_log_page() {
   $interval = variable_get('sduconnect_delete_logs_after', 86400 * 30);
   $page['info'] = array(
     '#markup' => '<p>' . t('Log entries will be deleted after @interval.', array(
-        '@interval' => format_interval($interval),
-      )) . '</p>',
+      '@interval' => format_interval($interval),
+    )) . '</p>',
   );
 
   $types = array(
@@ -154,9 +153,9 @@ function sduconnect_log_page() {
  */
 function sduconnect_page_xml($node) {
   $item = db_select('sduconnect_item', 'i')->fields('i', array(
-      'cid',
-      'external_id',
-    ))->condition('i.nid', $node->nid)->execute()->fetchObject();
+    'cid',
+    'external_id',
+  ))->condition('i.nid', $node->nid)->execute()->fetchObject();
   if (!$item) {
     return MENU_NOT_FOUND;
   }
