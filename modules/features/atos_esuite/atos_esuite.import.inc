@@ -79,10 +79,10 @@ function atos_esuite_import_batch_worker($type, &$context) {
   $context['finished'] = $context['sandbox']['last'] >= $context['sandbox']['max'];
   if ($context['finished']) {
     if ($context['sandbox']['done'] > 0) {
-      _atos_esuite_delete_nodes($context['sandbox']['starttime'], $type);
+      _atos_esuite_delete_nodes($context['sandbox']['starttime']);
     }
     else {
-      drupal_set_message(t('Import failed. Please check logs.', 'error'));
+      drupal_set_message(t('Import failed. Please check logs.'), 'error');
       drupal_mail('atos_esuite', 'failed', variable_get('site_mail'), LANGUAGE_NONE);
     }
     $context['results']['count'] = $context['sandbox']['done'];
@@ -94,15 +94,9 @@ function atos_esuite_import_batch_worker($type, &$context) {
  *
  * @param int $start_time
  *    Timestamp.
- * @param int $type
- *    Type of node.
  */
-function _atos_esuite_delete_nodes($start_time, $type) {
+function _atos_esuite_delete_nodes($start_time) {
   $deleted = array();
-  $mapping = array(
-    ATOS_ESUITE_PRODUCT => 'product',
-    ATOS_ESUITE_FAQ => 'faq',
-  );
   // We need to add deduct time from start time,
   // because every time when batch processing a bunch it takes new REQUEST_TIME.
   // We add 5 minute, hope is enough :).
@@ -116,7 +110,6 @@ function _atos_esuite_delete_nodes($start_time, $type) {
         'nid',
       ))
       ->condition('a.changed', $start_time, '<')
-      ->condition('a.type', array($mapping[$type]), 'IN')
       ->execute()
       ->fetchAllKeyed();
 
@@ -143,7 +136,7 @@ function _atos_esuite_delete_nodes($start_time, $type) {
   }
 
   if (count($deleted)) {
-    atos_esuite_notify($deleted, $type);
+    atos_esuite_notify($deleted);
   }
 }
 
@@ -237,7 +230,7 @@ function atos_esuite_map_node($documentXML, $force = FALSE) {
       return FALSE;
   }
 
-  $id = $xpath->query('/result/id')->item(0)->nodeValue;
+  $id = $type . '-' . trim($xpath->query('/result/id')->item(0)->nodeValue);
 
   if ($id) {
     if ($type === 'product' && $xml_type === 'Vraag/Antwoord Combinatie') {
@@ -247,7 +240,6 @@ function atos_esuite_map_node($documentXML, $force = FALSE) {
     // Get the current version from the database.
     $current = db_select('atos_esuite', 'a')->fields('a', array(
       'identifier',
-      'type',
       'hash',
       'nid',
     ))->condition('identifier', $id)->execute()->fetchAssoc();
@@ -285,7 +277,6 @@ function atos_esuite_map_node($documentXML, $force = FALSE) {
     // Add to the atos_esuite table for hash checking and identifying.
     if ($node->nid) {
       db_merge('atos_esuite')->key(array('identifier' => $id))->fields(array(
-        'type' => $type,
         'hash' => $xml_hash,
         'nid' => $node->nid,
         'xml' => $documentXML,
@@ -357,13 +348,13 @@ function atos_esuite_map_node_product(stdClass $node, DOMDocument $documentDOM, 
   // Related FAQ items.
   $node->field_related_faq = array(LANGUAGE_NONE => array());
   foreach ($xpath->query('/result/relatedvac/id') as $item) {
-    $node->field_related_faq[LANGUAGE_NONE][] = array('target_id' => $item->nodeValue);
+    $node->field_related_faq[LANGUAGE_NONE][] = array('target_id' => 'faq-' . trim($item->nodeValue));
   }
 
   // Related Products.
   $node->field_related_product = array(LANGUAGE_NONE => array());
   foreach ($xpath->query('/result/relatedpdc/id') as $item) {
-    $node->field_related_product[LANGUAGE_NONE][] = array('target_id' => $item->nodeValue);
+    $node->field_related_product[LANGUAGE_NONE][] = array('target_id' => 'product-' . trim($item->nodeValue));
   }
 
   // Publication date.
@@ -423,13 +414,13 @@ function atos_esuite_map_node_faq(stdClass $node, DOMDocument $documentDOM, DOMX
   // Relate FAQ items.
   $node->field_related_faq = array(LANGUAGE_NONE => array());
   foreach ($xpath->query('/result/relatedvac/id') as $item) {
-    $node->field_related_faq[LANGUAGE_NONE][] = array('target_id' => $item->nodeValue);
+    $node->field_related_faq[LANGUAGE_NONE][] = array('target_id' => 'faq-' . trim($item->nodeValue));
   }
 
   // Related Products.
   $node->field_related_product = array(LANGUAGE_NONE => array());
   foreach ($xpath->query('/result/relatedpdc/id') as $item) {
-    $node->field_related_product[LANGUAGE_NONE][] = array('target_id' => $item->nodeValue);
+    $node->field_related_product[LANGUAGE_NONE][] = array('target_id' => 'product-' . trim($item->nodeValue));
   }
 
   // This should be disabled for new items.

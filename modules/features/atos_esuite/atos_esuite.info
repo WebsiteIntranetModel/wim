@@ -14,6 +14,7 @@ dependencies[] = text
 dependencies[] = wim_core
 dependencies[] = wim_faq
 dependencies[] = wim_product
+configure = admin/config/content/atos-esuite
 features[ctools][] = field_group:field_group:1
 features[features_api][] = api:2
 features[field_base][] = field_product_conditions
@@ -48,5 +49,3 @@ features[field_instance][] = node-product-field_product_request_online
 features[field_instance][] = node-product-field_related_faq
 features[field_instance][] = node-product-field_related_product
 project path = profiles/wim/modules/features
-
-configure = admin/config/content/atos-esuite

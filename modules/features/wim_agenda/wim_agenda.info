@@ -7,6 +7,7 @@ dependencies[] = ctools
 dependencies[] = date
 dependencies[] = features
 dependencies[] = image
+dependencies[] = options
 dependencies[] = strongarm
 dependencies[] = text
 dependencies[] = views
