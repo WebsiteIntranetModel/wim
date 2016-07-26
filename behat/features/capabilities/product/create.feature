@@ -1,4 +1,4 @@
- @product @product-create @stability @api
+@product @product-create @stability @api
 Feature: Create Product
   Benefit: In order to add products
   Role: As a CM
@@ -11,10 +11,10 @@ Feature: Create Product
     And I should see "Promoted"
     And I should see "Image"
     When I fill in the following:
-      | Title | TEST PRODUCT |
-      | Date  | 06/27/2026   |
-      | Body  | BODY CONTENT |
-      | Tags  | Tag1, Tag2   |
+      | title | TEST PRODUCT |
+      | Date       | 06/27/2026   |
+      | Body       | BODY CONTENT |
+      | Tags       | Tag1, Tag2   |
     And I press "Save"
     Then I should see the success message "Product TEST PRODUCT has been created."
     And I should see the heading "TEST PRODUCT"
