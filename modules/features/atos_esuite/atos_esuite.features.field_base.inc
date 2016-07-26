@@ -274,15 +274,21 @@ function atos_esuite_field_default_field_bases() {
     'locked' => 0,
     'module' => 'entityreference',
     'settings' => array(
-      'handler' => 'atos',
+      'handler' => 'base',
       'handler_settings' => array(
         'behaviors' => array(
           'atos_behavior' => array(
             'status' => 1,
           ),
+          'sdu_behavior' => array(
+            'status' => 0,
+          ),
           'views-select-list' => array(
             'status' => 0,
           ),
+        ),
+        'sort' => array(
+          'type' => 'none',
         ),
         'target_bundles' => array(
           'faq' => 'faq',
@@ -309,7 +315,7 @@ function atos_esuite_field_default_field_bases() {
     'locked' => 0,
     'module' => 'entityreference',
     'settings' => array(
-      'handler' => 'atos',
+      'handler' => 'base',
       'handler_settings' => array(
         'behaviors' => array(
           'atos_behavior' => array(
@@ -318,6 +324,9 @@ function atos_esuite_field_default_field_bases() {
           'views-select-list' => array(
             'status' => 0,
           ),
+        ),
+        'sort' => array(
+          'type' => 'none',
         ),
         'target_bundles' => array(
           'product' => 'product',

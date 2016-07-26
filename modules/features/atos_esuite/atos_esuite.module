@@ -114,13 +114,10 @@ function atos_esuite_get_id_by_nid($nid) {
  *
  * @param array $nodes
  *   Array of nodes.
- * @param string $type
- *   Type of node.
  */
-function atos_esuite_notify($nodes, $type) {
+function atos_esuite_notify($nodes) {
   drupal_mail('atos_esuite', 'notice', variable_get('site_mail'), LANGUAGE_NONE, array(
     'nodes' => $nodes,
-    'type' => $type,
   ));
 }
 
@@ -140,9 +137,8 @@ function atos_esuite_mail($key, &$message, $params) {
             'query' => array('id' => $id),
           )) . PHP_EOL;
       }
-      $message['body'][] = t('During import !type this nodes was unpublished.!brPlease check them!br!list', array(
+      $message['body'][] = t('During import this nodes was unpublished.!brPlease check them!br!list', array(
         '!list' => PHP_EOL . implode(PHP_EOL, $list),
-        '!type' => $params['type'],
         '!br' => PHP_EOL,
       ));
       break;
