@@ -19,8 +19,6 @@ Feature: Check Atos E-Suite fields
       | edit-field-product-more-information-und-0-url   | <front>                  |
     And I click "Additional Information"
     Then I should see "ATTACHMENT"
-    And I should see "Related FAQ items"
-    And I should see "Related Product items"
     When I fill in the following:
       | Request     | Request Content     |
       | Contact     | Contact Content     |
@@ -29,12 +27,15 @@ Feature: Check Atos E-Suite fields
       | Particulars | Particulars Content |
       | Period      | Period Content      |
       | Conditions  | Conditions Content  |
+    And I select "Question 1" from "Related FAQ items"
+    And I select "Product 1" from "Related Product items"
     And I press "Save"
     Then I should see the success message "Product TEST ATOS ESUITE PRODUCT has been created."
     And I should see the link "Related Law"
     And I should see the link "Related Law"
     And I should see the link "Form Link"
     And I should see the link "More info Link"
+    And I should see the link "Question 1"
     And I should see "Request Content"
     And I should see "Contact Content"
     And I should see "Objection Content"
