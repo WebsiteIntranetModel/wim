@@ -259,14 +259,14 @@ function sduconnect_collection_delete($cid) {
  * Helper function to get node id by identifier from sduconnect table.
  *
  * @param string $id
- *    SDU identifier.
+ *    Internal SDU identifier.
  *
  * @return string
  *    Node id.
  */
 function sduconnect_get_nid_by_id($id) {
   $q = db_select('sduconnect_item', 's')
-    ->fields('s', array('external_id', 'nid'))
+    ->fields('s', array('internal_id', 'nid'))
     ->condition('s.external_id', $id);
   $result = $q->execute()->fetch();
   if ($result) {
@@ -282,11 +282,11 @@ function sduconnect_get_nid_by_id($id) {
  *    Node id.
  *
  * @return string
- *    SDU identifier.
+ *    Internal SDU identifier.
  */
 function sduconnect_get_id_by_nid($nid) {
   $q = db_select('sduconnect_item', 's')
-    ->fields('s', array('external_id', 'nid'))
+    ->fields('s', array('internal_id', 'nid'))
     ->condition('s.nid', $nid);
   $result = $q->execute()->fetch();
   if ($result) {

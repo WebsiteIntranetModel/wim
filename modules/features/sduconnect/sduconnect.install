@@ -82,16 +82,25 @@ function sduconnect_schema() {
         'type' => 'int',
         'unsigned' => TRUE,
         'not null' => TRUE,
+        'description' => 'Node id.',
       ),
       'cid' => array(
         'type' => 'int',
         'unsigned' => TRUE,
         'not null' => TRUE,
+        'description' => 'Collection id.',
       ),
       'external_id' => array(
         'type' => 'varchar',
         'length' => 255,
         'not null' => TRUE,
+        'description' => 'External id from sdu feed.',
+      ),
+      'internal_id' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'description' => 'We need this to hold internal references for entity reference.',
       ),
     ),
     'primary key' => array('nid'),
@@ -155,9 +164,14 @@ function sduconnect_schema() {
         'not null' => TRUE,
       ),
     ),
-    'primary key' => array('type_a', 'external_id_a', 'type_b', 'external_id_b'),
+    'primary key' => array(
+      'type_a',
+      'external_id_a',
+      'type_b',
+      'external_id_b',
+    ),
     'indexes' => array(
-      'b' => array('type_b', 'external_id_b')
+      'b' => array('type_b', 'external_id_b'),
     ),
   );
 
