@@ -19,15 +19,6 @@ function sduconnect_delta_import($collection) {
   try {
     $from_time = $collection->updated_till;
 
-    // If the last import was on saturday, and it is sunday now, then we should
-    // compare the whole list of id's, to ensure we haven't missed anything
-    // during the regular updates.
-    $last_was_saturday = format_date($from_time, 'custom', 'w') == 6;
-    $on_sunday = format_date(REQUEST_TIME, 'custom', 'w') == 0;
-    if ($last_was_saturday && $on_sunday) {
-      // @todo
-    }
-
     $ids = sduconnect_delta_download($collection->type, $collection->external_id, $from_time);
     // @todo move deletion out of queue
     $queue = DrupalQueue::get('sduconnect');
