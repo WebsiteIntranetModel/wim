@@ -1,4 +1,4 @@
- @product @product-create @stability @api
+@product @product-create @stability @api
 Feature: Create Product
   Benefit: In order to add products
   Role: As a CM

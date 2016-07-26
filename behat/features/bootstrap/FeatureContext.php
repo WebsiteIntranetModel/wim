@@ -29,6 +29,17 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
   /**
    * This will be run when Behat testing suite is started.
    *
+   * Enable all necessary features and modules which are disabled by default.
+   *
+   * @BeforeSuite
+   */
+  public static function enableFeaturesModules(BeforeSuiteScope $scope) {
+    module_enable(array('atos_esuite'));
+  }
+
+  /**
+   * This will be run when Behat testing suite is started.
+   *
    * @BeforeSuite
    */
   public static function enableFixtureModules(BeforeSuiteScope $scope) {
