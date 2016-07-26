@@ -9,7 +9,10 @@
  * Queue updated items for given collection.
  *
  * @param object $collection
- * @return object
+ *   Collection object.
+ *
+ * @return object|FALSE
+ *   Object containing added, changed, removed.
  */
 function sduconnect_delta_import($collection) {
   $output = FALSE;
@@ -64,9 +67,16 @@ function sduconnect_delta_import($collection) {
  * Retreive added, changed and removed items from API.
  *
  * @param string $collection_type
+ *   Collection type.
  * @param int $collection_id
+ *   Collection ID.
  * @param int $from_date
- * @return stdClass
+ *   Timestamp.
+ *
+ * @return object
+ *   Object containing items by type.
+ *
+ * @throws \Exception
  */
 function sduconnect_delta_download($collection_type, $collection_id, $from_date) {
   $account_id = variable_get('sduconnect_account', '');
@@ -80,7 +90,7 @@ function sduconnect_delta_download($collection_type, $collection_id, $from_date)
   }
   // The callback to get changed items can be slow. Use a timeout of 5 minutes.
   $options = array(
-    'timeout' => 300
+    'timeout' => 300,
   );
   $data = drupal_http_request($url, $options);
   if ($data->code != 200) {
