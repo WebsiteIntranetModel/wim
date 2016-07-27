@@ -7,8 +7,8 @@ html(lang="en")
   head
     include ./layout/_head.jade
   body(class='#{pagetype}')
-      
-    .region.region-page-top
+
+    .meta-wrapper.container.container-nopadding
       include ./layout/_top.jade
 
     .main-wrapper.container
@@ -18,5 +18,7 @@ html(lang="en")
       // Create region for banner and render it here. We moved header to the navbar header section.
         
       include ./layout/_main.jade
+       block content
+       p The base WIM theme, what can be used for making new custom themes.
 
     include ./layout/_scripts.jade

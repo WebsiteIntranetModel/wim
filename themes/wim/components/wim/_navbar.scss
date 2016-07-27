@@ -61,11 +61,11 @@
     }
   }
   &.parent-dropdown {
-    & > a{
+    & > a {
       position: relative;
 
       @media (max-width: $screen-sm-min - 1) {
-        &:after{
+        &:after {
           position: absolute;
           font-family: 'Glyphicons Halflings';
           font-style: normal;
@@ -80,10 +80,10 @@
         }
       }
     }
-    &.expanded{
+    &.expanded {
       @media (max-width: $screen-sm-min - 1) {
-        & > a{
-          &:after{
+        & > a {
+          &:after {
             content: "\e260";
           }
         }
@@ -101,4 +101,20 @@
   color: white;
   background: $link-hover-color;
   @extend %outline;
+}
+
+
+@media (max-width: $screen-sm-min - 1) {
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    line-height: 1.42857;
+    color: white;
+    padding: 10px 20px;
+  }
+  .dropdown-menu > li > a:active,
+  .dropdown-menu > li > a:focus,
+  .navbar-default .navbar-nav > .open > a,
+  .navbar-default .navbar-nav > .open > a:hover,
+  .navbar-default .navbar-nav > .open > a:focus {
+    outline: none;
+  }
 }

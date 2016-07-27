@@ -1,6 +1,7 @@
 .dropdown-menu{
   @media (max-width: $screen-sm-min - 1) {
     position: static;
+    float: none;
   }
 }
 .dropdown-menu > li{
