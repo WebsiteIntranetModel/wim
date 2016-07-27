@@ -6,6 +6,14 @@
  */
 
 /**
+ * Implements hook_install().
+ */
+function sduconnect_install() {
+  $role = user_role_load_by_name('content moderator');
+  user_role_grant_permissions($role->rid, array('view sduconnect info', 'administer sduconnect module'));
+}
+
+/**
  * Implements hook_schema().
  */
 function sduconnect_schema() {
