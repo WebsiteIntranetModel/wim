@@ -1,0 +1,9 @@
+name = SDU Connect
+description = PDC/VAC import from SduConnect
+core = 7.x
+package = WIM
+version = 7.x-1.0
+dependencies[] = atos_esuite
+dependencies[] = ctools
+features[features_api][] = api:2
+project path = profiles/wim/modules/features

@@ -1,0 +1,187 @@
+<?php
+
+/**
+ * @file
+ * Schema definitions.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function sduconnect_install() {
+  $role = user_role_load_by_name('content moderator');
+  user_role_grant_permissions($role->rid, array('view sduconnect info', 'administer sduconnect module'));
+}
+
+/**
+ * Implements hook_schema().
+ */
+function sduconnect_schema() {
+  $schema = array();
+
+  $schema['sduconnect_collection'] = array(
+    'fields' => array(
+      'cid' => array(
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'external_id' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'type' => array(
+        'type' => 'varchar',
+        'length' => 3,
+        'not null' => 255,
+      ),
+      'name' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ),
+      'items' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'updated_till' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'frequency' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'import_private' => array(
+        'type' => 'int',
+        'size' => 'tiny',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+    ),
+    'primary key' => array('cid'),
+  );
+
+  $schema['sduconnect_domain'] = array(
+    'fields' => array(
+      'cid' => array(
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'domain_id' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+    ),
+    'primary key' => array('cid', 'domain_id'),
+  );
+
+  $schema['sduconnect_item'] = array(
+    'fields' => array(
+      'nid' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'description' => 'Node id.',
+      ),
+      'cid' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'description' => 'Collection id.',
+      ),
+      'external_id' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'description' => 'External id from sdu feed.',
+      ),
+      'internal_id' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'description' => 'We need this to hold internal references for entity reference.',
+      ),
+    ),
+    'primary key' => array('nid'),
+  );
+
+  $schema['sduconnect_log'] = array(
+    'fields' => array(
+      'lid' => array(
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'date' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'type' => array(
+        'type' => 'int',
+        'size' => 'tiny',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'cid' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'nid' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+      ),
+      'title' => array(
+        'type' => 'varchar',
+        'length' => 255,
+      ),
+    ),
+    'primary key' => array('lid'),
+  );
+
+  $schema['sduconnect_related'] = array(
+    'fields' => array(
+      'type_a' => array(
+        'type' => 'varchar',
+        'length' => 3,
+        'not null' => TRUE,
+      ),
+      'external_id_a' => array(
+        'type' => 'varchar',
+        'length' => 32,
+        'not null' => TRUE,
+      ),
+      'type_b' => array(
+        'type' => 'varchar',
+        'length' => 3,
+        'not null' => TRUE,
+      ),
+      'external_id_b' => array(
+        'type' => 'varchar',
+        'length' => 32,
+        'not null' => TRUE,
+      ),
+    ),
+    'primary key' => array(
+      'type_a',
+      'external_id_a',
+      'type_b',
+      'external_id_b',
+    ),
+    'indexes' => array(
+      'b' => array('type_b', 'external_id_b'),
+    ),
+  );
+
+  return $schema;
+}

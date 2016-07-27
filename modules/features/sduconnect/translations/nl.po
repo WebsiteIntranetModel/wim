@@ -1,0 +1,309 @@
+# $Id$
+#
+# Dutch translation of Drupal (general)
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+# Generated from files:
+#  sduconnect.delta.inc: n/a
+#  sduconnect.single.inc: n/a
+#  sduconnect.forms.inc: n/a
+#  sduconnect.pages.inc: n/a
+#  sduconnect.module: n/a
+#  sduconnect.info: n/a
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2015-05-07 17:55+0200\n"
+"PO-Revision-Date: 2015-05-07 17:55+0200\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Dutch <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+#: sduconnect.delta.inc:54 sduconnect.single.inc:47
+msgid "Got code %code from %url"
+msgstr ""
+
+#: sduconnect.forms.inc:15
+msgid "SduConnect account id"
+msgstr ""
+
+#: sduconnect.forms.inc:16
+msgid "Only numbers are allowed."
+msgstr ""
+
+#: sduconnect.forms.inc:31
+msgid "This is not a valid account number."
+msgstr ""
+
+#: sduconnect.forms.inc:43 sduconnect.pages.inc:61;140
+msgid "Type"
+msgstr "Type"
+
+#: sduconnect.forms.inc:44
+msgid "PDC"
+msgstr ""
+
+#: sduconnect.forms.inc:44
+msgid "VAC"
+msgstr ""
+
+#: sduconnect.forms.inc:46
+msgid "Must match the type as known in SduConnect"
+msgstr "Moet overeenkomen met het type zoals bekend in SduConnect."
+
+#: sduconnect.forms.inc:52
+msgid "SDU Collection id"
+msgstr ""
+
+#: sduconnect.forms.inc:54
+msgid "SDU collection as known in SduConnect."
+msgstr "SDU collectie zoals bekend in SduConnect."
+
+#: sduconnect.forms.inc:61
+msgid "Name"
+msgstr "Naam"
+
+#: sduconnect.forms.inc:63
+msgid "Used for display in admin interface."
+msgstr "Wordt gebruikt voor de weergave in de beheerinterface."
+
+#: sduconnect.forms.inc:76
+msgid "Publication domains"
+msgstr "Publicatiedomeinen"
+
+#: sduconnect.forms.inc:85 sduconnect.pages.inc:65
+msgid "Frequency"
+msgstr "Frequentie"
+
+#: sduconnect.forms.inc:88
+msgid "Time to wait between imports."
+msgstr "Tijd dat gewacht wordt tussen imports."
+
+#: sduconnect.forms.inc:93
+msgid "Import private fields"
+msgstr "Niet publieke velden importeren"
+
+#: sduconnect.forms.inc:95
+msgid "Should only be used when not publishing to public domains."
+msgstr ""
+"Zou niet gebruikt moeten worden wanneer gepubliceerd wordt naar "
+"openbare domeinen."
+
+#: sduconnect.forms.inc:101
+msgid "Save"
+msgstr "Opslaan"
+
+#: sduconnect.forms.inc:104
+msgid "Cancel"
+msgstr "Annuleren"
+
+#: sduconnect.forms.inc:116
+msgid "This is not a valid collection id."
+msgstr ""
+
+#: sduconnect.forms.inc:135
+msgid "The collection %name has been saved."
+msgstr ""
+
+#: sduconnect.forms.inc:145
+msgid "Are you sure you want to delete the collection %name?"
+msgstr "Weet u zeker dat u de collectie %name wilt verwijderen?"
+
+#: sduconnect.forms.inc:156
+msgid "The collection %name has been deleted."
+msgstr ""
+
+#: sduconnect.forms.inc:168
+msgid "This import was already started within the last 15 minutes. Starting another import may violate the fair-use policy."
+msgstr ""
+"Deze import is al gestart in de afgelopen 15 minuten. Een nieuwe "
+"import starten kan tegenstrijdig zijn met de fair-use policy."
+
+#: sduconnect.forms.inc:171
+msgid "Do you want to start an import for the collection %name?"
+msgstr "Wilt u een import starten voor de collectie %name?"
+
+#: sduconnect.forms.inc:172
+msgid "This will add the import job to the queue. After starting the import, you can watch the number of queued items on the overview page."
+msgstr ""
+"Dit zal de import taak toevoegen aan de wachtrij. Na het starten van "
+"de import kunt u het aantal resterende items in de wachtrij bekijken "
+"op de overzichtspagina."
+
+#: sduconnect.forms.inc:185
+msgid "Import is started. Items are queued and processed in cron. Please look at the overview page to see the number of remaining items in the queue."
+msgstr ""
+"Import is gestart. Items worden in een achtergrondproces verwerkt. "
+"Kijk op de overzichtspagina voor het aantal resterende items in de "
+"wachtrij."
+
+#: sduconnect.forms.inc:186
+msgid "There were @added items added, @changed changed and @removed removed."
+msgstr ""
+"Er zijn @added items toegevoegd, @changed aangepast en @removed "
+"verwijderd."
+
+#: sduconnect.forms.inc:193
+msgid "There was an error retreiving the list of updated items."
+msgstr ""
+
+#: sduconnect.pages.inc:19
+msgid "There are currently <strong>@count item(s)</strong> in the queue."
+msgstr "Er staan momenteel <strong>@count item(s)</strong> in de wachtrij."
+
+#: sduconnect.pages.inc:32
+msgid "never ran"
+msgstr ""
+
+#: sduconnect.pages.inc:40
+msgid "Edit"
+msgstr "Bewerken"
+
+#: sduconnect.pages.inc:44 sduconnect.module:75
+msgid "Start import"
+msgstr ""
+
+#: sduconnect.pages.inc:48
+msgid "Delete"
+msgstr "Verwijderen"
+
+#: sduconnect.pages.inc:62
+msgid "Title"
+msgstr "Titel"
+
+#: sduconnect.pages.inc:63
+msgid "Updated till"
+msgstr "Bijgewerkt tot"
+
+#: sduconnect.pages.inc:64
+msgid "Items"
+msgstr "Items"
+
+#: sduconnect.pages.inc:66;142
+msgid "Actions"
+msgstr "Acties"
+
+#: sduconnect.pages.inc:68
+msgid "There are no collections created yet."
+msgstr ""
+
+#: sduconnect.pages.inc:83
+msgid "Log entries will be deleted after @interval."
+msgstr "Logberichten worden verwijderd na @interval."
+
+#: sduconnect.pages.inc:89
+msgid "API unreachable"
+msgstr ""
+
+#: sduconnect.pages.inc:90
+msgid "New"
+msgstr "Nieuwe"
+
+#: sduconnect.pages.inc:91
+msgid "New (not found)"
+msgstr ""
+
+#: sduconnect.pages.inc:92
+msgid "Updated"
+msgstr "Bijgewerkt"
+
+#: sduconnect.pages.inc:93
+msgid "Updated (not found)"
+msgstr ""
+
+#: sduconnect.pages.inc:94
+msgid "Deleted"
+msgstr "Verwijderd"
+
+#: sduconnect.pages.inc:95
+msgid "Deleted (not found)"
+msgstr ""
+
+#: sduconnect.pages.inc:112
+msgid "View node"
+msgstr "Node bekijken"
+
+#: sduconnect.pages.inc:116
+msgid "View XML"
+msgstr "XML bekijken"
+
+#: sduconnect.pages.inc:139
+msgid "Date"
+msgstr "Datum"
+
+#: sduconnect.pages.inc:141
+msgid "Message"
+msgstr "Bericht"
+
+#: sduconnect.pages.inc:144
+msgid "No log messages found."
+msgstr ""
+
+#: sduconnect.single.inc:26
+msgid "Item %id is listed as removed, but was not found in Drupal."
+msgstr ""
+
+#: sduconnect.single.inc:40
+msgid "Processed item %id: %title"
+msgstr ""
+
+#: sduconnect.module:14
+msgid "Administer SduConnect module"
+msgstr ""
+
+#: sduconnect.module:15
+msgid "Change configuration and manage collections."
+msgstr ""
+
+#: sduconnect.module:18
+msgid "View SduConnect information"
+msgstr ""
+
+#: sduconnect.module:19
+msgid "View statistics and start manual imports."
+msgstr ""
+
+#: sduconnect.module:31 sduconnect.info:0
+msgid "SduConnect"
+msgstr ""
+
+#: sduconnect.module:32
+msgid "Manage SduConnect PDC/VAC import"
+msgstr ""
+
+#: sduconnect.module:40
+msgid "Collections"
+msgstr "Collecties"
+
+#: sduconnect.module:48
+msgid "Add collection"
+msgstr "Collectie toevoegen"
+
+#: sduconnect.module:57
+msgid "Edit collection"
+msgstr "Collectie bewerken"
+
+#: sduconnect.module:66
+msgid "Delete collection"
+msgstr ""
+
+#: sduconnect.module:84
+msgid "Log"
+msgstr ""
+
+#: sduconnect.module:92
+msgid "Settings"
+msgstr "Instellingen"
+
+#: sduconnect.module:101
+msgid "SduConnect XML"
+msgstr ""
+
+#: sduconnect.info:0
+msgid "PDC/VAC import from SduConnect"
+msgstr ""
+
