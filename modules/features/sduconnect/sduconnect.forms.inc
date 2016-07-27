@@ -41,8 +41,8 @@ function sduconnect_collection_form($form, &$form_state, $collection = NULL) {
   $form['type'] = array(
     '#type' => 'radios',
     '#title' => t('Type'),
-    '#options' => array('pdc' => t('PDC'), 'vac' => t('VAC')),
-    '#default_value' => $collection ? $collection->type : 'pdc',
+    '#options' => array(SDUCONNECT_PRODUCT => t('PDC'), SDUCONNECT_FAQ => t('VAC')),
+    '#default_value' => $collection ? $collection->type : SDUCONNECT_PRODUCT,
     '#description' => t('Must match the type as known in SduConnect'),
     '#required' => TRUE,
   );

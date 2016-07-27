@@ -9,10 +9,13 @@
  * Import single item.
  *
  * @param object $collection
+ *   Collection object.
  * @param string $id
+ *   Item external id.
  * @param string $type
+ *   Type [added, changed, removed].
  */
-function sduconnect_single_import($collection, $id, $type, $queue_references = TRUE) {
+function sduconnect_single_import($collection, $id, $type) {
   module_load_include('inc', 'sduconnect', 'sduconnect.content');
   $nid = 0;
   $not_found = FALSE;
@@ -31,44 +34,38 @@ function sduconnect_single_import($collection, $id, $type, $queue_references = T
     }
     else {
       $content = sduconnect_single_download($collection->type, $collection->external_id, $id);
-      $references_function = "sduconnect_get_{$collection->type}_references";
-      $references = $references_function($content);
-      sduconnect_save_references($collection->type, $id, $references);
-      // Wait 25ms for database lag.
-      usleep(25000);
-      $content_function = "sduconnect_set_{$collection->type}_content";
-      $references = sduconnect_get_references($collection->type, $id);
-      $content_function($content, $node, (bool) $collection->import_private, $references);
-      sduconnect_set_domains($collection, $node);
-      sduconnect_save_node($collection, $id, $node);
 
-      // Queue references.
-      if ($queue_references) {
-        $references = sduconnect_get_referenced_by($collection->type, $id);
-        sduconnect_queue_referenced_items($references);
+      $content_function = "sduconnect_set_{$collection->type}_content";
+      $content_function($content, $node, (bool) $collection->import_private);
+      if (module_exists('domains')) {
+        sduconnect_set_domains($collection, $node);
       }
+      sduconnect_save_node($collection, $id, $node);
     }
+
     $nid = $node->nid;
-    $log = t('Processed item %id: %title', array(
-      '%id' => $id,
+    $log = t('Processed item !id: %title', array(
+      '!id' => $id,
       '%title' => $node->title,
     ));
-  } catch (Exception $e) {
+  }
+  catch (Exception $e) {
     if ($e->getCode() == 404) {
       $not_found = TRUE;
     }
     if ($e->getCode()) {
-      $log = t('Got code %code when importing %type %id from %url', array(
-        '%code' => $e->getCode(),
-        '%type' => $type,
-        '%id' => $id,
-        '%url' => $e->getMessage(),
+      $log = t('Got code !code when importing !type !id from !url', array(
+        '!code' => $e->getCode(),
+        '!type' => $type,
+        '!id' => $id,
+        '!url' => $e->getMessage(),
       ));
     }
     else {
       $log = $e->getMessage();
     }
   }
+  // @todo move logger into separated function.
   $type_codes = array(
     'added' => 2,
     'changed' => 4,
@@ -89,100 +86,26 @@ function sduconnect_single_import($collection, $id, $type, $queue_references = T
 }
 
 /**
- * Save references to database.
- *
- * @param string $type
- * @param string $external_id
- * @param array $references
- */
-function sduconnect_save_references($type, $external_id, $references) {
-  db_delete('sduconnect_related')
-    ->condition('type_a', $type)
-    ->condition('external_id_a', $external_id)
-    ->execute();
-  foreach ($references as $reference) {
-    db_insert('sduconnect_related')->fields(array(
-      'type_a' => $type,
-      'external_id_a' => $external_id,
-      'type_b' => $reference->type,
-      'external_id_b' => $reference->id,
-    ))->execute();
-  }
-}
-
-/**
- * Get references for item.
- *
- * @param string $type
- * @param string $external_id
- */
-function sduconnect_get_references($type, $external_id) {
-  $sql = 'SELECT c.cid, i.external_id, c.type, i.nid, n.title
-  FROM sduconnect_related r
-  JOIN sduconnect_item i ON r.external_id_b = i.external_id
-  JOIN sduconnect_collection c ON r.type_b = c.type AND i.cid = c.cid
-  JOIN node n ON i.nid = n.nid
-  WHERE r.type_a = :type AND r.external_id_a = :external_id';
-  return db_query($sql, array(
-    ':type' => $type,
-    ':external_id' => $external_id,
-  ))->fetchAll();
-}
-
-/**
- * Get items refererencing this item.
- *
- * @param string $type
- * @param string $external_id
- */
-function sduconnect_get_referenced_by($type, $external_id) {
-  $sql = 'SELECT c.cid, i.external_id, c.type, i.nid, n.title
-  FROM sduconnect_related r
-  JOIN sduconnect_item i ON r.external_id_a = i.external_id
-  JOIN sduconnect_collection c ON r.type_a = c.type AND i.cid = c.cid
-  JOIN node n ON i.nid = n.nid
-  WHERE r.type_b = :type AND r.external_id_b = :external_id';
-  return db_query($sql, array(
-    ':type' => $type,
-    ':external_id' => $external_id,
-  ))->fetchAll();
-}
-
-/**
- * Add referenced items to queue.
- *
- * VAC's have references to products, which should be displayed on the product
- * page. Therefore, when a reference is found on a VAC, the product must be
- * updated to add the reference.
- *
- * @param array $references
- */
-function sduconnect_queue_referenced_items($references) {
-  $queue = DrupalQueue::get('sduconnect');
-  foreach ($references as $item) {
-    $job = new stdClass();
-    $job->cid = $item->cid;
-    $job->id = $item->external_id;
-    $job->type = 'changed';
-    $job->queue_references = FALSE;
-    $queue->createItem($job);
-  }
-}
-
-/**
  * Retreive single item from API.
  *
  * @param string $collection_type
+ *   Collection type.
  * @param int $collection_id
+ *   Collection ID.
  * @param string $id
- * @return stdClass
+ *   External item ID.
+ *
+ * @return object
+ *   xPath object.
+ *
+ * @throws \Exception
  */
 function sduconnect_single_download($collection_type, $collection_id, $id) {
   $account_id = variable_get('sduconnect_account', '');
   $url = "https://rest.sduconnect.nl/single/$collection_type/2.0/account/$account_id/collectie/$collection_id/item/$id.xml";
   $data = drupal_http_request($url);
   if ($data->code != 200) {
-    throw new Exception($url, intval($data->code));
+    throw new Exception($url, (int) $data->code);
   }
   $dom = new DOMDocument();
   $dom->preserveWhiteSpace = FALSE;
@@ -192,6 +115,7 @@ function sduconnect_single_download($collection_type, $collection_id, $id) {
     $code = $xpath->query('//response/error/code')->item(0)->nodeValue;
     throw new Exception($url, (int) $code);
   }
+
   return $xpath;
 }
 
@@ -199,7 +123,12 @@ function sduconnect_single_download($collection_type, $collection_id, $id) {
  * Load node from collection.
  *
  * @param object $collection
+ *   Collection object.
  * @param string $id
+ *   External id.
+ *
+ * @return object
+ *   A loaded node object or new one.
  */
 function sduconnect_load_node($collection, $id) {
   $nid = db_select('sduconnect_item', 'i')
@@ -224,8 +153,11 @@ function sduconnect_load_node($collection, $id) {
  * Save node.
  *
  * @param object $collection
+ *   Collection object.
  * @param string $id
+ *   External item ID.
  * @param object $node
+ *   Node.
  */
 function sduconnect_save_node($collection, $id, $node) {
   $new = empty($node->nid);
@@ -236,6 +168,7 @@ function sduconnect_save_node($collection, $id, $node) {
       'nid' => $node->nid,
       'cid' => $collection->cid,
       'external_id' => $id,
+      'internal_id' => $collection->type . '-' . $id,
     ))->execute();
     db_update('sduconnect_collection')
       ->expression('items', 'items + 1')
@@ -248,7 +181,9 @@ function sduconnect_save_node($collection, $id, $node) {
  * Set publication domains.
  *
  * @param object $collection
+ *   Collection object.
  * @param object $node
+ *   Node object.
  */
 function sduconnect_set_domains($collection, $node) {
   if (module_exists('domain')) {

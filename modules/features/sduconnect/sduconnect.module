@@ -267,7 +267,7 @@ function sduconnect_collection_delete($cid) {
 function sduconnect_get_nid_by_id($id) {
   $q = db_select('sduconnect_item', 's')
     ->fields('s', array('internal_id', 'nid'))
-    ->condition('s.external_id', $id);
+    ->condition('s.internal_id', $id);
   $result = $q->execute()->fetch();
   if ($result) {
     return $result->identifier;
