@@ -26,7 +26,6 @@ Feature: Edit basic page
     And I click "TITLE-TWO" in the "TITLE-TWO" row
     And I should see "30 June 2016"
     And I should see "BODY-CONTENT2"
-    And I should see "BSCPGTEST"
     And I should not see "TITLE-ONE"
     And I should not see "BODY-CONTENT1"
     And I should not see "27 June 2026"

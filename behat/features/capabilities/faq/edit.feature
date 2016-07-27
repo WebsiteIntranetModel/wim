@@ -24,8 +24,6 @@ Feature: Edit FAQ
     And I should see the heading "Question 1 Edited"
     And I should see "ANSWER 1 Edited"
     And I should see "ADDITIONAL INFO 1 Edited"
-    And I should see "Tag3"
     And I should not see the heading "Question 1"
-    And I should not see "Tag2"
     And I should not see "Answer for 1 Question"
     And I should not see "Some addition information for Question 1"
