@@ -190,6 +190,11 @@ function sduconnect_collection_import_form($form, &$form_state, $collection) {
 function sduconnect_collection_import_form_submit($form, &$form_state) {
   $collection = $form['#collection'];
 
+  if (variable_get('sduconnect_account', '') === '') {
+    drupal_set_message(t('SDU Connect account is not set.'), 'error');
+    $form_state['redirect'] = 'admin/config/content/sduconnect/settings';
+  }
+
   module_load_include('inc', 'sduconnect', 'sduconnect.delta');
   $stats = sduconnect_delta_import($collection);
   if ($stats) {
