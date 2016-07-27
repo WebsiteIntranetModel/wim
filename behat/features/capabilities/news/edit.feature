@@ -28,8 +28,6 @@ Feature: Edit News
     And I click "NEWS TITLE2" in the "NEWS TITLE2" row
     And I should see "NEWS TITLE2"
     And I should see "BODY-CONTENT2"
-    And I should see "Tag2"
     And I should not see "NEWS TITLE1"
-    And I should not see "Tag1"
     And I should not see "BODY-CONTENT1"
     And I should not see "27 June 2026"

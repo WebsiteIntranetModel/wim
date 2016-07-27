@@ -24,7 +24,6 @@ Feature: Create News
     And I should see the heading "TEST NEWS"
     And I should see "BODY CONTENT"
     And I should see "30 June 2016"
-    And I should see "Tag1"
     And I should see an ".field-name-field-image img" element
     And I should see "pdf-file.pdf"
 
