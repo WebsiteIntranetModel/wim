@@ -27,15 +27,15 @@ Feature: Check Atos E-Suite fields
       | Particulars | Particulars Content |
       | Period      | Period Content      |
       | Conditions  | Conditions Content  |
-    And I select "Question 1" from "Related FAQ items"
-    And I select "Product 1" from "Related Product items"
+    And I fill in "Question 1" for "Related FAQ items"
+    And I fill in "Product 1" for "Related Product items"
     And I press "Save"
     Then I should see the success message "Product TEST ATOS ESUITE PRODUCT has been created."
-    And I should see the link "Related Law"
     And I should see the link "Related Law"
     And I should see the link "Form Link"
     And I should see the link "More info Link"
     And I should see the link "Question 1"
+    And I should not see the link "Product 1"
     And I should see "Request Content"
     And I should see "Contact Content"
     And I should see "Objection Content"
