@@ -6,10 +6,12 @@ defaults[projects][subdir] = contrib
 
 ; Contrib
 projects[admin_menu] = 3.0-rc5
+projects[context] = 3.7
 projects[ctools] = 1.9
 projects[date] = 2.9
 projects[entity] = 1.7
 projects[features] = 2.10
+projects[felix] = 1.0-beta8
 projects[field_group] = 1.5
 projects[entity] = 1.7
 projects[entityreference] = 1.1

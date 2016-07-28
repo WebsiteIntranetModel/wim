@@ -103,6 +103,11 @@ function wim_fixtures_migrate_api() {
           'WIM_User',
         ),
       ),
+      'WIM_BlockCustom' => array(
+        'class_name' => 'BlockCustomMigration',
+        'group_name' => 'WIMMigrate',
+        'file_name' => 'block-custom.csv',
+      ),
     ),
   );
 

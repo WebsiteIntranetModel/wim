@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the WIM Block Management feature.
+ */
+
+include_once 'wim_block_management.features.inc';
