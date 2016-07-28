@@ -32,6 +32,18 @@ function sduconnect_set_pdc_content(DOMXPath $xpath, &$node, $private = FALSE) {
   $node->title = (string) $xpath->query('//m:page/m:product/m:name')
     ->item(0)->nodeValue;
 
+  // Created.
+  $created = strtotime(sduconnect_nodelist_to_string($xpath->query('//m:page/m:product/m:created')));
+  if ($created > 0) {
+    $node->created = $created;
+  }
+
+  // Changed.
+  $changed = strtotime(sduconnect_nodelist_to_string($xpath->query('//m:page/m:product/m:updated')));
+  if ($changed > 0) {
+    $node->changed = $changed;
+  }
+
   // Body.
   $body = '';
   // Let op.
@@ -183,6 +195,11 @@ function sduconnect_set_pdc_content(DOMXPath $xpath, &$node, $private = FALSE) {
     '//m:page/m:product/m:procedure' => 'field_product_particulars',
     '//m:page/m:product/m:period' => 'field_product_period',
     '//m:page/m:product/m:conditions' => 'field_product_conditions',
+    // @codingStandardsIgnoreStart
+    // '//m:page/m:product/m:subsidies' => 'field_product_subsidies',
+    // '//m:page/m:product/m:subsidies_budget' => 'field_product_subsidies_budget',
+    // '//m:page/m:product/m:subsidies_maximale_bijdrage' => 'field_product_subsidies_maximale_bijdrage',
+    // @codingStandardsIgnoreEnd
   );
 
   // Here we set mapped fields.
@@ -218,30 +235,6 @@ function sduconnect_set_pdc_content(DOMXPath $xpath, &$node, $private = FALSE) {
         ),
       ),
     );
-  }
-
-  // Indien periode.
-  $field = $xpath->query('//m:page/m:product/m:subsidies');
-  if ($field->length) {
-    if (drupal_strlen((string) $field->item(0)->nodeValue)) {
-      $body_parts['Indien periode'] = $content_labels['Indien periode'] . $field->item(0)->nodeValue;
-    }
-  }
-
-  // Beschikbaar budget.
-  $field = $xpath->query('//m:page/m:product/m:subsidies_budget');
-  if ($field->length) {
-    if (drupal_strlen((string) $field->item(0)->nodeValue)) {
-      $body_parts['Beschikbaar budget'] = $content_labels['Beschikbaar budget'] . $field->item(0)->nodeValue;
-    }
-  }
-
-  // Maximale bijdrage.
-  $field = $xpath->query('//m:page/m:product/m:subsidies_maximale_bijdrage');
-  if ($field->length) {
-    if (drupal_strlen((string) $field->item(0)->nodeValue)) {
-      $body_parts['Maximale bijdrage'] = $content_labels['Maximale bijdrage'] . $field->item(0)->nodeValue;
-    }
   }
 
   // Tags.
@@ -288,10 +281,20 @@ function sduconnect_set_pdc_content(DOMXPath $xpath, &$node, $private = FALSE) {
   }
   // $node->field_date = array(LANGUAGE_NONE => $items); // @codingStandardsIgnoreLine
 
-  // Group body_parts into tabs.
-  $tabs = array();
+  // Publication date.
+  $date[] = array(
+    'value' => date('Y-m-d H:i:s', $created),
+    'value2' => '',
+    'timezone' => variable_get('date_default_timezone'),
+    'timezone_db' => 'UTC',
+    'date_type' => 'datetime',
+  );
+  $node->field_publication_date = array(LANGUAGE_NONE => $date);
+
   // @codingStandardsIgnoreStart
   /*
+  // Group body_parts into tabs. @todo remove this after tabs will be solved.
+  $tabs = array();
   foreach ($content_structure as $tab_title => $parts) {
     $tabs[$tab_title] = '';
     foreach($parts as $part_name) {
@@ -357,6 +360,14 @@ function sduconnect_set_vac_content($xpath, &$node, $private = FALSE) {
       ),
     ),
   );
+
+  // Created.
+  $created = sduconnect_nodelist_to_string($xpath->query('//vac:vacs/vac:vac/vac:meta/vac:owmsmantel/dcterms:available/start'));
+  $node->created = strtotime($created);
+
+  // Changed.
+  $changed = sduconnect_nodelist_to_string($xpath->query('//vac:vacs/vac:vac/vac:meta/vac:owmskern/dcterms:modified'));
+  $node->changed = strtotime($changed);
 
   // Explanation.
   $value = sduconnect_nodelist_to_string($xpath->query('//vac:vacs/vac:vac/vac:body/vac:kanaal/vac:toelichting'));
