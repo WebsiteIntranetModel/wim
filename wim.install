@@ -86,6 +86,7 @@ function _wim_set_up_roles_and_permissions() {
     'access content overview',
     'administer blocks',
     'administer menu',
+    'manage felix blocks',
     // Node access.
     'create news content',
     'create page content',
