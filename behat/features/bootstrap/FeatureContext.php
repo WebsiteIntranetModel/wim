@@ -10,6 +10,7 @@ use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\Testwork\Hook\Scope\BeforeSuiteScope;
 use Behat\Testwork\Hook\Scope\AfterSuiteScope;
 use Behat\Mink\Exception\ElementNotFoundException;
+use Behat\Mink\WebAssert;
 
 /**
  * Defines application features from the specific context.
@@ -267,6 +268,50 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
       throw new \Exception(sprintf('Link "%s" is not found in the "%s" region on the page %s.', $link, $region, $session->getCurrentUrl()));
     }
     $link_element->mouseOver();
+  }
+
+  /**
+   * I mouseover the (element) element.
+   *
+   * @param string $element_selector
+   *   The element selector.
+   *
+   * @throws \Exception
+   *
+   * @Given /^I mouseover the "(?P<element>[^"]*)" element$/
+   */
+  public function iMouseOverTheElement($element_selector) {
+    $web = new WebAssert($this->getSession());
+    $element = $web->elementExists('css', $element_selector);
+    $session = $this->getSession();
+
+    if (NULL === $element) {
+      throw new \Exception(sprintf('Element "%s" is not found on the page %s', $element_selector, $session->getCurrentUrl()));
+    }
+
+    $element->mouseOver();
+  }
+
+  /**
+   * I click the (element) element.
+   *
+   * @param string $element_selector
+   *   The element selector.
+   *
+   * @throws \Exception
+   *
+   * @Given /^I click the "(?P<element>[^"]*)" element$/
+   */
+  public function iClickTheElement($element_selector) {
+    $web = new WebAssert($this->getSession());
+    $element = $web->elementExists('css', $element_selector);
+    $session = $this->getSession();
+
+    if (NULL === $element) {
+      throw new \Exception(sprintf('Element "%s" is not found on the page %s', $element_selector, $session->getCurrentUrl()));
+    }
+
+    $element->click();
   }
 
 }
