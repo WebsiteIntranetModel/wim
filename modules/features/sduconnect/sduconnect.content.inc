@@ -220,43 +220,6 @@ function sduconnect_set_pdc_content(DOMXPath $xpath, &$node, $private = FALSE) {
     );
   }
 
-  // Location.
-  $locations = array();
-  $name = sduconnect_nodelist_to_array($xpath->query('//m:page/m:product/m:uitvoerende_instanties/m:instantie/m:naam'));
-  // Postal address fields.
-  $street = sduconnect_nodelist_to_array($xpath->query('//m:page/m:product/m:uitvoerende_instanties/m:instantie/m:p_straat'));
-  $number = sduconnect_nodelist_to_array($xpath->query('//m:page/m:product/m:uitvoerende_instanties/m:instantie/m:p_nummer'));
-  $postal_code = sduconnect_nodelist_to_array($xpath->query('//m:page/m:product/m:uitvoerende_instanties/m:instantie/m:p_postcode'));
-  $po_box = sduconnect_nodelist_to_array($xpath->query('//m:page/m:product/m:uitvoerende_instanties/m:instantie/m:p_po_box'));
-  $city = sduconnect_nodelist_to_array($xpath->query('//m:page/m:product/m:uitvoerende_instanties/m:instantie/m:p_woonplaats'));
-  // Visiting address fields.
-  $street_b = sduconnect_nodelist_to_array($xpath->query('//m:page/m:product/m:uitvoerende_instanties/m:instantie/m:b_straat'));
-  $number_b = sduconnect_nodelist_to_array($xpath->query('//m:page/m:product/m:uitvoerende_instanties/m:instantie/m:b_nummer'));
-  $postal_code_b = sduconnect_nodelist_to_array($xpath->query('//m:page/m:product/m:uitvoerende_instanties/m:instantie/m:b_pcode'));
-  $city_b = sduconnect_nodelist_to_array($xpath->query('//m:page/m:product/m:uitvoerende_instanties/m:instantie/m:b_stad'));
-  for ($i = 0; $i < count($name); ++$i) {
-    $location = array();
-    if ($name[$i]) {
-      $location[] = $name[$i];
-    }
-    $visiting = empty($city[$i]);
-    if ($visiting) {
-      $location[] = $street_b[$i] ? trim($street_b[$i] . ' ' . $number_b[$i]) : '';
-      $location[] = $postal_code_b[$i] . ' ' . $city_b[$i];
-    }
-    else {
-      // PO Box often only contains a number in SDU.
-      // Avoid a duplicate "Postbus " string in other cases.
-      $po_box[$i] = preg_replace('/^postbus */i', '', $po_box[$i]);
-      $location[] = $street[$i] ? trim($street[$i] . ' ' . $number[$i]) : ($po_box[$i] ? 'Postbus ' . $po_box[$i] : '');
-      $location[] = $postal_code[$i] . ' ' . $city[$i];
-    }
-    $locations[] = '<p>' . implode('<br/>', array_map('check_plain', $location)) . '</p>';
-  }
-  if ($locations) {
-    $body_parts['Locatie'] = $content_labels['Locatie'] . implode($locations);
-  }
-
   // Indien periode.
   $field = $xpath->query('//m:page/m:product/m:subsidies');
   if ($field->length) {
@@ -412,44 +375,6 @@ function sduconnect_set_vac_content($xpath, &$node, $private = FALSE) {
   $tags = array_unique(array_merge($a, $b));
   $items = sduconnect_tags($tags);
   $node->field_tags = array(LANGUAGE_NONE => $items);
-
-  // Location.
-  $locations = array();
-  $name = sduconnect_nodelist_to_string($xpath->query('//vac:vacs/vac:vac/vac:body/vac:kanaal/vac:antwoord/vac:antwoordAdres/vac:instantie/vac:naam'));
-  $street = sduconnect_nodelist_to_string($xpath->query('//vac:vacs/vac:vac/vac:body/vac:kanaal/vac:antwoord/vac:antwoordAdres/vac:instantie/vac:p_straat'));
-  $number = sduconnect_nodelist_to_string($xpath->query('//vac:vacs/vac:vac/vac:body/vac:kanaal/vac:antwoord/vac:antwoordAdres/vac:instantie/vac:p_nummer'));
-  $postal_code = sduconnect_nodelist_to_string($xpath->query('//vac:vacs/vac:vac/vac:body/vac:kanaal/vac:antwoord/vac:antwoordAdres/vac:instantie/vac:p_postcode'));
-  $po_box = sduconnect_nodelist_to_string($xpath->query('//vac:vacs/vac:vac/vac:body/vac:kanaal/vac:antwoord/vac:antwoordAdres/vac:instantie/vac:p_po_box'));
-  $city = sduconnect_nodelist_to_string($xpath->query('//vac:vacs/vac:vac/vac:body/vac:kanaal/vac:antwoord/vac:antwoordAdres/vac:instantie/vac:p_woonplaats'));
-
-  if ($street) {
-    $street = trim("$street $number");
-  }
-  else {
-    $street = $po_box ? "Postbus $po_box" : '';
-  }
-
-  $location = array(
-    'lid' => NULL,
-    'name' => $name,
-    'street' => $street,
-    'additional' => '',
-    'city' => $city,
-    'province' => NULL,
-    'postal_code' => $postal_code,
-    'country' => NULL,
-    'latitude' => NULL,
-    'longitude' => NULL,
-    'source' => NULL,
-    'inhibit_geocode' => TRUE,
-  );
-  $settings = variable_get('location_settings_node_vac', array());
-  $location['location_settings'] = $settings;
-  if ($location['street']) {
-    location_save($location);
-    $locations[] = $location;
-  }
-  $node->field_location = array(LANGUAGE_NONE => $locations);
 
   // More information.
   $names = sduconnect_nodelist_to_array($xpath->query('//vac:vacs/vac:vac/vac:body/vac:kanaal/vac:verwijzingOverigeInfo'));
