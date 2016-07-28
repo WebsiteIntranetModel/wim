@@ -37,7 +37,13 @@ class EntityReferenceFieldBehaviorAtos extends EntityReference_BehaviorHandler_A
   public function load($entity_type, $entities, $field, $instances, $langcode, &$items) {
     foreach ($entities as $entity) {
       foreach ($items[$entity->nid] as $key => $item) {
-        $items[$entity->nid][$key]['target_id'] = atos_esuite_get_nid_by_id($item['target_id']);
+        // Skip db call if item is not from atos_esuite.
+        if (strpos($item['target_id'], 'product') !== FALSE || strpos($item['target_id'], 'faq') !== FALSE) {
+          $items[$entity->nid][$key]['target_id'] = atos_esuite_get_nid_by_id($item['target_id']);
+        }
+        else {
+          $items[$entity->nid][$key]['target_id'] = $item['target_id'];
+        }
       }
     }
   }
