@@ -419,6 +419,11 @@ function sduconnect_set_vac_content($xpath, &$node, $private = FALSE) {
       $node->field_related_faq[LANGUAGE_NONE][] = array('target_id' => SDUCONNECT_FAQ . '-' . trim($item));
     }
   }
+
+  // This should be disabled for new items.
+  if (!isset($node->nid)) {
+    $node->field_show_on_overview[LANGUAGE_NONE][] = array('value' => 0);
+  }
 }
 
 /**
