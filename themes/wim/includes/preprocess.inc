@@ -37,6 +37,8 @@ function wim_preprocess_node(&$variables) {
  *
  * See template for list of available variables.
  *
+ * Calculate felix blocks placement.
+ *
  * @see region.tpl.php
  *
  * @ingroup theme_preprocess
@@ -56,21 +58,35 @@ function wim_preprocess_region(&$variables) {
     $total_col = 0;
     $rows = array();
     $row_id = 0;
+    $same_row = FALSE;
     foreach (element_children($variables['elements']) as $element_id) {
       $block = $variables['elements'][$element_id]['#block'];
 
+      // Place element in a new  row.
       if ($block->new_row) {
         $row_id++;
         $rows[$row_id][] = $variables['elements'][$element_id]['#children'];
         $total_col = 0;
+        // Next element can't be placed in the same row with current.
+        $same_row = FALSE;
       }
       else {
         $total_col += $block->bootstrap_layout;
-        if ($total_col > WIM_BOOTSTRAP_FULL_WIDTH) {
+        if ($total_col > WIM_BLOCK_MANAGEMENT_BOOTSTRAP_FULL_WIDTH) {
           $total_col = $block->bootstrap_layout;
           $row_id++;
+          $rows[$row_id][] = $variables['elements'][$element_id]['#children'];
+          // Next element can be placed in the same row with current.
+          $same_row = TRUE;
         }
-        $rows[$row_id][] = $variables['elements'][$element_id]['#children'];
+        // Add elements together in the same row.
+        else {
+          if (!$same_row) {
+            $row_id++;
+            $same_row = TRUE;
+          }
+          $rows[$row_id][] = $variables['elements'][$element_id]['#children'];
+        }
       }
     }
 
@@ -93,8 +109,9 @@ function wim_preprocess_region(&$variables) {
  */
 function wim_preprocess_block(&$variables) {
   $block = &$variables['block'];
+  // Be default we show all blocks in a new row.
   $block->new_row = TRUE;
-  $block->bootstrap_layout = WIM_BOOTSTRAP_FULL_WIDTH;
+  $block->bootstrap_layout = WIM_BLOCK_MANAGEMENT_BOOTSTRAP_FULL_WIDTH;
 
   // If block in the Felix region add corresponding classes.
   if (isset($block->felix_region)) {
