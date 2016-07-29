@@ -7,6 +7,8 @@
 include_once 'wim_block_management.features.inc';
 include_once 'wim_block_management.functions.inc';
 
+define('WIM_BOOTSTRAP_FULL_WIDTH', 12);
+
 /**
  * Implements hook_form_BASE_FORM_ID_alter().
  */

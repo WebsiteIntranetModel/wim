@@ -12,7 +12,7 @@
  */
 function _wim_block_management_get_columns_options() {
   return array(
-    '12' => t('Full-width'),
+    WIM_BOOTSTRAP_FULL_WIDTH => t('Full-width'),
     '8' => t('2/3 of page'),
     '6' => t('1/2 of page'),
     '4' => t('1/3 of page'),
