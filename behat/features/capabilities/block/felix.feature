@@ -47,7 +47,7 @@ Feature: Add blocks via Felix
     Then I click "Test block 1"
     And I fill in "Subject" with "Felix test block"
     When I press the "Save" button
-    Then I should see the success message "Succesfully added a new block to the region Primary."
+    Then I should see the success message "Succesfully added a new block to the region Sidebar First."
     And I should see "Felix test block" in the "Sidebar first"
     When I mouseover the ".region-sidebar-first .block-block h2" element
     Then I click the ".region-sidebar-first .block-block a.contextual-links-trigger" element
