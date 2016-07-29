@@ -18,7 +18,7 @@ use Behat\Mink\WebAssert;
  */
 class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext {
 
-  /** @var Drupal\DrupalExtension\Context\MinkContext */
+  // @var Drupal\DrupalExtension\Context\MinkContext
   private $minkContext;
 
   /**
@@ -70,6 +70,8 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
   }
 
   /**
+   * This will add mink context before scenario.
+   *
    * @BeforeScenario
    */
   public function gatherContexts(BeforeScenarioScope $scope) {
@@ -116,13 +118,15 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
    */
   protected static function runMigration($machine_name) {
     $migration = Migration::getInstance($machine_name);
-    $dependencies = $migration->getHardDependencies();
-    if ($dependencies) {
-      foreach ($dependencies as $name) {
-        self::runMigration($name);
+    if ($migration) {
+      $dependencies = $migration->getHardDependencies();
+      if ($dependencies) {
+        foreach ($dependencies as $name) {
+          self::runMigration($name);
+        }
       }
+      $migration->processImport();
     }
-    $migration->processImport();
   }
 
   /**
@@ -137,7 +141,9 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
     $dependencies = array();
     foreach ($machine_names as $machine_name) {
       $migration = Migration::getInstance($machine_name);
-      $dependencies += $migration->getDependencies();
+      if ($migration) {
+        $dependencies += $migration->getDependencies();
+      }
     }
 
     foreach ($dependencies as $dependency) {
@@ -286,6 +292,17 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
   }
 
   /**
+   * I fill in autocomplete "field" with "text" and click "text".
+   *
+   * @param string $autocomplete
+   *    Title for field.
+   * @param string $text
+   *    Entered text.
+   * @param string $popup
+   *    Text in popup list.
+   *
+   * @throws \Exception
+   *
    * @When I fill in the autocomplete :autocomplete with :text and click :popup
    */
   public function fillInDrupalAutocomplete($autocomplete, $text, $popup) {
@@ -301,23 +318,31 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
     sleep(1);
     $this->minkContext->iWaitForAjaxToFinish();
 
-    // For wim theme there is a class
-    $web = new WebAssert($this->getSession());
-    $element_selector = '.dropdown-menu';
-    $autocomplete = $web->elementExists('css', $element_selector);
+    // We need the id for filed where to search for dropdown list.
+    $parent = $el->getParent()->getParent()->getParent();
 
-    if (empty($autocomplete)) {
-      throw new ElementNotFoundException(t('Could not find the autocomplete popup box'), $this->getSession());
+    $parent_id = $parent->getAttribute('id');
+    if (NULL === $parent_id) {
+      throw new \Exception(t('Could not find the parent id where to find the popup box'));
+    }
+
+    $element_selector = '.dropdown';
+    $autocomplete = $parent->find('css', $element_selector);
+    if (NULL === $autocomplete) {
+      throw new \Exception(t('Could not find the autocomplete popup box'));
     }
 
     $popup_element = $autocomplete->find('xpath', "//div[text() = '{$popup}']");
 
     if (empty($popup_element)) {
-      throw new ElementNotFoundException(t('Could not find autocomplete popup text @popup', array(
-        '@popup' => $popup)), $this->getSession());
+      throw new \Exception(t('Could not find autocomplete popup text @popup', array(
+        '@popup' => $popup,
+      )));
     }
 
     $popup_element->click();
+    // We need to click outside to hide list.
+    $parent->click();
   }
 
   /**
