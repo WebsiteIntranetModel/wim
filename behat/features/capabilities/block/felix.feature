@@ -9,7 +9,7 @@ Feature: Add blocks via Felix
     When I am on the homepage
 
     #Sidebar first
-    And I should see "Primary" in the "Sidebar first"
+    And I should see "Sidebar First" in the "Sidebar first"
     When I mouseover the ".region-sidebar-first .block-felix" element
     Then I should see an ".region-sidebar-first .block-felix .contextual-links-trigger-active" element
 
@@ -23,8 +23,8 @@ Feature: Add blocks via Felix
     When I mouseover the ".region-highlighted .block-felix" element
     Then I should see an ".region-highlighted .block-felix .contextual-links-trigger-active" element
 
-    #Secondary
-    And I should see "Secondary" in the "Sidebar second"
+    #Sidebar Second
+    And I should see "Sidebar Second" in the "Sidebar second"
     When I mouseover the ".region-sidebar-second .block-felix" element
     Then I should see an ".region-sidebar-second .block-felix .contextual-links-trigger-active" element
 
