@@ -19,8 +19,6 @@ Feature: Check Atos E-Suite fields
       | edit-field-product-more-information-und-0-url   | <front>                  |
     And I click "Additional Information"
     Then I should see "ATTACHMENT"
-    And I fill in the autocomplete "Related FAQ items" with "Question 1" and click "Question 1"
-    And I fill in the autocomplete "Related Product items" with "Product 1" and click "Product 1"
     When I fill in the following:
       | Request     | Request Content     |
       | Contact     | Contact Content     |
@@ -34,8 +32,6 @@ Feature: Check Atos E-Suite fields
     And I should see the link "Related Law"
     And I should see the link "Form Link"
     And I should see the link "More info Link"
-    And I should see the link "Question 1"
-    And I should not see the link "Product 1"
     And I should see "Request Content"
     And I should see "Contact Content"
     And I should see "Objection Content"
