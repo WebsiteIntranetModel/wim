@@ -20,4 +20,3 @@ Feature: View FAQ
     And I should see "FAQ-QUESTION"
     And I should see "ANSWER-CONTENT"
     And I should see "ADDITIONAL-INFO"
-    And I should see the link Tag1

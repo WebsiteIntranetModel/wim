@@ -25,12 +25,18 @@
     <meta name="msapplication-TileImage" content="images/favicon/mstile-144x144.png">
     <meta name="theme-color" content="#ffffff">
     <base href="./">
-    <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet" media="screen">
-    <link href="/sites/all/themes/contrib/bootstrap/css/3.3.5/overrides.min.css" type="text/css" rel="stylesheet" media="screen">
-    <link href="css/project.css" type="text/css" rel="stylesheet" media="screen">
+    <link href="css/wim.css" type="text/css" rel="stylesheet" media="screen">
   </head>
   <body class="styleguide">
-    <div class="region region-page-top"><span>Region top</span></div>
+    <div class="meta-wrapper container container-nopadding">
+      <div class="region region-meta-left">
+        <section id="block-menu-menu-meta-menu" class="block block-menu clearfix">
+          <ul class="menu nav">
+            <li class="first last leaf active"><a href="/" class="active">Home</a></li>
+          </ul>
+        </section>
+      </div>
+    </div>
     <div class="main-wrapper container">
       <header id="header" class="navbar container navbar-default">
         <div class="navbar-header"><a href="index.html" title="Home" class="logo navbar-btn pull-left"><img src="../logo.png" alt="Home"></a>
@@ -41,14 +47,14 @@
           <nav role="navigation">
             <ul class="menu nav navbar-nav">
               <li class="leaf"><a href="starterkit.html">Themer's Starterkit</a></li>
-              <li class="first expanded dropdown"><a href="#" title="" data-target="#" data-toggle="dropdown" class="dropdown-toggle">Styleguide<span class="caret"></span></a>
+              <li class="first expanded dropdown"><a href="#" title="" data-target="#" data-toggle="dropdown" class="dropdown-toggle">Styleguide</a>
                 <ul class="dropdown-menu">
                   <li class="first leaf"><a href="styleguide/atoms.html">Atoms</a></li>
                   <li class="leaf"><a href="styleguide/molecules.html">Molecules</a></li>
                   <li class="last leaf"><a href="styleguide/organisms.html">Organisms</a></li>
                 </ul>
               </li>
-              <li class="leaf"><a href="#" title="" data-target="#" data-toggle="dropdown" class="dropdown-toggle">Accessibility<span class="caret"></span></a>
+              <li class="leaf"><a href="#" title="" data-target="#" data-toggle="dropdown" class="dropdown-toggle">Accessibility</a>
                 <ul class="dropdown-menu">
                   <li class="first leaf"><a href="accessibility/introduction.html">Introduction</a></li>
                   <li class="leaf"><a href="accessibility/tooling.html">Tooling</a></li>

@@ -25,8 +25,6 @@ Feature: Edit Agenda
     Then I should see the heading "Test Agenda Edited 2"
     And I should see "AGENDA-BODY-CONTENT2"
     And I should see "30 June 2016 - 10:00"
-    And I should see the link "Tag3"
     And I should not see "Test Agenda 2"
     And I should not see "Agenda 2 body content."
     And I should not see "06 July 2026 - 08:00"
-    And I should not see the link "Tag2"

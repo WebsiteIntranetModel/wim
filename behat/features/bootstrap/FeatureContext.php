@@ -11,6 +11,7 @@ use Behat\Testwork\Hook\Scope\BeforeSuiteScope;
 use Behat\Testwork\Hook\Scope\AfterSuiteScope;
 use Behat\Mink\Exception\ElementNotFoundException;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
+use Behat\Mink\WebAssert;
 
 /**
  * Defines application features from the specific context.
@@ -177,6 +178,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
    * @param string $select
    *   The dropdown field selector.
    *
+   * @throws \Behat\Mink\Exception\ElementNotFoundException
    * @throws \Exception
    *
    * @Then /^the "(?P<option>(?:[^"]|\\")*)" option from "(?P<select>(?:[^"]|\\")*)" (?:is|should be) selected$/
@@ -209,6 +211,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
    * @param string $select
    *   The dropdown field selector.
    *
+   * @throws \Behat\Mink\Exception\ElementNotFoundException
    * @throws \Exception
    *
    * @Then /^the "(?P<option>(?:[^"]|\\")*)" option from "(?P<select>(?:[^"]|\\")*)" (?:is not|should not be) selected$/
@@ -241,7 +244,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
    * @param string $title
    *   The node title.
    *
-   * @throws \Exception
+   * @throws \Behat\Mink\Exception\ElementNotFoundException
    *
    * @Given I am viewing :type (content ) node with the title :title
    */
@@ -302,7 +305,6 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
     $web = new WebAssert($this->getSession());
     $element_selector = '.dropdown-menu';
     $autocomplete = $web->elementExists('css', $element_selector);
-    $autocomplete = $this->getSession()->getPage()->findById('autocomplete');
 
     if (empty($autocomplete)) {
       throw new ElementNotFoundException(t('Could not find the autocomplete popup box'), $this->getSession());
@@ -316,6 +318,50 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
     }
 
     $popup_element->click();
+  }
+
+  /**
+   * I mouseover the (element) element.
+   *
+   * @param string $element_selector
+   *   The element selector.
+   *
+   * @throws \Exception
+   *
+   * @Given /^I mouseover the "(?P<element>[^"]*)" element$/
+   */
+  public function iMouseOverTheElement($element_selector) {
+    $web = new WebAssert($this->getSession());
+    $element = $web->elementExists('css', $element_selector);
+    $session = $this->getSession();
+
+    if (NULL === $element) {
+      throw new \Exception(sprintf('Element "%s" is not found on the page %s', $element_selector, $session->getCurrentUrl()));
+    }
+
+    $element->mouseOver();
+  }
+
+  /**
+   * I click the (element) element.
+   *
+   * @param string $element_selector
+   *   The element selector.
+   *
+   * @throws \Exception
+   *
+   * @Given /^I click the "(?P<element>[^"]*)" element$/
+   */
+  public function iClickTheElement($element_selector) {
+    $web = new WebAssert($this->getSession());
+    $element = $web->elementExists('css', $element_selector);
+    $session = $this->getSession();
+
+    if (NULL === $element) {
+      throw new \Exception(sprintf('Element "%s" is not found on the page %s', $element_selector, $session->getCurrentUrl()));
+    }
+
+    $element->click();
   }
 
 }

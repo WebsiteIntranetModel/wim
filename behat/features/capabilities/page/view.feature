@@ -16,4 +16,3 @@ Feature: View basic page
     And I should see "TITLE-ONE"
     And I should see "BODY-CONTENT1"
     And I should see "27 June 2026"
-    And I should see the link Tag1

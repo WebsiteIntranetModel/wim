@@ -14,4 +14,3 @@ Feature: View Agenda
     And I should see "1011 Amsterdam"
     And I should see "Netherlands"
     And I should see the link "Google Maps"
-    And I should see the link "Tag1"

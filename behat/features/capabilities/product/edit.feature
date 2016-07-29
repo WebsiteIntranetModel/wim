@@ -28,8 +28,6 @@ Feature: Edit Product
     And I should see "30 June 2016"
     And I should see "PRODUCT TITLE2"
     And I should see "BODY-CONTENT2"
-    And I should see "Tag2"
     And I should not see "PRODUCT TITLE1"
-    And I should not see "Tag1"
     And I should not see "BODY-CONTENT1"
     And I should not see "27 June 2026"
