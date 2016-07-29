@@ -10162,6 +10162,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 14px;
   padding: 5px;
   color: #999;
+  position: relative;
 }
 
 .block.block-felix h2.block-title:after {
