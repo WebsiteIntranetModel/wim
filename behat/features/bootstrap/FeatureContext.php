@@ -10,11 +10,15 @@ use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\Testwork\Hook\Scope\BeforeSuiteScope;
 use Behat\Testwork\Hook\Scope\AfterSuiteScope;
 use Behat\Mink\Exception\ElementNotFoundException;
+use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 
 /**
  * Defines application features from the specific context.
  */
 class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext {
+
+  /** @var Drupal\DrupalExtension\Context\MinkContext */
+  private $minkContext;
 
   /**
    * I wait for (seconds) seconds.
@@ -62,6 +66,15 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
     self::revertMigrations($machine_names);
     module_disable(array('migrate', 'wim_fixtures'));
     variable_del('admin_menu_position_fixed');
+  }
+
+  /**
+   * @BeforeScenario
+   */
+  public function gatherContexts(BeforeScenarioScope $scope) {
+    $environment = $scope->getEnvironment();
+
+    $this->minkContext = $environment->getContext('Drupal\DrupalExtension\Context\MinkContext');
   }
 
   /**
@@ -241,7 +254,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
     $nid = $result->fetchField();
 
     if (!$nid) {
-      throw new \Exception('The node "' . $type . '" with the title "' . $title . '" was not found.');
+      throw new ElementNotFoundException('The node "' . $type . '" with the title "' . $title . '" was not found.');
     }
 
     $this->getSession()->visit($this->locatePath('/node/' . $nid));
@@ -267,6 +280,42 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
       throw new \Exception(sprintf('Link "%s" is not found in the "%s" region on the page %s.', $link, $region, $session->getCurrentUrl()));
     }
     $link_element->mouseOver();
+  }
+
+  /**
+   * @When I fill in the autocomplete :autocomplete with :text and click :popup
+   */
+  public function fillInDrupalAutocomplete($autocomplete, $text, $popup) {
+    $el = $this->getSession()->getPage()->findField($autocomplete);
+    $el->focus();
+
+    // Set the autocomplete text then put a space at the end which triggers
+    // the JS to go do the autocomplete stuff.
+    $el->setValue($text);
+    $el->keyUp(' ');
+
+    // Sadly this grace of 1 second is needed here.
+    sleep(1);
+    $this->minkContext->iWaitForAjaxToFinish();
+
+    // For wim theme there is a class
+    $web = new WebAssert($this->getSession());
+    $element_selector = '.dropdown-menu';
+    $autocomplete = $web->elementExists('css', $element_selector);
+    $autocomplete = $this->getSession()->getPage()->findById('autocomplete');
+
+    if (empty($autocomplete)) {
+      throw new ElementNotFoundException(t('Could not find the autocomplete popup box'), $this->getSession());
+    }
+
+    $popup_element = $autocomplete->find('xpath', "//div[text() = '{$popup}']");
+
+    if (empty($popup_element)) {
+      throw new ElementNotFoundException(t('Could not find autocomplete popup text @popup', array(
+        '@popup' => $popup)), $this->getSession());
+    }
+
+    $popup_element->click();
   }
 
 }
