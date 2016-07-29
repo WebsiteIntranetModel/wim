@@ -32,6 +32,18 @@ function sduconnect_set_pdc_content(DOMXPath $xpath, &$node, $private = FALSE) {
   $node->title = (string) $xpath->query('//m:page/m:product/m:name')
     ->item(0)->nodeValue;
 
+  // Created.
+  $created = strtotime(sduconnect_nodelist_to_string($xpath->query('//m:page/m:product/m:created')));
+  if ($created > 0) {
+    $node->created = $created;
+  }
+
+  // Changed.
+  $changed = strtotime(sduconnect_nodelist_to_string($xpath->query('//m:page/m:product/m:updated')));
+  if ($changed > 0) {
+    $node->changed = $changed;
+  }
+
   // Body.
   $body = '';
   // Let op.
@@ -183,6 +195,11 @@ function sduconnect_set_pdc_content(DOMXPath $xpath, &$node, $private = FALSE) {
     '//m:page/m:product/m:procedure' => 'field_product_particulars',
     '//m:page/m:product/m:period' => 'field_product_period',
     '//m:page/m:product/m:conditions' => 'field_product_conditions',
+    // @codingStandardsIgnoreStart
+    // '//m:page/m:product/m:subsidies' => 'field_product_subsidies',
+    // '//m:page/m:product/m:subsidies_budget' => 'field_product_subsidies_budget',
+    // '//m:page/m:product/m:subsidies_maximale_bijdrage' => 'field_product_subsidies_maximale_bijdrage',
+    // @codingStandardsIgnoreEnd
   );
 
   // Here we set mapped fields.
@@ -218,67 +235,6 @@ function sduconnect_set_pdc_content(DOMXPath $xpath, &$node, $private = FALSE) {
         ),
       ),
     );
-  }
-
-  // Location.
-  $locations = array();
-  $name = sduconnect_nodelist_to_array($xpath->query('//m:page/m:product/m:uitvoerende_instanties/m:instantie/m:naam'));
-  // Postal address fields.
-  $street = sduconnect_nodelist_to_array($xpath->query('//m:page/m:product/m:uitvoerende_instanties/m:instantie/m:p_straat'));
-  $number = sduconnect_nodelist_to_array($xpath->query('//m:page/m:product/m:uitvoerende_instanties/m:instantie/m:p_nummer'));
-  $postal_code = sduconnect_nodelist_to_array($xpath->query('//m:page/m:product/m:uitvoerende_instanties/m:instantie/m:p_postcode'));
-  $po_box = sduconnect_nodelist_to_array($xpath->query('//m:page/m:product/m:uitvoerende_instanties/m:instantie/m:p_po_box'));
-  $city = sduconnect_nodelist_to_array($xpath->query('//m:page/m:product/m:uitvoerende_instanties/m:instantie/m:p_woonplaats'));
-  // Visiting address fields.
-  $street_b = sduconnect_nodelist_to_array($xpath->query('//m:page/m:product/m:uitvoerende_instanties/m:instantie/m:b_straat'));
-  $number_b = sduconnect_nodelist_to_array($xpath->query('//m:page/m:product/m:uitvoerende_instanties/m:instantie/m:b_nummer'));
-  $postal_code_b = sduconnect_nodelist_to_array($xpath->query('//m:page/m:product/m:uitvoerende_instanties/m:instantie/m:b_pcode'));
-  $city_b = sduconnect_nodelist_to_array($xpath->query('//m:page/m:product/m:uitvoerende_instanties/m:instantie/m:b_stad'));
-  for ($i = 0; $i < count($name); ++$i) {
-    $location = array();
-    if ($name[$i]) {
-      $location[] = $name[$i];
-    }
-    $visiting = empty($city[$i]);
-    if ($visiting) {
-      $location[] = $street_b[$i] ? trim($street_b[$i] . ' ' . $number_b[$i]) : '';
-      $location[] = $postal_code_b[$i] . ' ' . $city_b[$i];
-    }
-    else {
-      // PO Box often only contains a number in SDU.
-      // Avoid a duplicate "Postbus " string in other cases.
-      $po_box[$i] = preg_replace('/^postbus */i', '', $po_box[$i]);
-      $location[] = $street[$i] ? trim($street[$i] . ' ' . $number[$i]) : ($po_box[$i] ? 'Postbus ' . $po_box[$i] : '');
-      $location[] = $postal_code[$i] . ' ' . $city[$i];
-    }
-    $locations[] = '<p>' . implode('<br/>', array_map('check_plain', $location)) . '</p>';
-  }
-  if ($locations) {
-    $body_parts['Locatie'] = $content_labels['Locatie'] . implode($locations);
-  }
-
-  // Indien periode.
-  $field = $xpath->query('//m:page/m:product/m:subsidies');
-  if ($field->length) {
-    if (drupal_strlen((string) $field->item(0)->nodeValue)) {
-      $body_parts['Indien periode'] = $content_labels['Indien periode'] . $field->item(0)->nodeValue;
-    }
-  }
-
-  // Beschikbaar budget.
-  $field = $xpath->query('//m:page/m:product/m:subsidies_budget');
-  if ($field->length) {
-    if (drupal_strlen((string) $field->item(0)->nodeValue)) {
-      $body_parts['Beschikbaar budget'] = $content_labels['Beschikbaar budget'] . $field->item(0)->nodeValue;
-    }
-  }
-
-  // Maximale bijdrage.
-  $field = $xpath->query('//m:page/m:product/m:subsidies_maximale_bijdrage');
-  if ($field->length) {
-    if (drupal_strlen((string) $field->item(0)->nodeValue)) {
-      $body_parts['Maximale bijdrage'] = $content_labels['Maximale bijdrage'] . $field->item(0)->nodeValue;
-    }
   }
 
   // Tags.
@@ -325,10 +281,20 @@ function sduconnect_set_pdc_content(DOMXPath $xpath, &$node, $private = FALSE) {
   }
   // $node->field_date = array(LANGUAGE_NONE => $items); // @codingStandardsIgnoreLine
 
-  // Group body_parts into tabs.
-  $tabs = array();
+  // Publication date.
+  $date[] = array(
+    'value' => date('Y-m-d H:i:s', $created),
+    'value2' => '',
+    'timezone' => variable_get('date_default_timezone'),
+    'timezone_db' => 'UTC',
+    'date_type' => 'datetime',
+  );
+  $node->field_publication_date = array(LANGUAGE_NONE => $date);
+
   // @codingStandardsIgnoreStart
   /*
+  // Group body_parts into tabs. @todo remove this after tabs will be solved.
+  $tabs = array();
   foreach ($content_structure as $tab_title => $parts) {
     $tabs[$tab_title] = '';
     foreach($parts as $part_name) {
@@ -395,6 +361,14 @@ function sduconnect_set_vac_content($xpath, &$node, $private = FALSE) {
     ),
   );
 
+  // Created.
+  $created = sduconnect_nodelist_to_string($xpath->query('//vac:vacs/vac:vac/vac:meta/vac:owmsmantel/dcterms:available/start'));
+  $node->created = strtotime($created);
+
+  // Changed.
+  $changed = sduconnect_nodelist_to_string($xpath->query('//vac:vacs/vac:vac/vac:meta/vac:owmskern/dcterms:modified'));
+  $node->changed = strtotime($changed);
+
   // Explanation.
   $value = sduconnect_nodelist_to_string($xpath->query('//vac:vacs/vac:vac/vac:body/vac:kanaal/vac:toelichting'));
   $items = array();
@@ -412,44 +386,6 @@ function sduconnect_set_vac_content($xpath, &$node, $private = FALSE) {
   $tags = array_unique(array_merge($a, $b));
   $items = sduconnect_tags($tags);
   $node->field_tags = array(LANGUAGE_NONE => $items);
-
-  // Location.
-  $locations = array();
-  $name = sduconnect_nodelist_to_string($xpath->query('//vac:vacs/vac:vac/vac:body/vac:kanaal/vac:antwoord/vac:antwoordAdres/vac:instantie/vac:naam'));
-  $street = sduconnect_nodelist_to_string($xpath->query('//vac:vacs/vac:vac/vac:body/vac:kanaal/vac:antwoord/vac:antwoordAdres/vac:instantie/vac:p_straat'));
-  $number = sduconnect_nodelist_to_string($xpath->query('//vac:vacs/vac:vac/vac:body/vac:kanaal/vac:antwoord/vac:antwoordAdres/vac:instantie/vac:p_nummer'));
-  $postal_code = sduconnect_nodelist_to_string($xpath->query('//vac:vacs/vac:vac/vac:body/vac:kanaal/vac:antwoord/vac:antwoordAdres/vac:instantie/vac:p_postcode'));
-  $po_box = sduconnect_nodelist_to_string($xpath->query('//vac:vacs/vac:vac/vac:body/vac:kanaal/vac:antwoord/vac:antwoordAdres/vac:instantie/vac:p_po_box'));
-  $city = sduconnect_nodelist_to_string($xpath->query('//vac:vacs/vac:vac/vac:body/vac:kanaal/vac:antwoord/vac:antwoordAdres/vac:instantie/vac:p_woonplaats'));
-
-  if ($street) {
-    $street = trim("$street $number");
-  }
-  else {
-    $street = $po_box ? "Postbus $po_box" : '';
-  }
-
-  $location = array(
-    'lid' => NULL,
-    'name' => $name,
-    'street' => $street,
-    'additional' => '',
-    'city' => $city,
-    'province' => NULL,
-    'postal_code' => $postal_code,
-    'country' => NULL,
-    'latitude' => NULL,
-    'longitude' => NULL,
-    'source' => NULL,
-    'inhibit_geocode' => TRUE,
-  );
-  $settings = variable_get('location_settings_node_vac', array());
-  $location['location_settings'] = $settings;
-  if ($location['street']) {
-    location_save($location);
-    $locations[] = $location;
-  }
-  $node->field_location = array(LANGUAGE_NONE => $locations);
 
   // More information.
   $names = sduconnect_nodelist_to_array($xpath->query('//vac:vacs/vac:vac/vac:body/vac:kanaal/vac:verwijzingOverigeInfo'));
@@ -482,6 +418,11 @@ function sduconnect_set_vac_content($xpath, &$node, $private = FALSE) {
     foreach ($items as $item) {
       $node->field_related_faq[LANGUAGE_NONE][] = array('target_id' => SDUCONNECT_FAQ . '-' . trim($item));
     }
+  }
+
+  // This should be disabled for new items.
+  if (!isset($node->nid)) {
+    $node->field_show_on_overview[LANGUAGE_NONE][] = array('value' => 0);
   }
 }
 

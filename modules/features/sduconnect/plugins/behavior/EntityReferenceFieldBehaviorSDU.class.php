@@ -37,7 +37,13 @@ class EntityReferenceFieldBehaviorSDU extends EntityReference_BehaviorHandler_Ab
   public function load($entity_type, $entities, $field, $instances, $langcode, &$items) {
     foreach ($entities as $entity) {
       foreach ($items[$entity->nid] as $key => $item) {
-        $items[$entity->nid][$key]['target_id'] = sduconnect_get_nid_by_id($item['target_id']);
+        // Skip db call if item is not from sduconnect.
+        if (strpos($item['target_id'], SDUCONNECT_FAQ) !== FALSE || strpos($item['target_id'], SDUCONNECT_PRODUCT) !== FALSE) {
+          $items[$entity->nid][$key]['target_id'] = sduconnect_get_nid_by_id($item['target_id']);
+        }
+        else {
+          $items[$entity->nid][$key]['target_id'] = $item['target_id'];
+        }
       }
     }
   }
