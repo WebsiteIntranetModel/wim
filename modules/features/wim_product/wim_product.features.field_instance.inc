@@ -123,7 +123,7 @@ function wim_product_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 4,
+        'weight' => 18,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -168,7 +168,7 @@ function wim_product_field_default_field_instances() {
           'show_remaining_days' => 0,
         ),
         'type' => 'date_default',
-        'weight' => 3,
+        'weight' => 2,
       ),
       'teaser' => array(
         'label' => 'hidden',
@@ -224,7 +224,7 @@ function wim_product_field_default_field_instances() {
         'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 2,
+        'weight' => 17,
       ),
       'teaser' => array(
         'label' => 'above',

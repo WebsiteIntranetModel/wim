@@ -63,7 +63,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 8,
+      'weight' => 12,
     ),
   );
 
@@ -99,9 +99,13 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'options',
-      'settings' => array(),
-      'type' => 'options_select',
+      'module' => 'entityreference',
+      'settings' => array(
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
+      ),
+      'type' => 'entityreference_autocomplete_tags',
       'weight' => 9,
     ),
   );
@@ -138,9 +142,13 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'options',
-      'settings' => array(),
-      'type' => 'options_select',
+      'module' => 'entityreference',
+      'settings' => array(
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
+      ),
+      'type' => 'entityreference_autocomplete_tags',
       'weight' => 10,
     ),
   );
@@ -156,7 +164,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'module' => 'file',
         'settings' => array(),
         'type' => 'file_default',
-        'weight' => 17,
+        'weight' => 14,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -183,7 +191,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'file_generic',
-      'weight' => 42,
+      'weight' => 46,
     ),
   );
 
@@ -199,7 +207,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 18,
+        'weight' => 15,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -223,7 +231,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 41,
+      'weight' => 45,
     ),
   );
 
@@ -239,7 +247,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 12,
+        'weight' => 9,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -263,7 +271,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 36,
+      'weight' => 40,
     ),
   );
 
@@ -279,7 +287,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 14,
+        'weight' => 11,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -303,7 +311,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'rows' => 20,
       ),
       'type' => 'text_textarea',
-      'weight' => 38,
+      'weight' => 42,
     ),
   );
 
@@ -319,7 +327,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_default',
-        'weight' => 9,
+        'weight' => 6,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -376,7 +384,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_default',
-        'weight' => 10,
+        'weight' => 7,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -433,7 +441,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 13,
+        'weight' => 10,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -457,7 +465,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 37,
+      'weight' => 41,
     ),
   );
 
@@ -473,7 +481,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 15,
+        'weight' => 12,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -497,7 +505,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 39,
+      'weight' => 43,
     ),
   );
 
@@ -513,7 +521,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 16,
+        'weight' => 13,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -537,7 +545,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 40,
+      'weight' => 44,
     ),
   );
 
@@ -553,7 +561,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_default',
-        'weight' => 7,
+        'weight' => 4,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -610,7 +618,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 11,
+        'weight' => 8,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -634,7 +642,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 35,
+      'weight' => 39,
     ),
   );
 
@@ -650,7 +658,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_default',
-        'weight' => 8,
+        'weight' => 5,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -709,7 +717,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
           'link' => 1,
         ),
         'type' => 'entityreference_label',
-        'weight' => 5,
+        'weight' => 3,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -734,7 +742,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete_tags',
-      'weight' => 43,
+      'weight' => 37,
     ),
   );
 
@@ -746,13 +754,10 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
-        'module' => 'entityreference',
-        'settings' => array(
-          'link' => 1,
-        ),
-        'type' => 'entityreference_label',
-        'weight' => 6,
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 16,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -777,7 +782,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete_tags',
-      'weight' => 44,
+      'weight' => 38,
     ),
   );
 

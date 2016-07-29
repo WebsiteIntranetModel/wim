@@ -23,10 +23,9 @@ function wim_addition_faq_product_fields_field_group_info() {
     'label' => 'Additional Information',
     'weight' => '13',
     'children' => array(
-      0 => 'field_location',
-      1 => 'field_related_faq',
-      2 => 'field_related_product',
-      3 => 'field_faq_more_information',
+      0 => 'field_related_faq',
+      1 => 'field_related_product',
+      2 => 'field_faq_more_information',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
