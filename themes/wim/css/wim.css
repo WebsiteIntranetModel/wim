@@ -5156,6 +5156,11 @@ tbody.collapse.in {
   position: relative;
 }
 
+.dropup .reference-autocomplete,
+.dropdown .reference-autocomplete {
+  display: inline;
+}
+
 .dropdown-toggle:focus {
   outline: 0;
 }
