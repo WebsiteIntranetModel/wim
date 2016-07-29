@@ -27,8 +27,8 @@ Feature: Check Atos E-Suite fields
       | Particulars | Particulars Content |
       | Period      | Period Content      |
       | Conditions  | Conditions Content  |
-    And I fill in "Question 1" for "Related FAQ items"
-    And I fill in "Product 1" for "Related Product items"
+    And I fill in the autocomplete "Related FAQ items" with "Question 1" and click "Question 1"
+    And I fill in the autocomplete "Related Product items" with "Product 1" and click "Product 1"
     And I press "Save"
     Then I should see the success message "Product TEST ATOS ESUITE PRODUCT has been created."
     And I should see the link "Related Law"
