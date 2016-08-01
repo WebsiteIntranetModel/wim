@@ -131,43 +131,6 @@ function wim_faq_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-faq-field_location'.
-  $field_instances['node-faq-field_location'] = array(
-    'bundle' => 'faq',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'location_cck',
-        'settings' => array(),
-        'type' => 'location_default',
-        'weight' => 2,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_location',
-    'label' => 'Location',
-    'required' => 0,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 0,
-      'module' => 'location_cck',
-      'settings' => array(),
-      'type' => 'location',
-      'weight' => 7,
-    ),
-  );
-
   // Exported field_instance: 'node-faq-field_show_on_overview'.
   $field_instances['node-faq-field_show_on_overview'] = array(
     'bundle' => 'faq',
@@ -297,7 +260,6 @@ function wim_faq_field_default_field_instances() {
   t('Additional information');
   t('Answer');
   t('Category');
-  t('Location');
   t('Show this FAQ in the FAQ overview');
   t('Tags');
   t('Weight');

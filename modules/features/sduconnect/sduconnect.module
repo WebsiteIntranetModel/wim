@@ -270,7 +270,7 @@ function sduconnect_get_nid_by_id($id) {
     ->condition('s.internal_id', $id);
   $result = $q->execute()->fetch();
   if ($result) {
-    return $result->identifier;
+    return $result->nid;
   }
   return $id;
 }
@@ -290,7 +290,7 @@ function sduconnect_get_id_by_nid($nid) {
     ->condition('s.nid', $nid);
   $result = $q->execute()->fetch();
   if ($result) {
-    return $result->identifier;
+    return $result->internal_id;
   }
   return $nid;
 }

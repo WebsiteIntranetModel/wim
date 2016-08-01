@@ -27,6 +27,12 @@ function atos_esuite_schema() {
         'length' => '255',
         'not null' => TRUE,
       ),
+      'type' => array(
+        'description' => 'Item type',
+        'type' => 'varchar',
+        'length' => '255',
+        'not null' => TRUE,
+      ),
       'hash' => array(
         'description' => 'MD5 Hash of XML',
         'type' => 'varchar',

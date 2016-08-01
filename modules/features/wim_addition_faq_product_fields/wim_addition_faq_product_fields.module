@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the WIM Addition FAQ & Product fields feature.
+ */
+
+include_once 'wim_addition_faq_product_fields.features.inc';
