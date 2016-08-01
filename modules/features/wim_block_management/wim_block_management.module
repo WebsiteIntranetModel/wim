@@ -41,3 +41,13 @@ function wim_block_management_felix_block_config_save($block, $values) {
     'new_row' => $values['new_row'],
   );
 }
+
+/**
+ * Implements hook_entity_info_alter().
+ */
+function wim_block_management_entity_info_alter(&$entity_info) {
+  $entity_info['node']['view modes']['felix'] = array(
+    'label' => t('Felix'),
+    'custom settings' => FALSE,
+  );
+}

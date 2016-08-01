@@ -126,4 +126,7 @@ function wim_preprocess_block(&$variables) {
       $block->new_row = isset($config['new_row']) ? $config['new_row'] : TRUE;
     }
   }
+  else {
+    $variables['classes_array'][] = 'col-md-' . WIM_BLOCK_MANAGEMENT_BOOTSTRAP_FULL_WIDTH;
+  }
 }
