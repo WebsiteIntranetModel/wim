@@ -46,6 +46,8 @@ Feature: Add blocks via Felix
     When I go to "felix-blocks/add?region=primary&path=node&destination=node"
     Then I click "Test block 1"
     And I fill in "Subject" with "Felix test block"
+    And I select "1/2 of page" from "Bootstrap layout"
+    And I check the box "New row"
     When I press the "Save" button
     Then I should see the success message "Succesfully added a new block to the region Sidebar First."
     And I should see "Felix test block" in the "Sidebar first"
