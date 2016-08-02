@@ -18,11 +18,11 @@
 function sduconnect_single_import($collection, $id, $type) {
   module_load_include('inc', 'sduconnect', 'sduconnect.content');
   $nid = 0;
-  $not_found = FALSE;
+  $not_found = '';
   try {
     $node = sduconnect_load_node($collection, $id);
     if (empty($node->nid)) {
-      $not_found = TRUE;
+      $not_found = '_not_found';
     }
     if ($type === 'removed') {
       if (empty($node->nid)) {
@@ -51,7 +51,7 @@ function sduconnect_single_import($collection, $id, $type) {
   }
   catch (Exception $e) {
     if ($e->getCode() == 404) {
-      $not_found = TRUE;
+      $not_found = '_not_found';
     }
     if ($e->getCode()) {
       $log = t('Got code !code when importing !type !id from !url', array(
@@ -65,21 +65,44 @@ function sduconnect_single_import($collection, $id, $type) {
       $log = $e->getMessage();
     }
   }
-  // @todo move logger into separated function.
+
+  _sdu_log($type . $not_found, $collection, $log, $nid);
+}
+
+/**
+ * Log item.
+ *
+ * @param string $type
+ *    Type of action.
+ * @param object $collection
+ *    Collection object.
+ * @param string $message
+ *    Message.
+ * @param string $nid
+ *    Node id.
+ *
+ * @throws \Exception
+ */
+function _sdu_log($type, $collection, $message, $nid) {
   $type_codes = array(
+    'unreachable' => 1,
     'added' => 2,
+    'added_not_found' => 3,
     'changed' => 4,
+    'changed_not_found' => 5,
     'removed' => 6,
+    'removed_not_found' => 7,
   );
   if (!isset($type_codes[$type])) {
     $type = 'changed';
   }
+
   if ($collection->cid) {
     db_insert('sduconnect_log')->fields(array(
       'date' => REQUEST_TIME,
-      'type' => $type_codes[$type] + ((int) $not_found),
+      'type' => $type_codes[$type],
       'cid' => $collection->cid,
-      'title' => substr($log, 0, 255),
+      'title' => substr($message, 0, 255),
       'nid' => $nid,
     ))->execute();
   }

@@ -350,6 +350,9 @@ function wim_addition_faq_product_fields_field_default_field_bases() {
           'atos_behavior' => array(
             'status' => 1,
           ),
+          'sdu_behavior' => array(
+            'status' => 1,
+          ),
           'views-select-list' => array(
             'status' => 0,
           ),

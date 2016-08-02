@@ -9,7 +9,7 @@ Feature: Add blocks via Felix
     When I am on the homepage
 
     #Sidebar first
-    And I should see "Primary" in the "Sidebar first"
+    And I should see "Sidebar First" in the "Sidebar first"
     When I mouseover the ".region-sidebar-first .block-felix" element
     Then I should see an ".region-sidebar-first .block-felix .contextual-links-trigger-active" element
 
@@ -23,8 +23,8 @@ Feature: Add blocks via Felix
     When I mouseover the ".region-highlighted .block-felix" element
     Then I should see an ".region-highlighted .block-felix .contextual-links-trigger-active" element
 
-    #Secondary
-    And I should see "Secondary" in the "Sidebar second"
+    #Sidebar Second
+    And I should see "Sidebar Second" in the "Sidebar second"
     When I mouseover the ".region-sidebar-second .block-felix" element
     Then I should see an ".region-sidebar-second .block-felix .contextual-links-trigger-active" element
 
@@ -46,8 +46,10 @@ Feature: Add blocks via Felix
     When I go to "felix-blocks/add?region=primary&path=node&destination=node"
     Then I click "Test block 1"
     And I fill in "Subject" with "Felix test block"
+    And I select "1/2 of page" from "Bootstrap layout"
+    And I check the box "New row"
     When I press the "Save" button
-    Then I should see the success message "Succesfully added a new block to the region Primary."
+    Then I should see the success message "Succesfully added a new block to the region Sidebar First."
     And I should see "Felix test block" in the "Sidebar first"
     When I mouseover the ".region-sidebar-first .block-block h2" element
     Then I click the ".region-sidebar-first .block-block a.contextual-links-trigger" element
