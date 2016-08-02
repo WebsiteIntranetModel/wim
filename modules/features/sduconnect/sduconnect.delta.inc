@@ -20,9 +20,9 @@ function sduconnect_delta_import($collection) {
     $from_time = $collection->updated_till;
 
     $ids = sduconnect_delta_download($collection->type, $collection->external_id, $from_time);
-    // @todo move deletion out of queue
+
     $queue = DrupalQueue::get('sduconnect');
-    foreach (array('added', 'changed', 'removed') as $type) {
+    foreach (array('added', 'changed') as $type) {
       foreach ($ids->{$type} as $id) {
         $item = new stdClass();
         $item->cid = $collection->cid;
@@ -31,6 +31,10 @@ function sduconnect_delta_import($collection) {
         $queue->createItem($item);
       }
     }
+
+    // Removed items.
+    $to_remove = sduconnect_load_nids($ids->removed);
+    node_delete_multiple($to_remove);
 
     $collection->updated_till = $ids->servertime;
     sduconnect_collection_save($collection);
@@ -41,15 +45,11 @@ function sduconnect_delta_import($collection) {
     $output->removed = count($ids->removed);
   }
   catch (Exception $e) {
-    db_insert('sduconnect_log')->fields(array(
-      'date' => REQUEST_TIME,
-      'type' => 1,
-      'cid' => $collection->cid,
-      'title' => t('Got code %code from %url', array(
-        '%code' => $e->getCode(),
-        '%url' => $e->getMessage(),
-      )),
-    ))->execute();
+    $log = t('Got code %code from %url', array(
+      '%code' => $e->getCode(),
+      '%url' => $e->getMessage(),
+    ));
+    _sdu_log('unreachable', $collection, $log, NULL);
   }
   return $output;
 }
@@ -100,4 +100,23 @@ function sduconnect_delta_download($collection_type, $collection_id, $from_date)
     }
   }
   return $output;
+}
+
+/**
+ * Helper function to load node id's by external id.
+ *
+ * @param array $ids
+ *    List of external id's.
+ *
+ * @return array
+ *    List of node id's.
+ */
+function sduconnect_load_nids(array $ids) {
+  $nids = db_select('sduconnect_item', 'i')
+    ->fields('i', array('nid'))
+    ->condition('i.external_id', $ids, 'IN')
+    ->execute()
+    ->fetchCol();
+
+  return $nids;
 }
