@@ -1,4 +1,8 @@
 <?php
+/**
+ * @file
+ * Install file.
+ */
 
 /**
  * Implements hook_schema().
@@ -54,7 +58,7 @@ function custom_lists_update_7101() {
     $new_key = md5(serialize($list_definition));
     $new_lists[$new_key] = $list_definition;
 
-    if (module_exists('felix'))  {
+    if (module_exists('felix')) {
       db_update('felix_block')
         ->fields(array(
           'delta' => $new_key,

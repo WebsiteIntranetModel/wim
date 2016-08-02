@@ -1,5 +1,10 @@
 <?php
 /**
+ * @file
+ * Administration pages code.
+ */
+
+/**
  * Callback for 'admin/structure/lists'.
  */
 function custom_lists_admin() {
@@ -10,38 +15,50 @@ function custom_lists_admin() {
   // Setup the rows to show in the table.
   $rows = array();
   foreach ($lists as $list_key => $list) {
-      $row = array();
-      $row[] = $list['title'];
-      $row[] = $list['provide-page'] ? l($list['path'], $list['path']) : t('No');
-      $row[] = $list['provide-block'] ? t('Yes') : t('No');
-      $row[] = ucfirst($list['type']);
+    $row = array();
+    $row[] = $list['title'];
+    $row[] = $list['provide-page'] ? l($list['path'], $list['path']) : t('No');
+    $row[] = $list['provide-block'] ? t('Yes') : t('No');
+    $row[] = ucfirst($list['type']);
 
-      $data = array();
-      if ($list['type'] == 'content') {
-        if ($list['node-type'] != '_any') {
-          $data[] = t('Type: !type', array('!type' => $types[$list['node-type']]));
-        }
-        if (!empty($list['taxonomy'])) {
-          $term = taxonomy_term_load($list['taxonomy']);
-          $data[] = t('Taxonomy: !term', array('!term' => l($term->name, 'taxonomy/term/' . $term->tid)));
-        }
+    $data = array();
+    if ($list['type'] == 'content') {
+      if ($list['node-type'] != '_any') {
+        $data[] = t('Type: !type', array('!type' => $types[$list['node-type']]));
       }
-      else if ($list['type'] == 'menu') {
+      if (!empty($list['taxonomy'])) {
+        $term = taxonomy_term_load($list['taxonomy']);
+        $data[] = t('Taxonomy: !term', array('!term' => l($term->name, 'taxonomy/term/' . $term->tid)));
+      }
+    }
+    else {
+      if ($list['type'] == 'menu') {
         $menu_item = menu_link_load($list['menu-item']);
         $data[] = t('Menu parent: !parent', array('!parent' => l($menu_item['link_title'], $menu_item['link_path'])));
       }
-      $row[] = implode(',', $data);
+    }
+    $row[] = implode(',', $data);
 
-      $row[] = l(t('Edit'), 'admin/structure/lists/edit/' . $list_key) . ' | ' . l(t('Delete'), 'admin/structure/lists/delete/' . $list_key);
+    $row[] = l(t('Edit'), 'admin/structure/lists/edit/' . $list_key) . ' | ' . l(t('Delete'), 'admin/structure/lists/delete/' . $list_key);
 
-      $rows[] = $row;
+    $rows[] = $row;
   }
 
-  return theme('table', array('header' => array(t('TItle'), t('Page'), t('Block'), t('Type'), t('Data'), t('Operations')), 'rows' => $rows));
+  return theme('table', array(
+    'header' => array(
+      t('TItle'),
+      t('Page'),
+      t('Block'),
+      t('Type'),
+      t('Data'),
+      t('Operations'),
+    ),
+    'rows' => $rows,
+  ));
 }
 
 /**
- * Callback for 'admin/structure/lists/delete/%id
+ * Callback for 'admin/structure/lists/delete/%id.
  */
 function custom_lists_delete_form($form, &$form_state, $list_key) {
   $lists = custom_lists_get();
@@ -50,6 +67,9 @@ function custom_lists_delete_form($form, &$form_state, $list_key) {
   return confirm_form($form, t('Are you sure you want to delete the list !list?', array('!list' => $lists[$list_key]['path'])), 'admin/structure/lists');
 }
 
+/**
+ * Delete callback for custom_list_delete_form.
+ */
 function custom_lists_delete_form_submit($form, &$form_state) {
   custom_lists_delete($form['#listkey']);
   drupal_set_message(t('The list has been removed.'));
@@ -58,10 +78,6 @@ function custom_lists_delete_form_submit($form, &$form_state) {
 
 /**
  * Form for the add list.
- *
- * @param $form
- * @param $form_state
- * @return mixed
  */
 function custom_lists_list_form($form, &$form_state, $list_key = NULL) {
   $list = array();
@@ -90,7 +106,7 @@ function custom_lists_list_form($form, &$form_state, $list_key = NULL) {
     '#size' => 30,
     '#required' => TRUE,
     '#description' => t('This title is only used on admin pages to identify the custom list.'),
-    '#default_value' => !empty($list['title']) ? $list['title']: '',
+    '#default_value' => !empty($list['title']) ? $list['title'] : '',
   );
 
   $form['general']['display_title'] = array(
@@ -99,16 +115,16 @@ function custom_lists_list_form($form, &$form_state, $list_key = NULL) {
     '#size' => 30,
     '#required' => TRUE,
     '#description' => t('This title is used as block and page title.'),
-    '#default_value' => !empty($list['display_title']) ? $list['display_title']: '',
+    '#default_value' => !empty($list['display_title']) ? $list['display_title'] : '',
   );
 
-  if (!empty($list_key)){
-  $form['general']['key'] = array(
-    '#type' => 'hidden',
-    '#title' => t('Key'),
-    '#required' => TRUE,
-    '#default_value' => $list_key,
-  );
+  if (!empty($list_key)) {
+    $form['general']['key'] = array(
+      '#type' => 'hidden',
+      '#title' => t('Key'),
+      '#required' => TRUE,
+      '#default_value' => $list_key,
+    );
   }
   $form['general']['type'] = array(
     '#type' => 'select',
@@ -117,7 +133,7 @@ function custom_lists_list_form($form, &$form_state, $list_key = NULL) {
       'content' => t('Content'),
       'menu' => t('Menu'),
     ),
-    '#default_value' => !empty($list['type']) ? $list['type']: 'content',
+    '#default_value' => !empty($list['type']) ? $list['type'] : 'content',
   );
   $form['general']['css_class'] = array(
     '#type' => 'textfield',
@@ -125,7 +141,7 @@ function custom_lists_list_form($form, &$form_state, $list_key = NULL) {
     '#size' => 30,
     '#required' => FALSE,
     '#description' => t('The CSS class to use for both the block and page display.'),
-    '#default_value' => !empty($list['css_class']) ? $list['css_class']: '',
+    '#default_value' => !empty($list['css_class']) ? $list['css_class'] : '',
   );
 
   $form['type-settings'] = array(
@@ -140,7 +156,7 @@ function custom_lists_list_form($form, &$form_state, $list_key = NULL) {
     '#type' => 'select',
     '#title' => t('Nodetype'),
     '#options' => array('_any' => t('Any')) + node_type_get_names(),
-    '#default_value' => !empty($list['node-type']) ? $list['node-type']: '_any',
+    '#default_value' => !empty($list['node-type']) ? $list['node-type'] : '_any',
     '#attributes' => array(
       'class' => array(
         'type-setting',
@@ -154,7 +170,7 @@ function custom_lists_list_form($form, &$form_state, $list_key = NULL) {
     '#type' => 'select',
     '#title' => t('Nodequeue'),
     '#options' => array('_any' => t('Any')) + $queues,
-    '#default_value' => !empty($list['node-queues']) ? $list['node-queues']: '_any',
+    '#default_value' => !empty($list['node-queues']) ? $list['node-queues'] : '_any',
     '#attributes' => array(
       'class' => array(
         'type-setting',
@@ -184,7 +200,7 @@ function custom_lists_list_form($form, &$form_state, $list_key = NULL) {
   $form['type-settings']['extra-filters'] = array(
     '#type' => 'select',
     '#title' => t('Filters'),
-    '#default_value' => !empty($list['extra-filters']) ? $list['extra-filters']: '_none',
+    '#default_value' => !empty($list['extra-filters']) ? $list['extra-filters'] : '_none',
     '#options' => array(
       '_none' => t('No filter'),
       'node_type_agenda_upcoming' => t('Agenda: Upcoming'),
@@ -208,7 +224,7 @@ function custom_lists_list_form($form, &$form_state, $list_key = NULL) {
       'agenda_asc' => t('Agenda date: ascending'),
       'agenda_desc' => t('Agenda date: descending'),
     ),
-    '#default_value' => !empty($list['sort']) ? $list['sort']: '',
+    '#default_value' => !empty($list['sort']) ? $list['sort'] : '',
     '#attributes' => array(
       'class' => array(
         'type-setting',
@@ -225,14 +241,14 @@ function custom_lists_list_form($form, &$form_state, $list_key = NULL) {
   }
 
   // Menu type data.
-  // Generate a list of possible parents (not including this link or descendants).
+  // Generate a list of possible parents.
   $options = _custom_lists_menu_options();
   $form['type-settings']['menu-item'] = array(
     '#type' => 'select',
     '#title' => t('Menu Parent'),
     '#options' => $options,
     '#attributes' => array('class' => array('menu-title-select')),
-    '#default_value' => !empty($list['menu-item']) ? $list['menu-item']: '',
+    '#default_value' => !empty($list['menu-item']) ? $list['menu-item'] : '',
     '#attributes' => array(
       'class' => array(
         'type-setting',
@@ -241,9 +257,7 @@ function custom_lists_list_form($form, &$form_state, $list_key = NULL) {
     ),
   );
 
-  /**
-   * Provide Block
-   */
+  // Provide Block.
   $form['block'] = array(
     '#type' => 'fieldset',
     '#title' => t('Block'),
@@ -252,13 +266,13 @@ function custom_lists_list_form($form, &$form_state, $list_key = NULL) {
   $form['block']['provide-block'] = array(
     '#type' => 'checkbox',
     '#title' => t('Provide block'),
-    '#default_value' => isset($list['provide-block']) ? $list['provide-block']: FALSE,
+    '#default_value' => isset($list['provide-block']) ? $list['provide-block'] : FALSE,
   );
   $form['block']['block-view-mode'] = array(
     '#type' => 'select',
     '#title' => t('View mode'),
     '#options' => $modes,
-    '#default_value' => !empty($list['block-view-mode']) ? $list['block-view-mode']: 'titles',
+    '#default_value' => !empty($list['block-view-mode']) ? $list['block-view-mode'] : 'titles',
     '#attributes' => array(
       'class' => array(
         'block-setting',
@@ -271,7 +285,7 @@ function custom_lists_list_form($form, &$form_state, $list_key = NULL) {
     '#type' => 'textfield',
     '#title' => t('# Items'),
     '#required' => TRUE,
-    '#default_value' => !empty($list['block-items']) ? $list['block-items']: 5,
+    '#default_value' => !empty($list['block-items']) ? $list['block-items'] : 5,
     '#size' => 5,
     '#attributes' => array(
       'class' => array(
@@ -289,7 +303,7 @@ function custom_lists_list_form($form, &$form_state, $list_key = NULL) {
       'default' => t('Default (Links to page)'),
       'custom' => t('Custom (Provide custom uri)'),
     ),
-    '#default_value' => !empty($list['show-more-link']) ? $list['show-more-link']: 'default',
+    '#default_value' => !empty($list['show-more-link']) ? $list['show-more-link'] : 'default',
     '#attributes' => array(
       'class' => array(
         'block-setting',
@@ -301,7 +315,7 @@ function custom_lists_list_form($form, &$form_state, $list_key = NULL) {
   $form['block']['more-link'] = array(
     '#type' => 'textfield',
     '#title' => t('Custom more link'),
-    '#description' => t('Fill in the Drupal URL for the \'more\' link.'),
+    '#description' => t("Fill in the Drupal URL for the 'more' link."),
     '#default_value' => !empty($list['more-link']) ? $list['more-link'] : '',
     '#attributes' => array(
       'class' => array(
@@ -312,9 +326,7 @@ function custom_lists_list_form($form, &$form_state, $list_key = NULL) {
     ),
   );
 
-  /**
-   * Provide page
-   */
+  // Provide page.
   $form['page'] = array(
     '#type' => 'fieldset',
     '#title' => t('Page'),
@@ -323,14 +335,14 @@ function custom_lists_list_form($form, &$form_state, $list_key = NULL) {
   $form['page']['provide-page'] = array(
     '#type' => 'checkbox',
     '#title' => t('Provide page'),
-    '#default_value' => isset($list['provide-page']) ? $list['provide-page']: TRUE,
+    '#default_value' => isset($list['provide-page']) ? $list['provide-page'] : TRUE,
   );
   $form['page']['path'] = array(
     '#type' => 'textfield',
     '#title' => t('Path'),
     '#required' => empty($form_state['input']) ? !empty($form['page']['provide-page']) : !empty($form_state['input']['provide-page']),
     '#size' => 30,
-    '#default_value' => (!empty($list['path']) && $list['path'] !== '<none>') ? $list['path']: '',
+    '#default_value' => (!empty($list['path']) && $list['path'] !== '<none>') ? $list['path'] : '',
     '#attributes' => array(
       'class' => array(
         'page-setting',
@@ -343,7 +355,7 @@ function custom_lists_list_form($form, &$form_state, $list_key = NULL) {
     '#type' => 'select',
     '#title' => t('View mode'),
     '#options' => $modes,
-    '#default_value' => !empty($list['page-view-mode']) ? $list['page-view-mode']: 'teaser',
+    '#default_value' => !empty($list['page-view-mode']) ? $list['page-view-mode'] : 'teaser',
     '#attributes' => array(
       'class' => array(
         'page-setting',
@@ -356,7 +368,7 @@ function custom_lists_list_form($form, &$form_state, $list_key = NULL) {
     '#type' => 'textfield',
     '#title' => t('# Items'),
     '#required' => TRUE,
-    '#default_value' => !empty($list['page-items']) ? $list['page-items']: 10,
+    '#default_value' => !empty($list['page-items']) ? $list['page-items'] : 10,
     '#size' => 5,
     '#attributes' => array(
       'class' => array(
@@ -370,7 +382,7 @@ function custom_lists_list_form($form, &$form_state, $list_key = NULL) {
     '#type' => 'text_format',
     '#title' => t('Intro text'),
     '#format' => 'filtered_html',
-    '#default_value' => !empty($list['intro-text']) ? $list['intro-text']: '',
+    '#default_value' => !empty($list['intro-text']) ? $list['intro-text'] : '',
     '#attributes' => array(
       'class' => array(
         'page-setting',
@@ -399,7 +411,8 @@ function custom_lists_list_form($form, &$form_state, $list_key = NULL) {
  * Validate handler.
  */
 function custom_lists_list_form_validate($form, &$form_state) {
-  // Don't try to create or update a list using a router path that already exists.
+  // Don't try to create or update a list using a router path that
+  // already exists.
   // Updating a existing list with the same router path is allowed.
   $error = FALSE;
   if ($form_state['values']['provide-page']) {
@@ -440,8 +453,10 @@ function custom_lists_list_form_submit($form, &$form_state) {
   if ($form_state['values']['type'] == 'content') {
     $form_state['values']['menu-item'] = NULL;
   }
-  else if ($form_state['values']['type'] == 'menu') {
-    $form_state['values']['node-type'] = NULL;
+  else {
+    if ($form_state['values']['type'] == 'menu') {
+      $form_state['values']['node-type'] = NULL;
+    }
   }
 
   // Setup list data.
@@ -476,7 +491,8 @@ function custom_lists_list_form_submit($form, &$form_state) {
     custom_lists_add($old_key, $list);
     $form_state['redirect'] = 'admin/structure/lists';
 
-  } else {
+  }
+  else {
     drupal_set_message(t('The list has been added.'));
     custom_lists_add($list_key, $list);
     $form_state['redirect'] = 'admin/structure/lists';
@@ -497,7 +513,6 @@ function custom_lists_taxonomy_autocomplete($term_search = '', $node_type = '') 
   // Select rows that match by term name.
   $tags_return = $query
     ->fields('t', array('tid', 'name'))
-    //  ->condition('t.vid', $vids)
     ->condition('t.name', '%' . db_like($term_search) . '%', 'LIKE')
     ->range(0, 10)
     ->execute()
@@ -516,17 +531,23 @@ function custom_lists_taxonomy_autocomplete($term_search = '', $node_type = '') 
 }
 
 /**
- * Helper function to retrieve all menu item options which should atleast
- * have one child.
+ * Helper function to retrieve all menu item options.
+ *
+ * Which should atleast have one child.
  *
  * @return array
+ *    Array of menu options.
  */
 function _custom_lists_menu_options() {
   $options = array();
 
   $menus = menu_get_menus();
   foreach ($menus as $menu_name => $menu) {
-    if (in_array($menu_name, variable_get('custom_lists_exclude_menus', array('management', 'navigation', 'user-menu')))) {
+    if (in_array($menu_name, variable_get('custom_lists_exclude_menus', array(
+      'management',
+      'navigation',
+      'user-menu',
+    )))) {
       continue;
     }
 
@@ -546,12 +567,9 @@ function _custom_lists_menu_options() {
 }
 
 /**
- * Helper function for _custom_lists_menu_options() to be able to filter
- * recursively.
+ * Helper function for _custom_lists_menu_options().
  *
- * @param $link
- * @param string $prefix
- * @return array
+ * To be able to filter recursively.
  */
 function _custom_lists_menu_options_filter($link, $prefix = '') {
   if (empty($link['below'])) {
