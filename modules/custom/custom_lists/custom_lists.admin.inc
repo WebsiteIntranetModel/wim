@@ -165,11 +165,19 @@ function custom_lists_list_form($form, &$form_state, $list_key = NULL) {
     ),
   );
 
-  $queues = nodequeue_get_all_qids();
+  $queues_list = array();
+  $queues = nodequeue_load_queues(nodequeue_get_all_qids());
+
+  if ($queues) {
+    foreach ($queues as $queue) {
+      $queues_list[$queue->qid] = $queue->title;
+    }
+  }
+
   $form['type-settings']['node-queues'] = array(
     '#type' => 'select',
     '#title' => t('Nodequeue'),
-    '#options' => array('_any' => t('Any')) + $queues,
+    '#options' => array('_any' => t('Any')) + $queues_list,
     '#default_value' => !empty($list['node-queues']) ? $list['node-queues'] : '_any',
     '#attributes' => array(
       'class' => array(
@@ -219,8 +227,6 @@ function custom_lists_list_form($form, &$form_state, $list_key = NULL) {
       'title_desc' => t('Title: descending'),
       'queue_asc' => t('Nodequeue: ascending'),
       'queue_desc' => t('Nodequeue: descending'),
-      'weight_asc' => t('Weight: ascending'),
-      'weight_desc' => t('Weight: descending'),
       'agenda_asc' => t('Agenda date: ascending'),
       'agenda_desc' => t('Agenda date: descending'),
     ),
