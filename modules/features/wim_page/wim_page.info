@@ -9,6 +9,7 @@ dependencies[] = features
 dependencies[] = image
 dependencies[] = list
 dependencies[] = options
+dependencies[] = picture
 dependencies[] = strongarm
 dependencies[] = taxonomy
 dependencies[] = text
