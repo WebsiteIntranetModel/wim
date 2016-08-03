@@ -57,7 +57,7 @@ echo "Correct ownership of the docroot has been set"
 chmod 444 sites/default/settings.php
 echo "Restored read-only permissions for settings.php"
 
-#Check if third argument is "develop" then enable develop modules.
+# Check if third argument is "develop" then enable develop modules.
 if [ ${3:-"default"} = "develop" ]; then
   drush dis toolbar -y
   drush en devel, field_ui, diff, module_filter, views_ui, context_ui, felix_ui -y

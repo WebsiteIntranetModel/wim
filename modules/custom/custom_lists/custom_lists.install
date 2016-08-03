@@ -1,0 +1,172 @@
+<?php
+/**
+ * @file
+ * Install file.
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function custom_lists_schema() {
+  $schema = array();
+
+  $schema['custom_lists'] = array(
+    'fields' => array(
+      'lid' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ),
+      'title' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ),
+      'data' => array(
+        'type' => 'blob',
+        'not null' => TRUE,
+        'serialize' => TRUE,
+        'serialized default' => 'a:0:{}',
+      ),
+      'created' => array(
+        'type' => 'int',
+        'not null' => TRUE,
+        'size' => 'normal',
+        'default' => 0,
+      ),
+      'changed' => array(
+        'type' => 'int',
+        'not null' => TRUE,
+        'size' => 'normal',
+        'default' => 0,
+      ),
+    ),
+    'primary key' => array('lid'),
+  );
+
+  return $schema;
+}
+
+/**
+ * Update all custom lists to incorporate the new hashing mechanism.
+ */
+function custom_lists_update_7101() {
+  $lists = custom_lists_get();
+
+  $new_lists = array();
+  foreach ($lists as $list_key => $list_definition) {
+    $new_key = md5(serialize($list_definition));
+    $new_lists[$new_key] = $list_definition;
+
+    if (module_exists('felix')) {
+      db_update('felix_block')
+        ->fields(array(
+          'delta' => $new_key,
+        ))
+        ->condition('delta', $list_key)
+        ->execute();
+    }
+  }
+
+  if (!empty($new_lists)) {
+    _custom_lists_set($new_lists);
+  }
+}
+
+/**
+ * Fill in display_title for existing lists.
+ */
+function custom_lists_update_7102() {
+  $has_felix = db_table_exists('felix_block');
+
+  $lists = variable_get('custom_lists_lists', array());
+  foreach ($lists as $key => $list) {
+    if (!empty($list['display_title'])) {
+      continue;
+    }
+
+    $title = $list['title'];
+
+    $blocks = db_select('block', 'b')
+      ->fields('b', array('title'))
+      ->condition('b.module', 'custom_lists')
+      ->condition('b.delta', $key)
+      ->execute()
+      ->fetchAll();
+    foreach ($blocks as $block) {
+      if (!empty($block->title)) {
+        $title = $block->title;
+      }
+    }
+
+    if ($has_felix) {
+      $blocks = db_select('felix_block', 'fb')
+        ->fields('fb', array('data'))
+        ->condition('fb.module', 'custom_lists')
+        ->condition('fb.delta', $key)
+        ->execute()
+        ->fetchAll();
+      foreach ($blocks as $block) {
+        $block->data = unserialize($block->data);
+        if (!empty($block->data['subject'])) {
+          $title = $block->data['subject'];
+        }
+      }
+    }
+
+    $lists[$key]['display_title'] = $title;
+  }
+
+  if ($lists) {
+    variable_set('custom_lists_lists', $lists);
+    variable_set('menu_rebuild_needed', TRUE);
+  }
+}
+
+/**
+ * Move storage to database table.
+ */
+function custom_lists_update_7103() {
+  if (!db_table_exists('custom_lists')) {
+    $schema = drupal_get_schema('custom_lists', TRUE);
+    db_create_table('custom_lists', $schema);
+  }
+
+  $lists = variable_get('custom_lists_lists', array());
+  foreach ($lists as $lid => $list) {
+    $item = new stdClass();
+    $item->lid = $lid;
+    $item->title = $list['title'];
+    unset($list['title']);
+    $item->data = $list;
+    drupal_write_record('custom_lists', $item);
+  }
+}
+
+/**
+ * Rebuild code registry so the ExpireCustomLists class is found.
+ */
+function custom_lists_update_7104() {
+  registry_rebuild();
+}
+
+/**
+ * Add changed and created fields to the database.
+ */
+function custom_lists_update_7105() {
+  $created = array(
+    'type' => 'int',
+    'not null' => TRUE,
+    'size' => 'normal',
+    'default' => 0,
+  );
+  db_add_field('custom_lists', 'created', $created);
+
+  $changed = array(
+    'type' => 'int',
+    'not null' => TRUE,
+    'size' => 'normal',
+    'default' => 0,
+  );
+  db_add_field('custom_lists', 'changed', $changed);
+}

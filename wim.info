@@ -38,3 +38,6 @@ dependencies[] = wim_faq
 dependencies[] = wim_news
 dependencies[] = wim_page
 dependencies[] = wim_product
+
+; Custom
+dependencies[] = custom_lists

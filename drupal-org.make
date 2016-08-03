@@ -20,6 +20,7 @@ projects[location] = 3.7
 projects[magic] = 2.2
 projects[menu_block] = 2.7
 projects[migrate] = 2.8
+projects[nodequeue] = 2.1
 projects[link] = 1.4
 projects[strongarm] = 2.0
 projects[views] = 3.14
