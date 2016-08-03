@@ -227,8 +227,6 @@ function custom_lists_list_form($form, &$form_state, $list_key = NULL) {
       'title_desc' => t('Title: descending'),
       'queue_asc' => t('Nodequeue: ascending'),
       'queue_desc' => t('Nodequeue: descending'),
-      'weight_asc' => t('Weight: ascending'),
-      'weight_desc' => t('Weight: descending'),
       'agenda_asc' => t('Agenda date: ascending'),
       'agenda_desc' => t('Agenda date: descending'),
     ),

@@ -3,7 +3,6 @@ description = Custom Lists
 package = WIM
 core = 7.x
 
-dependencies[] = weight
 dependencies[] = nodequeue
 
 files[] = custom_lists.expire.inc
