@@ -191,7 +191,7 @@ function custom_lists_permission() {
  * List page.
  */
 function custom_lists_page() {
-  $found_list = custom_lists_get();
+  $found_list = custom_lists_get_current(current_path());
 
   if (!$found_list) {
     return MENU_NOT_FOUND;
@@ -291,7 +291,7 @@ function custom_lists_content_nodes($list, $items, $full_load = TRUE) {
   }
   if ($list['node-queues'] != '_any' && !empty($list['node-queues'])) {
     $query->join('nodequeue_nodes', 'q', 'q.nid = n.nid');
-    $query->condition('q.name', $list['node-queues']);
+    $query->condition('q.qid', $list['node-queues']);
   }
   if (!empty($list['taxonomy'])) {
     $query->join('taxonomy_index', 'ti', 'ti.nid = n.nid');
@@ -406,6 +406,7 @@ function custom_lists_get($list_key = NULL) {
     $list->data['changed'] = $list->changed;
     $lists[$list->lid] = $list->data;
   }
+
   if ($list_key) {
     return isset($lists[$list_key]) ? $lists[$list_key] : array();
   }
@@ -440,7 +441,7 @@ function custom_lists_add($list_key, $list) {
     // Set the modified date to now.
     $item->changed = time();
 
-    if ($item->created == 0) {
+    if (!isset($item->created) || $item->created == 0) {
       // Set created also to today.
       $item->created = time();
     }
@@ -596,9 +597,30 @@ function _custom_lists_build_title($list) {
  */
 function custom_lists_preprocess_html(&$vars) {
   // Check if there is a list on this page.
-  $list = custom_lists_get();
+  $list = custom_lists_get_current(current_path());
 
   if ($list && isset($list['css_class']) && !empty($list['css_class'])) {
     $vars['classes_array'][] = $list['css_class'];
   }
+}
+
+/**
+ * Get first list from lists array.
+ */
+function custom_lists_get_current($page_url = NULL) {
+  $lists = custom_lists_get();
+  $current_list = array();
+  if ($page_url && $lists) {
+    foreach ($lists as $list) {
+      if ($list['path'] === $page_url) {
+        $current_list = $list;
+        break;
+      }
+    }
+  }
+  else {
+    $current_list = reset($lists);
+  }
+
+  return $current_list;
 }
