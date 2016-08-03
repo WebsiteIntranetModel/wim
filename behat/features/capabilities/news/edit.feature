@@ -10,12 +10,11 @@ Feature: Edit News
       | NEWS TITLE1 | BODY-CONTENT1 | 2026-06-27             | Tag1       | 1              | 1      |
     Given I am logged in as a "content moderator"
     When I go to "admin/content"
-    Then I should not see "Access denied"
     And I select "News" from "type"
     And I press "Filter"
     And I should see "NEWS TITLE1"
     And I click "edit" in the "NEWS TITLE1" row
-    Then I should not see "Access denied"
+    Then I should not see "No access (403)"
     When I fill in the following:
       | Title    | NEWS TITLE2   |
       | Body     | BODY-CONTENT2 |

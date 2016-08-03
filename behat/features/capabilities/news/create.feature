@@ -7,7 +7,7 @@ Feature: Create News
   Scenario: Successfully create news
     Given I am logged in as a "content moderator"
     And I am on "node/add/news"
-    Then I should not see "Access denied"
+    Then I should not see "No access (403)"
     And I click "Edit summary"
     When I fill in the following:
       | Title    | TEST NEWS    |
@@ -29,7 +29,7 @@ Feature: Create News
 
     Given I am an anonymous user
     And I visit "node/add/news"
-    Then I should see the heading "Access denied"
+    Then I should see the heading "No access (403)"
 
   Scenario: Successfully set category for news
     Given I am logged in as a "content moderator"
@@ -38,7 +38,7 @@ Feature: Create News
       | CATEGORY1 |
       | CATEGORY2 |
     And I am on "node/add/news"
-    Then I should not see "Access denied"
+    Then I should not see "No access (403)"
     When I fill in the following:
       | Title | TEST CATEGORY NEWS |
       | Date  | 06/30/2016         |

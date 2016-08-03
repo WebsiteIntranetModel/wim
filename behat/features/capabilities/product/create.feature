@@ -7,7 +7,7 @@ Feature: Create Product
   Scenario: Successfully create product
     Given I am logged in as a "content moderator"
     And I am on "node/add/product"
-    Then I should not see "Access denied"
+    Then I should not see "No access (403)"
     And I should see "Promoted"
     And I should see "Image"
     When I fill in the following:
@@ -23,4 +23,4 @@ Feature: Create Product
 
     Given I am an anonymous user
     And I visit "node/add/product"
-    Then I should see the heading "Access denied"
+    Then I should see the heading "No access (403)"
