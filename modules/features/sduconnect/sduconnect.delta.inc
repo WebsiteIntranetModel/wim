@@ -51,7 +51,6 @@ function sduconnect_delta_import($collection) {
       '%code' => $e->getCode(),
       '%url' => $e->getMessage(),
     ));
-    dsm($log);
     _sdu_log('unreachable', $collection, $log, NULL);
   }
   return $output;
