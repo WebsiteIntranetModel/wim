@@ -8,6 +8,7 @@ defaults[projects][subdir] = contrib
 projects[admin_menu] = 3.0-rc5
 projects[breakpoints] = 1.4
 projects[context] = 3.7
+projects[colectomy] = 1.0-beta2
 projects[ctools] = 1.9
 projects[date] = 2.9
 projects[entity] = 1.7
