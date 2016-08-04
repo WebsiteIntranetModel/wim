@@ -160,7 +160,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'abovec',
         'module' => 'file',
         'settings' => array(),
         'type' => 'file_default',
@@ -203,7 +203,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'abovec',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
@@ -243,7 +243,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'abovec',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
@@ -283,7 +283,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'abovec',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
@@ -323,7 +323,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'abovec',
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_default',
@@ -380,7 +380,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'abovec',
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_default',
@@ -437,7 +437,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'abovec',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
@@ -477,7 +477,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'abovec',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
@@ -517,7 +517,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'abovec',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
@@ -557,7 +557,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'abovec',
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_default',
@@ -614,7 +614,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'abovec',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
@@ -654,7 +654,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'abovec',
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_default',
@@ -711,7 +711,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'abovec',
         'module' => 'entityreference',
         'settings' => array(
           'link' => 1,
