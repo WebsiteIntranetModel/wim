@@ -5,3 +5,78 @@
  */
 
 include_once 'wim_addition_faq_product_fields.features.inc';
+
+/**
+ * Implements hook_module_implements_alter().
+ */
+function wim_addition_faq_product_fields_module_implements_alter(&$implementations, $hook) {
+  if ($hook === 'modules_enabled') {
+    // Move this module to the end of the list. module_implements()
+    // iterates through $implementations with a foreach loop which PHP iterates
+    // in the order that the items were added, so to move an item to the end of
+    // the array, we remove it and then add it.
+    $group = $implementations['wim_addition_faq_product_fields'];
+    unset($implementations['wim_addition_faq_product_fields']);
+    $implementations['wim_addition_faq_product_fields'] = $group;
+  }
+}
+
+/**
+ * Implements hook_modules_enabled().
+ */
+function wim_addition_faq_product_fields_modules_enabled($modules) {
+  if (in_array('sduconnect', $modules) || in_array('atos_esuite', $modules)) {
+    $fields = array(
+      'field_related_faq',
+      'field_related_product',
+    );
+
+    foreach ($fields as $name) {
+      db_change_field("field_data_{$name}", "{$name}_target_id", "{$name}_target_id", array(
+        'type' => 'varchar',
+        'length' => 255,
+        'default' => '',
+      ));
+      db_change_field("field_revision_{$name}", "{$name}_target_id", "{$name}_target_id", array(
+        'type' => 'varchar',
+        'length' => 255,
+        'default' => '',
+      ));
+    }
+
+    field_cache_clear();
+  }
+}
+
+/**
+ * Implements hook_modules_uninstalled().
+ */
+function wim_addition_faq_product_fields_modules_uninstalled($modules) {
+  if (in_array('sduconnect', $modules) || in_array('atos_esuite', $modules)) {
+    // Only if both modules are disabled.
+    if (!module_exists('sduconnect') && !module_exists('atos_esuite')) {
+
+      $fields = array(
+        'field_related_faq',
+        'field_related_product',
+      );
+
+      foreach ($fields as $name) {
+        db_change_field("field_data_{$name}", "{$name}_target_id", "{$name}_target_id", array(
+          'type' => 'int',
+          'length' => 10,
+          'default' => '',
+          'unsigned' => TRUE,
+        ));
+        db_change_field("field_revision_{$name}", "{$name}_target_id", "{$name}_target_id", array(
+          'type' => 'int',
+          'length' => 10,
+          'default' => '',
+          'unsigned' => TRUE,
+        ));
+      }
+
+      field_cache_clear();
+    }
+  }
+}

@@ -50,5 +50,4 @@ features[field_instance][] = node-product-field_product_request
 features[field_instance][] = node-product-field_product_request_online
 features[field_instance][] = node-product-field_related_faq
 features[field_instance][] = node-product-field_related_product
-features_exclude[dependencies][atos_esuite] = atos_esuite
 project path = profiles/wim/modules/features
