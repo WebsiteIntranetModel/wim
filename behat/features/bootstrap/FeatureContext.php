@@ -10,12 +10,16 @@ use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\Testwork\Hook\Scope\BeforeSuiteScope;
 use Behat\Testwork\Hook\Scope\AfterSuiteScope;
 use Behat\Mink\Exception\ElementNotFoundException;
+use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Behat\Mink\WebAssert;
 
 /**
  * Defines application features from the specific context.
  */
 class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext {
+
+  // @var Drupal\DrupalExtension\Context\MinkContext
+  private $minkContext;
 
   /**
    * I wait for (seconds) seconds.
@@ -66,6 +70,17 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
   }
 
   /**
+   * This will add mink context before scenario.
+   *
+   * @BeforeScenario
+   */
+  public function gatherContexts(BeforeScenarioScope $scope) {
+    $environment = $scope->getEnvironment();
+
+    $this->minkContext = $environment->getContext('Drupal\DrupalExtension\Context\MinkContext');
+  }
+
+  /**
    * Get all migrations from api.
    *
    * @param bool|FALSE $register
@@ -103,13 +118,15 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
    */
   protected static function runMigration($machine_name) {
     $migration = Migration::getInstance($machine_name);
-    $dependencies = $migration->getHardDependencies();
-    if ($dependencies) {
-      foreach ($dependencies as $name) {
-        self::runMigration($name);
+    if ($migration) {
+      $dependencies = $migration->getHardDependencies();
+      if ($dependencies) {
+        foreach ($dependencies as $name) {
+          self::runMigration($name);
+        }
       }
+      $migration->processImport();
     }
-    $migration->processImport();
   }
 
   /**
@@ -124,7 +141,9 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
     $dependencies = array();
     foreach ($machine_names as $machine_name) {
       $migration = Migration::getInstance($machine_name);
-      $dependencies += $migration->getDependencies();
+      if ($migration) {
+        $dependencies += $migration->getDependencies();
+      }
     }
 
     foreach ($dependencies as $dependency) {
@@ -165,6 +184,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
    * @param string $select
    *   The dropdown field selector.
    *
+   * @throws \Behat\Mink\Exception\ElementNotFoundException
    * @throws \Exception
    *
    * @Then /^the "(?P<option>(?:[^"]|\\")*)" option from "(?P<select>(?:[^"]|\\")*)" (?:is|should be) selected$/
@@ -197,6 +217,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
    * @param string $select
    *   The dropdown field selector.
    *
+   * @throws \Behat\Mink\Exception\ElementNotFoundException
    * @throws \Exception
    *
    * @Then /^the "(?P<option>(?:[^"]|\\")*)" option from "(?P<select>(?:[^"]|\\")*)" (?:is not|should not be) selected$/
@@ -229,7 +250,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
    * @param string $title
    *   The node title.
    *
-   * @throws \Exception
+   * @throws \Behat\Mink\Exception\ElementNotFoundException
    *
    * @Given I am viewing :type (content ) node with the title :title
    */
@@ -242,7 +263,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
     $nid = $result->fetchField();
 
     if (!$nid) {
-      throw new \Exception('The node "' . $type . '" with the title "' . $title . '" was not found.');
+      throw new ElementNotFoundException('The node "' . $type . '" with the title "' . $title . '" was not found.');
     }
 
     $this->getSession()->visit($this->locatePath('/node/' . $nid));
@@ -268,6 +289,60 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
       throw new \Exception(sprintf('Link "%s" is not found in the "%s" region on the page %s.', $link, $region, $session->getCurrentUrl()));
     }
     $link_element->mouseOver();
+  }
+
+  /**
+   * I fill in autocomplete "field" with "text" and click "text".
+   *
+   * @param string $autocomplete
+   *    Title for field.
+   * @param string $text
+   *    Entered text.
+   * @param string $popup
+   *    Text in popup list.
+   *
+   * @throws \Exception
+   *
+   * @When I fill in the autocomplete :autocomplete with :text and click :popup
+   */
+  public function fillInDrupalAutocomplete($autocomplete, $text, $popup) {
+    $el = $this->getSession()->getPage()->findField($autocomplete);
+    $el->focus();
+
+    // Set the autocomplete text then put a space at the end which triggers
+    // the JS to go do the autocomplete stuff.
+    $el->setValue($text);
+    $el->keyUp(' ');
+
+    // Sadly this grace of 1 second is needed here.
+    sleep(1);
+    $this->minkContext->iWaitForAjaxToFinish();
+
+    // We need the id for filed where to search for dropdown list.
+    $parent = $el->getParent()->getParent()->getParent();
+
+    $parent_id = $parent->getAttribute('id');
+    if (NULL === $parent_id) {
+      throw new \Exception(t('Could not find the parent id where to find the popup box'));
+    }
+
+    $element_selector = '.dropdown';
+    $autocomplete = $parent->find('css', $element_selector);
+    if (NULL === $autocomplete) {
+      throw new \Exception(t('Could not find the autocomplete popup box'));
+    }
+
+    $popup_element = $autocomplete->find('xpath', "//div[text() = '{$popup}']");
+
+    if (empty($popup_element)) {
+      throw new \Exception(t('Could not find autocomplete popup text @popup', array(
+        '@popup' => $popup,
+      )));
+    }
+
+    $popup_element->click();
+    // We need to click outside to hide list.
+    $parent->click();
   }
 
   /**

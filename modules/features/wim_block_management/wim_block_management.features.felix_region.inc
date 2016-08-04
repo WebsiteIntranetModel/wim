@@ -66,7 +66,7 @@ function wim_block_management_felix_default_regions() {
   );
   $regions['primary'] = array(
     'name' => 'primary',
-    'title' => 'Primary',
+    'title' => 'Sidebar First',
     'region' => 'sidebar_first',
     'weight' => 0,
     'context' => 'sidewide',
@@ -77,7 +77,7 @@ function wim_block_management_felix_default_regions() {
   );
   $regions['secondary'] = array(
     'name' => 'secondary',
-    'title' => 'Secondary',
+    'title' => 'Sidebar Second',
     'region' => 'sidebar_second',
     'weight' => 0,
     'context' => 'sidewide',

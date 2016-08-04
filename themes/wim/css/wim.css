@@ -5156,6 +5156,11 @@ tbody.collapse.in {
   position: relative;
 }
 
+.dropup .reference-autocomplete,
+.dropdown .reference-autocomplete {
+  display: inline;
+}
+
 .dropdown-toggle:focus {
   outline: 0;
 }
@@ -10167,6 +10172,23 @@ h1, h2, h3, h4, h5, h6 {
 
 .block .view {
   margin: 0 10px;
+}
+
+.block.block-felix h2.block-title {
+  border: 1px solid #efe5ef;
+  background: #fdfbfd;
+  font-size: 14px;
+  padding: 5px;
+  color: #999;
+  position: relative;
+}
+
+.block.block-felix h2.block-title:after {
+  content: "FELIX";
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  color: #BCBCBC;
 }
 
 #block-views-agenda-upcoming-agenda {

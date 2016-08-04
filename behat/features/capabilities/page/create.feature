@@ -25,4 +25,4 @@ Feature: Create basic page
 
     Given I am an anonymous user
     And I visit "node/add/page"
-    Then I should see the heading "Access denied"
+    Then I should see the heading "No access (403)"

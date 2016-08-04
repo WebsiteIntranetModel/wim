@@ -7,7 +7,7 @@ Feature: Create Agenda
   Scenario: Successfully create Agenda
     Given I am logged in as a "content moderator"
     And I am on "node/add/agenda"
-    Then I should not see "Access denied"
+    Then I should not see "No access (403)"
     When I fill in the following:
       | Title         | TEST AGENDA            |
       | Body          | TEST AGENDA BODY       |
@@ -29,4 +29,4 @@ Feature: Create Agenda
 
     Given I am an anonymous user
     And I visit "node/add/agenda"
-    Then I should see "Access denied"
+    Then I should see "No access (403)"

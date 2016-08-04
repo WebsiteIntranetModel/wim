@@ -1,14 +1,43 @@
 <?php
 /**
  * @file
- * atos_esuite.features.field_base.inc
+ * wim_addition_faq_product_fields.features.field_base.inc
  */
 
 /**
  * Implements hook_field_default_field_bases().
  */
-function atos_esuite_field_default_field_bases() {
+function wim_addition_faq_product_fields_field_default_field_bases() {
   $field_bases = array();
+
+  // Exported field_base: 'field_faq_more_information'.
+  $field_bases['field_faq_more_information'] = array(
+    'active' => 1,
+    'cardinality' => -1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_faq_more_information',
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'link',
+    'settings' => array(
+      'attributes' => array(
+        'class' => '',
+        'rel' => '',
+        'target' => 'default',
+      ),
+      'display' => array(
+        'url_cutoff' => 80,
+      ),
+      'enable_tokens' => 1,
+      'title' => 'optional',
+      'title_maxlength' => 128,
+      'title_value' => '',
+      'url' => 0,
+    ),
+    'translatable' => 0,
+    'type' => 'link_field',
+  );
 
   // Exported field_base: 'field_product_conditions'.
   $field_bases['field_product_conditions'] = array(
@@ -281,7 +310,7 @@ function atos_esuite_field_default_field_bases() {
             'status' => 1,
           ),
           'sdu_behavior' => array(
-            'status' => 0,
+            'status' => 1,
           ),
           'views-select-list' => array(
             'status' => 0,
@@ -319,6 +348,9 @@ function atos_esuite_field_default_field_bases() {
       'handler_settings' => array(
         'behaviors' => array(
           'atos_behavior' => array(
+            'status' => 1,
+          ),
+          'sdu_behavior' => array(
             'status' => 1,
           ),
           'views-select-list' => array(

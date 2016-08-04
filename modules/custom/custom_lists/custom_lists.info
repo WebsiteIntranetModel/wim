@@ -1,0 +1,8 @@
+name = Custom Lists
+description = Custom Lists
+package = WIM
+core = 7.x
+
+dependencies[] = nodequeue
+
+files[] = custom_lists.expire.inc

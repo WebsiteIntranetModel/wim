@@ -23,6 +23,14 @@ function wim_install() {
   _wim_set_blocks();
   // Add menu items.
   _wim_import_menu_items();
+
+  // Add 404 page.
+  $page_404_nid = _wim_create_page('404');
+  variable_set('site_404', 'node/' . $page_404_nid);
+
+  // Add 403 page.
+  $page_403_nid = _wim_create_page('403');
+  variable_set('site_403', 'node/' . $page_403_nid);
 }
 
 /**
@@ -88,6 +96,7 @@ function _wim_set_up_roles_and_permissions() {
     'administer menu',
     'manage felix blocks',
     'access contextual links',
+    'administer custom lists',
     // Node access.
     'create news content',
     'create page content',
@@ -298,4 +307,37 @@ function _wim_import_menu_items() {
       }
     }
   }
+}
+
+/**
+ * Create a node entity.
+ *
+ * @param string $page_type
+ *    Page type, could by like 404, 403 etc.
+ *
+ * @return int node id
+ *    Created node id.
+ */
+function _wim_create_page($page_type, $bundle = 'page', $language = LANGUAGE_NONE) {
+  $node = new stdClass();
+  $node->type = $bundle;
+  $node->language = $language;
+  node_object_prepare($node);
+
+  // 403 page.
+  if ($page_type === '404') {
+    $node->title = 'Not Found (404)';
+    $node->body[$language][0]['value'] = 'Page not found.';
+  }
+
+  // 403 page.
+  if ($page_type === '403') {
+    $node->title = 'No access (403)';
+    $node->body[$language][0]['value'] = 'No access.';
+  }
+
+  $node = node_submit($node);
+  node_save($node);
+
+  return isset($node->nid) ? $node->nid : '';
 }

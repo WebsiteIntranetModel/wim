@@ -5,3 +5,49 @@
  */
 
 include_once 'wim_block_management.features.inc';
+include_once 'wim_block_management.functions.inc';
+
+define('WIM_BLOCK_MANAGEMENT_BOOTSTRAP_FULL_WIDTH', 12);
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ */
+function wim_block_management_form_felix_attributes_form_alter(&$form, &$form_state) {
+  // Inform Felix about our configs.
+  $form['#felix_block_config'] = TRUE;
+
+  $felix_block = $form['#felix_block'];
+  $config = isset($felix_block->data['config']) ? $felix_block->data['config'] : array();
+
+  $form['bootstrap_layout'] = array(
+    '#title' => t('Bootstrap layout'),
+    '#type' => 'select',
+    '#options' => _wim_block_management_get_columns_options(),
+    '#default_value' => isset($config['bootstrap_layout']) ? $config['bootstrap_layout'] : 12,
+  );
+  $form['new_row'] = array(
+    '#title' => t('New row'),
+    '#type' => 'checkbox',
+    '#default_value' => isset($config['new_row']) ? $config['new_row'] : FALSE,
+  );
+}
+
+/**
+ * Implements hook_block_config_save().
+ */
+function wim_block_management_felix_block_config_save($block, $values) {
+  return array(
+    'bootstrap_layout' => $values['bootstrap_layout'],
+    'new_row' => $values['new_row'],
+  );
+}
+
+/**
+ * Implements hook_entity_info_alter().
+ */
+function wim_block_management_entity_info_alter(&$entity_info) {
+  $entity_info['node']['view modes']['felix'] = array(
+    'label' => t('Felix'),
+    'custom settings' => FALSE,
+  );
+}
