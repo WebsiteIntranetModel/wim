@@ -11,7 +11,7 @@ include_once 'wim_addition_faq_product_fields.features.inc';
  */
 function wim_addition_faq_product_fields_module_implements_alter(&$implementations, $hook) {
   if ($hook === 'modules_enabled') {
-    // Move wim_addition_faq_product_fields() to the end of the list. module_implements()
+    // Move this module to the end of the list. module_implements()
     // iterates through $implementations with a foreach loop which PHP iterates
     // in the order that the items were added, so to move an item to the end of
     // the array, we remove it and then add it.
