@@ -33,8 +33,10 @@ function sduconnect_delta_import($collection) {
     }
 
     // Removed items.
-    $to_remove = sduconnect_load_nids($ids->removed);
-    node_delete_multiple($to_remove);
+    if ($ids->removed) {
+      $to_remove = sduconnect_load_nids($ids->removed);
+      node_delete_multiple($to_remove);
+    }
 
     $collection->updated_till = $ids->servertime;
     sduconnect_collection_save($collection);
@@ -49,6 +51,7 @@ function sduconnect_delta_import($collection) {
       '%code' => $e->getCode(),
       '%url' => $e->getMessage(),
     ));
+    dsm($log);
     _sdu_log('unreachable', $collection, $log, NULL);
   }
   return $output;
