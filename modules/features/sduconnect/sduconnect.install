@@ -11,28 +11,6 @@
 function sduconnect_install() {
   $role = user_role_load_by_name('content moderator');
   user_role_grant_permissions($role->rid, array('view sduconnect info', 'administer sduconnect module'));
-
-  $fields = array(
-    'field_related_faq',
-    'field_related_product',
-  );
-
-  foreach ($fields as $name) {
-    db_change_field("field_data_{$name}", "{$name}_target_id", "{$name}_target_id", array(
-      'type' => 'varchar',
-      'length' => 255,
-      'default' => '',
-      'unsigned' => FALSE,
-    ));
-    db_change_field("field_revision_{$name}", "{$name}_target_id", "{$name}_target_id", array(
-      'type' => 'varchar',
-      'length' => 255,
-      'default' => '',
-      'unsigned' => FALSE,
-    ));
-  }
-
-  field_cache_clear();
 }
 
 /**
@@ -171,68 +149,5 @@ function sduconnect_schema() {
     'primary key' => array('lid'),
   );
 
-  $schema['sduconnect_related'] = array(
-    'fields' => array(
-      'type_a' => array(
-        'type' => 'varchar',
-        'length' => 3,
-        'not null' => TRUE,
-      ),
-      'external_id_a' => array(
-        'type' => 'varchar',
-        'length' => 32,
-        'not null' => TRUE,
-      ),
-      'type_b' => array(
-        'type' => 'varchar',
-        'length' => 3,
-        'not null' => TRUE,
-      ),
-      'external_id_b' => array(
-        'type' => 'varchar',
-        'length' => 32,
-        'not null' => TRUE,
-      ),
-    ),
-    'primary key' => array(
-      'type_a',
-      'external_id_a',
-      'type_b',
-      'external_id_b',
-    ),
-    'indexes' => array(
-      'b' => array('type_b', 'external_id_b'),
-    ),
-  );
-
   return $schema;
-}
-
-/**
- * Implements hook_schema_alter().
- */
-function sduconnect_schema_alter(&$schema) {
-
-  $fields = array(
-    'field_related_faq',
-    'field_related_product',
-  );
-
-  foreach ($fields as $name) {
-    if (isset($schema["field_data_{$name}"])) {
-      $schema["field_data_{$name}"]['fields']["{$name}_target_id"] = array(
-        'type' => 'varchar',
-        'length' => 255,
-        'default' => '',
-        'unsigned' => FALSE,
-      );
-      $schema["field_revision_{$name}"]['fields']["{$name}_target_id"] = array(
-        'type' => 'varchar',
-        'length' => 255,
-        'default' => '',
-        'unsigned' => FALSE,
-      );
-    }
-  }
-
 }
