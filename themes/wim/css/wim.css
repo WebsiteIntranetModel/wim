@@ -10725,6 +10725,31 @@ h1, h2, h3, h4, h5, h6 {
   padding-left: 5px;
 }
 
+.node-type-product .field-label-above {
+  margin: 1em -0;
+}
+
+.node-type-product .field-label-above .field-label {
+  padding: 10px;
+  border-top: 1px solid #efe5ef;
+  background: #fdfbfd;
+  margin-bottom: 10px;
+  font-size: 100%;
+  font-weight: normal;
+}
+
+.node-type-product .field-label-above a {
+  text-decoration: underline;
+}
+
+.node-type-product .field-label-above.field-name-field-tags .field-item {
+  display: inline-block;
+}
+
+.node-type-product .field-label-above.field-name-field-tags .field-item:not(:first-child) {
+  padding-left: 5px;
+}
+
 .view-news .view-filters {
   margin-bottom: 2em;
 }
