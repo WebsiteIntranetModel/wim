@@ -12,9 +12,8 @@ Feature: Edit basic page
     When I go to "admin/content"
     And I select "Basic page" from "type"
     And I press "Filter"
-    Then I should not see "Access denied"
     And I click "edit" in the "TITLE-ONE" row
-    Then I should not see "Access denied"
+    Then I should not see "No access (403)"
     When I fill in the following:
       | Title | TITLE-TWO     |
       | Body  | BODY-CONTENT2 |

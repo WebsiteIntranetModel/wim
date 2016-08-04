@@ -7,12 +7,11 @@ Feature: Edit Agenda
   Scenario: Successfully edit Agenda
     Given I am logged in as a "content moderator"
     When I go to "admin/content"
-    Then I should not see "Access denied"
     And I select "Agenda" from "type"
     And I press "Filter"
     And I should see "Test Agenda 2"
     And I click "edit" in the "Test Agenda 2" row
-    Then I should not see "Access denied"
+    Then I should not see "No access (403)"
     When I fill in the following:
       | Title | Test Agenda Edited 2 |
       | Body  | AGENDA-BODY-CONTENT2 |

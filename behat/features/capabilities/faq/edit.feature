@@ -7,12 +7,11 @@ Feature: Edit FAQ
   Scenario: Successfully edit FAQ
     Given I am logged in as a "content moderator"
     When I go to "admin/content"
-    Then I should not see "Access denied"
     And I select "FAQ" from "type"
     And I press "Filter"
     And I should see "Question 1"
     And I click "edit" in the "Question 1" row
-    Then I should not see "Access denied"
+    Then I should not see "No access (403)"
     When I fill in the following:
       | Question               | Question 1 Edited        |
       | Answer                 | ANSWER 1 Edited          |

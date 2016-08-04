@@ -7,7 +7,7 @@ Feature: Create FAQ
   Scenario: Successfully create FAQ
     Given I am logged in as a "content moderator"
     And I am on "node/add/faq"
-    Then I should not see "Access denied"
+    Then I should not see "No access (403)"
     When I fill in the following:
       | Question               | TEST FAQ QUESTION      |
       | Answer                 | ANSWER                 |
@@ -22,7 +22,7 @@ Feature: Create FAQ
 
     Given I am an anonymous user
     And I visit "node/add/faq"
-    Then I should see "Access denied"
+    Then I should see "No access (403)"
 
   Scenario: Successfully set category for FAQ
     Given I am logged in as a "content moderator"
@@ -31,7 +31,7 @@ Feature: Create FAQ
       | FAQ-CATEGORY1 |
       | FAQ-CATEGORY2 |
     And I am on "node/add/faq"
-    Then I should not see "Access denied"
+    Then I should not see "No access (403)"
     When I fill in the following:
       | Question               | TEST FAQ QUESTION      |
       | Answer                 | ANSWER                 |

@@ -42,3 +42,14 @@ body:before {
     content: "desktop";
   }
 }
+body.in-maintenance {
+  #page {
+    @extend .container;
+    background-color: #fff;
+    border-radius: 3px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    margin-bottom: 20px;
+    margin-top: 10px;
+    padding: 20px;
+  }
+}

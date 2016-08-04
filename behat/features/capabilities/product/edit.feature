@@ -10,11 +10,10 @@ Feature: Edit Product
       | PRODUCT TITLE1 | BODY-CONTENT1 | 06/27/2026 | Tag1       | 1              | 1      |
     Given I am logged in as a "content moderator"
     When I go to "admin/content"
-    Then I should not see "Access denied"
     And I select "Product" from "type"
     And I press "Filter"
     And I click "edit" in the "PRODUCT TITLE1" row
-    Then I should not see "Access denied"
+    Then I should not see "No access (403)"
     When I fill in the following:
       | title    | PRODUCT TITLE2 |
       | Body     | BODY-CONTENT2  |

@@ -28,6 +28,8 @@ Feature: FAQ overview
 
     Given I am logged in as a "content moderator"
     When I go to "admin/content"
+    And I select "FAQ" from "type"
+    And I press "Filter"
     And I click "edit" in the "Question 2" row
     And I check the box "Show this FAQ in the FAQ overview"
     And I press "Save"
