@@ -250,7 +250,7 @@ function custom_lists_render_nodes($view_mode, $items, $list, $page = FALSE) {
     );
   }
   else {
-    $node_list = node_view_multiple($nodes, $view_mode);
+    $node_list = $nodes ? node_view_multiple($nodes, $view_mode) : '';
     if ($page) {
       return $node_list;
     }
