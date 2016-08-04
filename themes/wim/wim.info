@@ -29,6 +29,17 @@ stylesheets[all][] = css/wim.css
 stylesheets[all][] = css/style.css
 
 ; ========================================
+; Breakpoints
+; ========================================
+
+breakpoints[wide] = only screen and (min-width: 1200px)
+breakpoints[desktop] = (min-width: 768px)
+breakpoints[tablet] = (min-width: 480px)
+breakpoints[mobile] = (min-width: 0px)
+
+multipliers[mobile][] = 2x
+
+; ========================================
 ; Scripts
 ; ========================================
 

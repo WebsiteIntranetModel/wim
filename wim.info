@@ -17,6 +17,7 @@ dependencies[] = taxonomy
 
 ; Contrib
 dependencies[] = admin_menu
+dependencies[] = breakpoints
 dependencies[] = ctools
 dependencies[] = date_views
 dependencies[] = entity
@@ -27,6 +28,7 @@ dependencies[] = jquery_update
 dependencies[] = magic
 dependencies[] = menu_block
 dependencies[] = link
+dependencies[] = picture
 dependencies[] = strongarm
 dependencies[] = views
 

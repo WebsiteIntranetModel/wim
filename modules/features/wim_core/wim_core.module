@@ -1,9 +1,10 @@
 <?php
-
 /**
  * @file
  * Code for the WIM Core feature.
  */
+
+include_once 'wim_core.features.inc';
 
 /**
  * Implements hook_entity_info_alter().
@@ -31,6 +32,40 @@ function wim_core_image_default_styles() {
         'data' => array(
           'width' => 150,
           'height' => 150,
+        ),
+        'weight' => 0,
+      ),
+    ),
+  );
+
+  $styles['teaser_mobile'] = array(
+    'name' => 'teaser',
+    'label' => 'Teaser mobile (430xAUTO)',
+    'effects' => array(
+      array(
+        'module' => 'image',
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => 430,
+          'height' => '',
+          'upscale' => 0,
+        ),
+        'weight' => 0,
+      ),
+    ),
+  );
+
+  $styles['teaser_mobile_retina'] = array(
+    'name' => 'teaser',
+    'label' => 'Teaser retina (860xAUTO)',
+    'effects' => array(
+      array(
+        'module' => 'image',
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => 860,
+          'height' => '',
+          'upscale' => 0,
         ),
         'weight' => 0,
       ),
