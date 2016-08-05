@@ -98,6 +98,7 @@ function _wim_set_up_roles_and_permissions() {
     'access contextual links',
     'administer custom lists',
     // Node access.
+    'administer nodes',
     'create news content',
     'create page content',
     'create product content',
