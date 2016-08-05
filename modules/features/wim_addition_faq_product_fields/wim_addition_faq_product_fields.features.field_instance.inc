@@ -160,11 +160,11 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'abovec',
         'module' => 'file',
         'settings' => array(),
         'type' => 'file_default',
-        'weight' => 14,
+        'weight' => 15,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -203,11 +203,11 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'abovec',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 15,
+        'weight' => 6,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -243,11 +243,11 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'abovec',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 9,
+        'weight' => 12,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -283,7 +283,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'abovec',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
@@ -323,11 +323,11 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'abovec',
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_default',
-        'weight' => 6,
+        'weight' => 7,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -380,11 +380,11 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'abovec',
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_default',
-        'weight' => 7,
+        'weight' => 4,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -437,7 +437,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'abovec',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
@@ -477,11 +477,11 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'abovec',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 12,
+        'weight' => 14,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -517,11 +517,11 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'abovec',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 13,
+        'weight' => 9,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -557,11 +557,11 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'abovec',
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_default',
-        'weight' => 4,
+        'weight' => 5,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -614,11 +614,11 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'abovec',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 8,
+        'weight' => 13,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -654,11 +654,11 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'abovec',
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_default',
-        'weight' => 5,
+        'weight' => 8,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -711,7 +711,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'abovec',
         'module' => 'entityreference',
         'settings' => array(
           'link' => 1,

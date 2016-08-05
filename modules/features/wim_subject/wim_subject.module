@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the WIM Subject feature.
+ */
+
+include_once 'wim_subject.features.inc';
