@@ -70,6 +70,12 @@ function wim_agenda_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'agenda' => 'agenda',
   );
+  /* Filter criterion: Content: Date - end date (field_agenda_date:value2) */
+  $handler->display->display_options['filters']['field_agenda_date_value2']['id'] = 'field_agenda_date_value2';
+  $handler->display->display_options['filters']['field_agenda_date_value2']['table'] = 'field_data_field_agenda_date';
+  $handler->display->display_options['filters']['field_agenda_date_value2']['field'] = 'field_agenda_date_value2';
+  $handler->display->display_options['filters']['field_agenda_date_value2']['operator'] = '>=';
+  $handler->display->display_options['filters']['field_agenda_date_value2']['default_date'] = 'now';
 
   /* Display: Overview */
   $handler = $view->new_display('page', 'Overview', 'agenda_overview');
