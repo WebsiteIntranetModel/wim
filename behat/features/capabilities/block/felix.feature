@@ -13,10 +13,20 @@ Feature: Add blocks via Felix
     When I mouseover the ".region-sidebar-first .block-felix" element
     Then I should see an ".region-sidebar-first .block-felix .contextual-links-trigger-active" element
 
+    #Content Top
+    And I should see "Content Top" in the "Content Top"
+    When I mouseover the ".region-content-top .block-felix" element
+    Then I should see an ".region-content-top .block-felix .contextual-links-trigger-active" element
+
     #Content
     And I should see "Content" in the "Content"
     When I mouseover the ".region-content .block-felix" element
     Then I should see an ".region-content .block-felix .contextual-links-trigger-active" element
+
+    #Content Bottom
+    And I should see "Content Bottom" in the "Content Bottom"
+    When I mouseover the ".region-content-bottom .block-felix" element
+    Then I should see an ".region-content-bottom .block-felix .contextual-links-trigger-active" element
 
     #Highlighted
     And I should see "Highlighted" in the "Highlighted"
