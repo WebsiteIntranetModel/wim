@@ -310,7 +310,7 @@ function custom_lists_content_nodes($list, $items, $full_load = TRUE) {
 
   // Sorting.
   $parts = explode('_', $list['sort']);
-  if ($list['node-queues'] && $parts[0] == 'queue') {
+  if (!empty($list['node-queues']) && $list['node-queues'] != '_any' && $list['node-queues'] && $parts[0] == 'queue') {
     $query->orderBy('q.position', $parts[1]);
   }
   else {
@@ -321,7 +321,7 @@ function custom_lists_content_nodes($list, $items, $full_load = TRUE) {
       }
       $query->orderBy('fd.field_agenda_date_value', $parts[1]);
     }
-    else {
+    elseif($parts[0] !== 'queue') {
       $query->orderBy('n.' . $parts[0], $parts[1]);
     }
   }
