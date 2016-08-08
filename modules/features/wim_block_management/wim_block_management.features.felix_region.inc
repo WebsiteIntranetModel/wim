@@ -20,6 +20,28 @@ function wim_block_management_felix_default_regions() {
       'hash' => array(),
     ),
   );
+  $regions['content-bottom'] = array(
+    'name' => 'content-bottom',
+    'title' => 'Content Bottom',
+    'region' => 'content_bottom',
+    'weight' => 0,
+    'context' => 'sidewide',
+    'block_set' => 'default',
+    'data' => array(
+      'hash' => array(),
+    ),
+  );
+  $regions['content-top'] = array(
+    'name' => 'content-top',
+    'title' => 'Content Top',
+    'region' => 'content_top',
+    'weight' => 0,
+    'context' => 'sidewide',
+    'block_set' => 'default',
+    'data' => array(
+      'hash' => array(),
+    ),
+  );
   $regions['footer-first'] = array(
     'name' => 'footer-first',
     'title' => 'Footer First',
