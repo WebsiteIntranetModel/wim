@@ -10813,10 +10813,12 @@ h1, h2, h3, h4, h5, h6 {
   float: none;
 }
 
+.node-type-agenda .field-label-abovec,
 .node-type-agenda .field-label-above {
   margin: 1em -0;
 }
 
+.node-type-agenda .field-label-abovec .field-label,
 .node-type-agenda .field-label-above .field-label {
   padding: 10px;
   border-top: 1px solid #efe5ef;
@@ -10826,22 +10828,27 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: normal;
 }
 
+.node-type-agenda .field-label-abovec a,
 .node-type-agenda .field-label-above a {
   text-decoration: underline;
 }
 
+.node-type-agenda .field-label-abovec.field-name-field-tags .field-item,
 .node-type-agenda .field-label-above.field-name-field-tags .field-item {
   display: inline-block;
 }
 
+.node-type-agenda .field-label-abovec.field-name-field-tags .field-item:not(:first-child),
 .node-type-agenda .field-label-above.field-name-field-tags .field-item:not(:first-child) {
   padding-left: 5px;
 }
 
+.node-type-product .field-label-abovec,
 .node-type-product .field-label-above {
   margin: 1em -0;
 }
 
+.node-type-product .field-label-abovec .field-label,
 .node-type-product .field-label-above .field-label {
   padding: 10px;
   border-top: 1px solid #efe5ef;
@@ -10851,14 +10858,17 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: normal;
 }
 
+.node-type-product .field-label-abovec a,
 .node-type-product .field-label-above a {
   text-decoration: underline;
 }
 
+.node-type-product .field-label-abovec.field-name-field-tags .field-item,
 .node-type-product .field-label-above.field-name-field-tags .field-item {
   display: inline-block;
 }
 
+.node-type-product .field-label-abovec.field-name-field-tags .field-item:not(:first-child),
 .node-type-product .field-label-above.field-name-field-tags .field-item:not(:first-child) {
   padding-left: 5px;
 }
