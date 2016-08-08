@@ -281,6 +281,14 @@ function _wim_import_menu_items() {
         'weight' => 0,
         'expanded' => 0,
       ),
+      array(
+        'link_title' => st('FAQ'),
+        'link_path' => 'faq',
+        'menu_name' => 'menu-meta-menu',
+        'weight' => 1,
+        'expanded' => 0,
+        'customized' => 1,
+      ),
     ),
     'main-menu' => array(
       array(

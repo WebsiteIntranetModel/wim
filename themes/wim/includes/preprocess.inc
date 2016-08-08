@@ -129,4 +129,9 @@ function wim_preprocess_block(&$variables) {
   else {
     $variables['classes_array'][] = 'col-md-' . WIM_BLOCK_MANAGEMENT_BOOTSTRAP_FULL_WIDTH;
   }
+
+  // Add class for menus blocks.
+  if ($block->module === 'menu') {
+    $variables['classes_array'][] = drupal_html_class($block->delta);
+  }
 }
