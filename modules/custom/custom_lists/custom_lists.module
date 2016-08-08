@@ -321,7 +321,7 @@ function custom_lists_content_nodes($list, $items, $full_load = TRUE) {
       }
       $query->orderBy('fd.field_agenda_date_value', $parts[1]);
     }
-    elseif($parts[0] !== 'queue') {
+    elseif ($parts[0] !== 'queue') {
       $query->orderBy('n.' . $parts[0], $parts[1]);
     }
   }
