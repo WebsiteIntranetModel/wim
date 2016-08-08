@@ -22,6 +22,7 @@ function wim_block_management_context_default_contexts() {
         '~admin/*' => '~admin/*',
         '~felix-blocks/*' => '~felix-blocks/*',
         '~node/add/*' => '~node/add/*',
+        '~node/*/edit' => '~node/*/edit',
       ),
     ),
     'sitewide' => array(

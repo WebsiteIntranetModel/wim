@@ -207,7 +207,7 @@ function _wim_set_blocks() {
       'status' => BLOCK_CUSTOM_ENABLED,
       'weight' => 0,
       'region' => 'sidebar_first',
-      'pages' => "admin/*\nnode/*/edit\nnode/add/*",
+      'pages' => "<front>\nadmin/*\nnode/*/edit\nnode/add/*",
       'title' => '',
       'cache' => DRUPAL_NO_CACHE,
     ),
