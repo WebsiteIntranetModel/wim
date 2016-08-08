@@ -142,9 +142,7 @@
 
     <?php if (!empty($page['content_top'])): ?>
       <div class="row">
-        <section class="col-sm-12">
-          <?php print render($page['content_top']); ?>
-        </section>
+        <?php print render($page['content_top']); ?>
       </div>
     <?php endif; ?>
 
@@ -187,9 +185,7 @@
 
     <?php if (!empty($page['content_bottom'])): ?>
       <div class="row">
-        <section class="col-sm-12">
-          <?php print render($page['content_bottom']); ?>
-        </section>
+        <?php print render($page['content_bottom']); ?>
       </div>
     <?php endif; ?>
 
