@@ -38,7 +38,9 @@ default:
         region_map:
           'Meta left': '.region-meta-left'
           'Header': '#header'
+          'Content Top': '.region-content-top'
           'Content': '.region-content'
+          'Content Bottom': '.region-content-bottom'
           'Main content': '#block-system-main'
           'Sidebar first': '.region-sidebar-first'
           'Sidebar second': '.region-sidebar-second'
