@@ -38,6 +38,22 @@ function wim_core_image_default_styles() {
     ),
   );
 
+  $styles['icon'] = array(
+    'name' => 'icon',
+    'label' => 'Icon (40x40)',
+    'effects' => array(
+      array(
+        'module' => 'image',
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => 40,
+          'height' => 40,
+        ),
+        'weight' => 0,
+      ),
+    ),
+  );
+
   $styles['teaser_mobile'] = array(
     'name' => 'teaser',
     'label' => 'Teaser mobile (430xAUTO)',
@@ -105,4 +121,19 @@ function wim_core_image_default_styles() {
   );
 
   return $styles;
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function wim_core_form_alter(&$form, &$form_state, $form_id) {
+  // @todo remove this when the issue will be fixed and the new version is released.
+  // https://www.drupal.org/node/2632640.
+  if ($form_id === 'views_form_faq_admin_faq' && isset($form['field_weight_selector'])) {
+    foreach ($form['field_weight_selector'] as &$weight_selector) {
+      if (isset($weight_selector['weight']['#access'])) {
+        $weight_selector['weight']['#access'] = TRUE;
+      }
+    }
+  }
 }

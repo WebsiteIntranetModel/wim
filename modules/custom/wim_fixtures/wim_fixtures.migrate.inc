@@ -108,6 +108,15 @@ function wim_fixtures_migrate_api() {
         'group_name' => 'WIMMigrate',
         'file_name' => 'block-custom.csv',
       ),
+      'WIM_TopTasksMenu' => array(
+        'class_name' => 'TopTasksMenuMigration',
+        'group_name' => 'WIMMigrate',
+        'file_name' => 'top-tasks.csv',
+        'menu_name' => 'menu-top-tasks',
+        'dependencies' => array(
+          'WIM_File',
+        ),
+      ),
     ),
   );
 

@@ -8,13 +8,13 @@
 (function ($) {
   function isMobile() {
     var breakpoint = window.getComputedStyle(document.querySelector('body'), ':before').getPropertyValue('content').replace(/\"/g, '');
-    if(breakpoint != "desktop"){
+    if (breakpoint != "desktop") {
       return true;
     }
     return false;
   }
 
-  Drupal.behaviors.mobileMenu = {
+  Drupal.behaviors.mobileMainMenu = {
     attach: function (context, settings) {
       var $navMenu = $('.navbar-nav.primary'),
         expandedClass = 'expanded',
@@ -25,6 +25,20 @@
           event.preventDefault();
           $(this).parent().toggleClass(expandedClass);
         }
+      });
+    }
+  };
+
+  Drupal.behaviors.mobileTopTasksMenu = {
+    attach: function (context, settings) {
+      var $topTasksMenu = $('section.menu-top-tasks'),
+        openDefaultClass = 'open-default';
+
+      if (!isMobile()) {
+        $('li.first.dropdown', $topTasksMenu).addClass(openDefaultClass);
+      }
+      $('.menu > li', $topTasksMenu).once('top-tasks-item-dropdown').click(function (e) {
+        $('.menu > li', $topTasksMenu).removeClass(openDefaultClass);
       });
     }
   };

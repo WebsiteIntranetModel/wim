@@ -141,9 +141,7 @@
     <?php endif; ?>
 
     <?php if (!empty($page['content_top'])): ?>
-      <div class="row">
-        <?php print render($page['content_top']); ?>
-      </div>
+      <?php print render($page['content_top']); ?>
     <?php endif; ?>
 
     <div class="row">
@@ -184,9 +182,7 @@
     </div>
 
     <?php if (!empty($page['content_bottom'])): ?>
-      <div class="row">
-        <?php print render($page['content_bottom']); ?>
-      </div>
+      <?php print render($page['content_bottom']); ?>
     <?php endif; ?>
 
   </div>

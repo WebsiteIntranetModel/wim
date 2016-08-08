@@ -1,0 +1,151 @@
+.main-container {
+  .menu-top-tasks {
+    border: 1px solid #ddd;
+    padding-left: 0;
+    padding-right: 0;
+    width: auto;
+    float: none;
+    margin-left: 15px;
+    margin-right: 15px;
+    position: relative;
+    @include MQ($screen-sm) {
+      min-height: 170px;
+    }
+    .menu {
+      background-color: #efefef;
+      @include MQ($screen-sm) {
+        min-height: 170px;
+        width: 30.9859%;
+      }
+      .dropdown {
+        font-size: 14px;
+        line-height: 1;
+        border-bottom: 1px solid #fff;
+        position: static;
+        cursor: pointer;
+        margin-bottom: 0;
+
+        @include MQ($screen-sm) {
+          &.open-default,
+          &:hover {
+            background-color: $brand-primary;
+            .nolink {
+              color: #fff;
+            }
+            .dropdown-menu {
+              display: block;
+            }
+          }
+          &.open-default,
+          &:hover,
+          &.open {
+            .nolink {
+              &:before {
+                display: block !important;
+              }
+            }
+          }
+        }
+        .nolink {
+          padding: 18px 10px;
+          color: #000;
+          font-family: "Roboto Slab", "Droid Sans", Arial, sans-serif;
+          text-decoration: none;
+          display: block;
+          position: relative;
+          &:before {
+            border-color: transparent transparent transparent $brand-primary;
+            border-image: none;
+            border-style: solid;
+            border-width: 15px;
+            content: " ";
+            height: 0;
+            left: 100%;
+            margin-top: -15px;
+            pointer-events: none;
+            position: absolute;
+            top: 50%;
+            width: 0;
+            z-index: 1005;
+            display: none;
+          }
+          &:after {
+            position: absolute;
+            font-family: 'Glyphicons Halflings';
+            font-style: normal;
+            font-weight: normal;
+            line-height: 1;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            content: "\e259";
+            @include MQ($screen-sm) {
+              display: none;
+            }
+          }
+        }
+        &.open {
+          background-color: $brand-primary;
+          .nolink {
+            color: #fff;
+            &:after {
+              content: "\e260";
+            }
+          }
+        }
+        .dropdown-menu {
+          position: static;
+          top: 0;
+          min-width: 0;
+          box-shadow: none;
+          height: 100%;
+          background-color: #ffffff;
+          margin-top: 0;
+          border-radius: 0;
+          @include MQ($screen-sm) {
+            position: absolute;
+            left: 30.9859%;
+            padding-left: 20px;
+            width: 65.493%;
+          }
+          li {
+            display: block;
+            @include MQ($screen-sm) {
+              float: left;
+              margin-bottom: 7px;
+              margin-right: 10px;
+              margin-top: 7px;
+              width: 48.2394%;
+            }
+            &:nth-child(2n) {
+              margin-right: 0;
+            }
+            a {
+              background: none;
+              padding: 10px;
+              color: #333333;
+              white-space: normal;
+              @include MQ($screen-sm) {
+                padding: 2% 0;
+                text-align: center;
+              }
+              &:before {
+                display: none;
+              }
+              span {
+                margin: 0 6px 0 0;
+                @include MQ($screen-sm) {
+                  display: block;
+                  margin: 0 0 6px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
