@@ -67,7 +67,7 @@ function wim_agenda_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'abovec',
         'module' => 'date',
         'settings' => array(
           'format_type' => 'long',
@@ -216,7 +216,7 @@ function wim_agenda_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'abovec',
         'module' => 'location_cck',
         'settings' => array(),
         'type' => 'location_default',
