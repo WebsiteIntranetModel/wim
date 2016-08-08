@@ -210,7 +210,7 @@ function wim_menu_link(array $variables) {
   $menu_icon = isset($element['#localized_options']['menu_icon']) ? $element['#localized_options']['menu_icon'] : NULL;
   // Add menu item icon.
   if ($menu_icon['enable'] && $menu_icon['path']) {
-    $icon = '<span><img class="item-icon" href="' . image_style_url($menu_icon['image_style'], $menu_icon['path']) . '"></span>';
+    $icon = '<span><img class="item-icon" src="' . image_style_url($menu_icon['image_style'], $menu_icon['path']) . '"></span>';
     $element['#localized_options']['html'] = TRUE;
   }
   if ($element['#below']) {
