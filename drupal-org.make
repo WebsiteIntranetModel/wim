@@ -50,3 +50,7 @@ projects[location][patch][1997658_6] = https://www.drupal.org/files/issues/locat
 ;libraries[a11ychecker][destination] = "custom"
 ;libraries[a11ychecker][subdir] = "ckeditor_customtags"
 ;libraries[a11ychecker][directory_name] = "a11ychecker_custom"
+
+; CKEditor 4.4.6
+libraries[ckeditor][download][type] = get
+libraries[ckeditor][download][url] = http://download.cksource.com/CKEditor/CKEditor/CKEditor%204.4.6/ckeditor_4.4.6_full.tar.gz
