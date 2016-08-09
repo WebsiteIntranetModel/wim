@@ -42,3 +42,6 @@ projects[features][patch][2143765_7] = https://www.drupal.org/files/issues/featu
 ; Fixing bug with the location field ajax callback
 ; https://www.drupal.org/node/1997658#comment-10532078
 projects[location][patch][1997658_6] = https://www.drupal.org/files/issues/location-1997658-46.patch
+; Fixing bug with the location Google maps link
+; https://www.drupal.org/node/2781227
+projects[location][patch][2781227_1] = https://www.drupal.org/files/issues/location-google-maps-link-2781227-1.patch
