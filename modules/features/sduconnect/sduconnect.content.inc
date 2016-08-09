@@ -44,6 +44,13 @@ function sduconnect_set_pdc_content(DOMXPath $xpath, &$node, $private = FALSE) {
     $node->changed = $changed;
   }
 
+  // Language.
+  $language = (string) $xpath->query('//m:page/m:product/m:language')
+    ->item(0)->nodeValue;
+  if ($language) {
+    $node->language = strtolower(trim($language));
+  }
+
   // Body.
   $body = '';
   // Let op.
@@ -368,6 +375,13 @@ function sduconnect_set_vac_content($xpath, &$node, $private = FALSE) {
   // Changed.
   $changed = sduconnect_nodelist_to_string($xpath->query('//vac:vacs/vac:vac/vac:meta/vac:owmskern/dcterms:modified'));
   $node->changed = strtotime($changed);
+
+  // Language.
+  $language = sduconnect_nodelist_to_string($xpath->query('//vac:vacs/vac:vac/vac:meta/vac:owmskern/dcterms:language'));
+  if ($language) {
+    $parts = explode('-', $language);
+    $node->language = trim($parts[0]);
+  }
 
   // Explanation.
   $value = sduconnect_nodelist_to_string($xpath->query('//vac:vacs/vac:vac/vac:body/vac:kanaal/vac:toelichting'));
