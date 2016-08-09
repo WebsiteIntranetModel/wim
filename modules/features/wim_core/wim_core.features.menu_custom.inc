@@ -16,9 +16,16 @@ function wim_core_menu_default_menu_custom() {
     'title' => 'Meta menu links',
     'description' => '',
   );
+  // Exported menu: menu-top-tasks.
+  $menus['menu-top-tasks'] = array(
+    'menu_name' => 'menu-top-tasks',
+    'title' => 'Top tasks',
+    'description' => '',
+  );
   // Translatables
   // Included for use with string extractors like potx.
   t('Meta menu links');
+  t('Top tasks');
 
   return $menus;
 }

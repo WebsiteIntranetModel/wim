@@ -67,7 +67,7 @@ function wim_agenda_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'abovec',
         'module' => 'date',
         'settings' => array(
           'format_type' => 'long',
@@ -130,7 +130,7 @@ function wim_agenda_field_default_field_instances() {
         'label_position' => 'above',
         'no_fieldset' => 0,
         'text_parts' => array(),
-        'year_range' => '-3:+3',
+        'year_range' => '-0:+3',
       ),
       'type' => 'date_popup',
       'weight' => 5,
@@ -216,7 +216,7 @@ function wim_agenda_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'abovec',
         'module' => 'location_cck',
         'settings' => array(),
         'type' => 'location_default',

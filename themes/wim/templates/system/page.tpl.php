@@ -134,10 +134,17 @@
 
   <div role="main" class="main-container <?php print $container_class; ?>">
 
+    <?php if (!empty($breadcrumb)): ?>
+      <div class="row">
+        <?php if (!empty($breadcrumb)): print $breadcrumb; endif; ?>
+      </div>
+    <?php endif; ?>
+
+    <?php if (!empty($page['content_top'])): ?>
+      <?php print render($page['content_top']); ?>
+    <?php endif; ?>
+
     <div class="row">
-
-      <?php if (!empty($breadcrumb)): print $breadcrumb; endif;?>
-
       <?php if (!empty($page['sidebar_first'])): ?>
         <aside class="col-sm-3" role="complementary">
           <?php print render($page['sidebar_first']); ?>
@@ -172,8 +179,12 @@
           <?php print render($page['sidebar_second']); ?>
         </aside>  <!-- /#sidebar-second -->
       <?php endif; ?>
-
     </div>
+
+    <?php if (!empty($page['content_bottom'])): ?>
+      <?php print render($page['content_bottom']); ?>
+    <?php endif; ?>
+
   </div>
 </div>
 
