@@ -29,9 +29,11 @@ dependencies[] = jquery_update
 dependencies[] = magic
 dependencies[] = menu_block
 dependencies[] = link
+dependencies[] = linkit
 dependencies[] = picture
 dependencies[] = strongarm
 dependencies[] = views
+dependencies[] = wysiwyg
 
 ; Features
 dependencies[] = wim_agenda
@@ -42,6 +44,8 @@ dependencies[] = wim_news
 dependencies[] = wim_page
 dependencies[] = wim_product
 dependencies[] = wim_subject
+dependencies[] = wim_text_formats
 
 ; Custom
+dependencies[] = ckeditor_customtags
 dependencies[] = custom_lists
