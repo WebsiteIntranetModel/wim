@@ -64,8 +64,10 @@ Feature: News overview
     And I am on "node/add/news"
     When I fill in the following:
       | Title | TEST CATEGORY NEWS |
-      | Date  | 06/30/2016         |
       | Body  | BODY CONTENT       |
+    And I click "Publishing options"
+    And I fill in the following:
+      | Date | 06/30/2016 |
     Then I select "CATEGORY1" from "Category"
     And I press "Save"
     And I go to "news"

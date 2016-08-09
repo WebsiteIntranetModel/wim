@@ -136,4 +136,18 @@ function wim_core_form_alter(&$form, &$form_state, $form_id) {
       }
     }
   }
+
+  if (isset($form['#node_edit_form']) && $form['#node_edit_form']) {
+    // Hide sticky option.
+    $form['options']['sticky']['#access'] = FALSE;
+
+    // Move fields to the Publishing options tab.
+    foreach (array('field_publication_date', 'field_promoted') as $field_name) {
+      if (isset($form[$field_name])) {
+        $form['options'][$field_name] = $form[$field_name];
+        unset($form[$field_name]);
+      }
+    }
+  }
+
 }
