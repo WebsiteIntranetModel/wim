@@ -6,11 +6,9 @@ Feature: Edit FAQ
 
   Scenario: Successfully edit FAQ
     Given I am logged in as a "content moderator"
-    When I go to "admin/content"
-    And I select "FAQ" from "type"
-    And I press "Filter"
-    And I should see "where type is FAQ"
-    And I wait for 1 seconds
+    When I go to "admin/content/faq"
+    And I select "- Any -" from "Show on overview"
+    And I press "Apply"
     And I should see "Question 1"
     And I click "edit" in the "Question 1" row
     Then I should not see "No access (403)"
