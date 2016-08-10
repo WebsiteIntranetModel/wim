@@ -39,6 +39,23 @@
       }
       $('.menu > li', $topTasksMenu).once('top-tasks-item-dropdown').click(function (e) {
         $('.menu > li', $topTasksMenu).removeClass(openDefaultClass);
+        console.log($(this));
+        $('.menu > li', $topTasksMenu).not(this).removeClass('open');
+        if (isMobile()) {
+          $(this).toggleClass('open');
+        } else {
+          $(this).addClass('open');
+        }
+      });
+    }
+  };
+
+  // Global behavior for nolink items.
+  Drupal.behaviors.noLink = {
+    attach: function (context, settings) {
+      var $noLinkItems = $('a.nolink');
+      $noLinkItems.once('nolink').click(function () {
+        event.preventDefault();
       });
     }
   };
