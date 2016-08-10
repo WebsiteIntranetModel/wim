@@ -15,4 +15,3 @@ Feature: View basic page
     And I should not see "BSCPGTEST"
     And I should see "TITLE-ONE"
     And I should see "BODY-CONTENT1"
-    And I should see "27 June 2026"

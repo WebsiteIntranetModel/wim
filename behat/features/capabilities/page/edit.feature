@@ -18,13 +18,13 @@ Feature: Edit basic page
       | Title | TITLE-TWO     |
       | Body  | BODY-CONTENT2 |
       | Tags  | BSCPGTEST     |
-      | Date  | 06/30/2016    |
-      | Time  | 10:00:00      |
+    And I click "Publishing options"
+    And I fill in the following:
+      | Date | 06/30/2016 |
+      | Time | 10:00:00   |
     And I press "Save"
     And I should see the success message "Basic page TITLE-TWO has been updated."
     And I click "TITLE-TWO" in the "TITLE-TWO" row
-    And I should see "30 June 2016"
     And I should see "BODY-CONTENT2"
     And I should not see "TITLE-ONE"
     And I should not see "BODY-CONTENT1"
-    And I should not see "27 June 2026"

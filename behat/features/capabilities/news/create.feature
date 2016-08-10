@@ -10,13 +10,16 @@ Feature: Create News
     Then I should not see "No access (403)"
     And I click "Edit summary"
     When I fill in the following:
-      | Title    | TEST NEWS    |
-      | Date     | 06/30/2016   |
-      | Time     | 02:22:00     |
-      | Summary  | SUMMARY-TEXT |
-      | Body     | BODY CONTENT |
-      | Tags     | Tag1, Tag2   |
-      | Promoted | 1            |
+      | Title   | TEST NEWS    |
+
+      | Summary | SUMMARY-TEXT |
+      | Body    | BODY CONTENT |
+      | Tags    | Tag1, Tag2   |
+    And I click "Publishing options"
+    And I check the box "Promoted"
+    And I fill in the following:
+      | Date | 06/30/2016 |
+      | Time | 02:22:00   |
     And I attach the file "/fixtures/images/drupal-icon.png" to "Image"
     And I attach the file "/fixtures/files/pdf-file.pdf" to "Add a new file"
     And I press "Save"
@@ -41,8 +44,6 @@ Feature: Create News
     Then I should not see "No access (403)"
     When I fill in the following:
       | Title | TEST CATEGORY NEWS |
-      | Date  | 06/30/2016         |
-      | Time  | 04:00:00           |
       | Body  | BODY CONTENT       |
     And I select "CATEGORY1" from "Category"
     Then I press "Save"

@@ -16,12 +16,15 @@ Feature: Edit News
     And I click "edit" in the "NEWS TITLE1" row
     Then I should not see "No access (403)"
     When I fill in the following:
-      | Title    | NEWS TITLE2   |
-      | Body     | BODY-CONTENT2 |
-      | Tags     | Tag2          |
-      | Date     | 06/30/2016    |
-      | Time     | 11:23:00      |
-      | Promoted | 0             |
+      | Title | NEWS TITLE2   |
+      | Body  | BODY-CONTENT2 |
+      | Tags  | Tag2          |
+    And I click "Publishing options"
+    And I uncheck the box "Promoted"
+    And I fill in the following:
+      | Date     | 06/30/2016 |
+      | Time     | 11:23:00   |
+      | Promoted | 0          |
     And I press "Save"
     Then I should see the success message "News NEWS TITLE2 has been updated."
     And I click "NEWS TITLE2" in the "NEWS TITLE2" row

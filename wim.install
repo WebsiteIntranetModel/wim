@@ -242,7 +242,7 @@ function _wim_set_blocks() {
       'delta' => 'menu-top-tasks',
       'theme' => $default_theme,
       'status' => BLOCK_CUSTOM_ENABLED,
-      'weight' => 0,
+      'weight' => -1,
       'region' => 'content',
       'pages' => '<front>',
       'visibility' => 1,
