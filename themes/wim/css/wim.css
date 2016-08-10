@@ -10730,7 +10730,7 @@ h1, h2, h3, h4, h5, h6 {
   position: absolute;
   left: 5px;
   top: 5px;
-  background-color: #FFFFFF;
+  background-color: white;
   width: 40px;
   height: 46px;
   text-align: center;
@@ -11438,16 +11438,16 @@ h1, h2, h3, h4, h5, h6 {
   .main-container .menu-top-tasks .menu .dropdown.open .dropdown-toggle:after, .main-container .menu-top-tasks .menu .dropdown.open-default .dropdown-toggle:after{
     display: block !important;
   }
-  .main-container .menu-top-tasks .menu .dropdown:hover .dropdown-menu{
-    z-index: 1001;
-    display: block;
-  }
-  .main-container .menu-top-tasks .menu .dropdown:hover .dropdown-menu .dropdown-toggle{
+  .main-container .menu-top-tasks .menu .dropdown:hover .dropdown-toggle{
     background-color: #29b8e4;
     color: white;
   }
-  .main-container .menu-top-tasks .menu .dropdown:hover .dropdown-menu .dropdown-toggle:after{
+  .main-container .menu-top-tasks .menu .dropdown:hover .dropdown-toggle:after{
     display: block !important;
+  }
+  .main-container .menu-top-tasks .menu .dropdown:hover .dropdown-menu{
+    z-index: 1001;
+    display: block;
   }
   .main-container .menu-top-tasks .menu .dropdown .dropdown-toggle:before{
     display: none;
@@ -12251,13 +12251,13 @@ h1, h2, h3, h4, h5, h6 {
     float: none;
   }
   .navbar-default .navbar-nav > li.parent-dropdown > a:after{
-    position: absolute;
     font-family: 'Glyphicons Halflings';
     font-style: normal;
     font-weight: normal;
     line-height: 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    position: absolute;
     right: 10px;
     top: 50%;
     -webkit-transform: translateY(-50%);

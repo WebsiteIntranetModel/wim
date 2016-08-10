@@ -49,16 +49,16 @@
         }
         &:hover {
           @include MQ($screen-sm) {
+            .dropdown-toggle {
+              background-color: $brand-primary;
+              color: white;
+              &:after {
+                display: block !important;
+              }
+            }
             .dropdown-menu {
               z-index: 1001;
               display: block;
-              .dropdown-toggle {
-                background-color: $brand-primary;
-                color: white;
-                &:after {
-                  display: block !important;
-                }
-              }
             }
           }
         }
