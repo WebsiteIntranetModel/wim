@@ -10281,7 +10281,7 @@ h1, h2, h3, h4, h5, h6 {
   position: absolute;
   top: 50%;
   width: 0;
-  z-index: 1005;
+  z-index: 5;
   display: none;
 }
 
@@ -10302,6 +10302,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .main-container .menu-top-tasks .menu .dropdown .dropdown-menu {
+  z-index: 1;
   position: static;
   top: 0;
   min-width: 0;
@@ -11446,7 +11447,7 @@ h1, h2, h3, h4, h5, h6 {
     display: block !important;
   }
   .main-container .menu-top-tasks .menu .dropdown:hover .dropdown-menu{
-    z-index: 1001;
+    z-index: 2;
     display: block;
   }
   .main-container .menu-top-tasks .menu .dropdown .dropdown-toggle:before{
@@ -11461,7 +11462,7 @@ h1, h2, h3, h4, h5, h6 {
   .main-container .menu-top-tasks .menu .dropdown .dropdown-menu li{
     float: left;
     margin-bottom: 7px;
-    margin-right: 10px;
+    margin-right: 3.5%;
     margin-top: 7px;
     width: 48.2394%;
   }

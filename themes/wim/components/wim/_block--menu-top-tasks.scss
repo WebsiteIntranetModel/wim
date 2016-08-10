@@ -57,7 +57,7 @@
               }
             }
             .dropdown-menu {
-              z-index: 1001;
+              z-index: 2;
               display: block;
             }
           }
@@ -85,7 +85,7 @@
             position: absolute;
             top: 50%;
             width: 0;
-            z-index: 1005;
+            z-index: 5;
             display: none;
           }
           @extend .glyphicon-menu-down;
@@ -108,6 +108,7 @@
           }
         }
         .dropdown-menu {
+          z-index: 1;
           position: static;
           top: 0;
           min-width: 0;
@@ -127,7 +128,7 @@
             @include MQ($screen-sm) {
               float: left;
               margin-bottom: 7px;
-              margin-right: 10px;
+              margin-right: 3.5%;
               margin-top: 7px;
               width: 48.2394%;
             }
