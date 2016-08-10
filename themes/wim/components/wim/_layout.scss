@@ -31,17 +31,19 @@ body:before {
   display: none;
 }
 
-@media (min-width: $screen-sm-min) {
+
+@include MQ($screen-sm) {
   body:before {
     content: "tablet";
   }
 }
 
-@media (min-width: $screen-md-min) {
+@include MQ($screen-md) {
   body:before {
     content: "desktop";
   }
 }
+
 body.in-maintenance {
   #page {
     @extend .container;

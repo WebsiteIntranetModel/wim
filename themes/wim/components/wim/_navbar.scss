@@ -66,13 +66,8 @@
 
       @media (max-width: $screen-sm-min - 1) {
         &:after {
+          @extend .glyphicon;
           position: absolute;
-          font-family: 'Glyphicons Halflings';
-          font-style: normal;
-          font-weight: normal;
-          line-height: 1;
-          -webkit-font-smoothing: antialiased;
-          -moz-osx-font-smoothing: grayscale;
           right: 10px;
           top: 50%;
           transform: translateY(-50%);

@@ -7498,7 +7498,8 @@ button.close {
   src: url("../fonts/bootstrap/glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"), url("../fonts/bootstrap/glyphicons-halflings-regular.woff2") format("woff2"), url("../fonts/bootstrap/glyphicons-halflings-regular.woff") format("woff"), url("../fonts/bootstrap/glyphicons-halflings-regular.ttf") format("truetype"), url("../fonts/bootstrap/glyphicons-halflings-regular.svg#glyphicons_halflingsregular") format("svg");
 }
 
-.glyphicon, .main-container .menu-top-tasks .menu .dropdown .dropdown-toggle:before, .block .view-faq .view-content .views-row a:before {
+.glyphicon, .back-link:before, .main-container .menu-top-tasks .menu .dropdown .dropdown-toggle:before, #accordion .panel-heading a:before,
+.views-bootstrap-accordion-plugin-style .panel-heading a:before, .block .view-faq .view-content .views-row a:before {
   position: relative;
   top: 1px;
   display: inline-block;
@@ -8543,7 +8544,7 @@ button.close {
   content: "\e256";
 }
 
-.glyphicon-menu-left:before {
+.glyphicon-menu-left:before, .back-link:before {
   content: "\e257";
 }
 
@@ -8551,11 +8552,13 @@ button.close {
   content: "\e258";
 }
 
-.glyphicon-menu-down:before, .main-container .menu-top-tasks .menu .dropdown .dropdown-toggle:before {
+.glyphicon-menu-down:before, .main-container .menu-top-tasks .menu .dropdown .dropdown-toggle:before, #accordion .panel-heading a:before,
+.views-bootstrap-accordion-plugin-style .panel-heading a:before {
   content: "\e259";
 }
 
-.glyphicon-menu-up:before, .main-container .menu-top-tasks .menu .dropdown.open .dropdown-toggle:before {
+.glyphicon-menu-up:before, .main-container .menu-top-tasks .menu .dropdown.open .dropdown-toggle:before, #accordion .panel-heading a.collapsed:before,
+.views-bootstrap-accordion-plugin-style .panel-heading a.collapsed:before {
   content: "\e260";
 }
 
@@ -9435,7 +9438,8 @@ p:last-child {
   margin-bottom: 0;
 }
 
-.region-help > .glyphicon, .main-container .menu-top-tasks .menu .dropdown .region-help > .dropdown-toggle:before, .block .view-faq .view-content .views-row .region-help > a:before {
+.region-help > .glyphicon, .region-help > .back-link:before, .main-container .menu-top-tasks .menu .dropdown .region-help > .dropdown-toggle:before, #accordion .panel-heading .region-help > a:before,
+.views-bootstrap-accordion-plugin-style .panel-heading .region-help > a:before, .block .view-faq .view-content .views-row .region-help > a:before {
   font-size: 18px;
   float: left;
   margin: -.05em 0.5em 0 0;
@@ -9469,7 +9473,9 @@ ul.action-links li {
   padding: 0 6px 0 0;
 }
 
-ul.action-links .glyphicon, ul.action-links .main-container .menu-top-tasks .menu .dropdown .dropdown-toggle:before, .main-container .menu-top-tasks .menu .dropdown ul.action-links .dropdown-toggle:before, ul.action-links .block .view-faq .view-content .views-row a:before, .block .view-faq .view-content .views-row ul.action-links a:before {
+ul.action-links .glyphicon, ul.action-links .back-link:before, ul.action-links .main-container .menu-top-tasks .menu .dropdown .dropdown-toggle:before, .main-container .menu-top-tasks .menu .dropdown ul.action-links .dropdown-toggle:before, ul.action-links #accordion .panel-heading a:before, #accordion .panel-heading ul.action-links a:before, ul.action-links
+.views-bootstrap-accordion-plugin-style .panel-heading a:before,
+.views-bootstrap-accordion-plugin-style .panel-heading ul.action-links a:before, ul.action-links .block .view-faq .view-content .views-row a:before, .block .view-faq .view-content .views-row ul.action-links a:before {
   padding-right: 0.5em;
 }
 
@@ -9559,7 +9565,9 @@ table.sticky-header {
   text-align: center;
 }
 
-.filter-help .glyphicon, .filter-help .main-container .menu-top-tasks .menu .dropdown .dropdown-toggle:before, .main-container .menu-top-tasks .menu .dropdown .filter-help .dropdown-toggle:before, .filter-help .block .view-faq .view-content .views-row a:before, .block .view-faq .view-content .views-row .filter-help a:before {
+.filter-help .glyphicon, .filter-help .back-link:before, .filter-help .main-container .menu-top-tasks .menu .dropdown .dropdown-toggle:before, .main-container .menu-top-tasks .menu .dropdown .filter-help .dropdown-toggle:before, .filter-help #accordion .panel-heading a:before, #accordion .panel-heading .filter-help a:before, .filter-help
+.views-bootstrap-accordion-plugin-style .panel-heading a:before,
+.views-bootstrap-accordion-plugin-style .panel-heading .filter-help a:before, .filter-help .block .view-faq .view-content .views-row a:before, .block .view-faq .view-content .views-row .filter-help a:before {
   margin: 0 5px 0 0;
   vertical-align: text-top;
 }
@@ -9685,12 +9693,16 @@ ul.pagination li > a.progress-disabled {
   float: left;
 }
 
-.form-autocomplete .glyphicon, .form-autocomplete .main-container .menu-top-tasks .menu .dropdown .dropdown-toggle:before, .main-container .menu-top-tasks .menu .dropdown .form-autocomplete .dropdown-toggle:before, .form-autocomplete .block .view-faq .view-content .views-row a:before, .block .view-faq .view-content .views-row .form-autocomplete a:before {
+.form-autocomplete .glyphicon, .form-autocomplete .back-link:before, .form-autocomplete .main-container .menu-top-tasks .menu .dropdown .dropdown-toggle:before, .main-container .menu-top-tasks .menu .dropdown .form-autocomplete .dropdown-toggle:before, .form-autocomplete #accordion .panel-heading a:before, #accordion .panel-heading .form-autocomplete a:before, .form-autocomplete
+.views-bootstrap-accordion-plugin-style .panel-heading a:before,
+.views-bootstrap-accordion-plugin-style .panel-heading .form-autocomplete a:before, .form-autocomplete .block .view-faq .view-content .views-row a:before, .block .view-faq .view-content .views-row .form-autocomplete a:before {
   color: #777;
   font-size: 120%;
 }
 
-.form-autocomplete .glyphicon.glyphicon-spin, .form-autocomplete .main-container .menu-top-tasks .menu .dropdown .glyphicon-spin.dropdown-toggle:before, .main-container .menu-top-tasks .menu .dropdown .form-autocomplete .glyphicon-spin.dropdown-toggle:before, .form-autocomplete .block .view-faq .view-content .views-row a.glyphicon-spin:before, .block .view-faq .view-content .views-row .form-autocomplete a.glyphicon-spin:before {
+.form-autocomplete .glyphicon.glyphicon-spin, .form-autocomplete .glyphicon-spin.back-link:before, .form-autocomplete .main-container .menu-top-tasks .menu .dropdown .glyphicon-spin.dropdown-toggle:before, .main-container .menu-top-tasks .menu .dropdown .form-autocomplete .glyphicon-spin.dropdown-toggle:before, .form-autocomplete #accordion .panel-heading a.glyphicon-spin:before, #accordion .panel-heading .form-autocomplete a.glyphicon-spin:before, .form-autocomplete
+.views-bootstrap-accordion-plugin-style .panel-heading a.glyphicon-spin:before,
+.views-bootstrap-accordion-plugin-style .panel-heading .form-autocomplete a.glyphicon-spin:before, .form-autocomplete .block .view-faq .view-content .views-row a.glyphicon-spin:before, .block .view-faq .view-content .views-row .form-autocomplete a.glyphicon-spin:before {
   color: #337ab7;
 }
 
@@ -10139,13 +10151,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .back-link:before {
   font-size: 12px;
-  content: "\e257";
-  font-family: 'Glyphicons Halflings';
-  line-height: 1;
   margin-right: 3px;
   color: #29b8e4;
-  position: relative;
-  top: 1px;
 }
 
 .form-text {
@@ -10231,7 +10238,7 @@ h1, h2, h3, h4, h5, h6 {
 .main-container .menu-top-tasks .menu .dropdown {
   font-size: 14px;
   line-height: 1;
-  border-bottom: 1px solid #fff;
+  border-bottom: 1px solid white;
   position: static;
   cursor: pointer;
   margin-bottom: 0;
@@ -10243,12 +10250,12 @@ h1, h2, h3, h4, h5, h6 {
 
 .main-container .menu-top-tasks .menu .dropdown.open .dropdown-toggle, .main-container .menu-top-tasks .menu .dropdown.open-default .dropdown-toggle {
   background-color: #29b8e4;
-  color: #fff;
+  color: white;
 }
 
 .main-container .menu-top-tasks .menu .dropdown.open .dropdown-toggle:focus, .main-container .menu-top-tasks .menu .dropdown.open .dropdown-toggle:active, .main-container .menu-top-tasks .menu .dropdown.open .dropdown-toggle:hover, .main-container .menu-top-tasks .menu .dropdown.open-default .dropdown-toggle:focus, .main-container .menu-top-tasks .menu .dropdown.open-default .dropdown-toggle:active, .main-container .menu-top-tasks .menu .dropdown.open-default .dropdown-toggle:hover {
   background-color: #29b8e4;
-  color: #fff;
+  color: white;
 }
 
 .main-container .menu-top-tasks .menu .dropdown .dropdown-toggle {
@@ -10291,7 +10298,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .main-container .menu-top-tasks .menu .dropdown.open .dropdown-toggle {
-  color: #fff;
+  color: white;
 }
 
 .main-container .menu-top-tasks .menu .dropdown .dropdown-menu {
@@ -10300,7 +10307,7 @@ h1, h2, h3, h4, h5, h6 {
   min-width: 0;
   box-shadow: none;
   height: 100%;
-  background-color: #ffffff;
+  background-color: white;
   margin-top: 0;
   border-radius: 0;
 }
@@ -10477,7 +10484,7 @@ h1, h2, h3, h4, h5, h6 {
   border: none;
   font-size: 15px;
   line-height: 24px;
-  font-family: 'Roboto Slab', 'Droid Sans', Arial, sans-serif;
+  font-family: "Roboto Slab", Georgia, "Times New Roman", Times, serif;
   border-radius: 0;
 }
 
@@ -10496,14 +10503,6 @@ h1, h2, h3, h4, h5, h6 {
 #accordion .panel-heading a:before,
 .views-bootstrap-accordion-plugin-style .panel-heading a:before {
   font-size: 12px;
-  content: "\e259";
-  font-family: 'Glyphicons Halflings';
-  line-height: 1;
-}
-
-#accordion .panel-heading a.collapsed:before,
-.views-bootstrap-accordion-plugin-style .panel-heading a.collapsed:before {
-  content: "\e258";
 }
 
 .footer {
@@ -11369,9 +11368,6 @@ h1, h2, h3, h4, h5, h6 {
     left: 240px;
     left: 24rem;
   }
-  body:before{
-    content: "tablet";
-  }
   .dropdown-menu > li.mobile{
     display: none;
   }
@@ -11429,6 +11425,9 @@ h1, h2, h3, h4, h5, h6 {
   .filter-help{
     float: right;
   }
+  body:before{
+    content: "tablet";
+  }
   .main-container .menu-top-tasks{
     min-height: 170px;
   }
@@ -11445,7 +11444,7 @@ h1, h2, h3, h4, h5, h6 {
   }
   .main-container .menu-top-tasks .menu .dropdown:hover .dropdown-menu .dropdown-toggle{
     background-color: #29b8e4;
-    color: #fff;
+    color: white;
   }
   .main-container .menu-top-tasks .menu .dropdown:hover .dropdown-menu .dropdown-toggle:after{
     display: block !important;
@@ -11677,9 +11676,6 @@ h1, h2, h3, h4, h5, h6 {
   .form-type-password-confirm .password-help{
     left: 33.33333333%;
   }
-  body:before{
-    content: "desktop";
-  }
 }
 
 @media (min-width: 992px) and (max-width: 1199px){
@@ -11716,6 +11712,9 @@ h1, h2, h3, h4, h5, h6 {
   }
   .navbar #block-search-form{
     float: right;
+  }
+  body:before{
+    content: "desktop";
   }
   .navbar.container, body.in-maintenance .navbar#page{
     max-width: 1170px;

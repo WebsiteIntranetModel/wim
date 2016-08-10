@@ -1,6 +1,6 @@
 .main-container {
   .menu-top-tasks {
-    border: 1px solid #ddd;
+    border: 1px solid $table-border-color;
     padding-left: 0;
     padding-right: 0;
     width: auto;
@@ -20,7 +20,7 @@
       .dropdown {
         font-size: 14px;
         line-height: 1;
-        border-bottom: 1px solid #fff;
+        border-bottom: 1px solid white;
         position: static;
         cursor: pointer;
         margin-bottom: 0;
@@ -30,16 +30,15 @@
           .dropdown-menu {
             display: block;
           }
-
           .dropdown-toggle {
             background-color: $brand-primary;
-            color: #fff;
+            color: white;
 
             &:focus,
             &:active,
             &:hover {
               background-color: $brand-primary;
-              color: #fff;
+              color: white;
             }
             @include MQ($screen-sm) {
               &:after {
@@ -55,7 +54,7 @@
               display: block;
               .dropdown-toggle {
                 background-color: $brand-primary;
-                color: #fff;
+                color: white;
                 &:after {
                   display: block !important;
                 }
@@ -104,7 +103,7 @@
         &.open {
           background-color: $brand-primary;
           .dropdown-toggle {
-            color: #fff;
+            color: white;
             @extend .glyphicon-menu-up;
           }
         }
@@ -114,7 +113,7 @@
           min-width: 0;
           box-shadow: none;
           height: 100%;
-          background-color: #ffffff;
+          background-color: white;
           margin-top: 0;
           border-radius: 0;
           @include MQ($screen-sm) {
@@ -138,7 +137,7 @@
             a {
               background: none;
               padding: 10px;
-              color: #333333;
+              color: $text-color;
               white-space: normal;
               @include MQ($screen-sm) {
                 padding: 2% 0;
