@@ -36,6 +36,11 @@
               display: block;
             }
           }
+          &:hover {
+            .dropdown-menu {
+              z-index: 1001;
+            }
+          }
           &.open-default,
           &:hover,
           &.open {

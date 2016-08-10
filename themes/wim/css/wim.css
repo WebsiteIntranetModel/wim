@@ -11441,6 +11441,9 @@ h1, h2, h3, h4, h5, h6 {
   .main-container .menu-top-tasks .menu .dropdown.open-default .dropdown-menu, .main-container .menu-top-tasks .menu .dropdown:hover .dropdown-menu{
     display: block;
   }
+  .main-container .menu-top-tasks .menu .dropdown:hover .dropdown-menu{
+    z-index: 1001;
+  }
   .main-container .menu-top-tasks .menu .dropdown.open-default .nolink:before, .main-container .menu-top-tasks .menu .dropdown:hover .nolink:before, .main-container .menu-top-tasks .menu .dropdown.open .nolink:before{
     display: block !important;
   }
