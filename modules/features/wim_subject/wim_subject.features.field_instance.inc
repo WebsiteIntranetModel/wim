@@ -63,7 +63,7 @@ function wim_subject_field_default_field_instances() {
       ),
     ),
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Check if You want to stick this node on top of lists',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -100,7 +100,7 @@ function wim_subject_field_default_field_instances() {
   $field_instances['node-subject_page-field_publication_date'] = array(
     'bundle' => 'subject_page',
     'deleted' => 0,
-    'description' => '',
+    'description' => 'You can use this field to display a custom publication date instead of the default creation date of the content item.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -139,15 +139,17 @@ function wim_subject_field_default_field_instances() {
         'year_range' => '-3:+3',
       ),
       'type' => 'date_popup',
-      'weight' => 33,
+      'weight' => 100,
     ),
   );
 
   // Translatables
   // Included for use with string extractors like potx.
   t('Body');
+  t('Check if You want to stick this node on top of lists');
   t('Promoted');
   t('Publication date');
+  t('You can use this field to display a custom publication date instead of the default creation date of the content item.');
 
   return $field_instances;
 }
