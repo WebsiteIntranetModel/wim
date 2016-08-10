@@ -12,7 +12,7 @@
       min-height: 170px;
     }
     .menu {
-      background-color: #efefef;
+      background-color: $brand-grey-light;
       @include MQ($screen-sm) {
         min-height: 170px;
         width: 30.9859%;
@@ -45,7 +45,7 @@
           &:hover,
           &.open {
             .nolink {
-              &:before {
+              &:after {
                 display: block !important;
               }
             }
@@ -54,11 +54,11 @@
         .nolink {
           padding: 18px 10px;
           color: #000;
-          font-family: "Roboto Slab", "Droid Sans", Arial, sans-serif;
+          font-family: $font-family-serif;
           text-decoration: none;
           display: block;
           position: relative;
-          &:before {
+          &:after {
             border-color: transparent transparent transparent $brand-primary;
             border-image: none;
             border-style: solid;
@@ -74,18 +74,13 @@
             z-index: 1005;
             display: none;
           }
-          &:after {
+          @extend .glyphicon-menu-down;
+          &:before {
+            @extend .glyphicon;
             position: absolute;
-            font-family: 'Glyphicons Halflings';
-            font-style: normal;
-            font-weight: normal;
-            line-height: 1;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
             right: 10px;
             top: 50%;
             transform: translateY(-50%);
-            content: "\e259";
             @include MQ($screen-sm) {
               display: none;
             }
@@ -95,9 +90,7 @@
           background-color: $brand-primary;
           .nolink {
             color: #fff;
-            &:after {
-              content: "\e260";
-            }
+            @extend .glyphicon-menu-up;
           }
         }
         .dropdown-menu {

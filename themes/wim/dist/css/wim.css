@@ -7498,7 +7498,7 @@ button.close {
   src: url("../fonts/bootstrap/glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"), url("../fonts/bootstrap/glyphicons-halflings-regular.woff2") format("woff2"), url("../fonts/bootstrap/glyphicons-halflings-regular.woff") format("woff"), url("../fonts/bootstrap/glyphicons-halflings-regular.ttf") format("truetype"), url("../fonts/bootstrap/glyphicons-halflings-regular.svg#glyphicons_halflingsregular") format("svg");
 }
 
-.glyphicon {
+.glyphicon, .main-container .menu-top-tasks .menu .dropdown .nolink:before, .block .view-faq .view-content .views-row a:before {
   position: relative;
   top: 1px;
   display: inline-block;
@@ -8547,15 +8547,15 @@ button.close {
   content: "\e257";
 }
 
-.glyphicon-menu-right:before {
+.glyphicon-menu-right:before, .block .view-faq .view-content .views-row a:before {
   content: "\e258";
 }
 
-.glyphicon-menu-down:before {
+.glyphicon-menu-down:before, .main-container .menu-top-tasks .menu .dropdown .nolink:before {
   content: "\e259";
 }
 
-.glyphicon-menu-up:before {
+.glyphicon-menu-up:before, .main-container .menu-top-tasks .menu .dropdown.open .nolink:before {
   content: "\e260";
 }
 
@@ -9435,7 +9435,7 @@ p:last-child {
   margin-bottom: 0;
 }
 
-.region-help > .glyphicon {
+.region-help > .glyphicon, .main-container .menu-top-tasks .menu .dropdown .region-help > .nolink:before, .block .view-faq .view-content .views-row .region-help > a:before {
   font-size: 18px;
   float: left;
   margin: -.05em 0.5em 0 0;
@@ -9469,7 +9469,7 @@ ul.action-links li {
   padding: 0 6px 0 0;
 }
 
-ul.action-links .glyphicon {
+ul.action-links .glyphicon, ul.action-links .main-container .menu-top-tasks .menu .dropdown .nolink:before, .main-container .menu-top-tasks .menu .dropdown ul.action-links .nolink:before, ul.action-links .block .view-faq .view-content .views-row a:before, .block .view-faq .view-content .views-row ul.action-links a:before {
   padding-right: 0.5em;
 }
 
@@ -9559,7 +9559,7 @@ table.sticky-header {
   text-align: center;
 }
 
-.filter-help .glyphicon {
+.filter-help .glyphicon, .filter-help .main-container .menu-top-tasks .menu .dropdown .nolink:before, .main-container .menu-top-tasks .menu .dropdown .filter-help .nolink:before, .filter-help .block .view-faq .view-content .views-row a:before, .block .view-faq .view-content .views-row .filter-help a:before {
   margin: 0 5px 0 0;
   vertical-align: text-top;
 }
@@ -9685,12 +9685,12 @@ ul.pagination li > a.progress-disabled {
   float: left;
 }
 
-.form-autocomplete .glyphicon {
+.form-autocomplete .glyphicon, .form-autocomplete .main-container .menu-top-tasks .menu .dropdown .nolink:before, .main-container .menu-top-tasks .menu .dropdown .form-autocomplete .nolink:before, .form-autocomplete .block .view-faq .view-content .views-row a:before, .block .view-faq .view-content .views-row .form-autocomplete a:before {
   color: #777;
   font-size: 120%;
 }
 
-.form-autocomplete .glyphicon.glyphicon-spin {
+.form-autocomplete .glyphicon.glyphicon-spin, .form-autocomplete .main-container .menu-top-tasks .menu .dropdown .glyphicon-spin.nolink:before, .main-container .menu-top-tasks .menu .dropdown .form-autocomplete .glyphicon-spin.nolink:before, .form-autocomplete .block .view-faq .view-content .views-row a.glyphicon-spin:before, .block .view-faq .view-content .views-row .form-autocomplete a.glyphicon-spin:before {
   color: #337ab7;
 }
 
@@ -10240,13 +10240,13 @@ h1, h2, h3, h4, h5, h6 {
 .main-container .menu-top-tasks .menu .dropdown .nolink {
   padding: 18px 10px;
   color: #000;
-  font-family: "Roboto Slab", "Droid Sans", Arial, sans-serif;
+  font-family: "Roboto Slab", Georgia, "Times New Roman", Times, serif;
   text-decoration: none;
   display: block;
   position: relative;
 }
 
-.main-container .menu-top-tasks .menu .dropdown .nolink:before {
+.main-container .menu-top-tasks .menu .dropdown .nolink:after {
   border-color: transparent transparent transparent #29b8e4;
   -o-border-image: none;
      border-image: none;
@@ -10264,19 +10264,12 @@ h1, h2, h3, h4, h5, h6 {
   display: none;
 }
 
-.main-container .menu-top-tasks .menu .dropdown .nolink:after {
+.main-container .menu-top-tasks .menu .dropdown .nolink:before {
   position: absolute;
-  font-family: 'Glyphicons Halflings';
-  font-style: normal;
-  font-weight: normal;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   right: 10px;
   top: 50%;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
-  content: "\e259";
 }
 
 .main-container .menu-top-tasks .menu .dropdown.open {
@@ -10285,10 +10278,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .main-container .menu-top-tasks .menu .dropdown.open .nolink {
   color: #fff;
-}
-
-.main-container .menu-top-tasks .menu .dropdown.open .nolink:after {
-  content: "\e260";
 }
 
 .main-container .menu-top-tasks .menu .dropdown .dropdown-menu {
@@ -10915,7 +10904,7 @@ h1, h2, h3, h4, h5, h6 {
   border: none;
   font-size: 15px;
   line-height: 24px;
-  font-family: 'Roboto Slab', 'Droid Sans', Arial, sans-serif;
+  font-family: "Roboto Slab", Georgia, "Times New Roman", Times, serif;
   border-bottom: 1px solid #efe5ef;
   border-radius: 0;
 }
@@ -10931,9 +10920,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .block .view-faq .view-content .views-row a:before {
   font-size: 12px;
-  content: "\e258";
-  font-family: 'Glyphicons Halflings';
-  line-height: 1;
 }
 
 @media screen and (min-width: 480px){
@@ -11444,10 +11430,10 @@ h1, h2, h3, h4, h5, h6 {
   .main-container .menu-top-tasks .menu .dropdown:hover .dropdown-menu{
     z-index: 1001;
   }
-  .main-container .menu-top-tasks .menu .dropdown.open-default .nolink:before, .main-container .menu-top-tasks .menu .dropdown:hover .nolink:before, .main-container .menu-top-tasks .menu .dropdown.open .nolink:before{
+  .main-container .menu-top-tasks .menu .dropdown.open-default .nolink:after, .main-container .menu-top-tasks .menu .dropdown:hover .nolink:after, .main-container .menu-top-tasks .menu .dropdown.open .nolink:after{
     display: block !important;
   }
-  .main-container .menu-top-tasks .menu .dropdown .nolink:after{
+  .main-container .menu-top-tasks .menu .dropdown .nolink:before{
     display: none;
   }
   .main-container .menu-top-tasks .menu .dropdown .dropdown-menu{
