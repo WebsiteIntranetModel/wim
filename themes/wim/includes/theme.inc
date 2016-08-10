@@ -280,9 +280,7 @@ function wim_menu_link__menu_top_tasks(array $variables) {
 
     // Set dropdown trigger element to # to prevent inadvertant page loading
     // when a submenu link is clicked.
-    $element['#localized_options']['attributes']['data-target'] = '#';
     $element['#localized_options']['attributes']['class'][] = 'dropdown-toggle';
-    $element['#localized_options']['attributes']['data-toggle'] = 'dropdown';
   }
   // On primary navigation menu, class 'active' is not set on active menu item.
   // @see https://drupal.org/node/1896674
@@ -292,8 +290,8 @@ function wim_menu_link__menu_top_tasks(array $variables) {
   $element['#attributes']['class'] = array_diff($element['#attributes']['class'], array('expanded'));
 
   if ($element['#href'] === '<nolink>') {
-    $element['#attributes']['class'][] = 'nolink';
-    $output = '<a href="#" ' . drupal_attributes($element['#attributes']) . '>' . check_plain($element['#title']) . '</a>';
+    $element['#localized_options']['attributes']['class'][] = 'nolink';
+    $output = '<a href="#" ' . drupal_attributes($element['#localized_options']['attributes']) . '>' . check_plain($element['#title']) . '</a>';
   }
   else {
     $output = l($icon . $element['#title'], $element['#href'], $element['#localized_options']);
