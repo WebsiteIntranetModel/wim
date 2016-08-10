@@ -16,10 +16,12 @@ Feature: Edit subject page
     And I click "edit" in the "SUBJECT-ONE" row
     Then I should not see "No access (403)"
     When I fill in the following:
-      | Title | SUBJECT-TWO     |
+      | Title | SUBJECT-TWO   |
       | Body  | BODY-CONTENT2 |
-      | Date  | 06/30/2016    |
-      | Time  | 10:00:00      |
+    And I click "Publishing options"
+    And I fill in the following:
+      | Date | 06/30/2016 |
+      | Time | 10:00:00   |
     Then I press "Save"
     And I should see the success message "Subject page SUBJECT-TWO has been updated."
     And I click "SUBJECT-TWO" in the "SUBJECT-TWO" row
