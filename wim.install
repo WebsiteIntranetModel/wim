@@ -25,6 +25,8 @@ function wim_install() {
   _wim_set_blocks();
   // Add menu items.
   _wim_import_menu_items();
+  // Install Dutch language.
+  _wim_install_language();
 
   // Add 404 page.
   $page_404_nid = _wim_create_page('404');
@@ -517,4 +519,13 @@ function _wim_create_page($page_type, $bundle = 'page', $language = LANGUAGE_NON
   node_save($node);
 
   return isset($node->nid) ? $node->nid : '';
+}
+
+/**
+ * Enables Dutch language and language negotiation based on URL.
+ */
+function _wim_install_language() {
+  include_once DRUPAL_ROOT . '/includes/language.inc';
+  // Add Dutch language.
+  locale_add_language('nl');
 }
