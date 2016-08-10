@@ -32,22 +32,19 @@ class BasicPageMigration extends NodeMigration {
     $this->contentType = $arguments['content_type'];
 
     $columns = array(
-      array('id', t('Id')),
-      array('title', t('Node title')),
-      array('body', t('Node body')),
-      array('body:summary', t('Node summary')),
-      array('field_image', t('Node image')),
-      array('field_tags', t('Node tags')),
-      array('field_publication_date', t('Custom publication date')),
-      array('field_promoted', t('Promoted flag')),
-      array('author', t('Node creator')),
+      'id' => t('Id'),
+      'title' => t('Node title'),
+      'body' => t('Node body'),
+      'summary' => t('Node summary'),
+      'field_image' => t('Node image'),
+      'field_tags' => t('Node tags'),
+      'field_publication_date' => t('Custom publication date'),
+      'field_promoted' => t('Promoted flag'),
+      'author' => t('Node creator'),
     );
 
-    $this->source = new MigrateSourceCSV(
-      $this->dataSources . $this->fileName,
-      $columns,
-      array('header_rows' => 1)
-    );
+    $this->source = new MigrateSourceList(new WIMListJSON($this->dataSources . $this->fileName),
+      new WIMItemJSON($this->dataSources . $this->fileName, array()), $columns);
 
     $this->destination = new MigrateDestinationNode($this->contentType);
     $this->map = new MigrateSQLMap($this->machineName, array(
