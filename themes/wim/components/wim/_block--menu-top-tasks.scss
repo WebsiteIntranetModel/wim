@@ -25,39 +25,54 @@
         cursor: pointer;
         margin-bottom: 0;
 
-        @include MQ($screen-sm) {
-          &.open-default,
-          &:hover {
+        &.open,
+        &.open-default {
+          .dropdown-menu {
+            display: block;
+          }
+
+          .dropdown-toggle {
             background-color: $brand-primary;
-            .nolink {
+            color: #fff;
+
+            &:focus,
+            &:active,
+            &:hover {
+              background-color: $brand-primary;
               color: #fff;
             }
-            .dropdown-menu {
-              display: block;
-            }
-          }
-          &:hover {
-            .dropdown-menu {
-              z-index: 1001;
-            }
-          }
-          &.open-default,
-          &:hover,
-          &.open {
-            .nolink {
+            @include MQ($screen-sm) {
               &:after {
                 display: block !important;
               }
             }
           }
         }
-        .nolink {
+        &:hover {
+          @include MQ($screen-sm) {
+            .dropdown-menu {
+              z-index: 1001;
+              display: block;
+              .dropdown-toggle {
+                background-color: $brand-primary;
+                color: #fff;
+                &:after {
+                  display: block !important;
+                }
+              }
+            }
+          }
+        }
+        .dropdown-toggle {
           padding: 18px 10px;
           color: #000;
           font-family: $font-family-serif;
           text-decoration: none;
           display: block;
           position: relative;
+          &:focus {
+            @extend %outline;
+          }
           &:after {
             border-color: transparent transparent transparent $brand-primary;
             border-image: none;
@@ -88,7 +103,7 @@
         }
         &.open {
           background-color: $brand-primary;
-          .nolink {
+          .dropdown-toggle {
             color: #fff;
             @extend .glyphicon-menu-up;
           }
@@ -128,6 +143,11 @@
               @include MQ($screen-sm) {
                 padding: 2% 0;
                 text-align: center;
+              }
+              &:active,
+              &:hover,
+              &:focus {
+                text-decoration: underline;
               }
               &:before {
                 display: none;
