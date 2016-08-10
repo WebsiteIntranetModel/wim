@@ -11,10 +11,9 @@ Feature: Create News
     And I click "Edit summary"
     When I fill in the following:
       | Title   | TEST NEWS    |
-
-      | Summary | SUMMARY-TEXT |
-      | Body    | BODY CONTENT |
       | Tags    | Tag1, Tag2   |
+    And I fill in wysiwyg on field Summary with "SUMMARY-TEXT"
+    And I fill in wysiwyg on field Body with "BODY CONTENT"
     And I click "Publishing options"
     And I check the box "Promoted"
     And I fill in the following:
@@ -44,7 +43,7 @@ Feature: Create News
     Then I should not see "No access (403)"
     When I fill in the following:
       | Title | TEST CATEGORY NEWS |
-      | Body  | BODY CONTENT       |
+    And I fill in wysiwyg on field Body with "BODY CONTENT"
     And I select "CATEGORY1" from "Category"
     Then I press "Save"
     And I should see the success message "News TEST CATEGORY NEWS has been created."

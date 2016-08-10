@@ -64,7 +64,7 @@ Feature: News overview
     And I am on "node/add/news"
     When I fill in the following:
       | Title | TEST CATEGORY NEWS |
-      | Body  | BODY CONTENT       |
+    And I fill in wysiwyg on field Body with "BODY-CONTENT"
     And I click "Publishing options"
     And I fill in the following:
       | Date | 06/30/2016 |

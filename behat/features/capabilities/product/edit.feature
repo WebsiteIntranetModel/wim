@@ -16,8 +16,8 @@ Feature: Edit Product
     Then I should not see "No access (403)"
     When I fill in the following:
       | title | PRODUCT TITLE2 |
-      | Body  | BODY-CONTENT2  |
       | Tags  | Tag2           |
+    And I fill in wysiwyg on field Body with "BODY CONTENT2"
     And I click "Publishing options"
     And I fill in the following:
       | Date     | 06/30/2016 |

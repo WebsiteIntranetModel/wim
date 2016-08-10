@@ -9,7 +9,7 @@ Feature: Create subject page
     And I am at "node/add/subject-page"
     When I fill in the following:
       | Title | This is a test subject page |
-      | Body  | Body description text       |
+    And I fill in wysiwyg on field Body with "Body description text"
     And I click "Publishing options"
     And I fill in the following:
       | Date | 06/27/2026 |
