@@ -34,10 +34,15 @@
       var $topTasksMenu = $('section.menu-top-tasks'),
         openDefaultClass = 'open-default';
 
+      if (isMobile()) {
+        $('li.first.dropdown', $topTasksMenu).addClass('open');
+      }
+
       if (!isMobile()) {
         $('li.first.dropdown', $topTasksMenu).addClass(openDefaultClass);
       }
-      $('.menu > li', $topTasksMenu).once('top-tasks-item-dropdown').click(function (e) {
+
+      $('.menu > li > a', $topTasksMenu).once('top-tasks-item-dropdown').click(function (e) {
         $('.menu > li', $topTasksMenu).removeClass(openDefaultClass);
       });
     }

@@ -2896,7 +2896,7 @@
   font-style: normal;
 }
 
-.dropdown-menu > li > a:active,
+.main-container .menu-top-tasks .menu .dropdown .dropdown-toggle:focus, .dropdown-menu > li > a:active,
 .dropdown-menu > li > a:focus, .navbar-default .navbar-nav > .open > a,
 .navbar-default .navbar-nav > .open > a:hover,
 .navbar-default .navbar-nav > .open > a:focus {
@@ -10237,7 +10237,21 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 0;
 }
 
-.main-container .menu-top-tasks .menu .dropdown .nolink {
+.main-container .menu-top-tasks .menu .dropdown.open .dropdown-menu, .main-container .menu-top-tasks .menu .dropdown.open-default .dropdown-menu {
+  display: block;
+}
+
+.main-container .menu-top-tasks .menu .dropdown.open .dropdown-toggle, .main-container .menu-top-tasks .menu .dropdown.open-default .dropdown-toggle {
+  background-color: #29b8e4;
+  color: #fff;
+}
+
+.main-container .menu-top-tasks .menu .dropdown.open .dropdown-toggle:focus, .main-container .menu-top-tasks .menu .dropdown.open .dropdown-toggle:active, .main-container .menu-top-tasks .menu .dropdown.open .dropdown-toggle:hover, .main-container .menu-top-tasks .menu .dropdown.open-default .dropdown-toggle:focus, .main-container .menu-top-tasks .menu .dropdown.open-default .dropdown-toggle:active, .main-container .menu-top-tasks .menu .dropdown.open-default .dropdown-toggle:hover {
+  background-color: #29b8e4;
+  color: #fff;
+}
+
+.main-container .menu-top-tasks .menu .dropdown .dropdown-toggle {
   padding: 18px 10px;
   color: #000;
   font-family: "Roboto Slab", "Droid Sans", Arial, sans-serif;
@@ -10246,7 +10260,7 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
 }
 
-.main-container .menu-top-tasks .menu .dropdown .nolink:before {
+.main-container .menu-top-tasks .menu .dropdown .dropdown-toggle:before {
   border-color: transparent transparent transparent #29b8e4;
   -o-border-image: none;
      border-image: none;
@@ -10264,7 +10278,7 @@ h1, h2, h3, h4, h5, h6 {
   display: none;
 }
 
-.main-container .menu-top-tasks .menu .dropdown .nolink:after {
+.main-container .menu-top-tasks .menu .dropdown .dropdown-toggle:after {
   position: absolute;
   font-family: 'Glyphicons Halflings';
   font-style: normal;
@@ -10283,11 +10297,7 @@ h1, h2, h3, h4, h5, h6 {
   background-color: #29b8e4;
 }
 
-.main-container .menu-top-tasks .menu .dropdown.open .nolink {
-  color: #fff;
-}
-
-.main-container .menu-top-tasks .menu .dropdown.open .nolink:after {
+.main-container .menu-top-tasks .menu .dropdown.open .dropdown-toggle:after {
   content: "\e260";
 }
 
@@ -10315,6 +10325,10 @@ h1, h2, h3, h4, h5, h6 {
   padding: 10px;
   color: #333333;
   white-space: normal;
+}
+
+.main-container .menu-top-tasks .menu .dropdown .dropdown-menu li a:active, .main-container .menu-top-tasks .menu .dropdown .dropdown-menu li a:hover, .main-container .menu-top-tasks .menu .dropdown .dropdown-menu li a:focus {
+  text-decoration: underline;
 }
 
 .main-container .menu-top-tasks .menu .dropdown .dropdown-menu li a:before {
@@ -11432,19 +11446,10 @@ h1, h2, h3, h4, h5, h6 {
     min-height: 170px;
     width: 30.9859%;
   }
-  .main-container .menu-top-tasks .menu .dropdown.open-default, .main-container .menu-top-tasks .menu .dropdown:hover{
-    background-color: #29b8e4;
-  }
-  .main-container .menu-top-tasks .menu .dropdown.open-default .nolink, .main-container .menu-top-tasks .menu .dropdown:hover .nolink{
-    color: #fff;
-  }
-  .main-container .menu-top-tasks .menu .dropdown.open-default .dropdown-menu, .main-container .menu-top-tasks .menu .dropdown:hover .dropdown-menu{
-    display: block;
-  }
-  .main-container .menu-top-tasks .menu .dropdown.open-default .nolink:before, .main-container .menu-top-tasks .menu .dropdown:hover .nolink:before, .main-container .menu-top-tasks .menu .dropdown.open .nolink:before{
+  .main-container .menu-top-tasks .menu .dropdown.open .dropdown-toggle:before, .main-container .menu-top-tasks .menu .dropdown.open-default .dropdown-toggle:before{
     display: block !important;
   }
-  .main-container .menu-top-tasks .menu .dropdown .nolink:after{
+  .main-container .menu-top-tasks .menu .dropdown .dropdown-toggle:after{
     display: none;
   }
   .main-container .menu-top-tasks .menu .dropdown .dropdown-menu{
