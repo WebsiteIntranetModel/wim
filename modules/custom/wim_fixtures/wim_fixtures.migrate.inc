@@ -58,7 +58,7 @@ function wim_fixtures_migrate_api() {
         ),
       ),
       'WIM_Product' => array(
-        'class_name' => 'BasicPageMigration',
+        'class_name' => 'ProductMigration',
         'group_name' => 'WIMMigrate',
         'content_type' => 'product',
         'file_name' => 'product.csv',
