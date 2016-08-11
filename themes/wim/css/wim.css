@@ -10074,6 +10074,13 @@ body.navbar-tray-open.navbar-vertical.navbar-fixed {
   padding-bottom: 15px;
 }
 
+.main-container .region-help .block-system {
+  width: auto;
+  float: none;
+  margin: 0;
+  padding: 0;
+}
+
 .container-nopadding {
   padding: 0 !important;
 }
@@ -10139,6 +10146,10 @@ h1, h2, h3, h4, h5, h6 {
   border: 0;
   margin: 0 0 1em;
   padding: 0;
+}
+
+.more-link {
+  margin-bottom: 10px;
 }
 
 .more-link a:after {
@@ -10713,6 +10724,10 @@ h1, h2, h3, h4, h5, h6 {
   border-bottom: none;
 }
 
+.node-teaser .teaser-image {
+  margin-right: 1em;
+}
+
 .node-teaser .teaser-image .field-type-image img {
   width: 100%;
 }
@@ -10722,9 +10737,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .node-teaser.node-agenda .fields-wrapper {
-  float: left;
-  min-height: 60px;
   min-width: 60px;
+  min-height: 60px;
+  float: left;
+  max-width: 110px;
 }
 
 .node-teaser.node-agenda .date-display-single {
@@ -10944,10 +10960,13 @@ h1, h2, h3, h4, h5, h6 {
   .node-teaser .teaser-image{
     float: left;
     width: 140px;
-    margin-right: 1em;
   }
   .node-teaser .teaser-image .field-type-image{
     margin-bottom: 0;
+  }
+  .node-teaser.node-agenda .fields-wrapper{
+    width: auto;
+    max-width: none;
   }
 }
 
