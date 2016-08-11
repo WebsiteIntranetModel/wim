@@ -7,9 +7,9 @@ Feature: Edit FAQ
   Scenario: Successfully edit FAQ
     Given I am logged in as a "content moderator"
     When I go to "admin/content"
-    And I select "FAQ" from "type"
-    And I press "Filter"
-    And I should see "where type is FAQ"
+    And I select "FAQ" from "Type"
+    And I press "Apply"
+    And I wait for AJAX to finish
     And I wait for 1 seconds
     And I should see "Question 1"
     And I click "edit" in the "Question 1" row

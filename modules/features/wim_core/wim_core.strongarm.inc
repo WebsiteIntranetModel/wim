@@ -51,6 +51,7 @@ function wim_core_strongarm() {
   $strongarm->name = 'views_defaults';
   $strongarm->value = array(
     'admin_views_node' => TRUE,
+    'admin_views_user' => TRUE,
   );
   $export['views_defaults'] = $strongarm;
 

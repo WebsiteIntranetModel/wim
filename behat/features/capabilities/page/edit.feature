@@ -10,8 +10,9 @@ Feature: Edit basic page
       | TITLE-ONE | BODY-CONTENT1 | 06/27/2026 |
     Given I am logged in as a "content moderator"
     When I go to "admin/content"
-    And I select "Basic page" from "type"
-    And I press "Filter"
+    And I select "Basic page" from "Type"
+    And I press "Apply"
+    And I wait for AJAX to finish
     And I click "edit" in the "TITLE-ONE" row
     Then I should not see "No access (403)"
     When I fill in the following:
