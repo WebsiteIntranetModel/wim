@@ -64,6 +64,9 @@ class BasicPageMigration extends NodeMigration {
       'field_publication_date',
       'field_promoted',
     ));
+
+    $this->addFieldMapping('body:format')->defaultValue('full_html');
+
     $this->addFieldMapping('field_image', 'field_image')
       ->sourceMigration('WIM_File');
     $this->addFieldMapping('field_image:alt')->defaultValue('');
@@ -131,6 +134,8 @@ class ProductMigration extends NodeMigration {
       'field_publication_date',
       'field_promoted',
     ));
+
+    $this->addFieldMapping('body:format')->defaultValue('full_html');
     $this->addFieldMapping('field_image', 'field_image')
       ->sourceMigration('WIM_File');
     $this->addFieldMapping('field_image:alt')->defaultValue('');
@@ -203,6 +208,8 @@ class NewsMigration extends NodeMigration {
       'field_publication_date',
       'field_promoted',
     ));
+
+    $this->addFieldMapping('body:format')->defaultValue('full_html');
     $this->addFieldMapping('field_image', 'field_image')
       ->sourceMigration('WIM_File');
     $this->addFieldMapping('field_image:alt')->defaultValue('');
@@ -285,6 +292,8 @@ class FaqMigration extends NodeMigration {
     $this->addFieldMapping('uid', 'author')
       ->sourceMigration('WIM_User')->defaultValue(1);
 
+    $this->addFieldMapping('body:format')->defaultValue('full_html');
+    $this->addFieldMapping('field_faq_additional_information:format')->defaultValue('full_html');
     $this->addFieldMapping('field_tags', 'field_tags')->separator(',')
       ->sourceMigration('WIM_Term_Tags');
     $this->addFieldMapping('field_tags:source_type')
@@ -359,6 +368,7 @@ class AgendaMigration extends NodeMigration {
       'field_promoted',
     ));
 
+    $this->addFieldMapping('body:format')->defaultValue('full_html');
     $this->addFieldMapping('uid', 'author')
       ->sourceMigration('WIM_User')->defaultValue(1);
 

@@ -15,10 +15,10 @@ Feature: Edit Agenda
     Then I should not see "No access (403)"
     When I fill in the following:
       | Title | Test Agenda Edited 2 |
-      | Body  | AGENDA-BODY-CONTENT2 |
       | Date  | 06/30/2016           |
       | Time  | 10:00:00             |
       | Tags  | Tag3                 |
+    And I fill in wysiwyg on field "Body" with "AGENDA-BODY-CONTENT2"
     And I press "Save"
     Then I should see the success message "Agenda Test Agenda Edited 2 has been updated."
     When I click "Test Agenda Edited 2" in the "Test Agenda Edited 2" row

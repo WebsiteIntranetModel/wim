@@ -35,8 +35,8 @@ dependencies[] = linkit
 dependencies[] = picture
 dependencies[] = strongarm
 dependencies[] = views
-dependencies[] = wysiwyg
 dependencies[] = views_bulk_operations
+dependencies[] = wysiwyg
 
 ; Features
 dependencies[] = wim_agenda
