@@ -19,6 +19,14 @@
   border-radius: 3px;
   padding-top: 15px;
   padding-bottom: 15px;
+  .region-help {
+    .block-system {
+      width: auto;
+      float: none;
+      margin: 0;
+      padding: 0;
+    }
+  }
 }
 
 .container-nopadding {
@@ -30,7 +38,6 @@ body:before {
   content: "smartphone";
   display: none;
 }
-
 
 @include MQ($screen-sm) {
   body:before {
