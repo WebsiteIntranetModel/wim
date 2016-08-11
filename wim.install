@@ -19,6 +19,8 @@ function wim_install() {
   _wim_set_up_roles_and_permissions();
   // Set date formats.
   _wim_set_date_formats();
+  // Set text formats.
+  _wim_set_text_formats();
   // Set blocks.
   _wim_set_blocks();
   // Add menu items.
@@ -103,6 +105,38 @@ function _wim_set_up_roles_and_permissions() {
     'manipulate queues',
     // Node access.
     'administer nodes',
+    'create news content',
+    'create page content',
+    'create product content',
+    'create faq content',
+    'create agenda content',
+    'create subject_page content',
+    'delete any news content',
+    'delete any page content',
+    'delete any product content',
+    'delete any faq content',
+    'delete any agenda content',
+    'delete any subject_page content',
+    'delete own news content',
+    'delete own page content',
+    'delete own product content',
+    'delete own faq content',
+    'delete own agenda content',
+    'delete own subject_page content',
+    'edit any news content',
+    'edit any page content',
+    'edit any product content',
+    'edit any faq content',
+    'edit any agenda content',
+    'edit any subject_page content',
+    'edit own news content',
+    'edit own page content',
+    'edit own product content',
+    'edit own faq content',
+    'edit own agenda content',
+    'edit own subject_page content',
+    'use text format filtered_html',
+    'use text format full_html',
     'bypass node access',
     // Bean.
     'view bean page',
@@ -171,6 +205,139 @@ function _wim_set_date_formats() {
     system_date_format_save($date_format);
     variable_set('date_format_' . $date_format['type'], $date_format['format']);
   }
+}
+
+/**
+ * Set text formats.
+ */
+function _wim_set_text_formats() {
+  $formats = array();
+  // Exported format: Filtered HTML.
+  $formats['filtered_html'] = array(
+    'format' => 'filtered_html',
+    'name' => 'Filtered HTML',
+    'cache' => 1,
+    'status' => 1,
+    'weight' => -9,
+    'filters' => array(
+      'filter_url' => array(
+        'weight' => 0,
+        'status' => 1,
+        'settings' => array(
+          'filter_url_length' => 72,
+        ),
+      ),
+      'filter_html' => array(
+        'weight' => 1,
+        'status' => 1,
+        'settings' => array(
+          'allowed_html' => '<a> <em> <strong> <cite> <blockquote> <code> <ul> <ol> <li> <dl> <dt> <dd> <table> <tr> <th> <td> <thead> <tbody> <tfoot> <caption> <h2> <h3> <h4> <h5> <h6> <p> <br> <b> <i> <u> <abbr> <acronym> <object> <embed> <param> <span> <iframe> <area> <map> <img>',
+          'filter_html_help' => 1,
+          'filter_html_nofollow' => 0,
+        ),
+      ),
+      'filter_autop' => array(
+        'weight' => 2,
+        'status' => 1,
+        'settings' => array(),
+      ),
+      'filter_htmlcorrector' => array(
+        'weight' => 10,
+        'status' => 1,
+        'settings' => array(),
+      ),
+      'inlinetabs' => array(
+        'weight' => 50,
+        'status' => 1,
+        'settings' => array(),
+      ),
+      'pathologic' => array(
+        'weight' => 50,
+        'status' => 1,
+        'settings' => array(
+          'local_paths' => '',
+          'protocol_style' => 'full',
+        ),
+      ),
+    ),
+  );
+  // Exported format: Full HTML.
+  $formats['full_html'] = array(
+    'format' => 'full_html',
+    'name' => 'Full HTML',
+    'cache' => 1,
+    'status' => 1,
+    'weight' => -10,
+    'filters' => array(
+      'filter_url' => array(
+        'weight' => -47,
+        'status' => 1,
+        'settings' => array(
+          'filter_url_length' => 72,
+        ),
+      ),
+      'filter_autop' => array(
+        'weight' => -42,
+        'status' => 1,
+        'settings' => array(),
+      ),
+      'media_filter' => array(
+        'weight' => -41,
+        'status' => 1,
+        'settings' => array(),
+      ),
+      'filter_htmlcorrector' => array(
+        'weight' => -40,
+        'status' => 1,
+        'settings' => array(),
+      ),
+      'pathologic' => array(
+        'weight' => -39,
+        'status' => 1,
+        'settings' => array(
+          'local_paths' => '',
+          'protocol_style' => 'full',
+        ),
+      ),
+      'filter_wiki_links' => array(
+        'weight' => -38,
+        'status' => 1,
+        'settings' => array(),
+      ),
+      'inlinetabs' => array(
+        'weight' => 50,
+        'status' => 1,
+        'settings' => array(),
+      ),
+    ),
+  );
+  // Exported format: Plain text.
+  $formats['plain_text'] = array(
+    'format' => 'plain_text',
+    'name' => 'Plain text',
+    'cache' => 1,
+    'status' => 1,
+    'weight' => -8,
+    'filters' => array(
+      'filter_html_escape' => array(
+        'weight' => 0,
+        'status' => 1,
+        'settings' => array(),
+      ),
+      'filter_url' => array(
+        'weight' => 1,
+        'status' => 1,
+        'settings' => array(
+          'filter_url_length' => 72,
+        ),
+      ),
+      'filter_autop' => array(
+        'weight' => 2,
+        'status' => 1,
+        'settings' => array(),
+      ),
+    ),
+  );
 }
 
 /**

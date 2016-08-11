@@ -6,11 +6,13 @@
  */
 
 use Drupal\DrupalExtension\Context\RawDrupalContext;
+use Behat\Mink\Driver\Selenium2Driver;
 use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\Testwork\Hook\Scope\BeforeSuiteScope;
 use Behat\Testwork\Hook\Scope\AfterSuiteScope;
 use Behat\Mink\Exception\ElementNotFoundException;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
+use Behat\Behat\Hook\Scope\AfterStepScope;
 use Behat\Mink\WebAssert;
 
 /**
@@ -387,6 +389,45 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
     }
 
     $element->click();
+  }
+
+  /**
+   * Helper step to take screenshot if there is an error.
+   *
+   * @AfterStep
+   */
+  public function takeScreenShotAfterFailedStep(afterStepScope $scope) {
+    if (99 === $scope->getTestResult()->getResultCode()) {
+      $driver = $this->getSession()->getDriver();
+      if (!($driver instanceof Selenium2Driver)) {
+        return;
+      }
+      file_put_contents('/var/www/html/sites/default/files/test.png', $this->getSession()
+        ->getDriver()
+        ->getScreenshot());
+    }
+  }
+
+  /**
+   * CKEditor.
+   *
+   * @Then I fill in wysiwyg on field :locator with :value
+   */
+  public function iFillInWysiwygOnFieldWith($locator, $value) {
+    $el = $this->getSession()->getPage()->findField($locator);
+
+    if (empty($el)) {
+      throw new ExpectationException('Could not find WYSIWYG with locator: ' . $locator, $this->getSession());
+    }
+
+    $fieldId = $el->getAttribute('id');
+
+    if (empty($fieldId)) {
+      throw new Exception('Could not find an id for field with locator: ' . $locator);
+    }
+
+    $this->getSession()
+      ->executeScript("CKEDITOR.instances[\"$fieldId\"].setData(\"$value\");");
   }
 
 }

@@ -17,7 +17,7 @@ Feature: Edit subject page
     Then I should not see "No access (403)"
     When I fill in the following:
       | Title | SUBJECT-TWO   |
-      | Body  | BODY-CONTENT2 |
+    And I fill in wysiwyg on field Body with "BODY-CONTENT2"
     And I click "Publishing options"
     And I fill in the following:
       | Date | 06/30/2016 |

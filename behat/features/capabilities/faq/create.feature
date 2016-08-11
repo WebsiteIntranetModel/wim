@@ -9,10 +9,10 @@ Feature: Create FAQ
     And I am on "node/add/faq"
     Then I should not see "No access (403)"
     When I fill in the following:
-      | Question               | TEST FAQ QUESTION      |
-      | Answer                 | ANSWER                 |
-      | Additional information | ADDITIONAL INFORMATION |
-      | Tags                   | Tag1, Tag2             |
+      | Question | TEST FAQ QUESTION |
+      | Tags     | Tag1, Tag2        |
+    And I fill in wysiwyg on field Answer with "ANSWER"
+    And I fill in wysiwyg on field "Additional information" with "ADDITIONAL INFORMATION"
     And I wait for AJAX to finish
     And I select "Other" from "Category"
     And I press "Save"
@@ -34,8 +34,6 @@ Feature: Create FAQ
     Then I should not see "No access (403)"
     When I fill in the following:
       | Question               | TEST FAQ QUESTION      |
-      | Answer                 | ANSWER                 |
-      | Additional information | ADDITIONAL INFORMATION |
     And I select "FAQ-CATEGORY1" from "Category"
     Then I press "Save"
     And I should see the success message "FAQ TEST FAQ QUESTION has been created."

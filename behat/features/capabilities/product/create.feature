@@ -11,8 +11,8 @@ Feature: Create Product
     And I should see "Image"
     When I fill in the following:
       | title | TEST PRODUCT |
-      | Body  | BODY CONTENT |
       | Tags  | Tag1, Tag2   |
+    And I fill in wysiwyg on field Body with "BODY CONTENT"
     And I click "Publishing options"
     And I should see "Promoted"
     And I fill in the following:

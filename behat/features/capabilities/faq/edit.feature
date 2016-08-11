@@ -10,18 +10,16 @@ Feature: Edit FAQ
     And I select "FAQ" from "Type"
     And I press "Apply"
     And I wait for AJAX to finish
-    And I wait for 1 seconds
     And I should see "Question 1"
     And I click "edit" in the "Question 1" row
     Then I should not see "No access (403)"
-    When I fill in the following:
-      | Question               | Question 1 Edited        |
-      | Answer                 | ANSWER 1 Edited          |
-      | Tags                   | Tag3                     |
-      | Additional information | ADDITIONAL INFO 1 Edited |
+    And I enter "Question 1 Edited" for Question
+    And I fill in wysiwyg on field "Answer" with "ANSWER 1 Edited"
+    And I fill in wysiwyg on field "Additional information" with "ADDITIONAL INFO 1 Edited"
+    And I enter "Tag3" for Tags
     And I press "Save"
     Then I should see the success message "FAQ Question 1 Edited has been updated."
-    And I click "Question 1 Edited" in the "Question 1 Edited" row
+    Then I click "Question 1 Edited" in the "Question 1 Edited" row
     And I should see the heading "Question 1 Edited"
     And I should see "ANSWER 1 Edited"
     And I should see "ADDITIONAL INFO 1 Edited"

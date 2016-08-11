@@ -18,8 +18,8 @@ Feature: Edit News
     Then I should not see "No access (403)"
     When I fill in the following:
       | Title | NEWS TITLE2   |
-      | Body  | BODY-CONTENT2 |
       | Tags  | Tag2          |
+    And I fill in wysiwyg on field Body with "BODY-CONTENT2"
     And I click "Publishing options"
     And I uncheck the box "Promoted"
     And I fill in the following:

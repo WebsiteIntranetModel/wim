@@ -1,0 +1,4 @@
+name = CKEditor Custom Tags
+description = This module adds several accessibility-related tag buttons to the CKEditor
+core = 7.x
+dependencies[] = wysiwyg

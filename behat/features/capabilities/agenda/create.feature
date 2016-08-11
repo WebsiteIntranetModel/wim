@@ -10,7 +10,6 @@ Feature: Create Agenda
     Then I should not see "No access (403)"
     When I fill in the following:
       | Title         | TEST AGENDA            |
-      | Body          | TEST AGENDA BODY       |
       | Date          | 06/30/2016             |
       | Time          | 10:00:00               |
       | Location name | Rembrandt House Museum |
@@ -18,6 +17,7 @@ Feature: Create Agenda
       | City          | Amsterdam              |
       | Postal code   | 1011                   |
       | Tags          | Tag1, Tag2             |
+    And I fill in wysiwyg on field Body with "TEST AGENDA BODY"
     And I click "Publishing options"
     And I fill in the following:
       | Promoted | 0 |

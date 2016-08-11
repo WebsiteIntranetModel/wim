@@ -1,0 +1,12 @@
+<?php
+/**
+ * @file
+ * Install file.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function wim_text_formats_install() {
+  _wim_wysiwyg_profile_install();
+}

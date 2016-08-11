@@ -19,14 +19,13 @@ Feature: Check Atos E-Suite fields
       | edit-field-product-more-information-und-0-url   | <front>                  |
     And I click "Additional Information"
     Then I should see "ATTACHMENT"
-    When I fill in the following:
-      | Request     | Request Content     |
-      | Contact     | Contact Content     |
-      | Objection   | Objection Content   |
-      | Costs       | Costs Content       |
-      | Particulars | Particulars Content |
-      | Period      | Period Content      |
-      | Conditions  | Conditions Content  |
+    And I fill in wysiwyg on field Request with "Request Content"
+    And I fill in wysiwyg on field Contact with "Contact Content"
+    And I fill in wysiwyg on field Objection with "Objection Content"
+    And I fill in wysiwyg on field Costs with "Costs Content"
+    And I fill in wysiwyg on field Particulars with "Particulars Content"
+    And I fill in wysiwyg on field Period with "Period Content"
+    And I fill in wysiwyg on field Conditions with "Conditions Content"
     Then I press "Save"
     Then I should see the success message "Product TEST ATOS ESUITE PRODUCT has been created."
     And I should see the link "Related Law"

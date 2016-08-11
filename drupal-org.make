@@ -27,6 +27,7 @@ projects[menu_icons] = 3.0-beta4
 projects[migrate] = 2.8
 projects[nodequeue] = 2.1
 projects[link] = 1.4
+projects[linkit] = 3.5
 projects[picture] = 2.13
 projects[strongarm] = 2.0
 projects[special_menu_items] = 2.0
@@ -34,6 +35,7 @@ projects[views] = 3.14
 projects[views_bootstrap] = 3.1
 projects[views_bulk_operations] = 3.3
 projects[weight] = 3.1
+projects[wysiwyg] = 2.x-dev
 
 ; Themes
 projects[bootstrap] = 3.5
@@ -48,3 +50,16 @@ projects[location][patch][1997658_6] = https://www.drupal.org/files/issues/locat
 ; Fixing bug with the location Google maps link
 ; https://www.drupal.org/node/2781227
 projects[location][patch][2781227_1] = https://www.drupal.org/files/issues/location-google-maps-link-2781227-1.patch
+
+
+; Custom
+; a11ychecker_custom
+;libraries[a11ychecker][download][type] = "get"
+;libraries[a11ychecker][download][url] = "http://a11ychecker.download.cksource.com/custom/a11ychecker_custom.zip"
+;libraries[a11ychecker][destination] = "custom"
+;libraries[a11ychecker][subdir] = "ckeditor_customtags"
+;libraries[a11ychecker][directory_name] = "a11ychecker_custom"
+
+; CKEditor 4.4.6
+libraries[ckeditor][download][type] = get
+libraries[ckeditor][download][url] = http://download.cksource.com/CKEditor/CKEditor/CKEditor%204.4.6/ckeditor_4.4.6_full.tar.gz

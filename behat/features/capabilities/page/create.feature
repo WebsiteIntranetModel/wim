@@ -9,8 +9,8 @@ Feature: Create basic page
     And I am at "node/add/page"
     When I fill in the following:
       | Title | This is a test basic page |
-      | Body  | Body description text     |
       | Tags  | BSCPGTEST, BSCPGTAG       |
+    And I fill in wysiwyg on field Body with "Body description text"
     And I click "Publishing options"
     And I fill in the following:
       | Date | 06/27/2026 |
