@@ -145,6 +145,7 @@ class ProductMigration extends NodeMigration {
     $this->addFieldMapping('field_tags:source_type')
       ->defaultValue('tid');
   }
+
 }
 
 /**
