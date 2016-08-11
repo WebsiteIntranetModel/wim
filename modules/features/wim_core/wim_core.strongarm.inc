@@ -45,5 +45,14 @@ function wim_core_strongarm() {
   $strongarm->value = 0;
   $export['menu_icons_use_css'] = $strongarm;
 
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'views_defaults';
+  $strongarm->value = array(
+    'admin_views_node' => TRUE,
+  );
+  $export['views_defaults'] = $strongarm;
+
   return $export;
 }
