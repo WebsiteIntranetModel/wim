@@ -82,6 +82,7 @@ function _wim_set_up_roles_and_permissions() {
   // Authenticated role.
   $authenticated_permissions = array(
     'access content',
+    'view any editorial bean',
   );
   user_role_grant_permissions(DRUPAL_AUTHENTICATED_RID, $authenticated_permissions);
   user_role_grant_permissions(DRUPAL_ANONYMOUS_RID, $authenticated_permissions);
@@ -101,6 +102,7 @@ function _wim_set_up_roles_and_permissions() {
     'manage felix blocks',
     'access contextual links',
     'administer custom lists',
+    'manipulate queues',
     // Node access.
     'administer nodes',
     'create news content',
@@ -135,6 +137,12 @@ function _wim_set_up_roles_and_permissions() {
     'edit own subject_page content',
     'use text format filtered_html',
     'use text format full_html',
+    'bypass node access',
+    // Bean.
+    'view bean page',
+    'access bean overview',
+    'administer beans',
+    'edit bean view mode',
   );
 
   // Access to the taxonomy vocabularies.
