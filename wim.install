@@ -80,6 +80,7 @@ function _wim_set_up_roles_and_permissions() {
   // Authenticated role.
   $authenticated_permissions = array(
     'access content',
+    'view any editorial bean',
   );
   user_role_grant_permissions(DRUPAL_AUTHENTICATED_RID, $authenticated_permissions);
   user_role_grant_permissions(DRUPAL_ANONYMOUS_RID, $authenticated_permissions);
@@ -99,38 +100,15 @@ function _wim_set_up_roles_and_permissions() {
     'manage felix blocks',
     'access contextual links',
     'administer custom lists',
+    'manipulate queues',
     // Node access.
     'administer nodes',
-    'create news content',
-    'create page content',
-    'create product content',
-    'create faq content',
-    'create agenda content',
-    'create subject_page content',
-    'delete any news content',
-    'delete any page content',
-    'delete any product content',
-    'delete any faq content',
-    'delete any agenda content',
-    'delete any subject_page content',
-    'delete own news content',
-    'delete own page content',
-    'delete own product content',
-    'delete own faq content',
-    'delete own agenda content',
-    'delete own subject_page content',
-    'edit any news content',
-    'edit any page content',
-    'edit any product content',
-    'edit any faq content',
-    'edit any agenda content',
-    'edit any subject_page content',
-    'edit own news content',
-    'edit own page content',
-    'edit own product content',
-    'edit own faq content',
-    'edit own agenda content',
-    'edit own subject_page content',
+    'bypass node access',
+    // Bean.
+    'view bean page',
+    'access bean overview',
+    'administer beans',
+    'edit bean view mode',
   );
 
   // Access to the taxonomy vocabularies.

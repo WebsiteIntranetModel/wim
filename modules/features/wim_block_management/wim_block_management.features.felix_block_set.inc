@@ -14,26 +14,30 @@ function wim_block_management_felix_default_block_sets() {
     'title' => 'Default',
     'blocks' => array(
       0 => array(
-        'module' => 'block',
+        'module' => 'bean',
         'delta' => '*',
       ),
       1 => array(
-        'module' => 'custom_lists',
+        'module' => 'block',
         'delta' => '*',
       ),
       2 => array(
-        'module' => 'menu',
+        'module' => 'custom_lists',
         'delta' => '*',
       ),
       3 => array(
-        'module' => 'menu_block',
+        'module' => 'menu',
         'delta' => '*',
       ),
       4 => array(
+        'module' => 'menu_block',
+        'delta' => '*',
+      ),
+      5 => array(
         'module' => 'user',
         'delta' => 'login',
       ),
-      5 => array(
+      6 => array(
         'module' => 'views',
         'delta' => '*',
       ),
