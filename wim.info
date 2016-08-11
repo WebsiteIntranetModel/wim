@@ -18,6 +18,7 @@ dependencies[] = taxonomy
 
 ; Contrib
 dependencies[] = admin_menu
+dependencies[] = admin_views
 dependencies[] = breakpoints
 dependencies[] = colectomy
 dependencies[] = ctools
@@ -35,6 +36,7 @@ dependencies[] = picture
 dependencies[] = strongarm
 dependencies[] = views
 dependencies[] = wysiwyg
+dependencies[] = views_bulk_operations
 
 ; Features
 dependencies[] = wim_agenda

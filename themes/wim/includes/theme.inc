@@ -244,3 +244,58 @@ function wim_menu_link(array $variables) {
   $output = l($icon . $element['#title'], $element['#href'], $element['#localized_options']);
   return '<li' . drupal_attributes($element['#attributes']) . '>' . $output . $sub_menu . "</li>\n";
 }
+
+/**
+ * Returns HTML for a Top Tasks menu link and submenu.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - element: Structured array data for a menu link.
+ *
+ * @return string
+ *   The constructed HTML.
+ *
+ * @see theme_menu_link()
+ *
+ * @ingroup theme_functions
+ */
+function wim_menu_link__menu_top_tasks(array $variables) {
+  $element = $variables['element'];
+  $sub_menu = '';
+  $icon = NULL;
+
+  $menu_icon = isset($element['#localized_options']['menu_icon']) ? $element['#localized_options']['menu_icon'] : NULL;
+  // Add menu item icon.
+  if ($menu_icon['enable'] && $menu_icon['path']) {
+    $icon = '<span><img class="item-icon" src="' . image_style_url($menu_icon['image_style'], $menu_icon['path']) . '"></span>';
+    $element['#localized_options']['html'] = TRUE;
+  }
+  if ($element['#below'] && !empty($element['#original_link']['depth']) && $element['#original_link']['depth'] == 1) {
+    // Add our own wrapper.
+    unset($element['#below']['#theme_wrappers']);
+    $sub_menu = '<ul class="dropdown-menu">' . drupal_render($element['#below']) . '</ul>';
+    // Generate as standard dropdown.
+    $element['#attributes']['class'][] = 'dropdown';
+    $element['#localized_options']['html'] = TRUE;
+
+    // Set dropdown trigger element to # to prevent inadvertant page loading
+    // when a submenu link is clicked.
+    $element['#localized_options']['attributes']['class'][] = 'dropdown-toggle';
+  }
+  // On primary navigation menu, class 'active' is not set on active menu item.
+  // @see https://drupal.org/node/1896674
+  if (($element['#href'] == $_GET['q'] || ($element['#href'] == '<front>' && drupal_is_front_page())) && (empty($element['#localized_options']['language']))) {
+    $element['#attributes']['class'][] = 'active';
+  }
+  $element['#attributes']['class'] = array_diff($element['#attributes']['class'], array('expanded'));
+
+  if ($element['#href'] === '<nolink>') {
+    $element['#localized_options']['attributes']['class'][] = 'nolink';
+    $output = '<a href="#" ' . drupal_attributes($element['#localized_options']['attributes']) . '>' . check_plain($element['#title']) . '</a>';
+  }
+  else {
+    $output = l($icon . $element['#title'], $element['#href'], $element['#localized_options']);
+  }
+
+  return '<li' . drupal_attributes($element['#attributes']) . '>' . $output . $sub_menu . "</li>\n";
+}

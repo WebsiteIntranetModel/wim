@@ -6,9 +6,10 @@ Feature: Edit FAQ
 
   Scenario: Successfully edit FAQ
     Given I am logged in as a "content moderator"
-    When I go to "admin/content/faq"
-    And I select "- Any -" from "Show on overview"
+    When I go to "admin/content"
+    And I select "FAQ" from "Type"
     And I press "Apply"
+    And I wait for AJAX to finish
     And I should see "Question 1"
     And I click "edit" in the "Question 1" row
     Then I should not see "No access (403)"

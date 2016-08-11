@@ -7,8 +7,9 @@ Feature: Edit Agenda
   Scenario: Successfully edit Agenda
     Given I am logged in as a "content moderator"
     When I go to "admin/content"
-    And I select "Agenda" from "type"
-    And I press "Filter"
+    And I select "Agenda" from "Type"
+    And I press "Apply"
+    And I wait for AJAX to finish
     And I should see "Test Agenda 2"
     And I click "edit" in the "Test Agenda 2" row
     Then I should not see "No access (403)"

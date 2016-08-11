@@ -27,9 +27,10 @@ Feature: FAQ overview
     Then I should not see "Question 2"
 
     Given I am logged in as a "content moderator"
-    When I go to "admin/content/faq"
-    And I select "- Any -" from "Show on overview"
+    When I go to "admin/content"
+    And I select "FAQ" from "Type"
     And I press "Apply"
+    And I wait for AJAX to finish
     And I click "edit" in the "Question 2" row
     And I check the box "Show this FAQ in the FAQ overview"
     And I press "Save"

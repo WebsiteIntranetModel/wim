@@ -1,96 +1,103 @@
 
-.node{
-  .field-type-image{
+.node {
+  .field-type-image {
     margin-bottom: 1em;
   }
-  .content{
-    h1,h2,h3,h4,h5,h6{
+  .content {
+    h1, h2, h3, h4, h5, h6 {
       color: $brand-primary;
       margin-bottom: 0.75em;
       margin-top: 1.25em;
     }
   }
 }
-.field-label-inline{
+
+.field-label-inline {
   margin: 1em 0;
-  .field-label{
+  .field-label {
     font-weight: normal;
   }
-  .field-items{
-    .field-item{
+  .field-items {
+    .field-item {
       display: inline-block;
-      padding:0 3px;
-      a{
+      padding: 0 3px;
+      a {
         text-decoration: underline;
       }
     }
   }
 }
-.node-teaser{
+
+.node-teaser {
   border-bottom: 1px solid $brand-border;
   margin-bottom: 10px;
   padding-bottom: 10px;
 
-  .teaser-body{
+  .teaser-body {
     overflow: hidden;
-    h3{
+    h3 {
       font-size: 16px;
       line-height: 1.6;
       margin-top: 0;
       font-weight: normal;
     }
-    p{
+    p {
       line-height: 1.6;
     }
   }
-  &:last-child{
+  &:last-child {
     border-bottom: none;
     .view & {
       border-bottom: 1px solid $brand-border;
     }
 
-    .view .view-content > div:last-child &{
+    .view .view-content > div:last-child & {
       border-bottom: none;
     }
   }
-  .teaser-image{
-    @include MQ($screen-xs){
+  .teaser-image {
+    margin-right: 1em;
+    @include MQ($screen-xs) {
       float: left;
       width: 140px;
-      margin-right: 1em;
     }
-    .field-type-image{
-      @include MQ($screen-xs){
+    .field-type-image {
+      @include MQ($screen-xs) {
         margin-bottom: 0;
       }
-      img{
+      img {
         width: 100%;
       }
     }
   }
-  &.node-agenda{
+  &.node-agenda {
     position: relative;
-    .fields-wrapper{
-      float: left;
-      min-height: 60px;
+    .fields-wrapper {
       min-width: 60px;
+      min-height: 60px;
+      float: left;
+      max-width: 110px;
+      @include MQ($screen-xs) {
+        width: auto;
+        max-width: none;
+      }
     }
-    .date-display-single{
+    .date-display-single {
       position: absolute;
       left: 5px;
       top: 5px;
-      background-color: #FFFFFF;
+      background-color: white;
       width: 40px;
       height: 46px;
       text-align: center;
       border: 1px solid $brand-grey-light;
-      span{
-        display:block;
-        &.day{
+      span {
+        display: block;
+        &.day {
           font-size: 20px;
           line-height: 24px;
         }
-        &.month{
+        &.month {
           font-size: 12px;
           font-weight: normal;
         }
@@ -99,43 +106,43 @@
   }
   &.node-teaser-short {
     font-size: 13px;
-    .teaser-body{
-      h3{
+    .teaser-body {
+      h3 {
         margin-bottom: 0;
         line-height: 1.6;
         font-size: 14px;
       }
-      .field{
+      .field {
         display: inline;
         padding-right: 5px;
-        *{
+        * {
           display: inline;
         }
       }
-      .field-type-datetime{
+      .field-type-datetime {
         font-weight: 700;
-        &:after{
+        &:after {
           content: " —";
           font-weight: normal;
         }
       }
     }
-    &.node-agenda{
+    &.node-agenda {
       min-height: 56px;
-      .teaser-body{
-        .field{
+      .teaser-body {
+        .field {
           display: block;
           padding-right: 0;
-          *{
+          * {
             display: block;
           }
         }
         padding-left: 50px;
-        .field-type-datetime{
-          &:after{
+        .field-type-datetime {
+          &:after {
             display: none;
           }
-          .date-display-single{
+          .date-display-single {
             left: 0;
             top: 0;
           }
@@ -145,8 +152,8 @@
   }
 }
 
-.page-news{
-  .page-header{
+.page-news {
+  .page-header {
     padding: 10px;
     border-top: 1px solid $brand-light;
     background: $brand-block-title-bg;
@@ -155,9 +162,9 @@
   }
 }
 
-.page-faq{
-  .main-container{
-    .col-sm-12{
+.page-faq {
+  .main-container {
+    .col-sm-12 {
       width: 50%;
       margin: 0 auto;
       float: none;

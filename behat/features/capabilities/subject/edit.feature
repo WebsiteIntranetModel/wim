@@ -10,9 +10,9 @@ Feature: Edit subject page
       | SUBJECT-ONE | BODY-CONTENT1 | 06/27/2026 | cm     |
     Given I am logged in as a "content moderator"
     When I go to "admin/content"
-    And I select "Subject page" from "type"
-    And I press "Filter"
-    And I should see "where type is Subject page"
+    And I select "Subject page" from "Type"
+    And I press "Apply"
+    And I wait for AJAX to finish
     And I click "edit" in the "SUBJECT-ONE" row
     Then I should not see "No access (403)"
     When I fill in the following:

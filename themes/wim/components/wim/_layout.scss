@@ -19,6 +19,14 @@
   border-radius: 3px;
   padding-top: 15px;
   padding-bottom: 15px;
+  .region-help {
+    .block-system {
+      width: auto;
+      float: none;
+      margin: 0;
+      padding: 0;
+    }
+  }
 }
 
 .container-nopadding {
@@ -31,17 +39,18 @@ body:before {
   display: none;
 }
 
-@media (min-width: $screen-sm-min) {
+@include MQ($screen-sm) {
   body:before {
     content: "tablet";
   }
 }
 
-@media (min-width: $screen-md-min) {
+@include MQ($screen-md) {
   body:before {
     content: "desktop";
   }
 }
+
 body.in-maintenance {
   #page {
     @extend .container;

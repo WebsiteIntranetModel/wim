@@ -10,8 +10,9 @@ Feature: Edit Product
       | PRODUCT TITLE1 | BODY-CONTENT1 | 06/27/2026 | Tag1       | 1              | 1      |
     Given I am logged in as a "content moderator"
     When I go to "admin/content"
-    And I select "Product" from "type"
-    And I press "Filter"
+    And I select "Product" from "Type"
+    And I press "Apply"
+    And I wait for AJAX to finish
     And I click "edit" in the "PRODUCT TITLE1" row
     Then I should not see "No access (403)"
     When I fill in the following:

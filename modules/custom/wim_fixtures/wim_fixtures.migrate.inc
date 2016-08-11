@@ -8,8 +8,7 @@
  * Implements hook_migrate_api().
  */
 function wim_fixtures_migrate_api() {
-  $data_sources = DRUPAL_ROOT . '/' .
-    drupal_get_path('module', 'wim_fixtures') . '/data_sources/files';
+  $data_sources = DRUPAL_ROOT . '/' . drupal_get_path('module', 'wim_fixtures') . '/data_sources/files';
   $api = array(
     'api' => 2,
     'groups' => array(
@@ -51,7 +50,7 @@ function wim_fixtures_migrate_api() {
         'class_name' => 'BasicPageMigration',
         'group_name' => 'WIMMigrate',
         'content_type' => 'page',
-        'file_name' => 'basic-page.csv',
+        'file_name' => 'basic-page.json',
         'dependencies' => array(
           'WIM_User',
           'WIM_File',
@@ -59,7 +58,7 @@ function wim_fixtures_migrate_api() {
         ),
       ),
       'WIM_Product' => array(
-        'class_name' => 'BasicPageMigration',
+        'class_name' => 'ProductMigration',
         'group_name' => 'WIMMigrate',
         'content_type' => 'product',
         'file_name' => 'product.csv',
@@ -145,9 +144,81 @@ abstract class WIMMigration extends Migration {
     // Avoid known line ending issue: "Invalid data value".
     // drupal.org/node/1152158#InvalidDataValue.
     ini_set('auto_detect_line_endings', TRUE);
-    $this->dataSources = DRUPAL_ROOT . '/' .
-      drupal_get_path('module', 'wim_fixtures') . '/data_sources/';
+    $this->dataSources = DRUPAL_ROOT . '/' . drupal_get_path('module', 'wim_fixtures') . '/data_sources/';
 
+  }
+
+}
+
+/**
+ * Extended class to handle list with id's.
+ */
+class WIMListJSON extends MigrateListJSON {
+
+  /**
+   * Getting id from json.
+   *
+   * The default implementation assumes the IDs are top-level array elements,
+   * but the array elements are the data items - we need to look inside them
+   * for the IDs.
+   *
+   * @param array $data
+   *    Array of items.
+   *
+   * @return array
+   *    Id's
+   */
+  protected function getIDsFromJSON(array $data) { // @codingStandardsIgnoreLine
+    $ids = array();
+    foreach ($data as $item) {
+      $ids[] = $item['id'];
+    }
+    return $ids;
+  }
+
+}
+
+/**
+ * Extended class to handle json data.
+ */
+class WIMItemJSON extends MigrateItemJSON {
+  protected $data = array();
+
+  /**
+   * Get item.
+   *
+   * Two problems with the default getItem() - it reads and parses the JSON on
+   * each call, which we don't want to do for multiple items in the file; and,
+   * we need to retrieve a given item from
+   * the file according to its 'id' element.
+   *
+   * @param string $id
+   *    Item id.
+   *
+   * @return null|object
+   *    Object or null.
+   */
+  public function getItem($id) {
+    // We cache the parsed JSON at $this->data.
+    if (empty($this->data)) {
+      $data = $this->loadJSONUrl($this->itemUrl);
+      if ($data) {
+        // Let's index the array by the ID for easy retrieval.
+        foreach ($data as $item) {
+          $this->data[$item->id] = $item;
+        }
+      }
+      else {
+        // Error-handling here....
+      }
+    }
+    // Return the requested item.
+    if (isset($this->data[$id])) {
+      return $this->data[$id];
+    }
+    else {
+      return NULL;
+    }
   }
 
 }
