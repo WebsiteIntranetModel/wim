@@ -6,6 +6,7 @@ defaults[projects][subdir] = contrib
 
 ; Contrib
 projects[admin_menu] = 3.0-rc5
+projects[bean] = 1.11
 projects[breakpoints] = 1.4
 projects[context] = 3.7
 projects[colectomy] = 1.0-beta2
