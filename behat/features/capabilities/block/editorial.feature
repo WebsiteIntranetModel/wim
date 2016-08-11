@@ -10,8 +10,8 @@ Feature: Add Editorial blocks
     When I fill in the following:
       | Label | TEST EDITORIAL       |
       | Title | TEST EDITORIAL TITLE |
-      | Body  | TEST EDITORIAL BODY  |
       | URL   | <front>              |
+    And I fill in wysiwyg on field Body with "TEST EDITORIAL BODY"
     And I attach the file "/fixtures/images/drupal-icon.png" to "Image"
     And I select "Default" from "View Mode"
     And I press "Save"

@@ -15,9 +15,9 @@ Feature: Edit FAQ
     Then I should not see "No access (403)"
     When I fill in the following:
       | Question               | Question 1 Edited        |
-      | Answer                 | ANSWER 1 Edited          |
       | Tags                   | Tag3                     |
-      | Additional information | ADDITIONAL INFO 1 Edited |
+    And I fill in wysiwyg on field Answer with "ANSWER 1 Edited"
+    And I fill in wysiwyg on field "Additional information" with "ADDITIONAL INFO 1 Edited"
     And I press "Save"
     Then I should see the success message "FAQ Question 1 Edited has been updated."
     And I click "Question 1 Edited" in the "Question 1 Edited" row
