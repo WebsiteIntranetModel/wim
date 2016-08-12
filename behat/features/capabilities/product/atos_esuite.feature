@@ -18,7 +18,9 @@ Feature: Check Atos E-Suite fields
       | edit-field-product-more-information-und-0-title | More info Link           |
       | edit-field-product-more-information-und-0-url   | <front>                  |
     And I click "Additional Information"
-    Then I should see "ATTACHMENT"
+    Then I should see "Related FAQ items"
+    And I fill in the autocomplete "Related FAQ items" with "Question 1" and click "Question 1"
+    And I fill in the autocomplete "Related Product items" with "Product 1" and click "Product 1"
     And I fill in wysiwyg on field Request with "Request Content"
     And I fill in wysiwyg on field Contact with "Contact Content"
     And I fill in wysiwyg on field Objection with "Objection Content"
@@ -26,7 +28,9 @@ Feature: Check Atos E-Suite fields
     And I fill in wysiwyg on field Particulars with "Particulars Content"
     And I fill in wysiwyg on field Period with "Period Content"
     And I fill in wysiwyg on field Conditions with "Conditions Content"
-    Then I press "Save"
+    And I click "Publishing options"
+    And I press "Save"
+    And I wait for 20 seconds
     Then I should see the success message "Product TEST ATOS ESUITE PRODUCT has been created."
     And I should see the link "Related Law"
     And I should see the link "Form Link"
