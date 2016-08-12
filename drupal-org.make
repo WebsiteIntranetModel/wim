@@ -7,6 +7,7 @@ defaults[projects][subdir] = contrib
 ; Contrib
 projects[admin_menu] = 3.0-rc5
 projects[admin_views] = 1.6
+projects[adminimal_admin_menu] = 1.7
 projects[bean] = 1.11
 projects[breakpoints] = 1.4
 projects[context] = 3.7
@@ -38,6 +39,7 @@ projects[weight] = 3.1
 projects[wysiwyg] = 2.x-dev
 
 ; Themes
+projects[adminimal_theme] = 1.24
 projects[bootstrap] = 3.5
 
 ; Patches

@@ -19,6 +19,7 @@ dependencies[] = taxonomy
 ; Contrib
 dependencies[] = admin_menu
 dependencies[] = admin_views
+dependencies[] = adminimal_admin_menu
 dependencies[] = breakpoints
 dependencies[] = colectomy
 dependencies[] = ctools
