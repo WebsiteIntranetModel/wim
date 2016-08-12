@@ -33,11 +33,10 @@ Feature: Create FAQ
     And I am on "node/add/faq"
     Then I should not see "No access (403)"
     When I fill in the following:
-      | Question               | TEST FAQ QUESTION      |
+      | Question | TEST FAQ QUESTION |
     And I select "FAQ-CATEGORY1" from "Category"
     Then I press "Save"
     And I should see the success message "FAQ TEST FAQ QUESTION has been created."
-    And I should see the link "Edit"
-    When I click "Edit"
+    When I click "Edit" in the "Main content"
     And the "FAQ-CATEGORY1" option from "Category" is selected
     And the "FAQ-CATEGORY2" option from "Category" is not selected

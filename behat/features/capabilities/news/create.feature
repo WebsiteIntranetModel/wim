@@ -47,7 +47,6 @@ Feature: Create News
     And I select "CATEGORY1" from "Category"
     Then I press "Save"
     And I should see the success message "News TEST CATEGORY NEWS has been created."
-    And I should see the link "Edit"
-    When I click "Edit"
+    When I click "Edit" in the "Main content"
     And the "CATEGORY1" option from "Category" is selected
     And the "CATEGORY2" option from "Category" is not selected

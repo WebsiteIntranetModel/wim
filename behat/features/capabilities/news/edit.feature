@@ -27,7 +27,7 @@ Feature: Edit News
       | Time     | 11:23:00   |
       | Promoted | 0          |
     And I press "Save"
-    Then I should see the success message "News NEWS TITLE2 has been updated."
+    Then I should see "News NEWS TITLE2 has been updated."
     And I click "NEWS TITLE2" in the "NEWS TITLE2" row
     And I should see "NEWS TITLE2"
     And I should see "BODY-CONTENT2"
