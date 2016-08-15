@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * Default theme implementation to display the Agenda short.
+ * Default theme implementation to display the News node teaser.
  *
  * Available variables:
  * - $title: the (sanitized) title of the node.
@@ -80,18 +80,31 @@
  * @ingroup templates
  */
 ?>
-<article class="<?php print $classes; ?> node-teaser node-teaser-short clearfix"<?php print $attributes; ?>>
-  <?php
-  // Hide comments, tags, and links now so that we can render them later.
-  hide($content['comments']);
-  hide($content['links']);
-  ?>
+<article class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
+  <?php if (!empty($content['field_image'])): ?>
+    <div class="teaser-image">
+      <?php print render($content['field_image']); ?>
+    </div>
+  <?php endif; ?>
   <div class="teaser-body">
-    <?php print render($content['field_agenda_date']); ?>
-    <?php if (!empty($title)): ?>
+    <?php if (!$page && !empty($title)): ?>
       <h3<?php print $title_attributes; ?>>
         <a href="<?php print $node_url; ?>"><?php print $title; ?></a>
       </h3>
-    <?php endif; ?>
+    <?php endif;
+    hide($content['field_publication_date']);
+    if (!empty($content['field_publication_date'])): ?>
+      <div class="submitted">
+        <?php print render($content['field_publication_date']); ?>
+      </div>
+    <?php endif;
+    // Hide comments, tags, and links now so that we can render them later.
+    hide($content['comments']);
+    hide($content['links']);
+    hide($content['field_image']);
+    hide($content['field_tags']);
+    print render($content);
+    print render($read_more_link);
+    ?>
   </div>
 </article>
