@@ -27,6 +27,7 @@ projects[menu_block] = 2.7
 projects[menu_icons] = 3.0-beta4
 projects[migrate] = 2.8
 projects[nodequeue] = 2.1
+projects[l10n_update] = 2.0
 projects[link] = 1.4
 projects[linkit] = 3.5
 projects[picture] = 2.13
