@@ -119,6 +119,29 @@ function wim_agenda_views_default_views() {
   $handler->display->display_options['sorts']['field_agenda_date_value']['id'] = 'field_agenda_date_value';
   $handler->display->display_options['sorts']['field_agenda_date_value']['table'] = 'field_data_field_agenda_date';
   $handler->display->display_options['sorts']['field_agenda_date_value']['field'] = 'field_agenda_date_value';
+  $translatables['agenda'] = array(
+    t('Master'),
+    t('Agenda'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('« first'),
+    t('‹ previous'),
+    t('next ›'),
+    t('last »'),
+    t('No results'),
+    t('Overview'),
+    t('Upcoming Agenda'),
+    t('Complete agenda'),
+    t('Add Agenda node'),
+    t('<![CONTENT_IS_REPLACED_IN_CODE]!>'),
+  );
   $export['agenda'] = $view;
 
   return $export;
