@@ -149,6 +149,9 @@
               &:focus {
                 text-decoration: underline;
               }
+              &:focus {
+                @extend %outline;
+              }
               &:before {
                 display: none;
               }

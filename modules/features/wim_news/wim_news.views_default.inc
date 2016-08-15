@@ -205,6 +205,32 @@ function wim_news_views_default_views() {
   $handler->display->display_options['sorts']['field_publication_date_value']['field'] = 'field_publication_date_value';
   $handler->display->display_options['sorts']['field_publication_date_value']['order'] = 'DESC';
   $handler->display->display_options['defaults']['arguments'] = FALSE;
+  $translatables['news'] = array(
+    t('Master'),
+    t('News'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('« first'),
+    t('‹ previous'),
+    t('next ›'),
+    t('last »'),
+    t('Overview'),
+    t('Clear'),
+    t('No results'),
+    t('From'),
+    t('Publication date (field_publication_date)'),
+    t('To'),
+    t('Category'),
+    t('Latest News'),
+    t('More news'),
+  );
   $export['news'] = $view;
 
   return $export;
