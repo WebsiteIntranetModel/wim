@@ -9364,7 +9364,7 @@ body #admin-menu, body #admin-toolbar, body #toolbar {
 }
 
 body #admin-menu {
-  top: -20px;
+  top: 0px;
   margin: 0;
   padding: 0;
   position: absolute !important;
