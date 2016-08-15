@@ -24,7 +24,7 @@ Feature: Edit basic page
       | Date | 06/30/2016 |
       | Time | 10:00:00   |
     And I press "Save"
-    And I should see the success message "Basic page TITLE-TWO has been updated."
+    And I should see "Basic page TITLE-TWO has been updated."
     And I click "TITLE-TWO" in the "TITLE-TWO" row
     And I should see "BODY-CONTENT2"
     And I should not see "TITLE-ONE"

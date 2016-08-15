@@ -1,0 +1,86 @@
+- var base = "../../"
+- var pagetype = "styleguide"
+- var section = "organisms"
+- var page = "Top Tasks menu"
+doctype html
+html(lang="en")
+ head
+  include ../../layout/_head.jade
+ body(class='#{pagetype}')
+  .meta-wrapper.container.container-nopadding
+   include ../../layout/_top.jade
+  .main-wrapper.container
+   include ../../layout/_navbar.jade
+   #page-banner(role='banner')
+   // Create region for banner and render it here. We moved header to the navbar header section.
+   include ../../layout/_main.jade
+    block content
+     p The Top Tasks menu block.
+     h3 Demo:
+
+     .row
+      section#block-menu-menu-top-tasks.block.block-menu.contextual-links-region.col-md-12.menu-top-tasks.clearfix
+       ul.menu.nav
+        li.first.dropdown.top-tasks-item-dropdown-processed.open
+         a.dropdown-toggle.nolink.nolink-processed(href='#') Arrange immediately
+         ul.dropdown-menu
+          li.first.leaf.active
+           a.active(href='/')
+            span
+             img.item-icon(src='/sites/default/files/styles/icon/public/fixtures/menu/menu-icon-pink-1.png?itok=sU9qlR0T', alt='')
+            | Make an appointment
+          li.leaf.active
+           a.active(href='/')
+            span
+             img.item-icon(src='/sites/default/files/styles/icon/public/fixtures/menu/menu-icon-pink-3.png?itok=63dMOvyR', alt='')
+            | Move
+          li.leaf.active
+           a.active(href='/')
+            span
+             img.item-icon(src='/sites/default/files/styles/icon/public/fixtures/menu/menu-icon-pink-2.png?itok=wo-gquuR', alt='')
+            | Notification public space
+          li.last.leaf.active
+           a.active(href='/')
+            span
+             img.item-icon(src='/sites/default/files/styles/icon/public/fixtures/menu/menu-icon-pink-4.png?itok=ofjyFKYr', alt='')
+            | WOZ
+        li.dropdown.top-tasks-item-dropdown-processed
+         a.dropdown-toggle.nolink.nolink-processed(href='#') Leisure
+         ul.dropdown-menu
+          li.first.leaf.active
+           a.active(href='/')
+            span
+             img.item-icon(src='/sites/default/files/styles/icon/public/fixtures/menu/menu-icon-blue-3.png?itok=0OOiaFRx', alt='')
+            | Cafe
+          li.leaf.active
+           a.active(href='/')
+            span
+             img.item-icon(src='/sites/default/files/styles/icon/public/fixtures/menu/menu-icon-blue-2.png?itok=ZJWn6twp', alt='')
+            | Sport
+          li.last.leaf.active
+           a.active(href='/')
+            span
+             img.item-icon(src='/sites/default/files/styles/icon/public/fixtures/menu/menu-icon-blue-1.png?itok=DPUAaw3N', alt='')
+            | Tourism
+        li.dropdown.top-tasks-item-dropdown-processed
+         a.dropdown-toggle.nolink.nolink-processed(href='#') Traffic
+         ul.dropdown-menu
+          li.first.leaf.active
+           a.active(href='/') Buses
+          li.leaf.active
+           a.active(href='/') Cars
+          li.last.leaf.active
+           a.active(href='/') Trains
+        li.last.dropdown.top-tasks-item-dropdown-processed
+         a.dropdown-toggle.nolink.nolink-processed(href='#') Waste
+         ul.dropdown-menu
+          li.first.leaf.active
+           a.active(href='/') Bulky waste hotline
+          li.leaf.active
+           a.active(href='/') Recycling
+          li.last.leaf.active
+           a.active(href='/') Waste Calendar
+
+
+
+  include ../../layout/_scripts.jade

@@ -25,7 +25,7 @@ Feature: Edit Product
       | Time     | 05:25:11   |
       | Promoted | 0          |
     And I press "Save"
-    And I should see the success message "Product PRODUCT TITLE2 has been updated."
+    And I should see "Product PRODUCT TITLE2 has been updated."
     And I click "PRODUCT TITLE2" in the "PRODUCT TITLE2" row
     And I should see "PRODUCT TITLE2"
     And I should see "BODY CONTENT2"

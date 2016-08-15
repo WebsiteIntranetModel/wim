@@ -41,7 +41,7 @@ default:
           'Content Top': '.region-content-top'
           'Content': '.region-content'
           'Content Bottom': '.region-content-bottom'
-          'Main content': '#block-system-main'
+          'Main content': '.main-container'
           'Sidebar first': '.region-sidebar-first'
           'Sidebar second': '.region-sidebar-second'
           'Highlighted': '.region-highlighted'
