@@ -20,7 +20,7 @@ Feature: Edit Agenda
       | Tags  | Tag3                 |
     And I fill in wysiwyg on field "Body" with "AGENDA-BODY-CONTENT2"
     And I press "Save"
-    Then I should see the success message "Agenda Test Agenda Edited 2 has been updated."
+    Then I should see "Agenda Test Agenda Edited 2 has been updated."
     When I click "Test Agenda Edited 2" in the "Test Agenda Edited 2" row
     Then I should see the heading "Test Agenda Edited 2"
     And I should see "AGENDA-BODY-CONTENT2"

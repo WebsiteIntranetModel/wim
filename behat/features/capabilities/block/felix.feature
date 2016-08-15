@@ -10,48 +10,30 @@ Feature: Add blocks via Felix
 
     #Sidebar first
     And I should see "Sidebar First" in the "Sidebar first"
-    When I mouseover the ".region-sidebar-first .block-felix" element
-    Then I should see an ".region-sidebar-first .block-felix .contextual-links-trigger-active" element
 
     #Content Top
     And I should see "Content Top" in the "Content Top"
-    When I mouseover the ".region-content-top .block-felix" element
-    Then I should see an ".region-content-top .block-felix .contextual-links-trigger-active" element
 
     #Content
     And I should see "Content" in the "Content"
-    When I mouseover the ".region-content .block-felix" element
-    Then I should see an ".region-content .block-felix .contextual-links-trigger-active" element
 
     #Content Bottom
     And I should see "Content Bottom" in the "Content Bottom"
-    When I mouseover the ".region-content-bottom .block-felix" element
-    Then I should see an ".region-content-bottom .block-felix .contextual-links-trigger-active" element
 
     #Highlighted
     And I should see "Highlighted" in the "Highlighted"
-    When I mouseover the ".region-highlighted .block-felix" element
-    Then I should see an ".region-highlighted .block-felix .contextual-links-trigger-active" element
 
     #Sidebar Second
     And I should see "Sidebar Second" in the "Sidebar second"
-    When I mouseover the ".region-sidebar-second .block-felix" element
-    Then I should see an ".region-sidebar-second .block-felix .contextual-links-trigger-active" element
 
     #Footer First
     And I should see "Footer First" in the "Footer First"
-    When I mouseover the ".region-footer-first .block-felix" element
-    Then I should see an ".region-footer-first .block-felix .contextual-links-trigger-active" element
 
     #Footer Second
     And I should see "Footer Second" in the "Footer Second"
-    When I mouseover the ".region-footer-second .block-felix" element
-    Then I should see an ".region-footer-second .block-felix .contextual-links-trigger-active" element
 
     #Footer Third
     And I should see "Footer Third" in the "Footer Third"
-    When I mouseover the ".region-footer-third .block-felix" element
-    Then I should see an ".region-footer-third .block-felix .contextual-links-trigger-active" element
 
     When I go to "felix-blocks/add?region=primary&path=node&destination=node"
     Then I click "Test block 1"

@@ -18,7 +18,7 @@ Feature: Edit FAQ
     And I fill in wysiwyg on field "Additional information" with "ADDITIONAL INFO 1 Edited"
     And I enter "Tag3" for Tags
     And I press "Save"
-    Then I should see the success message "FAQ Question 1 Edited has been updated."
+    Then I should see "FAQ Question 1 Edited has been updated."
     Then I click "Question 1 Edited" in the "Question 1 Edited" row
     And I should see the heading "Question 1 Edited"
     And I should see "ANSWER 1 Edited"

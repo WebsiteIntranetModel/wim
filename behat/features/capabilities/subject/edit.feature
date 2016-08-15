@@ -23,7 +23,7 @@ Feature: Edit subject page
       | Date | 06/30/2016 |
       | Time | 10:00:00   |
     Then I press "Save"
-    And I should see the success message "Subject page SUBJECT-TWO has been updated."
+    And I should see "Subject page SUBJECT-TWO has been updated."
     And I click "SUBJECT-TWO" in the "SUBJECT-TWO" row
     And I should not see "30 June 2016"
     And I should see "BODY-CONTENT2"
