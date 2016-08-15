@@ -80,7 +80,7 @@
  * @ingroup templates
  */
 ?>
-<article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
+<article class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
   <div class="fields-wrapper">
     <?php print render($content['field_agenda_date']); ?>
     <?php if (!empty($content['field_image'])): ?>

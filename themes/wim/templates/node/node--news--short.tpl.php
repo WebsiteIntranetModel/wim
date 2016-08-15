@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * Default theme implementation to display the Agenda short.
+ * Default theme implementation to display the News node short.
  *
  * Available variables:
  * - $title: the (sanitized) title of the node.
@@ -85,13 +85,15 @@
   // Hide comments, tags, and links now so that we can render them later.
   hide($content['comments']);
   hide($content['links']);
+  hide($content['field_tags']);
   ?>
   <div class="teaser-body">
-    <?php print render($content['field_agenda_date']); ?>
-    <?php if (!empty($title)): ?>
+    <?php if (!$page && !empty($title)): ?>
       <h3<?php print $title_attributes; ?>>
         <a href="<?php print $node_url; ?>"><?php print $title; ?></a>
       </h3>
     <?php endif; ?>
+    <?php print render($content);
+    ?>
   </div>
 </article>
