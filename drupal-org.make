@@ -18,6 +18,7 @@ projects[entity] = 1.7
 projects[features] = 2.10
 projects[felix] = 1.0-beta8
 projects[field_group] = 1.5
+projects[elysia_cron] = 2.1
 projects[entity] = 1.7
 projects[entityreference] = 1.1
 projects[jquery_update] = 2.7
