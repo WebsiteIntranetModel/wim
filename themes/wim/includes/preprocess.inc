@@ -138,3 +138,26 @@ function wim_preprocess_block(&$variables) {
     $variables['classes_array'][] = drupal_html_class($block->delta);
   }
 }
+
+/**
+ * Implements hook_preprocess_field().
+ */
+function wim_preprocess_field(&$variables, $hook) {
+  $element = $variables['element'];
+  $field_name = $element['#field_name'];
+
+  // Add product id parameter to FAQ links.
+  if ($field_name === 'field_related_faq' && $element['#bundle'] === 'product' && $element['#view_mode'] === 'full') {
+    $product_id = $element['#object']->nid;
+    foreach ($element['#items'] as $id => $item) {
+      $faq = $item['entity'];
+      if ($uri = entity_uri('node', $item['entity'])) {
+        $options = array('query' => array('product' => $product_id));
+        $variables['items'][$id] = array(
+          '#markup' => l($faq->title, $uri['path'], $options),
+        );
+      }
+    }
+  }
+
+}
