@@ -13,7 +13,7 @@ Feature: Create basic page
     And I fill in wysiwyg on field Body with "Body description text"
     And I click "Publishing options"
     And I fill in the following:
-      | Date | 06/27/2026 |
+      | Date | 27/06/2026 |
       | Time | 11:10:00   |
     Then I should see "Promoted"
     And I attach the file "/fixtures/images/drupal-icon.png" to "Image"

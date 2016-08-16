@@ -17,7 +17,7 @@ Feature: Create News
     And I click "Publishing options"
     And I check the box "Promoted"
     And I fill in the following:
-      | Date | 06/30/2016 |
+      | Date | 30/06/2016 |
       | Time | 02:22:00   |
     And I attach the file "/fixtures/images/drupal-icon.png" to "Image"
     And I attach the file "/fixtures/files/pdf-file.pdf" to "Add a new file"

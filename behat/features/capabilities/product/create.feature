@@ -16,7 +16,7 @@ Feature: Create Product
     And I click "Publishing options"
     And I should see "Promoted"
     And I fill in the following:
-      | Date | 06/27/2026 |
+      | Date | 27/06/2026 |
     And I press "Save"
     Then I should see the success message "Product TEST PRODUCT has been created."
     And I should see the heading "TEST PRODUCT"

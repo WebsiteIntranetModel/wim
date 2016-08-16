@@ -12,7 +12,7 @@ Feature: Create subject page
     And I fill in wysiwyg on field Body with "Body description text"
     And I click "Publishing options"
     And I fill in the following:
-      | Date | 06/27/2026 |
+      | Date | 27/06/2026 |
       | Time | 11:10:00   |
     Then I should see "Promoted"
     Then I press "Save"

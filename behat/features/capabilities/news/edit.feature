@@ -23,7 +23,7 @@ Feature: Edit News
     And I click "Publishing options"
     And I uncheck the box "Promoted"
     And I fill in the following:
-      | Date     | 06/30/2016 |
+      | Date     | 30/06/2016 |
       | Time     | 11:23:00   |
       | Promoted | 0          |
     And I press "Save"
