@@ -31,6 +31,7 @@ dependencies[] = field_group
 dependencies[] = jquery_update
 dependencies[] = magic
 dependencies[] = menu_block
+dependencies[] = module_filter
 dependencies[] = l10n_update
 dependencies[] = link
 dependencies[] = linkit
