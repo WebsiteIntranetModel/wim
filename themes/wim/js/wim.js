@@ -36,6 +36,17 @@
 
       if (!isMobile()) {
         $('li.first.dropdown', $topTasksMenu).once('open-default').addClass(openDefaultClass);
+
+        // Fix height of menu.
+        var menuWrapperHeight = $('.menu-wrapper .menu.nav', $topTasksMenu).height(),
+          $subItems = $('.menu-wrapper ul.dropdown-menu', $topTasksMenu);
+
+        $subItems.once('fix-height').each(function (id, element) {
+          var elementHeight = $(element).height();
+          if (elementHeight > menuWrapperHeight) {
+            $('.menu-wrapper .menu.nav', $topTasksMenu).height(elementHeight);
+          }
+        });
       }
 
       $('.menu > li', $topTasksMenu).once('top-tasks-item-dropdown').click(function (e) {
