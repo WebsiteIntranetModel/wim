@@ -7,7 +7,7 @@
 
 (function ($) {
   function isMobile() {
-    var breakpoint = window.getComputedStyle(document.querySelector('body'), ':before').getPropertyValue('content').replace(/\"/g, '');
+    var breakpoint = window.getComputedStyle(document.querySelector('body'), ':after').getPropertyValue('content').replace(/\"/g, '');
     if (breakpoint != "desktop") {
       return true;
     }
@@ -35,7 +35,7 @@
         openDefaultClass = 'open-default';
 
       if (!isMobile()) {
-        $('li.first.dropdown', $topTasksMenu).addClass(openDefaultClass);
+        $('li.first.dropdown', $topTasksMenu).once('open-default').addClass(openDefaultClass);
       }
 
       $('.menu > li', $topTasksMenu).once('top-tasks-item-dropdown').click(function (e) {
