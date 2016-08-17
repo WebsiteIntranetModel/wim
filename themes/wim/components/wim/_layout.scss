@@ -34,19 +34,19 @@
 }
 
 // For detecting site width
-body:before {
+body:after {
   content: "smartphone";
   display: none;
 }
 
 @include MQ($screen-sm) {
-  body:before {
+  body:after {
     content: "tablet";
   }
 }
 
 @include MQ($screen-md) {
-  body:before {
+  body:after {
     content: "desktop";
   }
 }

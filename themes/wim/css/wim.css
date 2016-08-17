@@ -10085,7 +10085,7 @@ body.navbar-tray-open.navbar-vertical.navbar-fixed {
   padding: 0 !important;
 }
 
-body:before {
+body:after {
   content: "smartphone";
   display: none;
 }
@@ -11446,7 +11446,7 @@ h1, h2, h3, h4, h5, h6 {
   .filter-help{
     float: right;
   }
-  body:before{
+  body:after{
     content: "tablet";
   }
   .main-container .menu-top-tasks{
@@ -11734,7 +11734,7 @@ h1, h2, h3, h4, h5, h6 {
   .navbar #block-search-form{
     float: right;
   }
-  body:before{
+  body:after{
     content: "desktop";
   }
   .navbar.container, body.in-maintenance .navbar#page{
