@@ -60,9 +60,8 @@ projects[location][patch][2781227_1] = https://www.drupal.org/files/issues/locat
 ; a11ychecker_custom
 libraries[a11ychecker][download][type] = "get"
 libraries[a11ychecker][download][url] = "http://a11ychecker.download.cksource.com/custom/a11ychecker_custom.zip"
-libraries[a11ychecker][destination] = "custom"
-libraries[a11ychecker][subdir] = "ckeditor_customtags"
-libraries[a11ychecker][directory_name] = "a11ychecker_custom"
+libraries[a11ychecker][destination] = "libraries"
+libraries[a11ychecker][subdir] = "ckeditor_plugins"
 
 ; CKEditor 4.4.6
 libraries[ckeditor][download][type] = get
