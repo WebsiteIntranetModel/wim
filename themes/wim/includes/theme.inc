@@ -299,3 +299,22 @@ function wim_menu_link__menu_top_tasks(array $variables) {
 
   return '<li' . drupal_attributes($element['#attributes']) . '>' . $output . $sub_menu . "</li>\n";
 }
+
+/**
+ * Returns HTML for a wrapper for a Top Tasks menu sub-tree.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - tree: An HTML string containing the tree's items.
+ *
+ * @return string
+ *   The constructed HTML.
+ *
+ * @see template_preprocess_menu_tree()
+ * @see theme_menu_tree()
+ *
+ * @ingroup theme_functions
+ */
+function wim_menu_tree__menu_top_tasks($variables) {
+  return '<div class="menu-wrapper"><ul class="menu nav">' . $variables['tree'] . '</ul></div>';
+}
