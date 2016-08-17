@@ -35,6 +35,7 @@ if [ ${2:-"exclude"} = "include" ]; then
   echo "Moved settings.local.php so it can be included in the settings.php file."
 fi
 
+apt-get update -qq && apt-get install -y unzip
 # Build the site using drush make
 drush make ${PROFILE_PATH}/build-wim.make .
 
