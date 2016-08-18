@@ -9,6 +9,7 @@ services:
     links:
       - db
       - mailcatcher
+      - solr
     environment:
       - VIRTUAL_HOST=wim.dev
       - DRUPAL_SETTINGS=development
@@ -57,6 +58,17 @@ services:
     container_name: wim_proxy
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
+
+  solr:
+    image: mxr576/apachesolr-5.x-drupal-docker
+    hostname: solr
+    container_name: wim_solr
+    restart: always
+    environment:
+      - SOLR_SOLR_MEM_SIZE=512m
+      - PARTIAL_SEARCH_ENABLED=false
+    ports:
+      - "8983"
 
 volumes:
   db_data:
