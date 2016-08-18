@@ -1175,7 +1175,7 @@
   content: "";
 }
 
-.fa-angle-right:before, .menu:not(.navbar-nav) a:before, .dropdown-menu > li > a:before {
+.fa-angle-right:before, .menu:not(.navbar-nav) a:before, .dropdown-menu > li > a:before, .navbar-default .navbar-nav > li:first-child:before {
   content: "";
 }
 
@@ -9524,6 +9524,17 @@ h1, h2, h3, h4, h5, h6 {
 .navbar-default .navbar-nav > .active > a:focus {
   color: white;
   background: #00465c;
+}
+
+.navbar-default .navbar-nav > li:first-child:before {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: absolute;
+  left: -10000px;
 }
 
 .navbar-default .navbar-nav > li:hover > a {

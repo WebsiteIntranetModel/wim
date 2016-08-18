@@ -51,6 +51,14 @@
 }
 
 .navbar-default .navbar-nav > li {
+  &:first-child{
+    @extend .fa-angle-right;
+    &:before {
+      @include fa-icon;
+      position: absolute;
+      left: -10000px;
+    }
+  }
   &:hover > a {
     background: $link-hover-color;
     color: white;
