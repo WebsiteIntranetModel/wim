@@ -209,14 +209,14 @@ function wim_menu_link(array $variables) {
 
   $menu_icon = isset($element['#localized_options']['menu_icon']) ? $element['#localized_options']['menu_icon'] : NULL;
   // Add menu item icon.
-  if ($menu_icon['enable'] && $menu_icon['path']) {
-    $icon = '<span><img class="item-icon" src="' . image_style_url($menu_icon['image_style'], $menu_icon['path']) . '"></span>';
+  if (is_array($menu_icon) && $menu_icon['enable'] && $menu_icon['path']) {
+    $icon = '<span><img alt="' . $element['#title'] . '" class="item-icon" src="' . image_style_url($menu_icon['image_style'], $menu_icon['path']) . '"></span>';
     $element['#localized_options']['html'] = TRUE;
   }
   if ($element['#below']) {
     // Prevent dropdown functions from being added to management menu so it
     // does not affect the navbar module.
-    if (($element['#original_link']['menu_name'] == 'management') && (module_exists('navbar'))) {
+    if (($element['#original_link']['menu_name'] === 'management') && (module_exists('navbar'))) {
       $sub_menu = drupal_render($element['#below']);
     }
     elseif ((!empty($element['#original_link']['depth'])) && ($element['#original_link']['depth'] == 1)) {
@@ -236,7 +236,7 @@ function wim_menu_link(array $variables) {
   }
   // On primary navigation menu, class 'active' is not set on active menu item.
   // @see https://drupal.org/node/1896674
-  if (($element['#href'] == $_GET['q'] || ($element['#href'] == '<front>' && drupal_is_front_page())) && (empty($element['#localized_options']['language']))) {
+  if (($element['#href'] == $_GET['q'] || ($element['#href'] === '<front>' && drupal_is_front_page())) && (empty($element['#localized_options']['language']))) {
     $element['#attributes']['class'][] = 'active';
   }
   $element['#attributes']['class'] = array_diff($element['#attributes']['class'], array('expanded'));
@@ -266,8 +266,8 @@ function wim_menu_link__menu_top_tasks(array $variables) {
 
   $menu_icon = isset($element['#localized_options']['menu_icon']) ? $element['#localized_options']['menu_icon'] : NULL;
   // Add menu item icon.
-  if ($menu_icon['enable'] && $menu_icon['path']) {
-    $icon = '<span><img class="item-icon" src="' . image_style_url($menu_icon['image_style'], $menu_icon['path']) . '"></span>';
+  if (is_array($menu_icon) && $menu_icon['enable'] && $menu_icon['path']) {
+    $icon = '<span><img alt="' . $element['#title'] . '" class="item-icon" src="' . image_style_url($menu_icon['image_style'], $menu_icon['path']) . '"></span>';
     $element['#localized_options']['html'] = TRUE;
   }
   if ($element['#below'] && !empty($element['#original_link']['depth']) && $element['#original_link']['depth'] == 1) {
@@ -284,7 +284,7 @@ function wim_menu_link__menu_top_tasks(array $variables) {
   }
   // On primary navigation menu, class 'active' is not set on active menu item.
   // @see https://drupal.org/node/1896674
-  if (($element['#href'] == $_GET['q'] || ($element['#href'] == '<front>' && drupal_is_front_page())) && (empty($element['#localized_options']['language']))) {
+  if (($element['#href'] == $_GET['q'] || ($element['#href'] === '<front>' && drupal_is_front_page())) && (empty($element['#localized_options']['language']))) {
     $element['#attributes']['class'][] = 'active';
   }
   $element['#attributes']['class'] = array_diff($element['#attributes']['class'], array('expanded'));
