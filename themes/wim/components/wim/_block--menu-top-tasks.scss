@@ -83,9 +83,9 @@
               z-index: 5;
               display: none;
             }
-            @extend .glyphicon-menu-down;
+            @extend .fa-angle-down;
             &:before {
-              @extend .glyphicon;
+              @include fa-icon;
               position: absolute;
               right: 10px;
               top: 50%;
@@ -99,7 +99,7 @@
             background-color: $brand-primary;
             .dropdown-toggle {
               color: white;
-              @extend .glyphicon-menu-up;
+              @extend .fa-angle-up;
             }
           }
           .dropdown-menu {

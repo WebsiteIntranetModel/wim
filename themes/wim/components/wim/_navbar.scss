@@ -63,30 +63,23 @@
   &.parent-dropdown {
     & > a {
       position: relative;
-
+      @extend .fa-chevron-down;
+      &:before{
+        display: none;
+      }
       @media (max-width: $screen-sm-min - 1) {
-        &:after {
-          font-family: 'Glyphicons Halflings';
-          font-style: normal;
-          font-weight: normal;
-          line-height: 1;
-          -webkit-font-smoothing: antialiased;
-          -moz-osx-font-smoothing: grayscale;
+        &:before {
+          @include fa-icon;
           position: absolute;
           right: 10px;
           top: 50%;
           transform: translateY(-50%);
-          content: "\e259";
         }
       }
     }
     &.expanded {
-      @media (max-width: $screen-sm-min - 1) {
-        & > a {
-          &:after {
-            content: "\e260";
-          }
-        }
+      & > a {
+        @extend .fa-chevron-up;
       }
       .dropdown-menu {
         display: block;
