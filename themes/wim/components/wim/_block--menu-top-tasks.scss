@@ -152,6 +152,10 @@
                 }
                 span {
                   margin: 0 6px 0 0;
+                  img {
+                    height: 40px;
+                    width: auto;
+                  }
                   @include MQ($screen-sm) {
                     display: block;
                     margin: 0 0 6px;

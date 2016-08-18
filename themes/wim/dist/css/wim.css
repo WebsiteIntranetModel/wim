@@ -9280,6 +9280,11 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0 6px 0 0;
 }
 
+.main-container .menu-top-tasks .menu-wrapper .menu .dropdown .dropdown-menu li a span img {
+  height: 40px;
+  width: auto;
+}
+
 .menu:not(.navbar-nav) li {
   margin-bottom: 1px;
 }
