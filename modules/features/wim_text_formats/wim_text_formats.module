@@ -1,8 +1,10 @@
 <?php
 /**
  * @file
- * Drupal needs this blank file.
+ * Code for the WIM Text formats feature.
  */
+
+include_once 'wim_text_formats.features.inc';
 
 /**
  * Helper function to install wysiwyg profiles.
