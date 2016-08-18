@@ -21,3 +21,5 @@ Feature: Login
     Then I should see the text "active" in the "cm" row
     And I should see the text "content moderator" in the "cm" row
     And I should see the text "active" in the "test" row
+    And I should see the text "active" in the "klark_kent" row
+    And I should see the text "administrator" in the "klark_kent" row
