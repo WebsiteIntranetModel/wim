@@ -19,6 +19,8 @@ RUN apt-get update && apt-get install -y \
   && docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr \
   && docker-php-ext-install gd mbstring pdo pdo_mysql pdo_pgsql zip
 
+RUN apt-get update -qq && apt-get install -y unzip
+
 WORKDIR /var/www/html
 
 ADD docker_build/mailcatcher-ssmtp.conf /etc/ssmtp/ssmtp.conf
