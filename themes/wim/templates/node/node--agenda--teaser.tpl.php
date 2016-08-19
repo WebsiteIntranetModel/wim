@@ -91,9 +91,9 @@
   </div>
   <div class="teaser-body">
     <?php if (!$page && !empty($title)): ?>
-      <h3<?php print $title_attributes; ?>>
+      <h2<?php print $title_attributes; ?>>
         <a href="<?php print $node_url; ?>"><?php print $title; ?></a>
-      </h3>
+      </h2>
     <?php endif;
     // Hide comments, tags, and links now so that we can render them later.
     hide($content['comments']);
@@ -102,7 +102,6 @@
     hide($content['field_tags']);
     hide($content['field_agenda_date']);
     print render($content);
-    print render($read_more_link);
     ?>
   </div>
 </article>

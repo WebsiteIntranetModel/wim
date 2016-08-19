@@ -63,9 +63,9 @@ h1, h2, h3, h4, h5, h6 {
 
 .back-link {
   margin: 15px 0;
-  @extend .glyphicon-menu-left;
+  @extend .fa-chevron-left;
   &:before {
-    @extend .glyphicon;
+    @include fa-icon;
     font-size: 12px;
     margin-right: 3px;
     color: $brand-primary;
