@@ -58,7 +58,7 @@ function wim_text_formats_default_linkit_profiles() {
         'product' => 0,
         'subject_page' => 0,
       ),
-      'group_by_bundle' => 0,
+      'group_by_bundle' => 1,
       'include_unpublished' => 0,
     ),
     'entity:file' => array(
@@ -88,15 +88,15 @@ function wim_text_formats_default_linkit_profiles() {
     ),
     'attribute_plugins' => array(
       'accesskey' => array(
-        'enabled' => 0,
+        'enabled' => 1,
         'weight' => '-10',
       ),
       'target' => array(
-        'enabled' => 0,
+        'enabled' => 1,
         'weight' => '-10',
       ),
       'class' => array(
-        'enabled' => 0,
+        'enabled' => 1,
         'weight' => '-10',
       ),
       'rel' => array(
@@ -104,11 +104,11 @@ function wim_text_formats_default_linkit_profiles() {
         'weight' => '-10',
       ),
       'id' => array(
-        'enabled' => 0,
+        'enabled' => 1,
         'weight' => '-10',
       ),
       'title' => array(
-        'enabled' => 0,
+        'enabled' => 1,
         'weight' => '-10',
       ),
     ),

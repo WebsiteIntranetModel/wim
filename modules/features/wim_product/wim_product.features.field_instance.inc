@@ -157,7 +157,7 @@ function wim_product_field_default_field_instances() {
         'display_label' => 1,
       ),
       'type' => 'options_onoff',
-      'weight' => 5,
+      'weight' => 4,
     ),
   );
 
@@ -212,7 +212,7 @@ function wim_product_field_default_field_instances() {
         'year_range' => '-3:+3',
       ),
       'type' => 'date_popup',
-      'weight' => 100,
+      'weight' => 9,
     ),
   );
 
