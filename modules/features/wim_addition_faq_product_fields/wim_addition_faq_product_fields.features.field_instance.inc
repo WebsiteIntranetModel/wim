@@ -191,7 +191,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'file_generic',
-      'weight' => 46,
+      'weight' => 47,
     ),
   );
 
@@ -231,7 +231,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 45,
+      'weight' => 46,
     ),
   );
 
@@ -271,7 +271,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 40,
+      'weight' => 41,
     ),
   );
 
@@ -311,7 +311,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'rows' => 20,
       ),
       'type' => 'text_textarea',
-      'weight' => 42,
+      'weight' => 43,
     ),
   );
 
@@ -465,7 +465,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 41,
+      'weight' => 42,
     ),
   );
 
@@ -505,7 +505,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 43,
+      'weight' => 44,
     ),
   );
 
@@ -545,7 +545,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 44,
+      'weight' => 45,
     ),
   );
 

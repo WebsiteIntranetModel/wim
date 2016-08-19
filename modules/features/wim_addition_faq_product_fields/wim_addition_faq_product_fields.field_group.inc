@@ -21,11 +21,9 @@ function wim_addition_faq_product_fields_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Additional Information',
-    'weight' => '13',
+    'weight' => '9',
     'children' => array(
-      0 => 'field_related_faq',
-      1 => 'field_related_product',
-      2 => 'field_faq_more_information',
+      0 => 'field_faq_more_information',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
@@ -60,8 +58,6 @@ function wim_addition_faq_product_fields_field_group_info() {
       5 => 'field_product_particulars',
       6 => 'field_product_period',
       7 => 'field_product_request',
-      8 => 'field_related_faq',
-      9 => 'field_related_product',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
@@ -105,10 +101,67 @@ function wim_addition_faq_product_fields_field_group_info() {
   );
   $field_groups['group_pcd|node|product|form'] = $field_group;
 
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_relations|node|faq|form';
+  $field_group->group_name = 'group_relations';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'faq';
+  $field_group->mode = 'form';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Relations',
+    'weight' => '8',
+    'children' => array(
+      0 => 'field_related_faq',
+      1 => 'field_related_product',
+    ),
+    'format_type' => 'tab',
+    'format_settings' => array(
+      'formatter' => 'closed',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => 'group-relations field-group-tab',
+        'required_fields' => 1,
+      ),
+    ),
+  );
+  $field_groups['group_relations|node|faq|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_relations|node|product|form';
+  $field_group->group_name = 'group_relations';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'product';
+  $field_group->mode = 'form';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Relations',
+    'weight' => '6',
+    'children' => array(
+      0 => 'field_related_faq',
+      1 => 'field_related_product',
+    ),
+    'format_type' => 'tab',
+    'format_settings' => array(
+      'formatter' => 'closed',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => 'group-relations field-group-tab',
+        'required_fields' => 1,
+      ),
+    ),
+  );
+  $field_groups['group_relations|node|product|form'] = $field_group;
+
   // Translatables
   // Included for use with string extractors like potx.
   t('Additional Information');
   t('PCD information');
+  t('Relations');
 
   return $field_groups;
 }
