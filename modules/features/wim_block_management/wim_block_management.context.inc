@@ -17,18 +17,14 @@ function wim_block_management_context_default_contexts() {
   $context->description = '';
   $context->tag = 'general';
   $context->conditions = array(
-    'path' => array(
-      'values' => array(
-        '~admin/*' => '~admin/*',
-        '~felix-blocks/*' => '~felix-blocks/*',
-        '~node/add/*' => '~node/add/*',
-        '~node/*/edit' => '~node/*/edit',
-        '~user/*/edit' => '~user/*/edit',
-      ),
-    ),
     'sitewide' => array(
       'values' => array(
         1 => 1,
+      ),
+    ),
+    'theme' => array(
+      'values' => array(
+        'wim' => 'wim',
       ),
     ),
   );

@@ -11,6 +11,7 @@ projects[adminimal_admin_menu] = 1.7
 projects[bean] = 1.11
 projects[breakpoints] = 1.4
 projects[context] = 3.7
+projects[context_condition_theme] = 1.0
 projects[colectomy] = 1.0-beta2
 projects[ctools] = 1.9
 projects[date] = 2.9
