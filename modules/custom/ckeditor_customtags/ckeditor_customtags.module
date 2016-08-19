@@ -5,6 +5,16 @@
  */
 
 /**
+ * Implements hook_preprocess_html().
+ */
+function ckeditor_customtags_preprocess_html(&$variables) {
+  global $theme;
+  if ($theme === 'adminimal') {
+    drupal_add_css(drupal_get_path('module', 'ckeditor_customtags') . '/ckeditor_customtags.adminimal.css', array('weight' => CSS_THEME));
+  }
+}
+
+/**
  * Implements hook_form_alter().
  */
 function ckeditor_customtags_form_alter(&$form, &$form_state) {
