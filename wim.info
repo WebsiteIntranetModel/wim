@@ -35,6 +35,7 @@ dependencies[] = module_filter
 dependencies[] = l10n_update
 dependencies[] = link
 dependencies[] = linkit
+dependencies[] = password_policy
 dependencies[] = picture
 dependencies[] = strongarm
 dependencies[] = views

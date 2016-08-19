@@ -161,9 +161,9 @@ function ckeditor_customtags_wysiwyg_plugin($editor, $version) {
       'extended_valid_elements' => array(),
     );
 
-    if (file_exists($path . '/a11ychecker_custom/a11ychecker')) {
+    if (file_exists('sites/all/libraries/ckeditor_plugins/a11ychecker/a11ychecker')) {
       $plugins['a11ychecker'] = array(
-        'path' => $path . '/a11ychecker_custom/a11ychecker',
+        'path' => 'sites/all/libraries/ckeditor_plugins/a11ychecker/a11ychecker',
         'buttons' => array(
           'A11ychecker' => t('Accessibility Checker'),
         ),
@@ -172,7 +172,7 @@ function ckeditor_customtags_wysiwyg_plugin($editor, $version) {
       );
 
       $plugins['balloonpanel'] = array(
-        'path' => $path . '/a11ychecker_custom/balloonpanel',
+        'path' => 'sites/all/libraries/ckeditor_plugins/a11ychecker/balloonpanel',
         'extensions' => array(
           'Balloonpanel' => t('Accessibility Checker GUI: Balloon panel'),
         ),
