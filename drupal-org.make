@@ -31,6 +31,7 @@ projects[nodequeue] = 2.1
 projects[l10n_update] = 2.0
 projects[link] = 1.4
 projects[linkit] = 3.5
+projects[password_policy] = 1.12
 projects[picture] = 2.13
 projects[strongarm] = 2.0
 projects[special_menu_items] = 2.0

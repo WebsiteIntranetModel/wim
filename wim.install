@@ -27,6 +27,8 @@ function wim_install() {
   _wim_import_menu_items();
   // Install Dutch language.
   _wim_install_language();
+  // Install password policy.
+  _wim_password_policy_install();
 
   // Add 404 page.
   $page_404_nid = _wim_create_page('404');
@@ -537,4 +539,63 @@ function _wim_install_language() {
   include_once DRUPAL_ROOT . '/includes/language.inc';
   // Add Dutch language.
   locale_add_language('nl');
+}
+
+/**
+ * Helper function to install default password policies.
+ *
+ * @throws \Exception
+ * @throws \InvalidMergeQueryException
+ */
+function _wim_password_policy_install() {
+
+  foreach (_wim_password_policy_default_profile() as $profile) {
+    $pid = db_insert('password_policy')->fields(array(
+      'name' => $profile['name'],
+      'description' => $profile['description'],
+      'enabled' => $profile['enabled'],
+      'policy' => serialize($profile['policy']),
+      'expiration' => $profile['expiration'],
+      'warning' => $profile['warning'],
+    ))->execute();
+
+    // Insert roles.
+    foreach ($profile['roles'] as $rid) {
+      db_insert('password_policy_role')->fields(array(
+        'pid' => $pid,
+        'rid' => $rid,
+      ))->execute();
+    }
+  }
+  wysiwyg_profile_cache_clear();
+}
+
+/**
+ * Helper function holding default password policies.
+ */
+function _wim_password_policy_default_profile() {
+  $profiles = array();
+
+  $cm = user_role_load_by_name('content moderator');
+  // Exported profile: default.
+  $profiles['default'] = array(
+    'name' => 'default',
+    'description' => t('WIM 2.0 default passoword policy'),
+    'enabled' => TRUE,
+    'policy' => array(
+      'character_types' => '1',
+      'digit' => '1',
+      'history' => '6',
+      'length' => '8',
+      'uppercase' => '1',
+    ),
+    'expiration' => 60,
+    'warning' => 59,
+    'roles' => array(
+      DRUPAL_AUTHENTICATED_RID,
+      $cm->rid,
+    ),
+  );
+
+  return $profiles;
 }
