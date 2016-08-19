@@ -321,14 +321,14 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
     $this->minkContext->iWaitForAjaxToFinish();
 
     // We need the id for filed where to search for dropdown list.
-    $parent = $el->getParent()->getParent()->getParent();
+    $parent = $el->getParent()->getParent();
 
     $parent_id = $parent->getAttribute('id');
     if (NULL === $parent_id) {
       throw new \Exception(t('Could not find the parent id where to find the popup box'));
     }
 
-    $element_selector = '.dropdown';
+    $element_selector = '#autocomplete';
     $autocomplete = $parent->find('css', $element_selector);
     if (NULL === $autocomplete) {
       throw new \Exception(t('Could not find the autocomplete popup box'));
