@@ -27,7 +27,7 @@ function wim_preprocess_node(&$variables) {
     $parameters = drupal_get_query_parameters();
     $variables['product_link'] = NULL;
     if (isset($parameters['product']) && is_numeric($parameters['product'])) {
-      $variables['product_link'] = l(t('Back to product'), '/node/' . $parameters['product']);
+      $variables['product_link'] = l(t('Back to product'), '/node/' . $parameters['product'], array('attributes' => array('class' => array('back-link'))));
     }
   }
 }
