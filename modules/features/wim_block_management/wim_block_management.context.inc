@@ -23,6 +23,7 @@ function wim_block_management_context_default_contexts() {
         '~felix-blocks/*' => '~felix-blocks/*',
         '~node/add/*' => '~node/add/*',
         '~node/*/edit' => '~node/*/edit',
+        '~user/*/edit' => '~user/*/edit',
       ),
     ),
     'sitewide' => array(
