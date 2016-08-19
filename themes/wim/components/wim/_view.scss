@@ -50,10 +50,11 @@
         a {
           color: $brand-primary;
           text-decoration: none;
-          @extend .glyphicon-menu-right;
+          @extend .fa-chevron-right;
           &:before {
-            @extend .glyphicon;
+            @include fa-icon;
             font-size: 12px;
+            margin-right: 5px;
           }
         }
       }

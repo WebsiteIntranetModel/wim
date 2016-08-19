@@ -88,9 +88,9 @@
   <?php endif; ?>
   <div class="teaser-body">
     <?php if (!$page && !empty($title)): ?>
-      <h3<?php print $title_attributes; ?>>
+      <h2<?php print $title_attributes; ?>>
         <a href="<?php print $node_url; ?>"><?php print $title; ?></a>
-      </h3>
+      </h2>
     <?php endif;
     hide($content['field_publication_date']);
     if (!empty($content['field_publication_date'])): ?>

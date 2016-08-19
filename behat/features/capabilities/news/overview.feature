@@ -22,7 +22,6 @@ Feature: News overview
     And I am on "news"
     Then I should see the heading "News"
     And I should not see "No results"
-    And the ".region-content article.node-teaser" element should contain "Read more"
     And I should see an ".pagination" element
 
   Scenario: Visitor sets the filters on a news overview

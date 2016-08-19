@@ -34,13 +34,13 @@
     a {
       color: $brand-primary;
       text-decoration: none;
-      @extend .glyphicon-menu-down;
+      @extend .fa-chevron-up;
       &:before {
-        @extend .glyphicon;
+        @include fa-icon;
         font-size: 12px;
       }
       &.collapsed {
-        @extend .glyphicon-menu-up;
+        @extend .fa-chevron-down;
       }
     }
   }
