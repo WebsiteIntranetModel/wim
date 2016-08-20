@@ -11,9 +11,6 @@ Feature: Add blocks via Felix
     #Sidebar first
     And I should see "Sidebar First" in the "Sidebar first"
 
-    #Content Top
-    And I should see "Content Top" in the "Content Top"
-
     #Content
     And I should see "Content" in the "Content"
 
@@ -26,14 +23,8 @@ Feature: Add blocks via Felix
     #Sidebar Second
     And I should see "Sidebar Second" in the "Sidebar second"
 
-    #Footer First
-    And I should see "Footer First" in the "Footer First"
-
-    #Footer Second
-    And I should see "Footer Second" in the "Footer Second"
-
-    #Footer Third
-    And I should see "Footer Third" in the "Footer Third"
+    #Footer
+    And I should see "Footer" in the "Footer"
 
     When I go to "felix-blocks/add?region=primary&path=node&destination=node"
     Then I click "Test block 1"
