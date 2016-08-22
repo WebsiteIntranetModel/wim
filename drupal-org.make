@@ -56,6 +56,9 @@ projects[location][patch][1997658_6] = https://www.drupal.org/files/issues/locat
 ; Fixing bug with the location Google maps link
 ; https://www.drupal.org/node/2781227
 projects[location][patch][2781227_1] = https://www.drupal.org/files/issues/location-google-maps-link-2781227-1.patch
+; Add migration support for Bean
+; https://www.drupal.org/node/2295973#comment-11536795
+projects[bean][patch][2295973_11] = https://www.drupal.org/files/issues/bean-migrate-support-2295973-11.patch
 
 
 ; Custom

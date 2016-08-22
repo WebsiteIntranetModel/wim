@@ -127,6 +127,21 @@ function wim_preprocess_block(&$variables) {
       }
       // If new row config exist then use it otherwise move it in a new row.
       $block->new_row = isset($config['new_row']) ? $config['new_row'] : TRUE;
+
+      // Process Bean blocks.
+      if ($block->module === 'bean' && isset($config['bean_view_mode']) && $config['bean_view_mode']) {
+        $bean = bean_load_delta($block->delta);
+        // Build entity bean view.
+        if (entity_access('view', 'bean', $bean) && $bean) {
+          $content = $bean->view($config['bean_view_mode']);
+          if (!is_array($content)) {
+            $content = array(
+              '#markup' => $content,
+            );
+          }
+          $variables['content'] = drupal_render($content);
+        }
+      }
     }
   }
   else {

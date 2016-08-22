@@ -29,17 +29,44 @@ function wim_block_management_form_felix_attributes_form_alter(&$form, &$form_st
     '#title' => t('New row'),
     '#type' => 'checkbox',
     '#default_value' => isset($config['new_row']) ? $config['new_row'] : FALSE,
+    '#description' => t('Check this to show block in a new row, otherwise it will respect other blocks in region and try to move them in the same row based on bootstrap layout selected above.'),
   );
+
+  if ($felix_block->module === 'bean') {
+    $bean_info = entity_get_info('bean');
+    $view_modes = array();
+    foreach ($bean_info['view modes'] as $mode_key => $mode) {
+      $view_modes[$mode_key] = $mode['label'];
+    }
+    $form['bean_view_mode'] = array(
+      '#title' => t('View mode'),
+      '#type' => 'select',
+      '#options' => $view_modes,
+      '#default_value' => isset($config['bean_view_mode']) ? $config['bean_view_mode'] : 'default',
+      '#description' => t('Select view mode for this block.'),
+    );
+  }
+
 }
 
 /**
  * Implements hook_block_config_save().
  */
 function wim_block_management_felix_block_config_save($block, $values) {
-  return array(
-    'bootstrap_layout' => $values['bootstrap_layout'],
-    'new_row' => $values['new_row'],
+  $configs = array();
+  $felix_custom_configs = array(
+    'bootstrap_layout',
+    'new_row',
+    'bean_view_mode',
   );
+
+  foreach ($felix_custom_configs as $config) {
+    if (isset($values[$config])) {
+      $configs[$config] = $values[$config];
+    }
+  }
+
+  return $configs;
 }
 
 /**
@@ -49,5 +76,9 @@ function wim_block_management_entity_info_alter(&$entity_info) {
   $entity_info['node']['view modes']['felix'] = array(
     'label' => t('Felix'),
     'custom settings' => FALSE,
+  );
+  $entity_info['bean']['view modes']['link_title'] = array(
+    'label' => t('Title with link'),
+    'custom settings' => TRUE,
   );
 }
