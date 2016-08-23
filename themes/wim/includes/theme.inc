@@ -289,6 +289,12 @@ function wim_menu_link__menu_top_tasks(array $variables) {
   }
   $element['#attributes']['class'] = array_diff($element['#attributes']['class'], array('expanded'));
 
+  if ($element['#original_link']['depth'] == 1 && !$element['#below']) {
+    $element['#localized_options']['attributes']['class'][] = 'dropdown-toggle';
+    $element['#attributes']['class'][] = 'dropdown';
+    $element['#localized_options']['attributes']['class'][] = 'nolink';
+  }
+
   if ($element['#href'] === '<nolink>') {
     $element['#localized_options']['attributes']['class'][] = 'nolink';
     $output = '<a href="#" ' . drupal_attributes($element['#localized_options']['attributes']) . '>' . check_plain($element['#title']) . '</a>';

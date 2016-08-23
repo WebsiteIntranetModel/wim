@@ -251,7 +251,7 @@ function wim_faq_field_default_field_instances() {
         'range' => 20,
       ),
       'type' => 'weight_selector',
-      'weight' => 8,
+      'weight' => 7,
     ),
   );
 

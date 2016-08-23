@@ -580,7 +580,7 @@ function _wim_password_policy_default_profile() {
   // Exported profile: default.
   $profiles['default'] = array(
     'name' => 'default',
-    'description' => t('WIM 2.0 default passoword policy'),
+    'description' => t('WIM 2.0 default password policy'),
     'enabled' => TRUE,
     'policy' => array(
       'character_types' => '1',
