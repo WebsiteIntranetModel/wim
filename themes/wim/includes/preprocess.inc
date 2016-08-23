@@ -115,14 +115,14 @@ function wim_preprocess_block(&$variables) {
   // Be default we show all blocks in a new row.
   $block->new_row = TRUE;
   $block->bootstrap_layout = WIM_BLOCK_MANAGEMENT_BOOTSTRAP_FULL_WIDTH;
-  $bean_view_mode_class = '';
+  $bean_view_mode = NUUL;
 
   // Process Bean blocks.
   if ($block->module === 'bean') {
     $variables['title_url'] = NULL;
     $bean = bean_load_delta($block->delta);
     $variables['theme_hook_suggestions'][] = 'block__bean_' . strtr($bean->type, '_', '-');
-    $bean_view_mode_class = $bean->view_mode;
+    $bean_view_mode = $bean->view_mode;
 
     if ($bean->view_mode === 'link_title' && $bean->field_link) {
       $variables['title_url'] = $bean->field_link[LANGUAGE_NONE][0]['url'];
@@ -143,9 +143,10 @@ function wim_preprocess_block(&$variables) {
 
       if ($block->module === 'bean') {
         if (isset($config['bean_view_mode']) && $config['bean_view_mode']) {
+          $bean_view_mode = $config['bean_view_mode'];
           // Build entity bean view.
           if (entity_access('view', 'bean', $bean) && $bean) {
-            $content = $bean->view($config['bean_view_mode']);
+            $content = $bean->view($bean_view_mode);
             if (!is_array($content)) {
               $content = array(
                 '#markup' => $content,
@@ -158,7 +159,6 @@ function wim_preprocess_block(&$variables) {
           if ($bean->type === 'editorial') {
             // Editorial added via Felix we process according to settings.
             $variables['title_url'] = NULL;
-            $bean_view_mode_class = $config['bean_view_mode'];
             if ($config['bean_view_mode'] === 'link_title' && $bean->field_link) {
               $variables['title_url'] = $bean->field_link[LANGUAGE_NONE][0]['url'];
             }
@@ -174,6 +174,11 @@ function wim_preprocess_block(&$variables) {
   // Add class for menus blocks.
   if ($block->module === 'menu') {
     $variables['classes_array'][] = drupal_html_class($block->delta);
+  }
+
+  // Build class for the Bean block view mode.
+  if ($bean_view_mode) {
+    $variables['classes_array'][] = 'bean-view-mode-' . drupal_html_class($bean_view_mode);
   }
 }
 
