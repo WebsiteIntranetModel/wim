@@ -115,6 +115,19 @@ function wim_preprocess_block(&$variables) {
   // Be default we show all blocks in a new row.
   $block->new_row = TRUE;
   $block->bootstrap_layout = WIM_BLOCK_MANAGEMENT_BOOTSTRAP_FULL_WIDTH;
+  $bean_view_mode = NULL;
+
+  // Process Bean blocks.
+  if ($block->module === 'bean') {
+    $variables['title_url'] = NULL;
+    $bean = bean_load_delta($block->delta);
+    $variables['theme_hook_suggestions'][] = 'block__bean_' . strtr($bean->type, '_', '-');
+    $bean_view_mode = $bean->view_mode;
+
+    if ($bean->view_mode === 'link_title' && $bean->field_link) {
+      $variables['title_url'] = $bean->field_link[LANGUAGE_NONE][0]['url'];
+    }
+  }
 
   // If block in the Felix region add corresponding classes.
   if (isset($block->felix_region)) {
@@ -128,18 +141,28 @@ function wim_preprocess_block(&$variables) {
       // If new row config exist then use it otherwise move it in a new row.
       $block->new_row = isset($config['new_row']) ? $config['new_row'] : TRUE;
 
-      // Process Bean blocks.
-      if ($block->module === 'bean' && isset($config['bean_view_mode']) && $config['bean_view_mode']) {
-        $bean = bean_load_delta($block->delta);
-        // Build entity bean view.
-        if (entity_access('view', 'bean', $bean) && $bean) {
-          $content = $bean->view($config['bean_view_mode']);
-          if (!is_array($content)) {
-            $content = array(
-              '#markup' => $content,
-            );
+      if ($block->module === 'bean') {
+        if (isset($config['bean_view_mode']) && $config['bean_view_mode']) {
+          $bean_view_mode = $config['bean_view_mode'];
+          // Build entity bean view.
+          if (entity_access('view', 'bean', $bean) && $bean) {
+            $content = $bean->view($bean_view_mode);
+            if (!is_array($content)) {
+              $content = array(
+                '#markup' => $content,
+              );
+            }
+            $variables['content'] = drupal_render($content);
           }
-          $variables['content'] = drupal_render($content);
+
+          // Process Editorial.
+          if ($bean->type === 'editorial') {
+            // Editorial added via Felix we process according to settings.
+            $variables['title_url'] = NULL;
+            if ($config['bean_view_mode'] === 'link_title' && $bean->field_link) {
+              $variables['title_url'] = $bean->field_link[LANGUAGE_NONE][0]['url'];
+            }
+          }
         }
       }
     }
@@ -151,6 +174,11 @@ function wim_preprocess_block(&$variables) {
   // Add class for menus blocks.
   if ($block->module === 'menu') {
     $variables['classes_array'][] = drupal_html_class($block->delta);
+  }
+
+  // Build class for the Bean block view mode.
+  if ($bean_view_mode) {
+    $variables['classes_array'][] = 'bean-view-mode-' . drupal_html_class($bean_view_mode);
   }
 }
 

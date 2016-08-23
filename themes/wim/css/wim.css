@@ -9143,6 +9143,18 @@ a.back-link {
   color: #b3b3b3;
 }
 
+.block.bean-view-mode-link-title h2.block-title {
+  padding: 16px 10px;
+  background-color: #0080a8;
+  color: white;
+  min-height: 80px;
+  margin-bottom: 0;
+}
+
+.block.bean-view-mode-link-title h2.block-title a {
+  color: white;
+}
+
 #block-views-agenda-upcoming-agenda {
   overflow: hidden;
 }
