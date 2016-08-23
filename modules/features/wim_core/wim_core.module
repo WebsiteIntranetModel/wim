@@ -120,6 +120,22 @@ function wim_core_image_default_styles() {
     ),
   );
 
+  $styles['pictogram'] = array(
+    'name' => 'pictogram',
+    'label' => 'Pictogram (40x23)',
+    'effects' => array(
+      array(
+        'module' => 'image',
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => 40,
+          'height' => 23,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
   return $styles;
 }
 
