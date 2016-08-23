@@ -15,3 +15,10 @@ function wim_block_management_ctools_plugin_api($module = NULL, $api = NULL) {
     return array("version" => "3");
   }
 }
+
+/**
+ * Implements hook_views_api().
+ */
+function wim_block_management_views_api($module = NULL, $api = NULL) {
+  return array("api" => "3.0");
+}
