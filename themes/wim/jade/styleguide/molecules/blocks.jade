@@ -1,0 +1,51 @@
+- var base = "../../"
+- var pagetype = "styleguide"
+- var section = "molecules"
+- var page = "Blocks"
+
+doctype html
+html(lang="en")
+  head
+    include ../../layout/_head.jade
+  body(class='#{pagetype}')
+      
+    .meta-wrapper.container.container-nopadding
+      include ../../layout/_top.jade
+
+    .main-wrapper.container
+      include ../../layout/_navbar.jade
+      
+      #page-banner(role='banner') 
+      // Create region for banner and render it here. We moved header to the navbar header section.
+        
+      include ../../layout/_main.jade
+
+        block content 
+          
+          p Blocks component is used for the display of blocks in the site.
+          
+          h3 Demo - Block with title as link:
+          .row
+           section.block.block-bean.col-md-12.bean-view-mode-link-title.clearfix
+            h2.block-title
+             a(href='http://www.google.com') Title with link
+
+          h3 Demo - Default block
+          .row
+           section.block.block-bean.editorial-image.col-md-12.bean-view-mode-default.clearfix
+            h2.block-title Default block
+            .entity.entity-bean.bean-editorial.clearfix
+             .content
+              .field.field-name-field-image.field-type-image.field-label-hidden
+               .field-items
+                .field-item.even
+                 img(class='picture tilt-effect', width='40', height='40', src='images/icon_vrijstelling.png')/
+              .field.field-name-field-body.field-type-text-long.field-label-hidden
+               .field-items
+                .field-item.even
+                 p
+                  | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam elementum ullamcorper fringilla. Quisque nulla urna, placerat in est in, condimentum sollicitudin justo.
+
+
+
+  include ../../layout/_scripts.jade

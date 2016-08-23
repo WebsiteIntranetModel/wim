@@ -124,8 +124,12 @@ function wim_preprocess_block(&$variables) {
     $variables['theme_hook_suggestions'][] = 'block__bean_' . strtr($bean->type, '_', '-');
     $bean_view_mode = $bean->view_mode;
 
-    if ($bean->view_mode === 'link_title' && $bean->field_link) {
+    if ($bean->field_link) {
       $variables['title_url'] = $bean->field_link[LANGUAGE_NONE][0]['url'];
+    }
+
+    if ($bean_view_mode === 'default' && $bean->field_image) {
+      $variables['classes_array'][] = 'editorial-image';
     }
   }
 
@@ -158,9 +162,8 @@ function wim_preprocess_block(&$variables) {
           // Process Editorial.
           if ($bean->type === 'editorial') {
             // Editorial added via Felix we process according to settings.
-            $variables['title_url'] = NULL;
-            if ($config['bean_view_mode'] === 'link_title' && $bean->field_link) {
-              $variables['title_url'] = $bean->field_link[LANGUAGE_NONE][0]['url'];
+            if ($config['bean_view_mode'] === 'default' && $bean->field_image) {
+              $variables['classes_array'][] = 'editorial-image';
             }
           }
         }
@@ -203,4 +206,15 @@ function wim_preprocess_field(&$variables, $hook) {
     }
   }
 
+  // Override field image output for Editorial.
+  if ($field_name === 'field_image' && $element['#entity_type'] === 'bean') {
+    if ($element['#bundle'] === 'editorial' && $element['#view_mode'] === 'default') {
+      $bean = $element['#object'];
+      if ($bean->field_link) {
+        foreach ($element['#items'] as $id => $item) {
+          $variables['items'][$id]['#path']['path'] = $bean->field_link[LANGUAGE_NONE][0]['url'];
+        }
+      }
+    }
+  }
 }

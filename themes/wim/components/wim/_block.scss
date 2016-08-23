@@ -42,6 +42,21 @@
       }
     }
   }
+  &.bean-view-mode-default{
+    padding-left: 75px;
+    position: relative;
+    h2.block-title{
+      border-top: none;
+      background: none;
+      padding: 10px 0;
+      color: $brand-primary;
+    }
+    .field-type-image{
+      position: absolute;
+      left: 20px;
+      top: 10px;
+    }
+  }
 }
 
 #block-views-agenda-upcoming-agenda {
