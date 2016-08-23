@@ -116,6 +116,14 @@ function wim_fixtures_migrate_api() {
           'WIM_File',
         ),
       ),
+      'WIM_Editorial' => array(
+        'class_name' => 'EditorialMigration',
+        'group_name' => 'WIMMigrate',
+        'file_name' => 'editorial.csv',
+        'dependencies' => array(
+          'WIM_File',
+        ),
+      ),
     ),
   );
 

@@ -12,14 +12,11 @@ regions[navigation] = Navigation
 regions[header] = Top Bar
 regions[highlighted] = Highlighted
 regions[help] = Help
-regions[content_top] = Content Top
 regions[content] = Content
 regions[content_bottom] = Content Bottom
 regions[sidebar_first] = Primary
 regions[sidebar_second] = Secondary
-regions[footer_first] = Footer First
-regions[footer_second] = Footer Second
-regions[footer_third] = Footer Third
+regions[footer] = Footer
 regions[page_top] = Page top
 regions[page_bottom] = Page bottom
 
