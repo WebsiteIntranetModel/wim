@@ -9155,6 +9155,24 @@ a.back-link {
   color: white;
 }
 
+.block.bean-view-mode-default {
+  padding-left: 75px;
+  position: relative;
+}
+
+.block.bean-view-mode-default h2.block-title {
+  border-top: none;
+  background: none;
+  padding: 10px 0;
+  color: #0080a8;
+}
+
+.block.bean-view-mode-default .field-type-image {
+  position: absolute;
+  left: 20px;
+  top: 10px;
+}
+
 #block-views-agenda-upcoming-agenda {
   overflow: hidden;
 }
