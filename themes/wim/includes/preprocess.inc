@@ -115,7 +115,7 @@ function wim_preprocess_block(&$variables) {
   // Be default we show all blocks in a new row.
   $block->new_row = TRUE;
   $block->bootstrap_layout = WIM_BLOCK_MANAGEMENT_BOOTSTRAP_FULL_WIDTH;
-  $bean_view_mode = NUll;
+  $bean_view_mode = NULL;
 
   // Process Bean blocks.
   if ($block->module === 'bean') {
