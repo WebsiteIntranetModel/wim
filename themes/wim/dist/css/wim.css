@@ -9294,6 +9294,7 @@ a.back-link {
 
 .main-container .menu-top-tasks .menu-wrapper .menu .dropdown .dropdown-menu li a span {
   margin: 0 6px 0 0;
+  height: 40px;
 }
 
 .main-container .menu-top-tasks .menu-wrapper .menu .dropdown .dropdown-menu li a span img {
