@@ -1,0 +1,34 @@
+- var base = "../../"
+- var pagetype = "styleguide"
+- var section = "molecules"
+- var page = "Block - Title only"
+
+doctype html
+html(lang="en")
+  head
+    include ../../layout/_head.jade
+  body(class='#{pagetype}')
+      
+    .meta-wrapper.container.container-nopadding
+      include ../../layout/_top.jade
+
+    .main-wrapper.container
+      include ../../layout/_navbar.jade
+      
+      #page-banner(role='banner') 
+      // Create region for banner and render it here. We moved header to the navbar header section.
+        
+      include ../../layout/_main.jade
+
+        block content 
+          
+          p The Block component is used for the display of block with "Title only" in the site.
+          
+          h3 Demo - Title as link:
+          .row
+           section.block.block-bean.col-md-12.bean-view-mode-link-title.clearfix
+            h2.block-title
+             a(href='http://www.google.com') Title with link
+
+
+  include ../../layout/_scripts.jade

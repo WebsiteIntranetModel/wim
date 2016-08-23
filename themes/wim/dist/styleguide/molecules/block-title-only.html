@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
-    <title>Teasers - WIM</title>
+    <title>Block - Title only - WIM</title>
     <link rel="apple-touch-icon" sizes="57x57" href="images/favicon/apple-touch-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="images/favicon/apple-touch-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="images/favicon/apple-touch-icon-72x72.png">
@@ -66,7 +66,7 @@
           </nav>
         </div>
       </header>
-      <div id="page-banner" role="banner"></div>
+      <div id="page-banner" role="banner"> </div>
       <!-- Create region for banner and render it here. We moved header to the navbar header section.-->
       <div role="main" class="main-container container">
         <div class="row">
@@ -87,46 +87,13 @@
           <section class="col-sm-9"><a id="main-content"></a>
             <div class="region region-content">
               <section id="block-system-main" class="block block-system clearfix">
-                <h1>Teasers</h1>
-                <p>The teasers component is used for the display of short information about pages in the site.</p>
-                <h3>Demo:</h3>
-                <div class="node node-teaser clearfix">
-                  <div class="teaser-image">
-                    <div class="field-type-image"><a href="#"><img width="140" height="140" src="images/teaser-image.jpg" class="picture tilt-effect"></a></div>
-                  </div>
-                  <div class="teaser-body">
-                    <h3><a href="#">Illum Minim Nutus</a></h3>
-                    <div class="submitted">05/10/2015</div>
-                    <div class="field field-name-body">Abluo aliquip autem et inhibeo iusto ludus os paratus ut. Appellatio duis singularis tincidunt vindico. Aptent commodo commoveo eu genitus iriure nobis.</div><a href="#">Read more</a>
-                  </div>
-                </div>
-                <div class="node node-teaser clearfix">
-                  <div class="teaser-body">
-                    <h3><a href="#">Diam Pala Tamen Ulciscor</a></h3>
-                    <div class="submitted">02/14/2014</div>
-                    <div class="field field-name-body">At blandit cui obruo quadrum sed tego venio. Aliquam diam mauris metuo pneum premo te ulciscor. Abdo erat genitus ludus metuo quibus singularis utinam velit.</div><a href="#">Read more</a>
-                  </div>
-                </div>
-                <h2>Agenda Teasers</h2>
-                <p>The Agenda teasers component is used for the display of short information about pages in the site.</p>
-                <h3>Demo:</h3>
-                <div class="node node-teaser node-agenda clearfix">
-                  <div class="fields-wrapper"><span class="date-display-single"><span class="day">06</span><span class="month">Jul</span></span>
-                    <div class="teaser-image">
-                      <div class="field-type-image"><a href="#"><img width="140" height="140" src="images/teaser-image.jpg" class="picture tilt-effect"></a></div>
-                    </div>
-                  </div>
-                  <div class="teaser-body">
-                    <h3><a href="#">Illum Minim Nutus</a></h3>
-                    <div class="field field-name-body">Abluo aliquip autem et inhibeo iusto ludus os paratus ut. Appellatio duis singularis tincidunt vindico. Aptent commodo commoveo eu genitus iriure nobis.</div><a href="#">Read more</a>
-                  </div>
-                </div>
-                <div class="node node-teaser node-agenda clearfix">
-                  <div class="fields-wrapper"><span class="date-display-single"><span class="day">06</span><span class="month">Jul</span></span></div>
-                  <div class="teaser-body">
-                    <h3><a href="#">Illum Minim Nutus</a></h3>
-                    <div class="field field-name-body">Abluo aliquip autem et inhibeo iusto ludus os paratus ut. Appellatio duis singularis tincidunt vindico. Aptent commodo commoveo eu genitus iriure nobis.</div><a href="#">Read more</a>
-                  </div>
+                <h1>Block - Title only</h1>
+                <p>The Block component is used for the display of block with "Title only" in the site.</p>
+                <h3>Demo - Title as link:</h3>
+                <div class="row">
+                  <section class="block block-bean col-md-12 bean-view-mode-link-title clearfix">
+                    <h2 class="block-title"><a href="http://www.google.com">Title with link</a></h2>
+                  </section>
                 </div>
               </section>
             </div>
@@ -134,45 +101,45 @@
         </div>
       </div>
     </div>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/prism.js">
-      <script>
-        // Escape code
-        // ============================================================
-        
-        var $lang_markup       = document.querySelectorAll('pre code.language-markup')
-            $lang_js           = document.querySelectorAll('script.atomic-js'),
-            $lang_jscode       = document.querySelectorAll('pre code.language-javascript')
-            lang_markupsnippet = [],
-            lang_jsnippet      = [];
-        
-        
-        // Markup
-        // order matters!
-        // ============================================================
-        
-        for(var i = 0, l = $lang_markup.length; i < l; i++) {
-          lang_markupsnippet.push(
-            $lang_markup[i].innerHTML.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-          );
-          $lang_markup[i].innerHTML = lang_markupsnippet[i];
-        }
-        
-        
-        // JavaScript
-        // order matters!
-        // ============================================================
-        for(var i = 0, l = $lang_jscode.length; i < l; i++) {
-          lang_jsnippet.push(
-            $lang_jscode[i].innerHTML.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-          );
-        }
-        
-        for(var i = 0, l = $lang_js.length; i < l; i++) {
-          $lang_js[i].innerHTML = lang_jsnippet[i];
-        }
-      </script>
-    </script>
   </body>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/prism.js">
+    <script>
+      // Escape code
+      // ============================================================
+      
+      var $lang_markup       = document.querySelectorAll('pre code.language-markup')
+          $lang_js           = document.querySelectorAll('script.atomic-js'),
+          $lang_jscode       = document.querySelectorAll('pre code.language-javascript')
+          lang_markupsnippet = [],
+          lang_jsnippet      = [];
+      
+      
+      // Markup
+      // order matters!
+      // ============================================================
+      
+      for(var i = 0, l = $lang_markup.length; i < l; i++) {
+        lang_markupsnippet.push(
+          $lang_markup[i].innerHTML.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+        );
+        $lang_markup[i].innerHTML = lang_markupsnippet[i];
+      }
+      
+      
+      // JavaScript
+      // order matters!
+      // ============================================================
+      for(var i = 0, l = $lang_jscode.length; i < l; i++) {
+        lang_jsnippet.push(
+          $lang_jscode[i].innerHTML.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+        );
+      }
+      
+      for(var i = 0, l = $lang_js.length; i < l; i++) {
+        $lang_js[i].innerHTML = lang_jsnippet[i];
+      }
+    </script>
+  </script>
 </html>
