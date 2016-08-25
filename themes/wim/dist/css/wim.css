@@ -9099,6 +9099,15 @@ a.back-link {
   display: inline-block;
 }
 
+ul[class^="custom-list-view-mode"]:not([class*="title"]) {
+  padding: 0 10px;
+  list-style: none;
+}
+
+ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
+  margin-bottom: 10px;
+}
+
 .form-text {
   border: 1px solid #d0d0d0;
   box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.1);
