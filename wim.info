@@ -15,6 +15,7 @@ dependencies[] = locale
 dependencies[] = menu
 dependencies[] = options
 dependencies[] = taxonomy
+dependencies[] = search
 
 ; Contrib
 dependencies[] = admin_menu
