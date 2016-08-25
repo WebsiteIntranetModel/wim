@@ -11,6 +11,7 @@ projects[adminimal_admin_menu] = 1.7
 projects[bean] = 1.11
 projects[breakpoints] = 1.4
 projects[context] = 3.7
+projects[context_condition_theme] = 1.0
 projects[colectomy] = 1.0-beta2
 projects[ctools] = 1.9
 projects[date] = 2.9
@@ -55,6 +56,9 @@ projects[location][patch][1997658_6] = https://www.drupal.org/files/issues/locat
 ; Fixing bug with the location Google maps link
 ; https://www.drupal.org/node/2781227
 projects[location][patch][2781227_1] = https://www.drupal.org/files/issues/location-google-maps-link-2781227-1.patch
+; Add migration support for Bean
+; https://www.drupal.org/node/2295973#comment-11536795
+projects[bean][patch][2295973_11] = https://www.drupal.org/files/issues/bean-migrate-support-2295973-11.patch
 
 
 ; Custom
