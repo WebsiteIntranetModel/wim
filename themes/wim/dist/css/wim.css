@@ -9165,8 +9165,11 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
 }
 
 .block.bean-view-mode-default {
-  padding-left: 75px;
   position: relative;
+}
+
+.block.bean-view-mode-default.editorial-image {
+  padding-left: 75px;
 }
 
 .block.bean-view-mode-default h2.block-title {

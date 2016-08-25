@@ -30,8 +30,8 @@
       }
     }
   }
-  &.bean-view-mode-link-title{
-    h2.block-title{
+  &.bean-view-mode-link-title {
+    h2.block-title {
       padding: 16px 10px;
       background-color: $brand-primary;
       color: white;
@@ -42,16 +42,18 @@
       }
     }
   }
-  &.bean-view-mode-default{
-    padding-left: 75px;
+  &.bean-view-mode-default {
     position: relative;
-    h2.block-title{
+    &.editorial-image {
+      padding-left: 75px;
+    }
+    h2.block-title {
       border-top: none;
       background: none;
       padding: 10px 0;
       color: $brand-primary;
     }
-    .field-type-image{
+    .field-type-image {
       position: absolute;
       left: 20px;
       top: 10px;
