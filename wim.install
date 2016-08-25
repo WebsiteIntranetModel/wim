@@ -631,7 +631,7 @@ function _wim_place_felix_blocks() {
       'delta' => 'news-latest_news',
       'detail_path' => NULL,
       'data' => array(
-        'subject' => '<none>',
+        'subject' => '',
         'config' => array(
           'bootstrap_layout' => 12,
           'new_row' => 0,
