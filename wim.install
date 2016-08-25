@@ -608,3 +608,19 @@ function _wim_password_policy_default_profile() {
 
   return $profiles;
 }
+
+/**
+ * Create custom block.
+ */
+function _wim_create_custom_block($block) {
+  // Create custom blocks.
+  $block_delta = db_insert('block_custom')
+    ->fields(array(
+      'body' => $block['body'],
+      'info' => $block['info'],
+      'format' => $block['format'],
+    ))
+    ->execute();
+
+  return $block_delta;
+}
