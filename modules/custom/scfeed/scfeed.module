@@ -1,0 +1,128 @@
+<?php
+
+/**
+ * @file
+ * XML feed for products.
+ */
+
+/**
+ * Implements hook_permission().
+ */
+function scfeed_permission() {
+  return array(
+    'administer scfeed' => array(
+      'title' => t('Administer SC Feed module'),
+      'description' => t('Change configuration.'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_menu().
+ */
+function scfeed_menu() {
+  $menu = array();
+
+  $menu['admin/config/services/scfeed'] = array(
+    'title' => 'Samenwerkende Catalogi',
+    'description' => 'Configure Samenwerkende Catalogi XML feed',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('scfeed_settings_form'),
+    'access arguments' => array('administer scfeed'),
+    'file' => 'scfeed.pages.inc',
+    'type' => MENU_NORMAL_ITEM,
+  );
+
+  $menu['admin/config/services/scfeed/rebuild'] = array(
+    'title' => 'Rebuild XML',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('scfeed_rebuild_form'),
+    'access arguments' => array('administer scfeed'),
+    'file' => 'scfeed.pages.inc',
+    'type' => MENU_LOCAL_ACTION,
+  );
+
+  $menu['sc-feed'] = array(
+    'title' => 'SC Feed',
+    'page callback' => 'scfeed_feed_page',
+    'access arguments' => array('access content'),
+    'file' => 'scfeed.pages.inc',
+    'type' => MENU_CALLBACK,
+  );
+
+  return $menu;
+}
+
+/**
+ * Implements hook_cron_queue_info().
+ */
+function scfeed_cron_queue_info() {
+  return array(
+    'scfeed' => array(
+      'worker callback' => 'scfeed_process_queue_item',
+      'time' => 10,
+    ),
+  );
+}
+
+/**
+ * Callback for queue worker.
+ *
+ * @param int $nid
+ *    Node id.
+ */
+function scfeed_process_queue_item($nid) {
+  module_load_include('inc', 'scfeed', 'scfeed.generate');
+
+  $node = node_load($nid);
+  if ($node) {
+    scfeed_generate_item($node);
+  }
+}
+
+/**
+ * Implements hook_node_insert().
+ */
+function scfeed_node_insert($node) {
+  $queue = DrupalQueue::get('scfeed');
+  $queue->createItem($node->nid);
+}
+
+/**
+ * Implements hook_node_update().
+ */
+function scfeed_node_update($node) {
+  if ($node->type === 'scfeed.pages.inc') {
+    $queue = DrupalQueue::get('scfeed');
+    $queue->createItem($node->nid);
+  }
+}
+
+/**
+ * Implements hook_node_delete().
+ */
+function scfeed_node_delete($node) {
+  if ($node->type === 'scfeed.pages.inc') {
+    db_delete('scfeed_item')->condition('nid', $node->nid)->execute();
+  }
+}
+
+/**
+ * Rebuild XML representation cache.
+ *
+ * @param bool $delete
+ *    Delete old representations prior to rebuilding.
+ */
+function scfeed_rebuild($delete = FALSE) {
+  if ($delete) {
+    db_delete('scfeed_item')->execute();
+  }
+  $queue = DrupalQueue::get('scfeed');
+  $nodes = db_select('node', 'n')
+    ->fields('n', array('nid'))
+    ->condition('n.type', 'product')
+    ->execute();
+  while ($node = $nodes->fetchObject()) {
+    $queue->createItem($node->nid);
+  }
+}
