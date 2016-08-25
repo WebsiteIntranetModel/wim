@@ -78,8 +78,12 @@ function atos_esuite_import_batch_worker($type, &$context) {
 
   $context['finished'] = $context['sandbox']['last'] >= $context['sandbox']['max'];
   if ($context['finished']) {
+    $mapping = array(
+      ATOS_ESUITE_PRODUCT => 'product',
+      ATOS_ESUITE_FAQ => 'faq',
+    );
     if ($context['sandbox']['done'] > 0) {
-      drupal_set_message(format_plural($context['sandbox']['done'], '1 ' . $type . ' node imported successfully. ', '@count ' . $type . ' nodes imported.'));
+      drupal_set_message(format_plural($context['sandbox']['done'], '1 ' . $mapping[$type] . ' node imported successfully. ', '@count ' . $mapping[$type] . ' nodes imported.'));
       _atos_esuite_delete_nodes($context['sandbox']['starttime'], $type);
     }
     else {
@@ -145,7 +149,7 @@ function _atos_esuite_delete_nodes($start_time, $type) {
 
   if (count($deleted)) {
     atos_esuite_notify($deleted, $type);
-    drupal_set_message(format_plural(count($deleted), '1 ' . $type . ' node deleted. ', '@count ' . $type . ' nodes deleted.'));
+    drupal_set_message(format_plural(count($deleted), '1 ' . $mapping[$type] . ' node deleted. ', '@count ' . $mapping[$type] . ' nodes deleted.'));
   }
 }
 
