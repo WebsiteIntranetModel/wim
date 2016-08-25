@@ -37,6 +37,7 @@ dependencies[] = link
 dependencies[] = linkit
 dependencies[] = password_policy
 dependencies[] = picture
+dependencies[] = redirect
 dependencies[] = strongarm
 dependencies[] = views
 dependencies[] = views_bulk_operations
