@@ -134,7 +134,7 @@
 
   <div role="main" class="main-container <?php print $container_class; ?>">
 
-    <?php if (!empty($breadcrumb)): ?>
+    <?php if (!empty($breadcrumb) && !$is_front): ?>
       <div class="row">
         <?php if (!empty($breadcrumb)): print $breadcrumb; endif; ?>
       </div>
