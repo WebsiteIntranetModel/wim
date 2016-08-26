@@ -45,6 +45,9 @@ function wim_install() {
   // Add blocks to Felix regions.
   _wim_place_felix_blocks();
 
+  // Turn off user registration.
+  variable_set('user_register', 0);
+
 }
 
 /**
