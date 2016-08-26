@@ -48,6 +48,12 @@ function wim_install() {
   // Turn off user registration.
   variable_set('user_register', 0);
 
+  // Flood control config.
+  variable_set('user_failed_login_ip_limit', 3);
+  variable_set('user_failed_login_user_limit', 3);
+
+  // Default protected fields per role.
+  _wim_user_protect_roles();
 }
 
 /**
@@ -100,6 +106,9 @@ function _wim_set_up_roles_and_permissions() {
   );
   user_role_grant_permissions(DRUPAL_AUTHENTICATED_RID, $authenticated_permissions);
   user_role_grant_permissions(DRUPAL_ANONYMOUS_RID, $authenticated_permissions);
+
+  // Remove change own e-mail permission.
+  user_role_revoke_permissions(DRUPAL_AUTHENTICATED_RID, array('change own e-mail'));
 
   // Administrator role.
   user_role_grant_permissions($admin_role->rid, array_keys(module_invoke_all('permission')));
@@ -743,4 +752,34 @@ function _wim_add_felix_block($region_name, $path, $module, $delta, $detail_path
   }
 
   return TRUE;
+}
+
+/**
+ * Default settings for userprotect per protected role.
+ *
+ * @see userprotect_protected_roles
+ */
+function _wim_user_protect_roles() {
+  $settings = array();
+  // Grab all roles but the anonymous role, and grab the current default
+  // settings.
+  $roles = user_roles(TRUE);
+
+  $protections = array_keys(userprotect_user_protection_defaults());
+  foreach ($roles as $rid => $role) {
+    foreach ($protections as $protection) {
+      $value = 0;
+      if ($role === 'administrator') {
+        // Don't protect admin role.
+        $value = 0;
+      }
+      elseif ($protection === 'up_name' || $protection === 'up_mail') {
+        // Protect login and email for all other role.
+        $value = 1;
+      }
+      $settings[$rid][$protection] = $value;
+    }
+  }
+
+  variable_set('userprotect_role_protections', $settings);
 }
