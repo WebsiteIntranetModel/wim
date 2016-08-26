@@ -218,3 +218,15 @@ function wim_preprocess_field(&$variables, $hook) {
     }
   }
 }
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function wim_preprocess_page(&$variables) {
+  $menu_item = menu_get_item();
+
+  // All FAQ pages should has title FAQ.
+  if ($menu_item && $menu_item['path'] === 'faq/%') {
+    $variables['title'] = t('FAQ');
+  }
+}

@@ -5,3 +5,15 @@
  */
 
 include_once 'wim_faq.features.inc';
+
+/**
+ * Implements hook_views_pre_view().
+ */
+function wim_faq_views_pre_render($view) {
+  // Set title for FAQ category views.
+  if ($view->name === 'faq') {
+    if ($view->current_display === 'faq_overview' && isset($view->argument['field_faq_category_tid'])) {
+      $view->set_title($view->argument['field_faq_category_tid']->validated_title);
+    }
+  }
+}
