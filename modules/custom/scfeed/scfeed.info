@@ -1,0 +1,4 @@
+name = SC Feed
+description = Provide XML feed for "Samenwerkende Catalogi"
+core = 7.x
+ 

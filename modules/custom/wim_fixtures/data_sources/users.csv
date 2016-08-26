@@ -2,3 +2,4 @@ id, mail, name, password, roles
 1,"user+test1@example.com","cm","cm","content moderator, authenticated user"
 2,"user+test2@example.com","test","test","authenticated user"
 3,"user+test3@example.com","klark_kent","klark_kent","administrator"
+4,"user+test4@example.com","tony_stark","tony_stark","content moderator, authenticated user"
