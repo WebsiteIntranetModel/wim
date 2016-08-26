@@ -9519,11 +9519,17 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   margin-bottom: 20px;
 }
 
+.footer .block h3,
 .footer .block .block-title {
   padding: 0;
   background: none;
   border-top: none;
   color: #fe229b;
+}
+
+.footer .block h3:first-of-type,
+.footer .block .block-title:first-of-type {
+  margin-top: 0;
 }
 
 .footer .menu {
