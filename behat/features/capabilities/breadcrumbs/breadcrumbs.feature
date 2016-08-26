@@ -16,4 +16,3 @@ Feature: View site breadcrumbs
     Then I should see "Home / FAQ"
     And I click "Security"
     And I should see "Home / FAQ / Security"
-    
