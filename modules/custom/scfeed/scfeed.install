@@ -1,0 +1,40 @@
+<?php
+
+/**
+ * @file
+ * Installation instructions and schema.
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function scfeed_schema() {
+  $schema = array();
+
+  $schema['scfeed_item'] = array(
+    'fields' => array(
+      'nid' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'xml' => array(
+        'type' => 'text',
+        'not null' => TRUE,
+      ),
+    ),
+    'primary key' => array('nid'),
+  );
+
+  return $schema;
+}
+
+/**
+ * Implements hook_enable().
+ */
+function scfeed_enable() {
+  // Rebuild XML representation cache (only if module was configured already).
+  if (variable_get('scfeed_authority', '')) {
+    scfeed_rebuild(TRUE);
+  }
+}
