@@ -47,6 +47,7 @@ dependencies[] = wysiwyg
 ; Features
 dependencies[] = wim_agenda
 dependencies[] = wim_block_management
+dependencies[] = wim_breadcrumb
 dependencies[] = wim_core
 dependencies[] = wim_faq
 dependencies[] = wim_news
