@@ -21,6 +21,7 @@ dependencies[] = search
 dependencies[] = admin_menu
 dependencies[] = admin_views
 dependencies[] = adminimal_admin_menu
+dependencies[] = autologout
 dependencies[] = breakpoints
 dependencies[] = colectomy
 dependencies[] = ctools
