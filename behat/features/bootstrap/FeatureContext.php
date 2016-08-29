@@ -432,20 +432,22 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
 
   /**
    * Checks that field with specified in|name|label|value is disabled.
-   * Example: Then the field "Email" should be disabled
-   * Example: Then the "Email" field should be disabled
+   *
+   * Example: Then the field "Email" should be disabled.
+   * Example: Then the "Email" field should be disabled.
    *
    * @Then /^the "(?P<name>(?:[^"]|\\")*)" (?P<type>(?:(field|button))) should (?P<negate>(?:(not |)))be disabled/
    * @Then /^the (?P<type>(?:(field|button))) "(?P<name>(?:[^"]|\\")*)" should (?P<negate>(?:(not |)))be disabled/
    */
-  public function stepFieldShouldBeDisabled($name, $type, $negate)
-  {
+  public function stepFieldShouldBeDisabled($name, $type, $negate) {
     $page = $this->getSession()->getPage();
     if ($type === 'field') {
       $element = $page->findField($name);
-    } else {
+    }
+    else {
       $element = $page->find('named', array(
-        'button', $this->getSession()->getSelectorsHandler()->xpathLiteral($name)
+        'button',
+        $this->getSession()->getSelectorsHandler()->xpathLiteral($name),
       ));
     }
 
@@ -458,7 +460,8 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
       if (!empty($disabledAttribute)) {
         throw new Exception(sprintf("Failed asserting element '%s' is not disabled", $name));
       }
-    } else {
+    }
+    else {
       if (empty($disabledAttribute)) {
         throw new Exception(sprintf("Failed asserting element '%s' is disabled", $name));
       }
