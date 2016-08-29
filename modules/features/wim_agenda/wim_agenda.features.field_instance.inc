@@ -22,7 +22,7 @@ function wim_agenda_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 2,
+        'weight' => 1,
       ),
       'short' => array(
         'label' => 'hidden',
@@ -78,7 +78,7 @@ function wim_agenda_field_default_field_instances() {
           'show_remaining_days' => 0,
         ),
         'type' => 'date_default',
-        'weight' => 1,
+        'weight' => 0,
       ),
       'short' => array(
         'label' => 'hidden',
@@ -151,7 +151,7 @@ function wim_agenda_field_default_field_instances() {
           'image_style' => 'large',
         ),
         'type' => 'image',
-        'weight' => 0,
+        'weight' => 2,
       ),
       'short' => array(
         'label' => 'hidden',
