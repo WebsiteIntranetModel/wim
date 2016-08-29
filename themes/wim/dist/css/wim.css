@@ -9636,7 +9636,7 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
 
 .breadcrumb {
   background: white;
-  margin-bottom: 15px;
+  margin: -15px 0 0;
 }
 
 .breadcrumb .active {
@@ -9680,7 +9680,7 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
 }
 
 .node .field-type-image {
-  margin-bottom: 1em;
+  margin: 1em 0;
 }
 
 .node .content h1, .node .content h2, .node .content h3, .node .content h4, .node .content h5, .node .content h6 {
