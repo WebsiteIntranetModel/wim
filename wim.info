@@ -42,6 +42,7 @@ dependencies[] = password_policy
 dependencies[] = picture
 dependencies[] = redirect
 dependencies[] = strongarm
+dependencies[] = token
 dependencies[] = userprotect
 dependencies[] = views
 dependencies[] = views_bulk_operations
@@ -58,6 +59,7 @@ dependencies[] = wim_page
 dependencies[] = wim_product
 dependencies[] = wim_subject
 dependencies[] = wim_text_formats
+dependencies[] = wim_webform
 
 ; Custom
 dependencies[] = ckeditor_customtags
