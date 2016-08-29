@@ -168,7 +168,7 @@ function _wim_set_up_roles_and_permissions() {
     'access bean overview',
     'administer beans',
     'edit bean view mode',
-    // Webform
+    // Webform.
     'access all webform results',
     'edit all webform submissions',
     'edit webform components',
