@@ -31,6 +31,7 @@ dependencies[] = entityreference
 dependencies[] = features
 dependencies[] = field_group
 dependencies[] = flood_control
+dependencies[] = honeypot
 dependencies[] = jquery_update
 dependencies[] = magic
 dependencies[] = menu_block

@@ -23,6 +23,7 @@ projects[felix] = 1.0-beta8
 projects[field_group] = 1.5
 projects[flood_control] = 1.0
 projects[hansel] = 1.6
+projects[honeypot] = 1.22
 projects[jquery_update] = 2.7
 projects[location] = 3.7
 projects[magic] = 2.2
