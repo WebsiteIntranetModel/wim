@@ -70,6 +70,20 @@ function atos_esuite_cron() {
 }
 
 /**
+ * Implements hook_cronapi().
+ */
+function atos_esuite_cronapi($op, $job = NULL) {
+
+  $items['atos_esuite_cron'] = array(
+    'description' => 'Run Atos E-suite import.',
+    'rule' => '37 3 * * *',
+    // Default callback "atos_esuite_cron".
+  );
+
+  return $items;
+}
+
+/**
  * Helper function to get node id by identifier from atos_esuite table.
  *
  * @param string $id

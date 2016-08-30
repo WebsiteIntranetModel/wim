@@ -11,6 +11,9 @@ function wim_core_ctools_plugin_api($module = NULL, $api = NULL) {
   if ($module == "breakpoints" && $api == "default_breakpoint_group") {
     return array("version" => "1");
   }
+  if ($module == "elysia_cron" && $api == "default_elysia_cron_rules") {
+    return array("version" => "1");
+  }
   if ($module == "picture" && $api == "default_picture_mapping") {
     return array("version" => "2");
   }
