@@ -14,3 +14,4 @@ files[] = includes/nodes.migrate.inc
 files[] = includes/file.migrate.inc
 files[] = includes/block_custom.migrate.inc
 files[] = includes/menus.migrate.inc
+files[] = includes/editorial.migrate.inc

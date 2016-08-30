@@ -21,7 +21,7 @@ Feature: Edit Product
     And I fill in wysiwyg on field Body with "BODY CONTENT2"
     And I click "Publishing options"
     And I fill in the following:
-      | Date     | 06/30/2016 |
+      | Date     | 30/06/2016 |
       | Time     | 05:25:11   |
       | Promoted | 0          |
     And I press "Save"

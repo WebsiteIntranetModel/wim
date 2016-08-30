@@ -8,35 +8,44 @@ defaults[projects][subdir] = contrib
 projects[admin_menu] = 3.0-rc5
 projects[admin_views] = 1.6
 projects[adminimal_admin_menu] = 1.7
+projects[autologout] = 4.4
 projects[bean] = 1.11
 projects[breakpoints] = 1.4
 projects[context] = 3.7
+projects[context_condition_theme] = 1.0
 projects[colectomy] = 1.0-beta2
-projects[ctools] = 1.9
+projects[ctools] = 1.10
 projects[date] = 2.9
-projects[entity] = 1.7
-projects[features] = 2.10
-projects[felix] = 1.0-beta8
-projects[field_group] = 1.5
 projects[elysia_cron] = 2.1
 projects[entity] = 1.7
 projects[entityreference] = 1.1
+projects[features] = 2.10
+projects[felix] = 1.0-beta8
+projects[field_group] = 1.5
+projects[flood_control] = 1.0
+projects[hansel] = 1.6
 projects[jquery_update] = 2.7
 projects[location] = 3.7
 projects[magic] = 2.2
 projects[menu_block] = 2.7
 projects[menu_icons] = 3.0-beta4
 projects[migrate] = 2.8
+projects[module_filter] = 2.0
 projects[nodequeue] = 2.1
 projects[l10n_update] = 2.0
 projects[link] = 1.4
 projects[linkit] = 3.5
+projects[password_policy] = 1.12
 projects[picture] = 2.13
+projects[redirect] = 1.0-rc3
 projects[strongarm] = 2.0
 projects[special_menu_items] = 2.0
+projects[token] = 1.6
+projects[userprotect] = 1.2
 projects[views] = 3.14
 projects[views_bootstrap] = 3.1
 projects[views_bulk_operations] = 3.3
+projects[webform] = 4.14
 projects[weight] = 3.1
 projects[wysiwyg] = 2.x-dev
 
@@ -54,15 +63,17 @@ projects[location][patch][1997658_6] = https://www.drupal.org/files/issues/locat
 ; Fixing bug with the location Google maps link
 ; https://www.drupal.org/node/2781227
 projects[location][patch][2781227_1] = https://www.drupal.org/files/issues/location-google-maps-link-2781227-1.patch
+; Add migration support for Bean
+; https://www.drupal.org/node/2295973#comment-11536795
+projects[bean][patch][2295973_11] = https://www.drupal.org/files/issues/bean-migrate-support-2295973-11.patch
 
 
 ; Custom
 ; a11ychecker_custom
-;libraries[a11ychecker][download][type] = "get"
-;libraries[a11ychecker][download][url] = "http://a11ychecker.download.cksource.com/custom/a11ychecker_custom.zip"
-;libraries[a11ychecker][destination] = "custom"
-;libraries[a11ychecker][subdir] = "ckeditor_customtags"
-;libraries[a11ychecker][directory_name] = "a11ychecker_custom"
+libraries[a11ychecker][download][type] = "get"
+libraries[a11ychecker][download][url] = "http://a11ychecker.download.cksource.com/custom/a11ychecker_custom.zip"
+libraries[a11ychecker][destination] = "libraries"
+libraries[a11ychecker][subdir] = "ckeditor_plugins"
 
 ; CKEditor 4.4.6
 libraries[ckeditor][download][type] = get

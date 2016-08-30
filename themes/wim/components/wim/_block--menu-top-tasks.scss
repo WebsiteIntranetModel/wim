@@ -1,165 +1,166 @@
 .main-container {
   .menu-top-tasks {
-    border: 1px solid $table-border-color;
-    padding-left: 0;
-    padding-right: 0;
-    width: auto;
-    float: none;
-    margin-left: 15px;
-    margin-right: 15px;
-    position: relative;
-    @include MQ($screen-sm) {
-      min-height: 170px;
-    }
-    .menu {
-      background-color: $brand-grey-light;
+    .menu-wrapper {
+      border: 1px solid $table-border-color;
+      position: relative;
       @include MQ($screen-sm) {
         min-height: 170px;
-        width: 30.9859%;
       }
-      .dropdown {
-        font-size: 14px;
-        line-height: 1;
-        border-bottom: 1px solid white;
-        position: static;
-        cursor: pointer;
-        margin-bottom: 0;
-
-        &.open,
-        &.open-default {
-          .dropdown-menu {
-            display: block;
-          }
-          .dropdown-toggle {
-            background-color: $brand-primary;
-            color: white;
-
-            &:focus,
-            &:active,
-            &:hover {
-              background-color: $brand-primary;
-              color: white;
-            }
-            @include MQ($screen-sm) {
-              &:after {
-                display: block !important;
-              }
-            }
-          }
+      .menu {
+        background-color: $brand-grey-light;
+        @include MQ($screen-sm) {
+          min-height: 170px;
+          width: 30.9859%;
         }
-        &:hover {
-          @include MQ($screen-sm) {
+        .dropdown {
+          font-size: 14px;
+          line-height: 1;
+          border-bottom: 1px solid white;
+          position: static;
+          cursor: pointer;
+          margin-bottom: 0;
+
+          &.open,
+          &.open-default {
+            .dropdown-menu {
+              display: block;
+            }
             .dropdown-toggle {
               background-color: $brand-primary;
               color: white;
-              &:after {
-                display: block !important;
+
+              &:focus,
+              &:active,
+              &:hover {
+                background-color: $brand-primary;
+                color: white;
+              }
+              @include MQ($screen-sm) {
+                &:after {
+                  display: block !important;
+                }
               }
             }
-            .dropdown-menu {
-              z-index: 2;
-              display: block;
+          }
+          &:hover {
+            @include MQ($screen-sm) {
+              .dropdown-toggle {
+                background-color: $brand-primary;
+                color: white;
+                &:after {
+                  display: block !important;
+                }
+              }
+              .dropdown-menu {
+                z-index: 2;
+                display: block;
+              }
             }
           }
-        }
-        .dropdown-toggle {
-          padding: 18px 10px;
-          color: #000;
-          font-family: $font-family-serif;
-          text-decoration: none;
-          display: block;
-          position: relative;
-          &:focus {
-            @extend %outline;
-          }
-          &:after {
-            border-color: transparent transparent transparent $brand-primary;
-            border-image: none;
-            border-style: solid;
-            border-width: 15px;
-            content: " ";
-            height: 0;
-            left: 100%;
-            margin-top: -15px;
-            pointer-events: none;
-            position: absolute;
-            top: 50%;
-            width: 0;
-            z-index: 5;
-            display: none;
-          }
-          @extend .glyphicon-menu-down;
-          &:before {
-            @extend .glyphicon;
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            @include MQ($screen-sm) {
+          .dropdown-toggle {
+            padding: 18px 10px;
+            color: #000;
+            font-family: $font-family-serif;
+            text-decoration: none;
+            display: block;
+            position: relative;
+            &:focus {
+              @extend %outline;
+            }
+            &:after {
+              border-color: transparent transparent transparent $brand-primary;
+              border-image: none;
+              border-style: solid;
+              border-width: 15px;
+              content: " ";
+              height: 0;
+              left: 100%;
+              margin-top: -15px;
+              pointer-events: none;
+              position: absolute;
+              top: 50%;
+              width: 0;
+              z-index: 5;
               display: none;
             }
-          }
-        }
-        &.open {
-          background-color: $brand-primary;
-          .dropdown-toggle {
-            color: white;
-            @extend .glyphicon-menu-up;
-          }
-        }
-        .dropdown-menu {
-          z-index: 1;
-          position: static;
-          top: 0;
-          min-width: 0;
-          box-shadow: none;
-          height: 100%;
-          background-color: white;
-          margin-top: 0;
-          border-radius: 0;
-          @include MQ($screen-sm) {
-            position: absolute;
-            left: 30.9859%;
-            padding-left: 20px;
-            width: 65.493%;
-          }
-          li {
-            display: block;
-            @include MQ($screen-sm) {
-              float: left;
-              margin-bottom: 7px;
-              margin-right: 3.5%;
-              margin-top: 7px;
-              width: 48.2394%;
-            }
-            &:nth-child(2n) {
-              margin-right: 0;
-            }
-            a {
-              background: none;
-              padding: 10px;
-              color: $text-color;
-              white-space: normal;
+            @extend .fa-angle-down;
+            &:before {
+              @include fa-icon;
+              position: absolute;
+              right: 10px;
+              top: 50%;
+              transform: translateY(-50%);
               @include MQ($screen-sm) {
-                padding: 2% 0;
-                text-align: center;
-              }
-              &:active,
-              &:hover,
-              &:focus {
-                text-decoration: underline;
-              }
-              &:focus {
-                @extend %outline;
-              }
-              &:before {
                 display: none;
               }
-              span {
-                margin: 0 6px 0 0;
+            }
+          }
+          &.open {
+            background-color: $brand-primary;
+            .dropdown-toggle {
+              color: white;
+              @extend .fa-angle-up;
+            }
+          }
+          .dropdown-menu {
+            z-index: 1;
+            position: static;
+            top: 0;
+            min-width: 0;
+            box-shadow: none;
+            min-height: 100%;
+            background-color: white;
+            margin-top: 0;
+            border-radius: 0;
+            @include MQ($screen-sm) {
+              position: absolute;
+              left: 30.9859%;
+              padding-left: 20px;
+              width: 65.493%;
+            }
+            li {
+              display: block;
+              @include MQ($screen-sm) {
+                float: left;
+                margin-bottom: 7px;
+                margin-right: 3.5%;
+                margin-top: 7px;
+                width: 48.2394%;
+              }
+              &:nth-child(2n) {
+                margin-right: 0;
+              }
+              a {
+                background: none;
+                padding: 10px;
+                color: $text-color;
+                white-space: normal;
                 @include MQ($screen-sm) {
-                  display: block;
-                  margin: 0 0 6px;
+                  padding: 2% 0;
+                  text-align: center;
+                }
+                &:active,
+                &:hover,
+                &:focus {
+                  text-decoration: underline;
+                }
+                &:focus {
+                  @extend %outline;
+                }
+                &:before {
+                  display: none;
+                }
+                span {
+                  margin: 0 6px 0 0;
+                  height: 40px;
+                  img {
+                    height: 40px;
+                    width: auto;
+                  }
+                  @include MQ($screen-sm) {
+                    display: block;
+                    margin: 0 0 6px;
+                  }
                 }
               }
             }

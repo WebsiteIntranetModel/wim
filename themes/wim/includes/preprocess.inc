@@ -27,7 +27,7 @@ function wim_preprocess_node(&$variables) {
     $parameters = drupal_get_query_parameters();
     $variables['product_link'] = NULL;
     if (isset($parameters['product']) && is_numeric($parameters['product'])) {
-      $variables['product_link'] = l(t('Back to product'), '/node/' . $parameters['product']);
+      $variables['product_link'] = l(t('Back to product'), '/node/' . $parameters['product'], array('attributes' => array('class' => array('back-link'))));
     }
   }
 }
@@ -115,6 +115,23 @@ function wim_preprocess_block(&$variables) {
   // Be default we show all blocks in a new row.
   $block->new_row = TRUE;
   $block->bootstrap_layout = WIM_BLOCK_MANAGEMENT_BOOTSTRAP_FULL_WIDTH;
+  $bean_view_mode = NULL;
+
+  // Process Bean blocks.
+  if ($block->module === 'bean') {
+    $variables['title_url'] = NULL;
+    $bean = bean_load_delta($block->delta);
+    $variables['theme_hook_suggestions'][] = 'block__bean_' . strtr($bean->type, '_', '-');
+    $bean_view_mode = $bean->view_mode;
+
+    if ($bean->field_link) {
+      $variables['title_url'] = $bean->field_link[LANGUAGE_NONE][0]['url'];
+    }
+
+    if ($bean_view_mode === 'default' && $bean->field_image) {
+      $variables['classes_array'][] = 'editorial-image';
+    }
+  }
 
   // If block in the Felix region add corresponding classes.
   if (isset($block->felix_region)) {
@@ -127,6 +144,30 @@ function wim_preprocess_block(&$variables) {
       }
       // If new row config exist then use it otherwise move it in a new row.
       $block->new_row = isset($config['new_row']) ? $config['new_row'] : TRUE;
+
+      if ($block->module === 'bean') {
+        if (isset($config['bean_view_mode']) && $config['bean_view_mode']) {
+          $bean_view_mode = $config['bean_view_mode'];
+          // Build entity bean view.
+          if (entity_access('view', 'bean', $bean) && $bean) {
+            $content = $bean->view($bean_view_mode);
+            if (!is_array($content)) {
+              $content = array(
+                '#markup' => $content,
+              );
+            }
+            $variables['content'] = drupal_render($content);
+          }
+
+          // Process Editorial.
+          if ($bean->type === 'editorial') {
+            // Editorial added via Felix we process according to settings.
+            if ($config['bean_view_mode'] === 'default' && $bean->field_image) {
+              $variables['classes_array'][] = 'editorial-image';
+            }
+          }
+        }
+      }
     }
   }
   else {
@@ -136,5 +177,56 @@ function wim_preprocess_block(&$variables) {
   // Add class for menus blocks.
   if ($block->module === 'menu') {
     $variables['classes_array'][] = drupal_html_class($block->delta);
+  }
+
+  // Build class for the Bean block view mode.
+  if ($bean_view_mode) {
+    $variables['classes_array'][] = 'bean-view-mode-' . drupal_html_class($bean_view_mode);
+  }
+}
+
+/**
+ * Implements hook_preprocess_field().
+ */
+function wim_preprocess_field(&$variables, $hook) {
+  $element = $variables['element'];
+  $field_name = $element['#field_name'];
+
+  // Add product id parameter to FAQ links.
+  if ($field_name === 'field_related_faq' && $element['#bundle'] === 'product' && $element['#view_mode'] === 'full') {
+    $product_id = $element['#object']->nid;
+    foreach ($element['#items'] as $id => $item) {
+      $faq = $item['entity'];
+      if ($uri = entity_uri('node', $item['entity'])) {
+        $options = array('query' => array('product' => $product_id));
+        $variables['items'][$id] = array(
+          '#markup' => l($faq->title, $uri['path'], $options),
+        );
+      }
+    }
+  }
+
+  // Override field image output for Editorial.
+  if ($field_name === 'field_image' && $element['#entity_type'] === 'bean') {
+    if ($element['#bundle'] === 'editorial' && $element['#view_mode'] === 'default') {
+      $bean = $element['#object'];
+      if ($bean->field_link) {
+        foreach ($element['#items'] as $id => $item) {
+          $variables['items'][$id]['#path']['path'] = $bean->field_link[LANGUAGE_NONE][0]['url'];
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function wim_preprocess_page(&$variables) {
+  $menu_item = menu_get_item();
+
+  // All FAQ pages should has title FAQ.
+  if ($menu_item && $menu_item['path'] === 'faq/%') {
+    $variables['title'] = t('FAQ');
   }
 }

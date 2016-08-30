@@ -27,6 +27,8 @@ function wim_install() {
   _wim_import_menu_items();
   // Install Dutch language.
   _wim_install_language();
+  // Install password policy.
+  _wim_password_policy_install();
 
   // Add 404 page.
   $page_404_nid = _wim_create_page('404');
@@ -35,6 +37,23 @@ function wim_install() {
   // Add 403 page.
   $page_403_nid = _wim_create_page('403');
   variable_set('site_403', 'node/' . $page_403_nid);
+
+  // Add homepage.
+  $homepage_nid = _wim_create_page('homepage');
+  variable_set('site_frontpage', 'node/' . $homepage_nid);
+
+  // Add blocks to Felix regions.
+  _wim_place_felix_blocks();
+
+  // Turn off user registration.
+  variable_set('user_register', 0);
+
+  // Flood control config.
+  variable_set('user_failed_login_ip_limit', 10);
+  variable_set('user_failed_login_user_limit', 5);
+
+  // Default protected fields per role.
+  _wim_user_protect_roles();
 }
 
 /**
@@ -83,9 +102,13 @@ function _wim_set_up_roles_and_permissions() {
   $authenticated_permissions = array(
     'access content',
     'view any editorial bean',
+    'search content',
   );
   user_role_grant_permissions(DRUPAL_AUTHENTICATED_RID, $authenticated_permissions);
   user_role_grant_permissions(DRUPAL_ANONYMOUS_RID, $authenticated_permissions);
+
+  // Remove change own e-mail permission.
+  user_role_revoke_permissions(DRUPAL_AUTHENTICATED_RID, array('change own e-mail'));
 
   // Administrator role.
   user_role_grant_permissions($admin_role->rid, array_keys(module_invoke_all('permission')));
@@ -94,11 +117,12 @@ function _wim_set_up_roles_and_permissions() {
   $cm_permissions = array(
     'access administration menu',
     'access administration pages',
-    'access user profiles',
-    'administer taxonomy',
     'access content overview',
+    'access user profiles',
     'administer blocks',
     'administer menu',
+    'administer taxonomy',
+    'administer redirects',
     'manage felix blocks',
     'access contextual links',
     'administer custom lists',
@@ -144,6 +168,10 @@ function _wim_set_up_roles_and_permissions() {
     'access bean overview',
     'administer beans',
     'edit bean view mode',
+    // Webform.
+    'access all webform results',
+    'edit all webform submissions',
+    'edit webform components',
   );
 
   // Access to the taxonomy vocabularies.
@@ -342,36 +370,11 @@ function _wim_set_text_formats() {
 }
 
 /**
- * Set blocks.
+ * Set default blocks.
  */
 function _wim_set_blocks() {
   $default_theme = variable_get('theme_default', 'wim');
   $blocks = array(
-    // Views blocks.
-    array(
-      'module' => 'views',
-      'delta' => 'agenda-upcoming_agenda',
-      'theme' => $default_theme,
-      'status' => BLOCK_CUSTOM_ENABLED,
-      'weight' => 0,
-      'region' => 'sidebar_first',
-      'pages' => "agenda\nnews",
-      'visibility' => 1,
-      'title' => '',
-      'cache' => DRUPAL_NO_CACHE,
-    ),
-    array(
-      'module' => 'views',
-      'delta' => 'news-latest_news',
-      'theme' => $default_theme,
-      'status' => BLOCK_CUSTOM_ENABLED,
-      'weight' => 0,
-      'region' => 'sidebar_second',
-      'pages' => "agenda\nnews",
-      'visibility' => 1,
-      'title' => '',
-      'cache' => DRUPAL_NO_CACHE,
-    ),
     // Menus.
     array(
       'module' => 'menu',
@@ -385,15 +388,16 @@ function _wim_set_blocks() {
       'title' => '<none>',
       'cache' => DRUPAL_NO_CACHE,
     ),
+    // Search.
     array(
-      'module' => 'menu',
-      'delta' => 'menu-top-tasks',
+      'module' => 'search',
+      'delta' => 'form',
       'theme' => $default_theme,
       'status' => BLOCK_CUSTOM_ENABLED,
-      'weight' => -1,
-      'region' => 'content',
-      'pages' => '<front>',
-      'visibility' => 1,
+      'weight' => 0,
+      'region' => 'header',
+      'pages' => '',
+      'visibility' => 0,
       'title' => '<none>',
       'cache' => DRUPAL_NO_CACHE,
     ),
@@ -524,6 +528,10 @@ function _wim_create_page($page_type, $bundle = 'page', $language = LANGUAGE_NON
     $node->body[$language][0]['value'] = 'No access.';
   }
 
+  if ($page_type === 'homepage') {
+    $node->title = 'Home page';
+  }
+
   $node = node_submit($node);
   node_save($node);
 
@@ -537,4 +545,245 @@ function _wim_install_language() {
   include_once DRUPAL_ROOT . '/includes/language.inc';
   // Add Dutch language.
   locale_add_language('nl');
+}
+
+/**
+ * Helper function to install default password policies.
+ *
+ * @throws \Exception
+ * @throws \InvalidMergeQueryException
+ */
+function _wim_password_policy_install() {
+
+  foreach (_wim_password_policy_default_profile() as $profile) {
+    $pid = db_insert('password_policy')->fields(array(
+      'name' => $profile['name'],
+      'description' => $profile['description'],
+      'enabled' => $profile['enabled'],
+      'policy' => serialize($profile['policy']),
+      'expiration' => $profile['expiration'],
+      'warning' => $profile['warning'],
+    ))->execute();
+
+    // Insert roles.
+    foreach ($profile['roles'] as $rid) {
+      db_insert('password_policy_role')->fields(array(
+        'pid' => $pid,
+        'rid' => $rid,
+      ))->execute();
+    }
+  }
+  wysiwyg_profile_cache_clear();
+}
+
+/**
+ * Helper function holding default password policies.
+ */
+function _wim_password_policy_default_profile() {
+  $profiles = array();
+
+  $cm = user_role_load_by_name('content moderator');
+  // Exported profile: default.
+  $profiles['default'] = array(
+    'name' => 'default',
+    'description' => t('WIM 2.0 default password policy'),
+    'enabled' => TRUE,
+    'policy' => array(
+      'character_types' => '1',
+      'digit' => '1',
+      'history' => '6',
+      'length' => '8',
+      'uppercase' => '1',
+    ),
+    'expiration' => 60,
+    'warning' => 59,
+    'roles' => array(
+      DRUPAL_AUTHENTICATED_RID,
+      $cm->rid,
+    ),
+  );
+
+  return $profiles;
+}
+
+/**
+ * Create custom block.
+ */
+function _wim_create_custom_block($block) {
+  // Create custom blocks.
+  $block_delta = db_insert('block_custom')
+    ->fields(array(
+      'body' => $block['body'],
+      'info' => $block['info'],
+      'format' => $block['format'],
+    ))
+    ->execute();
+
+  return $block_delta;
+}
+
+/**
+ * Create felix blocks and place them in regions.
+ */
+function _wim_place_felix_blocks() {
+  $felix_blocks = array(
+    'top_tasks' => array(
+      'region_name' => 'highlighted',
+      'path' => variable_get('site_frontpage'),
+      'module' => 'menu',
+      'delta' => 'menu-top-tasks',
+      'detail_path' => NULL,
+      'data' => array(
+        'subject' => '<none>',
+        'config' => array(
+          'bootstrap_layout' => 8,
+          'new_row' => 0,
+        ),
+      ),
+    ),
+    'latest_news' => array(
+      'region_name' => 'secondary',
+      'path' => variable_get('site_frontpage'),
+      'module' => 'views',
+      'delta' => 'news-latest_news',
+      'detail_path' => NULL,
+      'data' => array(
+        'subject' => '',
+        'config' => array(
+          'bootstrap_layout' => 12,
+          'new_row' => 0,
+        ),
+      ),
+    ),
+    // Custom blocks.
+    'address' => array(
+      'region_name' => 'footer',
+      'path' => NULL,
+      'module' => 'block',
+      'delta' => NULL,
+      'detail_path' => NULL,
+      'data' => array(
+        'subject' => '<none>',
+        'config' => array(
+          'bootstrap_layout' => 4,
+          'new_row' => 0,
+        ),
+      ),
+      'custom_block' => array(
+        'info' => 'Address',
+        'body' => '<h3>Post</h3><ul><li>Postbus 10101</li><li>5500 GA Veldhoven</li></ul><h3>E-mail</h3><ul><li>gemeente@gemeente.nl</li></ul><h3>Telefonisch contact</h3><ul><li>14 040 (algemeen)</li></ul><h3>Bezoekadres</h3><ul><li>Meiveld 1</li><li>5501 KA Veldhoven</li></ul>',
+        'format' => 'full_html',
+      ),
+    ),
+    'copyright' => array(
+      'region_name' => 'footer',
+      'path' => NULL,
+      'module' => 'block',
+      'delta' => NULL,
+      'detail_path' => NULL,
+      'data' => array(
+        'subject' => '<none>',
+        'config' => array(
+          'bootstrap_layout' => 4,
+          'new_row' => 0,
+        ),
+      ),
+      'custom_block' => array(
+        'info' => 'Copyright',
+        'body' => 'Copyright © 2016. All rights reserved.',
+        'format' => 'plain_text',
+      ),
+    ),
+  );
+
+  foreach ($felix_blocks as $felix_block) {
+    // Create custom block.
+    if (isset($felix_block['custom_block']) && $felix_block['custom_block']) {
+      $custom_block_delta = _wim_create_custom_block($felix_block['custom_block']);
+      _wim_add_felix_block($felix_block['region_name'], $felix_block['path'], $felix_block['module'], $custom_block_delta, $felix_block['detail_path'], $felix_block['data']);
+
+    }
+    else {
+      _wim_add_felix_block($felix_block['region_name'], $felix_block['path'], $felix_block['module'], $felix_block['delta'], $felix_block['detail_path'], $felix_block['data']);
+    }
+  }
+}
+
+/**
+ * Create felix block and place it in the region.
+ *
+ * @see _felix_add_block
+ */
+function _wim_add_felix_block($region_name, $path, $module, $delta, $detail_path = NULL, $data = array()) {
+  if (module_exists('felix')) {
+    if (!$region = _felix_region_by_name($region_name)) {
+      return FALSE;
+    }
+
+    if ($module === 'node' && is_numeric($delta) && module_exists('translation')) {
+      // Add the source translation.
+      $tnid = db_select('node', 'n')
+        ->fields('n', array('tnid'))
+        ->condition('n.nid', $delta)
+        ->execute()
+        ->fetchField();
+      $delta = $tnid ? $tnid : $delta;
+      $detail_path = "node/$delta";
+    }
+
+    $hash = _felix_get_hash($region, $path);
+
+    $block = new stdClass();
+    $block->region = $region->name;
+    $block->weight = _felix_new_block_weight($region->name);
+    $block->hash = $hash->hash;
+    $block->module = $module;
+    $block->delta = $delta;
+    $block->detail_path = $detail_path;
+    $block->data = $data;
+    $block->hash_parts = $hash->parts;
+    $block->exclude = serialize(array());
+
+    foreach (module_implements('felix_block_insert') as $module) {
+      $hook = "{$module}_felix_block_insert";
+      $hook($block, $path);
+    }
+
+    $block->data = serialize($block->data);
+    $block->hash_parts = serialize($block->hash_parts);
+
+    drupal_write_record('felix_block', $block);
+  }
+
+  return TRUE;
+}
+
+/**
+ * Default settings for userprotect per protected role.
+ *
+ * @see userprotect_protected_roles
+ */
+function _wim_user_protect_roles() {
+  $settings = array();
+  // Grab all roles but the anonymous role, and grab the current default
+  // settings.
+  $roles = user_roles(TRUE);
+
+  $protections = array_keys(userprotect_user_protection_defaults());
+  foreach ($roles as $rid => $role) {
+    foreach ($protections as $protection) {
+      $value = 0;
+      if ($role === 'administrator') {
+        // Don't protect admin role.
+        $value = 0;
+      }
+      elseif ($protection === 'up_name' || $protection === 'up_mail') {
+        // Protect login and email for all other role.
+        $value = 1;
+      }
+      $settings[$rid][$protection] = $value;
+    }
+  }
+
+  variable_set('userprotect_role_protections', $settings);
 }

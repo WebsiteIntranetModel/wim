@@ -50,7 +50,7 @@ options.theme = {
   styleguide : options.rootPath.theme + 'jade/',
   images     : options.rootPath.theme + 'images/',
   content    : options.rootPath.theme + 'content/',
-  font       : options.rootPath.theme + 'font/',
+  //font       : options.rootPath.theme + 'font/',
   bootstrap  : options.rootPath.theme + 'node_modules/bootstrap-sass/assets/'
 };
 
@@ -190,10 +190,10 @@ gulp.task('content', function() {
   .pipe( gulp.dest(options.rootPath.dist + 'content') );
 });
 
-gulp.task('font', function() {
-  return gulp.src(options.theme.font + '**/*')
-  .pipe( gulp.dest(options.rootPath.dist + 'font') );
-});
+//gulp.task('font', function() {
+//  return gulp.src(options.theme.font + '**/*')
+//  .pipe( gulp.dest(options.rootPath.dist + 'font') );
+//});
 
 gulp.task('libs', function() {
   return gulp.src(options.theme.libs + '**/*')
@@ -283,7 +283,7 @@ gulp.task('watch:content', ['content'], function () {
 // ===================================================
 // Deploy to github pages branch
 // ===================================================
-gulp.task('build', ['styles', 'styleguide' , 'scripts', 'font', 'images', 'content']);
+gulp.task('build', ['styles', 'styleguide' , 'scripts','images', 'content']);
 
 gulp.task('deploy', ['build'], function() {
   return gulp.src([options.rootPath.dist + '/**/*'])
@@ -294,4 +294,4 @@ gulp.task('deploy', ['build'], function() {
 // ===================================================
 // Run this one time when you install the project so you have all files in the dist folder
 // ===================================================
-gulp.task('init', ['images', 'content', 'libs', 'font', 'bootstrap-js', 'bootstrap-sass']);
+gulp.task('init', ['images', 'content', 'libs', 'bootstrap-js', 'bootstrap-sass']);

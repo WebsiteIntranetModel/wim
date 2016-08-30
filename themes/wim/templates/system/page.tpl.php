@@ -134,14 +134,14 @@
 
   <div role="main" class="main-container <?php print $container_class; ?>">
 
-    <?php if (!empty($breadcrumb)): ?>
+    <?php if (!empty($breadcrumb) && !$is_front): ?>
       <div class="row">
         <?php if (!empty($breadcrumb)): print $breadcrumb; endif; ?>
       </div>
     <?php endif; ?>
 
-    <?php if (!empty($page['content_top'])): ?>
-      <?php print render($page['content_top']); ?>
+    <?php if (!empty($page['highlighted'])): ?>
+      <?php print render($page['highlighted']); ?>
     <?php endif; ?>
 
     <div class="row">
@@ -152,12 +152,9 @@
       <?php endif; ?>
 
       <section<?php print $content_column_class; ?>>
-        <?php if (!empty($page['highlighted'])): ?>
-          <div class="highlighted jumbotron"><?php print render($page['highlighted']); ?></div>
-        <?php endif; ?>
         <a id="main-content"></a>
         <?php print render($title_prefix); ?>
-        <?php if (!empty($title)): ?>
+        <?php if (!empty($title) && !$is_front): ?>
           <h1 class="page-header"><?php print $title; ?></h1>
         <?php endif; ?>
         <?php print render($title_suffix); ?>
@@ -189,13 +186,7 @@
 </div>
 
 <footer class="footer <?php print $container_class; ?>">
-  <?php if (!empty($page['footer_first'])): ?>
-    <?php print render($page['footer_first']); ?>
-  <?php endif; ?>
-  <?php if (!empty($page['footer_second'])): ?>
-    <?php print render($page['footer_second']); ?>
-  <?php endif; ?>
-  <?php if (!empty($page['footer_third'])): ?>
-    <?php print render($page['footer_third']); ?>
+  <?php if (!empty($page['footer'])): ?>
+    <?php print render($page['footer']); ?>
   <?php endif; ?>
 </footer>

@@ -63,11 +63,27 @@ h1, h2, h3, h4, h5, h6 {
 
 .back-link {
   margin: 15px 0;
-  @extend .glyphicon-menu-left;
+  @extend .fa-chevron-left;
   &:before {
-    @extend .glyphicon;
+    @include fa-icon;
     font-size: 12px;
     margin-right: 3px;
     color: $brand-primary;
+  }
+}
+
+a.back-link {
+  display: inline-block;
+}
+
+ul {
+  &[class^="custom-list-view-mode"] {
+    &:not([class*="title"]) {
+      padding: 0 10px;
+      list-style: none;
+      li {
+        margin-bottom: 10px;
+      }
+    }
   }
 }

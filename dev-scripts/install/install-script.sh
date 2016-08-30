@@ -35,6 +35,7 @@ if [ ${2:-"exclude"} = "include" ]; then
   echo "Moved settings.local.php so it can be included in the settings.php file."
 fi
 
+apt-get update -qq && apt-get install -y unzip
 # Build the site using drush make
 drush make ${PROFILE_PATH}/build-wim.make .
 
@@ -60,7 +61,7 @@ echo "Restored read-only permissions for settings.php"
 # Check if third argument is "develop" then enable develop modules.
 if [ ${3:-"default"} = "develop" ]; then
   drush dis toolbar -y
-  drush en devel, field_ui, diff, module_filter, views_ui, context_ui, felix_ui -y
+  drush en devel, field_ui, diff, views_ui, context_ui, felix_ui, dblog, hansel_ui -y
 fi
 
 # Clear drush cache.

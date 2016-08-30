@@ -16,3 +16,22 @@ Feature: Add Editorial blocks
     And I select "Default" from "View Mode"
     And I press "Save"
     Then I should see the success message "Editorial TEST EDITORIAL TITLE has been created."
+
+  Scenario: Successfully add editorial block with view mode via Felix
+    Given I am logged in as a "content moderator"
+    And I am on "felix-blocks/add?region=primary&path=node&destination=node"
+    When I click "Editorial Test label 1"
+    Then I select "Title with link" from "View mode"
+    And I press the "Save" button
+    And I should not see the link "Editorial Test label 1"
+    When I mouseover the ".region-sidebar-first .block-bean h2" element
+    Then I click the ".region-sidebar-first .block-bean a.contextual-links-trigger" element
+    And I click the ".region-sidebar-first .block-bean .contextual-links-wrapper li.edit-attributes" element
+    And I select "Default" from "View mode"
+    And I press the "Save" button
+    Then I should not see the link "Editorial Test label 1"
+    And I should see "Editorial body content 1"
+    When I mouseover the ".region-sidebar-first .block-bean h2" element
+    Then I click the ".region-sidebar-first .block-bean a.contextual-links-trigger" element
+    And I click the ".region-sidebar-first .block-bean .contextual-links-wrapper li.remove" element
+    And I press the "Remove" button

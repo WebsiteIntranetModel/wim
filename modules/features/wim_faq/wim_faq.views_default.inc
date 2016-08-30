@@ -409,6 +409,45 @@ function wim_faq_views_default_views() {
   $handler->display->display_options['menu']['weight'] = '0';
   $handler->display->display_options['menu']['context'] = 0;
   $handler->display->display_options['menu']['context_only_inline'] = 0;
+  $translatables['faq'] = array(
+    t('Master'),
+    t('FAQ'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('No results'),
+    t('No FAQ added yet'),
+    t('FAQ Overview'),
+    t('Back to categories link'),
+    t('<h2>Category: %1</h2>
+<div class="back-link"><a calss="category-overview" href="/faq">Back to categories</a></div>'),
+    t('All'),
+    t('Categories Overview'),
+    t('Select a category.'),
+    t('term from field_faq_category'),
+    t('Admin FAQ'),
+    t('Administer FAQ'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('« first'),
+    t('‹ previous'),
+    t('next ›'),
+    t('last »'),
+    t('Question'),
+    t('Weight Selector'),
+    t('Answer'),
+    t('Weight'),
+    t('Actions'),
+    t('edit'),
+    t('view'),
+    t('Published'),
+    t('Category'),
+    t('Show on overview'),
+  );
   $export['faq'] = $view;
 
   return $export;

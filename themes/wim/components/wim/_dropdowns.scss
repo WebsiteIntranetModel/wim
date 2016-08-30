@@ -17,11 +17,10 @@
   color: white;
   font-size: 1.3rem;
   padding: 10px 20px;
-
+  @extend .fa-angle-right;
   &:before {
     color: white;
-    @extend .fa;
-    @extend .fa-angle-right;
+    @include fa-icon;
     margin-right: 3px;
   }
 }

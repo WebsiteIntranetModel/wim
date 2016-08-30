@@ -5,6 +5,16 @@
  */
 
 /**
+ * Implements hook_preprocess_html().
+ */
+function ckeditor_customtags_preprocess_html(&$variables) {
+  global $theme;
+  if ($theme === 'adminimal') {
+    drupal_add_css(drupal_get_path('module', 'ckeditor_customtags') . '/ckeditor_customtags.adminimal.css', array('weight' => CSS_THEME));
+  }
+}
+
+/**
  * Implements hook_form_alter().
  */
 function ckeditor_customtags_form_alter(&$form, &$form_state) {
@@ -161,9 +171,9 @@ function ckeditor_customtags_wysiwyg_plugin($editor, $version) {
       'extended_valid_elements' => array(),
     );
 
-    if (file_exists($path . '/a11ychecker_custom/a11ychecker')) {
+    if (file_exists('sites/all/libraries/ckeditor_plugins/a11ychecker/a11ychecker')) {
       $plugins['a11ychecker'] = array(
-        'path' => $path . '/a11ychecker_custom/a11ychecker',
+        'path' => 'sites/all/libraries/ckeditor_plugins/a11ychecker/a11ychecker',
         'buttons' => array(
           'A11ychecker' => t('Accessibility Checker'),
         ),
@@ -172,7 +182,7 @@ function ckeditor_customtags_wysiwyg_plugin($editor, $version) {
       );
 
       $plugins['balloonpanel'] = array(
-        'path' => $path . '/a11ychecker_custom/balloonpanel',
+        'path' => 'sites/all/libraries/ckeditor_plugins/a11ychecker/balloonpanel',
         'extensions' => array(
           'Balloonpanel' => t('Accessibility Checker GUI: Balloon panel'),
         ),

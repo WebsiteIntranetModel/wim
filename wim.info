@@ -15,11 +15,13 @@ dependencies[] = locale
 dependencies[] = menu
 dependencies[] = options
 dependencies[] = taxonomy
+dependencies[] = search
 
 ; Contrib
 dependencies[] = admin_menu
 dependencies[] = admin_views
 dependencies[] = adminimal_admin_menu
+dependencies[] = autologout
 dependencies[] = breakpoints
 dependencies[] = colectomy
 dependencies[] = ctools
@@ -29,14 +31,20 @@ dependencies[] = entity
 dependencies[] = entityreference
 dependencies[] = features
 dependencies[] = field_group
+dependencies[] = flood_control
 dependencies[] = jquery_update
 dependencies[] = magic
 dependencies[] = menu_block
+dependencies[] = module_filter
 dependencies[] = l10n_update
 dependencies[] = link
 dependencies[] = linkit
+dependencies[] = password_policy
 dependencies[] = picture
+dependencies[] = redirect
 dependencies[] = strongarm
+dependencies[] = token
+dependencies[] = userprotect
 dependencies[] = views
 dependencies[] = views_bulk_operations
 dependencies[] = wysiwyg
@@ -44,6 +52,7 @@ dependencies[] = wysiwyg
 ; Features
 dependencies[] = wim_agenda
 dependencies[] = wim_block_management
+dependencies[] = wim_breadcrumb
 dependencies[] = wim_core
 dependencies[] = wim_faq
 dependencies[] = wim_news
@@ -51,6 +60,7 @@ dependencies[] = wim_page
 dependencies[] = wim_product
 dependencies[] = wim_subject
 dependencies[] = wim_text_formats
+dependencies[] = wim_webform
 
 ; Custom
 dependencies[] = ckeditor_customtags

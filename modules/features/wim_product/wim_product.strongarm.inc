@@ -38,7 +38,7 @@ function wim_product_strongarm() {
           'weight' => '0',
         ),
         'locations' => array(
-          'weight' => '6',
+          'weight' => '5',
         ),
       ),
       'display' => array(),

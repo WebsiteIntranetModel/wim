@@ -22,7 +22,6 @@ Feature: News overview
     And I am on "news"
     Then I should see the heading "News"
     And I should not see "No results"
-    And the ".region-content article.node-teaser" element should contain "Read more"
     And I should see an ".pagination" element
 
   Scenario: Visitor sets the filters on a news overview
@@ -67,7 +66,7 @@ Feature: News overview
     And I fill in wysiwyg on field Body with "BODY-CONTENT"
     And I click "Publishing options"
     And I fill in the following:
-      | Date | 06/30/2016 |
+      | Date | 30/06/2016 |
     Then I select "CATEGORY1" from "Category"
     And I press "Save"
     And I go to "news"

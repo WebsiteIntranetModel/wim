@@ -209,14 +209,14 @@ function wim_menu_link(array $variables) {
 
   $menu_icon = isset($element['#localized_options']['menu_icon']) ? $element['#localized_options']['menu_icon'] : NULL;
   // Add menu item icon.
-  if ($menu_icon['enable'] && $menu_icon['path']) {
-    $icon = '<span><img class="item-icon" src="' . image_style_url($menu_icon['image_style'], $menu_icon['path']) . '"></span>';
+  if (is_array($menu_icon) && $menu_icon['enable'] && $menu_icon['path']) {
+    $icon = '<span><img alt="' . $element['#title'] . '" class="item-icon" src="' . image_style_url($menu_icon['image_style'], $menu_icon['path']) . '"></span>';
     $element['#localized_options']['html'] = TRUE;
   }
   if ($element['#below']) {
     // Prevent dropdown functions from being added to management menu so it
     // does not affect the navbar module.
-    if (($element['#original_link']['menu_name'] == 'management') && (module_exists('navbar'))) {
+    if (($element['#original_link']['menu_name'] === 'management') && (module_exists('navbar'))) {
       $sub_menu = drupal_render($element['#below']);
     }
     elseif ((!empty($element['#original_link']['depth'])) && ($element['#original_link']['depth'] == 1)) {
@@ -236,7 +236,7 @@ function wim_menu_link(array $variables) {
   }
   // On primary navigation menu, class 'active' is not set on active menu item.
   // @see https://drupal.org/node/1896674
-  if (($element['#href'] == $_GET['q'] || ($element['#href'] == '<front>' && drupal_is_front_page())) && (empty($element['#localized_options']['language']))) {
+  if (($element['#href'] == $_GET['q'] || ($element['#href'] === '<front>' && drupal_is_front_page())) && (empty($element['#localized_options']['language']))) {
     $element['#attributes']['class'][] = 'active';
   }
   $element['#attributes']['class'] = array_diff($element['#attributes']['class'], array('expanded'));
@@ -266,8 +266,8 @@ function wim_menu_link__menu_top_tasks(array $variables) {
 
   $menu_icon = isset($element['#localized_options']['menu_icon']) ? $element['#localized_options']['menu_icon'] : NULL;
   // Add menu item icon.
-  if ($menu_icon['enable'] && $menu_icon['path']) {
-    $icon = '<span><img class="item-icon" src="' . image_style_url($menu_icon['image_style'], $menu_icon['path']) . '"></span>';
+  if (is_array($menu_icon) && $menu_icon['enable'] && $menu_icon['path']) {
+    $icon = '<span><img alt="' . $element['#title'] . '" class="item-icon" src="' . image_style_url($menu_icon['image_style'], $menu_icon['path']) . '"></span>';
     $element['#localized_options']['html'] = TRUE;
   }
   if ($element['#below'] && !empty($element['#original_link']['depth']) && $element['#original_link']['depth'] == 1) {
@@ -284,10 +284,16 @@ function wim_menu_link__menu_top_tasks(array $variables) {
   }
   // On primary navigation menu, class 'active' is not set on active menu item.
   // @see https://drupal.org/node/1896674
-  if (($element['#href'] == $_GET['q'] || ($element['#href'] == '<front>' && drupal_is_front_page())) && (empty($element['#localized_options']['language']))) {
+  if (($element['#href'] == $_GET['q'] || ($element['#href'] === '<front>' && drupal_is_front_page())) && (empty($element['#localized_options']['language']))) {
     $element['#attributes']['class'][] = 'active';
   }
   $element['#attributes']['class'] = array_diff($element['#attributes']['class'], array('expanded'));
+
+  if ($element['#original_link']['depth'] == 1 && !$element['#below']) {
+    $element['#localized_options']['attributes']['class'][] = 'dropdown-toggle';
+    $element['#attributes']['class'][] = 'dropdown';
+    $element['#localized_options']['attributes']['class'][] = 'nolink';
+  }
 
   if ($element['#href'] === '<nolink>') {
     $element['#localized_options']['attributes']['class'][] = 'nolink';
@@ -298,4 +304,55 @@ function wim_menu_link__menu_top_tasks(array $variables) {
   }
 
   return '<li' . drupal_attributes($element['#attributes']) . '>' . $output . $sub_menu . "</li>\n";
+}
+
+/**
+ * Returns HTML for a wrapper for a Top Tasks menu sub-tree.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - tree: An HTML string containing the tree's items.
+ *
+ * @return string
+ *   The constructed HTML.
+ *
+ * @see template_preprocess_menu_tree()
+ * @see theme_menu_tree()
+ *
+ * @ingroup theme_functions
+ */
+function wim_menu_tree__menu_top_tasks($variables) {
+  return '<div class="menu-wrapper"><ul class="menu nav">' . $variables['tree'] . '</ul></div>';
+}
+
+/**
+ * Returns HTML for a breadcrumb trail.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - breadcrumb: An array containing the breadcrumb links.
+ *
+ * @return string
+ *   The constructed HTML.
+ *
+ * @see theme_breadcrumb()
+ *
+ * @ingroup theme_functions
+ */
+function wim_breadcrumb($variables) {
+  if (module_exists('hansel')) {
+    $hansel_breadcrumb = hansel_get_breadcrumbs();
+    $breadcrumb = $hansel_breadcrumb['breadcrumb'];
+  }
+  else {
+    $breadcrumb = $variables['breadcrumb'];
+  }
+
+  if (!empty($breadcrumb)) {
+    // Provide a navigational heading to give context for breadcrumb links to
+    // screen-reader users. Make the heading invisible with .element-invisible.
+    $output = '<h2 class="element-invisible">' . t('You are here') . '</h2>';
+    $output .= '<div class="breadcrumb">' . implode(' / ', $breadcrumb) . '</div>';
+    return $output;
+  }
 }

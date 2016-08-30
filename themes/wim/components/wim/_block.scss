@@ -30,6 +30,35 @@
       }
     }
   }
+  &.bean-view-mode-link-title {
+    h2.block-title {
+      padding: 16px 10px;
+      background-color: $brand-primary;
+      color: white;
+      min-height: 80px;
+      margin-bottom: 0;
+      a {
+        color: white;
+      }
+    }
+  }
+  &.bean-view-mode-default {
+    position: relative;
+    &.editorial-image {
+      padding-left: 75px;
+    }
+    h2.block-title {
+      border-top: none;
+      background: none;
+      padding: 10px 0;
+      color: $brand-primary;
+    }
+    .field-type-image {
+      position: absolute;
+      left: 20px;
+      top: 10px;
+    }
+  }
 }
 
 #block-views-agenda-upcoming-agenda {
