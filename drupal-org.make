@@ -16,6 +16,7 @@ projects[context_condition_theme] = 1.0
 projects[colectomy] = 1.0-beta2
 projects[ctools] = 1.10
 projects[date] = 2.9
+projects[elysia_cron] = 2.1
 projects[entity] = 1.7
 projects[entityreference] = 1.1
 projects[features] = 2.10
