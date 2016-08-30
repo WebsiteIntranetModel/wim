@@ -49,4 +49,5 @@ features[variable][] = menu_icons_position
 features[variable][] = menu_icons_use_css
 features[variable][] = views_defaults
 features[views_view][] = administration_content
+features[views_view][] = administration_media
 project path = profiles/wim/modules/features
