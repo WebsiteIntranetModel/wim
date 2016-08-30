@@ -26,6 +26,7 @@ dependencies[] = breakpoints
 dependencies[] = colectomy
 dependencies[] = ctools
 dependencies[] = date_views
+dependencies[] = elysia_cron
 dependencies[] = entity
 dependencies[] = entityreference
 dependencies[] = features
