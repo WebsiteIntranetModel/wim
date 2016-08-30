@@ -39,10 +39,12 @@ projects[picture] = 2.13
 projects[redirect] = 1.0-rc3
 projects[strongarm] = 2.0
 projects[special_menu_items] = 2.0
+projects[token] = 1.6
 projects[userprotect] = 1.2
 projects[views] = 3.14
 projects[views_bootstrap] = 3.1
 projects[views_bulk_operations] = 3.3
+projects[webform] = 4.14
 projects[weight] = 3.1
 projects[wysiwyg] = 2.x-dev
 

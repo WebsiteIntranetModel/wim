@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the WIM Webform feature.
+ */
+
+include_once 'wim_webform.features.inc';
