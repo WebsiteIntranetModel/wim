@@ -694,6 +694,20 @@ function _wim_place_felix_blocks() {
         'format' => 'plain_text',
       ),
     ),
+    'social_media' => array(
+      'region_name' => 'footer',
+      'path' => NULL,
+      'module' => 'menu',
+      'delta' => 'menu-social-media',
+      'detail_path' => NULL,
+      'data' => array(
+        'subject' => st('Follow us'),
+        'config' => array(
+          'bootstrap_layout' => 4,
+          'new_row' => 0,
+        ),
+      ),
+    ),
   );
 
   foreach ($felix_blocks as $felix_block) {

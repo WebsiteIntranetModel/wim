@@ -41,6 +41,7 @@ features[field_base][] = field_promoted
 features[field_base][] = field_publication_date
 features[field_base][] = field_tags
 features[menu_custom][] = menu-meta-menu
+features[menu_custom][] = menu-social-media
 features[menu_custom][] = menu-top-tasks
 features[picture_mapping][] = teaser_responsive
 features[taxonomy][] = tags

@@ -116,6 +116,12 @@ function wim_fixtures_migrate_api() {
           'WIM_File',
         ),
       ),
+      'WIM_SocialMediaMenu' => array(
+        'class_name' => 'SocialMediaMenuMigration',
+        'group_name' => 'WIMMigrate',
+        'file_name' => 'social-media.csv',
+        'menu_name' => 'menu-social-media',
+      ),
       'WIM_Editorial' => array(
         'class_name' => 'EditorialMigration',
         'group_name' => 'WIMMigrate',
