@@ -642,7 +642,7 @@ function _wim_place_felix_blocks() {
       ),
     ),
     'latest_news' => array(
-      'region_name' => 'secondary',
+      'region_name' => 'highlighted',
       'path' => variable_get('site_frontpage'),
       'module' => 'views',
       'delta' => 'news-latest_news',
@@ -650,7 +650,7 @@ function _wim_place_felix_blocks() {
       'data' => array(
         'subject' => '',
         'config' => array(
-          'bootstrap_layout' => 12,
+          'bootstrap_layout' => 4,
           'new_row' => 0,
         ),
       ),

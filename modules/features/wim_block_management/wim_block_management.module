@@ -84,3 +84,16 @@ function wim_block_management_entity_info_alter(&$entity_info) {
     'custom settings' => TRUE,
   );
 }
+
+/**
+ * Implements hook_entity_delete().
+ */
+function wim_block_management_entity_delete($entity, $type) {
+  // Remove all felix blocks when bean block is deleted.
+  if ($type === 'bean' && module_exists('felix')) {
+    db_delete('felix_block')
+      ->condition('module', 'bean')
+      ->condition('delta', $entity->delta)
+      ->execute();
+  }
+}
