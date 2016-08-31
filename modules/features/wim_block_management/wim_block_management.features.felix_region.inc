@@ -17,7 +17,9 @@ function wim_block_management_felix_default_regions() {
     'context' => 'sidewide',
     'block_set' => 'default',
     'data' => array(
-      'hash' => array(),
+      'hash' => array(
+        0 => 'path',
+      ),
     ),
   );
   $regions['content-bottom'] = array(
@@ -28,7 +30,9 @@ function wim_block_management_felix_default_regions() {
     'context' => 'sidewide',
     'block_set' => 'default',
     'data' => array(
-      'hash' => array(),
+      'hash' => array(
+        0 => 'path',
+      ),
     ),
   );
   $regions['footer'] = array(
@@ -63,7 +67,9 @@ function wim_block_management_felix_default_regions() {
     'context' => 'sidewide',
     'block_set' => 'default',
     'data' => array(
-      'hash' => array(),
+      'hash' => array(
+        0 => 'path',
+      ),
     ),
   );
   $regions['secondary'] = array(
