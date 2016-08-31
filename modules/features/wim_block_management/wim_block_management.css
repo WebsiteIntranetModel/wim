@@ -1,0 +1,39 @@
+.tabs_container {
+
+}
+.tabs_container .tabs_heading {
+  margin-top: 1em;
+}
+.tabs_container .tabs_heading ul {
+  margin: 0;
+  padding: 0;
+  margin-bottom: -1px;
+}
+.tabs_container .tabs_heading ul li {
+  display: inline-block;
+}
+.tabs_container .tabs_heading ul li a {
+  padding: .5em 1em;
+  text-decoration: none;
+  color: black;
+  display: block;
+}
+.tabs_container .tabs_heading ul li a.active {
+  background: white;
+  border-top: 1px solid rgba(0,0,0,0.5);
+  border-left: 1px solid rgba(0,0,0,0.5);
+  border-right: 1px solid rgba(0,0,0,0.5);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.tabs_container .tabs_content .tab {
+  display: none;
+}
+.tabs_container .tabs_content .tab.active {
+  background: white;
+  display: block;
+}
+.tabs_container .tabs_content {
+  padding: 1em;
+  border: 1px solid rgba(0,0,0,0.5);
+}
