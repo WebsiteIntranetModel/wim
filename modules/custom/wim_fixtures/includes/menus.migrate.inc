@@ -84,3 +84,51 @@ class TopTasksMenuMigration extends WIMMigration {
   }
 
 }
+
+/**
+ * Class SocialMediaMenuMigration.
+ */
+class SocialMediaMenuMigration extends WIMMigration {
+  public $fileName = '';
+  public $menuName = '';
+
+  /**
+   * Constructor.
+   *
+   * @param array $arguments
+   *   Arguments.
+   */
+  public function __construct(array $arguments) {
+
+    parent::__construct($arguments);
+    $this->fileName = $arguments['file_name'];
+    $this->menuName = $arguments['menu_name'];
+
+    $columns = array(
+      array('mlid', t('Link id')),
+      array('link_title', t('Link title')),
+      array('link_path', t('Link path')),
+    );
+
+    $this->source = new MigrateSourceCSV($this->dataSources . $this->fileName, $columns, array('header_rows' => 1));
+    $this->destination = new MigrateDestinationMenuLinks();
+    $this->map = new MigrateSQLMap($this->machineName, array(
+      'mlid' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'description' => 'ID of destination link',
+      ),
+    ), MigrateDestinationMenuLinks::getKeySchema());
+
+    $this->addSimpleMappings(array(
+      'link_title',
+      'link_path',
+    ));
+
+    $this->addFieldMapping('menu_name')
+      ->defaultValue($this->menuName);
+
+  }
+
+}
