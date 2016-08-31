@@ -1,0 +1,4 @@
+name = WIM SSS
+description = Simple Social Share links for WIM
+package = WIM
+core = 7.x
