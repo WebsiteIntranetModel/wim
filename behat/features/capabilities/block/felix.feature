@@ -27,7 +27,8 @@ Feature: Add blocks via Felix
     And I should see "Footer" in the "Footer"
 
     When I go to "felix-blocks/add?region=primary&path=node&destination=node"
-    Then I click "Test block 1"
+    Then I click "Block"
+    And I click "Test block 1"
     And I fill in "Subject" with "Felix test block"
     And I select "1/2 of page" from "Bootstrap layout"
     And I check the box "New row"
