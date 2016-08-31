@@ -114,7 +114,7 @@ function wim_news_views_default_views() {
   $handler->display->display_options['filters']['field_publication_date_value']['group'] = 1;
   $handler->display->display_options['filters']['field_publication_date_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_publication_date_value']['expose']['operator_id'] = 'field_publication_date_value_op';
-  $handler->display->display_options['filters']['field_publication_date_value']['expose']['label'] = 'From ';
+  $handler->display->display_options['filters']['field_publication_date_value']['expose']['label'] = 'From';
   $handler->display->display_options['filters']['field_publication_date_value']['expose']['operator'] = 'field_publication_date_value_op';
   $handler->display->display_options['filters']['field_publication_date_value']['expose']['identifier'] = 'field_publication_date_value';
   $handler->display->display_options['filters']['field_publication_date_value']['expose']['remember_roles'] = array(
@@ -224,6 +224,7 @@ function wim_news_views_default_views() {
     t('Overview'),
     t('Clear'),
     t('No results'),
+    t('From'),
     t('Publication date (field_publication_date)'),
     t('To'),
     t('Category'),

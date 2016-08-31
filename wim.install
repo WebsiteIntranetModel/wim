@@ -54,6 +54,9 @@ function wim_install() {
 
   // Default protected fields per role.
   _wim_user_protect_roles();
+
+  // Set content types with social share links.
+  _wim_default_sss();
 }
 
 /**
@@ -800,4 +803,21 @@ function _wim_user_protect_roles() {
   }
 
   variable_set('userprotect_role_protections', $settings);
+}
+
+/**
+ * Default settings for social share links for content types.
+ */
+function _wim_default_sss() {
+  $types = array(
+    'agenda',
+    'faq',
+    'news',
+    'page',
+    'product',
+  );
+
+  foreach ($types as $type) {
+    variable_set('wim_sss_node_enabled_' . $type, 1);
+  }
 }

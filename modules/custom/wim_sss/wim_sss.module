@@ -1,0 +1,40 @@
+<?php
+/**
+ * @file
+ * Main file for WIM Simple Social Share.
+ */
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function wim_sss_form_node_type_form_alter(&$form, &$form_state) {
+  form_load_include($form_state, 'forms.inc', 'wim_sss');
+  _wim_sss_process_node_settings_form($form);
+}
+
+/**
+ * Implements hook_node_view().
+ */
+function wim_sss_node_view($node, $view_mode, $language) {
+  if ($view_mode === 'full' && variable_get('wim_sss_node_enabled_' . $node->type, 0)) {
+    $node->content['wim_sss'] = array(
+      '#markup' => theme('wim_sss_links', array('node' => $node)),
+      '#weight' => 10,
+    );
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function wim_sss_theme() {
+  return array(
+    'wim_sss_links' => array(
+    // Wrapper to contain individual social share links.
+      'file' => 'wim_sss.theme.inc',
+      'variables' => array(
+        'node' => NULL,
+      ),
+    ),
+  );
+}
