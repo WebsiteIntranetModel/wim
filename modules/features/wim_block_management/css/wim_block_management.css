@@ -1,6 +1,3 @@
-.tabs_container {
-
-}
 .tabs_container .tabs_heading {
   margin-top: 1em;
 }
@@ -8,6 +5,7 @@
   margin: 0;
   padding: 0;
   margin-bottom: -1px;
+  background: #ebebeb;
 }
 .tabs_container .tabs_heading ul li {
   display: inline-block;
@@ -15,16 +13,21 @@
 .tabs_container .tabs_heading ul li a {
   padding: .5em 1em;
   text-decoration: none;
-  color: black;
   display: block;
+  border: 0;
+  font-size: 15px;
+  font-weight: normal;
+  margin: 0;
+  color: #797979;
 }
 .tabs_container .tabs_heading ul li a.active {
   background: white;
   border-top: 1px solid rgba(0,0,0,0.5);
   border-left: 1px solid rgba(0,0,0,0.5);
   border-right: 1px solid rgba(0,0,0,0.5);
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+  /*border-top-left-radius: 5px;*/
+  /*border-top-right-radius: 5px;*/
+  border-top: 3px solid #0074BD;
 }
 .tabs_container .tabs_content .tab {
   display: none;
