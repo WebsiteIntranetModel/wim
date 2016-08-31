@@ -709,11 +709,11 @@
   content: "";
 }
 
-.fa-twitter-square:before {
+.fa-twitter-square:before, .menu-social-media ul.menu li a[href*="https://twitter.com"]:before {
   content: "";
 }
 
-.fa-facebook-square:before {
+.fa-facebook-square:before, .menu-social-media ul.menu li a[href*="https://www.facebook.com"]:before {
   content: "";
 }
 
@@ -754,7 +754,7 @@
   content: "";
 }
 
-.fa-linkedin-square:before {
+.fa-linkedin-square:before, .menu-social-media ul.menu li a[href*="https://www.linkedin.com"]:before {
   content: "";
 }
 
@@ -9343,6 +9343,37 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
 .main-container .menu-top-tasks .menu-wrapper .menu .dropdown .dropdown-menu li a span img {
   height: 40px;
   width: auto;
+}
+
+.menu-social-media ul.menu {
+  padding-left: 0;
+}
+
+.menu-social-media ul.menu li {
+  list-style: none;
+  display: inline-block;
+}
+
+.menu-social-media ul.menu li a {
+  font-size: 20px;
+}
+
+.menu-social-media ul.menu li a:before {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.menu-social-media ul.menu li a span {
+  display: none;
+  text-indent: -9999px;
+}
+
+.menu-social-media ul.menu li:not(:first-child) {
+  padding-left: 5px;
 }
 
 .menu:not(.navbar-nav) li {
