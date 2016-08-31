@@ -224,6 +224,7 @@ function wim_news_views_default_views() {
     t('Overview'),
     t('Clear'),
     t('No results'),
+    t('From '),
     t('Publication date (field_publication_date)'),
     t('To'),
     t('Category'),
