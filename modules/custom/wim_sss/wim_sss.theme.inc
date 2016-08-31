@@ -80,7 +80,7 @@ function theme_wim_sss_links($variables) {
       'query' => $value['query'],
       'external' => TRUE,
     ));
-    $content['networks'][$name] = '<a href="' . $href . '" title="' . $value['title'] . '" class="' . $value['class'] . '" rel="nofollow" target="_blank"></a>';
+    $content['networks'][$name] = '<a href="' . $href . '" title="' . $value['title'] . '" class="' . $value['class'] . '" rel="nofollow" target="_blank"><span>' . $value['title'] . '</span></a>';
   }
 
   $content['networks'] = array(
