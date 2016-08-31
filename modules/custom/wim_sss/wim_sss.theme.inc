@@ -15,6 +15,12 @@
  */
 function _default_networks(stdClass $node) {
   $url = url('node/' . $node->nid, array('absolute' => TRUE));
+  $teaser = field_view_field('node', $node, 'body', array(
+    'label' => 'hidden',
+    'type' => 'text_summary_or_trimmed',
+    'settings' => array(),
+  ));
+
   return array(
     'facebook' => array(
       'url' => 'http://www.facebook.com/sharer.php',
@@ -42,7 +48,7 @@ function _default_networks(stdClass $node) {
         // Max 200.
         'title' => truncate_utf8($node->title, 200),
         // Max 256.
-        'summary' => '',
+        'summary' => truncate_utf8(strip_tags(render($teaser)), 256),
       ),
       'title' => t('Share this on LinkedIn'),
       'class' => 'fa-linkedin-square',
