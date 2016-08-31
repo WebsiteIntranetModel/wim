@@ -7,4 +7,24 @@
     font-size: 100%;
     font-weight: normal;
   }
+  ul.social {
+    padding-left: 0;
+    li {
+      list-style: none;
+      display: inline-block;
+      a {
+        font-size: 25px;
+        &:before {
+          @include fa-icon;
+        }
+        span {
+          display: none;
+          text-indent: -9999px;
+        }
+      }
+      &:not(:first-child) {
+        padding-left: 5px;
+      }
+    }
+  }
 }
