@@ -5,7 +5,7 @@
       list-style: none;
       display: inline-block;
       a {
-        font-size: 22px;
+        font-size: 20px;
         &:before {
           @include fa-icon;
         }
