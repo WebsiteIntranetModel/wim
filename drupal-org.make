@@ -29,6 +29,7 @@ projects[location] = 3.7
 projects[magic] = 2.2
 projects[menu_block] = 2.7
 projects[menu_icons] = 3.0-beta4
+projects[metatag] = 1.17
 projects[migrate] = 2.8
 projects[module_filter] = 2.0
 projects[nodequeue] = 2.1
