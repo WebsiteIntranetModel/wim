@@ -16,6 +16,12 @@ function wim_core_menu_default_menu_custom() {
     'title' => 'Meta menu links',
     'description' => '',
   );
+  // Exported menu: menu-social-media.
+  $menus['menu-social-media'] = array(
+    'menu_name' => 'menu-social-media',
+    'title' => 'Social media',
+    'description' => '',
+  );
   // Exported menu: menu-top-tasks.
   $menus['menu-top-tasks'] = array(
     'menu_name' => 'menu-top-tasks',
@@ -25,6 +31,7 @@ function wim_core_menu_default_menu_custom() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Meta menu links');
+  t('Social media');
   t('Top tasks');
 
   return $menus;
