@@ -1,6 +1,6 @@
 id, mail, name, password, roles
-1,"user+test1@example.com","cm","cm","content manager, authenticated user"
-2,"user+test2@example.com","ce","ce","content editor, authenticated user"
+1,"user+test1@example.com","content_manager","content_manager","content manager, authenticated user"
+2,"user+test2@example.com","content_editor","content_editor","content editor, authenticated user"
 3,"user+test3@example.com","webmaster","webmaster","webmaster, authenticated user"
 4,"user+test4@example.com","klark_kent","klark_kent","administrator"
 5,"user+test5@example.com","test","test","authenticated user"

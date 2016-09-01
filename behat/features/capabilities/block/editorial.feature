@@ -5,7 +5,7 @@ Feature: Add Editorial blocks
   Goal/desire: I want to create Editorial blocks on the site
 
   Scenario: Successfully create Editorial block
-    Given I am logged in as a "content edtor"
+    Given I am logged in as a "content editor"
     And I am on "block/add/editorial"
     When I fill in the following:
       | Label | TEST EDITORIAL       |
