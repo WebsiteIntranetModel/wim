@@ -692,7 +692,7 @@ function _wim_password_policy_install() {
 function _wim_password_policy_default_profile() {
   $profiles = array();
 
-  $cm = user_role_load_by_name('content moderator');
+  $cm = user_role_load_by_name('content manager');
   // Exported profile: default.
   $profiles['default'] = array(
     'name' => 'default',
