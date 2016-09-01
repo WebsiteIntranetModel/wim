@@ -94,11 +94,23 @@ function _wim_set_up_roles_and_permissions() {
     ->fields(array('uid' => 1, 'rid' => $admin_role->rid))
     ->execute();
 
-  // Create a role for Content Moderator.
+  // Create a role for Webmaster.
+  $wm_role = new stdClass();
+  $wm_role->name = st('webmaster');
+  $wm_role->weight = $weight++;
+  user_role_save($wm_role);
+
+  // Create a role for Content Manager.
   $cm_role = new stdClass();
-  $cm_role->name = st('content moderator');
+  $cm_role->name = st('content manager');
   $cm_role->weight = $weight++;
   user_role_save($cm_role);
+
+  // Create a role for Content Editor.
+  $ce_role = new stdClass();
+  $ce_role->name = st('content editor');
+  $ce_role->weight = $weight++;
+  user_role_save($ce_role);
 
   // Permissions.
   // Authenticated role.
@@ -116,7 +128,56 @@ function _wim_set_up_roles_and_permissions() {
   // Administrator role.
   user_role_grant_permissions($admin_role->rid, array_keys(module_invoke_all('permission')));
 
-  // Content Moderator role.
+  // Webmaster role.
+  $wm_permissions = array(
+    'access administration menu',
+    'access administration pages',
+    'access content overview',
+    'access user profiles',
+    'administer blocks',
+    'administer menu',
+    'administer taxonomy',
+    'administer redirects',
+    'manage felix blocks',
+    'access contextual links',
+    'administer custom lists',
+    'manipulate queues',
+    'view the administration theme',
+    // Node access.
+    'administer nodes',
+    'create news content',
+    'create page content',
+    'create product content',
+    'create faq content',
+    'create agenda content',
+    'create subject_page content',
+    'delete own news content',
+    'delete own page content',
+    'delete own product content',
+    'delete own faq content',
+    'delete own agenda content',
+    'delete own subject_page content',
+    'edit own news content',
+    'edit own page content',
+    'edit own product content',
+    'edit own faq content',
+    'edit own agenda content',
+    'edit own subject_page content',
+    'use text format filtered_html',
+    'use text format full_html',
+    'bypass node access',
+    // Bean.
+    'view bean page',
+    'access bean overview',
+    'administer beans',
+    'edit bean view mode',
+    // Webform.
+    'access all webform results',
+    'edit all webform submissions',
+    'edit webform components',
+  );
+
+  // Content Manager role.
   $cm_permissions = array(
     'access administration menu',
     'access administration pages',
@@ -177,13 +238,59 @@ function _wim_set_up_roles_and_permissions() {
     'edit webform components',
   );
 
+  // Content Editor role.
+  $ce_permissions = array(
+    'access administration menu',
+    'access administration pages',
+    'access content overview',
+    'access user profiles',
+    'access contextual links',
+    // Node access.
+    'administer nodes',
+    'create news content',
+    'create page content',
+    'create product content',
+    'create faq content',
+    'create agenda content',
+    'create subject_page content',
+    'delete any news content',
+    'delete any page content',
+    'delete any product content',
+    'delete any faq content',
+    'delete any agenda content',
+    'delete any subject_page content',
+    'delete own news content',
+    'delete own page content',
+    'delete own product content',
+    'delete own faq content',
+    'delete own agenda content',
+    'delete own subject_page content',
+    'edit any news content',
+    'edit any page content',
+    'edit any product content',
+    'edit any faq content',
+    'edit any agenda content',
+    'edit any subject_page content',
+    'edit own news content',
+    'edit own page content',
+    'edit own product content',
+    'edit own faq content',
+    'edit own agenda content',
+    'edit own subject_page content',
+    'use text format filtered_html',
+    'use text format full_html',
+    'bypass node access',
+  );
+
   // Access to the taxonomy vocabularies.
   foreach (taxonomy_get_vocabularies() as $vocabulary) {
-    $cm_permissions[] = "delete terms in $vocabulary->vid";
-    $cm_permissions[] = "edit terms in $vocabulary->vid";
+    $ce_permissions[] = "delete terms in $vocabulary->vid";
+    $ce_permissions[] = "edit terms in $vocabulary->vid";
   }
 
+  user_role_grant_permissions($ce_role->rid, $ce_permissions);
   user_role_grant_permissions($cm_role->rid, $cm_permissions);
+  user_role_grant_permissions($wm_role->rid, $wm_permissions);
 }
 
 /**
