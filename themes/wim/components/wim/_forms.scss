@@ -49,6 +49,13 @@
       display: inline-block;
     }
   }
+  .webform-component-time {
+    .form-item {
+      &:last-child {
+        padding-left: 5px;
+      }
+    }
+  }
 }
 
 .webform-progressbar-outer {

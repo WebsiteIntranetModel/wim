@@ -9144,6 +9144,10 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   display: inline-block;
 }
 
+.webform-client-form .webform-component-time .form-item:last-child {
+  padding-left: 5px;
+}
+
 .webform-progressbar-outer {
   margin: 1em -1px 3em;
 }
