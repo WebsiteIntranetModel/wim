@@ -5,7 +5,7 @@ Feature: Edit Agenda
   Goal/desire: I want to edit Agenda
 
   Scenario: Successfully edit Agenda
-    Given I am logged in as a "content moderator"
+    Given I am logged in as a "content editor"
     When I go to "admin/content"
     And I select "Agenda" from "Type"
     And I press "Apply"

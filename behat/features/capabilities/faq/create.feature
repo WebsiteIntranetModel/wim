@@ -5,7 +5,7 @@ Feature: Create FAQ
   Goal/desire: I want to create FAQ
 
   Scenario: Successfully create FAQ
-    Given I am logged in as a "content moderator"
+    Given I am logged in as a "content editor"
     And I am on "node/add/faq"
     Then I should not see "No access (403)"
     When I fill in the following:
@@ -25,7 +25,7 @@ Feature: Create FAQ
     Then I should see "No access (403)"
 
   Scenario: Successfully set category for FAQ
-    Given I am logged in as a "content moderator"
+    Given I am logged in as a "content editor"
     And faq_categories terms:
       | name          |
       | FAQ-CATEGORY1 |

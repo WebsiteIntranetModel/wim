@@ -5,7 +5,7 @@ Feature: Create Product
   Goal/desire: I want to create Products
 
   Scenario: Successfully create product
-    Given I am logged in as a "content moderator"
+    Given I am logged in as a "content editor"
     And I am on "node/add/product"
     Then I should not see "No access (403)"
     And I should see "Image"

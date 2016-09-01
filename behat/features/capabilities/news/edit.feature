@@ -8,7 +8,7 @@ Feature: Edit News
     Given "news" content:
       | title       | body          | field_publication_date | field_tags | field_promoted | status |
       | NEWS TITLE1 | BODY-CONTENT1 | 2026-06-27             | Tag1       | 1              | 1      |
-    Given I am logged in as a "content moderator"
+    Given I am logged in as a "content editor"
     When I go to "admin/content"
     And I select "News" from "Type"
     And I press "Apply"

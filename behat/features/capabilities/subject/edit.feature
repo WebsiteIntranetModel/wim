@@ -8,7 +8,7 @@ Feature: Edit subject page
     Given "Subject page" content:
       | title       | body          | Date       | author |
       | SUBJECT-ONE | BODY-CONTENT1 | 06/27/2026 | cm     |
-    Given I am logged in as a "content moderator"
+    Given I am logged in as a "content editor"
     When I go to "admin/content"
     And I select "Subject page" from "Type"
     And I press "Apply"

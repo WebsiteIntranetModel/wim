@@ -8,7 +8,7 @@ Feature: Edit basic page
     Given "page" content:
       | title     | body          | Date       |
       | TITLE-ONE | BODY-CONTENT1 | 06/27/2026 |
-    Given I am logged in as a "content moderator"
+    Given I am logged in as a "content editor"
     When I go to "admin/content"
     And I select "Basic page" from "Type"
     And I press "Apply"
