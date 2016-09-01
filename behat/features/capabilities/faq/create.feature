@@ -19,6 +19,7 @@ Feature: Create FAQ
     Then I should see the success message "FAQ TEST FAQ QUESTION has been created."
     And I should see the heading "TEST FAQ QUESTION"
     And I should see "ANSWER"
+    And I should see "Share"
 
     Given I am an anonymous user
     And I visit "node/add/faq"

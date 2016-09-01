@@ -19,6 +19,7 @@ Feature: Create subject page
     And I should see the success message "Subject page This is a test subject page has been created."
     And I should not see "27 June 2026"
     And I should see "Body description text"
+    And I should not see "Share"
 
     Given I am an anonymous user
     And I visit "node/add/subject-page"
