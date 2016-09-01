@@ -28,6 +28,7 @@ Feature: Create Agenda
     Then I should see the success message "Agenda TEST AGENDA has been created."
     And I should see the heading "TEST AGENDA"
     And I should see "TEST AGENDA BODY"
+    And I should see "Share"
 
     Given I am an anonymous user
     And I visit "node/add/agenda"

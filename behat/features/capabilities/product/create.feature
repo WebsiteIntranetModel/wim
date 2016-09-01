@@ -21,6 +21,7 @@ Feature: Create Product
     Then I should see the success message "Product TEST PRODUCT has been created."
     And I should see the heading "TEST PRODUCT"
     And I should see "BODY CONTENT"
+    And I should see "Share"
 
     Given I am an anonymous user
     And I visit "node/add/product"
