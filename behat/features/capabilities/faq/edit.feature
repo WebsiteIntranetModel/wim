@@ -5,7 +5,7 @@ Feature: Edit FAQ
   Goal/desire: I want to edit FAQ
 
   Scenario: Successfully edit FAQ
-    Given I am logged in as a "content moderator"
+    Given I am logged in as a "content manager"
     When I go to "admin/content"
     And I select "FAQ" from "Type"
     And I press "Apply"

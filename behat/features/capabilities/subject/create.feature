@@ -5,7 +5,7 @@ Feature: Create subject page
   Goal/desire: Create subject page
 
   Scenario: Successfully create subject page
-    Given I am logged in as a "content editor"
+    Given I am logged in as a "content manager"
     And I am at "node/add/subject-page"
     When I fill in the following:
       | Title | This is a test subject page |

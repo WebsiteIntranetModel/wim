@@ -26,7 +26,7 @@ Feature: FAQ overview
     When I click "Security"
     Then I should not see "Question 2"
 
-    Given I am logged in as a "content moderator"
+    Given I am logged in as a "content manager"
     When I go to "admin/content"
     And I select "FAQ" from "Type"
     And I press "Apply"
