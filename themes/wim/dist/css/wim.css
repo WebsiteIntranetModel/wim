@@ -9118,6 +9118,10 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.1);
 }
 
+.form-item .description {
+  margin: 5px 0;
+}
+
 .webform-client-form .form-managed-file .form-file {
   vertical-align: top;
   margin-bottom: 10px;
@@ -9129,6 +9133,19 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
 
 .webform-client-form .webform-container-inline div.form-item {
   display: block;
+}
+
+.webform-client-form .webform-component-number label {
+  display: block;
+}
+
+.webform-client-form .webform-component-number .form-control {
+  width: auto;
+  display: inline-block;
+}
+
+.webform-progressbar-outer {
+  margin: 1em -1px 3em;
 }
 
 .main-container .block {
@@ -10564,9 +10581,7 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   .webform-client-form .webform-container-inline div.form-item{
     display: inline-block;
     margin-bottom: 0;
-  }
-  .webform-client-form .webform-container-inline div.form-item:not(:first-child){
-    padding-left: 5px;
+    padding-right: 5px;
   }
   .main-container .menu-top-tasks .menu-wrapper{
     min-height: 170px;
