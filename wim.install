@@ -798,6 +798,7 @@ function _wim_permissions($role) {
       // Node access.
       'bypass node access',
       'view own unpublished content',
+      'publishing options tab',
       // News.
       'create news content',
       'delete any news content',
@@ -892,6 +893,7 @@ function _wim_permissions($role) {
       'edit meta tags',
       'manipulate all queues',
       // Node access.
+      'publishing options tab',
       // News.
       'create news content',
       'delete any news content',
@@ -966,6 +968,7 @@ function _wim_permissions($role) {
       'revert revisions',
       'administer redirects',
       // Node access.
+      'publishing options tab',
       // News.
       'create news content',
       'edit own news content',
