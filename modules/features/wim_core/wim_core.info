@@ -24,6 +24,7 @@ dependencies[] = strongarm
 dependencies[] = taxonomy
 dependencies[] = text
 dependencies[] = views
+dependencies[] = views_ui
 features[breakpoint_group][] = wim
 features[ctools][] = breakpoints:default_breakpoint_group:1
 features[ctools][] = elysia_cron:default_elysia_cron_rules:1
