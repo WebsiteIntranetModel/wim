@@ -98,6 +98,10 @@ function _wim_set_up_roles_and_permissions() {
     user_role_grant_permissions($admin_role->rid, array_keys(module_invoke_all('permission')));
   }
 
+  // Autologout config for administrator.
+  variable_set('autologout_role_' . $admin_role->rid, 1);
+  variable_set('autologout_role_' . $admin_role->rid . '_timeout', 900);
+
   // List of custom roles for WIM.
   $custom_roles = array(
     'webmaster',
@@ -111,6 +115,14 @@ function _wim_set_up_roles_and_permissions() {
     $role->name = st($role_name);
     $role->weight = $weight++;
     user_role_save($role);
+
+    // Set autologout.
+    $timeout = 14400;
+    if ($role_name === 'webmaster') {
+      $timeout = 3600;
+    }
+    variable_set('autologout_role_' . $role->rid, 1);
+    variable_set('autologout_role_' . $role->rid . '_timeout', $timeout);
 
     // Set permissions.
     if (isset($role->rid) && $role->rid) {

@@ -56,7 +56,7 @@ Note that the docker projects have to be somewhere under your home directory in 
 
     Add demo content. In order to remove demo content add _remove_ parameter.
     ```
-    docker exec -it wim_web bash /root/dev-scripts/install/democontent.sh
+    docker exec -it wim_web bash /root/dev-scripts/democontent.sh
     ```
 
 7. Running into trouble?
