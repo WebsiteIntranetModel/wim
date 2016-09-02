@@ -14,8 +14,6 @@ Feature: Content editor role
     Then I should see "No access (403)"
     When I am on "admin/people/permissions"
     Then I should see "No access (403)"
-    When I am on "admin/structure/views"
-    Then I should see "No access"
     When I am on "admin/modules"
     Then I should see "No access (403)"
     When I am on "admin/config"
