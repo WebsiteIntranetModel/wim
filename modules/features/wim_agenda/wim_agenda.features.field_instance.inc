@@ -56,7 +56,7 @@ function wim_agenda_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 4,
+      'weight' => 1,
     ),
   );
 
@@ -133,7 +133,7 @@ function wim_agenda_field_default_field_instances() {
         'year_range' => '-0:+3',
       ),
       'type' => 'date_popup',
-      'weight' => 5,
+      'weight' => 3,
     ),
   );
 
@@ -204,7 +204,7 @@ function wim_agenda_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'image_image',
-      'weight' => 3,
+      'weight' => 2,
     ),
   );
 
@@ -247,7 +247,7 @@ function wim_agenda_field_default_field_instances() {
       'module' => 'location_cck',
       'settings' => array(),
       'type' => 'location',
-      'weight' => 7,
+      'weight' => 5,
     ),
   );
 
@@ -295,7 +295,7 @@ function wim_agenda_field_default_field_instances() {
         'display_label' => 1,
       ),
       'type' => 'options_onoff',
-      'weight' => 10,
+      'weight' => 7,
     ),
   );
 
@@ -340,7 +340,7 @@ function wim_agenda_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 8,
+      'weight' => 6,
     ),
   );
 

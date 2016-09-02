@@ -15,8 +15,8 @@ Feature: Edit accounts
     And I press "Log in"
     Then I should see "klark_kent"
     When I go to "/admin/people"
-    Then I should see the text "edit" in the "cm" row
-    And I click "edit" in the "cm" row
+    Then I should see the text "edit" in the "content_manager" row
+    And I click "edit" in the "content_manager" row
     Then I should not see "No access (403)"
 
   Scenario: Check if admin can block users

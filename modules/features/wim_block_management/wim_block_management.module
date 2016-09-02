@@ -84,3 +84,28 @@ function wim_block_management_entity_info_alter(&$entity_info) {
     'custom settings' => TRUE,
   );
 }
+
+/**
+ * Implements hook_entity_delete().
+ */
+function wim_block_management_entity_delete($entity, $type) {
+  // Remove all felix blocks when bean block is deleted.
+  if ($type === 'bean' && module_exists('felix')) {
+    db_delete('felix_block')
+      ->condition('module', 'bean')
+      ->condition('delta', $entity->delta)
+      ->execute();
+  }
+}
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function wim_block_management_preprocess_page(&$variables) {
+  // Add extra js and css for the Felix add page.
+  if (current_path() === 'felix-blocks/add' && !isset($_GET['token'])) {
+    $module_path = drupal_get_path('module', 'wim_block_management');
+    drupal_add_js($module_path . '/js/wim_block_management.js');
+    drupal_add_css($module_path . '/css/wim_block_management.css');
+  }
+}

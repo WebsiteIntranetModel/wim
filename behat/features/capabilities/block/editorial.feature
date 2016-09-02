@@ -4,8 +4,8 @@ Feature: Add Editorial blocks
   Role: As a CM
   Goal/desire: I want to create Editorial blocks on the site
 
-  Scenario: Successfully create Editorial block
-    Given I am logged in as a "content moderator"
+  Scenario: CM Successfully create Editorial block
+    Given I am logged in as a "content manager"
     And I am on "block/add/editorial"
     When I fill in the following:
       | Label | TEST EDITORIAL       |
@@ -17,8 +17,20 @@ Feature: Add Editorial blocks
     And I press "Save"
     Then I should see the success message "Editorial TEST EDITORIAL TITLE has been created."
 
+  Scenario: CE Successfully create Editorial block
+    Given I am logged in as a "content manager"
+    And I am on "block/add/editorial"
+    When I fill in the following:
+      | Label | TEST EDITORIAL       |
+      | Title | TEST EDITORIAL TITLE |
+      | URL   | <front>              |
+    And I fill in wysiwyg on field Body with "TEST EDITORIAL BODY"
+    And I attach the file "/fixtures/images/drupal-icon.png" to "Image"
+    And I press "Save"
+    Then I should see the success message "Editorial TEST EDITORIAL TITLE has been created."
+
   Scenario: Successfully add editorial block with view mode via Felix
-    Given I am logged in as a "content moderator"
+    Given I am logged in as a "content manager"
     And I am on "felix-blocks/add?region=primary&path=node&destination=node"
     When I click "Editorial Test label 1"
     Then I select "Title with link" from "View mode"

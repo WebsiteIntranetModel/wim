@@ -324,8 +324,8 @@ function atos_esuite_map_node_product(stdClass $node, DOMDocument $documentDOM, 
 
   // Description.
   $description = $xpath->query('/result/beschrijving')->item(0)->nodeValue;
-  $body = '<h2>**' . t('Beschrijving') . '</h2>' . $description;
-  $summary = $description;
+  $body = $description;
+  $summary = truncate_utf8($description, 250);
 
   // Helper array to map xml tags to fields in node.
   $mapping = array(
@@ -515,6 +515,7 @@ function atos_esuite_get_term_tid($term_name) {
  *   Set of arrays, key 2 -  url, key 3 - title. Empty array if fail.
  */
 function _extract_urls($input) {
+  $input = strip_tags($input, '<a>');
   if (preg_match_all('/<a\s[^>]*href=(\"??)([^\" >]*?)\\1[^>]*>(.*)<\/a>/siU', $input, $matches, PREG_SET_ORDER)) {
     return $matches;
   }

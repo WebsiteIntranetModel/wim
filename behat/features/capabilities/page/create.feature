@@ -5,7 +5,7 @@ Feature: Create basic page
   Goal/desire: Create basic page
 
   Scenario: Successfully create page
-    Given I am logged in as a "content moderator"
+    Given I am logged in as a "content editor"
     And I am at "node/add/page"
     When I fill in the following:
       | Title | This is a test basic page |
@@ -20,6 +20,9 @@ Feature: Create basic page
     And I press "Save"
     And I should see the success message "Basic page This is a test basic page has been created."
     And I should see "Body description text"
+    And I should see "Share"
+
+    Given I am logged in as a "content manager"
     And I am at "admin/structure/taxonomy/tags"
     Then I should see "edit" in the "BSCPGTAG" row
     Then I should see "edit" in the "BSCPGTEST" row

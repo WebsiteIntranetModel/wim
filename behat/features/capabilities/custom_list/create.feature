@@ -5,7 +5,7 @@ Feature: Create Custom List
   Goal/desire: I want to create a Custom List
 
   Scenario: Successfully create a Custom List block
-    Given I am logged in as a "content moderator"
+    Given I am logged in as a "content manager"
     And I am on "admin/structure/lists/add"
     Then I should not see "No access (403)"
     When I fill in the following:

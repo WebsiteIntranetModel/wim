@@ -27,9 +27,9 @@ Feature: Force password change
     Then I should see "klark_kent"
     When I go to "admin/config/people/password_policy/password_change"
     Then I should see "Force users in the following roles to change their password"
-    And I check the box "content moderator"
+    And I check the box "content manager"
     Then I press "Save changes"
-    Then I should see "Users in the following roles will be required to immediately change their password: content moderator"
+    Then I should see "Users in the following roles will be required to immediately change their password: content manager"
 
     Given I am an anonymous user
     And I am on the homepage

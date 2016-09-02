@@ -29,8 +29,8 @@ function wim_breadcrumb_hansel_default() {
         'handler' => 'url argument',
         'arguments' => array(),
         'children' => array(
-          0 => 25,
-          1 => 29,
+          0 => 3,
+          1 => 6,
         ),
       ),
       2 => array(
@@ -53,7 +53,7 @@ function wim_breadcrumb_hansel_default() {
         'handler' => 'node type',
         'arguments' => array(),
         'children' => array(
-          0 => 27,
+          0 => 5,
         ),
       ),
       4 => array(
@@ -66,7 +66,7 @@ function wim_breadcrumb_hansel_default() {
         'handler' => 'url argument',
         'arguments' => array(),
         'children' => array(
-          0 => 26,
+          0 => 4,
         ),
       ),
       5 => array(
@@ -79,8 +79,8 @@ function wim_breadcrumb_hansel_default() {
         'handler' => 'url argument',
         'arguments' => array(),
         'children' => array(
-          0 => 28,
-          1 => 31,
+          0 => 2,
+          1 => 8,
         ),
       ),
       6 => array(
@@ -102,7 +102,7 @@ function wim_breadcrumb_hansel_default() {
           'cs' => 0,
         ),
         'children' => array(
-          0 => 30,
+          0 => 7,
         ),
       ),
       7 => array(

@@ -6,9 +6,9 @@ Feature: Edit subject page
 
   Scenario: As a CM I should be able to successfully edit subject page
     Given "Subject page" content:
-      | title       | body          | Date       | author |
-      | SUBJECT-ONE | BODY-CONTENT1 | 06/27/2026 | cm     |
-    Given I am logged in as a "content moderator"
+      | title       | body          | Date       | author          |
+      | SUBJECT-ONE | BODY-CONTENT1 | 06/27/2026 | content_manager |
+    Given I am logged in as a "content manager"
     When I go to "admin/content"
     And I select "Subject page" from "Type"
     And I press "Apply"

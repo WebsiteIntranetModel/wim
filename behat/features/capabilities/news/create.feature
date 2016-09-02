@@ -5,7 +5,7 @@ Feature: Create News
   Goal/desire: I want to create News
 
   Scenario: Successfully create news
-    Given I am logged in as a "content moderator"
+    Given I am logged in as a "content editor"
     And I am on "node/add/news"
     Then I should not see "No access (403)"
     And I click "Edit summary"
@@ -28,13 +28,14 @@ Feature: Create News
     And I should see "30 June 2016"
     And I should see an ".field-name-field-image img" element
     And I should see "pdf-file.pdf"
+    And I should see "Share"
 
     Given I am an anonymous user
     And I visit "node/add/news"
     Then I should see the heading "No access (403)"
 
   Scenario: Successfully set category for news
-    Given I am logged in as a "content moderator"
+    Given I am logged in as a "content editor"
     And news_categories terms:
       | name      |
       | CATEGORY1 |

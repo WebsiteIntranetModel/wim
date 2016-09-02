@@ -5,7 +5,7 @@ Feature: Redirect pages
   Goal/desire: View redirected page
 
   Scenario: Add redirect
-    Given I am logged in as a "content moderator"
+    Given I am logged in as a "content manager"
     When I go to "node/444"
     Then I should see "Not Found (404)"
     And I should see the link "Add URL redirect from this page to another location"
