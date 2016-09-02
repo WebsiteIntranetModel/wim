@@ -8,6 +8,12 @@
   box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.1);
 }
 
+.form-item {
+  .description {
+    margin: 5px 0;
+  }
+}
+
 .webform-client-form {
   .form-managed-file {
     .form-file {
@@ -30,10 +36,28 @@
       @include MQ($screen-tablet) {
         display: inline-block;
         margin-bottom: 0;
-        &:not(:first-child) {
-          padding-left: 5px;
-        }
+        padding-right: 5px;
       }
     }
   }
+  .webform-component-number {
+    label {
+      display: block;
+    }
+    .form-control {
+      width: auto;
+      display: inline-block;
+    }
+  }
+  .webform-component-time {
+    .form-item {
+      &:last-child {
+        padding-left: 5px;
+      }
+    }
+  }
+}
+
+.webform-progressbar-outer {
+  margin: 1em -1px 3em;
 }
