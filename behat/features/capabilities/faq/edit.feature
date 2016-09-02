@@ -20,7 +20,7 @@ Feature: Edit FAQ
     And I press "Save"
     Then I should see "FAQ Question 1 Edited has been updated."
     Then I click "Question 1 Edited" in the "Question 1 Edited" row
-    And I should see the heading "Question 1 Edited"
+    And I should see "Question 1 Edited"
     And I should see "ANSWER 1 Edited"
     And I should see "ADDITIONAL INFO 1 Edited"
     And I should not see the heading "Question 1"
