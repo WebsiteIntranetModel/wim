@@ -13,6 +13,7 @@ function wim_faq_metatag_export_default() {
   // Exported Metatag config instance: node:faq.
   $config['node:faq'] = array(
     'instance' => 'node:faq',
+    'disabled' => FALSE,
     'config' => array(
       'title' => array(
         'value' => '[node:title] | [site:name]',
