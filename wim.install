@@ -848,6 +848,14 @@ function _wim_permissions($role) {
       'access all webform results',
       'edit all webform submissions',
       'edit webform components',
+      'access all webform results',
+      'edit all webform submissions',
+      'edit webform components',
+      'create webform content',
+      'delete any webform content',
+      'delete own webform content',
+      'edit any webform content',
+      'edit own webform content',
       // Taxonomy.
       'administer taxonomy',
       // User.
@@ -932,6 +940,11 @@ function _wim_permissions($role) {
       'access all webform results',
       'edit all webform submissions',
       'edit webform components',
+      'create webform content',
+      'delete any webform content',
+      'delete own webform content',
+      'edit any webform content',
+      'edit own webform content',
       // Taxonomy.
       'administer taxonomy',
       // User.

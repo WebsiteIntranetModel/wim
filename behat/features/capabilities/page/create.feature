@@ -5,7 +5,7 @@ Feature: Create basic page
   Goal/desire: Create basic page
 
   Scenario: Successfully create page
-    Given I am logged in as a "content moderator"
+    Given I am logged in as a "content editor"
     And I am at "node/add/page"
     When I fill in the following:
       | Title | This is a test basic page |

@@ -5,7 +5,7 @@ Feature: Create form on site
   Goal/desire: Create forms
 
   Scenario: Successfully create webforms
-    Given I am logged in as a "content moderator"
+    Given I am logged in as a "content manager"
     And I am at "node/add/webform"
     When I fill in the following:
       | Title | Test Webform |

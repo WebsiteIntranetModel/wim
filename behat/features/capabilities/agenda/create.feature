@@ -5,7 +5,7 @@ Feature: Create Agenda
   Goal/desire: I want to create Agenda
 
   Scenario: Successfully create Agenda
-    Given I am logged in as a "content moderator"
+    Given I am logged in as a "content editor"
     And I am on "node/add/agenda"
     Then I should not see "No access (403)"
     When I fill in the following:

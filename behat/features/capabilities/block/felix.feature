@@ -5,7 +5,7 @@ Feature: Add blocks via Felix
   Goal/desire: I want to add block on the site
 
   Scenario: Successfully add block
-    Given I am logged in as a "content moderator"
+    Given I am logged in as a "content manager"
     When I am on the homepage
 
     #Sidebar first

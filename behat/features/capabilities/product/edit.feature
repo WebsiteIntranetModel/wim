@@ -8,7 +8,7 @@ Feature: Edit Product
     Given "product" content:
       | title          | body          | Date       | field_tags | field_promoted | status |
       | PRODUCT TITLE1 | BODY-CONTENT1 | 06/27/2026 | Tag1       | 1              | 1      |
-    Given I am logged in as a "content moderator"
+    Given I am logged in as a "content manager"
     When I go to "admin/content"
     And I select "Product" from "Type"
     And I press "Apply"
