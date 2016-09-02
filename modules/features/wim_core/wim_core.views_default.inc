@@ -451,26 +451,23 @@ function wim_core_views_default_views() {
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['pager']['options']['id'] = '0';
   $handler->display->display_options['pager']['options']['quantity'] = '9';
+  $handler->display->display_options['pager']['options']['expose']['items_per_page'] = TRUE;
+  $handler->display->display_options['pager']['options']['expose']['items_per_page_options'] = '5, 10, 50, 100, 150';
   $handler->display->display_options['style_plugin'] = 'table';
   $handler->display->display_options['style_options']['columns'] = array(
     'views_bulk_operations' => 'views_bulk_operations',
-    'filename' => 'filename',
     'filemime' => 'type',
     'type' => 'type',
+    'filename' => 'filename',
+    'filesize' => 'filesize',
     'timestamp' => 'timestamp',
     'usage' => 'usage',
+    'name' => 'name',
     'edit' => 'edit',
   );
   $handler->display->display_options['style_options']['default'] = '-1';
   $handler->display->display_options['style_options']['info'] = array(
     'views_bulk_operations' => array(
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'filename' => array(
-      'sortable' => 0,
-      'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
@@ -483,21 +480,42 @@ function wim_core_views_default_views() {
       'empty_column' => 0,
     ),
     'type' => array(
-      'sortable' => 0,
+      'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => ' ',
       'empty_column' => 0,
     ),
+    'filename' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'filesize' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
     'timestamp' => array(
-      'sortable' => 0,
+      'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
     ),
     'usage' => array(
-      'sortable' => 0,
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'name' => array(
+      'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
@@ -583,6 +601,135 @@ function wim_core_views_default_views() {
   $handler->display->display_options['fields']['edit']['label'] = '';
   $handler->display->display_options['fields']['edit']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['edit']['text'] = 'Edit';
+  /* Filter criterion: File: Name */
+  $handler->display->display_options['filters']['filename']['id'] = 'filename';
+  $handler->display->display_options['filters']['filename']['table'] = 'file_managed';
+  $handler->display->display_options['filters']['filename']['field'] = 'filename';
+  $handler->display->display_options['filters']['filename']['operator'] = 'contains';
+  $handler->display->display_options['filters']['filename']['group'] = 1;
+  $handler->display->display_options['filters']['filename']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['filename']['expose']['operator_id'] = 'filename_op';
+  $handler->display->display_options['filters']['filename']['expose']['label'] = 'Name';
+  $handler->display->display_options['filters']['filename']['expose']['operator'] = 'filename_op';
+  $handler->display->display_options['filters']['filename']['expose']['identifier'] = 'filename';
+  $handler->display->display_options['filters']['filename']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+    6 => 0,
+  );
+  /* Filter criterion: File: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'file_managed';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'all' => 'all',
+    'audio' => 'audio',
+    'document' => 'document',
+    'image' => 'image',
+    'video' => 'video',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  $handler->display->display_options['filters']['type']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['type']['expose']['operator_id'] = 'type_op';
+  $handler->display->display_options['filters']['type']['expose']['label'] = 'Type';
+  $handler->display->display_options['filters']['type']['expose']['operator'] = 'type_op';
+  $handler->display->display_options['filters']['type']['expose']['identifier'] = 'type';
+  $handler->display->display_options['filters']['type']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+    6 => 0,
+  );
+  $handler->display->display_options['filters']['type']['is_grouped'] = TRUE;
+  $handler->display->display_options['filters']['type']['group_info']['label'] = 'Type';
+  $handler->display->display_options['filters']['type']['group_info']['identifier'] = 'type';
+  $handler->display->display_options['filters']['type']['group_info']['optional'] = FALSE;
+  $handler->display->display_options['filters']['type']['group_info']['default_group'] = '1';
+  $handler->display->display_options['filters']['type']['group_info']['group_items'] = array(
+    1 => array(
+      'title' => 'Any',
+      'operator' => 'in',
+      'value' => array(
+        'audio' => 'audio',
+        'document' => 'document',
+        'image' => 'image',
+        'video' => 'video',
+        'all' => 0,
+      ),
+    ),
+    2 => array(
+      'title' => 'Audio',
+      'operator' => 'in',
+      'value' => array(
+        'audio' => 'audio',
+        'all' => 0,
+        'document' => 0,
+        'image' => 0,
+        'video' => 0,
+      ),
+    ),
+    3 => array(
+      'title' => 'Document',
+      'operator' => 'in',
+      'value' => array(
+        'document' => 'document',
+        'all' => 0,
+        'audio' => 0,
+        'image' => 0,
+        'video' => 0,
+      ),
+    ),
+    4 => array(
+      'title' => 'Image',
+      'operator' => 'in',
+      'value' => array(
+        'image' => 'image',
+        'all' => 0,
+        'audio' => 0,
+        'document' => 0,
+        'video' => 0,
+      ),
+    ),
+    5 => array(
+      'title' => 'Video',
+      'operator' => 'in',
+      'value' => array(
+        'video' => 'video',
+        'all' => 0,
+        'audio' => 0,
+        'document' => 0,
+        'image' => 0,
+      ),
+    ),
+  );
+  /* Filter criterion: Date: Date (file_managed) */
+  $handler->display->display_options['filters']['date_filter']['id'] = 'date_filter';
+  $handler->display->display_options['filters']['date_filter']['table'] = 'file_managed';
+  $handler->display->display_options['filters']['date_filter']['field'] = 'date_filter';
+  $handler->display->display_options['filters']['date_filter']['operator'] = 'between';
+  $handler->display->display_options['filters']['date_filter']['group'] = 1;
+  $handler->display->display_options['filters']['date_filter']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['date_filter']['expose']['operator_id'] = 'date_filter_op';
+  $handler->display->display_options['filters']['date_filter']['expose']['operator'] = 'date_filter_op';
+  $handler->display->display_options['filters']['date_filter']['expose']['identifier'] = 'date';
+  $handler->display->display_options['filters']['date_filter']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+    6 => 0,
+  );
+  $handler->display->display_options['filters']['date_filter']['form_type'] = 'date_popup';
+  $handler->display->display_options['filters']['date_filter']['year_range'] = '-3:+1';
+  $handler->display->display_options['filters']['date_filter']['date_fields'] = array(
+    'file_managed.timestamp' => 'file_managed.timestamp',
+  );
 
   /* Display: System */
   $handler = $view->new_display('system', 'System', 'system_1');
@@ -615,6 +762,7 @@ function wim_core_views_default_views() {
     t('Usage link'),
     t('User'),
     t('Edit'),
+    t('Name'),
     t('System'),
   );
   $export['administration_media'] = $view;
