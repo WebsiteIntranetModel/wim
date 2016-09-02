@@ -5,7 +5,7 @@ Feature: Edit FAQ
   Goal/desire: I want to edit FAQ
 
   Scenario: Successfully edit FAQ
-    Given I am logged in as a "content moderator"
+    Given I am logged in as a "content manager"
     When I go to "admin/content"
     And I select "FAQ" from "Type"
     And I press "Apply"
@@ -20,7 +20,7 @@ Feature: Edit FAQ
     And I press "Save"
     Then I should see "FAQ Question 1 Edited has been updated."
     Then I click "Question 1 Edited" in the "Question 1 Edited" row
-    And I should see the heading "Question 1 Edited"
+    And I should see "Question 1 Edited"
     And I should see "ANSWER 1 Edited"
     And I should see "ADDITIONAL INFO 1 Edited"
     And I should not see the heading "Question 1"
