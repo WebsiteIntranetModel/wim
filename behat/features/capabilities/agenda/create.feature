@@ -5,7 +5,7 @@ Feature: Create Agenda
   Goal/desire: I want to create Agenda
 
   Scenario: Successfully create Agenda
-    Given I am logged in as a "content moderator"
+    Given I am logged in as a "content editor"
     And I am on "node/add/agenda"
     Then I should not see "No access (403)"
     When I fill in the following:
@@ -28,6 +28,7 @@ Feature: Create Agenda
     Then I should see the success message "Agenda TEST AGENDA has been created."
     And I should see the heading "TEST AGENDA"
     And I should see "TEST AGENDA BODY"
+    And I should see "Share"
 
     Given I am an anonymous user
     And I visit "node/add/agenda"

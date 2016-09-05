@@ -1,6 +1,9 @@
 .footer {
   border: 0;
-  padding: 20px 0;
+  padding: 20px 15px;
+  @include MQ($screen-desktop) {
+    padding: 20px 0;
+  }
   .region-footer-second,
   .region-footer-third,
   .region-footer-first {
@@ -8,11 +11,15 @@
   }
   .block {
     margin-bottom: 20px;
+    h3,
     .block-title {
       padding: 0;
       background: none;
       border-top: none;
       color: $footer-block-title-colors;
+      &:first-of-type {
+        margin-top: 0;
+      }
     }
   }
   .menu {
@@ -27,7 +34,7 @@
         &:before {
           display: none;
         }
-        &:hover{
+        &:hover {
           background: none;
         }
       }

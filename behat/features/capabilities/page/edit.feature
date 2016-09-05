@@ -6,9 +6,16 @@ Feature: Edit basic page
 
   Scenario: As a CM I should be able to successfully edit page
     Given "page" content:
-      | title     | body          | Date       |
-      | TITLE-ONE | BODY-CONTENT1 | 06/27/2026 |
-    Given I am logged in as a "content moderator"
+      | title     | body          | Date       | author         |
+      | TITLE-ONE | BODY-CONTENT1 | 06/27/2026 | jack_nicholson |
+    Given I am an anonymous user
+    And I am on the homepage
+    When I go to "/user/login"
+    And I fill in the following:
+      | Username | jack_nicholson |
+      | Password | jack_nicholson |
+    And I press "Log in"
+    Then I should see "jack_nicholson"
     When I go to "admin/content"
     And I select "Basic page" from "Type"
     And I press "Apply"

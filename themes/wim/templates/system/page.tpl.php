@@ -134,7 +134,7 @@
 
   <div role="main" class="main-container <?php print $container_class; ?>">
 
-    <?php if (!empty($breadcrumb)): ?>
+    <?php if (!empty($breadcrumb) && !$is_front): ?>
       <div class="row">
         <?php if (!empty($breadcrumb)): print $breadcrumb; endif; ?>
       </div>
@@ -154,7 +154,7 @@
       <section<?php print $content_column_class; ?>>
         <a id="main-content"></a>
         <?php print render($title_prefix); ?>
-        <?php if (!empty($title)): ?>
+        <?php if (!empty($title) && !$is_front): ?>
           <h1 class="page-header"><?php print $title; ?></h1>
         <?php endif; ?>
         <?php print render($title_suffix); ?>

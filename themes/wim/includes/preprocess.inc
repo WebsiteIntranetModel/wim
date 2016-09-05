@@ -118,9 +118,8 @@ function wim_preprocess_block(&$variables) {
   $bean_view_mode = NULL;
 
   // Process Bean blocks.
-  if ($block->module === 'bean') {
+  if ($block->module === 'bean' && $bean = bean_load_delta($block->delta)) {
     $variables['title_url'] = NULL;
-    $bean = bean_load_delta($block->delta);
     $variables['theme_hook_suggestions'][] = 'block__bean_' . strtr($bean->type, '_', '-');
     $bean_view_mode = $bean->view_mode;
 
@@ -145,7 +144,7 @@ function wim_preprocess_block(&$variables) {
       // If new row config exist then use it otherwise move it in a new row.
       $block->new_row = isset($config['new_row']) ? $config['new_row'] : TRUE;
 
-      if ($block->module === 'bean') {
+      if ($block->module === 'bean' && $bean) {
         if (isset($config['bean_view_mode']) && $config['bean_view_mode']) {
           $bean_view_mode = $config['bean_view_mode'];
           // Build entity bean view.
@@ -216,5 +215,17 @@ function wim_preprocess_field(&$variables, $hook) {
         }
       }
     }
+  }
+}
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function wim_preprocess_page(&$variables) {
+  $menu_item = menu_get_item();
+
+  // All FAQ pages should has title FAQ.
+  if ($menu_item && $menu_item['path'] === 'faq/%') {
+    $variables['title'] = t('FAQ');
   }
 }

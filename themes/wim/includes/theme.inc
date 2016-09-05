@@ -324,3 +324,57 @@ function wim_menu_link__menu_top_tasks(array $variables) {
 function wim_menu_tree__menu_top_tasks($variables) {
   return '<div class="menu-wrapper"><ul class="menu nav">' . $variables['tree'] . '</ul></div>';
 }
+
+/**
+ * Returns HTML for a breadcrumb trail.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - breadcrumb: An array containing the breadcrumb links.
+ *
+ * @return string
+ *   The constructed HTML.
+ *
+ * @see theme_breadcrumb()
+ *
+ * @ingroup theme_functions
+ */
+function wim_breadcrumb($variables) {
+  if (module_exists('hansel')) {
+    $hansel_breadcrumb = hansel_get_breadcrumbs();
+    $breadcrumb = $hansel_breadcrumb['breadcrumb'];
+  }
+  else {
+    $breadcrumb = $variables['breadcrumb'];
+  }
+
+  if (!empty($breadcrumb)) {
+    // Provide a navigational heading to give context for breadcrumb links to
+    // screen-reader users. Make the heading invisible with .element-invisible.
+    $output = '<h2 class="element-invisible">' . t('You are here') . '</h2>';
+    $output .= '<div class="breadcrumb">' . implode(' / ', $breadcrumb) . '</div>';
+    return $output;
+  }
+}
+
+/**
+ * Returns HTML for the Social media menu.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - element: Structured array data for a menu link.
+ *
+ * @return string
+ *   The constructed HTML.
+ *
+ * @see theme_menu_link()
+ *
+ * @ingroup theme_functions
+ */
+function wim_menu_link__menu_social_media(array $variables) {
+  $element = $variables['element'];
+  $element['#localized_options']['html'] = TRUE;
+
+  $output = l('<span>' . $element['#title'] . '</span>', $element['#href'], $element['#localized_options']);
+  return '<li' . drupal_attributes($element['#attributes']) . '>' . $output . "</li>\n";
+}

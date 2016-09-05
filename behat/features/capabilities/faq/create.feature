@@ -5,7 +5,7 @@ Feature: Create FAQ
   Goal/desire: I want to create FAQ
 
   Scenario: Successfully create FAQ
-    Given I am logged in as a "content moderator"
+    Given I am logged in as a "content editor"
     And I am on "node/add/faq"
     Then I should not see "No access (403)"
     When I fill in the following:
@@ -19,13 +19,14 @@ Feature: Create FAQ
     Then I should see the success message "FAQ TEST FAQ QUESTION has been created."
     And I should see the heading "TEST FAQ QUESTION"
     And I should see "ANSWER"
+    And I should see "Share"
 
     Given I am an anonymous user
     And I visit "node/add/faq"
     Then I should see "No access (403)"
 
   Scenario: Successfully set category for FAQ
-    Given I am logged in as a "content moderator"
+    Given I am logged in as a "content editor"
     And faq_categories terms:
       | name          |
       | FAQ-CATEGORY1 |

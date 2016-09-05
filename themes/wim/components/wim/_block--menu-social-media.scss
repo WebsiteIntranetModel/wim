@@ -1,0 +1,31 @@
+.menu-social-media {
+  ul.menu {
+    padding-left: 0;
+    li {
+      list-style: none;
+      display: inline-block;
+      a {
+        font-size: 20px;
+        &:before {
+          @include fa-icon;
+        }
+        &[href*="https://www.facebook.com"] {
+          @extend .fa-facebook-square;
+        }
+        &[href*="https://www.linkedin.com"] {
+          @extend .fa-linkedin-square;
+        }
+        &[href*="https://twitter.com"] {
+          @extend .fa-twitter-square;
+        }
+        span {
+          display: none;
+          text-indent: -9999px;
+        }
+      }
+      &:not(:first-child) {
+        padding-left: 5px;
+      }
+    }
+  }
+}

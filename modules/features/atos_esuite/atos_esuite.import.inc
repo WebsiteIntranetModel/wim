@@ -78,8 +78,12 @@ function atos_esuite_import_batch_worker($type, &$context) {
 
   $context['finished'] = $context['sandbox']['last'] >= $context['sandbox']['max'];
   if ($context['finished']) {
+    $mapping = array(
+      ATOS_ESUITE_PRODUCT => 'product',
+      ATOS_ESUITE_FAQ => 'faq',
+    );
     if ($context['sandbox']['done'] > 0) {
-      drupal_set_message(format_plural($context['sandbox']['done'], '1 ' . $type . ' node imported successfully. ', '@count ' . $type . ' nodes imported.'));
+      drupal_set_message(format_plural($context['sandbox']['done'], '1 ' . $mapping[$type] . ' node imported successfully. ', '@count ' . $mapping[$type] . ' nodes imported.'));
       _atos_esuite_delete_nodes($context['sandbox']['starttime'], $type);
     }
     else {
@@ -145,7 +149,7 @@ function _atos_esuite_delete_nodes($start_time, $type) {
 
   if (count($deleted)) {
     atos_esuite_notify($deleted, $type);
-    drupal_set_message(format_plural(count($deleted), '1 ' . $type . ' node deleted. ', '@count ' . $type . ' nodes deleted.'));
+    drupal_set_message(format_plural(count($deleted), '1 ' . $mapping[$type] . ' node deleted. ', '@count ' . $mapping[$type] . ' nodes deleted.'));
   }
 }
 
@@ -320,8 +324,8 @@ function atos_esuite_map_node_product(stdClass $node, DOMDocument $documentDOM, 
 
   // Description.
   $description = $xpath->query('/result/beschrijving')->item(0)->nodeValue;
-  $body = '<h2>**' . t('Beschrijving') . '</h2>' . $description;
-  $summary = $description;
+  $body = $description;
+  $summary = truncate_utf8($description, 250);
 
   // Helper array to map xml tags to fields in node.
   $mapping = array(
@@ -511,6 +515,7 @@ function atos_esuite_get_term_tid($term_name) {
  *   Set of arrays, key 2 -  url, key 3 - title. Empty array if fail.
  */
 function _extract_urls($input) {
+  $input = strip_tags($input, '<a>');
   if (preg_match_all('/<a\s[^>]*href=(\"??)([^\" >]*?)\\1[^>]*>(.*)<\/a>/siU', $input, $matches, PREG_SET_ORDER)) {
     return $matches;
   }

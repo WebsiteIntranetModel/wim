@@ -59,7 +59,7 @@ Feature: News overview
     # Test category filter
     When I select "CATEGORY1" from "edit-field-news-category-tid"
     Then I should see "No results"
-    Given I am logged in as a "content moderator"
+    Given I am logged in as a "content editor"
     And I am on "node/add/news"
     When I fill in the following:
       | Title | TEST CATEGORY NEWS |

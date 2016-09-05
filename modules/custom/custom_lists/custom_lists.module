@@ -98,7 +98,8 @@ function custom_lists_block_view($delta = '') {
   $block['content'] = array();
 
   if ($list['type'] == 'content') {
-    $block['content']['items'] = custom_lists_render_nodes($list['block-view-mode'], $list['block-items'], $list);
+    $rendered_nodes = custom_lists_render_nodes($list['block-view-mode'], $list['block-items'], $list);
+    $block['content']['items'] = $rendered_nodes ? $rendered_nodes : array();
   }
   else {
     if ($list['type'] == 'menu') {
@@ -125,7 +126,7 @@ function custom_lists_block_view($delta = '') {
   }
 
   // Only show the more link if there are more items available.
-  $num_items = isset($block['content']['items']) ? count($block['content']['items']['#items']) : FALSE;
+  $num_items = isset($block['content']['items']['#items']) ? count($block['content']['items']['#items']) : FALSE;
   $num_items = isset($block['content']['items']['nodes']) ? count(element_children($block['content']['items']['nodes'])) : $num_items;
   if ($num_items >= $list['block-items']) {
     $more_link_uri = custom_lists_get_more_uri($list);
@@ -235,6 +236,10 @@ function custom_lists_page_content($list) {
 function custom_lists_render_nodes($view_mode, $items, $list, $page = FALSE) {
   $nodes = custom_lists_content_nodes($list, $items, $view_mode != 'titles');
 
+  if (!$nodes) {
+    return array();
+  }
+
   if ($view_mode == 'titles' || empty($view_mode)) {
     $items = array();
     foreach ($nodes as $node) {
@@ -299,7 +304,7 @@ function custom_lists_content_nodes($list, $items, $full_load = TRUE) {
   }
 
   // Custom filters for certain use cases.
-  if (!empty($list['extra-filters']) && $list['extra-filters'] != '_none') {
+  if ($list['node-type'] === 'agenda' && !empty($list['extra-filters']) && $list['extra-filters'] !== '_none') {
     switch ($list['extra-filters']) {
       case 'node_type_agenda_upcoming':
         $query->join('field_data_field_agenda_date', 'fd', 'fd.entity_id = n.nid');

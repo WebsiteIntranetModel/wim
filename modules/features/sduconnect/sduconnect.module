@@ -145,6 +145,20 @@ function sduconnect_cron() {
 }
 
 /**
+ * Implements hook_cronapi().
+ */
+function sduconnect_cronapi($op, $job = NULL) {
+
+  $items['sduconnect_cron'] = array(
+    'description' => 'Run SDU connect import.',
+    'rule' => '30 * * * *',
+    // Default callback "sduconnect_cron".
+  );
+
+  return $items;
+}
+
+/**
  * Implements hook_cron_queue_info().
  */
 function sduconnect_cron_queue_info() {

@@ -34,6 +34,15 @@ function wim_agenda_strongarm() {
       'felix' => array(
         'custom_settings' => FALSE,
       ),
+      'search_index' => array(
+        'custom_settings' => FALSE,
+      ),
+      'search_result' => array(
+        'custom_settings' => FALSE,
+      ),
+      'token' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
@@ -41,7 +50,10 @@ function wim_agenda_strongarm() {
           'weight' => '0',
         ),
         'locations' => array(
-          'weight' => '6',
+          'weight' => '4',
+        ),
+        'redirect' => array(
+          'weight' => '8',
         ),
       ),
       'display' => array(),

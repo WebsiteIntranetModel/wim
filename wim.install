@@ -37,6 +37,26 @@ function wim_install() {
   // Add 403 page.
   $page_403_nid = _wim_create_page('403');
   variable_set('site_403', 'node/' . $page_403_nid);
+
+  // Add homepage.
+  $homepage_nid = _wim_create_page('homepage');
+  variable_set('site_frontpage', 'node/' . $homepage_nid);
+
+  // Add blocks to Felix regions.
+  _wim_place_felix_blocks();
+
+  // Turn off user registration.
+  variable_set('user_register', 0);
+
+  // Flood control config.
+  variable_set('user_failed_login_ip_limit', 10);
+  variable_set('user_failed_login_user_limit', 5);
+
+  // Default protected fields per role.
+  _wim_user_protect_roles();
+
+  // Set content types with social share links.
+  _wim_default_sss();
 }
 
 /**
@@ -66,95 +86,57 @@ function _wim_set_up_roles_and_permissions() {
   $admin_role->weight = $weight++;
   user_role_save($admin_role);
 
-  // Set this as the administrator role.
-  variable_set('user_admin_role', $admin_role->rid);
+  if (isset($admin_role->rid) && $admin_role->rid) {
+    // Set this as the administrator role.
+    variable_set('user_admin_role', $admin_role->rid);
 
-  // Assign user 1 the "administrator" role.
-  db_insert('users_roles')
-    ->fields(array('uid' => 1, 'rid' => $admin_role->rid))
-    ->execute();
+    // Assign user 1 the "administrator" role.
+    db_insert('users_roles')
+      ->fields(array('uid' => 1, 'rid' => $admin_role->rid))
+      ->execute();
 
-  // Create a role for Content Moderator.
-  $cm_role = new stdClass();
-  $cm_role->name = st('content moderator');
-  $cm_role->weight = $weight++;
-  user_role_save($cm_role);
-
-  // Permissions.
-  // Authenticated role.
-  $authenticated_permissions = array(
-    'access content',
-    'view any editorial bean',
-  );
-  user_role_grant_permissions(DRUPAL_AUTHENTICATED_RID, $authenticated_permissions);
-  user_role_grant_permissions(DRUPAL_ANONYMOUS_RID, $authenticated_permissions);
-
-  // Administrator role.
-  user_role_grant_permissions($admin_role->rid, array_keys(module_invoke_all('permission')));
-
-  // Content Moderator role.
-  $cm_permissions = array(
-    'access administration menu',
-    'access administration pages',
-    'access user profiles',
-    'administer taxonomy',
-    'access content overview',
-    'administer blocks',
-    'administer menu',
-    'manage felix blocks',
-    'access contextual links',
-    'administer custom lists',
-    'manipulate queues',
-    'view the administration theme',
-    // Node access.
-    'administer nodes',
-    'create news content',
-    'create page content',
-    'create product content',
-    'create faq content',
-    'create agenda content',
-    'create subject_page content',
-    'delete any news content',
-    'delete any page content',
-    'delete any product content',
-    'delete any faq content',
-    'delete any agenda content',
-    'delete any subject_page content',
-    'delete own news content',
-    'delete own page content',
-    'delete own product content',
-    'delete own faq content',
-    'delete own agenda content',
-    'delete own subject_page content',
-    'edit any news content',
-    'edit any page content',
-    'edit any product content',
-    'edit any faq content',
-    'edit any agenda content',
-    'edit any subject_page content',
-    'edit own news content',
-    'edit own page content',
-    'edit own product content',
-    'edit own faq content',
-    'edit own agenda content',
-    'edit own subject_page content',
-    'use text format filtered_html',
-    'use text format full_html',
-    'bypass node access',
-    // Bean.
-    'view bean page',
-    'access bean overview',
-    'administer beans',
-    'edit bean view mode',
-  );
-
-  // Access to the taxonomy vocabularies.
-  foreach (taxonomy_get_vocabularies() as $vocabulary) {
-    $cm_permissions[] = "delete terms in $vocabulary->vid";
-    $cm_permissions[] = "edit terms in $vocabulary->vid";
+    user_role_grant_permissions($admin_role->rid, array_keys(module_invoke_all('permission')));
   }
 
-  user_role_grant_permissions($cm_role->rid, $cm_permissions);
+  // Autologout config for administrator.
+  variable_set('autologout_role_' . $admin_role->rid, 1);
+  variable_set('autologout_role_' . $admin_role->rid . '_timeout', 900);
+
+  // List of custom roles for WIM.
+  $custom_roles = array(
+    'webmaster',
+    'content manager',
+    'content editor',
+  );
+
+  foreach ($custom_roles as $role_name) {
+    // Create roles.
+    $role = new stdClass();
+    $role->name = st($role_name);
+    $role->weight = $weight++;
+    user_role_save($role);
+
+    // Set autologout.
+    $timeout = 14400;
+    if ($role_name === 'webmaster') {
+      $timeout = 3600;
+    }
+    variable_set('autologout_role_' . $role->rid, 1);
+    variable_set('autologout_role_' . $role->rid . '_timeout', $timeout);
+
+    // Set permissions.
+    if (isset($role->rid) && $role->rid) {
+      user_role_grant_permissions($role->rid, _wim_permissions($role_name));
+    }
+  }
+
+  // Authenticated role.
+  user_role_grant_permissions(DRUPAL_AUTHENTICATED_RID, _wim_permissions('authenticated'));
+  // Remove change own e-mail permission.
+  user_role_revoke_permissions(DRUPAL_AUTHENTICATED_RID, array('change own e-mail'));
+
+  // Anonymous.
+  user_role_grant_permissions(DRUPAL_ANONYMOUS_RID, _wim_permissions('anonymous'));
 }
 
 /**
@@ -344,36 +326,11 @@ function _wim_set_text_formats() {
 }
 
 /**
- * Set blocks.
+ * Set default blocks.
  */
 function _wim_set_blocks() {
   $default_theme = variable_get('theme_default', 'wim');
   $blocks = array(
-    // Views blocks.
-    array(
-      'module' => 'views',
-      'delta' => 'agenda-upcoming_agenda',
-      'theme' => $default_theme,
-      'status' => BLOCK_CUSTOM_ENABLED,
-      'weight' => 0,
-      'region' => 'sidebar_first',
-      'pages' => "agenda\nnews",
-      'visibility' => 1,
-      'title' => '',
-      'cache' => DRUPAL_NO_CACHE,
-    ),
-    array(
-      'module' => 'views',
-      'delta' => 'news-latest_news',
-      'theme' => $default_theme,
-      'status' => BLOCK_CUSTOM_ENABLED,
-      'weight' => 0,
-      'region' => 'sidebar_second',
-      'pages' => "agenda\nnews",
-      'visibility' => 1,
-      'title' => '',
-      'cache' => DRUPAL_NO_CACHE,
-    ),
     // Menus.
     array(
       'module' => 'menu',
@@ -387,15 +344,16 @@ function _wim_set_blocks() {
       'title' => '<none>',
       'cache' => DRUPAL_NO_CACHE,
     ),
+    // Search.
     array(
-      'module' => 'menu',
-      'delta' => 'menu-top-tasks',
+      'module' => 'search',
+      'delta' => 'form',
       'theme' => $default_theme,
       'status' => BLOCK_CUSTOM_ENABLED,
-      'weight' => -1,
-      'region' => 'content',
-      'pages' => '<front>',
-      'visibility' => 1,
+      'weight' => 0,
+      'region' => 'header',
+      'pages' => '',
+      'visibility' => 0,
       'title' => '<none>',
       'cache' => DRUPAL_NO_CACHE,
     ),
@@ -526,6 +484,10 @@ function _wim_create_page($page_type, $bundle = 'page', $language = LANGUAGE_NON
     $node->body[$language][0]['value'] = 'No access.';
   }
 
+  if ($page_type === 'homepage') {
+    $node->title = 'Home page';
+  }
+
   $node = node_submit($node);
   node_save($node);
 
@@ -576,7 +538,7 @@ function _wim_password_policy_install() {
 function _wim_password_policy_default_profile() {
   $profiles = array();
 
-  $cm = user_role_load_by_name('content moderator');
+  $cm = user_role_load_by_name('content manager');
   // Exported profile: default.
   $profiles['default'] = array(
     'name' => 'default',
@@ -598,4 +560,471 @@ function _wim_password_policy_default_profile() {
   );
 
   return $profiles;
+}
+
+/**
+ * Create custom block.
+ */
+function _wim_create_custom_block($block) {
+  // Create custom blocks.
+  $block_delta = db_insert('block_custom')
+    ->fields(array(
+      'body' => $block['body'],
+      'info' => $block['info'],
+      'format' => $block['format'],
+    ))
+    ->execute();
+
+  return $block_delta;
+}
+
+/**
+ * Create felix blocks and place them in regions.
+ */
+function _wim_place_felix_blocks() {
+  $felix_blocks = array(
+    'top_tasks' => array(
+      'region_name' => 'highlighted',
+      'path' => variable_get('site_frontpage'),
+      'module' => 'menu',
+      'delta' => 'menu-top-tasks',
+      'detail_path' => NULL,
+      'data' => array(
+        'subject' => '<none>',
+        'config' => array(
+          'bootstrap_layout' => 8,
+          'new_row' => 0,
+        ),
+      ),
+    ),
+    'latest_news' => array(
+      'region_name' => 'highlighted',
+      'path' => variable_get('site_frontpage'),
+      'module' => 'views',
+      'delta' => 'news-latest_news',
+      'detail_path' => NULL,
+      'data' => array(
+        'subject' => '',
+        'config' => array(
+          'bootstrap_layout' => 4,
+          'new_row' => 0,
+        ),
+      ),
+    ),
+    // Custom blocks.
+    'address' => array(
+      'region_name' => 'footer',
+      'path' => NULL,
+      'module' => 'block',
+      'delta' => NULL,
+      'detail_path' => NULL,
+      'data' => array(
+        'subject' => '<none>',
+        'config' => array(
+          'bootstrap_layout' => 4,
+          'new_row' => 0,
+        ),
+      ),
+      'custom_block' => array(
+        'info' => 'Address',
+        'body' => '<h3>Post</h3><ul><li>Postbus 10101</li><li>5500 GA Veldhoven</li></ul><h3>E-mail</h3><ul><li>gemeente@gemeente.nl</li></ul><h3>Telefonisch contact</h3><ul><li>14 040 (algemeen)</li></ul><h3>Bezoekadres</h3><ul><li>Meiveld 1</li><li>5501 KA Veldhoven</li></ul>',
+        'format' => 'full_html',
+      ),
+    ),
+    'copyright' => array(
+      'region_name' => 'footer',
+      'path' => NULL,
+      'module' => 'block',
+      'delta' => NULL,
+      'detail_path' => NULL,
+      'data' => array(
+        'subject' => '<none>',
+        'config' => array(
+          'bootstrap_layout' => 4,
+          'new_row' => 0,
+        ),
+      ),
+      'custom_block' => array(
+        'info' => 'Copyright',
+        'body' => 'Copyright © 2016. All rights reserved.',
+        'format' => 'plain_text',
+      ),
+    ),
+    'social_media' => array(
+      'region_name' => 'footer',
+      'path' => NULL,
+      'module' => 'menu',
+      'delta' => 'menu-social-media',
+      'detail_path' => NULL,
+      'data' => array(
+        'subject' => st('Follow us'),
+        'config' => array(
+          'bootstrap_layout' => 4,
+          'new_row' => 0,
+        ),
+      ),
+    ),
+  );
+
+  foreach ($felix_blocks as $felix_block) {
+    // Create custom block.
+    if (isset($felix_block['custom_block']) && $felix_block['custom_block']) {
+      $custom_block_delta = _wim_create_custom_block($felix_block['custom_block']);
+      _wim_add_felix_block($felix_block['region_name'], $felix_block['path'], $felix_block['module'], $custom_block_delta, $felix_block['detail_path'], $felix_block['data']);
+
+    }
+    else {
+      _wim_add_felix_block($felix_block['region_name'], $felix_block['path'], $felix_block['module'], $felix_block['delta'], $felix_block['detail_path'], $felix_block['data']);
+    }
+  }
+}
+
+/**
+ * Create felix block and place it in the region.
+ *
+ * @see _felix_add_block
+ */
+function _wim_add_felix_block($region_name, $path, $module, $delta, $detail_path = NULL, $data = array()) {
+  if (module_exists('felix')) {
+    if (!$region = _felix_region_by_name($region_name)) {
+      return FALSE;
+    }
+
+    if ($module === 'node' && is_numeric($delta) && module_exists('translation')) {
+      // Add the source translation.
+      $tnid = db_select('node', 'n')
+        ->fields('n', array('tnid'))
+        ->condition('n.nid', $delta)
+        ->execute()
+        ->fetchField();
+      $delta = $tnid ? $tnid : $delta;
+      $detail_path = "node/$delta";
+    }
+
+    $hash = _felix_get_hash($region, $path);
+
+    $block = new stdClass();
+    $block->region = $region->name;
+    $block->weight = _felix_new_block_weight($region->name);
+    $block->hash = $hash->hash;
+    $block->module = $module;
+    $block->delta = $delta;
+    $block->detail_path = $detail_path;
+    $block->data = $data;
+    $block->hash_parts = $hash->parts;
+    $block->exclude = serialize(array());
+
+    foreach (module_implements('felix_block_insert') as $module) {
+      $hook = "{$module}_felix_block_insert";
+      $hook($block, $path);
+    }
+
+    $block->data = serialize($block->data);
+    $block->hash_parts = serialize($block->hash_parts);
+
+    drupal_write_record('felix_block', $block);
+  }
+
+  return TRUE;
+}
+
+/**
+ * Default settings for userprotect per protected role.
+ *
+ * @see userprotect_protected_roles
+ */
+function _wim_user_protect_roles() {
+  $settings = array();
+  // Grab all roles but the anonymous role, and grab the current default
+  // settings.
+  $roles = user_roles(TRUE);
+
+  $protections = array_keys(userprotect_user_protection_defaults());
+  foreach ($roles as $rid => $role) {
+    foreach ($protections as $protection) {
+      $value = 0;
+      if ($role === 'administrator') {
+        // Don't protect admin role.
+        $value = 0;
+      }
+      elseif ($protection === 'up_name' || $protection === 'up_mail') {
+        // Protect login and email for all other role.
+        $value = 1;
+      }
+      $settings[$rid][$protection] = $value;
+    }
+  }
+
+  variable_set('userprotect_role_protections', $settings);
+}
+
+/**
+ * Default settings for social share links for content types.
+ */
+function _wim_default_sss() {
+  $types = array(
+    'agenda',
+    'faq',
+    'news',
+    'page',
+    'product',
+  );
+
+  foreach ($types as $type) {
+    variable_set('wim_sss_node_enabled_' . $type, 1);
+  }
+}
+
+/**
+ * Gets role permissions.
+ */
+function _wim_permissions($role) {
+  $permissions = array(
+    // Webmaster.
+    'webmaster' => array(
+      // System.
+      'access administration menu',
+      'access administration pages',
+      'access content overview',
+      'access user profiles',
+      'administer blocks',
+      'administer menu',
+      'administer taxonomy',
+      'administer redirects',
+      'manage felix blocks',
+      'access contextual links',
+      'administer custom lists',
+      'manipulate queues',
+      'view the administration theme',
+      'translate interface',
+      'revert revisions',
+      'delete revisions',
+      'view revisions',
+      'use text format filtered_html',
+      'use text format full_html',
+      'administer autologout',
+      'edit meta tags',
+      'manipulate all queues',
+      'unblock expired accounts',
+      'force password change',
+      // Node access.
+      'bypass node access',
+      'view own unpublished content',
+      'publishing options tab',
+      // News.
+      'create news content',
+      'delete any news content',
+      'delete own news content',
+      'edit any news content',
+      'edit own news content',
+      // Page.
+      'create page content',
+      'delete any page content',
+      'delete own page content',
+      'edit any page content',
+      'edit own page content',
+      // Subject.
+      'create subject_page content',
+      'delete any subject_page content',
+      'delete own subject_page content',
+      'edit any subject_page content',
+      'edit own subject_page content',
+      // Product.
+      'create product content',
+      'delete any product content',
+      'delete own product content',
+      'edit any product content',
+      'edit own product content',
+      // FAQ.
+      'create faq content',
+      'delete any faq content',
+      'delete own faq content',
+      'edit any faq content',
+      'edit own faq content',
+      // Agenda.
+      'create agenda content',
+      'delete any agenda content',
+      'delete own agenda content',
+      'edit any agenda content',
+      'edit own agenda content',
+      // Bean.
+      'view bean page',
+      'access bean overview',
+      'administer beans',
+      'edit bean view mode',
+      'administer bean settings',
+      'view bean revisions',
+      'create any editorial bean',
+      'edit any editorial bean',
+      'delete any editorial bean',
+      // Webform.
+      'access all webform results',
+      'edit all webform submissions',
+      'edit webform components',
+      'access all webform results',
+      'edit all webform submissions',
+      'edit webform components',
+      'create webform content',
+      'delete any webform content',
+      'delete own webform content',
+      'edit any webform content',
+      'edit own webform content',
+      // Taxonomy.
+      'administer taxonomy',
+      // User.
+      'administer permissions',
+      'administer users',
+      // Views.
+      'administer views',
+      // Features.
+      'manage features',
+    ),
+    // Content manager.
+    'content manager' => array(
+      // System.
+      'access administration menu',
+      'access administration pages',
+      'access content overview',
+      'access user profiles',
+      'administer menu',
+      'administer taxonomy',
+      'administer redirects',
+      'manage felix blocks',
+      'access contextual links',
+      'administer custom lists',
+      'manipulate queues',
+      'view the administration theme',
+      'revert revisions',
+      'view revisions',
+      'delete revisions',
+      'use text format filtered_html',
+      'use text format full_html',
+      'access site in maintenance mode',
+      'translate interface',
+      'view own unpublished content',
+      'edit meta tags',
+      'manipulate all queues',
+      // Node access.
+      'publishing options tab',
+      // News.
+      'create news content',
+      'delete any news content',
+      'delete own news content',
+      'edit any news content',
+      'edit own news content',
+      // Page.
+      'create page content',
+      'delete any page content',
+      'delete own page content',
+      'edit any page content',
+      'edit own page content',
+      // Product.
+      'create product content',
+      'delete any product content',
+      'delete own product content',
+      'edit any product content',
+      'edit own product content',
+      // FAQ.
+      'create faq content',
+      'delete any faq content',
+      'delete own faq content',
+      'edit any faq content',
+      'edit own faq content',
+      // Subject.
+      'create subject_page content',
+      'delete any subject_page content',
+      'delete own subject_page content',
+      'edit any subject_page content',
+      'edit own subject_page content',
+      // Agenda.
+      'create agenda content',
+      'delete any agenda content',
+      'delete own agenda content',
+      'edit any agenda content',
+      'edit own agenda content',
+      // Bean.
+      'view bean page',
+      'access bean overview',
+      'edit bean view mode',
+      'view bean revisions',
+      'create any editorial bean',
+      'edit any editorial bean',
+      'delete any editorial bean',
+      // Webform.
+      'access all webform results',
+      'edit all webform submissions',
+      'edit webform components',
+      'create webform content',
+      'delete any webform content',
+      'delete own webform content',
+      'edit any webform content',
+      'edit own webform content',
+      // Taxonomy.
+      'administer taxonomy',
+      // User.
+      'administer users',
+    ),
+    // Content editor.
+    'content editor' => array(
+      // System.
+      'use text format filtered_html',
+      'use text format full_html',
+      'view the administration theme',
+      'view own unpublished content',
+      'access administration menu',
+      'access administration pages',
+      'access content overview',
+      'access user profiles',
+      'access contextual links',
+      'view revisions',
+      'revert revisions',
+      'administer redirects',
+      // Node access.
+      'publishing options tab',
+      // News.
+      'create news content',
+      'edit own news content',
+      // Page.
+      'create page content',
+      'edit own page content',
+      // Product.
+      'create product content',
+      'edit own product content',
+      // FAQ.
+      'create faq content',
+      'edit own faq content',
+      // Agenda.
+      'create agenda content',
+      'edit own agenda content',
+      // Blocks.
+      'view bean page',
+      'view bean revisions',
+      'create any editorial bean',
+      'edit any editorial bean',
+      'manage felix blocks',
+    ),
+    'authenticated' => array(
+      'access content',
+      'view any editorial bean',
+      'search content',
+      'search content',
+    ),
+    'anonymous' => array(
+      'access content',
+      'view any editorial bean',
+      'search content',
+      'search content',
+    ),
+  );
+
+  // Add permissions for taxonomies.
+  foreach (taxonomy_get_vocabularies() as $vocabulary) {
+    $permissions['webmaster'][] = "delete terms in $vocabulary->vid";
+    $permissions['webmaster'][] = "edit terms in $vocabulary->vid";
+
+    $permissions['content manager'][] = "delete terms in $vocabulary->vid";
+    $permissions['content manager'][] = "edit terms in $vocabulary->vid";
+  }
+
+  return $permissions[$role];
 }
