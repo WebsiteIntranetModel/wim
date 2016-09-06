@@ -442,10 +442,12 @@ function wim_core_views_default_views() {
   $handler->display->display_options['use_ajax'] = TRUE;
   $handler->display->display_options['hide_admin_links'] = TRUE;
   $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['group_by'] = TRUE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['exposed_form']['options']['reset_button'] = TRUE;
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '50';
   $handler->display->display_options['pager']['options']['offset'] = '0';
@@ -462,6 +464,7 @@ function wim_core_views_default_views() {
     'filesize' => 'filesize',
     'timestamp' => 'timestamp',
     'usage' => 'usage',
+    'count' => 'count',
     'name' => 'name',
     'edit' => 'edit',
   );
@@ -508,6 +511,13 @@ function wim_core_views_default_views() {
       'empty_column' => 0,
     ),
     'usage' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'count' => array(
       'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
@@ -588,6 +598,19 @@ function wim_core_views_default_views() {
   $handler->display->display_options['fields']['usage']['id'] = 'usage';
   $handler->display->display_options['fields']['usage']['table'] = 'file_managed';
   $handler->display->display_options['fields']['usage']['field'] = 'usage';
+  $handler->display->display_options['fields']['usage']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['usage']['hide_empty'] = TRUE;
+  $handler->display->display_options['fields']['usage']['empty_zero'] = TRUE;
+  /* Field: SUM(File Usage: Use count) */
+  $handler->display->display_options['fields']['count']['id'] = 'count';
+  $handler->display->display_options['fields']['count']['table'] = 'file_usage';
+  $handler->display->display_options['fields']['count']['field'] = 'count';
+  $handler->display->display_options['fields']['count']['group_type'] = 'sum';
+  $handler->display->display_options['fields']['count']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['count']['alter']['text'] = '[usage]';
+  $handler->display->display_options['fields']['count']['empty'] = '0 places';
+  $handler->display->display_options['fields']['count']['empty_zero'] = TRUE;
+  $handler->display->display_options['fields']['count']['separator'] = '';
   /* Field: User: Name */
   $handler->display->display_options['fields']['name']['id'] = 'name';
   $handler->display->display_options['fields']['name']['table'] = 'users';
@@ -760,6 +783,9 @@ function wim_core_views_default_views() {
     t('Size'),
     t('Upload date'),
     t('Usage link'),
+    t('Use count'),
+    t('[usage]'),
+    t('0 places'),
     t('User'),
     t('Edit'),
     t('Name'),
