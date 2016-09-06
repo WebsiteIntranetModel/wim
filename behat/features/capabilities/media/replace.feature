@@ -19,4 +19,4 @@ Feature: Replace media elements
     And I wait for AJAX to finish
     And I click "edit" in the "Testing media 2" row
     And I should not see "No access (403)"
-    Then the "div.image-preview" element should contain "fixtures/drupal-icon"
+    Then the "div.image-preview" element should contain "drupal-icon"
