@@ -32,7 +32,8 @@ Feature: Add Editorial blocks
   Scenario: Successfully add editorial block with view mode via Felix
     Given I am logged in as a "content manager"
     And I am on "felix-blocks/add?region=primary&path=node&destination=node"
-    When I click "Editorial Test label 1"
+    When I click "Bean"
+    And I click "Editorial Test label 1"
     Then I select "Title with link" from "View mode"
     And I press the "Save" button
     And I should not see the link "Editorial Test label 1"
