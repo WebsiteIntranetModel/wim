@@ -1,0 +1,35 @@
+.btn {
+  border-radius: 0;
+  border: none;
+}
+
+.btn-default {
+  background-color: $brand-primary;
+  color: white;
+
+  &:hover {
+    background-color: darken($brand-primary, 15%);
+  }
+}
+
+.btn-primary {
+  background-color: $brand-primary;
+  color: white;
+
+  &:hover {
+    background-color: darken($brand-primary, 15%);
+  }
+
+  // @extend .fa;
+  // @extend .fa-arrow-down;
+}
+
+.btn-outline {
+  border: 1px solid white;
+  color: white;
+
+  &:hover {
+    background: white;
+    color: inherit;
+  }
+}

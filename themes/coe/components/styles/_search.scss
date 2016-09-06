@@ -1,0 +1,37 @@
+.block-search {
+  width: 100%;
+  max-width: 850px;
+  margin: 0 auto;
+  float: none;
+  padding: 0;
+  background-color: transparent;
+  border-radius: 0;
+  box-shadow: 0 0 15px rgba(0,0,0,0.5);
+
+  .form-control {
+    padding: 2em;
+    border-radius: 0;
+
+    &:focus {
+      z-index: 0;
+    }
+  }
+
+  .input-group {
+    display: block;
+  }
+
+  .input-group-btn .btn{
+    padding: 0;
+    margin-left: -80px;
+    vertical-align: top;
+    padding: 1.3em;
+    background: none;
+    color: $gray;
+
+    // &:before {
+    //   @extend .fa;
+    //   @extend .fa-search;
+    // }
+  }
+}

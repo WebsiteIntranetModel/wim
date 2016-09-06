@@ -1,0 +1,141 @@
+.navbar-wrapper.navbar-fixed-top {
+  position: fixed;
+  top: 0;
+  background: white;
+}
+
+.navbar-wrapper {
+  z-index: 2;
+  background: white;
+  position: relative;
+
+  &:after {
+    content: '';
+    background: linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,0.0));
+    bottom: -10px;
+    position: absolute;
+    width: 100%;
+    height: 10px;
+  }
+}
+
+.navbar {
+  border-radius: 0;
+}
+
+.navbar.container {
+  max-width: none;
+}
+
+.navbar-header {
+  width: 100%;
+  float: none;
+
+  @include MQ($screen-sm) {
+    padding: 5em 0;
+  }
+}
+
+.navbar-default {
+  border: 0;
+  background-color: transparent;
+  margin: 0 auto;
+}
+
+.navbar-default .navbar-toggle {
+  border: 0;
+  margin-right: 0;
+
+  &:active,
+  &:focus,
+  &:hover {
+    background-color: transparent;
+  }
+
+  span {
+    background-color: $brand-primary;
+  }
+}
+
+.container .navbar-header {
+  margin: 0;
+  position: relative;
+}
+
+.navbar-default .navbar-collapse {
+  clear: both;
+  background: $brand-primary;
+  position: absolute;
+  min-width: 100%;
+  margin-left: -15px;
+  margin-right: -15px;
+  border-top: 0;
+  top: 78px;
+  left: 0;
+  right: 0;
+
+  @include MQ($screen-sm) {
+    top: auto;
+    margin-top: 0;
+    position: relative;
+    background: transparent;
+    clear: none;
+    width: auto;
+  }
+}
+
+.navbar-default .navbar-nav {
+  margin-right: 0;
+  margin-left: 0;
+
+  li {
+    border-bottom: 1px solid $brand-info;
+
+    @include MQ($screen-sm) {
+      border-bottom: 0;
+    }
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+}
+
+.navbar-default .navbar-nav > li > a,
+.navbar-default .navbar-nav > .active > a {
+  background: transparent;
+  text-decoration: none;
+  color: white;
+  padding: .8em 1em;
+  font-size: 1.1em;
+
+  @include MQ($screen-sm) {
+    font-size: 1.4em;
+    padding: .5em 2em;
+    color: $brand-primary;
+    border-right: 2px solid $gray-lighter;
+  }
+}
+
+.navbar-default .navbar-nav > li:last-child > a {
+  border-right: 0;
+}
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus,
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  color: white;
+  background: transparent;
+
+  @include MQ($screen-md) {
+    color: $brand-primary;
+    border-top: 0;
+    margin-top: 0;
+  }
+
+}
+
+.navbar-default .navbar-nav > li:hover > a {
+  background: transparent;
+}

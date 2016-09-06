@@ -1,0 +1,34 @@
+name = COE sub theme
+description = Uses the WIM base theme for templating and styling purposes.
+core = 7.x
+
+; ========================================
+; Base theme
+; ========================================
+
+base theme = wim
+; base theme = bootstrap
+; or comment both if you want to work from a clean base
+
+; ========================================
+; Regions
+; ========================================
+
+regions[meta_left] = Meta Left
+regions[navigation] = Navigation
+regions[header] = Top Bar
+regions[highlighted] = Highlighted
+regions[help] = Help
+regions[content] = Content
+regions[content_bottom] = Content Bottom
+regions[sidebar_first] = Primary
+regions[sidebar_second] = Secondary
+regions[footer] = Footer
+regions[page_top] = Page top
+regions[page_bottom] = Page bottom
+
+; ========================================
+; Stylesheets
+; ========================================
+
+stylesheets[all][] = css/styles.css

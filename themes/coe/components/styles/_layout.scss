@@ -1,0 +1,41 @@
+body {
+  background: white;
+}
+
+body.navbar-is-fixed-top {
+  padding: 0 !important;
+}
+
+body.navbar-is-fixed-top .main-wrapper {
+  margin-top: 122px;
+  @include MQ($screen-sm) {
+    margin-top: 216px;
+  }
+}
+
+.main-wrapper {
+  padding: 0;
+  box-shadow: none;
+  margin-top: 10px;
+  border-radius: 0;
+}
+
+.highlighted-wrapper {
+  margin-top: -100px;
+  position: relative;
+  z-index: 1;
+}
+
+.main-container {
+  background-color: white;
+  border-radius: 0;
+
+  .region-help {
+    .block-system {
+      width: auto;
+      float: none;
+      margin: 0;
+      padding: 0;
+    }
+  }
+}

@@ -1,0 +1,15 @@
+.breadcrumb-wrapper {
+  z-index: 1;
+  position: relative;
+  background-color: $gray-lighter;
+  padding: 2em 0;
+  max-height: 30px;
+
+  .breadcrumb {
+    background: transparent;
+
+    a {
+      color: $gray;
+    }
+  }
+}

@@ -1,0 +1,43 @@
+.menu-top-tasks {
+
+  .block-title {
+    display: none;
+  }
+
+  .menu {
+    width: 100%;
+  }
+
+  .menu > li {
+    display: block;
+    width: 100%;
+
+    @include MQ($screen-sm) {
+      display: inline-block;
+      float: left;
+      width: (100%/6);
+    }
+  }
+
+  .menu > li > a {
+    margin: 5px 2px;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    display: block;
+    background-color: $brand-primary;
+    color: white;
+    padding: 2em;
+    font-size: 1.2em;
+
+    @include MQ($screen-sm) {
+      text-align: center;
+      padding-top: 2em;
+      height: 150px;
+    }
+
+    &:before {
+      display: none;
+    }
+
+  }
+
+}
