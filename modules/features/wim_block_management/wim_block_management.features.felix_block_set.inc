@@ -42,8 +42,16 @@ function wim_block_management_felix_default_block_sets() {
         'delta' => '*',
       ),
     ),
-    'nodetypes' => array(),
-    'viewmodes' => array(),
+    'nodetypes' => array(
+      0 => array(
+        'nodetype' => 'webform',
+      ),
+    ),
+    'viewmodes' => array(
+      0 => array(
+        'viewmode' => 'full',
+      ),
+    ),
   );
   return $sets;
 }

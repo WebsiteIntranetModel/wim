@@ -133,37 +133,35 @@ function wim_preprocess_block(&$variables) {
   }
 
   // If block in the Felix region add corresponding classes.
-  if (isset($block->felix_region)) {
-    if (isset($block->data['config'])) {
-      $config = $block->data['config'];
-      // Add bootstrap class to block output.
-      if (isset($config['bootstrap_layout'])) {
-        $variables['classes_array'][] = 'col-md-' . $config['bootstrap_layout'];
-        $block->bootstrap_layout = $config['bootstrap_layout'];
-      }
-      // If new row config exist then use it otherwise move it in a new row.
-      $block->new_row = isset($config['new_row']) ? $config['new_row'] : TRUE;
+  if (isset($block->felix_region, $block->data['config'])) {
+    $config = $block->data['config'];
+    // Add bootstrap class to block output.
+    if (isset($config['bootstrap_layout'])) {
+      $variables['classes_array'][] = 'col-md-' . $config['bootstrap_layout'];
+      $block->bootstrap_layout = $config['bootstrap_layout'];
+    }
+    // If new row config exist then use it otherwise move it in a new row.
+    $block->new_row = isset($config['new_row']) ? $config['new_row'] : TRUE;
 
-      if ($block->module === 'bean' && $bean) {
-        if (isset($config['bean_view_mode']) && $config['bean_view_mode']) {
-          $bean_view_mode = $config['bean_view_mode'];
-          // Build entity bean view.
-          if (entity_access('view', 'bean', $bean) && $bean) {
-            $content = $bean->view($bean_view_mode);
-            if (!is_array($content)) {
-              $content = array(
-                '#markup' => $content,
-              );
-            }
-            $variables['content'] = drupal_render($content);
+    if ($block->module === 'bean' && $bean) {
+      if (isset($config['bean_view_mode']) && $config['bean_view_mode']) {
+        $bean_view_mode = $config['bean_view_mode'];
+        // Build entity bean view.
+        if (entity_access('view', 'bean', $bean) && $bean) {
+          $content = $bean->view($bean_view_mode);
+          if (!is_array($content)) {
+            $content = array(
+              '#markup' => $content,
+            );
           }
+          $variables['content'] = drupal_render($content);
+        }
 
-          // Process Editorial.
-          if ($bean->type === 'editorial') {
-            // Editorial added via Felix we process according to settings.
-            if ($config['bean_view_mode'] === 'default' && $bean->field_image) {
-              $variables['classes_array'][] = 'editorial-image';
-            }
+        // Process Editorial.
+        if ($bean->type === 'editorial') {
+          // Editorial added via Felix we process according to settings.
+          if ($config['bean_view_mode'] === 'default' && $bean->field_image) {
+            $variables['classes_array'][] = 'editorial-image';
           }
         }
       }
