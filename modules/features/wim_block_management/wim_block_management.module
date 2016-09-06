@@ -109,3 +109,20 @@ function wim_block_management_preprocess_page(&$variables) {
     drupal_add_css($module_path . '/css/wim_block_management.css');
   }
 }
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function wim_block_management_form_felix_remove_form_alter(&$form, &$form_state, $form_id) {
+  // Fix title text for Subjects which contains HTML tags.
+  if (isset($form['#felix_block'], $form['#felix_region'], $form['info'])) {
+    $block = $form['#felix_block'];
+    $region = $form['#felix_region'];
+    $form['info'] = array(
+      '#markup' => '<p>' . t('Are you sure you want to delete the block %subject from %region?', array(
+        '%subject' => strip_tags($block->subject),
+        '%region' => $region->title,
+      )) . '</p>',
+    );
+  }
+}
