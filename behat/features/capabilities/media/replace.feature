@@ -13,6 +13,8 @@ Feature: Replace media elements
     And I should not see "No access (403)"
     And I attach the file "/fixtures/images/drupal-icon.png" to "Replace file"
     Then I press "Save"
+    And I should see "Image gorilla.jpg has been updated."
+    And I should see "The replaced Image fixtures/gorilla.jpg has been deleted."
     Then I go to "admin/content"
     And I select "Basic page" from "Type"
     And I press "Apply"
