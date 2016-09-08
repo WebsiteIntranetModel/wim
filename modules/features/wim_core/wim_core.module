@@ -7,6 +7,15 @@
 include_once 'wim_core.features.inc';
 
 /**
+ * Implements hook_form_alter().
+ */
+function wim_core_views_bulk_operations_form_alter(&$form, &$form_state, $vbo) {
+  if ($form_state['step'] === 'views_bulk_operations_confirm_form') {
+    $form['description']['#markup'] = strip_tags($form['description']['#markup'], '<ul><li><div><h3>');
+  }
+}
+
+/**
  * Implements hook_permission().
  */
 function wim_core_permission() {
