@@ -13,6 +13,13 @@ function wim_faq_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'apachesolr_exclude_node_enable_faq';
+  $strongarm->value = 1;
+  $export['apachesolr_exclude_node_enable_faq'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_node__faq';
   $strongarm->value = array(
     'view_modes' => array(
@@ -45,6 +52,13 @@ function wim_faq_strongarm() {
     ),
   );
   $export['field_bundle_settings_node__faq'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'language_content_type_faq';
+  $strongarm->value = '0';
+  $export['language_content_type_faq'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */

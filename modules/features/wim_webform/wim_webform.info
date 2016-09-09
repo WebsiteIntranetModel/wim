@@ -17,6 +17,7 @@ features[features_api][] = api:2
 features[field_instance][] = node-webform-body
 features[field_instance][] = node-webform-field_tags
 features[node][] = webform
+features[variable][] = apachesolr_exclude_node_enable_webform
 features[variable][] = comment_webform
 features[variable][] = field_bundle_settings_node__webform
 features[variable][] = honeypot_form_webforms
