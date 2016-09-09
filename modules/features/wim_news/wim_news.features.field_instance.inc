@@ -24,6 +24,12 @@ function wim_news_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 2,
       ),
+      'search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'short' => array(
         'label' => 'hidden',
         'module' => 'text',
@@ -76,6 +82,12 @@ function wim_news_field_default_field_instances() {
         'type' => 'file_default',
         'weight' => 4,
       ),
+      'search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'short' => array(
         'label' => 'inline',
         'settings' => array(),
@@ -126,6 +138,12 @@ function wim_news_field_default_field_instances() {
         ),
         'type' => 'image',
         'weight' => 1,
+      ),
+      'search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'short' => array(
         'label' => 'hidden',
@@ -195,6 +213,12 @@ function wim_news_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 5,
       ),
+      'search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'short' => array(
         'label' => 'above',
         'settings' => array(),
@@ -240,6 +264,12 @@ function wim_news_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 6,
+      ),
+      'search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'short' => array(
         'label' => 'above',
@@ -290,6 +320,12 @@ function wim_news_field_default_field_instances() {
           'show_remaining_days' => 0,
         ),
         'type' => 'date_default',
+        'weight' => 0,
+      ),
+      'search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 0,
       ),
       'short' => array(
@@ -361,6 +397,12 @@ function wim_news_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 3,
+      ),
+      'search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'short' => array(
         'label' => 'inline',

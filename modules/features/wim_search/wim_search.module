@@ -5,3 +5,14 @@
  */
 
 include_once 'wim_search.features.inc';
+
+/**
+ * Implements hook_entity_info_alter().
+ */
+function wim_search_entity_info_alter(&$entity_info) {
+  // Make search result view mode name more understandable.
+  $entity_info['node']['view modes']['search_result'] = array(
+    'label' => t('Search result'),
+    'custom settings' => TRUE,
+  );
+}
