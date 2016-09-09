@@ -805,7 +805,6 @@ function _wim_permissions($role) {
       'administer custom lists',
       'manipulate queues',
       'view the administration theme',
-      'translate interface',
       'revert revisions',
       'delete revisions',
       'view revisions',
@@ -816,6 +815,8 @@ function _wim_permissions($role) {
       'manipulate all queues',
       'unblock expired accounts',
       'force password change',
+      'submit latitude/longitude',
+      'access site in maintenance mode',
       // Node access.
       'bypass node access',
       'view own unpublished content',
@@ -881,12 +882,7 @@ function _wim_permissions($role) {
       // Taxonomy.
       'administer taxonomy',
       // User.
-      'administer permissions',
       'administer users',
-      // Views.
-      'administer views',
-      // Features.
-      'manage features',
     ),
     // Content manager.
     'content manager' => array(
@@ -908,8 +904,6 @@ function _wim_permissions($role) {
       'delete revisions',
       'use text format filtered_html',
       'use text format full_html',
-      'access site in maintenance mode',
-      'translate interface',
       'view own unpublished content',
       'edit meta tags',
       'manipulate all queues',
