@@ -18,6 +18,7 @@ projects[colectomy] = 1.0-beta2
 projects[ctools] = 1.10
 projects[date] = 2.9
 projects[elysia_cron] = 2.1
+projects[encrypt] = 2.3
 projects[entity] = 1.7
 projects[entityreference] = 1.1
 projects[features] = 2.10
@@ -51,6 +52,8 @@ projects[views] = 3.14
 projects[views_bootstrap] = 3.1
 projects[views_bulk_operations] = 3.3
 projects[webform] = 4.14
+projects[webform_clear] = 2.0
+projects[webform_encrypt] = 1.1
 projects[weight] = 3.1
 projects[wysiwyg] = 2.x-dev
 
