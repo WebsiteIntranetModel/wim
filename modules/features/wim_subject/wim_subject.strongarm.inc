@@ -14,7 +14,7 @@ function wim_subject_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'apachesolr_exclude_node_enable_subject_page';
-  $strongarm->value = 1;
+  $strongarm->value = 0;
   $export['apachesolr_exclude_node_enable_subject_page'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -39,6 +39,15 @@ function wim_subject_strongarm() {
         'custom_settings' => FALSE,
       ),
       'short' => array(
+        'custom_settings' => FALSE,
+      ),
+      'search_index' => array(
+        'custom_settings' => FALSE,
+      ),
+      'search_result' => array(
+        'custom_settings' => FALSE,
+      ),
+      'token' => array(
         'custom_settings' => FALSE,
       ),
     ),
