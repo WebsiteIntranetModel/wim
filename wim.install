@@ -817,6 +817,7 @@ function _wim_permissions($role) {
       'force password change',
       'submit latitude/longitude',
       'access site in maintenance mode',
+      'exclude nodes from apache solr',
       // Node access.
       'bypass node access',
       'view own unpublished content',
@@ -907,6 +908,7 @@ function _wim_permissions($role) {
       'view own unpublished content',
       'edit meta tags',
       'manipulate all queues',
+      'exclude nodes from apache solr',
       // Node access.
       'publishing options tab',
       // News.

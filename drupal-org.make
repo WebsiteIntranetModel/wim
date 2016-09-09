@@ -9,6 +9,7 @@ projects[admin_menu] = 3.0-rc5
 projects[admin_views] = 1.6
 projects[adminimal_admin_menu] = 1.7
 projects[apachesolr] = 1.8
+projects[apachesolr_exclude_node] = 1.4
 projects[autologout] = 4.4
 projects[bean] = 1.11
 projects[breakpoints] = 1.4
