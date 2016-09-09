@@ -65,6 +65,7 @@ dependencies[] = wim_news
 dependencies[] = wim_page
 dependencies[] = wim_product
 dependencies[] = wim_seo
+dependencies[] = wim_search
 dependencies[] = wim_subject
 dependencies[] = wim_text_formats
 dependencies[] = wim_webform
