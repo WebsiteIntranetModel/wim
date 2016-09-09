@@ -485,16 +485,19 @@ function _wim_create_page($page_type, $bundle = 'page', $language = LANGUAGE_NON
   if ($page_type === '404') {
     $node->title = 'Not Found (404)';
     $node->body[$language][0]['value'] = 'Page not found.';
+    $node->apachesolr_exclude_node_enabled = 1;
   }
 
   // 403 page.
   if ($page_type === '403') {
     $node->title = 'No access (403)';
     $node->body[$language][0]['value'] = 'No access.';
+    $node->apachesolr_exclude_node_enabled = 1;
   }
 
   if ($page_type === 'homepage') {
     $node->title = 'Home page';
+    $node->apachesolr_exclude_node_enabled = 1;
   }
 
   $node = node_submit($node);
