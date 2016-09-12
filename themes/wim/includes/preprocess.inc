@@ -10,10 +10,6 @@
  * Implements template_preprocess_node().
  */
 function wim_preprocess_node(&$variables) {
-  $content_types_labels = array(
-    'page' => t('General information'),
-  );
-
   $node = $variables['node'];
   $view_mode = $variables['view_mode'];
   $content_type = $variables['type'];
@@ -35,8 +31,17 @@ function wim_preprocess_node(&$variables) {
     }
   }
 
-  // Add content type label.
-  $variables['content_type'] = isset($content_types_labels[$content_type]) ? $content_types_labels[$content_type] : ucfirst($content_type);
+  if ($content_type === 'agenda' && $view_mode === 'search_result') {
+    global $base_url;
+    $variables['source_url'] = l($base_url, '', array(
+      'absolute' => TRUE,
+      'attributes' => array(
+        'class' => array(
+          'source',
+        ),
+      ),
+    ));
+  }
 }
 
 /**
@@ -246,12 +251,25 @@ function wim_preprocess_page(&$variables) {
  */
 function wim_preprocess_search_result(&$variables) {
   $result = $variables['result'];
-  if (isset($result['node']) && $node = node_load($result['node']->entity_id)) {
-    $variables['node_content'] = node_view($node, 'search_result');
-  }
+  global $base_url;
 
   // Add source url.
   $result_link = $result['link'];
   $parsed_url = parse_url($result_link);
-  $variables['source_url'] = $parsed_url['scheme'] . '://' . $parsed_url['host'];
+  $source_url = $parsed_url['scheme'] . '://' . $parsed_url['host'];
+  $variables['source'] = l($source_url, $source_url, array(
+    'absolute' => TRUE,
+    'attributes' => array(
+      'class' => array('source'),
+    ),
+  ));
+
+  if (isset($result['node']) && $node = node_load($result['node']->entity_id)) {
+    $content_types_labels = array(
+      'page' => t('General information'),
+    );
+    $variables['node_content'] = node_view($node, 'search_result');
+    // Add content type label.
+    $variables['content_type'] = isset($content_types_labels[$node->type]) ? $content_types_labels[$node->type] : ucfirst($node->type);
+  }
 }

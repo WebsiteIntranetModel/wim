@@ -81,14 +81,12 @@
  * @ingroup templates
  */
 ?>
-<article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
+<article id="ag-node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
   <div class="submitted">
-    <?php if (!empty($content['field_publication_date'])): ?>
-      <?php print render($content['field_publication_date']);
-      hide($content['field_publication_date']);
+    <?php if (!empty($content['field_agenda_date'])): ?>
+      <?php print render($content['field_agenda_date']);
+      hide($content['field_agenda_date']);
       ?>
-    <?php else: ?>
-      <?php print format_date($created, 'medium'); ?>
     <?php endif; ?>
   </div>
 
@@ -99,5 +97,6 @@
   hide($content['field_image']);
   hide($content['field_tags']);
   print render($content);
+  print render($source);
   ?>
 </article>

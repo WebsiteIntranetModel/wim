@@ -63,6 +63,11 @@
   <?php print render($title_prefix); ?>
   <h3 class="title"<?php print $title_attributes; ?>>
     <a href="<?php print $url; ?>"><?php print $title; ?></a>
+    <?php if(isset($content_type)):?>
+      <span class="content-type">
+        <?php print ' - ' . $content_type; ?>
+      </span>
+    <?php endif;?>
   </h3>
   <?php print render($title_suffix); ?>
   <?php if (isset($node_content)): ?>
@@ -75,8 +80,7 @@
       <?php endif; ?>
     </div>
   <?php endif; ?>
-  <?php if ($source_url): ?>
-    <a href="<?php print $source_url; ?>"
-       class="source"><?php print $source_url; ?></a>
+  <?php if ($source): ?>
+    <?php print $source; ?>
   <?php endif; ?>
 </li>
