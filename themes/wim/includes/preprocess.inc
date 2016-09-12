@@ -10,14 +10,18 @@
  * Implements template_preprocess_node().
  */
 function wim_preprocess_node(&$variables) {
+  $content_types_labels = array(
+    'page' => t('General information'),
+  );
+
   $node = $variables['node'];
   $view_mode = $variables['view_mode'];
   $content_type = $variables['type'];
 
   // Hook suggestion node--view_mode.tpl.php.
-  $variables['theme_hook_suggestions'][] = 'node__' . strtr($view_mode, '_', '-');
+  $variables['theme_hook_suggestions'][] = 'node__' . strtr($view_mode, '-', '_');
   // Hook suggestion node--content_type--view_mode.tpl.php.
-  $variables['theme_hook_suggestions'][] = 'node__' . $node->type . '__' . strtr($view_mode, '_', '-');
+  $variables['theme_hook_suggestions'][] = 'node__' . $node->type . '__' . strtr($view_mode, '-', '_');
 
   // Add read more link variable to template.
   $variables['read_more_link'] = l(t('Read more'), $variables['node_url']);
@@ -30,6 +34,9 @@ function wim_preprocess_node(&$variables) {
       $variables['product_link'] = l(t('Back to product'), '/node/' . $parameters['product'], array('attributes' => array('class' => array('back-link'))));
     }
   }
+
+  // Add content type label.
+  $variables['content_type'] = isset($content_types_labels[$content_type]) ? $content_types_labels[$content_type] : ucfirst($content_type);
 }
 
 /**
@@ -226,4 +233,19 @@ function wim_preprocess_page(&$variables) {
   if ($menu_item && $menu_item['path'] === 'faq/%') {
     $variables['title'] = t('FAQ');
   }
+}
+
+/**
+ * Template preprocess for apachesolr search results.
+ */
+function wim_preprocess_search_result(&$variables) {
+  $result = $variables['result'];
+  if (isset($result['node']) && $node = node_load($result['node']->entity_id)) {
+    $variables['node_content'] = node_view($node, 'search_result');
+  }
+
+  // Add source url.
+  $result_link = $result['link'];
+  $parsed_url = parse_url($result_link);
+  $variables['source_url'] = $parsed_url['scheme'] . '://' . $parsed_url['host'];
 }

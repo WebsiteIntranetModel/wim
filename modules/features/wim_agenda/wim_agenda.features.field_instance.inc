@@ -27,9 +27,11 @@ function wim_agenda_field_default_field_instances() {
       'search_result' => array(
         'label' => 'hidden',
         'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 2,
+        'settings' => array(
+          'trim_length' => 200,
+        ),
+        'type' => 'text_summary_or_trimmed',
+        'weight' => 1,
       ),
       'short' => array(
         'label' => 'hidden',
@@ -88,18 +90,18 @@ function wim_agenda_field_default_field_instances() {
         'weight' => 1,
       ),
       'search_result' => array(
-        'label' => 'abovec',
+        'label' => 'hidden',
         'module' => 'date',
         'settings' => array(
-          'format_type' => 'long',
-          'fromto' => 'both',
+          'format_type' => 'single_day',
+          'fromto' => 'value',
           'multiple_from' => '',
           'multiple_number' => '',
           'multiple_to' => '',
           'show_remaining_days' => 0,
         ),
         'type' => 'date_default',
-        'weight' => 1,
+        'weight' => 0,
       ),
       'short' => array(
         'label' => 'hidden',
@@ -176,13 +178,9 @@ function wim_agenda_field_default_field_instances() {
       ),
       'search_result' => array(
         'label' => 'hidden',
-        'module' => 'image',
-        'settings' => array(
-          'image_link' => '',
-          'image_style' => 'large',
-        ),
-        'type' => 'image',
-        'weight' => 0,
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 3,
       ),
       'short' => array(
         'label' => 'hidden',
@@ -255,10 +253,9 @@ function wim_agenda_field_default_field_instances() {
       ),
       'search_result' => array(
         'label' => 'abovec',
-        'module' => 'location_cck',
         'settings' => array(),
-        'type' => 'location_default',
-        'weight' => 3,
+        'type' => 'hidden',
+        'weight' => 2,
       ),
       'short' => array(
         'label' => 'above',
