@@ -1027,6 +1027,9 @@ function _wim_permissions($role) {
 
     $permissions['content manager'][] = "delete terms in $vocabulary->vid";
     $permissions['content manager'][] = "edit terms in $vocabulary->vid";
+
+    $permissions['content editor'][] = "delete terms in $vocabulary->vid";
+    $permissions['content editor'][] = "edit terms in $vocabulary->vid";
   }
 
   return $permissions[$role];
