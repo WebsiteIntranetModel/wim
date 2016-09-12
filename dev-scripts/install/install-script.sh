@@ -64,5 +64,8 @@ if [ ${3:-"default"} = "develop" ]; then
   drush en devel, field_ui, diff, views_ui, context_ui, felix_ui, dblog, hansel_ui -y
 fi
 
+# Revert all features
+drush fra -y
+
 # Clear drush cache.
 drush cc drush
