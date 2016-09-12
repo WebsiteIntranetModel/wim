@@ -233,6 +233,12 @@ function wim_preprocess_page(&$variables) {
   if ($menu_item && $menu_item['path'] === 'faq/%') {
     $variables['title'] = t('FAQ');
   }
+
+  // Set title for search page.
+  if ($menu_item && $menu_item['path'] === 'search/site/%') {
+    drupal_set_title(t('Search'));
+  }
+
 }
 
 /**
