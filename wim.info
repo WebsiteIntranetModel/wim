@@ -71,5 +71,6 @@ dependencies[] = wim_webform
 
 ; Custom
 dependencies[] = ckeditor_customtags
+dependencies[] = ckeditor_bootstrap_tabs
 dependencies[] = custom_lists
 dependencies[] = wim_sss
