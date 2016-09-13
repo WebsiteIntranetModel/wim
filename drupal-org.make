@@ -18,6 +18,7 @@ projects[colectomy] = 1.0-beta2
 projects[ctools] = 1.10
 projects[date] = 2.9
 projects[elysia_cron] = 2.1
+projects[email] = 1.3
 projects[encrypt] = 2.3
 projects[entity] = 1.7
 projects[entityreference] = 1.1

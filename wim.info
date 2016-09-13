@@ -27,6 +27,7 @@ dependencies[] = colectomy
 dependencies[] = ctools
 dependencies[] = date_views
 dependencies[] = elysia_cron
+dependencies[] = email
 dependencies[] = encrypt
 dependencies[] = entity
 dependencies[] = entityreference
