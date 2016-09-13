@@ -74,7 +74,7 @@ function wim_news_field_default_field_instances() {
         'module' => 'file',
         'settings' => array(),
         'type' => 'file_default',
-        'weight' => 4,
+        'weight' => 3,
       ),
       'short' => array(
         'label' => 'inline',
@@ -349,6 +349,50 @@ function wim_news_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-news-field_reminder_email'.
+  $field_instances['node-news-field_reminder_email'] = array(
+    'bundle' => 'news',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 7,
+      ),
+      'short' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_reminder_email',
+    'label' => 'Reminder email',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'email',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'email_textfield',
+      'weight' => 102,
+    ),
+  );
+
   // Exported field_instance: 'node-news-field_tags'.
   $field_instances['node-news-field_tags'] = array(
     'bundle' => 'news',
@@ -360,7 +404,7 @@ function wim_news_field_default_field_instances() {
         'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 3,
+        'weight' => 4,
       ),
       'short' => array(
         'label' => 'inline',
@@ -403,6 +447,7 @@ function wim_news_field_default_field_instances() {
   t('Image');
   t('Promoted');
   t('Publication date');
+  t('Reminder email');
   t('Tags');
   t('You can use this field to display a custom publication date instead of the default creation date of the content item.');
 
