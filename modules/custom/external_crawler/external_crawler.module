@@ -1,0 +1,153 @@
+<?php
+
+/**
+ * Implements hook_menu().
+ */
+function external_crawler_menu() {
+  $menu = array();
+
+  $menu['admin/config/search/external_crawler'] = array(
+    'title' => 'External Crawler',
+    'page callback' => 'external_crawler_page_list',
+    'access arguments' => array('administer site settings'),
+    'type' => MENU_LOCAL_TASK,
+    'file' => 'external_crawler.admin.inc',
+  );
+
+  return $menu;
+}
+
+/**
+ * Save page in Solr index.
+ *
+ * @param string $pagekey
+ * @param string $url
+ * @param string $title
+ * @param string $body
+ */
+function external_crawler_save_page($pagedata, $document) {
+  module_load_include('inc', 'external_crawler');
+
+  $env_id = variable_get('external_crawler_solr_env', 'solr');
+
+  $documents = array();
+  $documents[] = external_crawler_build_document($pagedata['pagekey'], $document['url'], $document['title'], $document['body']);
+
+  $solr = apachesolr_get_solr($env_id);
+  $solr->addDocuments($documents);
+
+  db_merge('external_crawler_page')
+    ->key(array('pagekey' => $pagedata['pagekey']))
+    ->fields($pagedata)
+    ->execute();
+}
+
+/**
+ * Delete page from Solr index.
+ *
+ * @param string $pagekey
+ */
+function external_crawler_delete_page($pagekey) {
+  $env_id = variable_get('external_crawler_solr_env', 'solr');
+  $solr = apachesolr_get_solr($env_id);
+  $solr->deleteById(apachesolr_document_id($pagekey, 'external_crawler'));
+
+  db_delete('external_crawler_page')
+    ->condition('pagekey', $pagekey)
+    ->execute();
+}
+
+/**
+ * Implements hook_cron().
+ */
+function external_crawler_cron() {
+  module_load_include('inc', 'external_crawler');
+
+  $sites = db_select('external_crawler_site', 's')
+    ->fields('s')
+    ->execute();
+
+  foreach ($sites as $site) {
+    // First check or this site has ever run from root.
+    $pagekey = _external_crawler_generate_pagekey($site, $site->url);
+    $pagedata = _external_crawler_get_pagedata($pagekey);
+    if (!$pagedata['date']) {
+      _external_crawler_index_page($site->url, $site);
+    }
+
+    // Setup query to retrieve the pages.
+    $or = db_or();
+    $or->condition('p.date', time() - $site->check_interval, '<=');
+    $or->isNull('p.date');
+    $pages = db_select('external_crawler_page', 'p')
+      ->fields('p', array('url'))
+      ->condition('p.site_id', $site->site_id)
+      ->condition($or)
+      ->orderBy('p.date', 'ASC')
+      ->range(0, $site->max_run)
+      ->execute();
+
+    // Index the pages.
+    foreach ($pages as $page) {
+      _external_crawler_index_page($page->url, $site);
+    }
+  }
+}
+
+/**
+ * Helper function for retrieving the page key.
+ *
+ * @param $site
+ * @param $url
+ * @return string
+ */
+function _external_crawler_generate_pagekey($site, $url) {
+  return 'crawler/' . $site->name . '/' . md5($url);
+}
+
+/**
+ * Helper function for loading the vendor code.
+ */
+function external_crawler_load_vendor() {
+  static $loaded = FALSE;
+
+  if (!$loaded) {
+    include_once drupal_get_path('module', 'external_crawler') . '/vendor/autoload.php';
+    $loaded = TRUE;
+  }
+}
+
+/**
+ * Helper function for retrieving the page data.
+ *
+ * @param $pagekey
+ * @return array
+ */
+function _external_crawler_get_pagedata($pagekey, $new_data = array()) {
+  $pagedata = db_select('external_crawler_page', 's')
+    ->fields('s')
+    ->condition('pagekey', $pagekey)
+    ->execute()
+    ->fetchAssoc();
+
+  if (!$pagedata) {
+    $pagedata = $new_data + array(
+        'pagekey' => $pagekey,
+        'site_id' => NULL,
+        'url' => NULL,
+        'date' => NULL,
+        'depth' => 1,
+        'title' => NULL,
+      );
+  }
+  return $pagedata;
+}
+
+/**
+ * Fix link in search results.
+ */
+function external_crawler_preprocess_search_result(&$variables) {
+  if ($variables['result']['fields']['entity_type'] == 'external_crawler') {
+    $variables['url'] = $variables['result']['fields']['url'];
+  }
+}

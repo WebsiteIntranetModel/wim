@@ -1,0 +1,108 @@
+<?php
+
+/**
+ * @file
+ *   Install and related hooks for external_crawler.
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function external_crawler_schema() {
+  $schema = array();
+
+  $schema['external_crawler_site'] = array(
+    'fields' => array(
+      'site_id' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'name' => array(
+        'type' => 'varchar',
+        'length' => 64,
+        'not null' => TRUE,
+      ),
+      'url' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ),
+      'check_interval' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'max_depth' => array(
+        'type' => 'int',
+        'size' => 'tiny',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'max_run' => array(
+        'type' => 'int',
+        'size' => 'tiny',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'content_include' => array(
+        'type' => 'text',
+        'not null' => TRUE,
+      ),
+      'content_exclude' => array(
+        'type' => 'text',
+        'not null' => TRUE,
+      ),
+      'url_exclude' => array(
+        'type' => 'text',
+        'not null' => FALSE,
+      ),
+    ),
+    'primary key' => array('site_id'),
+    'index keys' => array(
+      'idx_name_url' => array('name', 'url'),
+    ),
+  );
+
+  $schema['external_crawler_page'] = array(
+    'fields' => array(
+      'pagekey' => array(
+        'type' => 'varchar',
+        'length' => 64,
+        'not null' => TRUE,
+      ),
+      'site_id' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'url' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ),
+      'title' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => FALSE,
+      ),
+      'date' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => FALSE,
+      ),
+      'depth' => array(
+        'type' => 'int',
+        'size' => 'tiny',
+        'unsigned' => TRUE,
+        'not null' => FALSE,
+      ),
+    ),
+    'primary key' => array('pagekey'),
+    'index keys' => array(
+      'idx_site' => array('site_id'),
+    ),
+  );
+
+  return $schema;
+}
