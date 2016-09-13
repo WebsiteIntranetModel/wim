@@ -678,6 +678,28 @@ function _wim_place_felix_blocks() {
     ),
   );
 
+  // Add Facetapi blocks if enabled.
+  if (module_exists('facetapi')) {
+    module_load_include('inc', 'facetapi', 'facetapi.block');
+    $map = facetapi_get_delta_map();
+    $string = facetapi_build_delta('apachesolr@solr', 'block', 'bundle');
+    $filter_bundle_delta = array_search($string, $map);
+    $felix_blocks['search_filter_types'] = array(
+      'region_name' => 'sidebar-first-search',
+      'path' => NULL,
+      'module' => 'facetapi',
+      'delta' => $filter_bundle_delta,
+      'detail_path' => NULL,
+      'data' => array(
+        'subject' => st('Filter by type'),
+        'config' => array(
+          'bootstrap_layout' => 12,
+          'new_row' => 0,
+        ),
+      ),
+    );
+  }
+  
   foreach ($felix_blocks as $felix_block) {
     // Create custom block.
     if (isset($felix_block['custom_block']) && $felix_block['custom_block']) {

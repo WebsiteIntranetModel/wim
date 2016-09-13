@@ -47,7 +47,7 @@ function wim_search_facetapi_default_facet_settings() {
   $facet->enabled = TRUE;
   $facet->settings = array(
     'weight' => 0,
-    'widget' => 'facetapi_links',
+    'widget' => 'facetapi_checkbox_links',
     'filters' => array(),
     'active_sorts' => array(
       'display' => 'display',
@@ -70,7 +70,7 @@ function wim_search_facetapi_default_facet_settings() {
     'empty_behavior' => 'none',
     'facet_more_text' => 'Show more',
     'facet_fewer_text' => 'Show fewer',
-    'soft_limit' => '20',
+    'soft_limit' => '5',
     'nofollow' => 1,
     'show_expanded' => 0,
     'ranges' => array(

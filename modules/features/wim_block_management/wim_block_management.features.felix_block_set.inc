@@ -26,18 +26,22 @@ function wim_block_management_felix_default_block_sets() {
         'delta' => '*',
       ),
       3 => array(
-        'module' => 'menu',
+        'module' => 'facetapi',
         'delta' => '*',
       ),
       4 => array(
-        'module' => 'menu_block',
+        'module' => 'menu',
         'delta' => '*',
       ),
       5 => array(
+        'module' => 'menu_block',
+        'delta' => '*',
+      ),
+      6 => array(
         'module' => 'user',
         'delta' => 'login',
       ),
-      6 => array(
+      7 => array(
         'module' => 'views',
         'delta' => '*',
       ),
