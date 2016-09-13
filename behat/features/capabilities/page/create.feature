@@ -17,6 +17,8 @@ Feature: Create basic page
       | Time | 11:10:00   |
     Then I should see "Promoted"
     And I attach the file "/fixtures/images/drupal-icon.png" to "Image"
+    And I click "Reminder"
+    And I should see "Reminder email"
     And I press "Save"
     And I should see the success message "Basic page This is a test basic page has been created."
     And I should see "Body description text"
