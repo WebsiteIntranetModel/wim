@@ -5,3 +5,22 @@
  */
 
 include_once 'wim_search.features.inc';
+
+/**
+ * Implements hook_entity_info_alter().
+ */
+function wim_search_entity_info_alter(&$entity_info) {
+  // Make search result view mode name more understandable.
+  $entity_info['node']['view modes']['search_result'] = array(
+    'label' => t('Search result'),
+    'custom settings' => TRUE,
+  );
+}
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ */
+function wim_search_form_apachesolr_search_custom_page_search_form_alter(&$form, &$form_state, $form_id) {
+  // Hide input terms label.
+  $form['basic']['keys']['#title_display'] = 'invisible';
+}

@@ -17,7 +17,7 @@ function wim_search_apachesolr_search_default_searchers() {
   $searcher->label = 'Core Search';
   $searcher->description = 'Core Search';
   $searcher->search_path = 'search/site';
-  $searcher->page_title = 'Site';
+  $searcher->page_title = 'Search';
   $searcher->env_id = 'solr';
   $searcher->settings = array(
     'apachesolr_search_search_type' => 'custom',

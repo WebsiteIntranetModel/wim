@@ -24,6 +24,15 @@ function wim_news_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 2,
       ),
+      'search_result' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(
+          'trim_length' => 200,
+        ),
+        'type' => 'text_summary_or_trimmed',
+        'weight' => 1,
+      ),
       'short' => array(
         'label' => 'hidden',
         'module' => 'text',
@@ -76,6 +85,12 @@ function wim_news_field_default_field_instances() {
         'type' => 'file_default',
         'weight' => 4,
       ),
+      'search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 5,
+      ),
       'short' => array(
         'label' => 'inline',
         'settings' => array(),
@@ -126,6 +141,12 @@ function wim_news_field_default_field_instances() {
         ),
         'type' => 'image',
         'weight' => 1,
+      ),
+      'search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 6,
       ),
       'short' => array(
         'label' => 'hidden',
@@ -195,6 +216,12 @@ function wim_news_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 5,
       ),
+      'search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 4,
+      ),
       'short' => array(
         'label' => 'above',
         'settings' => array(),
@@ -241,6 +268,12 @@ function wim_news_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 6,
       ),
+      'search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 3,
+      ),
       'short' => array(
         'label' => 'above',
         'settings' => array(),
@@ -279,6 +312,20 @@ function wim_news_field_default_field_instances() {
     'description' => 'You can use this field to display a custom publication date instead of the default creation date of the content item.',
     'display' => array(
       'default' => array(
+        'label' => 'hidden',
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'medium',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+          'show_remaining_days' => 0,
+        ),
+        'type' => 'date_default',
+        'weight' => 0,
+      ),
+      'search_result' => array(
         'label' => 'hidden',
         'module' => 'date',
         'settings' => array(
@@ -361,6 +408,12 @@ function wim_news_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 3,
+      ),
+      'search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 2,
       ),
       'short' => array(
         'label' => 'inline',

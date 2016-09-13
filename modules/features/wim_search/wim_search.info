@@ -4,6 +4,7 @@ core = 7.x
 package = WIM
 version = 7.x-1.0
 dependencies[] = apachesolr
+dependencies[] = apachesolr_exclude_node
 dependencies[] = apachesolr_search
 dependencies[] = ctools
 dependencies[] = strongarm

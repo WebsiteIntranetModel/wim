@@ -24,6 +24,15 @@ function wim_agenda_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 2,
       ),
+      'search_result' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(
+          'trim_length' => 200,
+        ),
+        'type' => 'text_summary_or_trimmed',
+        'weight' => 1,
+      ),
       'short' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -79,6 +88,20 @@ function wim_agenda_field_default_field_instances() {
         ),
         'type' => 'date_default',
         'weight' => 1,
+      ),
+      'search_result' => array(
+        'label' => 'hidden',
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'single_day',
+          'fromto' => 'value',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+          'show_remaining_days' => 0,
+        ),
+        'type' => 'date_default',
+        'weight' => 0,
       ),
       'short' => array(
         'label' => 'hidden',
@@ -153,6 +176,12 @@ function wim_agenda_field_default_field_instances() {
         'type' => 'image',
         'weight' => 0,
       ),
+      'search_result' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 3,
+      ),
       'short' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -222,6 +251,12 @@ function wim_agenda_field_default_field_instances() {
         'type' => 'location_default',
         'weight' => 3,
       ),
+      'search_result' => array(
+        'label' => 'abovec',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 2,
+      ),
       'short' => array(
         'label' => 'above',
         'settings' => array(),
@@ -268,6 +303,12 @@ function wim_agenda_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 5,
       ),
+      'search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 5,
+      ),
       'short' => array(
         'label' => 'above',
         'settings' => array(),
@@ -307,6 +348,12 @@ function wim_agenda_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 4,
+      ),
+      'search_result' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',

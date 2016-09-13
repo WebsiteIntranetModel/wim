@@ -13,6 +13,7 @@ function wim_news_metatag_export_default() {
   // Exported Metatag config instance: node:news.
   $config['node:news'] = array(
     'instance' => 'node:news',
+    'disabled' => FALSE,
     'config' => array(
       'title' => array(
         'value' => '[node:title] | [site:name]',
