@@ -87,8 +87,6 @@
       <?php print render($content['field_publication_date']);
       hide($content['field_publication_date']);
       ?>
-    <?php else: ?>
-      <?php print format_date($created, 'medium'); ?>
     <?php endif; ?>
   </div>
 

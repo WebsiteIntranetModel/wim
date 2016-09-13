@@ -75,12 +75,11 @@
   <?php else: ?>
     <div class="search-snippet-info">
       <?php if ($snippet): ?>
-        <p
-          class="search-snippet"<?php print $content_attributes; ?>><?php print $snippet; ?></p>
+        <p class="search-snippet"<?php print $content_attributes; ?>><?php print $snippet; ?></p>
       <?php endif; ?>
     </div>
   <?php endif; ?>
-  <?php if ($source): ?>
+  <?php if (isset($source)): ?>
     <?php print $source; ?>
   <?php endif; ?>
 </li>
