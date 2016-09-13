@@ -65,7 +65,8 @@ function external_crawler_cron() {
 
   $sites = db_select('external_crawler_site', 's')
     ->fields('s')
-    ->execute();
+    ->execute()
+    ->fetchAll();
 
   foreach ($sites as $site) {
     // First check or this site has ever run from root.

@@ -52,9 +52,10 @@ function _external_crawler_domcrawler_exclude(Crawler $crawler, $excludeSelector
   $crawler->rewind();
   $root->appendChild($document->importNode($crawler->current(), TRUE));
   $domxpath = new \DOMXPath($document);
+  $cssSelectorConverter = new CssSelectorConverter();
 
   foreach ($excludeSelectors as $selector) {
-    $crawlerInverse = $domxpath->query(CssSelectorConverter::toXPath($selector));
+    $crawlerInverse = $domxpath->query($cssSelectorConverter->toXPath($selector));
     foreach ($crawlerInverse as $elementToRemove) {
       $parent = $elementToRemove->parentNode;
       $parent->removeChild($elementToRemove);
@@ -72,7 +73,7 @@ function _external_crawler_domcrawler_exclude(Crawler $crawler, $excludeSelector
  * @param Crawler $nodeCrawler
  * @param string $from_url
  */
-function _external_crawler_index_page_crawl($site, $pagedata, $nodeCrawler, $from_url) {
+function _external_crawler_index_page_crawl($site, $pagedata, Crawler $nodeCrawler, $from_url) {
   // Retrieve links for indexing and adding to page table.
   $new_depth = $pagedata['depth'] + 1;
   if ($new_depth <= $site->max_depth) {
@@ -87,7 +88,7 @@ function _external_crawler_index_page_crawl($site, $pagedata, $nodeCrawler, $fro
 
       $is_excluded = drupal_match_path($link->getUri(), $site->url_exclude);
 
-      if ($link_data['host'] == $url_data['host'] && !$is_excluded) {
+      if (isset($link_data['host']) && $link_data['host'] == $url_data['host'] && !$is_excluded) {
         $new_pagedata = _external_crawler_get_pagedata(
           _external_crawler_generate_pagekey($site, $link->getUri()),
           array(
@@ -114,7 +115,9 @@ function _external_crawler_index_page_crawl($site, $pagedata, $nodeCrawler, $fro
  * @param object $site
  */
 function _external_crawler_index_page($url, $site) {
-  module_load_include('inc', 'apachesolr_attachments', 'apachesolr_attachments.index');
+  if (module_exists('apachesolr_attachments')) {
+    module_load_include('inc', 'apachesolr_attachments', 'apachesolr_attachments.index');
+  }
 
   // Load required libaries.
   external_crawler_load_vendor();
@@ -156,7 +159,7 @@ function _external_crawler_index_page($url, $site) {
       _external_crawler_index_page_html($site, $result, $document, $pagedata, $url);
     }
     else {
-      if (apachesolr_attachments_allowed_mime($content_type_mime) || apachesolr_attachments_allowed_mime($ext_mime)) {
+      if (module_exists('apachesolr_attachments') && (apachesolr_attachments_allowed_mime($content_type_mime) || apachesolr_attachments_allowed_mime($ext_mime))) {
         _external_crawler_index_page_document($site, $result, $document, $pagedata, $url);
       }
     }
@@ -213,7 +216,7 @@ function _external_crawler_index_page_html($site, $result, &$document, &$pagedat
   $document['title'] = $crawler->filter('title')->text();
 
   foreach ($included as $nodeCrawler) {
-    if ($site->exclude) {
+    if ($site->content_exclude) {
       // Remove from excluded.
       _external_crawler_domcrawler_exclude($nodeCrawler, explode(',', $site->content_exclude));
     }
