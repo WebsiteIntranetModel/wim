@@ -879,6 +879,7 @@ function _wim_permissions($role) {
       'delete own webform content',
       'edit any webform content',
       'edit own webform content',
+      'set webform_clear times',
       // Taxonomy.
       'administer taxonomy',
       // User.
@@ -962,6 +963,7 @@ function _wim_permissions($role) {
       'delete own webform content',
       'edit any webform content',
       'edit own webform content',
+      'set webform_clear times',
       // Taxonomy.
       'administer taxonomy',
       // User.
