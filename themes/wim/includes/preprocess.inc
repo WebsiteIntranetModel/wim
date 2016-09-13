@@ -251,7 +251,6 @@ function wim_preprocess_page(&$variables) {
  */
 function wim_preprocess_search_result(&$variables) {
   $result = $variables['result'];
-  global $base_url;
 
   // Add source url.
   $result_link = $result['link'];

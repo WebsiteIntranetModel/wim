@@ -148,7 +148,8 @@ function _external_crawler_get_pagedata($pagekey, $new_data = array()) {
  * Fix link in search results.
  */
 function external_crawler_preprocess_search_result(&$variables) {
-  if ($variables['result']['fields']['entity_type'] == 'external_crawler') {
+  if ($variables['result']['fields']['entity_type'] === 'external_crawler') {
     $variables['url'] = $variables['result']['fields']['url'];
+    $variables['result']['link'] = $variables['result']['fields']['url'];
   }
 }
