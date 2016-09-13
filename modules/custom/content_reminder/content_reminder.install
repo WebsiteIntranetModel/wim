@@ -1,0 +1,22 @@
+<?php
+/**
+ * @file
+ * Install file.
+ */
+
+/**
+ * Implements hook_uninstall().
+ */
+function content_reminder_uninstall() {
+  // Remove all variables used by the module.
+  db_delete('variable')
+    ->condition('name', db_like('content_reminder_') . '%', 'LIKE')
+    ->execute();
+
+  $node_types = node_type_get_types();
+  foreach ($node_types as $node_type) {
+    if ($instance = field_info_instance('node', 'field_reminder_email', $node_type->type)) {
+      field_delete_instance($instance);
+    }
+  }
+}
