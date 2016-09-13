@@ -37,13 +37,13 @@ fi
 
 apt-get update -qq && apt-get install -y unzip
 # Build the site using drush make
-#drush make ${PROFILE_PATH}/build-wim.make .
+drush make ${PROFILE_PATH}/build-wim.make .
 
 # Check if third argument is "develop". In that case we download the develop
 # modules.
-#if [ ${3:-"default"} = "develop" ]; then
-#  drush make --no-core ${PROFILE_PATH}/drupal-org-dev.make .
-#fi
+if [ ${3:-"default"} = "develop" ]; then
+  drush make --no-core ${PROFILE_PATH}/drupal-org-dev.make .
+fi
 echo "Drush make complete"
 
 # Install the site using the WIM installation profile.
