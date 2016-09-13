@@ -12,3 +12,5 @@ Feature: View search page
     Then I should be on "search/site/lorem"
     And I should see ""
     And I should see an "form#search-form" element
+    And I should see "Filter by type"
+    
