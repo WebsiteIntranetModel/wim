@@ -1,6 +1,5 @@
 .block-search {
   padding: 5px;
-  background-color: #efe5ef;
   border-radius: 4px;
   clear: both;
 
@@ -76,6 +75,49 @@
         &.month {
           text-transform: lowercase;
           font-size: 12px;
+        }
+      }
+    }
+  }
+}
+
+.block-facetapi {
+  h2.block-title {
+    background: none;
+    padding: 0;
+    border: none;
+    @extend h2;
+  }
+  ul.facetapi-facet-bundle {
+    padding-left: 0;
+    li {
+      margin-bottom: 10px;
+      font-size: 13px;
+      line-height: 22px;
+      color: lighten($gray-base, 40%);
+    }
+    a {
+      color: lighten($gray-base, 40%);
+      display: inline-block;
+      &:before {
+        content: "";
+        border: 1px solid lighten($gray-base, 90%);
+        display: inline-block;
+        width: 22px;
+        height: 22px;
+        vertical-align: top;
+        margin-right: 14px;
+        text-align: center;
+        font-weight: bold;
+        color: #ffffff;
+      }
+      &.facetapi-active {
+        @extend .fa-check;
+        &:before {
+          background-color: $brand-primary;
+          border-color: $brand-primary;
+          @include fa-icon;
+          line-height: 20px;
         }
       }
     }
