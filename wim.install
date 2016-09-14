@@ -838,6 +838,12 @@ function _wim_permissions($role) {
       'delete own page content',
       'edit any page content',
       'edit own page content',
+      // Person.
+      'create person content',
+      'delete any person content',
+      'delete own person content',
+      'edit any person content',
+      'edit own person content',
       // Subject.
       'create subject_page content',
       'delete any subject_page content',
@@ -929,6 +935,12 @@ function _wim_permissions($role) {
       'delete own page content',
       'edit any page content',
       'edit own page content',
+      // Person.
+      'create person content',
+      'delete any person content',
+      'delete own person content',
+      'edit any person content',
+      'edit own person content',
       // Product.
       'create product content',
       'delete any product content',
@@ -999,6 +1011,9 @@ function _wim_permissions($role) {
       // Page.
       'create page content',
       'edit own page content',
+      // Person.
+      'create person content',
+      'edit own person content',
       // Product.
       'create product content',
       'edit own product content',
