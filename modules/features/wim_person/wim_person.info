@@ -8,6 +8,7 @@ dependencies[] = email
 dependencies[] = features
 dependencies[] = field_group
 dependencies[] = image
+dependencies[] = picture
 dependencies[] = strongarm
 dependencies[] = taxonomy
 dependencies[] = text

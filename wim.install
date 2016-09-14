@@ -779,6 +779,7 @@ function _wim_default_sss() {
     'faq',
     'news',
     'page',
+    'person',
     'product',
   );
 
