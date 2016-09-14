@@ -13,3 +13,4 @@ Feature: View search page
     And I should see ""
     And I should see an "form#search-form" element
     And I should see "Filter by type"
+    And I should see "Filter by date"
