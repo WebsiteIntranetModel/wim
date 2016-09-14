@@ -36,6 +36,7 @@ features[elysia_cron][] = system_cron
 features[features_api][] = api:2
 features[field_base][] = body
 features[field_base][] = field_attachment
+features[field_base][] = field_email
 features[field_base][] = field_image
 features[field_base][] = field_link
 features[field_base][] = field_location
