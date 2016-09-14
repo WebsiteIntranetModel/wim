@@ -55,6 +55,9 @@ function wim_agenda_strongarm() {
         'redirect' => array(
           'weight' => '8',
         ),
+        'metatags' => array(
+          'weight' => '9',
+        ),
       ),
       'display' => array(),
     ),

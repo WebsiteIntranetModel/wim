@@ -13,6 +13,7 @@ dependencies[] = webform
 dependencies[] = webform_clear
 dependencies[] = webform_encrypt
 dependencies[] = wim_core
+features[ctools][] = field_group:field_group:1
 features[ctools][] = strongarm:strongarm:1
 features[features_api][] = api:2
 features[field_group][] = group_reminder|node|webform|form
