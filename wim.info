@@ -27,6 +27,7 @@ dependencies[] = colectomy
 dependencies[] = ctools
 dependencies[] = date_views
 dependencies[] = elysia_cron
+dependencies[] = email
 dependencies[] = encrypt
 dependencies[] = entity
 dependencies[] = entityreference
@@ -72,5 +73,6 @@ dependencies[] = wim_webform
 
 ; Custom
 dependencies[] = ckeditor_customtags
+dependencies[] = content_reminder
 dependencies[] = custom_lists
 dependencies[] = wim_sss

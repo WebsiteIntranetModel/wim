@@ -15,6 +15,8 @@ Feature: Create subject page
       | Date | 27/06/2026 |
       | Time | 11:10:00   |
     Then I should see "Promoted"
+    And I click "Reminder"
+    And I should see "Reminder email"
     Then I press "Save"
     And I should see the success message "Subject page This is a test subject page has been created."
     And I should not see "27 June 2026"
