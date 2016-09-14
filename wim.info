@@ -64,6 +64,7 @@ dependencies[] = wim_core
 dependencies[] = wim_faq
 dependencies[] = wim_news
 dependencies[] = wim_page
+dependencies[] = wim_person
 dependencies[] = wim_product
 dependencies[] = wim_seo
 dependencies[] = wim_search
