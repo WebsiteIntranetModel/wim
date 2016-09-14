@@ -99,6 +99,7 @@ function _wim_set_up_roles_and_permissions() {
   }
 
   // Autologout config for administrator.
+  variable_set('autologout_role_logout', 1);
   variable_set('autologout_role_' . $admin_role->rid, 1);
   variable_set('autologout_role_' . $admin_role->rid . '_timeout', 900);
 
@@ -888,10 +889,23 @@ function _wim_permissions($role) {
       'edit webform components',
       'create webform content',
       'delete any webform content',
-      'delete own webform content',
       'edit any webform content',
-      'edit own webform content',
       'set webform_clear times',
+      // Files.
+      'bypass file access',
+      'administer files',
+      'edit any audio files',
+      'edit any image files',
+      'edit any video files',
+      'edit any document files',
+      'delete any audio files',
+      'delete any image files',
+      'delete any video files',
+      'delete any document files',
+      'download any audio files',
+      'download any image files',
+      'download any video files',
+      'download any document files',
       // Taxonomy.
       'administer taxonomy',
       // User.
@@ -984,6 +998,20 @@ function _wim_permissions($role) {
       'edit any webform content',
       'edit own webform content',
       'set webform_clear times',
+      // Files.
+      'administer files',
+      'edit any audio files',
+      'edit any image files',
+      'edit any video files',
+      'edit any document files',
+      'delete any audio files',
+      'delete any image files',
+      'delete any video files',
+      'delete any document files',
+      'download any audio files',
+      'download any image files',
+      'download any video files',
+      'download any document files',
       // Taxonomy.
       'administer taxonomy',
       // User.
@@ -1030,6 +1058,19 @@ function _wim_permissions($role) {
       'create any editorial bean',
       'edit any editorial bean',
       'manage felix blocks',
+      // Files.
+      'edit any audio files',
+      'edit any image files',
+      'edit any video files',
+      'edit any document files',
+      'delete own audio files',
+      'delete own image files',
+      'delete own video files',
+      'delete own document files',
+      'download any audio files',
+      'download any image files',
+      'download any video files',
+      'download any document files',
     ),
     'authenticated' => array(
       'access content',
