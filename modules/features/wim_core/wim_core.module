@@ -7,6 +7,15 @@
 include_once 'wim_core.features.inc';
 
 /**
+ * Implements hook_form_alter().
+ */
+function wim_core_views_bulk_operations_form_alter(&$form, &$form_state, $vbo) {
+  if ($form_state['step'] === 'views_bulk_operations_confirm_form') {
+    $form['description']['#markup'] = strip_tags($form['description']['#markup'], '<ul><li><div><h3>');
+  }
+}
+
+/**
  * Implements hook_permission().
  */
 function wim_core_permission() {
@@ -185,6 +194,10 @@ function wim_core_form_alter(&$form, &$form_state, $form_id) {
   // Allow to access publishing options tab.
   if (user_access('publishing options tab')) {
     $form['options']['#access'] = TRUE;
+  }
+  // Move reminder after publishing.
+  if (isset($form['#groups']['group_reminder'], $form['field_reminder_email'])) {
+    $form['#groups']['group_reminder']->weight = 150;
   }
 
 }

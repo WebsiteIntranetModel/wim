@@ -24,6 +24,12 @@ function wim_subject_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 0,
       ),
+      'search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'teaser' => array(
         'label' => 'hidden',
         'module' => 'text',
@@ -71,6 +77,12 @@ function wim_subject_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 2,
       ),
+      'search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -108,6 +120,12 @@ function wim_subject_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 1,
       ),
+      'search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -143,12 +161,51 @@ function wim_subject_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-subject_page-field_reminder_email'.
+  $field_instances['node-subject_page-field_reminder_email'] = array(
+    'bundle' => 'subject_page',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 3,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_reminder_email',
+    'label' => 'Reminder email',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'email',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'email_textfield',
+      'weight' => 102,
+    ),
+  );
+
   // Translatables
   // Included for use with string extractors like potx.
   t('Body');
   t('Check if You want to stick this node on top of lists');
   t('Promoted');
   t('Publication date');
+  t('Reminder email');
   t('You can use this field to display a custom publication date instead of the default creation date of the content item.');
 
   return $field_instances;

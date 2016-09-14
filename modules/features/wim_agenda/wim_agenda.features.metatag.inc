@@ -13,6 +13,7 @@ function wim_agenda_metatag_export_default() {
   // Exported Metatag config instance: node:agenda.
   $config['node:agenda'] = array(
     'instance' => 'node:agenda',
+    'disabled' => FALSE,
     'config' => array(
       'title' => array(
         'value' => '[node:title] | [site:name]',

@@ -15,6 +15,8 @@ Feature: Create FAQ
     And I fill in wysiwyg on field "Additional information" with "ADDITIONAL INFORMATION"
     And I wait for AJAX to finish
     And I select "Other" from "Category"
+    And I click "Reminder"
+    And I should see "Reminder email"
     And I press "Save"
     Then I should see the success message "FAQ TEST FAQ QUESTION has been created."
     And I should see the heading "TEST FAQ QUESTION"

@@ -9739,6 +9739,82 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   margin: 0;
 }
 
+.search-form {
+  margin-top: -10px;
+}
+
+.search-form .form-item-keys {
+  float: left;
+  margin-right: -90px;
+  padding-right: 90px;
+  width: 100%;
+}
+
+.search-form .form-item-keys .form-text {
+  width: 100%;
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.search-form .btn-primary {
+  width: 90px;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}
+
+.search-results {
+  padding-left: 0;
+}
+
+.search-results li {
+  list-style-position: inside;
+  font-weight: bold;
+}
+
+.search-results li .node {
+  font-weight: normal;
+}
+
+.search-results h3 {
+  margin: 15px 0 5px;
+  font-weight: bold;
+}
+
+.search-results .field-name-body {
+  margin: 8px 0 12px;
+}
+
+.search-results .submitted {
+  margin: 0;
+}
+
+.search-results .source {
+  color: #979797;
+  font-weight: normal;
+}
+
+.search-results .node-agenda .submitted {
+  float: left;
+  width: 39px;
+  height: 41px;
+  margin-right: 10px;
+  border: 1px solid #e6e6e6;
+  text-align: center;
+  padding-top: 5px;
+}
+
+.search-results .node-agenda .submitted span {
+  display: block;
+  font-weight: bold;
+  line-height: 15px;
+  color: #4a4a4a;
+}
+
+.search-results .node-agenda .submitted span.month {
+  text-transform: lowercase;
+  font-size: 12px;
+}
+
 .breadcrumb {
   background: white;
   margin: -15px 0 0;

@@ -24,7 +24,7 @@ function scfeed_menu() {
   $menu = array();
 
   $menu['admin/config/services/scfeed'] = array(
-    'title' => 'Samenwerkende Catalogi',
+    'title' => 'Collaborative catalogs',
     'description' => 'Configure Samenwerkende Catalogi XML feed',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('scfeed_settings_form'),

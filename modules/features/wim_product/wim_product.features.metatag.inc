@@ -13,6 +13,7 @@ function wim_product_metatag_export_default() {
   // Exported Metatag config instance: node:product.
   $config['node:product'] = array(
     'instance' => 'node:product',
+    'disabled' => FALSE,
     'config' => array(
       'title' => array(
         'value' => '[node:title] | [site:name]',

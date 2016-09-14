@@ -486,16 +486,19 @@ function _wim_create_page($page_type, $bundle = 'page', $language = LANGUAGE_NON
   if ($page_type === '404') {
     $node->title = 'Not Found (404)';
     $node->body[$language][0]['value'] = 'Page not found.';
+    $node->apachesolr_exclude_node_enabled = 1;
   }
 
   // 403 page.
   if ($page_type === '403') {
     $node->title = 'No access (403)';
     $node->body[$language][0]['value'] = 'No access.';
+    $node->apachesolr_exclude_node_enabled = 1;
   }
 
   if ($page_type === 'homepage') {
     $node->title = 'Home page';
+    $node->apachesolr_exclude_node_enabled = 1;
   }
 
   $node = node_submit($node);
@@ -777,6 +780,7 @@ function _wim_default_sss() {
     'faq',
     'news',
     'page',
+    'person',
     'product',
   );
 
@@ -801,12 +805,12 @@ function _wim_permissions($role) {
       'administer menu',
       'administer taxonomy',
       'administer redirects',
+      'administer content reminder',
       'manage felix blocks',
       'access contextual links',
       'administer custom lists',
       'manipulate queues',
       'view the administration theme',
-      'translate interface',
       'revert revisions',
       'delete revisions',
       'view revisions',
@@ -817,6 +821,9 @@ function _wim_permissions($role) {
       'manipulate all queues',
       'unblock expired accounts',
       'force password change',
+      'submit latitude/longitude',
+      'access site in maintenance mode',
+      'exclude nodes from apache solr',
       // Node access.
       'bypass node access',
       'view own unpublished content',
@@ -833,6 +840,12 @@ function _wim_permissions($role) {
       'delete own page content',
       'edit any page content',
       'edit own page content',
+      // Person.
+      'create person content',
+      'delete any person content',
+      'delete own person content',
+      'edit any person content',
+      'edit own person content',
       // Subject.
       'create subject_page content',
       'delete any subject_page content',
@@ -877,6 +890,7 @@ function _wim_permissions($role) {
       'create webform content',
       'delete any webform content',
       'edit any webform content',
+      'set webform_clear times',
       // Files.
       'bypass file access',
       'administer files',
@@ -895,12 +909,7 @@ function _wim_permissions($role) {
       // Taxonomy.
       'administer taxonomy',
       // User.
-      'administer permissions',
       'administer users',
-      // Views.
-      'administer views',
-      // Features.
-      'manage features',
     ),
     // Content manager.
     'content manager' => array(
@@ -912,6 +921,7 @@ function _wim_permissions($role) {
       'administer menu',
       'administer taxonomy',
       'administer redirects',
+      'administer content reminder',
       'manage felix blocks',
       'access contextual links',
       'administer custom lists',
@@ -922,11 +932,10 @@ function _wim_permissions($role) {
       'delete revisions',
       'use text format filtered_html',
       'use text format full_html',
-      'access site in maintenance mode',
-      'translate interface',
       'view own unpublished content',
       'edit meta tags',
       'manipulate all queues',
+      'exclude nodes from apache solr',
       // Node access.
       'publishing options tab',
       // News.
@@ -941,6 +950,12 @@ function _wim_permissions($role) {
       'delete own page content',
       'edit any page content',
       'edit own page content',
+      // Person.
+      'create person content',
+      'delete any person content',
+      'delete own person content',
+      'edit any person content',
+      'edit own person content',
       // Product.
       'create product content',
       'delete any product content',
@@ -982,6 +997,7 @@ function _wim_permissions($role) {
       'delete own webform content',
       'edit any webform content',
       'edit own webform content',
+      'set webform_clear times',
       // Files.
       'administer files',
       'edit any audio files',
@@ -1024,6 +1040,9 @@ function _wim_permissions($role) {
       // Page.
       'create page content',
       'edit own page content',
+      // Person.
+      'create person content',
+      'edit own person content',
       // Product.
       'create product content',
       'edit own product content',
@@ -1074,6 +1093,9 @@ function _wim_permissions($role) {
 
     $permissions['content manager'][] = "delete terms in $vocabulary->vid";
     $permissions['content manager'][] = "edit terms in $vocabulary->vid";
+
+    $permissions['content editor'][] = "delete terms in $vocabulary->vid";
+    $permissions['content editor'][] = "edit terms in $vocabulary->vid";
   }
 
   return $permissions[$role];
