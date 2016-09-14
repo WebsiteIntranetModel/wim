@@ -70,5 +70,7 @@ drush fra -y
 # Clear drush cache.
 drush cc drush
 
-# Try indexing the site.
+# Get Solr information.
 drush ev "var_dump(apachesolr_environment_load(apachesolr_default_environment()));"
+echo "Testing connection to Solr"
+drush ev "var_dump(apachesolr_server_status('http://solr:8983/solr/drupal', ''));"
