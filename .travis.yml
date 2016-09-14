@@ -26,6 +26,10 @@ before_install:
   - docker-compose -f docker-compose.yml up -d
   - docker ps -a
   - docker network ls
+  - docker network inspect bridge
+  - docker network inspect host
+  - docker network inspect none
+  - docker network inspect wim_default
 
 script:
   - docker exec -i wim_web bash /root/dev-scripts/install/install-script.sh
