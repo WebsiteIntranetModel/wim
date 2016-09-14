@@ -57,6 +57,17 @@ function wim_fixtures_migrate_api() {
           'WIM_Term_Tags',
         ),
       ),
+      'WIM_Person' => array(
+        'class_name' => 'PersonMigration',
+        'group_name' => 'WIMMigrate',
+        'content_type' => 'person',
+        'file_name' => 'person.json',
+        'dependencies' => array(
+          'WIM_User',
+          'WIM_File',
+          'WIM_Term_Tags',
+        ),
+      ),
       'WIM_Product' => array(
         'class_name' => 'ProductMigration',
         'group_name' => 'WIMMigrate',

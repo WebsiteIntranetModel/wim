@@ -85,6 +85,80 @@ class BasicPageMigration extends NodeMigration {
 }
 
 /**
+ * Class PersonMigration.
+ */
+class PersonMigration extends NodeMigration {
+
+  /**
+   * Constructor.
+   *
+   * @param array $arguments
+   *   Arguments.
+   */
+  public function __construct(array $arguments) {
+
+    parent::__construct($arguments);
+    $this->fileName = $arguments['file_name'];
+    $this->contentType = $arguments['content_type'];
+
+    $columns = array(
+      'id' => t('Id'),
+      'title' => t('Person title'),
+      'body' => t('Person body'),
+      'summary' => t('Person summary'),
+      'field_image' => t('Person image'),
+      'field_tags' => t('Person tags'),
+      'field_person_roles' => t('Person roles'),
+      'field_person_phone' => t('Phone'),
+      'field_email' => t('Email'),
+      'field_person_address' => t('Address'),
+    );
+
+    $this->source = new MigrateSourceList(new WIMListJSON($this->dataSources . $this->fileName),
+      new WIMItemJSON($this->dataSources . $this->fileName, array()), $columns);
+
+    $this->destination = new MigrateDestinationNode($this->contentType);
+    $this->map = new MigrateSQLMap($this->machineName, array(
+      'id' => array(
+        'type' => 'varchar',
+        'length' => 6,
+        'not null' => TRUE,
+        'description' => t('ID'),
+      ),
+    ), MigrateDestinationNode::getKeySchema());
+
+    // Mapped fields.
+    $this->addSimpleMappings(array(
+      'title',
+      'body',
+      'body:summary',
+      'field_person_roles',
+      'field_person_phone',
+      'field_email',
+      'field_person_address',
+    ));
+
+    $this->addFieldMapping('body:format')->defaultValue('full_html');
+    $this->addFieldMapping('field_person_address:format')->defaultValue('full_html');
+
+    $this->addFieldMapping('field_image', 'field_image')
+      ->sourceMigration('WIM_File');
+    $this->addFieldMapping('field_image:alt')->defaultValue('');
+    $this->addFieldMapping('field_image:file_class')
+      ->defaultValue('MigrateFileFid');
+    $this->addFieldMapping('field_image:preserve_files')
+      ->defaultValue(FALSE);
+    $this->addFieldMapping('uid', 'author')
+      ->sourceMigration('WIM_User')->defaultValue(1);
+    $this->addFieldMapping('field_tags', 'field_tags')->separator(',')
+      ->sourceMigration('WIM_Term_Tags');
+    $this->addFieldMapping('field_tags:source_type')
+      ->defaultValue('tid');
+  }
+
+}
+
+/**
  * Class ProductMigration.
  *
  * Now it is same as basic page, extend later.
