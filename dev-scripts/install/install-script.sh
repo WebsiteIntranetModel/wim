@@ -69,3 +69,7 @@ drush fra -y
 
 # Clear drush cache.
 drush cc drush
+
+# Try indexing the site.
+drush solr-mark-all
+drush solr-index
