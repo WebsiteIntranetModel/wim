@@ -71,5 +71,4 @@ drush fra -y
 drush cc drush
 
 # Try indexing the site.
-drush solr-mark-all
-drush solr-index
+drush ev "var_dump(apachesolr_environment_load(apachesolr_default_environment()));"
