@@ -25,6 +25,7 @@ before_install:
   - docker-compose --version
   - docker-compose -f docker-compose.yml up -d
   - docker ps -a
+  - docker network ls
 
 script:
   - docker exec -i wim_web bash /root/dev-scripts/install/install-script.sh

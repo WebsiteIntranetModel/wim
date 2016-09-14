@@ -8,15 +8,14 @@ services:
       - ./dev-scripts/:/root/dev-scripts
     links:
       - db
+      - wim_solr:solr
       - mailcatcher
-      - solr
     environment:
       - VIRTUAL_HOST=wim.dev
       - DRUPAL_SETTINGS=development
     ports:
       - "80"
     container_name: wim_web
-    network_mode: "bridge"
 
   db:
     image: mysql:5.6
@@ -28,7 +27,6 @@ services:
     ports:
       - "3308:3306"
     container_name: wim_db
-    network_mode: "bridge"
 
   mailcatcher:
     image: schickling/mailcatcher
@@ -38,7 +36,6 @@ services:
     ports:
       - "1080"
     container_name: wim_mailcatcher
-    network_mode: "bridge"
 
   selenium:
     image: selenium/standalone-firefox-debug:2.53.0
@@ -53,9 +50,16 @@ services:
       - NET_RAW
     links:
       - web
-    network_mode: "bridge"
 
-  solr:
+  proxy:
+    image: jwilder/nginx-proxy
+    ports:
+      - "80:80"
+    container_name: wim_proxy
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+
+  wim_solr:
     image: mxr576/apachesolr-5.x-drupal-docker
     hostname: solr
     container_name: wim_solr
@@ -65,15 +69,6 @@ services:
       - PARTIAL_SEARCH_ENABLED=false
     ports:
       - "8983"
-    network_mode: "bridge"
-
-  proxy:
-    image: jwilder/nginx-proxy
-    ports:
-      - "80:80"
-    container_name: wim_proxy
-    volumes:
-      - /var/run/docker.sock:/tmp/docker.sock:ro
 
 volumes:
   db_data:
