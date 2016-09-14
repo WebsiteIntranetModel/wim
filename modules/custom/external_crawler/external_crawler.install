@@ -14,7 +14,7 @@ function external_crawler_schema() {
   $schema['external_crawler_site'] = array(
     'fields' => array(
       'site_id' => array(
-        'type' => 'int',
+        'type' => 'serial',
         'unsigned' => TRUE,
         'not null' => TRUE,
       ),
@@ -47,20 +47,29 @@ function external_crawler_schema() {
       ),
       'content_include' => array(
         'type' => 'text',
-        'not null' => TRUE,
+        'not null' => FALSE,
       ),
       'content_exclude' => array(
         'type' => 'text',
-        'not null' => TRUE,
+        'not null' => FALSE,
       ),
       'url_exclude' => array(
         'type' => 'text',
         'not null' => FALSE,
       ),
     ),
+    'indexes' => array(
+      'site_id' => array('site_id'),
+    ),
     'primary key' => array('site_id'),
     'index keys' => array(
       'idx_name_url' => array('name', 'url'),
+    ),
+    'foreign keys' => array(
+      'external_crawler_page' => array(
+        'table' => 'external_crawler_page',
+        'columns' => array('site_id' => 'site_id'),
+      ),
     ),
   );
 
@@ -97,6 +106,9 @@ function external_crawler_schema() {
         'unsigned' => TRUE,
         'not null' => FALSE,
       ),
+    ),
+    'indexes' => array(
+      'pagekey' => array('pagekey'),
     ),
     'primary key' => array('pagekey'),
     'index keys' => array(
