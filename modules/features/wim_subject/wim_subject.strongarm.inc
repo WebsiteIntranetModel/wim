@@ -59,6 +59,12 @@ function wim_subject_strongarm() {
         'title' => array(
           'weight' => '-5',
         ),
+        'metatags' => array(
+          'weight' => '40',
+        ),
+        'redirect' => array(
+          'weight' => '30',
+        ),
       ),
       'display' => array(),
     ),

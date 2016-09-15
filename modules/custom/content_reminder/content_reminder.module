@@ -1,0 +1,81 @@
+<?php
+/**
+ * @file
+ * Code for the Content Reminder.
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function content_reminder_menu() {
+  $items['admin/config/content/reminder'] = array(
+    'title' => 'Content Reminder',
+    'description' => 'Send reminders for expired content',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('content_reminder_admin_form'),
+    'access arguments' => array('administer content reminder'),
+    'type' => MENU_NORMAL_ITEM,
+    'file' => 'content_reminder.admin.inc',
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_permission().
+ */
+function content_reminder_permission() {
+  return array(
+    'administer content reminder' => array(
+      'title' => t('Administer Content Reminder'),
+      'description' => t('Configure content reminders.'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_cron().
+ */
+function content_reminder_cron() {
+  module_load_include('inc', 'content_reminder', 'content_reminder');
+  $nodes = _get_required_nodes();
+
+  if (isset($nodes) && !empty($nodes)) {
+    _prepare_nodes($nodes, 'reminder');
+  }
+
+  $old_nodes = _get_old_nodes();
+
+  if (isset($old_nodes) && !empty($old_nodes)) {
+    _prepare_nodes($old_nodes, 'expire');
+  }
+}
+
+/**
+ * Implements hook_cronapi().
+ */
+function content_reminder_cronapi($op, $job = NULL) {
+
+  $items['content_reminder_cron'] = array(
+    'description' => 'Send content reminder emails.',
+    'rule' => '00 10 * * *',
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function content_reminder_theme($existing, $type, $theme, $path) {
+  return array(
+    'content_reminder' => array(
+      'variables' => array(
+        'nodes' => NULL,
+        'mailtype' => NULL,
+        'content_reminder_text' => NULL,
+      ),
+      'template' => 'content_reminder',
+    ),
+  );
+}

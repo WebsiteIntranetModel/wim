@@ -38,6 +38,18 @@ function wim_faq_strongarm() {
       'short' => array(
         'custom_settings' => FALSE,
       ),
+      'search_index' => array(
+        'custom_settings' => FALSE,
+      ),
+      'search_result' => array(
+        'custom_settings' => FALSE,
+      ),
+      'felix' => array(
+        'custom_settings' => FALSE,
+      ),
+      'token' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
@@ -46,6 +58,12 @@ function wim_faq_strongarm() {
         ),
         'locations' => array(
           'weight' => '6',
+        ),
+        'metatags' => array(
+          'weight' => '40',
+        ),
+        'redirect' => array(
+          'weight' => '30',
         ),
       ),
       'display' => array(),

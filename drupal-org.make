@@ -20,6 +20,7 @@ projects[ctools] = 1.10
 projects[date] = 2.9
 projects[date_facets] = 1.0
 projects[elysia_cron] = 2.1
+projects[email] = 1.3
 projects[encrypt] = 2.3
 projects[entity] = 1.7
 projects[entityreference] = 1.1
