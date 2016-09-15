@@ -182,12 +182,12 @@ function external_crawler_save_site($fields) {
   $site = new stdClass();
   $site->site_id = isset($fields['site_id']) ? $fields['site_id'] : NULL;
 
-  $site->name = $fields['name'];
+  $site->name = check_plain($fields['name']);
   $site->url = $fields['url'];
   $site->check_interval = $fields['check_interval'];
   $site->max_depth = $fields['max_depth'];
   $site->max_run = $fields['max_run'];
-  $site->url_exclude = $fields['url_exclude'];
+  $site->url_exclude = check_plain($fields['url_exclude']);
   $site->content_exclude = 'script';
   $site->content_include = '';
 
