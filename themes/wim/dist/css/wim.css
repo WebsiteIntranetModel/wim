@@ -260,7 +260,7 @@
   content: "";
 }
 
-.fa-check:before, .block-facetapi ul.facetapi-facet-bundle a.facetapi-active:before {
+.fa-check:before, .block-facetapi ul:not(.contextual-links) a.facetapi-active:before {
   content: "";
 }
 
@@ -8983,8 +8983,7 @@ body.navbar-tray-open.navbar-vertical.navbar-fixed {
 }
 
 .navbar-header {
-  width: 100%;
-  padding: 15px 0;
+  padding: 15px 15px 15px 0;
 }
 
 .region-header {
@@ -9661,6 +9660,11 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   background: none;
 }
 
+.navbar-toggle {
+  margin-top: 10px;
+  margin-right: 5px;
+}
+
 .container.navbar-default, body.in-maintenance .navbar-default#page {
   border: 0;
   background-color: white;
@@ -9730,7 +9734,7 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
 }
 
 .block-search {
-  padding: 5px;
+  padding: 5px 0 5px 5px;
   border-radius: 4px;
   clear: both;
 }
@@ -9771,6 +9775,7 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   font-weight: bold;
 }
 
+.search-results li .search-snippet-info,
 .search-results li .node {
   font-weight: normal;
 }
@@ -9821,36 +9826,36 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   border: none;
 }
 
-.block-facetapi ul.facetapi-facet-bundle {
+.block-facetapi ul:not(.contextual-links) {
   padding-left: 0;
 }
 
-.block-facetapi ul.facetapi-facet-bundle li {
+.block-facetapi ul:not(.contextual-links) li {
   margin-bottom: 10px;
   font-size: 13px;
   line-height: 22px;
   color: #666666;
 }
 
-.block-facetapi ul.facetapi-facet-bundle a {
+.block-facetapi ul:not(.contextual-links) a {
   color: #666666;
   display: inline-block;
 }
 
-.block-facetapi ul.facetapi-facet-bundle a:before {
+.block-facetapi ul:not(.contextual-links) a:before {
   content: "";
   border: 1px solid #e6e6e6;
   display: inline-block;
   width: 22px;
   height: 22px;
   vertical-align: top;
-  margin-right: 14px;
+  margin-right: 13px;
   text-align: center;
   font-weight: bold;
   color: #ffffff;
 }
 
-.block-facetapi ul.facetapi-facet-bundle a.facetapi-active:before {
+.block-facetapi ul:not(.contextual-links) a.facetapi-active:before {
   background-color: #0080a8;
   border-color: #0080a8;
   display: inline-block;
@@ -9860,6 +9865,7 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   line-height: 20px;
+  margin-right: 10px;
 }
 
 .breadcrumb {
@@ -10695,6 +10701,10 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   }
   .filter-help{
     float: right;
+  }
+  .navbar-header{
+    width: 100%;
+    padding: 15px 0;
   }
   body:after{
     content: "tablet";
