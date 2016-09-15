@@ -1,5 +1,5 @@
 .block-search {
-  padding: 5px;
+  padding: 5px 0 5px 5px;
   border-radius: 4px;
   clear: both;
 
@@ -37,6 +37,7 @@
   li {
     list-style-position: inside;
     font-weight: bold;
+    .search-snippet-info,
     .node {
       font-weight: normal;
     }
@@ -45,6 +46,7 @@
     margin: 15px 0 5px;
     font-weight: bold;
   }
+  .search-snippet-info,
   .field-name-body {
     margin: 8px 0 12px;
   }
@@ -88,7 +90,7 @@
     border: none;
     @extend h2;
   }
-  ul.facetapi-facet-bundle {
+  ul:not(.contextual-links) {
     padding-left: 0;
     li {
       margin-bottom: 10px;
@@ -106,7 +108,7 @@
         width: 22px;
         height: 22px;
         vertical-align: top;
-        margin-right: 14px;
+        margin-right: 13px;
         text-align: center;
         font-weight: bold;
         color: #ffffff;
@@ -118,6 +120,7 @@
           border-color: $brand-primary;
           @include fa-icon;
           line-height: 20px;
+          margin-right: 10px;
         }
       }
     }
