@@ -131,10 +131,10 @@ function external_crawler_cron() {
  * Implements hook_cronapi().
  */
 function external_crawler_cronapi($op, $job = NULL) {
-
+  // Run every hour.
   $items['external_crawler_cron'] = array(
     'description' => 'Run External Crawler',
-    'rule' => '0 */1 * * *', // run every hour.
+    'rule' => '0 */1 * * *',
   );
 
   return $items;

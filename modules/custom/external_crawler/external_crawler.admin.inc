@@ -1,6 +1,11 @@
 <?php
 
 /**
+ * @file
+ * Administration pages.
+ */
+
+/**
  * Page callback for pages list.
  */
 function external_crawler_page_list() {
@@ -105,13 +110,14 @@ function external_crawler_site_add_form() {
  */
 function external_crawler_site_add_form_submit(&$form, &$form_state) {
   $values = $form_state['values'];
-//  $site->content_include = ''; $values['content_include'];
-//  $site->content_exclude = ''; $values['content_exclude'];
 
   external_crawler_save_site($values);
   $form_state['redirect'] = 'admin/config/search/external_crawler';
 }
 
+/**
+ * Site edit form.
+ */
 function external_crawler_site_edit_form($form, &$form_state) {
   $form = array();
   $site = _external_crawler_fetch_sites($form_state['build_info']['args'][0]);
@@ -198,7 +204,6 @@ function external_crawler_site_edit_form($form, &$form_state) {
       '#markup' => t('Site does not exist.'),
     );
   }
-
 
   return $form;
 }

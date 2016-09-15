@@ -1,17 +1,15 @@
 <?php
+/**
+ * @file
+ * Implementation of Dom Crawler.
+ */
+
 use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\DomCrawler\Link;
 use Symfony\Component\CssSelector\CssSelectorConverter;
 
 /**
  * Build Solr document.
- *
- * @param string $pagekey
- * @param string $url
- * @param string $title
- * @param string $body
- * @param string $path
- * @return ApacheSolrDocument
  */
 function external_crawler_build_document($pagekey, $url, $title, $body) {
   module_load_include('inc', 'apachesolr', 'apachesolr.index');
@@ -41,10 +39,9 @@ function external_crawler_build_document($pagekey, $url, $title, $body) {
 }
 
 /**
- * DOMCrawler doesn't have a exclude function yet see:
- * https://github.com/symfony/symfony/pull/9157
+ * DOMCrawler doesn't have a exclude function yet.
  *
- * @param Crawler $crawler
+ * Find more information here https://github.com/symfony/symfony/pull/9157.
  */
 function _external_crawler_domcrawler_exclude(Crawler $crawler, $excludeSelectors) {
   $document = new \DOMDocument('1.0', 'UTF-8');
@@ -67,11 +64,6 @@ function _external_crawler_domcrawler_exclude(Crawler $crawler, $excludeSelector
 
 /**
  * Find links in the crawler and add them to the external_crawler_page table.
- *
- * @param object $site
- * @param array $pagedata
- * @param Crawler $nodeCrawler
- * @param string $from_url
  */
 function _external_crawler_index_page_crawl($site, $pagedata, Crawler $nodeCrawler, $from_url) {
   // Retrieve links for indexing and adding to page table.
@@ -110,11 +102,8 @@ function _external_crawler_index_page_crawl($site, $pagedata, Crawler $nodeCrawl
 
 /**
  * Fetch page and update Solr index.
- *
- * @param string $url
- * @param object $site
  */
-function _external_crawler_index_page($url, $site) {
+function _external_crawler_index_page($url, stdClass $site) {
   if (module_exists('apachesolr_attachments')) {
     module_load_include('inc', 'apachesolr_attachments', 'apachesolr_attachments.index');
   }
@@ -126,7 +115,7 @@ function _external_crawler_index_page($url, $site) {
   $pagekey = _external_crawler_generate_pagekey($site, $url);
   $pagedata = _external_crawler_get_pagedata($pagekey, array(
     'url' => $url,
-    'site_id' => $site->site_id
+    'site_id' => $site->site_id,
   ));
 
   // Retrieve the page.
@@ -151,7 +140,8 @@ function _external_crawler_index_page($url, $site) {
     $ext_mime = isset($ext_mapping['extensions'][$ext]) ? $ext_mapping['mimetypes'][$ext_mapping['extensions'][$ext]] : '';
 
     if (strlen($result->data) > 26214400) {
-      // Skip this URL. Content is > 25MB. Indexation can lead to memory exhaustion.
+      // Skip this URL. Content is > 25MB.
+      // Indexation can lead to memory exhaustion.
       return;
     }
 
@@ -175,7 +165,7 @@ function _external_crawler_index_page($url, $site) {
     // Allow other modules to interact.
     module_invoke_all('external_crawler_index', $site, $result, $pagedata, $document);
 
-    // add to solr
+    // Add to solr.
     external_crawler_save_page($pagedata, $document);
   }
   else {
@@ -186,12 +176,15 @@ function _external_crawler_index_page($url, $site) {
     else {
       watchdog('external_crawler', 'There was an error crawling !pagekey.<pre>@data</pre>', array(
         '!pagekey' => $pagekey,
-        '@data' => print_r($result, TRUE)
+        '@data' => print_r($result, TRUE),
       ), WATCHDOG_ERROR);
     }
   }
 }
 
+/**
+ * Index page HTML.
+ */
 function _external_crawler_index_page_html($site, $result, &$document, &$pagedata, $url) {
   $crawler = new Crawler($result->data);
 
@@ -227,10 +220,11 @@ function _external_crawler_index_page_html($site, $result, &$document, &$pagedat
     // Crawl for new pages.
     _external_crawler_index_page_crawl($site, $pagedata, $nodeCrawler, $base_url);
   }
+
 }
 
 /**
- * @see _external_crawler_index_page_document()
+ * Index page document.
  */
 function _external_crawler_index_page_document($site, $result, &$document, &$pagedata, $url) {
   $filepath = file_unmanaged_save_data($result->data);
@@ -244,10 +238,11 @@ function _external_crawler_index_page_document($site, $result, &$document, &$pag
       list($text, $metadata) = apachesolr_attachments_extract_using_solr($filepath);
     }
     catch (Exception $e) {
-      // Exceptions from Solr may be transient, or indicate a problem with a specific file.
+      // Exceptions from Solr may be transient,
+      // or indicate a problem with a specific file.
       watchdog('Apache Solr Attachments', "Exception occurred sending %filepath to Solr\n!message", array(
         '%filepath' => $filepath,
-        '!message' => nl2br(check_plain($e->getMessage()))
+        '!message' => nl2br(check_plain($e->getMessage())),
       ), WATCHDOG_ERROR);
       return FALSE;
     }

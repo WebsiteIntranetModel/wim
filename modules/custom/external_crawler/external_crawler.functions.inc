@@ -2,14 +2,11 @@
 
 /**
  * @file
- *  Helper functions for External Crawler.
+ * Helper functions for External Crawler.
  */
 
 /**
  * Helper function for retrieving the page data.
- *
- * @param $pagekey
- * @return array
  */
 function _external_crawler_get_pagedata($pagekey, $new_data = array()) {
   $pagedata = db_select('external_crawler_page', 's')
@@ -20,13 +17,13 @@ function _external_crawler_get_pagedata($pagekey, $new_data = array()) {
 
   if (!$pagedata) {
     $pagedata = $new_data + array(
-        'pagekey' => $pagekey,
-        'site_id' => NULL,
-        'url' => NULL,
-        'date' => NULL,
-        'depth' => 1,
-        'title' => NULL,
-      );
+      'pagekey' => $pagekey,
+      'site_id' => NULL,
+      'url' => NULL,
+      'date' => NULL,
+      'depth' => 1,
+      'title' => NULL,
+    );
   }
   return $pagedata;
 }
@@ -45,10 +42,6 @@ function external_crawler_load_vendor() {
 
 /**
  * Helper function for retrieving the page key.
- *
- * @param $site
- * @param $url
- * @return string
  */
 function _external_crawler_generate_pagekey($site, $url) {
   return 'crawler/' . $site->name . '/' . md5($url);
@@ -56,8 +49,6 @@ function _external_crawler_generate_pagekey($site, $url) {
 
 /**
  * Delete page from Solr index.
- *
- * @param string $pagekey
  */
 function external_crawler_delete_page($pagekey) {
   $env_id = variable_get('external_crawler_solr_env', 'solr');
@@ -99,6 +90,9 @@ function external_crawler_delete_site($site_id) {
   batch_set($batch);
 }
 
+/**
+ * Batch operation to remove pages.
+ */
 function external_crawler_batch_delete_pages($site_id, $total_limit, &$context) {
   if (empty($context['sandbox'])) {
     $context['sandbox']['progress'] = 0;
@@ -108,7 +102,8 @@ function external_crawler_batch_delete_pages($site_id, $total_limit, &$context) 
   }
   $limit = 10;
 
-  // Reduce the limit for our final batch if we would be processing more than had been requested
+  // Reduce the limit for our final batch
+  // if we would be processing more than had been requested.
   if ($limit + $context['sandbox']['progress'] > $context['sandbox']['max']) {
     $limit = $context['sandbox']['max'] - $context['sandbox']['progress'];
   }
@@ -131,7 +126,6 @@ function external_crawler_batch_delete_pages($site_id, $total_limit, &$context) 
     $context['finished'] = TRUE;
   }
 
-
   $arguments = array(
     '@current' => $context['sandbox']['progress'],
     '@total' => $context['sandbox']['max'],
@@ -149,10 +143,13 @@ function external_crawler_batch_delete_pages($site_id, $total_limit, &$context) 
   }
 }
 
+/**
+ * Finish batch callback.
+ */
 function external_crawler_batch_delete_pages_finished($success, array $results, array $operations) {
   $message = '';
   if (isset($results['count'])) {
-    $message .= format_plural($results['count'], '1 item processed successfully. ', '@count items successfully processed. ');
+    $message .= format_plural($results['count'], '1 item processed successfully. ', '@count items successfully processed.');
   }
 
   drupal_set_message($message);
@@ -160,11 +157,6 @@ function external_crawler_batch_delete_pages_finished($success, array $results, 
 
 /**
  * Save page in Solr index.
- *
- * @param string $pagekey
- * @param string $url
- * @param string $title
- * @param string $body
  */
 function external_crawler_save_page($pagedata, $document) {
   module_load_include('inc', 'external_crawler');
