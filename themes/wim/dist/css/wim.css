@@ -9775,6 +9775,7 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   font-weight: bold;
 }
 
+.search-results li .search-snippet-info,
 .search-results li .node {
   font-weight: normal;
 }
