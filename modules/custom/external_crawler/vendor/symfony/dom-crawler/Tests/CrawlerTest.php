@@ -27,20 +27,6 @@ class CrawlerTest extends \PHPUnit_Framework_TestCase
         $this->assertCount(1, $crawler, '__construct() takes a node as a first argument');
     }
 
-    public function testGetUri()
-    {
-        $uri = 'http://symfony.com';
-        $crawler = new Crawler(null,  $uri);
-        $this->assertEquals($uri, $crawler->getUri());
-    }
-
-    public function testGetBaseHref()
-    {
-        $baseHref = 'http://symfony.com';
-        $crawler = new Crawler(null,  null, $baseHref);
-        $this->assertEquals($baseHref, $crawler->getBaseHref());
-    }
-
     public function testAdd()
     {
         $crawler = new Crawler();
@@ -61,7 +47,7 @@ class CrawlerTest extends \PHPUnit_Framework_TestCase
 
         $crawler = new Crawler();
         $crawler->add($this->createNodeList()->item(0));
-        $this->assertEquals('foo', $crawler->filterXPath('//div')->attr('class'), '->add() adds nodes from a \DOMNode');
+        $this->assertEquals('foo', $crawler->filterXPath('//div')->attr('class'), '->add() adds nodes from a \DOMElement');
 
         $crawler = new Crawler();
         $crawler->add('<html><body>Foo</body></html>');
@@ -79,12 +65,12 @@ class CrawlerTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Attaching DOM nodes from multiple documents in the same crawler is forbidden.
+     * @expectedExceptionMessage Nodes set in a Crawler must be DOMElement or DOMDocument instances, "DOMNode" given.
      */
-    public function testAddMultipleDocumentNode()
+    public function testAddInvalidNode()
     {
-        $crawler = $this->createTestCrawler();
-        $crawler->addHtmlContent('<html><div class="foo"></html>', 'UTF-8');
+        $crawler = new Crawler();
+        $crawler->add(new \DOMNode());
     }
 
     public function testAddHtmlContent()
@@ -150,7 +136,7 @@ class CrawlerTest extends \PHPUnit_Framework_TestCase
         $internalErrors = libxml_use_internal_errors(true);
 
         $crawler = new Crawler();
-        $crawler->addHtmlContent(<<<'EOF'
+        $crawler->addHtmlContent(<<<EOF
 <!DOCTYPE html>
 <html>
     <head>
@@ -191,7 +177,7 @@ EOF
         $internalErrors = libxml_use_internal_errors(true);
 
         $crawler = new Crawler();
-        $crawler->addXmlContent(<<<'EOF'
+        $crawler->addXmlContent(<<<EOF
 <!DOCTYPE html>
 <html>
     <head>
@@ -278,7 +264,7 @@ EOF
         $crawler = new Crawler();
         $crawler->addNode($this->createNodeList()->item(0));
 
-        $this->assertEquals('foo', $crawler->filterXPath('//div')->attr('class'), '->addNode() adds nodes from a \DOMNode');
+        $this->assertEquals('foo', $crawler->filterXPath('//div')->attr('class'), '->addNode() adds nodes from a \DOMElement');
     }
 
     public function testClear()
@@ -508,6 +494,16 @@ EOF
         $this->assertCount(0, $crawler->filterXPath('self::_root'), '->filterXPath() returns an empty result if the XPath references the fake root node');
     }
 
+    /** @group legacy */
+    public function testLegacyFilterXPathWithFakeRoot()
+    {
+        $crawler = $this->createTestCrawler();
+        $this->assertCount(0, $crawler->filterXPath('/_root'), '->filterXPath() returns an empty result if the XPath references the fake root node');
+
+        $crawler = $this->createTestCrawler()->filterXPath('//body');
+        $this->assertCount(1, $crawler->filterXPath('/_root/body'));
+    }
+
     public function testFilterXPathWithAncestorAxis()
     {
         $crawler = $this->createTestCrawler()->filterXPath('//form');
@@ -531,7 +527,7 @@ EOF
 
     public function testFilterXPathWithAttributeAxisAfterElementAxis()
     {
-        $this->assertCount(3, $this->createTestCrawler()->filterXPath('//form/button/attribute::*'), '->filterXPath() handles attribute axes properly when they are preceded by an element filtering axis');
+        $this->assertCount(0, $this->createTestCrawler()->filterXPath('//form/button/attribute::*'), '->filterXPath() handles attribute axes properly when they are preceded by an element filtering axis');
     }
 
     public function testFilterXPathWithChildAxis()
@@ -671,17 +667,6 @@ EOF
         $this->assertCount(4, $crawler->selectLink('Bar'), '->selectLink() selects links by the node values');
     }
 
-    public function testSelectImage()
-    {
-        $crawler = $this->createTestCrawler();
-        $this->assertNotSame($crawler, $crawler->selectImage('Bar'), '->selectImage() returns a new instance of a crawler');
-        $this->assertInstanceOf('Symfony\\Component\\DomCrawler\\Crawler', $crawler, '->selectImage() returns a new instance of a crawler');
-
-        $this->assertCount(1, $crawler->selectImage('Fabien\'s Bar'), '->selectImage() selects images by alt attribute');
-        $this->assertCount(2, $crawler->selectImage('Fabien"s Bar'), '->selectImage() selects images by alt attribute');
-        $this->assertCount(1, $crawler->selectImage('\' Fabien"s Bar'), '->selectImage() selects images by alt attribute');
-    }
-
     public function testSelectButton()
     {
         $crawler = $this->createTestCrawler();
@@ -702,7 +687,7 @@ EOF
 
     public function testSelectButtonWithSingleQuotesInNameAttribute()
     {
-        $html = <<<'HTML'
+        $html = <<<HTML
 <!DOCTYPE html>
 <html lang="en">
 <body>
@@ -723,7 +708,7 @@ HTML;
 
     public function testSelectButtonWithDoubleQuotesInNameAttribute()
     {
-        $html = <<<'HTML'
+        $html = <<<HTML
 <!DOCTYPE html>
 <html lang="en">
 <body>
@@ -760,42 +745,9 @@ HTML;
         }
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage The selected node should be instance of DOMElement
-     */
-    public function testInvalidLink()
-    {
-        $crawler = $this->createTestCrawler('http://example.com/bar/');
-        $crawler->filterXPath('//li/text()')->link();
-    }
-
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage The selected node should be instance of DOMElement
-     */
-    public function testInvalidLinks()
-    {
-        $crawler = $this->createTestCrawler('http://example.com/bar/');
-        $crawler->filterXPath('//li/text()')->link();
-    }
-
-    public function testImage()
-    {
-        $crawler = $this->createTestCrawler('http://example.com/bar/')->selectImage('Bar');
-        $this->assertInstanceOf('Symfony\\Component\\DomCrawler\\Image', $crawler->image(), '->image() returns an Image instance');
-
-        try {
-            $this->createTestCrawler()->filterXPath('//ol')->image();
-            $this->fail('->image() throws an \InvalidArgumentException if the node list is empty');
-        } catch (\InvalidArgumentException $e) {
-            $this->assertTrue(true, '->image() throws an \InvalidArgumentException if the node list is empty');
-        }
-    }
-
     public function testSelectLinkAndLinkFiltered()
     {
-        $html = <<<'HTML'
+        $html = <<<HTML
 <!DOCTYPE html>
 <html lang="en">
 <body>
@@ -843,18 +795,6 @@ HTML;
         $this->assertEquals(array(), $this->createTestCrawler()->filterXPath('//ol')->links(), '->links() returns an empty array if the node selection is empty');
     }
 
-    public function testImages()
-    {
-        $crawler = $this->createTestCrawler('http://example.com/bar/')->selectImage('Bar');
-        $this->assertInternalType('array', $crawler->images(), '->images() returns an array');
-
-        $this->assertCount(4, $crawler->images(), '->images() returns an array');
-        $images = $crawler->images();
-        $this->assertInstanceOf('Symfony\\Component\\DomCrawler\\Image', $images[0], '->images() returns an array of Image instances');
-
-        $this->assertEquals(array(), $this->createTestCrawler()->filterXPath('//ol')->links(), '->links() returns an empty array if the node selection is empty');
-    }
-
     public function testForm()
     {
         $testCrawler = $this->createTestCrawler('http://example.com/bar/');
@@ -875,16 +815,6 @@ HTML;
         } catch (\InvalidArgumentException $e) {
             $this->assertTrue(true, '->form() throws an \InvalidArgumentException if the node list is empty');
         }
-    }
-
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage The selected node should be instance of DOMElement
-     */
-    public function testInvalidForm()
-    {
-        $crawler = $this->createTestCrawler('http://example.com/bar/');
-        $crawler->filterXPath('//li/text()')->form();
     }
 
     public function testLast()

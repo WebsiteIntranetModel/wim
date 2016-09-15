@@ -105,28 +105,25 @@ function external_crawler_site_add_form() {
  */
 function external_crawler_site_add_form_submit(&$form, &$form_state) {
   $values = $form_state['values'];
-  $site = new stdClass();
-
-  $site->name = $values['name'];
-  $site->url = $values['url'];
-  $site->check_interval = $values['check_interval'];
-  $site->max_depth = $values['max_depth'];
-  $site->max_run = $values['max_run'];
-  $site->url_exclude = $values['url_exclude'];
 //  $site->content_include = ''; $values['content_include'];
 //  $site->content_exclude = ''; $values['content_exclude'];
 
-  _external_crawler_site_save($site);
+  external_crawler_save_site($values);
   $form_state['redirect'] = 'admin/config/search/external_crawler';
 }
 
-function external_crawler_site_edit_form($form, $form_state) {
+function external_crawler_site_edit_form($form, &$form_state) {
   $form = array();
   $site = _external_crawler_fetch_sites($form_state['build_info']['args'][0]);
 
   if ($site && isset($site[0]) && is_object($site[0])) {
     $site = $site[0];
     drupal_set_title(t('Edit @site site.', array('@site' => $site->name)));
+
+    $form['site_id'] = array(
+      '#type' => 'value',
+      '#value' => $site->site_id,
+    );
 
     $form['name'] = array(
       '#type' => 'textfield',
@@ -190,6 +187,7 @@ function external_crawler_site_edit_form($form, $form_state) {
     $form['delete'] = array(
       '#type' => 'submit',
       '#value' => t('Delete'),
+      '#submit' => array('external_crawler_site_edit_form_delete'),
     );
     $form['cancel'] = array(
       '#markup' => l(t('Cancel'), 'admin/config/search/external_crawler', array('attributes' => array('id' => 'edit-cancel'))),
@@ -205,10 +203,48 @@ function external_crawler_site_edit_form($form, $form_state) {
   return $form;
 }
 
-function external_crawler_site_edit_form_submit(&$form, &$form_state){
-  dpm($form_state);
+/**
+ * Update site configurations.
+ */
+function external_crawler_site_edit_form_submit(&$form, &$form_state) {
+  $values = $form_state['values'];
+
+  if (isset($values['site_id'])) {
+    external_crawler_save_site($values);
+  }
+
+  $form_state['redirect'] = 'admin/config/search/external_crawler';
 }
 
+/**
+ * Delete submit for edit form.
+ */
 function external_crawler_site_edit_form_delete(&$form, &$form_state) {
-  dpm($form_state);
+  if (isset($form_state['values']['site_id'])) {
+    $form_state['redirect'] = 'admin/config/search/external_crawler/site/' . $form_state['values']['site_id'] . '/delete';
+  }
+}
+
+/**
+ * Delete site confirmation form.
+ */
+function external_crawler_site_delete_confirm($form, &$form_state, $site_id) {
+  $form['site_id'] = array('#type' => 'value', '#value' => $site_id);
+  $message = t('Are you sure you want to delete the %site?', array('%site' => $site_id));
+  $caption = '<p>' . t('This action cannot be undone.') . '</p>';
+
+  return confirm_form($form, $message, 'admin/config/search/external_crawler', $caption, t('Delete'));
+}
+
+/**
+ * Submit handler for delete action.
+ */
+function external_crawler_site_delete_confirm_submit($form, &$form_state) {
+  $values = $form_state['values'];
+
+  if (isset($values['site_id']) && $sites = _external_crawler_fetch_sites($values['site_id'])) {
+    external_crawler_delete_site($values['site_id']);
+  }
+
+  $form_state['redirect'] = 'admin/config/search/external_crawler';
 }

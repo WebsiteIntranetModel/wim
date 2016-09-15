@@ -38,6 +38,15 @@ function external_crawler_menu() {
     'file' => 'external_crawler.admin.inc',
   );
 
+  $menu['admin/config/search/external_crawler/site/%/delete'] = array(
+    'title' => 'Delete',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('external_crawler_site_delete_confirm', 5),
+    'access arguments' => array('administer external crawler'),
+    'type' => MENU_NORMAL_ITEM,
+    'file' => 'external_crawler.admin.inc',
+  );
+
   return $menu;
 }
 
@@ -119,11 +128,25 @@ function external_crawler_cron() {
 }
 
 /**
+ * Implements hook_cronapi().
+ */
+function external_crawler_cronapi($op, $job = NULL) {
+
+  $items['external_crawler_cron'] = array(
+    'description' => 'Run External Crawler',
+    'rule' => '0 */1 * * *', // run every hour.
+  );
+
+  return $items;
+}
+
+/**
  * Fix link in search results.
  */
 function external_crawler_preprocess_search_result(&$variables) {
   if ($variables['result']['fields']['entity_type'] === 'external_crawler') {
     $variables['url'] = $variables['result']['fields']['url'];
     $variables['result']['link'] = $variables['result']['fields']['url'];
+    $variables['snippet'] = preg_replace("/\r|\n/", "", $variables['snippet']);
   }
 }

@@ -70,6 +70,95 @@ function external_crawler_delete_page($pagekey) {
 }
 
 /**
+ * Delete site and indexed pages.
+ */
+function external_crawler_delete_site($site_id) {
+  db_delete('external_crawler_site')
+    ->condition('site_id', $site_id)
+    ->execute();
+
+  $total_limit = _external_crawler_fetch_pages($site_id, NULL, TRUE);
+  $batch = array(
+    'operations' => array(
+      array(
+        'external_crawler_batch_delete_pages',
+        array(
+          $site_id,
+          $total_limit,
+        ),
+      ),
+    ),
+    'finished' => 'external_crawler_batch_delete_pages_finished',
+    'title' => t('Removing'),
+    'init_message' => t('Preparing to delete pages content from Solr...'),
+    'progress_message' => t('Removing external pages from Solr...'),
+    'error_message' => t('Removing external pages has encountered an error.'),
+    'file' => drupal_get_path('module', 'external_crawler') . '/external_crawler.functions.inc',
+  );
+
+  batch_set($batch);
+}
+
+function external_crawler_batch_delete_pages($site_id, $total_limit, &$context) {
+  if (empty($context['sandbox'])) {
+    $context['sandbox']['progress'] = 0;
+    $context['sandbox']['deleted'] = 0;
+
+    $context['sandbox']['max'] = $total_limit;
+  }
+  $limit = 10;
+
+  // Reduce the limit for our final batch if we would be processing more than had been requested
+  if ($limit + $context['sandbox']['progress'] > $context['sandbox']['max']) {
+    $limit = $context['sandbox']['max'] - $context['sandbox']['progress'];
+  }
+
+  if ($context['sandbox']['max'] >= $context['sandbox']['progress'] + $limit) {
+    $context['sandbox']['progress'] += $limit;
+  }
+  else {
+    $context['sandbox']['progress'] = $context['sandbox']['max'];
+  }
+
+  $pages = _external_crawler_fetch_pages($site_id, $limit);
+  if ($pages) {
+    foreach ($pages as $page) {
+      external_crawler_delete_page($page->pagekey);
+    }
+    $context['sandbox']['deleted'] += $limit;
+  }
+  else {
+    $context['finished'] = TRUE;
+  }
+
+
+  $arguments = array(
+    '@current' => $context['sandbox']['progress'],
+    '@total' => $context['sandbox']['max'],
+    '@deleted' => $context['sandbox']['deleted'],
+  );
+
+  $context['message'] = t('Inspected @current of @total pages. Deleted @deleted documents from Solr', $arguments);
+
+  $context['finished'] = empty($context['sandbox']['max']) ? 1 : $context['sandbox']['progress'] / $context['sandbox']['max'];
+
+  if ($context['finished']) {
+    $context['results']['count'] = $context['sandbox']['progress'];
+    $context['results']['deleted'] = $context['sandbox']['deleted'];
+    $context['results']['env_id'] = $site_id;
+  }
+}
+
+function external_crawler_batch_delete_pages_finished($success, array $results, array $operations) {
+  $message = '';
+  if (isset($results['count'])) {
+    $message .= format_plural($results['count'], '1 item processed successfully. ', '@count items successfully processed. ');
+  }
+
+  drupal_set_message($message);
+}
+
+/**
  * Save page in Solr index.
  *
  * @param string $pagekey
@@ -97,8 +186,20 @@ function external_crawler_save_page($pagedata, $document) {
 /**
  * Save site data.
  */
-function _external_crawler_site_save(stdClass $site) {
-  drupal_write_record('external_crawler_site', $site, isset($site->site_id) && !empty($site->site_id) ? array('site_id') : array());
+function external_crawler_save_site($fields) {
+  $site = new stdClass();
+  $site->site_id = isset($fields['site_id']) ? $fields['site_id'] : NULL;
+
+  $site->name = $fields['name'];
+  $site->url = $fields['url'];
+  $site->check_interval = $fields['check_interval'];
+  $site->max_depth = $fields['max_depth'];
+  $site->max_run = $fields['max_run'];
+  $site->url_exclude = $fields['url_exclude'];
+  $site->content_exclude = 'script';
+  $site->content_include = '';
+
+  drupal_write_record('external_crawler_site', $site, !empty($site->site_id) ? array('site_id') : array());
 }
 
 /**
