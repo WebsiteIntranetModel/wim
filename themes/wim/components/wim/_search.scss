@@ -1,6 +1,5 @@
 .block-search {
-  padding: 5px;
-  background-color: #efe5ef;
+  padding: 5px 0 5px 5px;
   border-radius: 4px;
   clear: both;
 
@@ -38,6 +37,7 @@
   li {
     list-style-position: inside;
     font-weight: bold;
+    .search-snippet-info,
     .node {
       font-weight: normal;
     }
@@ -46,6 +46,7 @@
     margin: 15px 0 5px;
     font-weight: bold;
   }
+  .search-snippet-info,
   .field-name-body {
     margin: 8px 0 12px;
   }
@@ -76,6 +77,50 @@
         &.month {
           text-transform: lowercase;
           font-size: 12px;
+        }
+      }
+    }
+  }
+}
+
+.block-facetapi {
+  h2.block-title {
+    background: none;
+    padding: 0;
+    border: none;
+    @extend h2;
+  }
+  ul:not(.contextual-links) {
+    padding-left: 0;
+    li {
+      margin-bottom: 10px;
+      font-size: 13px;
+      line-height: 22px;
+      color: lighten($gray-base, 40%);
+    }
+    a {
+      color: lighten($gray-base, 40%);
+      display: inline-block;
+      &:before {
+        content: "";
+        border: 1px solid lighten($gray-base, 90%);
+        display: inline-block;
+        width: 22px;
+        height: 22px;
+        vertical-align: top;
+        margin-right: 13px;
+        text-align: center;
+        font-weight: bold;
+        color: #ffffff;
+      }
+      &.facetapi-active {
+        @extend .fa-check;
+        &:before {
+          background-color: $brand-primary;
+          border-color: $brand-primary;
+          @include fa-icon;
+          line-height: 20px;
+          margin-right: 10px;
         }
       }
     }
