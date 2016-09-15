@@ -64,6 +64,11 @@ if [ ${3:-"default"} = "develop" ]; then
   drush en devel, field_ui, diff, views_ui, context_ui, felix_ui, dblog, hansel_ui -y
 fi
 
+# Get Solr information
+drush ev "var_dump(apachesolr_environment_load(apachesolr_default_environment()));"
+drush ev "var_dump(apachesolr_server_status('http://solr:8983/solr/drupal', ''));"
+drush ev "if(apachesolr_server_status('http://solr:8983/solr/drupal', '')) { echo 'connection successfull';}"
+
 # Revert all features
 drush fra -y
 
