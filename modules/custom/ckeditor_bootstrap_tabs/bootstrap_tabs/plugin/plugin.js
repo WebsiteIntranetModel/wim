@@ -5,7 +5,7 @@
  * @ignore
  */
 /**
-(function() {
+ (function() {
 
  // "use strict";
 
@@ -120,9 +120,9 @@
   });
 
 })();
-*/
+ */
 
- (function () {
+(function () {
   // Detect icon.
   function iconToUse() {
     var ua = window.navigator.userAgent;
@@ -148,7 +148,7 @@
         label: Drupal.t('Insert tabs')
       });
 
-      CKEDITOR.dialog.add( 'bootstrap_tabs', this.path + 'dialogs/dialog.js' );
+      CKEDITOR.dialog.add('bootstrap_tabs', this.path + 'dialogs/dialog.js');
 
       // Add CSS for edition state
       var cssPath = this.path + 'tabber.css';
@@ -157,6 +157,22 @@
           this.document.appendStyleSheet(cssPath);
         }
       });
+
+      editor.on('doubleclick', function (evt) {
+        var element = CKEDITOR.plugins.link.getSelectedLink(editor) || evt.data.element;
+console.log(element);
+        if (element.isReadOnly()) {
+          if (element.is('a') && element.hasClass('tab-title')) {
+            evt.data.dialog = ( element.getAttribute('name') && ( !element.getAttribute('href') || !element.getChildCount() ) ) ? 'anchor' : 'link';
+            console.log(evt);
+            // Pass the link to be selected along with event data.
+            evt.data.link = element;
+          } else if (CKEDITOR.plugins.link.tryRestoreFakeAnchor(editor, element)) {
+            evt.data.dialog = 'anchor';
+          }
+        }
+      }, null, null, 0);
+
 
       // Add widget.
       editor.widgets.add('bootstrap_tabs', {
@@ -209,10 +225,11 @@
             tab_content += '<div class="tab-pane ' + active + '" id="tab' + num + i + '">Content for tab' + i + '</div>';
           }
           // @todo user drupal theme
-          content = '<div><ul class="nav nav-tabs" role="tablist">' + tab_titles + '</ul></div>' +
+          content = '<div class="nav"><ul class="nav nav-tabs" role="tablist">' + tab_titles + '</ul></div>' +
             '<div class="tab-content">' + tab_content + '</div>';
           row.appendHtml(content);
           this.createEditable(tabCount);
+          this.initEditable('nav', {selector: '.nav'});
         },
         // Create editable.
         createEditable: function (tabCount) {
@@ -246,6 +263,12 @@
           command: 'removeTab',
           group: 'tabGroup'
         });
+        editor.addMenuItem('titleText', {
+          label: editor.lang.link.menu,
+          command: 'link',
+          group: 'link',
+          order: 1
+        });
 
         editor.contextMenu.addListener(function (element) {
           console.log(element);
@@ -253,6 +276,7 @@
             return {
               //tabBeforeItem: CKEDITOR.TRISTATE_OFF,
               //tabAfterItem: CKEDITOR.TRISTATE_OFF,
+              titleText: CKEDITOR.TRISTATE_OFF,
               removeTab: CKEDITOR.TRISTATE_OFF
             };
           }
