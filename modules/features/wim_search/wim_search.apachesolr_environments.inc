@@ -103,7 +103,8 @@ function wim_search_apachesolr_environments() {
       1 => 'faq',
       2 => 'news',
       3 => 'page',
-      4 => 'product',
+      4 => 'person',
+      5 => 'product',
     ),
   );
   $export['solr'] = $environment;
