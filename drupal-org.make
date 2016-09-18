@@ -82,10 +82,10 @@ projects[bean][patch][2295973_11] = https://www.drupal.org/files/issues/bean-mig
 
 ; Custom
 ; a11ychecker_custom
-libraries[a11ychecker][download][type] = "get"
-libraries[a11ychecker][download][url] = "http://a11ychecker.download.cksource.com/custom/a11ychecker_custom.zip"
-libraries[a11ychecker][destination] = "libraries"
-libraries[a11ychecker][subdir] = "ckeditor_plugins"
+;libraries[a11ychecker][download][type] = "get"
+;libraries[a11ychecker][download][url] = "http://download.ckeditor.com/a11ychecker/releases/a11ychecker_1.0.0.zip"
+;libraries[a11ychecker][destination] = "libraries"
+;libraries[a11ychecker][subdir] = "ckeditor_plugins"
 
 ; CKEditor 4.4.6
 libraries[ckeditor][download][type] = get
