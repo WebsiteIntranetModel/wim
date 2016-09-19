@@ -66,9 +66,8 @@ function wim_webform_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'email',
         'settings' => array(),
-        'type' => 'email_default',
+        'type' => 'hidden',
         'weight' => 2,
       ),
       'teaser' => array(
