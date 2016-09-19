@@ -24,6 +24,15 @@ function wim_agenda_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 2,
       ),
+      'search_result' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(
+          'trim_length' => 200,
+        ),
+        'type' => 'text_summary_or_trimmed',
+        'weight' => 1,
+      ),
       'short' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -79,6 +88,20 @@ function wim_agenda_field_default_field_instances() {
         ),
         'type' => 'date_default',
         'weight' => 1,
+      ),
+      'search_result' => array(
+        'label' => 'hidden',
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'single_day',
+          'fromto' => 'value',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+          'show_remaining_days' => 0,
+        ),
+        'type' => 'date_default',
+        'weight' => 0,
       ),
       'short' => array(
         'label' => 'hidden',
@@ -153,6 +176,12 @@ function wim_agenda_field_default_field_instances() {
         'type' => 'image',
         'weight' => 0,
       ),
+      'search_result' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 3,
+      ),
       'short' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -222,6 +251,12 @@ function wim_agenda_field_default_field_instances() {
         'type' => 'location_default',
         'weight' => 3,
       ),
+      'search_result' => array(
+        'label' => 'abovec',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 2,
+      ),
       'short' => array(
         'label' => 'above',
         'settings' => array(),
@@ -266,6 +301,12 @@ function wim_agenda_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
+        'weight' => 6,
+      ),
+      'search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 5,
       ),
       'short' => array(
@@ -299,6 +340,50 @@ function wim_agenda_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-agenda-field_reminder_email'.
+  $field_instances['node-agenda-field_reminder_email'] = array(
+    'bundle' => 'agenda',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 4,
+      ),
+      'short' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_reminder_email',
+    'label' => 'Reminder email',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'email',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'email_textfield',
+      'weight' => 41,
+    ),
+  );
+
   // Exported field_instance: 'node-agenda-field_tags'.
   $field_instances['node-agenda-field_tags'] = array(
     'bundle' => 'agenda',
@@ -307,6 +392,12 @@ function wim_agenda_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 5,
+      ),
+      'search_result' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -352,6 +443,7 @@ function wim_agenda_field_default_field_instances() {
   t('Image');
   t('Location');
   t('Promoted');
+  t('Reminder email');
   t('Tags');
 
   return $field_instances;

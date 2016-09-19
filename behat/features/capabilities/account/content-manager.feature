@@ -19,6 +19,5 @@ Feature: Content manager role
     When I am on "admin/modules"
     Then I should see "No access (403)"
     When I am on "admin/config"
-    Then I should see "Translate the built in interface and optionally other text."
     Then I should see "Redirect users from one URL to another."
     Then I should see "Configure default behavior of users"

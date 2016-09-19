@@ -23,6 +23,8 @@ Feature: Create Agenda
       | Promoted | 0 |
     And I attach the file "/fixtures/images/drupal-icon.png" to "Image"
     And I select "Netherlands" from "Country"
+    And I click "Reminder"
+    And I should see "Reminder email"
     And I wait for AJAX to finish
     And I press "Save"
     Then I should see the success message "Agenda TEST AGENDA has been created."
