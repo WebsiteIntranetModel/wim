@@ -93,6 +93,9 @@ function _wim_wysiwyg_default_profiles() {
         'linkit' => array(
           'linkit' => 1,
         ),
+        'drupal' => array(
+          'media' => 1,
+        ),
       ),
       'toolbarLocation' => 'top',
       'resize_enabled' => 1,
@@ -169,6 +172,9 @@ function _wim_wysiwyg_default_profiles() {
         ),
         'linkit' => array(
           'linkit' => 1,
+        ),
+        'drupal' => array(
+          'media' => 1,
         ),
       ),
       'toolbarLocation' => 'top',

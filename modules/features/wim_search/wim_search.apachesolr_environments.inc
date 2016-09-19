@@ -20,6 +20,7 @@ function wim_search_apachesolr_environments() {
     'apachesolr_search_changed_boost' => '0:0',
     'apachesolr_search_comment_boost' => '0:0',
     'apachesolr_search_date_boost' => '0:0',
+    'apachesolr_search_facet_pages' => '',
     'apachesolr_search_promote_boost' => '0',
     'apachesolr_search_sticky_boost' => '5.0',
     'apachesolr_search_type_boosts' => array(
@@ -102,7 +103,8 @@ function wim_search_apachesolr_environments() {
       1 => 'faq',
       2 => 'news',
       3 => 'page',
-      4 => 'product',
+      4 => 'person',
+      5 => 'product',
     ),
   );
   $export['solr'] = $environment;

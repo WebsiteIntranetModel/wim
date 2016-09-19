@@ -6,8 +6,11 @@
 }
 
 .navbar-header {
-  width: 100%;
-  padding: 15px 0;
+  padding: 15px 15px 15px 0;
+  @include MQ($screen-sm) {
+    width: 100%;
+    padding: 15px 0;
+  }
 }
 
 .region-header {

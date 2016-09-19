@@ -85,5 +85,16 @@ function wim_block_management_felix_default_regions() {
       ),
     ),
   );
+  $regions['sidebar-first-search'] = array(
+    'name' => 'sidebar-first-search',
+    'title' => 'Sidebar First Search',
+    'region' => 'sidebar_first',
+    'weight' => 1,
+    'context' => 'search',
+    'block_set' => 'default',
+    'data' => array(
+      'hash' => array(),
+    ),
+  );
   return $regions;
 }

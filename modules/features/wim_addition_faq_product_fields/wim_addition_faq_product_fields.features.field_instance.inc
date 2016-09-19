@@ -469,8 +469,8 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-product-field_product_particulars'.
-  $field_instances['node-product-field_product_particulars'] = array(
+  // Exported field_instance: 'node-product-field_product_procedure'.
+  $field_instances['node-product-field_product_procedure'] = array(
     'bundle' => 'product',
     'default_value' => NULL,
     'deleted' => 0,
@@ -491,8 +491,8 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_product_particulars',
-    'label' => 'Particulars',
+    'field_name' => 'field_product_procedure',
+    'label' => 'Procedure',
     'required' => 0,
     'settings' => array(
       'text_processing' => 1,
@@ -795,7 +795,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
   t('Forms');
   t('More information');
   t('Objection');
-  t('Particulars');
+  t('Procedure');
   t('Period');
   t('Related FAQ items');
   t('Related Product items');

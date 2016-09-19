@@ -1,0 +1,152 @@
+<?php
+
+/**
+ * @file
+ * Code for the Custom Lists.
+ */
+
+include_once 'external_crawler.functions.inc';
+
+/**
+ * Implements hook_menu().
+ */
+function external_crawler_menu() {
+  $menu = array();
+
+  $menu['admin/config/search/external_crawler'] = array(
+    'title' => 'External Crawler',
+    'page callback' => 'external_crawler_page_list',
+    'access arguments' => array('administer external crawler'),
+    'type' => MENU_LOCAL_TASK,
+    'file' => 'external_crawler.admin.inc',
+  );
+
+  $menu['admin/config/search/external_crawler/site/add'] = array(
+    'title' => 'Add site',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('external_crawler_site_add_form'),
+    'access arguments' => array('administer external crawler'),
+    'file' => 'external_crawler.admin.inc',
+  );
+
+  $menu['admin/config/search/external_crawler/site/%/edit'] = array(
+    'title' => 'Edit site',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('external_crawler_site_edit_form', 5),
+    'access arguments' => array('administer external crawler'),
+    'type' => MENU_NORMAL_ITEM,
+    'file' => 'external_crawler.admin.inc',
+  );
+
+  $menu['admin/config/search/external_crawler/site/%/delete'] = array(
+    'title' => 'Delete',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('external_crawler_site_delete_confirm', 5),
+    'access arguments' => array('administer external crawler'),
+    'type' => MENU_NORMAL_ITEM,
+    'file' => 'external_crawler.admin.inc',
+  );
+
+  return $menu;
+}
+
+/**
+ * Implements hook_admin_paths().
+ */
+function external_crawler_admin_paths() {
+  $paths = array(
+    'admin/config/search/external_crawler' => TRUE,
+    'admin/config/search/external_crawler/site/add' => TRUE,
+  );
+  return $paths;
+}
+
+/**
+ * Implements hook_permission().
+ */
+function external_crawler_permission() {
+  return array(
+    'administer external crawler' => array(
+      'title' => t('Administer External Crawler'),
+      'description' => t('Add/edit and delete external sites.'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_menu_local_tasks_alter().
+ */
+function external_crawler_menu_local_tasks_alter(&$data, $router_item, $root_path) {
+  // Add action link to 'node/add' on 'admin/content' page.
+  if ($root_path == 'admin/config/search/external_crawler') {
+    $item = menu_get_item('admin/config/search/external_crawler/site/add');
+    if ($item['access']) {
+      $data['actions']['output'][] = array(
+        '#theme' => 'menu_local_action',
+        '#link' => $item,
+      );
+    }
+  }
+}
+
+/**
+ * Implements hook_cron().
+ */
+function external_crawler_cron() {
+  module_load_include('inc', 'external_crawler');
+
+  $sites = db_select('external_crawler_site', 's')
+    ->fields('s')
+    ->execute()
+    ->fetchAll();
+
+  foreach ($sites as $site) {
+    // First check or this site has ever run from root.
+    $pagekey = _external_crawler_generate_pagekey($site, $site->url);
+    $pagedata = _external_crawler_get_pagedata($pagekey);
+    if (!$pagedata['date']) {
+      _external_crawler_index_page($site->url, $site);
+    }
+
+    // Setup query to retrieve the pages.
+    $or = db_or();
+    $or->condition('p.date', time() - $site->check_interval, '<=');
+    $or->isNull('p.date');
+    $pages = db_select('external_crawler_page', 'p')
+      ->fields('p', array('url'))
+      ->condition('p.site_id', $site->site_id)
+      ->condition($or)
+      ->orderBy('p.date', 'ASC')
+      ->range(0, $site->max_run)
+      ->execute();
+
+    // Index the pages.
+    foreach ($pages as $page) {
+      _external_crawler_index_page($page->url, $site);
+    }
+  }
+}
+
+/**
+ * Implements hook_cronapi().
+ */
+function external_crawler_cronapi($op, $job = NULL) {
+  // Run every hour.
+  $items['external_crawler_cron'] = array(
+    'description' => 'Run External Crawler',
+    'rule' => '0 */1 * * *',
+  );
+
+  return $items;
+}
+
+/**
+ * Fix link in search results.
+ */
+function external_crawler_preprocess_search_result(&$variables) {
+  if ($variables['result']['fields']['entity_type'] === 'external_crawler') {
+    $variables['url'] = $variables['result']['fields']['url'];
+    $variables['result']['link'] = $variables['result']['fields']['url'];
+    $variables['snippet'] = preg_replace("/\r|\n/", "", $variables['snippet']);
+  }
+}
