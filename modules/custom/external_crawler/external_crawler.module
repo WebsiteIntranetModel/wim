@@ -70,6 +70,10 @@ function external_crawler_permission() {
       'title' => t('Administer External Crawler'),
       'description' => t('Add/edit and delete external sites.'),
     ),
+    'access content include/exclude' => array(
+      'title' => t('Administer content exclude/include'),
+      'description' => t('Manage CSS selectors for including & excluding content from crawling.'),
+    ),
   );
 }
 
