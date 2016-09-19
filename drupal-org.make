@@ -48,6 +48,7 @@ projects[linkit] = 3.5
 projects[password_policy] = 1.12
 projects[picture] = 2.13
 projects[redirect] = 1.0-rc3
+projects[scheduler] = 1.5
 projects[strongarm] = 2.0
 projects[special_menu_items] = 2.0
 projects[token] = 1.6
