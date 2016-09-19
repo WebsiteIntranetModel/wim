@@ -188,8 +188,8 @@ function external_crawler_save_site($fields) {
   $site->max_depth = $fields['max_depth'];
   $site->max_run = $fields['max_run'];
   $site->url_exclude = $fields['url_exclude'];
-  $site->content_exclude = 'script';
-  $site->content_include = '';
+  $site->content_exclude = $fields['content_exclude'];
+  $site->content_include = $fields['content_include'];
 
   drupal_write_record('external_crawler_site', $site, !empty($site->site_id) ? array('site_id') : array());
 }

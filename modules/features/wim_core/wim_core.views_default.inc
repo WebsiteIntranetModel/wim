@@ -798,6 +798,7 @@ function wim_core_views_default_views() {
     t('Use count'),
     t('[usage]'),
     t('0 places'),
+    t('.'),
     t('User'),
     t('Edit'),
     t('Name'),
