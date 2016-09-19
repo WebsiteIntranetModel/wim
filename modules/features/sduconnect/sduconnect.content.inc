@@ -199,7 +199,7 @@ function sduconnect_set_pdc_content(DOMXPath $xpath, &$node, $private = FALSE) {
     '//m:page/m:product/m:contact' => 'field_product_contact',
     '//m:page/m:product/m:appeal' => 'field_product_objection',
     '//m:page/m:product/m:costs' => 'field_product_costs',
-    '//m:page/m:product/m:procedure' => 'field_product_particulars',
+    '//m:page/m:product/m:procedure' => 'field_product_procedure',
     '//m:page/m:product/m:period' => 'field_product_period',
     '//m:page/m:product/m:conditions' => 'field_product_conditions',
     // @codingStandardsIgnoreStart
