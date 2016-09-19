@@ -235,13 +235,18 @@ function wim_preprocess_page(&$variables) {
   $menu_item = menu_get_item();
 
   // All FAQ pages should has title FAQ.
-  if ($menu_item && $menu_item['path'] === 'faq/%') {
+  if (is_array($menu_item) && $menu_item['path'] === 'faq/%') {
     $variables['title'] = t('FAQ');
   }
 
   // Set title for search page.
-  if ($menu_item && $menu_item['path'] === 'search/site/%') {
+  if (is_array($menu_item) && $menu_item['path'] === 'search/site/%') {
     drupal_set_title(t('Search'));
+  }
+
+  // Set additional class for Person.
+  if (isset($variables['node']) && $variables['node']->type === 'person') {
+    $variables['content_column_class'] = ' class="col-md-6 col-md-push-3"';
   }
 
 }
