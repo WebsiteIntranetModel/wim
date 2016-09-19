@@ -244,11 +244,6 @@ function wim_preprocess_page(&$variables) {
     drupal_set_title(t('Search'));
   }
 
-  // Set additional class for Person.
-  if (isset($variables['node']) && $variables['node']->type === 'person') {
-    $variables['content_column_class'] = ' class="col-md-6 col-md-push-3"';
-  }
-
 }
 
 /**
