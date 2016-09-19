@@ -161,17 +161,45 @@
       editor.on('doubleclick', function (evt) {
         var element = CKEDITOR.plugins.link.getSelectedLink(editor) || evt.data.element;
 console.log(element);
-        if (element.isReadOnly()) {
-          if (element.is('a') && element.hasClass('tab-title')) {
-            evt.data.dialog = ( element.getAttribute('name') && ( !element.getAttribute('href') || !element.getChildCount() ) ) ? 'anchor' : 'link';
-            console.log(evt);
-            // Pass the link to be selected along with event data.
-            evt.data.link = element;
-          } else if (CKEDITOR.plugins.link.tryRestoreFakeAnchor(editor, element)) {
-            evt.data.dialog = 'anchor';
-          }
+        if (!element.isReadOnly()) {
+          var dialogDefinition = evt.data.definition;
+          dialogDefinition.removeContents('upload');
+          dialogDefinition.removeContents('advanced');
+          dialogDefinition.removeContents('target');
+
+          // Get a reference to the 'Link Info' tab.
+          var infoTab = dialogDefinition.getContents('info');
+          // Remove unnecessary widgets from the 'Link Info' tab.
+          infoTab.remove('linkType');
+          infoTab.remove('protocol');
+          infoTab.remove('browse');
+          infoTab.remove('url');
+          this.remove
         }
       }, null, null, 0);
+
+      CKEDITOR.on('dialogDefinition', function (ev) {
+        // Take the dialog name and its definition from the event data.
+        var dialogName = ev.data.name;
+
+console.log(ev);
+        // Check if the definition is from the dialog we're
+        // interested in (the 'image' dialog). This dialog name found using DevTools plugin
+        if (dialogName == 'link') {
+//        Remove the 'Upload' and 'Advanced' tabs from the 'Link' dialog.
+          dialogDefinition.removeContents('upload');
+          dialogDefinition.removeContents('advanced');
+          dialogDefinition.removeContents('target');
+
+          // Get a reference to the 'Link Info' tab.
+          var infoTab = dialogDefinition.getContents('info');
+          // Remove unnecessary widgets from the 'Link Info' tab.
+          infoTab.remove('linkType');
+          infoTab.remove('protocol');
+          infoTab.remove('browse');
+          infoTab.remove('url');
+        }
+      });
 
 
       // Add widget.
@@ -182,7 +210,8 @@ console.log(element);
           bootstrap_tabs: 'div.bootstrap-tab'
         },
         editables: {
-          content: ''
+          content: '',
+          nav: {selector: '.nav'}
         },
         template: '<div class="bootstrap-tab"></div>',
         dialog: 'bootstrap_tabs',
@@ -192,6 +221,7 @@ console.log(element);
         },
         // Init function is useful after copy paste rebuild.
         init: function () {
+
           this.createEditable(maxTabColumns);
         },
         // Prepare data
@@ -219,10 +249,10 @@ console.log(element);
           var tab_content = '';
           for (var i = 1; i <= tabCount; i++) {
             active = (i === 1) ? 'active' : '';
-            tab_titles += '<li class="tab' + num + i + ' ' + active + '">' +
+            tab_titles += '<li role="tebber" class="tab' + num + i + ' ' + active + '">' +
               '<a class="tab-title" href="#tab' + num + i + '" aria-controls="tab' + num + i + '" role="tab" data-toggle="tab">Tab' + i + '</a>' +
               '</li>';
-            tab_content += '<div class="tab-pane ' + active + '" id="tab' + num + i + '">Content for tab' + i + '</div>';
+            tab_content += '<div role="tabpanel" class="tab-pane ' + active + '" id="tab' + num + i + '">Content for tab' + i + '</div>';
           }
           // @todo user drupal theme
           content = '<div class="nav"><ul class="nav nav-tabs" role="tablist">' + tab_titles + '</ul></div>' +
@@ -264,7 +294,7 @@ console.log(element);
           group: 'tabGroup'
         });
         editor.addMenuItem('titleText', {
-          label: editor.lang.link.menu,
+          label: Drupal.t('Tab title'),
           command: 'link',
           group: 'link',
           order: 1
