@@ -162,10 +162,9 @@ function external_crawler_save_page($pagedata, $document) {
   $env_id = variable_get('external_crawler_solr_env', 'solr');
 
   $documents = array();
-  $documents[] = external_crawler_build_document($pagedata['pagekey'], $document['url'], $document['title'], $document['body']);
+  $documents[] = external_crawler_build_document($pagedata['pagekey'], $document['url'], $document['title'], $document['body'], $pagedata['site_id']);
 
-  $solr = apachesolr_get_solr($env_id);
-  $solr->addDocuments($documents);
+  apachesolr_index_send_to_solr($env_id, $documents);
 
   db_merge('external_crawler_page')
     ->key(array('pagekey' => $pagedata['pagekey']))

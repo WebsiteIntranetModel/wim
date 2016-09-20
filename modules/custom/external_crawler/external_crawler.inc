@@ -11,7 +11,7 @@ use Symfony\Component\CssSelector\CssSelectorConverter;
 /**
  * Build Solr document.
  */
-function external_crawler_build_document($pagekey, $url, $title, $body) {
+function external_crawler_build_document($pagekey, $url, $title, $body, $site_id) {
   module_load_include('inc', 'apachesolr', 'apachesolr.index');
 
   $document = new ApacheSolrDocument();
@@ -20,9 +20,8 @@ function external_crawler_build_document($pagekey, $url, $title, $body) {
   $document->hash = apachesolr_site_hash();
   $document->entity_id = 1;
   $document->entity_type = 'external_crawler';
-  $document->bundle = 'page';
-  $document->bundle_name = t('Page');
   $document->language = LANGUAGE_NONE;
+  $document->external_source = $site_id;
   $document->url = $url;
 
   $document->addField('label', $title);
@@ -31,8 +30,9 @@ function external_crawler_build_document($pagekey, $url, $title, $body) {
   $document->addField('domain_id', 1);
   $document->addField('domain_site', 1);
 
+
   // Allow other modules to alter the document.
-  $context = array('pagekey' => $pagekey);
+  $context = array('pagekey' => $pagekey, 'site_id' => $site_id);
   drupal_alter('external_crawler_document', $document, $context);
 
   return $document;
