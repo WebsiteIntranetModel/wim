@@ -44,7 +44,9 @@ function external_crawler_load_vendor() {
  * Helper function for retrieving the page key.
  */
 function _external_crawler_generate_pagekey($site, $url) {
-  return 'crawler/' . $site->name . '/' . md5($url);
+  $parsed_url = parse_url($url);
+  $parsed_url['path'] = isset($parsed_url['path']) ? $parsed_url['path'] : '';
+  return 'crawler/' . $site->name . '/' . md5($parsed_url['host'] . str_replace('/', '', $parsed_url['path']));
 }
 
 /**
@@ -184,8 +186,8 @@ function external_crawler_save_site($fields) {
   $site->max_depth = $fields['max_depth'];
   $site->max_run = $fields['max_run'];
   $site->url_exclude = $fields['url_exclude'];
-  $site->content_exclude = $fields['content_exclude'];
-  $site->content_include = $fields['content_include'];
+  $site->content_exclude = check_plain($fields['content_exclude']);
+  $site->content_include = check_plain($fields['content_include']);
 
   drupal_write_record('external_crawler_site', $site, !empty($site->site_id) ? array('site_id') : array());
 }
