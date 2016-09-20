@@ -118,3 +118,11 @@ function external_crawler_schema() {
 
   return $schema;
 }
+
+/**
+* Set permissions.
+*/
+function external_crawler_install(){
+  $role = user_role_load_by_name('webmaster');
+  user_role_grant_permissions($role->rid, array('administer external crawler'));
+}

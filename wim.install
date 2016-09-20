@@ -865,7 +865,6 @@ function _wim_permissions($role) {
       'submit latitude/longitude',
       'access site in maintenance mode',
       'exclude nodes from apache solr',
-      'administer external crawler',
       // Node access.
       'bypass node access',
       'view own unpublished content',
