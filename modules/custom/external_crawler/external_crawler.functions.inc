@@ -55,18 +55,14 @@ function external_crawler_delete_page($pagekey) {
   $solr = apachesolr_get_solr($env_id);
   $solr->deleteById(apachesolr_document_id($pagekey, 'external_crawler'));
 
-  db_delete('external_crawler_page')
-    ->condition('pagekey', $pagekey)
-    ->execute();
+  db_delete('external_crawler_page')->condition('pagekey', $pagekey)->execute();
 }
 
 /**
  * Delete site and indexed pages.
  */
 function external_crawler_delete_site($site_id) {
-  db_delete('external_crawler_site')
-    ->condition('site_id', $site_id)
-    ->execute();
+  db_delete('external_crawler_site')->condition('site_id', $site_id)->execute();
 
   $total_limit = _external_crawler_fetch_pages($site_id, NULL, TRUE);
   $batch = array(
@@ -199,8 +195,7 @@ function external_crawler_save_site($fields) {
  */
 function _external_crawler_fetch_sites($site_id = NULL) {
 
-  $query = db_select('external_crawler_site', 's')
-    ->fields('s');
+  $query = db_select('external_crawler_site', 's')->fields('s');
 
   if ($site_id) {
     $query->condition('s.site_id', $site_id);
@@ -215,8 +210,7 @@ function _external_crawler_fetch_sites($site_id = NULL) {
  * Fetch indexed pages.
  */
 function _external_crawler_fetch_pages($site_id = NULL, $limit = NULL, $only_count = FALSE) {
-  $query = db_select('external_crawler_page', 'p')
-    ->fields('p');
+  $query = db_select('external_crawler_page', 'p')->fields('p');
 
   if ($site_id) {
     $query->condition('p.site_id', $site_id);

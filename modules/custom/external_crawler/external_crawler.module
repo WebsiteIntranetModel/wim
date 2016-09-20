@@ -84,7 +84,7 @@ function external_crawler_menu_local_tasks_alter(&$data, $router_item, $root_pat
   // Add action link to 'node/add' on 'admin/content' page.
   if ($root_path == 'admin/config/search/external_crawler') {
     $item = menu_get_item('admin/config/search/external_crawler/site/add');
-    if ($item['access']) {
+    if (is_array($item) && $item['access']) {
       $data['actions']['output'][] = array(
         '#theme' => 'menu_local_action',
         '#link' => $item,
