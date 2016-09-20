@@ -24,7 +24,19 @@ function wim_core_permission() {
       'title' => t('Access publishing options tab'),
       'description' => t('User can access promoted and publication date.'),
     ),
+    'access taxonomy pages' => array(
+      'title' => t('Access taxonomy pages'),
+      'description' => t('User can access taxonomy pages like taxonomy/term/[tid].'),
+    ),
   );
+}
+
+/**
+ * hook_menu_alter implementation.
+ */
+function wim_core_menu_alter(&$items) {
+  $items['taxonomy/term/%taxonomy_term']['access arguments'] = array('access taxonomy pages');
+  $items['taxonomy/term/%taxonomy_term/feed']['access arguments'] = array('access taxonomy pages');
 }
 
 /**
