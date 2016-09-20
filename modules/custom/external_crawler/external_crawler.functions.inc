@@ -46,7 +46,7 @@ function external_crawler_load_vendor() {
 function _external_crawler_generate_pagekey($site, $url) {
   $parsed_url = parse_url($url);
   $parsed_url['path'] = isset($parsed_url['path']) ? $parsed_url['path'] : '';
-  return 'crawler/' . $site->name . '/' . md5($parsed_url['host'] . $parsed_url['path']);
+  return 'crawler/' . $site->name . '/' . md5($parsed_url['host'] . str_replace('/', '', $parsed_url['path']));
 }
 
 /**
