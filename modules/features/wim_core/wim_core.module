@@ -32,7 +32,7 @@ function wim_core_permission() {
 }
 
 /**
- * hook_menu_alter implementation.
+ * Implements hook_menu_alter().
  */
 function wim_core_menu_alter(&$items) {
   $items['taxonomy/term/%taxonomy_term']['access arguments'] = array('access taxonomy pages');
