@@ -870,6 +870,7 @@ function _wim_permissions($role) {
       'bypass node access',
       'view own unpublished content',
       'publishing options tab',
+      'schedule publishing of nodes',
       // News.
       'create news content',
       'delete any news content',
@@ -980,6 +981,7 @@ function _wim_permissions($role) {
       'exclude nodes from apache solr',
       // Node access.
       'publishing options tab',
+      'schedule publishing of nodes',
       // News.
       'create news content',
       'delete any news content',
@@ -1076,6 +1078,7 @@ function _wim_permissions($role) {
       'administer redirects',
       // Node access.
       'publishing options tab',
+      'schedule publishing of nodes',
       // News.
       'create news content',
       'edit own news content',
