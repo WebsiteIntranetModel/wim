@@ -207,9 +207,15 @@ function wim_core_form_alter(&$form, &$form_state, $form_id) {
   if (user_access('publishing options tab')) {
     $form['options']['#access'] = TRUE;
   }
+
   // Move reminder after publishing.
   if (isset($form['#groups']['group_reminder'], $form['field_reminder_email'])) {
     $form['#groups']['group_reminder']->weight = 150;
+  }
+
+  // Move scheduler before reminder.
+  if (isset($form['scheduler_settings'])) {
+    $form['scheduler_settings']['#weight'] = 100;
   }
 
 }
