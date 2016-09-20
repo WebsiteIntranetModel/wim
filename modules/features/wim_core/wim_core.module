@@ -200,17 +200,17 @@ function wim_core_form_alter(&$form, &$form_state, $form_id) {
     $form['#groups']['group_reminder']->weight = 150;
   }
 
-  /**
-   * Implements hook_cronapi().
-   */
-  function wim_core_cronapi($op, $job = NULL) {
+}
 
-    $items['scheduler'] = array(
-      'description' => 'Run scheduler.',
-      'rule' => '*/5 * * * *',
-    );
+/**
+ * Implements hook_cronapi().
+ */
+function wim_core_cronapi($op, $job = NULL) {
 
-    return $items;
-  }
+  $items['scheduler'] = array(
+    'description' => 'Run scheduler.',
+    'rule' => '*/5 * * * *',
+  );
 
+  return $items;
 }
