@@ -215,7 +215,7 @@ function external_crawler_site_edit_form($form, &$form_state) {
       '#default_value' => $site->content_include,
       '#description' => t('CSS selector to specify which element on page should be added to index.(e.g "body > p")'),
     );
-    
+
     $form['submit'] = array(
       '#type' => 'submit',
       '#value' => t('Save'),
