@@ -157,16 +157,19 @@ function external_crawler_preprocess_search_result(&$variables) {
 }
 
 /**
-* Implements hook_facetapi_searcher_info_alter().
-*/
+ * Implements hook_facetapi_searcher_info_alter().
+ */
 function external_crawler_facetapi_searcher_info_alter(array &$searcher_info) {
   foreach ($searcher_info as $index => $info) {
-    if($info['adapter'] === 'apachesolr'){
+    if ($info['adapter'] === 'apachesolr') {
       $searcher_info[$index]['types']['external_crawler'] = 'external_crawler';
     }
   }
 }
 
+/**
+ * Implements hook_facetapi_facet_info().
+ */
 function external_crawler_facetapi_facet_info(array $searcher_info) {
   $facets = array();
   // Facets are usually associated with the type of content stored in the index.
@@ -174,18 +177,25 @@ function external_crawler_facetapi_facet_info(array $searcher_info) {
     $facets['external_source'] = array(
       'label' => t('External Source'),
       'description' => t('Filter by external source.'),
-      'field' => 'external_source',
+      'field' => 'entity_id',
       'map callback' => 'external_crawler_source_map',
-      );
+      'default widget' => 'links',
+      'default sorts' => array(),
+    );
   }
 
   return $facets;
 }
 
+/**
+ * Map callback for external source filter.
+ */
 function external_crawler_source_map(array $values) {
   $map = array();
   foreach ($values as $value) {
-    $map[$value] = 'Test';
+    $site = _external_crawler_fetch_sites($value);
+    $map[$value] = $site->name;
   }
+
   return $map;
 }

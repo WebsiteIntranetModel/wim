@@ -18,10 +18,9 @@ function external_crawler_build_document($pagekey, $url, $title, $body, $site_id
   $document->id = apachesolr_document_id($pagekey, 'external_crawler');
   $document->site = url(NULL, array('absolute' => TRUE));
   $document->hash = apachesolr_site_hash();
-  $document->entity_id = 1;
+  $document->entity_id = $site_id;
   $document->entity_type = 'external_crawler';
   $document->language = LANGUAGE_NONE;
-  $document->external_source = $site_id;
   $document->url = $url;
 
   $document->addField('label', $title);
@@ -29,7 +28,6 @@ function external_crawler_build_document($pagekey, $url, $title, $body, $site_id
 
   $document->addField('domain_id', 1);
   $document->addField('domain_site', 1);
-
 
   // Allow other modules to alter the document.
   $context = array('pagekey' => $pagekey, 'site_id' => $site_id);

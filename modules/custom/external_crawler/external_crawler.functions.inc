@@ -195,14 +195,17 @@ function external_crawler_save_site($fields) {
  * Fetch all sites.
  */
 function _external_crawler_fetch_sites($site_id = NULL) {
+  $sites = &drupal_static(__FUNCTION__, array());
 
-  $query = db_select('external_crawler_site', 's')->fields('s');
-
-  if ($site_id) {
-    $query->condition('s.site_id', $site_id);
+  if (empty($sites)) {
+    $query = db_select('external_crawler_site', 's')->fields('s');
+    $sites = $query->execute()->fetchAllAssoc('site_id', PDO::FETCH_OBJ);
   }
 
-  $sites = $query->execute()->fetchAll();
+  // If site id passed then return site.
+  if ($site_id) {
+    return isset($sites[$site_id]) ? $sites[$site_id] : NULL;
+  }
 
   return $sites;
 }
