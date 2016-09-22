@@ -194,7 +194,9 @@ function external_crawler_source_map(array $values) {
   $map = array();
   foreach ($values as $value) {
     $site = _external_crawler_fetch_sites($value);
-    $map[$value] = $site->name;
+    if ($site) {
+      $map[$value] = $site->name;
+    }
   }
 
   return $map;

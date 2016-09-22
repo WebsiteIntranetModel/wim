@@ -1,0 +1,51 @@
+<?php
+/**
+ * @file
+ * Install file.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function wim_external_search_install() {
+  module_load_include('inc', 'facetapi', 'facetapi.block');
+
+  $string = facetapi_build_delta('apachesolr@solr', 'block', 'external_source');
+  $map = facetapi_get_delta_map();
+  $facet_source = array(
+    'region_name' => 'sidebar-first-search',
+    'path' => NULL,
+    'module' => 'facetapi',
+    'delta' => array_search($string, $map),
+    'detail_path' => NULL,
+    'data' => array(
+      'subject' => st('Filter by source'),
+      'config' => array(
+        'bootstrap_layout' => 12,
+        'new_row' => 0,
+      ),
+    ),
+  );
+
+  if (!$region = _felix_region_by_name($facet_source['region_name'])) {
+    return FALSE;
+  }
+
+  $hash = _felix_get_hash($region, $facet_source['path']);
+
+  $block = new stdClass();
+  $block->region = $region->name;
+  $block->weight = _felix_new_block_weight($region->name);
+  $block->hash = $hash->hash;
+  $block->module = $facet_source['module'];
+  $block->delta = $facet_source['delta'];
+  $block->detail_path = $facet_source['detail_path'];
+  $block->data = $facet_source['data'];
+  $block->hash_parts = $hash->parts;
+  $block->exclude = serialize(array());
+
+  $block->data = serialize($block->data);
+  $block->hash_parts = serialize($block->hash_parts);
+
+  drupal_write_record('felix_block', $block);
+}

@@ -685,12 +685,11 @@ function _wim_place_felix_blocks() {
     $map = facetapi_get_delta_map();
     // Filter by type.
     $string = facetapi_build_delta('apachesolr@solr', 'block', 'bundle');
-    $filter_bundle_delta = array_search($string, $map);
     $felix_blocks['search_filter_types'] = array(
       'region_name' => 'sidebar-first-search',
       'path' => NULL,
       'module' => 'facetapi',
-      'delta' => $filter_bundle_delta,
+      'delta' => array_search($string, $map),
       'detail_path' => NULL,
       'data' => array(
         'subject' => st('Filter by type'),
@@ -703,12 +702,11 @@ function _wim_place_felix_blocks() {
 
     // Filter by date.
     $string = facetapi_build_delta('apachesolr@solr', 'block', 'created');
-    $filter_created_delta = array_search($string, $map);
     $felix_blocks['search_filter_created'] = array(
       'region_name' => 'sidebar-first-search',
       'path' => NULL,
       'module' => 'facetapi',
-      'delta' => $filter_created_delta,
+      'delta' => array_search($string, $map),
       'detail_path' => NULL,
       'data' => array(
         'subject' => st('Filter by date'),
