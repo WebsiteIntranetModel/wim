@@ -235,12 +235,12 @@ function wim_preprocess_page(&$variables) {
   $menu_item = menu_get_item();
 
   // All FAQ pages should has title FAQ.
-  if ($menu_item && $menu_item['path'] === 'faq/%') {
+  if (is_array($menu_item) && $menu_item['path'] === 'faq/%') {
     $variables['title'] = t('FAQ');
   }
 
   // Set title for search page.
-  if ($menu_item && $menu_item['path'] === 'search/site/%') {
+  if (is_array($menu_item) && $menu_item['path'] === 'search/site/%') {
     drupal_set_title(t('Search'));
   }
 

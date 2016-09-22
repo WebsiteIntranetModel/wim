@@ -333,7 +333,7 @@ function atos_esuite_map_node_product(stdClass $node, DOMDocument $documentDOM, 
     'contact' => 'field_product_contact',
     'bezwaar' => 'field_product_objection',
     'kosten' => 'field_product_costs',
-    'bijzonderheden' => 'field_product_particulars',
+    'bijzonderheden' => 'field_product_procedure',
     'termijn' => 'field_product_period',
     'voorwaarden' => 'field_product_conditions',
 

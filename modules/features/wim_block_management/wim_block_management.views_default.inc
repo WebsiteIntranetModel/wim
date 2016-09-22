@@ -81,6 +81,11 @@ function wim_block_management_views_default_views() {
       'empty_column' => 0,
     ),
   );
+  /* Header: Global: Result summary */
+  $handler->display->display_options['header']['result']['id'] = 'result';
+  $handler->display->display_options['header']['result']['table'] = 'views';
+  $handler->display->display_options['header']['result']['field'] = 'result';
+  $handler->display->display_options['header']['result']['content'] = '@total items found';
   /* Field: Block: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'bean';
@@ -171,6 +176,7 @@ function wim_block_management_views_default_views() {
     t('‹ previous'),
     t('next ›'),
     t('last »'),
+    t('@total items found'),
     t('Title'),
     t('Label'),
     t('Block Delta'),

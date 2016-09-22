@@ -42,7 +42,7 @@ function wim_news_strongarm() {
         'custom_settings' => FALSE,
       ),
       'search_result' => array(
-        'custom_settings' => FALSE,
+        'custom_settings' => TRUE,
       ),
       'felix' => array(
         'custom_settings' => FALSE,
@@ -114,6 +114,34 @@ function wim_news_strongarm() {
   $strongarm->name = 'node_submitted_news';
   $strongarm->value = 0;
   $export['node_submitted_news'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'scheduler_publish_enable_news';
+  $strongarm->value = 1;
+  $export['scheduler_publish_enable_news'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'scheduler_publish_touch_news';
+  $strongarm->value = 1;
+  $export['scheduler_publish_touch_news'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'scheduler_unpublish_enable_news';
+  $strongarm->value = 1;
+  $export['scheduler_unpublish_enable_news'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'scheduler_use_vertical_tabs_news';
+  $strongarm->value = '1';
+  $export['scheduler_use_vertical_tabs_news'] = $strongarm;
 
   return $export;
 }

@@ -55,7 +55,7 @@ function wim_addition_faq_product_fields_field_group_info() {
       2 => 'field_product_contact',
       3 => 'field_product_costs',
       4 => 'field_product_objection',
-      5 => 'field_product_particulars',
+      5 => 'field_product_procedure',
       6 => 'field_product_period',
       7 => 'field_product_request',
     ),

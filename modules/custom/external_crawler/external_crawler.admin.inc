@@ -97,6 +97,21 @@ function external_crawler_site_add_form() {
     '#description' => t('List of excluded URLs, one per line.'),
   );
 
+  $form['content_exclude'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Content exclude'),
+    '#access' => user_access('access content include/exclude'),
+    '#default_value' => 'script',
+    '#description' => t('CSS selector to exclude elements from index.(e.g "script, a.myclass")'),
+  );
+
+  $form['content_include'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Content include'),
+    '#access' => user_access('access content include/exclude'),
+    '#description' => t('CSS selector to include elements to index.(e.g "body > p")'),
+  );
+
   $form['submit'] = array(
     '#type' => 'submit',
     '#value' => t('Save'),
@@ -195,6 +210,22 @@ function external_crawler_site_edit_form($form, &$form_state) {
       '#title' => t('Exluded paths'),
       '#description' => t('List of excluded URLs, one per line.'),
       '#default_value' => $site->url_exclude,
+    );
+
+    $form['content_exclude'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Content exclude'),
+      '#access' => user_access('access content include/exclude'),
+      '#default_value' => $site->content_exclude,
+      '#description' => t('CSS selector to exclude elements from index, separated by comma.(e.g "script, a.myclass")'),
+    );
+
+    $form['content_include'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Content include'),
+      '#access' => user_access('access content include/exclude'),
+      '#default_value' => $site->content_include,
+      '#description' => t('CSS selector to specify which element on page should be added to index.(e.g "body > p")'),
     );
 
     $form['submit'] = array(
