@@ -3,6 +3,32 @@
   border-radius: 4px;
   clear: both;
 
+  .input-group {
+    display: block;
+    @include MQ($screen-sm) {
+      display: table;
+    }
+    .form-text {
+      width: 75%;
+      float: left;
+      box-sizing: border-box;
+      @include MQ($screen-sm) {
+        float: none;
+        width: 100%;
+      }
+    }
+    .input-group-btn {
+      width: 25%;
+      float: left;
+      @include MQ($screen-sm) {
+        float: none;
+        width: auto;
+      }
+      .btn {
+        width: 100%;
+      }
+    }
+  }
   .form-group {
     margin: 0;
   }

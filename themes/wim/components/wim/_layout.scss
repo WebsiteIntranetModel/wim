@@ -14,7 +14,11 @@
 }
 
 .region-header {
-  float: right;
+  padding: 0 15px 0 5px;
+  @include MQ($screen-sm) {
+    float: right;
+    padding: 0;
+  }
 }
 
 .main-container {
