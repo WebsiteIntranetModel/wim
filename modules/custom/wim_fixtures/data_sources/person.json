@@ -9,7 +9,7 @@
     "field_person_roles":"Actor, martial artist, film producer, screenwriter",
     "field_person_phone":"+3 404 34343",
     "field_email":"user+norris@example.com",
-    "field_person_address":"Ryan, Oklahoma, U.S.\n<a class=\"u-textUserColor\" target=\"_blank\" rel=\"me nofollow\" href=\"http://t.co/8ty3x173jK\" title=\"http://www.chucknorris.com\">\n    chucknorris.com\n  </a>\n<a class=\"twitter-follow-button\"\n  href=\"https://twitter.com/chucknorris\"\n  data-size=\"large\">\nFollow @chucknorris</a>",
+    "field_person_address":"<p>Ryan, Oklahoma, U.S. <a class=\"u-textUserColor\" href=\"http://t.co/8ty3x173jK\" rel=\"me nofollow\" target=\"_blank\" title=\"http://www.chucknorris.com\">chucknorris.com</a> <a class=\"twitter-follow-button\" data-size=\"large\" href=\"https://twitter.com/chucknorris\"> Follow @chucknorris</a></p>",
     "author":"7"
   },
   {

@@ -49,6 +49,7 @@ dependencies[] = linkit
 dependencies[] = password_policy
 dependencies[] = picture
 dependencies[] = redirect
+dependencies[] = scheduler
 dependencies[] = strongarm
 dependencies[] = token
 dependencies[] = userprotect

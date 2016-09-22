@@ -48,6 +48,7 @@ projects[linkit] = 3.5
 projects[password_policy] = 1.12
 projects[picture] = 2.13
 projects[redirect] = 1.0-rc3
+projects[scheduler] = 1.5
 projects[strongarm] = 2.0
 projects[special_menu_items] = 2.0
 projects[token] = 1.6
@@ -78,6 +79,9 @@ projects[location][patch][2781227_1] = https://www.drupal.org/files/issues/locat
 ; Add migration support for Bean
 ; https://www.drupal.org/node/2295973#comment-11536795
 projects[bean][patch][2295973_11] = https://www.drupal.org/files/issues/bean-migrate-support-2295973-11.patch
+; Fix "Select all" checkbox works only once
+; https://www.drupal.org/node/2608360#comment-11620927
+projects[views_bulk_operations][patch][2608360_14] = https://www.drupal.org/files/issues/2608360-14.patch
 
 
 ; Custom

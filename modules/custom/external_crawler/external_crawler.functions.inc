@@ -44,29 +44,27 @@ function external_crawler_load_vendor() {
  * Helper function for retrieving the page key.
  */
 function _external_crawler_generate_pagekey($site, $url) {
-  return 'crawler/' . $site->name . '/' . md5($url);
+  $parsed_url = parse_url($url);
+  $parsed_url['path'] = isset($parsed_url['path']) ? $parsed_url['path'] : '';
+  return 'crawler/' . $site->name . '/' . md5($parsed_url['host'] . str_replace('/', '', $parsed_url['path']));
 }
 
 /**
  * Delete page from Solr index.
  */
 function external_crawler_delete_page($pagekey) {
-  $env_id = variable_get('external_crawler_solr_env', 'solr');
+  $env_id = apachesolr_default_environment();
   $solr = apachesolr_get_solr($env_id);
   $solr->deleteById(apachesolr_document_id($pagekey, 'external_crawler'));
 
-  db_delete('external_crawler_page')
-    ->condition('pagekey', $pagekey)
-    ->execute();
+  db_delete('external_crawler_page')->condition('pagekey', $pagekey)->execute();
 }
 
 /**
  * Delete site and indexed pages.
  */
 function external_crawler_delete_site($site_id) {
-  db_delete('external_crawler_site')
-    ->condition('site_id', $site_id)
-    ->execute();
+  db_delete('external_crawler_site')->condition('site_id', $site_id)->execute();
 
   $total_limit = _external_crawler_fetch_pages($site_id, NULL, TRUE);
   $batch = array(
@@ -139,7 +137,7 @@ function external_crawler_batch_delete_pages($site_id, $total_limit, &$context) 
   if ($context['finished']) {
     $context['results']['count'] = $context['sandbox']['progress'];
     $context['results']['deleted'] = $context['sandbox']['deleted'];
-    $context['results']['env_id'] = $site_id;
+    $context['results']['site_id'] = $site_id;
   }
 }
 
@@ -161,7 +159,7 @@ function external_crawler_batch_delete_pages_finished($success, array $results, 
 function external_crawler_save_page($pagedata, $document) {
   module_load_include('inc', 'external_crawler');
 
-  $env_id = variable_get('external_crawler_solr_env', 'solr');
+  $env_id = apachesolr_default_environment();
 
   $documents = array();
   $documents[] = external_crawler_build_document($pagedata['pagekey'], $document['url'], $document['title'], $document['body']);
@@ -182,14 +180,14 @@ function external_crawler_save_site($fields) {
   $site = new stdClass();
   $site->site_id = isset($fields['site_id']) ? $fields['site_id'] : NULL;
 
-  $site->name = $fields['name'];
+  $site->name = check_plain($fields['name']);
   $site->url = $fields['url'];
   $site->check_interval = $fields['check_interval'];
   $site->max_depth = $fields['max_depth'];
   $site->max_run = $fields['max_run'];
-  $site->url_exclude = $fields['url_exclude'];
-  $site->content_exclude = 'script';
-  $site->content_include = '';
+  $site->url_exclude = check_plain($fields['url_exclude']);
+  $site->content_exclude = check_plain($fields['content_exclude']);
+  $site->content_include = check_plain($fields['content_include']);
 
   drupal_write_record('external_crawler_site', $site, !empty($site->site_id) ? array('site_id') : array());
 }
@@ -199,8 +197,7 @@ function external_crawler_save_site($fields) {
  */
 function _external_crawler_fetch_sites($site_id = NULL) {
 
-  $query = db_select('external_crawler_site', 's')
-    ->fields('s');
+  $query = db_select('external_crawler_site', 's')->fields('s');
 
   if ($site_id) {
     $query->condition('s.site_id', $site_id);
@@ -215,8 +212,7 @@ function _external_crawler_fetch_sites($site_id = NULL) {
  * Fetch indexed pages.
  */
 function _external_crawler_fetch_pages($site_id = NULL, $limit = NULL, $only_count = FALSE) {
-  $query = db_select('external_crawler_page', 'p')
-    ->fields('p');
+  $query = db_select('external_crawler_page', 'p')->fields('p');
 
   if ($site_id) {
     $query->condition('p.site_id', $site_id);

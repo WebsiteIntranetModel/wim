@@ -99,6 +99,7 @@ function _wim_set_up_roles_and_permissions() {
   }
 
   // Autologout config for administrator.
+  variable_set('autologout_role_logout', 1);
   variable_set('autologout_role_' . $admin_role->rid, 1);
   variable_set('autologout_role_' . $admin_role->rid . '_timeout', 900);
 
@@ -841,6 +842,7 @@ function _wim_permissions($role) {
       'access administration pages',
       'access content overview',
       'access user profiles',
+      'access taxonomy pages',
       'administer blocks',
       'administer menu',
       'administer taxonomy',
@@ -868,6 +870,7 @@ function _wim_permissions($role) {
       'bypass node access',
       'view own unpublished content',
       'publishing options tab',
+      'schedule publishing of nodes',
       // News.
       'create news content',
       'delete any news content',
@@ -929,10 +932,25 @@ function _wim_permissions($role) {
       'edit webform components',
       'create webform content',
       'delete any webform content',
-      'delete own webform content',
       'edit any webform content',
-      'edit own webform content',
       'set webform_clear times',
+      // Files.
+      'use media wysiwyg',
+      'access media browser',
+      'bypass file access',
+      'administer files',
+      'edit any audio files',
+      'edit any image files',
+      'edit any video files',
+      'edit any document files',
+      'delete any audio files',
+      'delete any image files',
+      'delete any video files',
+      'delete any document files',
+      'download any audio files',
+      'download any image files',
+      'download any video files',
+      'download any document files',
       // Taxonomy.
       'administer taxonomy',
       // User.
@@ -945,6 +963,7 @@ function _wim_permissions($role) {
       'access administration pages',
       'access content overview',
       'access user profiles',
+      'access taxonomy pages',
       'administer menu',
       'administer taxonomy',
       'administer redirects',
@@ -965,6 +984,7 @@ function _wim_permissions($role) {
       'exclude nodes from apache solr',
       // Node access.
       'publishing options tab',
+      'schedule publishing of nodes',
       // News.
       'create news content',
       'delete any news content',
@@ -1025,6 +1045,22 @@ function _wim_permissions($role) {
       'edit any webform content',
       'edit own webform content',
       'set webform_clear times',
+      // Files.
+      'use media wysiwyg',
+      'access media browser',
+      'administer files',
+      'edit any audio files',
+      'edit any image files',
+      'edit any video files',
+      'edit any document files',
+      'delete any audio files',
+      'delete any image files',
+      'delete any video files',
+      'delete any document files',
+      'download any audio files',
+      'download any image files',
+      'download any video files',
+      'download any document files',
       // Taxonomy.
       'administer taxonomy',
       // User.
@@ -1042,11 +1078,13 @@ function _wim_permissions($role) {
       'access content overview',
       'access user profiles',
       'access contextual links',
+      'access taxonomy pages',
       'view revisions',
       'revert revisions',
       'administer redirects',
       // Node access.
       'publishing options tab',
+      'schedule publishing of nodes',
       // News.
       'create news content',
       'edit own news content',
@@ -1071,6 +1109,21 @@ function _wim_permissions($role) {
       'create any editorial bean',
       'edit any editorial bean',
       'manage felix blocks',
+      // Files.
+      'use media wysiwyg',
+      'access media browser',
+      'edit any audio files',
+      'edit any image files',
+      'edit any video files',
+      'edit any document files',
+      'delete own audio files',
+      'delete own image files',
+      'delete own video files',
+      'delete own document files',
+      'download any audio files',
+      'download any image files',
+      'download any video files',
+      'download any document files',
     ),
     'authenticated' => array(
       'access content',
