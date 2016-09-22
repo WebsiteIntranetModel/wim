@@ -11,12 +11,13 @@ function wim_external_search_install() {
   module_load_include('inc', 'facetapi', 'facetapi.block');
 
   $string = facetapi_build_delta('apachesolr@solr', 'block', 'external_source');
-  $map = facetapi_get_delta_map();
+  $delta = facetapi_hash_delta($string);
+
   $facet_source = array(
     'region_name' => 'sidebar-first-search',
     'path' => NULL,
     'module' => 'facetapi',
-    'delta' => array_search($string, $map),
+    'delta' => $delta,
     'detail_path' => NULL,
     'data' => array(
       'subject' => st('Filter by source'),
@@ -27,7 +28,9 @@ function wim_external_search_install() {
     ),
   );
 
-  if (!$region = _felix_region_by_name($facet_source['region_name'])) {
+  $region = _felix_region_by_name('sidebar-first-search');
+
+  if (!$region || !$delta) {
     return FALSE;
   }
 
@@ -48,4 +51,18 @@ function wim_external_search_install() {
   $block->hash_parts = serialize($block->hash_parts);
 
   drupal_write_record('felix_block', $block);
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function wim_external_search_uninstall() {
+  $string = facetapi_build_delta('apachesolr@solr', 'block', 'external_source');
+  $map = facetapi_get_delta_map();
+  $delta = array_search($string, $map);
+
+  db_delete('felix_block')
+    ->condition('module', 'bean')
+    ->condition('delta', $delta)
+    ->execute();
 }

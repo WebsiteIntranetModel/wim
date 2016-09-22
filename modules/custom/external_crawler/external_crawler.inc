@@ -204,7 +204,12 @@ function _external_crawler_index_page_html($site, $result, &$document, &$pagedat
   }
 
   // Set the page title.
-  $document['title'] = $crawler->filter('title')->text();
+  if ($crawler->filterXpath('//title')->count()) {
+    $document['title'] = $crawler->filterXpath('//title')->text();
+  }
+  else {
+    $document['title'] = NULL;
+  }
 
   foreach ($included as $nodeCrawler) {
     if ($site->content_exclude) {
