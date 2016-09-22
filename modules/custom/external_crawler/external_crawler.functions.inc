@@ -53,7 +53,7 @@ function _external_crawler_generate_pagekey($site, $url) {
  * Delete page from Solr index.
  */
 function external_crawler_delete_page($pagekey) {
-  $env_id = variable_get('external_crawler_solr_env', 'solr');
+  $env_id = apachesolr_default_environment();
   $solr = apachesolr_get_solr($env_id);
   $solr->deleteById(apachesolr_document_id($pagekey, 'external_crawler'));
 
@@ -137,7 +137,7 @@ function external_crawler_batch_delete_pages($site_id, $total_limit, &$context) 
   if ($context['finished']) {
     $context['results']['count'] = $context['sandbox']['progress'];
     $context['results']['deleted'] = $context['sandbox']['deleted'];
-    $context['results']['env_id'] = $site_id;
+    $context['results']['site_id'] = $site_id;
   }
 }
 
@@ -159,7 +159,7 @@ function external_crawler_batch_delete_pages_finished($success, array $results, 
 function external_crawler_save_page($pagedata, $document) {
   module_load_include('inc', 'external_crawler');
 
-  $env_id = variable_get('external_crawler_solr_env', 'solr');
+  $env_id = apachesolr_default_environment();
 
   $documents = array();
   $documents[] = external_crawler_build_document($pagedata['pagekey'], $document['url'], $document['title'], $document['body']);
@@ -180,12 +180,12 @@ function external_crawler_save_site($fields) {
   $site = new stdClass();
   $site->site_id = isset($fields['site_id']) ? $fields['site_id'] : NULL;
 
-  $site->name = $fields['name'];
+  $site->name = check_plain($fields['name']);
   $site->url = $fields['url'];
   $site->check_interval = $fields['check_interval'];
   $site->max_depth = $fields['max_depth'];
   $site->max_run = $fields['max_run'];
-  $site->url_exclude = $fields['url_exclude'];
+  $site->url_exclude = check_plain($fields['url_exclude']);
   $site->content_exclude = check_plain($fields['content_exclude']);
   $site->content_include = check_plain($fields['content_include']);
 
