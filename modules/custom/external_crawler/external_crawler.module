@@ -118,7 +118,8 @@ function external_crawler_cron() {
       ->condition($or)
       ->orderBy('p.date', 'ASC')
       ->range(0, $site->max_run)
-      ->execute();
+      ->execute()
+      ->fetchAll();
 
     // Index the pages.
     foreach ($pages as $page) {
