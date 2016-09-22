@@ -117,7 +117,19 @@ function external_crawler_site_add_form() {
     '#value' => t('Save'),
   );
 
+  $form['#validate'][] = 'external_crawler_site_form_validate';
+
   return $form;
+}
+
+/**
+ * Validation function for form.
+ */
+function external_crawler_site_form_validate(&$form, &$form_state) {
+  $values = $form_state['values'];
+  if (!url_is_external($values['url'])) {
+    form_set_error('url', t('Incorrect format of site URL.'));
+  }
 }
 
 /**
@@ -235,6 +247,8 @@ function external_crawler_site_edit_form($form, &$form_state) {
       '#markup' => t('Site does not exist.'),
     );
   }
+
+  $form['#validate'][] = 'external_crawler_site_form_validate';
 
   return $form;
 }
