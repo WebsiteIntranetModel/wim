@@ -91,14 +91,14 @@ function slick_paragraphs_field_formatter_view($entity_type, $entity, $field, $i
     'autoplaySpeed' => 2000,
     'fade' => TRUE,
     'dots' => TRUE,
-    'adaptiveHeight' => TRUE
+    'adaptiveHeight' => TRUE,
   );
 
   $element['#theme_wrappers'] = array('paragraphs_items');
   $element['#attached']['library'][] = array('slick_paragraphs', 'slick');
   $element['#attached']['js'][$instance['id']] = array(
     'data' => array('slickParagraphs' => array(drupal_html_class('field-name-' . $field['field_name']) => $slick_settings)),
-    'type' => 'setting'
+    'type' => 'setting',
   );
 
   $element['#attached']['js'][] = drupal_get_path('module', 'slick_paragraphs') . '/js/slick_paragraphs.js';
