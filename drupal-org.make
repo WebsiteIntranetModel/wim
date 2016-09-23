@@ -44,6 +44,7 @@ projects[module_filter] = 2.0
 projects[nodequeue] = 2.1
 projects[l10n_update] = 2.0
 projects[link] = 1.4
+projects[libraries] = 2.3
 projects[linkit] = 3.5
 projects[paragraphs] = 1.0-rc4
 projects[password_policy] = 1.12
@@ -52,6 +53,7 @@ projects[redirect] = 1.0-rc3
 projects[scheduler] = 1.5
 projects[strongarm] = 2.0
 projects[special_menu_items] = 2.0
+projects[slick] = 2.0
 projects[token] = 1.6
 projects[userprotect] = 1.2
 projects[views] = 3.14
@@ -95,3 +97,7 @@ libraries[a11ychecker][subdir] = "ckeditor_plugins"
 ; CKEditor 4.4.6
 libraries[ckeditor][download][type] = get
 libraries[ckeditor][download][url] = http://download.cksource.com/CKEditor/CKEditor/CKEditor%204.4.6/ckeditor_4.4.6_full.tar.gz
+
+; Slick
+libraries[slick][download][type] = get
+libraries[slick][download][url] = https://github.com/kenwheeler/slick/archive/master.zip
