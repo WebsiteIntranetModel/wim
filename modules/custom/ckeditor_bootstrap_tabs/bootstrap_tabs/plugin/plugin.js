@@ -211,7 +211,7 @@ console.log(ev);
         },
         editables: {
           content: '',
-          nav: {selector: '.nav'}
+          nav: {selector: '.nav', allowedContent: 'ul li a'}
         },
         template: '<div class="bootstrap-tab"></div>',
         dialog: 'bootstrap_tabs',
@@ -221,7 +221,6 @@ console.log(ev);
         },
         // Init function is useful after copy paste rebuild.
         init: function () {
-
           this.createEditable(maxTabColumns);
         },
         // Prepare data
@@ -255,11 +254,11 @@ console.log(ev);
             tab_content += '<div role="tabpanel" class="tab-pane ' + active + '" id="tab' + num + i + '">Content for tab' + i + '</div>';
           }
           // @todo user drupal theme
-          content = '<div class="nav"><ul class="nav nav-tabs" role="tablist">' + tab_titles + '</ul></div>' +
+          content = '<ul class="nav nav-tabs" role="tablist">' + tab_titles + '</ul>' +
             '<div class="tab-content">' + tab_content + '</div>';
           row.appendHtml(content);
           this.createEditable(tabCount);
-          this.initEditable('nav', {selector: '.nav'});
+          //this.initEditable('nav', {selector: '.nav', allowedContent: 'div ul li a'});
         },
         // Create editable.
         createEditable: function (tabCount) {

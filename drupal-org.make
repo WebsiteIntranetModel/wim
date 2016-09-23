@@ -83,7 +83,6 @@ projects[bean][patch][2295973_11] = https://www.drupal.org/files/issues/bean-mig
 ; https://www.drupal.org/node/2608360#comment-11620927
 projects[views_bulk_operations][patch][2608360_14] = https://www.drupal.org/files/issues/2608360-14.patch
 
-
 ; Custom
 ; a11ychecker_custom
 libraries[a11ychecker][download][type] = "get"
