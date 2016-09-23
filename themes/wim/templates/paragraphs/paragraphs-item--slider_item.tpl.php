@@ -28,7 +28,7 @@
 ?>
 <?php $item_title = isset($content['field_title']['#items'][0]['value']) ? $content['field_title']['#items'][0]['value'] : NULL; ?>
 <div class="<?php print $classes; ?>"<?php print $attributes; ?>>
-  <div class="content custom"<?php print $content_attributes; ?>>
+  <div class="content"<?php print $content_attributes; ?>>
     <?php if ($item_title): ?>
       <?php if (isset($content['field_link'][0]['#element']['title'])): ?>
         <?php $content['field_link'][0]['#element']['title'] = $item_title; ?>

@@ -13,6 +13,7 @@ dependencies[] = felix
 dependencies[] = image
 dependencies[] = link
 dependencies[] = paragraphs
+dependencies[] = slick_paragraphs
 dependencies[] = text
 dependencies[] = views
 dependencies[] = wim_core

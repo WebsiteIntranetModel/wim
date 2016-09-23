@@ -1,0 +1,28 @@
+<?php
+/**
+ * @file
+ * Installation file.
+ */
+/**
+ * Implements hook_requirements().
+ */
+function slick_paragraphs_requirements($phase) {
+  $t = get_t();
+  $requirements = array();
+
+  // Check for the Slick library.
+  if ($phase == 'runtime') {
+    $path = libraries_get_path('slick');
+
+    if (!$path || !file_exists("{$path}/slick/slick.min.js")) {
+      $requirements['slick_library'] = array(
+        'description' => $t('The <a href="@url">Slick library</a> should be installed at [libraries-path]/slick: <strong>sites/../libraries/slick/slick/slick.min.js.</strong>', array('@url' => 'https://github.com/kenwheeler/slick/')),
+        'severity' => REQUIREMENT_ERROR,
+        'value' => $t('Not installed.'),
+        'title' => $t('Slick library'),
+      );
+    }
+  }
+
+  return $requirements;
+}

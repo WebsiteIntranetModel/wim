@@ -165,11 +165,11 @@ function wim_block_management_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'hidden',
-        'module' => 'paragraphs',
+        'module' => 'slick_paragraphs',
         'settings' => array(
           'view_mode' => 'full',
         ),
-        'type' => 'paragraphs_view',
+        'type' => 'slick_paragraphs',
         'weight' => 0,
       ),
       'link_title' => array(
@@ -261,7 +261,7 @@ function wim_block_management_field_default_field_instances() {
         'module' => 'image',
         'settings' => array(
           'image_link' => '',
-          'image_style' => '',
+          'image_style' => 'slide',
         ),
         'type' => 'image',
         'weight' => 0,
