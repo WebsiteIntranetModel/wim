@@ -47,6 +47,7 @@ dependencies[] = l10n_update
 dependencies[] = link
 dependencies[] = linkit
 dependencies[] = password_policy
+dependencies[] = pathauto
 dependencies[] = picture
 dependencies[] = redirect
 dependencies[] = scheduler

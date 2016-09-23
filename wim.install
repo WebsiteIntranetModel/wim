@@ -57,6 +57,9 @@ function wim_install() {
 
   // Set content types with social share links.
   _wim_default_sss();
+
+  // Pathauto configuration.
+  _wim_default_pathauto();
 }
 
 /**
@@ -825,6 +828,32 @@ function _wim_default_sss() {
 
   foreach ($types as $type) {
     variable_set('wim_sss_node_enabled_' . $type, 1);
+  }
+}
+
+/**
+ * Default settings for pathauto.
+ */
+function _wim_default_pathauto() {
+  variable_set('pathauto_ignore_words', '');
+  variable_set('pathauto_update_action', 0);
+  variable_set('pathauto_reduce_ascii', 1);
+  variable_set('pathauto_node_pattern', '[node:content-type]/[node:title]');
+  $types = node_type_get_types();
+
+  $default_mapping = array(
+    'agenda' => 'agenda/[node:title]',
+    'faq' => 'faq/[node:title]',
+    'news' => 'news/[node:title]',
+    'page' => '[node:title]',
+    'person' => 'person/[node:title]',
+    'product' => 'product/[node:title]',
+    'subject_page' => '[node:title]',
+    'webform' => 'webform/[node:title]',
+  );
+
+  foreach ($types as $type) {
+    variable_set('pathauto_node_' . $type->type . '_pattern', $default_mapping[$type->type]);
   }
 }
 
