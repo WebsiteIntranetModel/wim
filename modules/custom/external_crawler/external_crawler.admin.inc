@@ -149,8 +149,7 @@ function external_crawler_site_edit_form($form, &$form_state) {
   $form = array();
   $site = _external_crawler_fetch_sites($form_state['build_info']['args'][0]);
 
-  if ($site && isset($site[0]) && is_object($site[0])) {
-    $site = $site[0];
+  if ($site) {
     drupal_set_title(t('Edit @site site.', array('@site' => $site->name)));
 
     $form['site_id'] = array(
