@@ -17,6 +17,11 @@ Feature: Create Product
     And I should see "Promoted"
     And I fill in the following:
       | Date | 27/06/2026 |
+    And I click "Reminder"
+    And I should see "Reminder email"
+    And I click "Scheduling options"
+    And I should see "Publish on"
+    And I should see "Unpublish on"
     And I press "Save"
     Then I should see the success message "Product TEST PRODUCT has been created."
     And I should see the heading "TEST PRODUCT"

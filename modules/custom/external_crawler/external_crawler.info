@@ -1,0 +1,8 @@
+name = Solr crawler
+description = Crawl web pages and insert pages into Solr
+package = Search Toolkit
+core = 7.x
+configure = admin/config/search/external_crawler
+
+dependencies[] = file
+dependencies[] = apachesolr

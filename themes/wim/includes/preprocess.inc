@@ -15,9 +15,9 @@ function wim_preprocess_node(&$variables) {
   $content_type = $variables['type'];
 
   // Hook suggestion node--view_mode.tpl.php.
-  $variables['theme_hook_suggestions'][] = 'node__' . strtr($view_mode, '_', '-');
+  $variables['theme_hook_suggestions'][] = 'node__' . strtr($view_mode, '-', '_');
   // Hook suggestion node--content_type--view_mode.tpl.php.
-  $variables['theme_hook_suggestions'][] = 'node__' . $node->type . '__' . strtr($view_mode, '_', '-');
+  $variables['theme_hook_suggestions'][] = 'node__' . $node->type . '__' . strtr($view_mode, '-', '_');
 
   // Add read more link variable to template.
   $variables['read_more_link'] = l(t('Read more'), $variables['node_url']);
@@ -29,6 +29,18 @@ function wim_preprocess_node(&$variables) {
     if (isset($parameters['product']) && is_numeric($parameters['product'])) {
       $variables['product_link'] = l(t('Back to product'), '/node/' . $parameters['product'], array('attributes' => array('class' => array('back-link'))));
     }
+  }
+
+  if ($content_type === 'agenda' && $view_mode === 'search_result') {
+    global $base_url;
+    $variables['source'] = l($base_url, '', array(
+      'absolute' => TRUE,
+      'attributes' => array(
+        'class' => array(
+          'source',
+        ),
+      ),
+    ));
   }
 }
 
@@ -133,37 +145,35 @@ function wim_preprocess_block(&$variables) {
   }
 
   // If block in the Felix region add corresponding classes.
-  if (isset($block->felix_region)) {
-    if (isset($block->data['config'])) {
-      $config = $block->data['config'];
-      // Add bootstrap class to block output.
-      if (isset($config['bootstrap_layout'])) {
-        $variables['classes_array'][] = 'col-md-' . $config['bootstrap_layout'];
-        $block->bootstrap_layout = $config['bootstrap_layout'];
-      }
-      // If new row config exist then use it otherwise move it in a new row.
-      $block->new_row = isset($config['new_row']) ? $config['new_row'] : TRUE;
+  if (isset($block->felix_region, $block->data['config'])) {
+    $config = $block->data['config'];
+    // Add bootstrap class to block output.
+    if (isset($config['bootstrap_layout'])) {
+      $variables['classes_array'][] = 'col-md-' . $config['bootstrap_layout'];
+      $block->bootstrap_layout = $config['bootstrap_layout'];
+    }
+    // If new row config exist then use it otherwise move it in a new row.
+    $block->new_row = isset($config['new_row']) ? $config['new_row'] : TRUE;
 
-      if ($block->module === 'bean' && $bean) {
-        if (isset($config['bean_view_mode']) && $config['bean_view_mode']) {
-          $bean_view_mode = $config['bean_view_mode'];
-          // Build entity bean view.
-          if (entity_access('view', 'bean', $bean) && $bean) {
-            $content = $bean->view($bean_view_mode);
-            if (!is_array($content)) {
-              $content = array(
-                '#markup' => $content,
-              );
-            }
-            $variables['content'] = drupal_render($content);
+    if ($block->module === 'bean' && $bean) {
+      if (isset($config['bean_view_mode']) && $config['bean_view_mode']) {
+        $bean_view_mode = $config['bean_view_mode'];
+        // Build entity bean view.
+        if (entity_access('view', 'bean', $bean) && $bean) {
+          $content = $bean->view($bean_view_mode);
+          if (!is_array($content)) {
+            $content = array(
+              '#markup' => $content,
+            );
           }
+          $variables['content'] = drupal_render($content);
+        }
 
-          // Process Editorial.
-          if ($bean->type === 'editorial') {
-            // Editorial added via Felix we process according to settings.
-            if ($config['bean_view_mode'] === 'default' && $bean->field_image) {
-              $variables['classes_array'][] = 'editorial-image';
-            }
+        // Process Editorial.
+        if ($bean->type === 'editorial') {
+          // Editorial added via Felix we process according to settings.
+          if ($config['bean_view_mode'] === 'default' && $bean->field_image) {
+            $variables['classes_array'][] = 'editorial-image';
           }
         }
       }
@@ -225,7 +235,43 @@ function wim_preprocess_page(&$variables) {
   $menu_item = menu_get_item();
 
   // All FAQ pages should has title FAQ.
-  if ($menu_item && $menu_item['path'] === 'faq/%') {
+  if (is_array($menu_item) && $menu_item['path'] === 'faq/%') {
     $variables['title'] = t('FAQ');
+  }
+
+  // Set title for search page.
+  if (is_array($menu_item) && $menu_item['path'] === 'search/site/%') {
+    drupal_set_title(t('Search'));
+  }
+
+}
+
+/**
+ * Template preprocess for apachesolr search results.
+ */
+function wim_preprocess_search_result(&$variables) {
+  $result = $variables['result'];
+
+  // Add source url.
+  $result_link = $result['link'];
+  $parsed_url = parse_url($result_link);
+  $source_url = $parsed_url['scheme'] . '://' . $parsed_url['host'];
+  $variables['source'] = l($source_url, $source_url, array(
+    'absolute' => TRUE,
+    'attributes' => array(
+      'class' => array('source'),
+    ),
+  ));
+
+  if (isset($result['node']) && $node = node_load($result['node']->entity_id)) {
+    $content_types_labels = array(
+      'page' => t('General information'),
+    );
+    $variables['node_content'] = node_view($node, 'search_result');
+    // Add content type label.
+    $variables['content_type'] = isset($content_types_labels[$node->type]) ? $content_types_labels[$node->type] : ucfirst($node->type);
+    if ($node->type === 'agenda') {
+      unset($variables['source']);
+    }
   }
 }

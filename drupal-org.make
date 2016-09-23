@@ -8,6 +8,8 @@ defaults[projects][subdir] = contrib
 projects[admin_menu] = 3.0-rc5
 projects[admin_views] = 1.6
 projects[adminimal_admin_menu] = 1.7
+projects[apachesolr] = 1.8
+projects[apachesolr_exclude_node] = 1.4
 projects[autologout] = 4.4
 projects[bean] = 1.11
 projects[breakpoints] = 1.4
@@ -16,9 +18,13 @@ projects[context_condition_theme] = 1.0
 projects[colectomy] = 1.0-beta2
 projects[ctools] = 1.10
 projects[date] = 2.9
+projects[date_facets] = 1.0
 projects[elysia_cron] = 2.1
+projects[email] = 1.3
+projects[encrypt] = 2.3
 projects[entity] = 1.7
 projects[entityreference] = 1.1
+projects[facetapi] = 1.5
 projects[features] = 2.10
 projects[felix] = 1.0-beta8
 projects[field_group] = 1.5
@@ -43,6 +49,7 @@ projects[paragraphs] = 1.0-rc4
 projects[password_policy] = 1.12
 projects[picture] = 2.13
 projects[redirect] = 1.0-rc3
+projects[scheduler] = 1.5
 projects[strongarm] = 2.0
 projects[special_menu_items] = 2.0
 projects[token] = 1.6
@@ -51,6 +58,8 @@ projects[views] = 3.14
 projects[views_bootstrap] = 3.1
 projects[views_bulk_operations] = 3.3
 projects[webform] = 4.14
+projects[webform_clear] = 2.0
+projects[webform_encrypt] = 1.1
 projects[weight] = 3.1
 projects[wysiwyg] = 2.x-dev
 
@@ -71,6 +80,9 @@ projects[location][patch][2781227_1] = https://www.drupal.org/files/issues/locat
 ; Add migration support for Bean
 ; https://www.drupal.org/node/2295973#comment-11536795
 projects[bean][patch][2295973_11] = https://www.drupal.org/files/issues/bean-migrate-support-2295973-11.patch
+; Fix "Select all" checkbox works only once
+; https://www.drupal.org/node/2608360#comment-11620927
+projects[views_bulk_operations][patch][2608360_14] = https://www.drupal.org/files/issues/2608360-14.patch
 
 
 ; Custom

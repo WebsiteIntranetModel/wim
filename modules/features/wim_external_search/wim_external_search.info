@@ -1,0 +1,12 @@
+name = WIM External Search
+core = 7.x
+package = WIM
+version = 7.x-1.0
+dependencies[] = ctools
+dependencies[] = external_crawler
+dependencies[] = facetapi
+features[ctools][] = facetapi:facetapi_defaults:1
+features[facetapi][] = apachesolr@solr::external_source
+features[facetapi][] = apachesolr@solr:block:external_source
+features[features_api][] = api:2
+project path = profiles/wim/modules/features

@@ -4,16 +4,13 @@ header#header.navbar.container.navbar-default
       img(src='../logo.png', alt='Home')
     .region.region-header
     button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
-      span.sr-only Toggle navigation
-      span.icon-bar
-      span.icon-bar
-      span.icon-bar
+      |  Menu
   .navbar-collapse.collapse
     nav(role='navigation')
       ul.menu.nav.navbar-nav
         li.leaf
           a(href='starterkit.html') Themer's Starterkit
-        li.first.expanded.dropdown
+        li.first.parent-dropdown
           a.dropdown-toggle(href='#', title='', data-target='#', data-toggle='dropdown')
             | Styleguide
           ul.dropdown-menu
@@ -23,7 +20,7 @@ header#header.navbar.container.navbar-default
               a(href='styleguide/molecules.html') Molecules
             li.last.leaf
               a(href='styleguide/organisms.html') Organisms
-        li.leaf
+        li.leaf.parent-dropdown
           a.dropdown-toggle(href='#', title='', data-target='#', data-toggle='dropdown')
             | Accessibility
           ul.dropdown-menu

@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the WIM Person feature.
+ */
+
+include_once 'wim_person.features.inc';

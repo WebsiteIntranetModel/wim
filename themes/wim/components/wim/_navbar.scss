@@ -10,6 +10,31 @@
   }
 }
 
+.navbar-toggle {
+  margin-top: 10px;
+  margin-right: 5px;
+  float: none;
+  display: block;
+  width: 100%;
+  border: none;
+  background-color: $brand-primary;
+  border-radius: 0;
+  margin-bottom: 0;
+  color: #ffffff;
+  text-align: left;
+  padding: 10px 15px;
+  @extend .fa-navicon;
+  &:before {
+    @include fa-icon;
+  }
+}
+
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+
+  background-color: lighten($brand-primary, 0.5);
+}
+
 .container.navbar-default {
   border: 0;
   background-color: white;
@@ -25,9 +50,23 @@
   }
 }
 
+.container > .navbar-header {
+  padding: 15px 0;
+}
+
+.navbar-nav {
+  margin: 0 -15px;
+  @include MQ($screen-sm) {
+    margin: 0;
+  }
+}
+
 .navbar-default .navbar-collapse {
+  margin-top: -16px;
   background: $brand-primary;
-  border-top: 4px solid $brand-light;
+  @include MQ($screen-sm) {
+    border-top: 4px solid #efe5ef;
+  }
 }
 
 .navbar-default .navbar-nav > li > a {
@@ -51,7 +90,7 @@
 }
 
 .navbar-default .navbar-nav > li {
-  &:first-child{
+  &:first-child {
     @extend .fa-angle-right;
     &:before {
       @include fa-icon;
@@ -72,7 +111,7 @@
     & > a {
       position: relative;
       @extend .fa-chevron-down;
-      &:before{
+      &:before {
         display: none;
       }
       @media (max-width: $screen-sm-min - 1) {
@@ -103,7 +142,6 @@
   background: $link-hover-color;
   @extend %outline;
 }
-
 
 @media (max-width: $screen-sm-min - 1) {
   .navbar-default .navbar-nav .open .dropdown-menu > li > a {

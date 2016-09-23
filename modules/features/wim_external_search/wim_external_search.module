@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the WIM External Search feature.
+ */
+
+include_once 'wim_external_search.features.inc';

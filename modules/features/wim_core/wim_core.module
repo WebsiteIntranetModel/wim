@@ -7,6 +7,15 @@
 include_once 'wim_core.features.inc';
 
 /**
+ * Implements hook_form_alter().
+ */
+function wim_core_views_bulk_operations_form_alter(&$form, &$form_state, $vbo) {
+  if ($form_state['step'] === 'views_bulk_operations_confirm_form') {
+    $form['description']['#markup'] = strip_tags($form['description']['#markup'], '<ul><li><div><h3>');
+  }
+}
+
+/**
  * Implements hook_permission().
  */
 function wim_core_permission() {
@@ -15,7 +24,19 @@ function wim_core_permission() {
       'title' => t('Access publishing options tab'),
       'description' => t('User can access promoted and publication date.'),
     ),
+    'access taxonomy pages' => array(
+      'title' => t('Access taxonomy pages'),
+      'description' => t('User can access taxonomy pages like taxonomy/term/[tid].'),
+    ),
   );
+}
+
+/**
+ * Implements hook_menu_alter().
+ */
+function wim_core_menu_alter(&$items) {
+  $items['taxonomy/term/%taxonomy_term']['access arguments'] = array('access taxonomy pages');
+  $items['taxonomy/term/%taxonomy_term/feed']['access arguments'] = array('access taxonomy pages');
 }
 
 /**
@@ -187,4 +208,27 @@ function wim_core_form_alter(&$form, &$form_state, $form_id) {
     $form['options']['#access'] = TRUE;
   }
 
+  // Move reminder after publishing.
+  if (isset($form['#groups']['group_reminder'], $form['field_reminder_email'])) {
+    $form['#groups']['group_reminder']->weight = 150;
+  }
+
+  // Move scheduler before reminder.
+  if (isset($form['scheduler_settings'])) {
+    $form['scheduler_settings']['#weight'] = 100;
+  }
+
+}
+
+/**
+ * Implements hook_cronapi().
+ */
+function wim_core_cronapi($op, $job = NULL) {
+
+  $items['scheduler'] = array(
+    'description' => 'Run scheduler.',
+    'rule' => '*/5 * * * *',
+  );
+
+  return $items;
 }
