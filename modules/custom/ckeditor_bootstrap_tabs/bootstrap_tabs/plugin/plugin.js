@@ -31,19 +31,8 @@
       var Path = this.path;
       editor.on('mode', function () {
         if (editor.mode == 'wysiwyg') {
-          this.document.appendStyleSheet(Path + 'tabber.css');
+          this.document.appendStyleSheet(Path + 'additional.css');
         }
-      });
-
-      editor.on('instanceReady', function(event){
-        if (event.name == 'mode' && event.editor.mode == 'source') {
-          return;
-        }
-
-        var jQueryScriptTag = document.createElement('script');
-        var editorHead = event.editor.document.$.head;
-        jQueryScriptTag.src = Path + 'show-hide.js';
-        editorHead.appendChild(jQueryScriptTag);
       });
 
       // Add widget.
@@ -75,7 +64,7 @@
             this.createGrid(tabCount, row, this.numOfWidgets());
           }
         },
-        // Num of plugins
+        // Number of widgets.
         numOfWidgets: function () {
           var length = 0;
           for (var key in editor.widgets.instances) {
@@ -91,13 +80,13 @@
           var tab_titles = '';
           var tab_content = '';
           for (var i = 1; i <= tabCount; i++) {
-            active = (i === 1) ? 'active' : '';
-            tab_titles += '<li role="tabber" class="tab' + num + i + ' ' + active + '">' +
-              '<a contenteditable="true" class="tab-title" href="#tab' + num + i + '" aria-controls="tab' + num + i + '" role="tab" data-toggle="tab">Tab' + i + '</a>' +
+            active = (i === 1) ? ' active' : '';
+            tab_titles += '<li role="presentation" class="' + active + '">' +
+              '<a contenteditable="true" href="#tab' + num + '-' + i + '" aria-controls="tab' + num + '-' + i + '" role="tab" data-toggle="tab">Tab' + i + '</a>' +
               '</li>';
-            tab_content += '<div role="tabpanel" class="tab-pane ' + active + '" id="tab' + num + i + '">Content for tab' + i + '</div>';
+            tab_content += '<div role="tabpanel" class="tab-pane' + active + '" id="tab' + num + '-' + i + '">Content for tab' + i + '</div>';
           }
-          // @todo user drupal theme
+          // @todo use drupal theme
           content = '<ul class="nav nav-tabs" role="tablist">' + tab_titles + '</ul>' +
             '<div class="tab-content">' + tab_content + '</div>';
           row.appendHtml(content);
@@ -116,28 +105,29 @@
 
       // Context menu
       if (editor.contextMenu) {
+        var icon = iconToUse();
         editor.addMenuGroup('tabGroup');
         editor.addMenuItem('tabBeforeItem', {
           label: Drupal.t('Add tab before'),
-          icon: this.path + 'icons/' + iconToUse(),
-          command: 'addTabBefore',
+          icon: this.path + 'icons/' + icon,
+          command: 'tabBefore',
           group: 'tabGroup'
         });
         editor.addMenuItem('tabAfterItem', {
           label: Drupal.t('Add tab after'),
-          icon: this.path + 'icons/' + iconToUse(),
-          command: 'addTabAfter',
+          icon: this.path + 'icons/' + icon,
+          command: 'tabAfter',
           group: 'tabGroup'
         });
         editor.addMenuItem('removeTab', {
           label: Drupal.t('Remove tab'),
-          icon: this.path + 'icons/' + iconToUse(),
-          command: 'removeTab',
+          icon: this.path + 'icons/' + icon,
+          command: 'tabRemove',
           group: 'tabGroup'
         });
         editor.addMenuItem('titleText', {
           label: Drupal.t('Tab title'),
-          icon: this.path + 'icons/' + iconToUse(),
+          icon: this.path + 'icons/' + icon,
           command: 'tabTitle',
           group: 'tabGroup',
           order: 1
@@ -146,8 +136,8 @@
         editor.contextMenu.addListener(function (element) {
           if (element.getAscendant('a', true)) {
             return {
-              //tabBeforeItem: CKEDITOR.TRISTATE_OFF,
-              //tabAfterItem: CKEDITOR.TRISTATE_OFF,
+              tabBeforeItem: CKEDITOR.TRISTATE_OFF,
+              tabAfterItem: CKEDITOR.TRISTATE_OFF,
               titleText: CKEDITOR.TRISTATE_OFF,
               removeTab: CKEDITOR.TRISTATE_OFF
             };
@@ -159,65 +149,82 @@
         allowedContent: ''
       }));
 
-      editor.addCommand('removeTab', {
+      editor.addCommand('tabRemove', {
         exec: function (editor) {
           var element = editor.getSelection().getStartElement();
-          var rm_element = null;
-          console.log(element);
-          if (element.getAscendant('div', true)) {
-            rm_element = element.getAscendant('div', true);
-            console.log(rm_element.getAttribute('id'));
-            //a.getNext().remove();
-            //a.remove();
-          }
-          else {
-            var a = element.getAscendant('dd', true);
-            a.getPrevious().remove();
-            a.remove();
+          var id = element.getAttribute('href');
+          if (element.hasAscendant('li') && id) {
+            if (id.substring(0, 1) == '#') {
+              id = id.substring(1);
+            }
+            element.getAscendant('li').remove();
+            editor.document.getById(id).remove();
           }
         }
       });
 
-      /*
+      // Function to reinit new tab.
+      var initEditableTab = function (i) {
+        for (var key in editor.widgets.instances) {
+          if (editor.widgets.instances.hasOwnProperty(key)) {
+            if (editor.widgets.instances[key].name === 'bootstrap_tabs') {
+              editor.widgets.instances[key].initEditable('tab_content' + i, {
+                selector: '#' + i
+              });
+            }
+          }
+        }
+      };
 
+      /**
+       * Add tab helper function.
+       *
+       * @param {CKEDITOR.editor} editor The nested editable name.
+       * @param {string} where Accept 'before' and 'after'.
+       */
+      var addTab = function (editor, where) {
+        var element = editor.getSelection().getStartElement();
+        if (element) {
+          var id = element.getAttribute('href');
 
-      // Other command to manipulate tabs
-      editor.addCommand('addTabBefore', {
-        allowedContent: allowedContent,
+          if (element.hasAscendant('li') && id) {
+            if (id.substring(0, 1) == '#') {
+              id = id.substring(1);
+            }
+            var parts = id.split('-');
+            var num = parts[0];
+            var listItem = element.getAscendant('li');
+            var count = listItem.getParent().getChildCount() + 1;
+            var tab = '<li role="presentation">' +
+              '<a contenteditable="true" href="#tab' + num + '-' + count + '" aria-controls="tab' + num + '-' + count + '" role="tab" data-toggle="tab">Tab' + count + '</a>' +
+              '</li>';
+            var newTab = new CKEDITOR.dom.element.createFromHtml(tab);
+            var content = '<div role="tabpanel" class="tab-pane" id="tab' + num + '-' + count + '">Content for tab' + count + '</div>';
+            var newTabContent = new CKEDITOR.dom.element.createFromHtml(content);
+            if (where === 'before') {
+              newTab.insertBefore(listItem);
+              newTabContent.insertBefore(editor.document.getById(id));
+            } else {
+              newTab.insertAfter(listItem);
+              newTabContent.insertAfter(editor.document.getById(id));
+            }
 
+            initEditableTab('tab' + num + '-' + count);
+          }
+        }
+      };
+
+      editor.addCommand('tabBefore', {
         exec: function (editor) {
-          var element = editor.getSelection().getStartElement();
-          var newHeader = new CKEDITOR.dom.element.createFromHtml('<dt>New tab title</dt>');
-          var newContent = new CKEDITOR.dom.element.createFromHtml('<dd><p>New tab content</p></dd>');
-          if (element.getAscendant('dd', true)) {
-            element = element.getAscendant('dd', true).getPrevious();
-          }
-          else {
-            element = element.getAscendant('dt', true);
-          }
-          newHeader.insertBefore(element);
-          newContent.insertBefore(element);
+          addTab(editor, 'before');
         }
       });
-      editor.addCommand('addTabAfter', {
-        allowedContent: allowedContent,
 
+      editor.addCommand('tabAfter', {
         exec: function (editor) {
-          var element = editor.getSelection().getStartElement();
-          var newHeader = new CKEDITOR.dom.element.createFromHtml('<dt>New tab title</dt>');
-          var newContent = new CKEDITOR.dom.element.createFromHtml('<dd><p>New tab content</p></dd>');
-          if (element.getAscendant('dt', true)) {
-            element = element.getAscendant('dt', true).getNext();
-          }
-          else {
-            element = element.getAscendant('dd', true);
-          }
-          newContent.insertAfter(element);
-          newHeader.insertAfter(element);
+          addTab(editor, 'after');
         }
       });
-
-      */
     }
   });
 })();
