@@ -1,127 +1,3 @@
-/**
- * @file
- * Session Schedules plugin.
- *
- * @ignore
- */
-/**
- (function() {
-
- // "use strict";
-
-  CKEDITOR.plugins.add('bootstrap_tabs', {
-    requires: 'widget,dialog',
-    icons: 'bootstrap_tabs',
-
-    init: function(editor) {
-      var maxGridColumns = 12;
-
-      CKEDITOR.dialog.add('bootstrap_tabs', function(editor) {
-        return {
-          title: Drupal.t('Session Schedules'),
-          minWidth: 200,
-          minHeight: 100,
-          contents: [{
-            id: 'info',
-            elements: [{
-              id: 'type',
-              type: 'select',
-              label: Drupal.t('Columns count'),
-              items: [
-                [1, '1'],
-                [2, '2'],
-                [3, '3'],
-                [4, '4'],
-                [5, '5']
-              ],
-              required: true,
-              setup: function(widget) {
-                this.setValue(widget.data.colCount !== undefined ? widget.data.colCount : 5);
-              },
-              commit: function(widget) {
-                widget.setData('colCount', this.getValue());
-              }
-            }]
-          }]
-        };
-      });
-
-      // Add widget
-      editor.ui.addButton('SessionSchedules', {
-        label: Drupal.t('Session Schedules'),
-        command: 'bootstrap_tabs',
-        icon: this.path + 'icons/bootstrap_tabs.png'
-      });
-
-      editor.widgets.add('bootstrap_tabs', {
-        allowedContent: 'div(!bootstrap_tabs);',
-        requiredContent: 'div(bootstrap_tabs)',
-        parts: {
-          bootstrap_tabs: 'div.bootstrap_tabs'
-        },
-        editables: {
-          content: ''
-        },
-        template: '<div class="bootstrap_tabs"></div>',
-        dialog: 'bootstrap_tabs',
-        // Before init.
-        upcast: function(element) {
-          return element.name == 'div' && element.hasClass('bootstrap_tabs');
-        },
-        // Init function is useful after copy paste rebuild.
-        init: function() {
-          this.createEditable(maxGridColumns);
-        },
-        // Prepare data
-        data: function() {
-          if (this.data.colCount && this.element.getChildCount() < 1) {
-            var colCount = this.data.colCount;
-            var row = this.parts.bootstrap_tabs;
-            this.createGrid(colCount, row);
-          }
-        },
-        // Create grid
-        createGrid: function(colCount, row) {
-          var content = '<div class="container"><div class="row"><h2>SESSION SCHEDULES</h2>';
-          for (var i = 1; i <= colCount; i++) {
-            content = content + '<div class="columns">' +
-              '  <h4>Session ' + i + ':</h4>' +
-              '    <div class="date">{{ date }}</div>' +
-              '    <div class="register-label">Registration opens:</div>' +
-              '    <div class="register-date">{{ date }}</div>' +
-              '</div>';
-          }
-          content = content + '</div></div>';
-          row.appendHtml(content);
-          this.createEditable(colCount);
-        },
-        // Create editable.
-        createEditable: function(colCount) {
-          this.initEditable('title', {
-            selector: '.row h2'
-          });
-          for (var i = 1; i <= colCount; i++) {
-            this.initEditable('h4' + i, {
-              selector: '.row > .columns:nth-child(' + (i + 1) + ') h4'
-            });
-            this.initEditable('date' + i, {
-              selector: '.row > .columns:nth-child(' + (i + 1) + ') .date'
-            });
-            this.initEditable('register-label' + i, {
-              selector: '.row > .columns:nth-child(' + (i + 1) + ') .register-label'
-            });
-            this.initEditable('register-date' + i, {
-              selector: '.row > .columns:nth-child(' + (i + 1) + ') .register-date'
-            });
-          }
-        }
-      });
-    }
-  });
-
-})();
- */
-
 (function () {
   // Detect icon.
   function iconToUse() {
@@ -149,58 +25,26 @@
       });
 
       CKEDITOR.dialog.add('bootstrap_tabs', this.path + 'dialogs/dialog.js');
+      CKEDITOR.dialog.add('tab_title_dialog', this.path + 'dialogs/title.js');
 
       // Add CSS for edition state
-      var cssPath = this.path + 'tabber.css';
+      var Path = this.path;
       editor.on('mode', function () {
         if (editor.mode == 'wysiwyg') {
-          this.document.appendStyleSheet(cssPath);
+          this.document.appendStyleSheet(Path + 'tabber.css');
         }
       });
 
-      editor.on('doubleclick', function (evt) {
-        var element = CKEDITOR.plugins.link.getSelectedLink(editor) || evt.data.element;
-console.log(element);
-        if (!element.isReadOnly()) {
-          var dialogDefinition = evt.data.definition;
-          dialogDefinition.removeContents('upload');
-          dialogDefinition.removeContents('advanced');
-          dialogDefinition.removeContents('target');
-
-          // Get a reference to the 'Link Info' tab.
-          var infoTab = dialogDefinition.getContents('info');
-          // Remove unnecessary widgets from the 'Link Info' tab.
-          infoTab.remove('linkType');
-          infoTab.remove('protocol');
-          infoTab.remove('browse');
-          infoTab.remove('url');
-          this.remove
+      editor.on('instanceReady', function(event){
+        if (event.name == 'mode' && event.editor.mode == 'source') {
+          return;
         }
-      }, null, null, 0);
 
-      CKEDITOR.on('dialogDefinition', function (ev) {
-        // Take the dialog name and its definition from the event data.
-        var dialogName = ev.data.name;
-
-console.log(ev);
-        // Check if the definition is from the dialog we're
-        // interested in (the 'image' dialog). This dialog name found using DevTools plugin
-        if (dialogName == 'link') {
-//        Remove the 'Upload' and 'Advanced' tabs from the 'Link' dialog.
-          dialogDefinition.removeContents('upload');
-          dialogDefinition.removeContents('advanced');
-          dialogDefinition.removeContents('target');
-
-          // Get a reference to the 'Link Info' tab.
-          var infoTab = dialogDefinition.getContents('info');
-          // Remove unnecessary widgets from the 'Link Info' tab.
-          infoTab.remove('linkType');
-          infoTab.remove('protocol');
-          infoTab.remove('browse');
-          infoTab.remove('url');
-        }
+        var jQueryScriptTag = document.createElement('script');
+        var editorHead = event.editor.document.$.head;
+        jQueryScriptTag.src = Path + 'show-hide.js';
+        editorHead.appendChild(jQueryScriptTag);
       });
-
 
       // Add widget.
       editor.widgets.add('bootstrap_tabs', {
@@ -248,8 +92,8 @@ console.log(ev);
           var tab_content = '';
           for (var i = 1; i <= tabCount; i++) {
             active = (i === 1) ? 'active' : '';
-            tab_titles += '<li role="tebber" class="tab' + num + i + ' ' + active + '">' +
-              '<a class="tab-title" href="#tab' + num + i + '" aria-controls="tab' + num + i + '" role="tab" data-toggle="tab">Tab' + i + '</a>' +
+            tab_titles += '<li role="tabber" class="tab' + num + i + ' ' + active + '">' +
+              '<a contenteditable="true" class="tab-title" href="#tab' + num + i + '" aria-controls="tab' + num + i + '" role="tab" data-toggle="tab">Tab' + i + '</a>' +
               '</li>';
             tab_content += '<div role="tabpanel" class="tab-pane ' + active + '" id="tab' + num + i + '">Content for tab' + i + '</div>';
           }
@@ -258,11 +102,10 @@ console.log(ev);
             '<div class="tab-content">' + tab_content + '</div>';
           row.appendHtml(content);
           this.createEditable(tabCount);
-          //this.initEditable('nav', {selector: '.nav', allowedContent: 'div ul li a'});
+          this.initEditable('nav', {selector: '.nav', allowedContent: 'div ul li a'});
         },
         // Create editable.
         createEditable: function (tabCount) {
-          console.log(tabCount);
           for (var i = 1; i <= tabCount; i++) {
             this.initEditable('tab_content' + i, {
               selector: '.tab-pane:nth-child(' + i + ')'
@@ -294,13 +137,13 @@ console.log(ev);
         });
         editor.addMenuItem('titleText', {
           label: Drupal.t('Tab title'),
-          command: 'link',
-          group: 'link',
+          icon: this.path + 'icons/' + iconToUse(),
+          command: 'tabTitle',
+          group: 'tabGroup',
           order: 1
         });
 
         editor.contextMenu.addListener(function (element) {
-          console.log(element);
           if (element.getAscendant('a', true)) {
             return {
               //tabBeforeItem: CKEDITOR.TRISTATE_OFF,
@@ -311,6 +154,10 @@ console.log(ev);
           }
         });
       }
+
+      editor.addCommand('tabTitle', new CKEDITOR.dialogCommand('tab_title_dialog', {
+        allowedContent: ''
+      }));
 
       editor.addCommand('removeTab', {
         exec: function (editor) {
@@ -332,20 +179,6 @@ console.log(ev);
       });
 
       /*
-      // Prevent nesting DLs by disabling button
-      editor.on('selectionChange', function (evt) {
-        if (editor.readOnly)
-          return;
-        var command = editor.getCommand('addTab'),
-          element = evt.data.path.lastElement && evt.data.path.lastElement.getAscendant('dl', true);
-        if (element)
-          command.setState(CKEDITOR.TRISTATE_DISABLED);
-        else
-          command.setState(CKEDITOR.TRISTATE_OFF);
-      });
-
-      var allowedContent = 'dl dd dt (ckeditor-tabber)';
-
 
 
       // Other command to manipulate tabs
@@ -383,7 +216,6 @@ console.log(ev);
           newHeader.insertAfter(element);
         }
       });
-
 
       */
     }
