@@ -84,6 +84,9 @@ projects[bean][patch][2295973_11] = https://www.drupal.org/files/issues/bean-mig
 ; Fix "Select all" checkbox works only once
 ; https://www.drupal.org/node/2608360#comment-11620927
 projects[views_bulk_operations][patch][2608360_14] = https://www.drupal.org/files/issues/2608360-14.patch
+; Fix "Show fewer" link for Facet API filters
+; https://www.drupal.org/node/2327997
+projects[facetapi][patch][2327997_3] = https://www.drupal.org/files/issues/facetapi-2327997-3-show-fewer-links.patch
 
 
 ; Custom
