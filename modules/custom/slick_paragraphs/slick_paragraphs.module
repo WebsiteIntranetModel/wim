@@ -1,0 +1,201 @@
+<?php
+/**
+ * @file
+ * Provides Slick integration with Paragraphs.
+ */
+
+/**
+ * Implements hook_field_formatter_info().
+ */
+function slick_paragraphs_field_formatter_info() {
+  return array(
+    'slick_paragraphs' => array(
+      'label' => t('Slick carousel'),
+      'field types' => array('paragraphs'),
+      'settings' => slick_paragraphs_fields_default_settings(),
+    ),
+  );
+}
+
+/**
+ * Implements hook_field_formatter_settings_form().
+ */
+function slick_paragraphs_field_formatter_settings_form($field, $instance, $view_mode, $form, &$form_state) {
+  $display = $instance['display'][$view_mode];
+  $settings = $display['settings'];
+
+  $entity_type = entity_get_info('paragraphs_item');
+  $options = array();
+  foreach ($entity_type['view modes'] as $mode => $info) {
+    $options[$mode] = $info['label'];
+  }
+
+  $elements['view_mode'] = array(
+    '#type' => 'select',
+    '#title' => t('View mode'),
+    '#options' => $options,
+    '#default_value' => slick_paragraphs_fields_default_settings('view_mode', $settings),
+    '#description' => t('Select the view mode'),
+  );
+
+  $elements['autoplay'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Autoplay'),
+    '#default_value' => slick_paragraphs_fields_default_settings('autoplay', $settings),
+  );
+
+  $elements['autoplaySpeed'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Autoplay Speed'),
+    '#default_value' => slick_paragraphs_fields_default_settings('autoplaySpeed', $settings),
+  );
+
+  $elements['fade'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Fade'),
+    '#default_value' => slick_paragraphs_fields_default_settings('fade', $settings),
+  );
+
+  $elements['dots'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Dots'),
+    '#default_value' => slick_paragraphs_fields_default_settings('dots', $settings),
+  );
+
+  $elements['adaptiveHeight'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Adaptive Height'),
+    '#default_value' => slick_paragraphs_fields_default_settings('adaptiveHeight', $settings),
+  );
+  return $elements;
+}
+
+/**
+ * Implements hook_field_formatter_settings_summary().
+ */
+function slick_paragraphs_field_formatter_settings_summary($field, $instance, $view_mode) {
+  $display = $instance['display'][$view_mode];
+  $settings = $display['settings'];
+  $summary = array();
+
+  if ($display['type'] === 'slick_paragraphs') {
+    $entity_type = entity_get_info('paragraphs_item');
+    if (!empty($entity_type['view modes'][$settings['view_mode']]['label'])) {
+      $summary[] = t('View mode: @mode', array('@mode' => $entity_type['view modes'][$settings['view_mode']]['label']));
+    }
+    else {
+      $summary[] = ' ';
+    }
+  }
+
+  return implode('<br />', $summary);
+}
+
+/**
+ * Implements hook_field_formatter_view().
+ */
+function slick_paragraphs_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+  $element = array();
+  $settings = $display['settings'];
+
+  // Prevent displaying useless markup if we don't have any values.
+  if (empty($items)) {
+    return $element;
+  }
+  $display_view_mode = empty($display['settings']['view_mode']) ? 'full' : $display['settings']['view_mode'];
+  $view_mode = empty($instance['display'][$display_view_mode]['settings']['view_mode']) ? $display_view_mode : $instance['display'][$display_view_mode]['settings']['view_mode'];
+
+  foreach ($items as $delta => $item) {
+    if ($paragraph = paragraphs_field_get_entity($item)) {
+      $paragraph->setHostEntity($entity_type, $entity, $langcode);
+      if (entity_access('view', 'paragraphs_item', $paragraph)) {
+        $element[$delta]['entity'] = $paragraph->view($view_mode);
+      }
+    }
+  }
+
+  $slick_settings = array(
+    'autoplay' => slick_paragraphs_fields_default_settings('autoplay', $settings),
+    'autoplaySpeed' => slick_paragraphs_fields_default_settings('autoplaySpeed', $settings),
+    'fade' => slick_paragraphs_fields_default_settings('fade', $settings),
+    'dots' => slick_paragraphs_fields_default_settings('dots', $settings),
+    'adaptiveHeight' => slick_paragraphs_fields_default_settings('adaptiveHeight', $settings),
+  );
+
+  $element['#theme_wrappers'] = array('paragraphs_items');
+  $element['#attached']['library'][] = array('slick_paragraphs', 'slick');
+  $element['#attached']['js'][$instance['id']] = array(
+    'data' => array('slickParagraphs' => array(drupal_html_class('field-name-' . $field['field_name']) => $slick_settings)),
+    'type' => 'setting',
+  );
+
+  $element['#attached']['js'][] = drupal_get_path('module', 'slick_paragraphs') . '/js/slick_paragraphs.js';
+
+  return $element;
+}
+
+/**
+ * Default settings for formatter.
+ */
+function slick_paragraphs_fields_default_settings($setting = NULL, $settings = array()) {
+  $default_settings = array(
+    'view_mode' => 'full',
+    'autoplaySpeed' => 2000,
+    'autoplay' => TRUE,
+    'fade' => TRUE,
+    'dots' => TRUE,
+    'adaptiveHeight' => TRUE,
+  );
+
+  if ($setting && $settings && isset($settings[$setting])) {
+    return $settings[$setting];
+  }
+
+  return $setting ? $default_settings[$setting] : $default_settings;
+}
+
+/**
+ * Implements hook_image_default_styles().
+ */
+function slick_paragraphs_image_default_styles() {
+  $styles = array();
+
+  $styles['slide'] = array(
+    'name' => 'slide',
+    'label' => 'Slide (360x300)',
+    'effects' => array(
+      array(
+        'module' => 'image',
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => 360,
+          'height' => 300,
+        ),
+        'weight' => 0,
+      ),
+    ),
+  );
+
+  return $styles;
+}
+
+/**
+ * Implements hook_library().
+ */
+function slick_paragraphs_library() {
+  $library = libraries_get_path('slick');
+
+  $libraries['slick'] = array(
+    'title' => 'Slick',
+    'website' => 'http://kenwheeler.github.io/slick/',
+    'version' => '1.x',
+    'js' => array(
+      $library . '/slick/slick.min.js' => array(),
+    ),
+    'css' => array(
+      $library . '/slick/slick.css' => array(),
+    ),
+  );
+
+  return $libraries;
+}
