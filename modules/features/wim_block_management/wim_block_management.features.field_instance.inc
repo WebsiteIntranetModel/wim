@@ -167,6 +167,11 @@ function wim_block_management_field_default_field_instances() {
         'label' => 'hidden',
         'module' => 'slick_paragraphs',
         'settings' => array(
+          'adaptiveHeight' => TRUE,
+          'autoplay' => TRUE,
+          'autoplaySpeed' => 2000,
+          'dots' => TRUE,
+          'fade' => TRUE,
           'view_mode' => 'full',
         ),
         'type' => 'slick_paragraphs',

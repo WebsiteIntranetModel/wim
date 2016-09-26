@@ -8,8 +8,6 @@
  * Implements hook_field_formatter_info().
  */
 function slick_paragraphs_field_formatter_info() {
-  module_load_include('inc', 'slick', 'includes/slick.fields');
-
   return array(
     'slick_paragraphs' => array(
       'label' => t('Slick carousel'),
@@ -36,10 +34,39 @@ function slick_paragraphs_field_formatter_settings_form($field, $instance, $view
     '#type' => 'select',
     '#title' => t('View mode'),
     '#options' => $options,
-    '#default_value' => $settings['view_mode'],
+    '#default_value' => slick_paragraphs_fields_default_settings('view_mode', $settings),
     '#description' => t('Select the view mode'),
   );
 
+  $elements['autoplay'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Autoplay'),
+    '#default_value' => slick_paragraphs_fields_default_settings('autoplay', $settings),
+  );
+
+  $elements['autoplaySpeed'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Autoplay Speed'),
+    '#default_value' => slick_paragraphs_fields_default_settings('autoplaySpeed', $settings),
+  );
+
+  $elements['fade'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Fade'),
+    '#default_value' => slick_paragraphs_fields_default_settings('fade', $settings),
+  );
+
+  $elements['dots'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Dots'),
+    '#default_value' => slick_paragraphs_fields_default_settings('dots', $settings),
+  );
+
+  $elements['adaptiveHeight'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Adaptive Height'),
+    '#default_value' => slick_paragraphs_fields_default_settings('adaptiveHeight', $settings),
+  );
   return $elements;
 }
 
@@ -51,7 +78,7 @@ function slick_paragraphs_field_formatter_settings_summary($field, $instance, $v
   $settings = $display['settings'];
   $summary = array();
 
-  if ($display['type'] == 'slick_paragraphs') {
+  if ($display['type'] === 'slick_paragraphs') {
     $entity_type = entity_get_info('paragraphs_item');
     if (!empty($entity_type['view modes'][$settings['view_mode']]['label'])) {
       $summary[] = t('View mode: @mode', array('@mode' => $entity_type['view modes'][$settings['view_mode']]['label']));
@@ -69,6 +96,7 @@ function slick_paragraphs_field_formatter_settings_summary($field, $instance, $v
  */
 function slick_paragraphs_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
   $element = array();
+  $settings = $display['settings'];
 
   // Prevent displaying useless markup if we don't have any values.
   if (empty($items)) {
@@ -87,11 +115,11 @@ function slick_paragraphs_field_formatter_view($entity_type, $entity, $field, $i
   }
 
   $slick_settings = array(
-    'autoplay' => TRUE,
-    'autoplaySpeed' => 2000,
-    'fade' => TRUE,
-    'dots' => TRUE,
-    'adaptiveHeight' => TRUE,
+    'autoplay' => slick_paragraphs_fields_default_settings('autoplay', $settings),
+    'autoplaySpeed' => slick_paragraphs_fields_default_settings('autoplaySpeed', $settings),
+    'fade' => slick_paragraphs_fields_default_settings('fade', $settings),
+    'dots' => slick_paragraphs_fields_default_settings('dots', $settings),
+    'adaptiveHeight' => slick_paragraphs_fields_default_settings('adaptiveHeight', $settings),
   );
 
   $element['#theme_wrappers'] = array('paragraphs_items');
@@ -109,10 +137,19 @@ function slick_paragraphs_field_formatter_view($entity_type, $entity, $field, $i
 /**
  * Default settings for formatter.
  */
-function slick_paragraphs_fields_default_settings($setting = NULL) {
+function slick_paragraphs_fields_default_settings($setting = NULL, $settings = array()) {
   $default_settings = array(
     'view_mode' => 'full',
+    'autoplaySpeed' => 2000,
+    'autoplay' => TRUE,
+    'fade' => TRUE,
+    'dots' => TRUE,
+    'adaptiveHeight' => TRUE,
   );
+
+  if ($setting && $settings && isset($settings[$setting])) {
+    return $settings[$setting];
+  }
 
   return $setting ? $default_settings[$setting] : $default_settings;
 }
