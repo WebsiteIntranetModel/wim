@@ -15,7 +15,7 @@ function wim_slider_field_default_field_instances() {
     'bundle' => 'slider',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Please do not upload more than 10 slides it could cause performance issues.',
     'display' => array(
       'default' => array(
         'label' => 'hidden',
@@ -271,6 +271,7 @@ function wim_slider_field_default_field_instances() {
   t('Body');
   t('Image');
   t('Link');
+  t('Please do not upload more than 10 slides it could cause performance issues.');
   t('Slide');
   t('Title');
 
