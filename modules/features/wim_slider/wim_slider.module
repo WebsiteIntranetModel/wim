@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the WIM Slider feature.
+ */
+
+include_once 'wim_slider.features.inc';
