@@ -18,6 +18,7 @@ Feature: Create form on site
     And I should see "Unpublish on"
     Then I press "Save"
     And I should see "Webform Test Webform has been created."
+    Then the url should match "/webform/test-webform"
     Then I click "Conditionals"
     And I click "E-mails"
     And I click "Form settings"
