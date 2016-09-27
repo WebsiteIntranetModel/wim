@@ -135,11 +135,11 @@ function wim_preprocess_block(&$variables) {
     $variables['theme_hook_suggestions'][] = 'block__bean_' . strtr($bean->type, '_', '-');
     $bean_view_mode = $bean->view_mode;
 
-    if ($bean->field_link) {
+    if (isset($bean->field_link) && $bean->field_link) {
       $variables['title_url'] = $bean->field_link[LANGUAGE_NONE][0]['url'];
     }
 
-    if ($bean_view_mode === 'default' && $bean->field_image) {
+    if ($bean_view_mode === 'default' && isset($bean->field_image) && $bean->field_image) {
       $variables['classes_array'][] = 'editorial-image';
     }
   }

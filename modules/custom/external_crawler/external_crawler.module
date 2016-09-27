@@ -181,6 +181,7 @@ function external_crawler_facetapi_facet_info(array $searcher_info) {
       'map callback' => 'external_crawler_source_map',
       'default widget' => 'links',
       'default sorts' => array(),
+      'alter callbacks' => array('external_crawler_source_alter'),
     );
   }
 
@@ -200,4 +201,16 @@ function external_crawler_source_map(array $values) {
   }
 
   return $map;
+}
+
+/**
+ * Alter external source facet build.
+ */
+function external_crawler_source_alter(array &$build, $adapter, $facet) {
+  // Remove from build values which does not exist.
+  foreach ($build as $build_id => $count) {
+    if (!_external_crawler_fetch_sites($build_id)) {
+      unset($build[$build_id]);
+    }
+  }
 }

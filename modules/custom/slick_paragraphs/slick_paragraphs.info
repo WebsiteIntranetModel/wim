@@ -1,0 +1,8 @@
+name = Slick Paragraphs
+description = Provides Slick integration with Paragraphs.
+core = 7.x
+package = WIM
+version = 7.x-1.0
+
+dependencies[] = paragraphs
+dependencies[] = libraries

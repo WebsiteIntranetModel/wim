@@ -101,7 +101,7 @@ function external_crawler_site_add_form() {
     '#type' => 'textfield',
     '#title' => t('Content exclude'),
     '#access' => user_access('access content include/exclude'),
-    '#default_value' => 'script',
+    '#default_value' => 'script, style',
     '#description' => t('CSS selector to exclude elements from index.(e.g "script, a.myclass")'),
   );
 

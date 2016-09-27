@@ -1,0 +1,44 @@
+<?php
+/**
+ * @file
+ * CKEditor bootstrap tabs.
+ */
+
+/**
+ * Implements hook_ckeditor_plugin().
+ */
+function ckeditor_bootstrap_tabs_ckeditor_plugin() {
+  return array(
+    'bootstrap_tabs' => array(
+      'name' => 'bootstrap_tabs',
+      'desc' => t('Create tabs with CKeditor'),
+      'path' => drupal_get_path('module', 'ckeditor_bootstrap_tabs') . '/bootstrap_tabs/plugin/',
+      'buttons' => array(
+        'addTab' => array(
+          'icon' => 'icons/tab.png',
+          'label' => t('Add tab'),
+        ),
+      ),
+    ),
+  );
+}
+
+/**
+ * Implements hook_wysiwyg_plugin().
+ */
+function ckeditor_bootstrap_tabs_wysiwyg_plugin($editor) {
+  if ($editor === 'ckeditor') {
+    $path = drupal_get_path('module', 'ckeditor_bootstrap_tabs') . '/bootstrap_tabs/plugin';
+
+    $plugins['bootstrap_tabs'] = array(
+      'path' => $path,
+      'buttons' => array(
+        'addTab' => t('CKEditor Bootstrap Tabs'),
+      ),
+      'load' => TRUE,
+      'internal' => FALSE,
+    );
+
+    return $plugins;
+  }
+}
