@@ -91,7 +91,6 @@ projects[views_bulk_operations][patch][2608360_14] = https://www.drupal.org/file
 ; https://www.drupal.org/node/2327997
 projects[facetapi][patch][2327997_3] = https://www.drupal.org/files/issues/facetapi-2327997-3-show-fewer-links.patch
 
-
 ; Custom
 ; a11ychecker_custom
 libraries[a11ychecker][download][type] = "get"
@@ -101,7 +100,7 @@ libraries[a11ychecker][subdir] = "ckeditor_plugins"
 
 ; CKEditor 4.4.6
 libraries[ckeditor][download][type] = get
-libraries[ckeditor][download][url] = http://download.cksource.com/CKEditor/CKEditor/CKEditor%204.4.6/ckeditor_4.4.6_full.tar.gz
+libraries[ckeditor][download][url] = http://ckeditor.com/builder/download/4aa56d967057f1cfe925bceb9b98049d
 
 ; Slick
 libraries[slick][download][type] = get
