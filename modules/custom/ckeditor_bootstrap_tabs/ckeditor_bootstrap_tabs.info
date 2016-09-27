@@ -1,0 +1,4 @@
+name = CKEditor Bootstrap Tabs
+description = Important: This module requires CKeditor or WYSIWYG CKEditor.
+core = 7.x
+package = User interface
