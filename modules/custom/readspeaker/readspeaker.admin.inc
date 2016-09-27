@@ -27,5 +27,13 @@ function readspeaker_settings_form() {
     '#default_value' => variable_get('readspeaker_button_text', t('Listen')),
   );
 
+  $form['readspeaker_language'] = array(
+    '#type' => 'select',
+    '#title' => t('Language'),
+    '#options' => readspeaker_supported_languages(),
+    '#default_value' => variable_get('readspeaker_language', 'nl_nl'),
+    '#required' => TRUE,
+  );
+
   return system_settings_form($form);
 }

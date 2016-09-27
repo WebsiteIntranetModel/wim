@@ -97,15 +97,6 @@ function readspeaker_block_view($delta = '') {
 }
 
 /**
- * Get language code for API.
- */
-function readspeaker_get_language() {
-  global $language;
-
-  return $language->language . '_' . drupal_strtolower(variable_get('site_default_country', ''));
-}
-
-/**
  * Build Read Speaker player output.
  */
 function readspeaker_build_player() {
@@ -122,11 +113,32 @@ function readspeaker_build_player() {
   $player = array(
     '#theme' => 'readspeaker',
     '#customer_id' => $customerid,
-    '#lang' => 'nl_nl',
+    '#lang' => variable_get('readspeaker_language', 'nl_nl'),
     '#url' => url($current_path, array('absolute' => TRUE)),
     '#title' => variable_get('readspeaker_title', t('Listen to this page using ReadSpeaker')),
     '#button' => variable_get('readspeaker_button_text', t('Listen')),
   );
 
   return $player;
+}
+
+/**
+ * List of supported languages.
+ */
+function readspeaker_supported_languages() {
+  $languages = array(
+    'nl_nl' => 'Nederlands',
+    'fy_nl' => 'Fries',
+    'en_uk' => 'Brits Engels',
+    'de_de' => 'Duits',
+    'fr_fr' => 'Frans',
+    'es_es' => 'Spaans',
+    'sv_se' => 'Zweeds',
+    'no_nb' => 'Noors (Bokmål)',
+    'fi_fi' => 'Fins',
+    'ru_ru' => 'Russisch',
+    'ar_ar' => 'Arabisch',
+  );
+
+  return $languages;
 }
