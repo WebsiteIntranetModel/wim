@@ -34,6 +34,7 @@ Feature: Create Agenda
     And I should see the heading "TEST AGENDA"
     And I should see "TEST AGENDA BODY"
     And I should see "Share"
+    Then the url should match "/agenda/test-agenda"
 
     Given I am an anonymous user
     And I visit "node/add/agenda"

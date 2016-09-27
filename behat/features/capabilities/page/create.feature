@@ -26,6 +26,7 @@ Feature: Create basic page
     And I should see the success message "Basic page This is a test basic page has been created."
     And I should see "Body description text"
     And I should see "Share"
+    Then the url should match "/this-is-a-test-basic-page"
 
     Given I am logged in as a "content manager"
     And I am at "admin/structure/taxonomy/tags"
