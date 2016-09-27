@@ -137,6 +137,10 @@
       </div>
     <?php endif; ?>
 
+    <?php if (isset($readspeaker)): ?>
+      <?php print render($readspeaker); ?>
+    <?php endif; ?>
+
     <?php if (!empty($page['highlighted'])): ?>
       <?php print render($page['highlighted']); ?>
     <?php endif; ?>

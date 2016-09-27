@@ -54,8 +54,9 @@ function readspeaker_theme($existing, $type, $theme, $path) {
       'variables' => array(
         'customer_id' => NULL,
         'lang' => NULL,
-        'readid' => 'main',
-        'url' => 'main',
+        'url' => NULL,
+        'title' => NULL,
+        'button' => NULL,
       ),
       'template' => 'readspeaker',
       'path' => "$path/theme",
@@ -84,8 +85,48 @@ function readspeaker_block_view($delta = '') {
   $block = array();
 
   if ($delta === 'readspeaker') {
-    $block['content'] = 'Block content';
+    if (variable_get('readspeaker_customerid', NULL)) {
+      $block['content'] = readspeaker_build_player();
+    }
+    else {
+      drupal_set_message(t('Read Speaker: Customer ID is not set or does not exist. Please check configuration.'), 'warning');
+    }
   }
 
   return $block;
+}
+
+/**
+ * Get language code for API.
+ */
+function readspeaker_get_language() {
+  global $language;
+
+  return $language->language . '_' . drupal_strtolower(variable_get('site_default_country', ''));
+}
+
+/**
+ * Build Read Speaker player output.
+ */
+function readspeaker_build_player() {
+  $customerid = variable_get('readspeaker_customerid', NULL);
+  $current_path = current_path();
+  $module_path = drupal_get_path('module', 'readspeaker');
+  $library_path = $module_path . '/libraries/readspeaker/ReadSpeaker.js?pids=embhl';
+  $data = array(
+    '#type' => 'markup',
+    '#markup' => '<script type="text/javascript" src="/' . $library_path . '"></script>',
+  );
+  drupal_add_html_head($data, 'google_maps_js');
+
+  $player = array(
+    '#theme' => 'readspeaker',
+    '#customer_id' => $customerid,
+    '#lang' => 'nl_nl',
+    '#url' => url($current_path, array('absolute' => TRUE)),
+    '#title' => variable_get('readspeaker_title', t('Listen to this page using ReadSpeaker')),
+    '#button' => variable_get('readspeaker_button_text', t('Listen')),
+  );
+
+  return $player;
 }
