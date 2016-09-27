@@ -10,7 +10,7 @@ Feature: View Top Tasks menu
     Then I should see "Arrange immediately" in the "Highlighted"
     And I should see "Leisure" in the "Highlighted"
     And I should see "Waste" in the "Highlighted"
-    Then I click "Arrange immediately" in the "Highlighted"
+    When I click "#block-menu-menu-top-tasks li.first" element
     Then I should see the link "Make an appointment" in the "Highlighted"
     When I click "Make an appointment" in the "Highlighted"
     Then I should be on the homepage
