@@ -18,17 +18,19 @@ class WIMUsers extends WIMMigration {
   public function __construct($arguments) {
     parent::__construct($arguments);
 
-    $this->description = t('Import an CSV-file (only "Account"-fields)');
+    $this->description = t('Import an JSON-file (only "Account"-fields)');
 
     $columns = array(
-      array('id', t('User-ID')),
-      array('mail', t('Email')),
-      array('name', t('Name')),
-      array('password', t('Password')),
-      array('roles', t('Roles')),
+      'id' => t('User-ID'),
+      'mail' => t('Email'),
+      'name' => t('Name'),
+      'password' => t('Password'),
+      'roles' => t('Roles'),
     );
 
-    $this->source = new MigrateSourceCSV($this->dataSources . 'users.csv', $columns, array('header_rows' => 1));
+    $this->source = new MigrateSourceList(new WIMListJSON($this->dataSources . 'users.json'),
+      new WIMItemJSON($this->dataSources . 'users.json', array()), $columns);
+
     $this->destination = new MigrateDestinationUser();
     $this->map = new MigrateSQLMap($this->machineName, array(
       'id' => array(

@@ -176,21 +176,19 @@ class ProductMigration extends NodeMigration {
     $this->fileName = $arguments['file_name'];
     $this->contentType = $arguments['content_type'];
     $columns = array(
-      array('id', t('Id')),
-      array('title', t('Node title')),
-      array('body', t('Node body')),
-      array('body:summary', t('Node summary')),
-      array('field_image', t('Node image')),
-      array('field_tags', t('Node tags')),
-      array('field_publication_date', t('Custom publication date')),
-      array('field_promoted', t('Promoted flag')),
-      array('author', t('Node creator')),
+      'id' => t('Id'),
+      'title' => t('Node title'),
+      'body' => t('Node body'),
+      'body:summary' => t('Node summary'),
+      'field_image' => t('Node image'),
+      'field_tags' => t('Node tags'),
+      'field_publication_date' => t('Custom publication date'),
+      'field_promoted' => t('Promoted flag'),
+      'author' => t('Node creator'),
     );
-    $this->source = new MigrateSourceCSV(
-      $this->dataSources . $this->fileName,
-      $columns,
-      array('header_rows' => 1)
-    );
+    $this->source = new MigrateSourceList(new WIMListJSON($this->dataSources . $this->fileName),
+      new WIMItemJSON($this->dataSources . $this->fileName, array()), $columns);
+
     $this->destination = new MigrateDestinationNode($this->contentType);
     $this->map = new MigrateSQLMap($this->machineName, array(
       'id' => array(
@@ -245,24 +243,21 @@ class NewsMigration extends NodeMigration {
     $this->contentType = $arguments['content_type'];
 
     $columns = array(
-      array('id', t('Id')),
-      array('title', t('Node title')),
-      array('body', t('Node body')),
-      array('body:summary', t('Node summary')),
-      array('field_image', t('Node image')),
-      array('field_tags', t('Node tags')),
-      array('field_publication_date', t('Custom publication date')),
-      array('field_attachment', t('File attachment')),
-      array('field_news_category', t('News category')),
-      array('field_promoted', t('Promoted flag')),
-      array('author', t('Node creator')),
+      'id' => t('Id'),
+      'title' => t('Node title'),
+      'body' => t('Node body'),
+      'body:summary' => t('Node summary'),
+      'field_image' => t('Node image'),
+      'field_tags' => t('Node tags'),
+      'field_publication_date' => t('Custom publication date'),
+      'field_attachment' => t('File attachment'),
+      'field_news_category' => t('News category'),
+      'field_promoted' => t('Promoted flag'),
+      'author' => t('Node creator'),
     );
 
-    $this->source = new MigrateSourceCSV(
-      $this->dataSources . $this->fileName,
-      $columns,
-      array('header_rows' => 1)
-    );
+    $this->source = new MigrateSourceList(new WIMListJSON($this->dataSources . $this->fileName),
+      new WIMItemJSON($this->dataSources . $this->fileName, array()), $columns);
 
     $this->destination = new MigrateDestinationNode($this->contentType);
     $this->map = new MigrateSQLMap($this->machineName, array(
@@ -329,21 +324,18 @@ class FaqMigration extends NodeMigration {
     $this->contentType = $arguments['content_type'];
 
     $columns = array(
-      array('id', t('Id')),
-      array('title', t('Question')),
-      array('body', t('Answer')),
-      array('field_faq_additional_information', t('Additional information')),
-      array('field_tags', t('FAQ tags')),
-      array('field_show_on_overview', t('Show on overview flag')),
-      array('field_faq_category', t('FAQ category')),
-      array('author', t('Node creator')),
+      'id'=> t('Id'),
+      'title' => t('Question'),
+      'body' => t('Answer'),
+      'field_faq_additional_information' => t('Additional information'),
+      'field_tags' => t('FAQ tags'),
+      'field_show_on_overview' => t('Show on overview flag'),
+      'field_faq_category' => t('FAQ category'),
+      'author' => t('Node creator'),
     );
 
-    $this->source = new MigrateSourceCSV(
-      $this->dataSources . $this->fileName,
-      $columns,
-      array('header_rows' => 1)
-    );
+    $this->source = new MigrateSourceList(new WIMListJSON($this->dataSources . $this->fileName),
+      new WIMItemJSON($this->dataSources . $this->fileName, array()), $columns);
 
     $this->destination = new MigrateDestinationNode($this->contentType);
     $this->map = new MigrateSQLMap($this->machineName, array(
@@ -401,27 +393,24 @@ class AgendaMigration extends NodeMigration {
     $this->contentType = $arguments['content_type'];
 
     $columns = array(
-      array('id', t('Id')),
-      array('title', t('Title')),
-      array('body', t('Body')),
-      array('body:summary', t('Node summary')),
-      array('field_image', t('Node Image')),
-      array('field_agenda_date', t('Date')),
-      array('name', t('Location name')),
-      array('city', t('City')),
-      array('street', t('Street')),
-      array('postal_code', t('Postal Code')),
-      array('country', t('County')),
-      array('field_tags', t('Tags')),
-      array('field_promoted', t('Promoted flag')),
-      array('author', t('Node creator')),
+      'id' => t('Id'),
+      'title' => t('Title'),
+      'body' => t('Body'),
+      'body:summary' => t('Node summary'),
+      'field_image' => t('Node Image'),
+      'field_agenda_date' => t('Date'),
+      'name' => t('Location name'),
+      'city' => t('City'),
+      'street' => t('Street'),
+      'postal_code' => t('Postal Code'),
+      'country' => t('County'),
+      'field_tags' => t('Tags'),
+      'field_promoted' => t('Promoted flag'),
+      'author' => t('Node creator'),
     );
 
-    $this->source = new MigrateSourceCSV(
-      $this->dataSources . $this->fileName,
-      $columns,
-      array('header_rows' => 1)
-    );
+    $this->source = new MigrateSourceList(new WIMListJSON($this->dataSources . $this->fileName),
+      new WIMItemJSON($this->dataSources . $this->fileName, array()), $columns);
 
     $this->destination = new MigrateDestinationNode($this->contentType);
     $this->map = new MigrateSQLMap($this->machineName, array(
