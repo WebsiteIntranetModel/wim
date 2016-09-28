@@ -38,7 +38,7 @@ function atos_esuite_import_batch_start() {
  * Worker callback for batch process.
  *
  * @param string $type
- *   Type of import. Can be vac or pcd.
+ *   Type of import. Can be vac or pdc.
  * @param array $context
  *   Batch context.
  */
