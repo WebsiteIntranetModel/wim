@@ -97,6 +97,5 @@
   hide($content['field_image']);
   hide($content['field_tags']);
   print render($content);
-  print render($source);
   ?>
 </article>
