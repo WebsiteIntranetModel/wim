@@ -7,7 +7,7 @@ Feature: Check Atos E-Suite fields
   Scenario: Checking Atos E-Suite fields if exist
     Given I am logged in as a "content manager"
     And I am on "node/add/product"
-    And I click "PCD information"
+    And I click "PDC information"
     When I fill in the following:
       | title                                           | TEST ATOS ESUITE PRODUCT |
       | edit-field-product-related-laws-und-0-title     | Related Law              |

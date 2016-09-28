@@ -74,14 +74,14 @@ function wim_addition_faq_product_fields_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
-  $field_group->identifier = 'group_pcd|node|product|form';
-  $field_group->group_name = 'group_pcd';
+  $field_group->identifier = 'group_pdc|node|product|form';
+  $field_group->group_name = 'group_pdc';
   $field_group->entity_type = 'node';
   $field_group->bundle = 'product';
   $field_group->mode = 'form';
   $field_group->parent_name = '';
   $field_group->data = array(
-    'label' => 'PCD information',
+    'label' => 'PDC information',
     'weight' => '7',
     'children' => array(
       0 => 'field_product_forms',
@@ -94,12 +94,12 @@ function wim_addition_faq_product_fields_field_group_info() {
       'formatter' => 'closed',
       'instance_settings' => array(
         'description' => '',
-        'classes' => 'group-pcd field-group-tab',
+        'classes' => 'group-pdc field-group-tab',
         'required_fields' => 1,
       ),
     ),
   );
-  $field_groups['group_pcd|node|product|form'] = $field_group;
+  $field_groups['group_pdc|node|product|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -160,7 +160,7 @@ function wim_addition_faq_product_fields_field_group_info() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Additional Information');
-  t('PCD information');
+  t('PDC information');
   t('Relations');
 
   return $field_groups;
