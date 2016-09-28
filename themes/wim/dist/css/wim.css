@@ -9818,8 +9818,16 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
 }
 
 .search-results li {
-  list-style-position: inside;
+  list-style: none;
+  counter-increment: step-counter;
+}
+
+.search-results li:before {
+  content: counter(step-counter) ".";
   font-weight: bold;
+  float: left;
+  line-height: 22px;
+  margin-right: 3px;
 }
 
 .search-results li .search-snippet-info,
@@ -9841,8 +9849,11 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   margin: 0;
 }
 
+.search-results .source-wrapper span {
+  color: #666666;
+}
+
 .search-results .source {
-  color: #979797;
   font-weight: normal;
 }
 
@@ -9851,6 +9862,7 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   width: 39px;
   height: 41px;
   margin-right: 10px;
+  margin-bottom: 10px;
   border: 1px solid #e6e6e6;
   text-align: center;
   padding-top: 5px;

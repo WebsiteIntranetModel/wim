@@ -80,6 +80,9 @@
     </div>
   <?php endif; ?>
   <?php if (isset($source)): ?>
-    <?php print $source; ?>
+    <div class="source-wrapper">
+      <span><?php print t('Source')?>:</span>
+      <?php print $source; ?>
+    </div>
   <?php endif; ?>
 </li>
