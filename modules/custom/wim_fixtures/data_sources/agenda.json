@@ -1,6 +1,6 @@
 [
   {
-    "id": 1,
+    "id": "1",
     "title": "Test Agenda 1",
     "body": "Agenda 1 body content. Nulla porttitor accumsan tincidunt. Nulla quis lorem ut libero malesuada feugiat. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vivamus suscipit tortor eget felis porttitor volutpat.",
     "body:summary": "Agenda 1 summary content.",
@@ -9,14 +9,14 @@
     "name": "Rembrandt House Museum",
     "city": "Amsterdam",
     "street": "Jodenbreestraat 4",
-    "postal_code": 1011,
+    "postal_code": "1011",
     "country": "nl",
-    "field_tags": 1,
-    "field_promoted": 0,
-    "author": 1
+    "field_tags": "1",
+    "field_promoted": "0",
+    "author": "1"
   },
   {
-    "id": 2,
+    "id": "2",
     "title": "Test Agenda 2",
     "body": "Agenda 2 body content. Nulla porttitor accumsan tincidunt. Nulla quis lorem ut libero malesuada feugiat. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vivamus suscipit tortor eget felis porttitor volutpat.",
     "body:summary": "Agenda 2 summary content.",
