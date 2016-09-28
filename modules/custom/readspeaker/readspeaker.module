@@ -108,7 +108,7 @@ function readspeaker_build_player() {
     '#type' => 'markup',
     '#markup' => '<script type="text/javascript" src="/' . $library_path . '"></script>',
   );
-  drupal_add_html_head($data, 'google_maps_js');
+  drupal_add_html_head($data, 'readspeaker');
 
   $player = array(
     '#theme' => 'readspeaker',
