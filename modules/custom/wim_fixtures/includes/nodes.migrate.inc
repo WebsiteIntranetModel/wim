@@ -324,7 +324,7 @@ class FaqMigration extends NodeMigration {
     $this->contentType = $arguments['content_type'];
 
     $columns = array(
-      'id'=> t('Id'),
+      'id' => t('Id'),
       'title' => t('Question'),
       'body' => t('Answer'),
       'field_faq_additional_information' => t('Additional information'),
