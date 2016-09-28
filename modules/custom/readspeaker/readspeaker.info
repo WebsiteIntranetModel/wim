@@ -1,0 +1,5 @@
+name = Read Speaker
+description = Implementation of ReadSpeaker
+package = Other
+core = 7.x
+configure = admin/config/services/readspeaker

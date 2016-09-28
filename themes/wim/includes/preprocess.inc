@@ -244,6 +244,10 @@ function wim_preprocess_page(&$variables) {
     drupal_set_title(t('Search'));
   }
 
+  // Add readspeaker to page template.
+  if (module_exists('readspeaker')) {
+    $variables['readspeaker'] = readspeaker_build_player();
+  }
 }
 
 /**
