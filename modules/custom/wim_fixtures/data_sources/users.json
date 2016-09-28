@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "mail": "user+test1@example.com",
+    "name": "content_manager",
+    "password": "content_manager",
+    "roles": "content manager, authenticated user"
+  },
+  {
+    "id": 2,
+    "mail": "user+test2@example.com",
+    "name": "content_editor",
+    "password": "content_editor",
+    "roles": "content editor, authenticated user"
+  },
+  {
+    "id": 3,
+    "mail": "user+test3@example.com",
+    "name": "webmaster",
+    "password": "webmaster",
+    "roles": "webmaster, authenticated user"
+  },
+  {
+    "id": 4,
+    "mail": "user+test4@example.com",
+    "name": "klark_kent",
+    "password": "klark_kent",
+    "roles": "administrator"
+  },
+  {
+    "id": 5,
+    "mail": "user+test5@example.com",
+    "name": "test",
+    "password": "test",
+    "roles": "authenticated user"
+  },
+  {
+    "id": 6,
+    "mail": "user+test6@example.com",
+    "name": "tony_stark",
+    "password": "tony_stark",
+    "roles": "content manager, authenticated user"
+  },
+  {
+    "id": 7,
+    "mail": "user+test7@example.com",
+    "name": "chuck_norris",
+    "password": "chuck_norris",
+    "roles": "content manager, authenticated user"
+  },
+  {
+    "id": 8,
+    "mail": "user+test8@example.com",
+    "name": "floodmaster",
+    "password": "floodmaster",
+    "roles": "authenticated user"
+  },
+  {
+    "id": 9,
+    "mail": "user+test9@example.com",
+    "name": "johnny_depp",
+    "password": "johnny_depp",
+    "roles": "content editor, authenticated user"
+  },
+  {
+    "id": 10,
+    "mail": "user+test10@example.com",
+    "name": "jack_nicholson",
+    "password": "jack_nicholson",
+    "roles": "content editor, authenticated user"
+  }
+]
