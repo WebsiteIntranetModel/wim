@@ -48,6 +48,7 @@ projects[libraries] = 2.3
 projects[linkit] = 3.5
 projects[paragraphs] = 1.0-rc4
 projects[password_policy] = 1.12
+projects[pathauto] = 1.3
 projects[picture] = 2.13
 projects[redirect] = 1.0-rc3
 projects[scheduler] = 1.5
