@@ -54,18 +54,20 @@ function docreader_menu() {
  * Implements hook_preprocess_HOOK().
  */
 function docreader_preprocess_page(&$variables) {
-  $module_path = drupal_get_path('module', 'docreader');
-  $allowed_extentions = variable_get('docreader_supported_file_extensions', docreader_supported_file_extensions());
-  $allowed_extentions = explode(',', trim($allowed_extentions));
+  if (!path_is_admin(current_path())) {
+    $module_path = drupal_get_path('module', 'docreader');
+    $allowed_extentions = variable_get('docreader_supported_file_extensions', docreader_supported_file_extensions());
+    $allowed_extentions = explode(',', trim($allowed_extentions));
 
-  $docreader_settings = array(
-    'cid' => variable_get('docreader_cid'),
-    'language' => variable_get('docreader_language', 'nl_nl'),
-    'supported_file_extensions' => $allowed_extentions,
-    'icon' => $module_path . '/images/docreader_icon.gif',
-    'button_text' => variable_get('docreader_button_text', 'Read for'),
-  );
+    $docreader_settings = array(
+      'cid' => variable_get('docreader_cid'),
+      'language' => variable_get('docreader_language', 'nl_nl'),
+      'supported_file_extensions' => $allowed_extentions,
+      'icon' => $module_path . '/images/docreader_icon.gif',
+      'button_text' => variable_get('docreader_button_text', 'Read for'),
+    );
 
-  drupal_add_js($module_path . '/js/docreader.js');
-  drupal_add_js(array('docReader' => $docreader_settings), array('type' => 'setting'));
+    drupal_add_js($module_path . '/js/docreader.js');
+    drupal_add_js(array('docReader' => $docreader_settings), array('type' => 'setting'));
+  }
 }
