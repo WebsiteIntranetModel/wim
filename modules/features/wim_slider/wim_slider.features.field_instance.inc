@@ -26,6 +26,7 @@ function wim_slider_field_default_field_instances() {
           'autoplaySpeed' => 2000,
           'dots' => 0,
           'fade' => 1,
+          'pause' => 1,
           'view_mode' => 'full',
         ),
         'type' => 'slick_paragraphs',
