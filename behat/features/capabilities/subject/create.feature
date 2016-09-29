@@ -25,6 +25,7 @@ Feature: Create subject page
     And I should not see "27 June 2026"
     And I should see "Body description text"
     And I should not see "Share"
+    Then the url should match "/this-is-a-test-subject-page"
 
     Given I am an anonymous user
     And I visit "node/add/subject-page"

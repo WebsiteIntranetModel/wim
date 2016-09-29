@@ -57,6 +57,9 @@ function wim_install() {
 
   // Set content types with social share links.
   _wim_default_sss();
+
+  // Pathauto configuration.
+  _wim_default_pathauto();
 }
 
 /**
@@ -266,7 +269,7 @@ function _wim_set_text_formats() {
         'weight' => 1,
         'status' => 1,
         'settings' => array(
-          'allowed_html' => '<a> <em> <strong> <cite> <blockquote> <code> <ul> <ol> <li> <dl> <dt> <dd> <table> <tr> <th> <td> <thead> <tbody> <tfoot> <caption> <h2> <h3> <h4> <h5> <h6> <p> <br> <b> <i> <u> <abbr> <acronym> <object> <embed> <param> <span> <iframe> <area> <map> <img>',
+          'allowed_html' => '<div> <a> <em> <strong> <cite> <blockquote> <code> <ul> <ol> <li> <dl> <dt> <dd> <table> <tr> <th> <td> <thead> <tbody> <tfoot> <caption> <h2> <h3> <h4> <h5> <h6> <p> <br> <b> <i> <u> <abbr> <acronym> <object> <embed> <param> <span> <iframe> <area> <map> <img>',
           'filter_html_help' => 1,
           'filter_html_nofollow' => 0,
         ),
@@ -685,12 +688,11 @@ function _wim_place_felix_blocks() {
     $map = facetapi_get_delta_map();
     // Filter by type.
     $string = facetapi_build_delta('apachesolr@solr', 'block', 'bundle');
-    $filter_bundle_delta = array_search($string, $map);
     $felix_blocks['search_filter_types'] = array(
       'region_name' => 'sidebar-first-search',
       'path' => NULL,
       'module' => 'facetapi',
-      'delta' => $filter_bundle_delta,
+      'delta' => array_search($string, $map),
       'detail_path' => NULL,
       'data' => array(
         'subject' => st('Filter by type'),
@@ -703,12 +705,11 @@ function _wim_place_felix_blocks() {
 
     // Filter by date.
     $string = facetapi_build_delta('apachesolr@solr', 'block', 'created');
-    $filter_created_delta = array_search($string, $map);
     $felix_blocks['search_filter_created'] = array(
       'region_name' => 'sidebar-first-search',
       'path' => NULL,
       'module' => 'facetapi',
-      'delta' => $filter_created_delta,
+      'delta' => array_search($string, $map),
       'detail_path' => NULL,
       'data' => array(
         'subject' => st('Filter by date'),
@@ -827,6 +828,32 @@ function _wim_default_sss() {
 
   foreach ($types as $type) {
     variable_set('wim_sss_node_enabled_' . $type, 1);
+  }
+}
+
+/**
+ * Default settings for pathauto.
+ */
+function _wim_default_pathauto() {
+  variable_set('pathauto_ignore_words', '');
+  variable_set('pathauto_update_action', 0);
+  variable_set('pathauto_reduce_ascii', 1);
+  variable_set('pathauto_node_pattern', '[node:content-type]/[node:title]');
+  $types = node_type_get_types();
+
+  $default_mapping = array(
+    'agenda' => 'agenda/[node:title]',
+    'faq' => 'faq/[node:title]',
+    'news' => 'news/[node:title]',
+    'page' => '[node:title]',
+    'person' => 'person/[node:title]',
+    'product' => 'product/[node:title]',
+    'subject_page' => '[node:title]',
+    'webform' => 'webform/[node:title]',
+  );
+
+  foreach ($types as $type) {
+    variable_set('pathauto_node_' . $type->type . '_pattern', $default_mapping[$type->type]);
   }
 }
 

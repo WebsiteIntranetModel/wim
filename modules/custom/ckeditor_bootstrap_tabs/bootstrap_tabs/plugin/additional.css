@@ -1,0 +1,73 @@
+.bootstrap-tab {
+    padding: 8px;
+    margin: 10px;
+    background: #eee;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    box-shadow: 0 1px 1px #fff inset, 0 -1px 0 #ccc inset;
+}
+
+.nav {
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+
+.nav-tabs {
+    border-bottom: 1px solid #ddd;
+}
+
+.nav-tabs:after {
+    content: ' ';
+    display: table;
+    clear: both;
+}
+
+.nav-tabs > li {
+    float: left;
+    margin-bottom: -1px;
+    position: relative;
+    display: block;
+}
+
+.nav-tabs > li > a {
+    margin-right: 2px;
+    line-height: 1.42857143;
+    border: 1px solid transparent;
+    border-radius: 4px 4px 0 0;
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    color: #337ab7;
+    text-decoration: none;
+}
+
+.nav-tabs > li > a:hover {
+    border-color: #ccc #ccc #ddd;
+}
+
+.nav > li > a:focus, .nav > li > a:hover {
+    text-decoration: none;
+    background-color: #ccc;
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
+    color: #555;
+    cursor: default;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-bottom-color: transparent;
+}
+
+.tab-content {
+    clear: both;
+    width: 100%;
+}
+
+.tab-content > .tab-pane {
+    display: block;
+}
+
+.tab-content > .active {
+    display: block;
+}

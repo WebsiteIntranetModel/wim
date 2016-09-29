@@ -99,10 +99,7 @@
 
         <?php if (!empty($primary_nav) || !empty($secondary_nav) || !empty($page['navigation'])): ?>
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only"><?php print t('Toggle navigation'); ?></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
+            <?php print t('Menu'); ?>
           </button>
         <?php endif; ?>
 
@@ -138,6 +135,10 @@
       <div class="row">
         <?php if (!empty($breadcrumb)): print $breadcrumb; endif; ?>
       </div>
+    <?php endif; ?>
+
+    <?php if (isset($readspeaker)): ?>
+      <?php print render($readspeaker); ?>
     <?php endif; ?>
 
     <?php if (!empty($page['highlighted'])): ?>

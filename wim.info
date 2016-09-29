@@ -47,6 +47,7 @@ dependencies[] = l10n_update
 dependencies[] = link
 dependencies[] = linkit
 dependencies[] = password_policy
+dependencies[] = pathauto
 dependencies[] = picture
 dependencies[] = redirect
 dependencies[] = scheduler
@@ -75,6 +76,7 @@ dependencies[] = wim_webform
 
 ; Custom
 dependencies[] = ckeditor_customtags
+dependencies[] = ckeditor_bootstrap_tabs
 dependencies[] = content_reminder
 dependencies[] = custom_lists
 dependencies[] = wim_sss

@@ -11,17 +11,15 @@ use Symfony\Component\CssSelector\CssSelectorConverter;
 /**
  * Build Solr document.
  */
-function external_crawler_build_document($pagekey, $url, $title, $body) {
+function external_crawler_build_document($pagekey, $url, $title, $body, $site_id) {
   module_load_include('inc', 'apachesolr', 'apachesolr.index');
 
   $document = new ApacheSolrDocument();
   $document->id = apachesolr_document_id($pagekey, 'external_crawler');
   $document->site = url(NULL, array('absolute' => TRUE));
   $document->hash = apachesolr_site_hash();
-  $document->entity_id = 1;
+  $document->entity_id = $site_id;
   $document->entity_type = 'external_crawler';
-  $document->bundle = 'page';
-  $document->bundle_name = t('Page');
   $document->language = LANGUAGE_NONE;
   $document->url = $url;
 
@@ -32,7 +30,7 @@ function external_crawler_build_document($pagekey, $url, $title, $body) {
   $document->addField('domain_site', 1);
 
   // Allow other modules to alter the document.
-  $context = array('pagekey' => $pagekey);
+  $context = array('pagekey' => $pagekey, 'site_id' => $site_id);
   drupal_alter('external_crawler_document', $document, $context);
 
   return $document;
@@ -206,7 +204,12 @@ function _external_crawler_index_page_html($site, $result, &$document, &$pagedat
   }
 
   // Set the page title.
-  $document['title'] = $crawler->filter('title')->text();
+  if ($crawler->filterXpath('//title')->count()) {
+    $document['title'] = $crawler->filterXpath('//title')->text();
+  }
+  else {
+    $document['title'] = NULL;
+  }
 
   foreach ($included as $nodeCrawler) {
     if ($site->content_exclude) {

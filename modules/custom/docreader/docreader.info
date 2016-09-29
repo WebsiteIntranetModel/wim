@@ -1,0 +1,6 @@
+name = WIM docReader
+description = This module makes it possible to add to a web site docReader.
+core = 7.x
+package = WIM
+
+configure = admin/config/services/docreader

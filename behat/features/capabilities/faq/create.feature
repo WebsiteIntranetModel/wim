@@ -25,6 +25,7 @@ Feature: Create FAQ
     And I should see the heading "TEST FAQ QUESTION"
     And I should see "ANSWER"
     And I should see "Share"
+    Then the url should match "/faq/test-faq-question"
 
     Given I am an anonymous user
     And I visit "node/add/faq"

@@ -21,3 +21,5 @@ Feature: Create form on site
     Then I click "Conditionals"
     And I click "E-mails"
     And I click "Form settings"
+    And I click "View"
+    Then the url should match "/webform/test-webform"

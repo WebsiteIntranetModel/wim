@@ -3,6 +3,32 @@
   border-radius: 4px;
   clear: both;
 
+  .input-group {
+    display: block;
+    @include MQ($screen-sm) {
+      display: table;
+    }
+    .form-text {
+      width: 75%;
+      float: left;
+      box-sizing: border-box;
+      @include MQ($screen-sm) {
+        float: none;
+        width: 100%;
+      }
+    }
+    .input-group-btn {
+      width: 25%;
+      float: left;
+      @include MQ($screen-sm) {
+        float: none;
+        width: auto;
+      }
+      .btn {
+        width: 100%;
+      }
+    }
+  }
   .form-group {
     margin: 0;
   }
@@ -35,8 +61,15 @@
 .search-results {
   padding-left: 0;
   li {
-    list-style-position: inside;
-    font-weight: bold;
+    list-style: none;
+    counter-increment: step-counter;
+    &:before {
+      content: counter(step-counter) ".";
+      font-weight: bold;
+      float: left;
+      line-height: 22px;
+      margin-right: 3px;
+    }
     .search-snippet-info,
     .node {
       font-weight: normal;
@@ -53,8 +86,12 @@
   .submitted {
     margin: 0;
   }
+  .source-wrapper {
+    span {
+      color: lighten($gray-base, 40%);
+    }
+  }
   .source {
-    color: #979797;
     font-weight: normal;
   }
   .node-agenda {
@@ -63,6 +100,7 @@
       width: 39px;
       height: 41px;
       margin-right: 10px;
+      margin-bottom: 10px;
       border: 1px solid lighten($gray-base, 90%);
       text-align: center;
       padding-top: 5px;
