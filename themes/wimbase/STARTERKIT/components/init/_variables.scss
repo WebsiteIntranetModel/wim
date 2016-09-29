@@ -1,0 +1,14 @@
+//
+// Override the default bootstrap colors here.
+$brand-primary:         #564B73 !default;
+$brand-success:         #96B522 !default;
+$brand-info:            #D4D1DF !default;
+$brand-warning:         #F5A623 !default;
+$brand-danger:          #D0021B !default;
+
+//
+// Override the default bootstrap font variables here. Make sure to add the fonts through /components/styles/
+$font-family-sans-serif:  "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$font-family-serif:       "Roboto Slab", Georgia, "Times New Roman", Times, serif !default;
+$font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace !default;
+$font-family-base:        $font-family-sans-serif !default;

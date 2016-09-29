@@ -1,0 +1,4 @@
+name = WIM base
+description = WIM base theme. Do modify this theme.
+core = 7.x
+base theme = bootstrap

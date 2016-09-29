@@ -1,7 +1,7 @@
 {
   "name": "coe",
   "version": "1.0.0",
-  "description": "WebsiteIntranetModel",
+  "description": "STARTERKIT",
   "main": "index.js",
   "scripts": {
     "test": "gulp"
@@ -10,7 +10,7 @@
   "license": "GPL",
   "repository": {
     "type": "git",
-    "url": "https://bitbucket.org/goalgorilla/coe"
+    "url": ""
   },
   "devDependencies": {
     "autoprefixer": "^6.3.6",
