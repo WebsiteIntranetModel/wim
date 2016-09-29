@@ -108,7 +108,7 @@ function wim_form_element_label(&$variables) {
  *    A HTML for single date element.
  */
 function wim_date_display_single($variables) {
-  $date = $variables['dates']['value']['formatted_iso'];
+  $date = $variables['date'];
   $timezone = $variables['timezone'];
   $attributes = $variables['attributes'];
   $format = $variables['dates']['format'];
@@ -116,6 +116,7 @@ function wim_date_display_single($variables) {
   $show_remaining_days = isset($variables['show_remaining_days']) ? $variables['show_remaining_days'] : '';
 
   if ($format === $single_day_format) {
+    $date = $variables['dates']['value']['formatted_iso'];
     $date_timestamp = (int) strtotime($date);
     $day = format_date($date_timestamp, 'custom', 'd');
     $month = format_date($date_timestamp, 'custom', 'M');
