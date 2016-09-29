@@ -1,0 +1,54 @@
+- var base = "../../"
+- var pagetype = "styleguide"
+- var section = "atoms"
+- var page = "Tabs"
+
+doctype html
+html(lang="en")
+  head
+    include ../../layout/_head.jade
+
+  body(class='#{pagetype}')
+
+    .meta-wrapper.container.container-nopadding
+      include ../../layout/_top.jade
+
+
+    .main-wrapper.container
+      include ../../layout/_navbar.jade
+
+      #page-banner(role='banner')
+      // Create region for banner and render it here. We moved header to the navbar header section.
+
+      include ../../layout/_main.jade
+
+        block content
+          p Inline Tabs, what you can use for all pages
+
+         .bootstrap-tab
+          ul.nav.nav-tabs(role='tablist')
+           li.active(role='presentation')
+            a(aria-controls='tab2-1', data-toggle='tab', href='#tab2-1', role='tab', aria-expanded='true') Tab1
+           li(role='presentation')
+            a(aria-controls='tab2-2', data-toggle='tab', href='#tab2-2', role='tab', aria-expanded='false') Tab2
+           li(role='presentation')
+            a(aria-controls='tab2-3', data-toggle='tab', href='#tab2-3', role='tab', aria-expanded='false') Tab3
+           li(role='presentation')
+            a(aria-controls='tab2-4', data-toggle='tab', href='#tab2-4', role='tab') Tab4
+           li(role='presentation')
+            a(aria-controls='tab2-5', data-toggle='tab', href='#tab2-5', role='tab') Tab5
+          .tab-content
+           #tab2-1.tab-pane.active(role='tabpanel')
+            p Content for tab1
+           #tab2-2.tab-pane(role='tabpanel')
+            p Content for tab2
+           #tab2-3.tab-pane(role='tabpanel')
+            p Content for tab3
+           #tab2-4.tab-pane(role='tabpanel')
+            p Content for tab4
+           #tab2-5.tab-pane(role='tabpanel')
+            p Content for tab5
+
+
+
+    include ../../layout/_scripts.jade
