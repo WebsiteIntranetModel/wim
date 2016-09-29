@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
-    <title>Colors - WIM</title>
+    <title>Tabs - WIM</title>
     <link rel="apple-touch-icon" sizes="57x57" href="images/favicon/apple-touch-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="images/favicon/apple-touch-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="images/favicon/apple-touch-icon-72x72.png">
@@ -66,7 +66,7 @@
           </nav>
         </div>
       </header>
-      <div id="page-banner" role="banner"> </div>
+      <div id="page-banner" role="banner"></div>
       <!-- Create region for banner and render it here. We moved header to the navbar header section.-->
       <div role="main" class="main-container container">
         <div class="row">
@@ -91,61 +91,32 @@
           <section class="col-sm-9"><a id="main-content"></a>
             <div class="region region-content">
               <section id="block-system-main" class="block block-system clearfix">
-                <h1>Colors</h1>
-                <p>These colors are available and configurable in the WIM scss base. Mind contrast ratio when picking background and text colors. </p>
-                <div class="media">
-                  <div class="media-left">
-                    <svg fill="#660066" style="width:50px;height:50px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-                      <rect width="100" height="100"></rect>
-                    </svg>
-                  </div>
-                  <div class="media-body">
-                    <p><strong>$brand-primary</strong></p>
-                    <p>#660066</p>
-                  </div>
-                </div>
-                <div class="media">
-                  <div class="media-left">
-                    <svg fill="#efe5ef" style="width:50px;height:50px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-                      <rect width="100" height="100"></rect>
-                    </svg>
-                  </div>
-                  <div class="media-body">
-                    <p><strong>$brand-light</strong></p>
-                    <p>#efe5ef</p>
-                  </div>
-                </div>
-                <div class="media">
-                  <div class="media-left">
-                    <svg fill="#d0d0d0" style="width:50px;height:50px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-                      <rect width="100" height="100"></rect>
-                    </svg>
-                  </div>
-                  <div class="media-body">
-                    <p><strong>$brand-dark</strong></p>
-                    <p>#330033</p>
-                  </div>
-                </div>
-                <div class="media">
-                  <div class="media-left">
-                    <svg fill="#efefef" style="width:50px;height:50px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-                      <rect width="100" height="100"></rect>
-                    </svg>
-                  </div>
-                  <div class="media-body">
-                    <p><strong>$brand-grey-light</strong></p>
-                    <p>#efefef</p>
-                  </div>
-                </div>
-                <div class="media">
-                  <div class="media-left">
-                    <svg fill="#d0d0d0" style="width:50px;height:50px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-                      <rect width="100" height="100"></rect>
-                    </svg>
-                  </div>
-                  <div class="media-body">
-                    <p><strong>$brand-grey-normal</strong></p>
-                    <p>#d0d0d0</p>
+                <h1>Tabs</h1>
+                <p>Inline Tabs, what you can use for all pages</p>
+                <div class="bootstrap-tab">
+                  <ul role="tablist" class="nav nav-tabs">
+                    <li role="presentation" class="active"><a aria-controls="tab2-1" contenteditable="true" data-toggle="tab" href="#tab2-1" role="tab" aria-expanded="true">Tab1</a></li>
+                    <li role="presentation"><a aria-controls="tab2-2" contenteditable="true" data-toggle="tab" href="#tab2-2" role="tab" aria-expanded="false">Tab2</a></li>
+                    <li role="presentation"><a aria-controls="tab2-3" contenteditable="true" data-toggle="tab" href="#tab2-3" role="tab" aria-expanded="false">Tab3</a></li>
+                    <li role="presentation"><a aria-controls="tab2-4" contenteditable="true" data-toggle="tab" href="#tab2-4" role="tab">Tab4</a></li>
+                    <li role="presentation"><a aria-controls="tab2-5" contenteditable="true" data-toggle="tab" href="#tab2-5" role="tab">Tab5</a></li>
+                  </ul>
+                  <div class="tab-content">
+                    <div id="tab2-1" role="tabpanel" class="tab-pane active">
+                      <p>Content for tab1</p>
+                    </div>
+                    <div id="tab2-2" role="tabpanel" class="tab-pane">
+                      <p>Content for tab2</p>
+                    </div>
+                    <div id="tab2-3" role="tabpanel" class="tab-pane">
+                      <p>Content for tab3</p>
+                    </div>
+                    <div id="tab2-4" role="tabpanel" class="tab-pane">
+                      <p>Content for tab4</p>
+                    </div>
+                    <div id="tab2-5" role="tabpanel" class="tab-pane">
+                      <p>Content for tab5</p>
+                    </div>
                   </div>
                 </div>
               </section>
