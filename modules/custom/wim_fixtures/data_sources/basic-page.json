@@ -48,5 +48,15 @@
     "field_tags":"1",
     "field_promoted":"0",
     "author":"2"
+  },
+  {
+    "id":"6",
+    "title":"Testing ckeditor tabs",
+    "body":"<div class=\"bootstrap-tab\"><ul class=\"nav nav-tabs\" role=\"tablist\"><li class=\"active\" role=\"presentation\"><a aria-controls=\"tab2-1\" contenteditable=\"true\" data-toggle=\"tab\" href=\"#tab2-1\" role=\"tab\">Tab1</a></li><li role=\"presentation\"><a aria-controls=\"tab2-2\" contenteditable=\"true\" data-toggle=\"tab\" href=\"#tab2-2\" role=\"tab\">Tab2</a></li><li role=\"presentation\"><a aria-controls=\"tab2-3\" contenteditable=\"true\" data-toggle=\"tab\" href=\"#tab2-3\" role=\"tab\">Tab3</a></li><li role=\"presentation\"><a aria-controls=\"tab2-4\" contenteditable=\"true\" data-toggle=\"tab\" href=\"#tab2-4\" role=\"tab\">Tab4</a></li><li role=\"presentation\"><a aria-controls=\"tab2-5\" contenteditable=\"true\" data-toggle=\"tab\" href=\"#tab2-5\" role=\"tab\">Tab5</a></li></ul><div class=\"tab-content\"><div class=\"tab-pane active\" id=\"tab2-1\" role=\"tabpanel\"><p>Content for tab1</p></div><div class=\"tab-pane\" id=\"tab2-2\" role=\"tabpanel\"><p>Content for tab2</p></div><div class=\"tab-pane\" id=\"tab2-3\" role=\"tabpanel\"><p>Content for tab3</p></div><div class=\"tab-pane\" id=\"tab2-4\" role=\"tabpanel\"><p>Content for tab4</p></div><div class=\"tab-pane\" id=\"tab2-5\" role=\"tabpanel\"><p>Content for tab5</p></div></div></div><p>&nbsp;</p>",
+    "summary":"",
+    "field_image":"",
+    "field_tags":"1",
+    "field_promoted":"0",
+    "author":"2"
   }
 ]
