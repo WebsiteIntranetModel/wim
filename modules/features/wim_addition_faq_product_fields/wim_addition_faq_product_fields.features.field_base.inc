@@ -173,13 +173,13 @@ function wim_addition_faq_product_fields_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_product_procedure'.
-  $field_bases['field_product_procedure'] = array(
+  // Exported field_base: 'field_product_period'.
+  $field_bases['field_product_period'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_product_procedure',
+    'field_name' => 'field_product_period',
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -192,13 +192,13 @@ function wim_addition_faq_product_fields_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_product_period'.
-  $field_bases['field_product_period'] = array(
+  // Exported field_base: 'field_product_procedure'.
+  $field_bases['field_product_procedure'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_product_period',
+    'field_name' => 'field_product_procedure',
     'indexes' => array(
       'format' => array(
         0 => 'format',
