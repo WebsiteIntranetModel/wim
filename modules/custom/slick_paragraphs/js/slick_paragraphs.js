@@ -11,7 +11,15 @@
       $.each(slickParagraphsSettings, function (sliderClass, sliderOptions) {
         var $slider = $('.' + sliderClass + '>.field-items');
         $slider.once('slick-paragraphs').slick(
-          sliderOptions
+          {
+            autoplay: !!sliderOptions.autoplay,
+            autoplaySpeed: sliderOptions.autoplaySpeed,
+            dots: !!sliderOptions.dots,
+            fade: !!sliderOptions.fade,
+            pauseOnHover: !!sliderOptions.pauseOnHover,
+            prevArrow: '<button type="button" data-role="none" class="slick-prev" aria-label="Prev" role="button"><span class="element-invisible">' + Drupal.t('Prev') + '</span></button>',
+            nextArrow: '<button type="button" data-role="none" class="slick-next" aria-label="Next" role="button"><span class="element-invisible">' + Drupal.t('Next') + '</span></button>'
+          }
         );
 
         // Add pause button to slider.
@@ -36,6 +44,6 @@
    * docReaderLink theme function.
    */
   Drupal.theme.prototype.slickPause = function () {
-    return '<button type="button" data-role="none" class="slick-pause" aria-label="Pause" role="button">' + Drupal.t('Pause') + '</button>';
+    return '<button type="button" data-role="none" class="slick-pause" aria-label="Pause" role="button"><span class="element-invisible">' + Drupal.t('Pause') + '</span></button>';
   };
 })(jQuery);
