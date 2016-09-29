@@ -22,15 +22,17 @@ class EditorialMigration extends WIMMigration {
     $this->fileName = $arguments['file_name'];
 
     $columns = array(
-      array('id', t('Id')),
-      array('label', t('Label')),
-      array('title', t('Title')),
-      array('field_body', t('Body')),
-      array('field_link', t('Link')),
-      array('field_image', t('Image')),
+      'id' => t('Id'),
+      'label' => t('Label'),
+      'title' => t('Title'),
+      'field_body' => t('Body'),
+      'field_link' => t('Link'),
+      'field_image' => t('Image'),
     );
 
-    $this->source = new MigrateSourceCSV($this->dataSources . $this->fileName, $columns, array('header_rows' => 1));
+    $this->source = new MigrateSourceList(new WIMListJSON($this->dataSources . $this->fileName),
+      new WIMItemJSON($this->dataSources . $this->fileName, array()), $columns);
+
     $this->destination = new MigrateDestinationBean('editorial');
     $this->map = new MigrateSQLMap($this->machineName, array(
       'id' => array(

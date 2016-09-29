@@ -32,19 +32,19 @@ function wim_fixtures_migrate_api() {
         'class_name' => 'WIMTermMigration',
         'group_name' => 'WIMMigrate',
         'destination_vocabulary' => 'tags',
-        'file_name' => 'tag-terms.csv',
+        'file_name' => 'tag-terms.json',
       ),
       'WIM_Term_Categories' => array(
         'class_name' => 'WIMTermMigration',
         'group_name' => 'WIMMigrate',
         'destination_vocabulary' => 'news_categories',
-        'file_name' => 'news-category-terms.csv',
+        'file_name' => 'news-category-terms.json',
       ),
       'WIM_Faq_Categories' => array(
         'class_name' => 'WIMTermMigration',
         'group_name' => 'WIMMigrate',
         'destination_vocabulary' => 'faq_categories',
-        'file_name' => 'faq-category-terms.csv',
+        'file_name' => 'faq-category-terms.json',
       ),
       'WIM_Basic_Page' => array(
         'class_name' => 'BasicPageMigration',
@@ -72,7 +72,7 @@ function wim_fixtures_migrate_api() {
         'class_name' => 'ProductMigration',
         'group_name' => 'WIMMigrate',
         'content_type' => 'product',
-        'file_name' => 'product.csv',
+        'file_name' => 'product.json',
         'dependencies' => array(
           'WIM_User',
           'WIM_File',
@@ -83,7 +83,7 @@ function wim_fixtures_migrate_api() {
         'class_name' => 'NewsMigration',
         'group_name' => 'WIMMigrate',
         'content_type' => 'news',
-        'file_name' => 'news.csv',
+        'file_name' => 'news.json',
         'dependencies' => array(
           'WIM_Term_Categories',
           'WIM_Term_Tags',
@@ -95,7 +95,7 @@ function wim_fixtures_migrate_api() {
         'class_name' => 'FaqMigration',
         'group_name' => 'WIMMigrate',
         'content_type' => 'faq',
-        'file_name' => 'faq.csv',
+        'file_name' => 'faq.json',
         'dependencies' => array(
           'WIM_Faq_Categories',
           'WIM_Term_Tags',
@@ -106,7 +106,7 @@ function wim_fixtures_migrate_api() {
         'class_name' => 'AgendaMigration',
         'group_name' => 'WIMMigrate',
         'content_type' => 'agenda',
-        'file_name' => 'agenda.csv',
+        'file_name' => 'agenda.json',
         'dependencies' => array(
           'WIM_File',
           'WIM_Term_Tags',
@@ -116,12 +116,12 @@ function wim_fixtures_migrate_api() {
       'WIM_BlockCustom' => array(
         'class_name' => 'BlockCustomMigration',
         'group_name' => 'WIMMigrate',
-        'file_name' => 'block-custom.csv',
+        'file_name' => 'block-custom.json',
       ),
       'WIM_TopTasksMenu' => array(
         'class_name' => 'TopTasksMenuMigration',
         'group_name' => 'WIMMigrate',
-        'file_name' => 'top-tasks.csv',
+        'file_name' => 'top-tasks.json',
         'menu_name' => 'menu-top-tasks',
         'dependencies' => array(
           'WIM_File',
@@ -130,13 +130,13 @@ function wim_fixtures_migrate_api() {
       'WIM_SocialMediaMenu' => array(
         'class_name' => 'SocialMediaMenuMigration',
         'group_name' => 'WIMMigrate',
-        'file_name' => 'social-media.csv',
+        'file_name' => 'social-media.json',
         'menu_name' => 'menu-social-media',
       ),
       'WIM_Editorial' => array(
         'class_name' => 'EditorialMigration',
         'group_name' => 'WIMMigrate',
-        'file_name' => 'editorial.csv',
+        'file_name' => 'editorial.json',
         'dependencies' => array(
           'WIM_File',
         ),

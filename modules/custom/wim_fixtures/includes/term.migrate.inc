@@ -32,11 +32,13 @@ class WIMTermMigration extends TermMigration {
     $this->fileName = $arguments['file_name'];
 
     $columns = array(
-      array('id', t('Id')),
-      array('name', t('Name')),
+      'id' => t('Id'),
+      'name' => t('Name'),
     );
 
-    $this->source = new MigrateSourceCSV($this->dataSources . $this->fileName, $columns, array('header_rows' => 1));
+    $this->source = new MigrateSourceList(new WIMListJSON($this->dataSources . $this->fileName),
+      new WIMItemJSON($this->dataSources . $this->fileName, array()), $columns);
+
     $this->destination = new MigrateDestinationTerm($this->destinationVocabulary);
     $this->map = new MigrateSQLMap($this->machineName, array(
       'id' => array(

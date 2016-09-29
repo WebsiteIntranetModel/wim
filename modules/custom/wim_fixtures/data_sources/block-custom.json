@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "info": "Test block 1",
+    "body": "Text body 1 Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque"
+  },
+  {
+    "id": 2,
+    "info": "Test block 2",
+    "body": "Text body 2 Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque"
+  }
+]
