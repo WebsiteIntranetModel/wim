@@ -75,7 +75,7 @@
 ?>
 
 <div class="meta-wrapper container container-nopadding">
-  <?php print render($page['meta_left']); ?>
+  <?php print render($page['meta']); ?>
 </div>
 <div class="main-wrapper <?php print $container_class; ?>">
   <header id="header" class="<?php print $navbar_classes; ?>">

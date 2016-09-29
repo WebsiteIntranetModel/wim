@@ -91,7 +91,6 @@ gulp.task('styles', function () {
     .pipe( rename({dirname: ''}))
     .pipe( sourcemaps.write('.') )
     .pipe( gulp.dest(options.theme.css) )
-    .pipe( gulp.dest(options.rootPath.dist + '/css') )
     .pipe( connect.reload() );
 });
 
@@ -125,12 +124,6 @@ gulp.task('lint:sass', function () {
   return gulp.src(sassFilesToLint + '**/*.scss')
     .pipe($.sassLint())
     .pipe($.sassLint.format());
-});
-
-
-gulp.task('deploy', ['build'], function() {
-  return gulp.src([options.rootPath.dist + '/**/*'])
-    .pipe( deploy() );
 });
 
 // ===================================================
