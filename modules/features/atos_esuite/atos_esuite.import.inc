@@ -87,7 +87,7 @@ function atos_esuite_import_batch_worker($type, &$context) {
       _atos_esuite_delete_nodes($context['sandbox']['starttime'], $type);
     }
     else {
-      drupal_set_message(t('0 ' . $mapping[$type] . ' node imported.'), 'status');
+      drupal_set_message(t('0 !type node imported.', array('!type' => $mapping[$type])), 'status');
     }
     if ($context['sandbox']['errors'] > 0) {
       drupal_set_message(t('There was some errors during import. Please check logs.'), 'error');
