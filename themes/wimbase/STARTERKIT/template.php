@@ -7,7 +7,7 @@
  * other files containing more complex functions.
  */
 
-$includes = drupal_get_path('theme', 'wim') . '/includes/';
+$includes = drupal_get_path('theme', 'coe') . '/includes/';
 
 // Include preprocess.
 require_once $includes . 'preprocess.inc';

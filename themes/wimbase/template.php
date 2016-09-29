@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * The primary PHP file for the WIM STARTERKIT theme.
+ * The primary PHP file for the Drupal Wim theme.
  *
  * This file should only contain light helper functions and point to stubs in
  * other files containing more complex functions.
  */
 
-$includes = drupal_get_path('theme', 'wim') . '/includes/';
+$includes = drupal_get_path('theme', 'wimbase') . '/includes/';
 
 // Include preprocess.
 require_once $includes . 'preprocess.inc';
