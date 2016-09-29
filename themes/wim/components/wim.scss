@@ -1,90 +1,41 @@
 @charset "UTF-8";
 
-// Fonts
-@import 'wim/fontawesome/font-awesome';
-@import 'wim/fonts';
-
-// Variables and mixins
-@import 'wim/variables';
-@import "contrib/bootstrap/mixins";
-@import "wim/mixins/mixins";
-
-// Reset and dependencies
-@import "contrib/bootstrap/normalize";
-@import "contrib/bootstrap/print";
-
-// Core CSS
-@import "contrib/bootstrap/scaffolding";
-@import "contrib/bootstrap/type";
-@import "contrib/bootstrap/code";
-@import "contrib/bootstrap/grid";
-@import "contrib/bootstrap/tables";
-@import "contrib/bootstrap/forms";
-@import "contrib/bootstrap/buttons";
-
-// Components
-@import "contrib/bootstrap/component-animations";
-@import "contrib/bootstrap/dropdowns";
-@import "contrib/bootstrap/button-groups";
-@import "contrib/bootstrap/input-groups";
-@import "contrib/bootstrap/navs";
-@import "contrib/bootstrap/navbar";
-@import "contrib/bootstrap/breadcrumbs";
-@import "contrib/bootstrap/pagination";
-@import "contrib/bootstrap/pager";
-@import "contrib/bootstrap/labels";
-@import "contrib/bootstrap/badges";
-@import "contrib/bootstrap/jumbotron";
-@import "contrib/bootstrap/thumbnails";
-@import "contrib/bootstrap/alerts";
-@import "contrib/bootstrap/progress-bars";
-@import "contrib/bootstrap/media";
-@import "contrib/bootstrap/list-group";
-@import "contrib/bootstrap/panels";
-@import "contrib/bootstrap/responsive-embed";
-@import "contrib/bootstrap/wells";
-@import "contrib/bootstrap/close";
-
-// Components w/ JavaScript
-@import "contrib/bootstrap/modals";
-@import "contrib/bootstrap/tooltip";
-@import "contrib/bootstrap/popovers";
-@import "contrib/bootstrap/carousel";
-
-// Utility classes
-@import "contrib/bootstrap/utilities";
-@import "contrib/bootstrap/responsive-utilities";
-
-// Drupal Bootstrap overrides 3.3.6
-@import 'overrides';
+// Base assets, typography and layout
+@import 'wim/base/variables';
+@import "wim/base/mixins";
+@import 'wim/base/fonts';
+@import 'wim/base/layout';
 
 // Atoms
-@import 'wim/layout';
-@import 'wim/type';
-@import 'wim/forms';
+@import 'wim/atoms/fontawesome/font-awesome';
+@import 'wim/atoms/type';
+@import 'wim/atoms/forms';
+@import 'wim/atoms/breadcrumb';
 
 // Molecules
-@import 'wim/block';
-@import 'wim/block--menu-top-tasks';
-@import 'wim/block--social-links';
-@import 'wim/block--menu-social-media';
-@import 'wim/menu';
-@import 'wim/dropdowns';
-@import 'wim/navs';
-@import 'wim/vertical-tabs';
-@import 'wim/accordion';
+@import 'wim/molecules/navs';
+@import 'wim/molecules/block';
+@import 'wim/molecules/menu';
+@import 'wim/molecules/dropdowns';
+@import 'wim/molecules/vertical-tabs';
+@import 'wim/molecules/accordion';
 
 // Organisms
-@import 'wim/footer';
-@import 'wim/navbar';
-@import 'wim/search';
-@import 'wim/breadcrumb';
-@import 'wim/region-meta-left';
-@import 'wim/slider';
+@import 'wim/organisms/footer';
+@import 'wim/organisms/navbar';
+@import 'wim/organisms/search';
+@import 'wim/organisms/meta';
+@import 'wim/organisms/node';
+@import 'wim/organisms/slider';
 
 // Templates
-@import 'wim/overrides';
-@import 'wim/node';
-@import 'wim/node--agenda';
-@import 'wim/node--product';
-@import 'wim/view';
+@import 'wim/templates/block--menu-top-tasks';
+@import 'wim/templates/block--social-links';
+@import 'wim/templates/block--menu-social-media';
+@import 'wim/templates/node--agenda';
+@import 'wim/templates/node--product';
+@import 'wim/templates/view--news';
+@import 'wim/templates/view--faq';
+
+// Overrides
+@import 'wim/base/overrides';
