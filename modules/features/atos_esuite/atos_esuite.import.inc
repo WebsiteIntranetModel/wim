@@ -87,7 +87,10 @@ function atos_esuite_import_batch_worker($type, &$context) {
       _atos_esuite_delete_nodes($context['sandbox']['starttime'], $type);
     }
     else {
-      drupal_set_message(t('Import failed. Please check logs.'), 'error');
+      drupal_set_message(t('0 ' . $mapping[$type] . ' node imported.'), 'status');
+    }
+    if ($context['sandbox']['errors'] > 0) {
+      drupal_set_message(t('There was some errors during import. Please check logs.'), 'error');
       drupal_mail('atos_esuite', 'failed', variable_get('site_mail'), LANGUAGE_NONE);
     }
     $context['results']['count'] = $context['sandbox']['done'];
@@ -178,9 +181,9 @@ function _atos_esuite_process_feed($url) {
 
   $results = simplexml_load_file($url);
 
-  $total_items = 'total-items';
-  if (isset($results->{$total_items})) {
-    $total_items = (int) $results->{$total_items};
+  $total_items = 0;
+  if (isset($results->{'total-items'})) {
+    $total_items = (int) $results->{'total-items'};
   }
   else {
     watchdog('atos esuite import', 'There is something strange with the feed. Check :url', array(':url' => $url));
