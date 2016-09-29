@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
-    <title>Tables - WIM</title>
+    <title>Tabs - WIM</title>
     <base href="../../">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" type="text/css" rel="stylesheet" media="screen">
     <link href="css/wim.css" type="text/css" rel="stylesheet" media="screen">
@@ -49,7 +49,7 @@
           </nav>
         </div>
       </header>
-      <div id="page-banner" role="banner"> </div>
+      <div id="page-banner" role="banner"></div>
       <!-- Create region for banner and render it here. We moved header to the navbar header section.-->
       <div role="main" class="main-container container">
         <div class="row">
@@ -74,8 +74,34 @@
           <section class="col-sm-9"><a id="main-content"></a>
             <div class="region region-content">
               <section id="block-system-main" class="block block-system clearfix">
-                <h1>Tables</h1>
-                <p>Lorem ipsum dolor sit amet.</p>
+                <h1>Tabs</h1>
+                <p>Inline Tabs, what you can use for all pages</p>
+                <div class="bootstrap-tab">
+                  <ul role="tablist" class="nav nav-tabs">
+                    <li role="presentation" class="active"><a aria-controls="tab2-1" data-toggle="tab" href="#tab2-1" role="tab" aria-expanded="true">Tab1</a></li>
+                    <li role="presentation"><a aria-controls="tab2-2" data-toggle="tab" href="#tab2-2" role="tab" aria-expanded="false">Tab2</a></li>
+                    <li role="presentation"><a aria-controls="tab2-3" data-toggle="tab" href="#tab2-3" role="tab" aria-expanded="false">Tab3</a></li>
+                    <li role="presentation"><a aria-controls="tab2-4" data-toggle="tab" href="#tab2-4" role="tab">Tab4</a></li>
+                    <li role="presentation"><a aria-controls="tab2-5" data-toggle="tab" href="#tab2-5" role="tab">Tab5</a></li>
+                  </ul>
+                  <div class="tab-content">
+                    <div id="tab2-1" role="tabpanel" class="tab-pane active">
+                      <p>Content for tab1</p>
+                    </div>
+                    <div id="tab2-2" role="tabpanel" class="tab-pane">
+                      <p>Content for tab2</p>
+                    </div>
+                    <div id="tab2-3" role="tabpanel" class="tab-pane">
+                      <p>Content for tab3</p>
+                    </div>
+                    <div id="tab2-4" role="tabpanel" class="tab-pane">
+                      <p>Content for tab4</p>
+                    </div>
+                    <div id="tab2-5" role="tabpanel" class="tab-pane">
+                      <p>Content for tab5</p>
+                    </div>
+                  </div>
+                </div>
               </section>
             </div>
           </section>

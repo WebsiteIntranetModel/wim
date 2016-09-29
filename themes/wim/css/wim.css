@@ -3099,6 +3099,40 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   color: #333;
 }
 
+.nav-tabs {
+  border-bottom: 1px solid #ddd;
+}
+
+.nav-tabs > li {
+  float: left;
+  margin-bottom: -1px;
+}
+
+.nav-tabs > li > a {
+  margin-right: 2px;
+  line-height: 1.42857;
+  border: 1px solid transparent;
+  border-bottom-color: #ddd;
+  border-radius: 4px 4px 0 0;
+  color: black;
+  background-color: #eaeaea;
+  cursor: pointer;
+}
+
+.nav-tabs > li > a:hover {
+  color: white;
+  border-color: #0080a8 #0080a8 #ddd;
+  background-color: #0080a8;
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+  color: white;
+  background-color: #0080a8;
+  border: 1px solid #ddd;
+  border-bottom-color: transparent;
+  cursor: default;
+}
+
 .main-container .block {
   margin-bottom: 20px;
 }
@@ -3682,26 +3716,26 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   margin-right: 10px;
 }
 
-.region-meta-left {
+.region-meta {
   float: left;
   padding-top: 10px;
 }
 
-.region-meta-left ul.menu li {
+.region-meta ul.menu li {
   display: inline;
 }
 
-.region-meta-left ul.menu li a {
+.region-meta ul.menu li a {
   display: inline-block;
   padding: 0 4px;
   color: #005975;
 }
 
-.region-meta-left ul.menu li a:before {
+.region-meta ul.menu li a:before {
   display: none;
 }
 
-.region-meta-left ul.menu li a:hover {
+.region-meta ul.menu li a:hover {
   background: none;
 }
 
