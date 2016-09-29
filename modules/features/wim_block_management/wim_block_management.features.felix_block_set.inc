@@ -45,6 +45,10 @@ function wim_block_management_felix_default_block_sets() {
         'module' => 'views',
         'delta' => '*',
       ),
+      8 => array(
+        'module' => 'wim_rss',
+        'delta' => '*',
+      ),
     ),
     'nodetypes' => array(
       0 => array(
