@@ -108,7 +108,7 @@ function wim_form_element_label(&$variables) {
  *    A HTML for single date element.
  */
 function wim_date_display_single($variables) {
-  $date = $variables['date'];
+  $date = $variables['dates']['value']['formatted_iso'];
   $timezone = $variables['timezone'];
   $attributes = $variables['attributes'];
   $format = $variables['dates']['format'];
@@ -116,7 +116,7 @@ function wim_date_display_single($variables) {
   $show_remaining_days = isset($variables['show_remaining_days']) ? $variables['show_remaining_days'] : '';
 
   if ($format === $single_day_format) {
-    $date_timestamp = strtotime($date);
+    $date_timestamp = (int) strtotime($date);
     $day = format_date($date_timestamp, 'custom', 'd');
     $month = format_date($date_timestamp, 'custom', 'M');
     $date = '<span class="day">' . $day . '</span><span class="month">' . $month . '</span>';
@@ -179,7 +179,7 @@ function wim_menu_link__main_menu($variables) {
 
   // On primary navigation menu, class 'active' is not set on active menu item.
   // @see https://drupal.org/node/1896674
-  if (($element['#href'] == $_GET['q'] || ($element['#href'] == '<front>' && drupal_is_front_page())) && (empty($element['#localized_options']['language']))) {
+  if (($element['#href'] == $_GET['q'] || ($element['#href'] === '<front>' && drupal_is_front_page())) && (empty($element['#localized_options']['language']))) {
     $element['#attributes']['class'][] = 'active';
   }
 
