@@ -61,7 +61,7 @@ function wim_external_search_facetapi_default_facet_settings() {
       'count' => '4',
       'active' => '4',
     ),
-    'empty_behavior' => 'none',
+    'empty_behavior' => 'text',
     'facet_more_text' => 'Show more',
     'facet_fewer_text' => 'Show fewer',
     'soft_limit' => '5',
@@ -133,7 +133,7 @@ function wim_external_search_facetapi_default_facet_settings() {
       'add_range' => 'Add a new date range',
     ),
     'empty_text' => array(
-      'value' => '',
+      'value' => '<p>No matches for this filter.</p>',
       'format' => 'full_html',
     ),
   );

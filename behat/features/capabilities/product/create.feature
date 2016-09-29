@@ -27,6 +27,7 @@ Feature: Create Product
     And I should see the heading "TEST PRODUCT"
     And I should see "BODY CONTENT"
     And I should see "Share"
+    Then the url should match "/product/test-product"
 
     Given I am an anonymous user
     And I visit "node/add/product"

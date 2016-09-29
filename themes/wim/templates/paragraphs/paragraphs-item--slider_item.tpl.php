@@ -35,6 +35,9 @@
         <?php hide($content['field_title']); ?>
       <?php endif; ?>
     <?php endif; ?>
-    <?php print render($content); ?>
+    <?php print render($content['field_image']); ?>
+    <div class="slider-text-warapper">
+      <?php print render($content); ?>
+    </div>
   </div>
 </div>

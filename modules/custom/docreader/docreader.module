@@ -1,0 +1,71 @@
+<?php
+/**
+ * @file
+ * Implementation docReader.
+ */
+
+/**
+ * List of file types currently supported by docReader.
+ */
+function docreader_supported_file_extensions() {
+  // ePub (.epub).
+  // Microsoft Excel (.xls, .xlsx).
+  // Microsoft PowerPoint (.pps, .ppt, .pptx).
+  // Microsoft Word (.doc, .docx).
+  // OpenOffice/OpenDocument presentatie (.odp).
+  // OpenOffice/OpenDocument Spreadsheet (.ods).
+  // OpenOffice/OpenDocument tekst (.odt).
+  // Portable Document Format (.pdf).
+  // Rich Text Format (.rtf).
+  return 'epub, xls, xlsx, pps, ppt, pptx, doc, docx, odp, ods, odt, pdf, rtf';
+}
+
+/**
+ * Implements hook_permission().
+ */
+function docreader_permission() {
+  $permissions = array();
+  $permissions['administer docreader'] = array(
+    'title' => t('Dimpact docReader Instellingen'),
+    'description' => t('Access rights to the settings page of the WIM docReader-module.'),
+  );
+
+  return $permissions;
+}
+
+/**
+ * Implements hook_menu().
+ */
+function docreader_menu() {
+  $items = array();
+  $items['admin/config/services/docreader'] = array(
+    'title' => 'docReader',
+    'description' => 'This is the setting page for the WIM docReader-module.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('docreader_settings_form'),
+    'access arguments' => array('administer docreader'),
+    'file' => 'docreader.admin.inc',
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function docreader_preprocess_page(&$variables) {
+  $module_path = drupal_get_path('module', 'docreader');
+  $allowed_extentions = variable_get('docreader_supported_file_extensions', docreader_supported_file_extensions());
+  $allowed_extentions = explode(',', trim($allowed_extentions));
+
+  $docreader_settings = array(
+    'cid' => variable_get('docreader_cid'),
+    'language' => variable_get('docreader_language', 'nl_nl'),
+    'supported_file_extensions' => $allowed_extentions,
+    'icon' => $module_path . '/images/docreader_icon.gif',
+    'button_text' => variable_get('docreader_button_text', 'Read for'),
+  );
+
+  drupal_add_js($module_path . '/js/docreader.js');
+  drupal_add_js(array('docReader' => $docreader_settings), array('type' => 'setting'));
+}

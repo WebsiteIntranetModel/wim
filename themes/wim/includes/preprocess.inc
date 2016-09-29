@@ -30,18 +30,6 @@ function wim_preprocess_node(&$variables) {
       $variables['product_link'] = l(t('Back to product'), '/node/' . $parameters['product'], array('attributes' => array('class' => array('back-link'))));
     }
   }
-
-  if ($content_type === 'agenda' && $view_mode === 'search_result') {
-    global $base_url;
-    $variables['source'] = l($base_url, '', array(
-      'absolute' => TRUE,
-      'attributes' => array(
-        'class' => array(
-          'source',
-        ),
-      ),
-    ));
-  }
 }
 
 /**
@@ -244,6 +232,10 @@ function wim_preprocess_page(&$variables) {
     drupal_set_title(t('Search'));
   }
 
+  // Add readspeaker to page template.
+  if (module_exists('readspeaker')) {
+    $variables['readspeaker'] = readspeaker_build_player();
+  }
 }
 
 /**
@@ -270,8 +262,5 @@ function wim_preprocess_search_result(&$variables) {
     $variables['node_content'] = node_view($node, 'search_result');
     // Add content type label.
     $variables['content_type'] = isset($content_types_labels[$node->type]) ? $content_types_labels[$node->type] : ucfirst($node->type);
-    if ($node->type === 'agenda') {
-      unset($variables['source']);
-    }
   }
 }

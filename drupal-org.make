@@ -26,12 +26,14 @@ projects[entity] = 1.8
 projects[entityreference] = 1.2
 projects[facetapi] = 1.5
 projects[features] = 2.10
+projects[feeds] = 2.0-beta2
 projects[felix] = 1.0-beta9
 projects[field_group] = 1.5
 projects[file_entity] = 2.0-beta3
 projects[flood_control] = 1.0
 projects[hansel] = 1.6
 projects[honeypot] = 1.22
+projects[job_scheduler] = 2.0-alpha3
 projects[jquery_update] = 2.7
 projects[location] = 3.7
 projects[magic] = 2.2
@@ -48,6 +50,7 @@ projects[libraries] = 2.3
 projects[linkit] = 3.5
 projects[paragraphs] = 1.0-rc4
 projects[password_policy] = 1.12
+projects[pathauto] = 1.3
 projects[picture] = 2.13
 projects[redirect] = 1.0-rc3
 projects[scheduler] = 1.5
@@ -72,6 +75,9 @@ projects[bootstrap] = 3.5
 ; Fixing bug when Features module can't include file containing exported taxonomy vocabulary because it hasn't included file integrating Features with Taxonomy yet.
 ; https://www.drupal.org/node/2143765#comment-10088780
 projects[features][patch][2143765_7] = https://www.drupal.org/files/issues/features-hook_modules_enabled_include_file_issue-2143765-7.patch
+; Fixing Notice: Undefined property: stdClass::$status in features_export_form
+; https://www.drupal.org/node/2324973
+projects[features][patch][2324973_19] = https://www.drupal.org/files/issues/undefined-property-status-2324973-19.patch
 ; Fixing bug with the location field ajax callback
 ; https://www.drupal.org/node/1997658#comment-10532078
 projects[location][patch][1997658_6] = https://www.drupal.org/files/issues/location-1997658-46.patch
