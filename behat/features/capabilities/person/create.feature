@@ -18,6 +18,9 @@ Feature: Create person
     And I attach the file "/fixtures/images/drupal-icon.png" to "Image"
     And I click "Reminder"
     And I should see "Reminder email"
+    And I click "Scheduling options"
+    And I should see "Publish on"
+    And I should see "Unpublish on"
     And I press "Save"
     And I should see the success message "Person Bruce Wayne has been created."
     And I should see "Body description text"
@@ -26,6 +29,7 @@ Feature: Create person
     And I should see "Phone"
     And I should see "Secret place"
     And I should see "Share"
+    Then the url should match "/person/bruce-wayne"
 
     Given I am an anonymous user
     And I visit "node/add/person"

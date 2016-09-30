@@ -17,11 +17,15 @@ Feature: Create subject page
     Then I should see "Promoted"
     And I click "Reminder"
     And I should see "Reminder email"
+    And I click "Scheduling options"
+    And I should see "Publish on"
+    And I should see "Unpublish on"
     Then I press "Save"
     And I should see the success message "Subject page This is a test subject page has been created."
     And I should not see "27 June 2026"
     And I should see "Body description text"
     And I should not see "Share"
+    Then the url should match "/this-is-a-test-subject-page"
 
     Given I am an anonymous user
     And I visit "node/add/subject-page"

@@ -1,13 +1,13 @@
-name = WIM base theme
-description = Uses the Bootstrap Framework SCSS source files and must be compiled wit gulp (not for beginners).
+name = WIM default theme
+description = Uses the theming logic and bootstrap default from "wimbase".
 core = 7.x
-base theme = bootstrap
+base theme = wimbase
 
 ; ========================================
 ; Regions
 ; ========================================
 
-regions[meta_left] = Meta Left
+regions[meta] = Meta
 regions[navigation] = Navigation
 regions[header] = Top Bar
 regions[highlighted] = Highlighted
@@ -25,7 +25,6 @@ regions[page_bottom] = Page bottom
 ; ========================================
 
 stylesheets[all][] = css/wim.css
-stylesheets[all][] = css/style.css
 
 ; ========================================
 ; Breakpoints
@@ -42,7 +41,6 @@ multipliers[mobile][] = 2x
 ; Scripts
 ; ========================================
 
-scripts[] = js/bootstrap.min.js
 scripts[] = js/wim.js
 
 ; ========================================

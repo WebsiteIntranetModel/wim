@@ -1,0 +1,86 @@
+.slick-slider {
+  max-width: 360px;
+  .slick-arrow {
+    position: absolute;
+    top: 10px;
+    font-size: 24px;
+    line-height: 24px;
+    @include MQ($screen-desktop) {
+      top: 20px;
+      font-size: 42px;
+      line-height: 42px;
+    }
+    background: none;
+    border: none;
+    z-index: 10;
+    color: #ffffff;
+    text-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+    border-radius: 0;
+    &:before {
+      @include fa-icon;
+    }
+    &.slick-prev {
+      @extend .fa-chevron-circle-left;
+      left: 10px;
+      @include MQ($screen-desktop) {
+        left: 20px;
+      }
+    }
+    &.slick-next {
+      @extend .fa-chevron-circle-right;
+      right: 10px;
+      @include MQ($screen-desktop) {
+        right: 20px;
+      }
+    }
+    &:hover {
+      color: $brand-info;
+    }
+  }
+  .slick-pause {
+    background: none;
+    border: none;
+    text-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+    color: #ffffff;
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 18px;
+    line-height: 24px;
+    @include MQ($screen-desktop) {
+      font-size: 42px;
+      line-height: 42px;
+      top: 20px;
+    }
+    @extend .fa-pause;
+    &:before {
+      @include fa-icon;
+    }
+    &.paused {
+      @extend .fa-play;
+    }
+    &:hover {
+      color: $brand-info;
+    }
+  }
+  .slider-text-warapper {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: rgba(black, 0.5);
+    padding: 5px 10px;
+    font-size: 14px;
+    line-height: 20px;
+    @include MQ($screen-desktop) {
+      font-size: 18px;
+      line-height: 28px;
+    }
+    color: #ffffff;
+    a {
+      color: #ffffff;
+    }
+  }
+}

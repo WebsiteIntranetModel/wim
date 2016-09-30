@@ -1,0 +1,144 @@
+<?php
+/**
+ * @file
+ * Code for the ReadSpeaker.
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function readspeaker_menu() {
+  $items = array();
+
+  $items['admin/config/services/readspeaker'] = array(
+    'title' => 'ReadSpeaker',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('readspeaker_settings_form'),
+    'access arguments' => array('administer readspeaker'),
+    'type' => MENU_LOCAL_TASK,
+    'file' => 'readspeaker.admin.inc',
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_admin_paths().
+ */
+function readspeaker_admin_paths() {
+  $paths = array(
+    'admin/config/services/readspeaker' => TRUE,
+  );
+
+  return $paths;
+}
+
+/**
+ * Implements hook_permission().
+ */
+function readspeaker_permission() {
+  return array(
+    'administer readspeaker' => array(
+      'title' => t('Administer Read Speaker'),
+      'description' => t('Administer ReadSpeaker settings.'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_theme().
+ */
+function readspeaker_theme($existing, $type, $theme, $path) {
+  return array(
+    'readspeaker' => array(
+      'variables' => array(
+        'customer_id' => NULL,
+        'lang' => NULL,
+        'url' => NULL,
+        'title' => NULL,
+        'button' => NULL,
+      ),
+      'template' => 'readspeaker',
+      'path' => "$path/theme",
+    ),
+  );
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function readspeaker_block_info() {
+  $blocks = array();
+
+  $blocks['readspeaker'] = array(
+    'info' => t('Read Speaker'),
+    'cache' => DRUPAL_CACHE_PER_PAGE,
+  );
+
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function readspeaker_block_view($delta = '') {
+  $block = array();
+
+  if ($delta === 'readspeaker') {
+    if (variable_get('readspeaker_customerid', NULL)) {
+      $block['content'] = readspeaker_build_player();
+    }
+    else {
+      drupal_set_message(t('Read Speaker: Customer ID is not set or does not exist. Please check configuration.'), 'warning');
+    }
+  }
+
+  return $block;
+}
+
+/**
+ * Build Read Speaker player output.
+ */
+function readspeaker_build_player() {
+  $customerid = variable_get('readspeaker_customerid', NULL);
+  $current_path = current_path();
+  $module_path = drupal_get_path('module', 'readspeaker');
+  $library_path = $module_path . '/libraries/readspeaker/ReadSpeaker.js?pids=embhl';
+  $data = array(
+    '#type' => 'markup',
+    '#markup' => '<script type="text/javascript" src="/' . $library_path . '"></script>',
+  );
+  drupal_add_html_head($data, 'readspeaker');
+
+  $player = array(
+    '#theme' => 'readspeaker',
+    '#customer_id' => $customerid,
+    '#lang' => variable_get('readspeaker_language', 'nl_nl'),
+    '#url' => url($current_path, array('absolute' => TRUE)),
+    '#title' => variable_get('readspeaker_title', t('Listen to this page using ReadSpeaker')),
+    '#button' => variable_get('readspeaker_button_text', t('Listen')),
+  );
+
+  return $player;
+}
+
+/**
+ * List of supported languages.
+ */
+function readspeaker_supported_languages() {
+  $languages = array(
+    'nl_nl' => 'Nederlands',
+    'fy_nl' => 'Fries',
+    'en_uk' => 'Brits Engels',
+    'de_de' => 'Duits',
+    'fr_fr' => 'Frans',
+    'es_es' => 'Spaans',
+    'sv_se' => 'Zweeds',
+    'no_nb' => 'Noors (Bokmål)',
+    'fi_fi' => 'Fins',
+    'ru_ru' => 'Russisch',
+    'ar_ar' => 'Arabisch',
+  );
+
+  return $languages;
+}

@@ -17,6 +17,11 @@ Feature: Edit basic page
     And I press "Log in"
     Then I should see "jack_nicholson"
     When I go to "admin/content"
+    # test operations
+    And I select "Change author" from "operation"
+    And I select "Delete" from "operation"
+    And I select "Publish" from "operation"
+    And I select "Unpublish" from "operation"
     And I select "Basic page" from "Type"
     And I press "Apply"
     And I wait for AJAX to finish

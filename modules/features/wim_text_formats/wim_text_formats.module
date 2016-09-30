@@ -93,6 +93,9 @@ function _wim_wysiwyg_default_profiles() {
         'linkit' => array(
           'linkit' => 1,
         ),
+        'drupal' => array(
+          'media' => 1,
+        ),
       ),
       'toolbarLocation' => 'top',
       'resize_enabled' => 1,
@@ -143,6 +146,9 @@ function _wim_wysiwyg_default_profiles() {
           'Replace' => 1,
           'Iframe' => 1,
         ),
+        'bootstrap_tabs' => array(
+          'addTab' => 1,
+        ),
         'ckeditor_abbrbutton' => array(
           'ckeditor_abbrbutton' => 1,
         ),
@@ -169,6 +175,9 @@ function _wim_wysiwyg_default_profiles() {
         ),
         'linkit' => array(
           'linkit' => 1,
+        ),
+        'drupal' => array(
+          'media' => 1,
         ),
       ),
       'toolbarLocation' => 'top',

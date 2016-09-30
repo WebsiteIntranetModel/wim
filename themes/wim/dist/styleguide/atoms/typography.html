@@ -6,32 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
     <title>Typography - WIM</title>
-    <link rel="apple-touch-icon" sizes="57x57" href="images/favicon/apple-touch-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="images/favicon/apple-touch-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="images/favicon/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="images/favicon/apple-touch-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="images/favicon/apple-touch-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="images/favicon/apple-touch-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="images/favicon/apple-touch-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="images/favicon/apple-touch-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon-180x180.png">
-    <link rel="icon" type="image/png" href="images/favicon/favicon-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="images/favicon/android-chrome-192x192.png" sizes="192x192">
-    <link rel="icon" type="image/png" href="images/favicon/favicon-96x96.png" sizes="96x96">
-    <link rel="icon" type="image/png" href="images/favicon/favicon-16x16.png" sizes="16x16">
-    <link rel="manifest" href="images/favicon/manifest.json">
-    <link rel="mask-icon" href="images/favicon/safari-pinned-tab.svg" color="#29abe2">
-    <meta name="msapplication-TileColor" content="#29abe2">
-    <meta name="msapplication-TileImage" content="images/favicon/mstile-144x144.png">
-    <meta name="theme-color" content="#ffffff">
     <base href="../../">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" type="text/css" rel="stylesheet" media="screen">
     <link href="css/wim.css" type="text/css" rel="stylesheet" media="screen">
     <link href="css/prism.css" type="text/css" rel="stylesheet" media="screen">
   </head>
   <body class="styleguide">
     <div class="meta-wrapper container container-nopadding">
       <div class="region region-meta-left">
-        <section id="block-menu-menu-meta-menu" class="block block-menu clearfix">
+        <section id="block-menu-menu-meta-menu" class="block block-menu col-md-12 clearfix">
           <ul class="menu nav">
             <li class="first last leaf active"><a href="/" class="active">Home</a></li>
           </ul>
@@ -42,20 +25,20 @@
       <header id="header" class="navbar container navbar-default">
         <div class="navbar-header"><a href="index.html" title="Home" class="logo navbar-btn pull-left"><img src="../logo.png" alt="Home"></a>
           <div class="region region-header"></div>
-          <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+          <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle"> Menu</button>
         </div>
         <div class="navbar-collapse collapse">
           <nav role="navigation">
             <ul class="menu nav navbar-nav">
               <li class="leaf"><a href="starterkit.html">Themer's Starterkit</a></li>
-              <li class="first expanded dropdown"><a href="#" title="" data-target="#" data-toggle="dropdown" class="dropdown-toggle">Styleguide</a>
+              <li class="first parent-dropdown"><a href="#" title="" data-target="#" data-toggle="dropdown" class="dropdown-toggle">Styleguide</a>
                 <ul class="dropdown-menu">
                   <li class="first leaf"><a href="styleguide/atoms.html">Atoms</a></li>
                   <li class="leaf"><a href="styleguide/molecules.html">Molecules</a></li>
                   <li class="last leaf"><a href="styleguide/organisms.html">Organisms</a></li>
                 </ul>
               </li>
-              <li class="leaf"><a href="#" title="" data-target="#" data-toggle="dropdown" class="dropdown-toggle">Accessibility</a>
+              <li class="leaf parent-dropdown"><a href="#" title="" data-target="#" data-toggle="dropdown" class="dropdown-toggle">Accessibility</a>
                 <ul class="dropdown-menu">
                   <li class="first leaf"><a href="accessibility/introduction.html">Introduction</a></li>
                   <li class="leaf"><a href="accessibility/tooling.html">Tooling</a></li>
@@ -81,7 +64,7 @@
                   <li><a href="styleguide/atoms/buttons.html">Buttons</a></li>
                   <li><a href="styleguide/atoms/form-elements.html">Form elements</a></li>
                   <li><a href="styleguide/atoms/messages.html">Messages</a></li>
-                  <li><a href="styleguide/atoms/tables.html">Tables</a></li>
+                  <li><a href="styleguide/atoms/tabs.html">Tabs</a></li>
                   <li><a href="#">...</a></li>
                 </ul>
               </section>

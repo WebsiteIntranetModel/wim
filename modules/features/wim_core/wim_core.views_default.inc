@@ -146,25 +146,27 @@ function wim_core_views_default_views() {
   $handler->display->display_options['fields']['views_bulk_operations']['hide_alter_empty'] = FALSE;
   $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['display_type'] = '0';
   $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['enable_select_all_pages'] = 1;
+  $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['row_clickable'] = 1;
   $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['force_single'] = 0;
   $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['entity_load_capacity'] = '10';
   $handler->display->display_options['fields']['views_bulk_operations']['vbo_operations'] = array(
     'action::node_assign_owner_action' => array(
       'selected' => 1,
+      'postpone_processing' => 0,
       'skip_confirmation' => 1,
       'override_label' => 1,
       'label' => 'Change author',
-      'postpone_processing' => 0,
     ),
     'action::views_bulk_operations_delete_item' => array(
       'selected' => 1,
+      'postpone_processing' => 0,
       'skip_confirmation' => 0,
       'override_label' => 1,
       'label' => 'Delete',
-      'postpone_processing' => 0,
     ),
     'action::views_bulk_operations_modify_action' => array(
       'selected' => 1,
+      'postpone_processing' => 0,
       'skip_confirmation' => 1,
       'override_label' => 1,
       'label' => 'Change value',
@@ -174,49 +176,20 @@ function wim_core_views_default_views() {
           '_all_' => '_all_',
         ),
       ),
-      'postpone_processing' => 0,
-    ),
-    'action::node_make_sticky_action' => array(
-      'selected' => 1,
-      'skip_confirmation' => 1,
-      'override_label' => 1,
-      'label' => 'Stick',
-      'postpone_processing' => 0,
-    ),
-    'action::node_make_unsticky_action' => array(
-      'selected' => 1,
-      'skip_confirmation' => 1,
-      'override_label' => 1,
-      'label' => 'Unstick',
-      'postpone_processing' => 0,
-    ),
-    'action::node_promote_action' => array(
-      'selected' => 1,
-      'skip_confirmation' => 1,
-      'override_label' => 1,
-      'label' => 'Promote to front page',
-      'postpone_processing' => 0,
     ),
     'action::node_publish_action' => array(
       'selected' => 1,
+      'postpone_processing' => 0,
       'skip_confirmation' => 1,
       'override_label' => 1,
       'label' => 'Publish',
-      'postpone_processing' => 0,
-    ),
-    'action::node_unpromote_action' => array(
-      'selected' => 1,
-      'skip_confirmation' => 1,
-      'override_label' => 1,
-      'label' => 'Demote from front page',
-      'postpone_processing' => 0,
     ),
     'action::node_unpublish_action' => array(
       'selected' => 1,
+      'postpone_processing' => 0,
       'skip_confirmation' => 1,
       'override_label' => 1,
       'label' => 'Unpublish',
-      'postpone_processing' => 0,
     ),
   );
   /* Field: Content: Title */
@@ -411,9 +384,9 @@ function wim_core_views_default_views() {
     t('- Choose an operation -'),
     t('Change author'),
     t('Delete'),
-    t('Change value'),
     t('Stick'),
     t('Unstick'),
+    t('Change value'),
     t('Promote to front page'),
     t('Publish'),
     t('Demote from front page'),
@@ -448,7 +421,6 @@ function wim_core_views_default_views() {
   $handler->display->display_options['use_ajax'] = TRUE;
   $handler->display->display_options['hide_admin_links'] = TRUE;
   $handler->display->display_options['use_more_always'] = FALSE;
-  $handler->display->display_options['group_by'] = TRUE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
@@ -469,8 +441,7 @@ function wim_core_views_default_views() {
     'filename' => 'filename',
     'filesize' => 'filesize',
     'timestamp' => 'timestamp',
-    'usage' => 'usage',
-    'count' => 'count',
+    'title' => 'title',
     'name' => 'name',
     'edit' => 'edit',
   );
@@ -516,14 +487,7 @@ function wim_core_views_default_views() {
       'separator' => '',
       'empty_column' => 0,
     ),
-    'usage' => array(
-      'sortable' => 0,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'count' => array(
+    'title' => array(
       'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
@@ -558,6 +522,10 @@ function wim_core_views_default_views() {
   $handler->display->display_options['relationships']['uid']['id'] = 'uid';
   $handler->display->display_options['relationships']['uid']['table'] = 'file_managed';
   $handler->display->display_options['relationships']['uid']['field'] = 'uid';
+  /* Relationship: File Usage: Content */
+  $handler->display->display_options['relationships']['file_to_node']['id'] = 'file_to_node';
+  $handler->display->display_options['relationships']['file_to_node']['table'] = 'file_usage';
+  $handler->display->display_options['relationships']['file_to_node']['field'] = 'file_to_node';
   /* Field: Bulk operations: File */
   $handler->display->display_options['fields']['views_bulk_operations']['id'] = 'views_bulk_operations';
   $handler->display->display_options['fields']['views_bulk_operations']['table'] = 'file_managed';
@@ -605,23 +573,15 @@ function wim_core_views_default_views() {
   $handler->display->display_options['fields']['timestamp']['field'] = 'timestamp';
   $handler->display->display_options['fields']['timestamp']['date_format'] = 'short';
   $handler->display->display_options['fields']['timestamp']['second_date_format'] = 'long';
-  /* Field: File: Usage link */
-  $handler->display->display_options['fields']['usage']['id'] = 'usage';
-  $handler->display->display_options['fields']['usage']['table'] = 'file_managed';
-  $handler->display->display_options['fields']['usage']['field'] = 'usage';
-  $handler->display->display_options['fields']['usage']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['usage']['hide_empty'] = TRUE;
-  $handler->display->display_options['fields']['usage']['empty_zero'] = TRUE;
-  /* Field: SUM(File Usage: Use count) */
-  $handler->display->display_options['fields']['count']['id'] = 'count';
-  $handler->display->display_options['fields']['count']['table'] = 'file_usage';
-  $handler->display->display_options['fields']['count']['field'] = 'count';
-  $handler->display->display_options['fields']['count']['group_type'] = 'sum';
-  $handler->display->display_options['fields']['count']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['count']['alter']['text'] = '[usage]';
-  $handler->display->display_options['fields']['count']['empty'] = '0 places';
-  $handler->display->display_options['fields']['count']['empty_zero'] = TRUE;
-  $handler->display->display_options['fields']['count']['separator'] = '';
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['relationship'] = 'file_to_node';
+  $handler->display->display_options['fields']['title']['label'] = 'Shown on node';
+  $handler->display->display_options['fields']['title']['alter']['max_length'] = '50';
+  $handler->display->display_options['fields']['title']['alter']['trim'] = TRUE;
+  $handler->display->display_options['fields']['title']['alter']['html'] = TRUE;
   /* Field: User: Name */
   $handler->display->display_options['fields']['name']['id'] = 'name';
   $handler->display->display_options['fields']['name']['table'] = 'users';
@@ -787,6 +747,7 @@ function wim_core_views_default_views() {
     t('@total items found'),
     t('No content available.'),
     t('User who uploaded'),
+    t('Content'),
     t('Actions'),
     t('- Choose an operation -'),
     t('Mime type'),
@@ -794,10 +755,7 @@ function wim_core_views_default_views() {
     t('Filename'),
     t('Size'),
     t('Upload date'),
-    t('Usage link'),
-    t('Use count'),
-    t('[usage]'),
-    t('0 places'),
+    t('Shown on node'),
     t('User'),
     t('Edit'),
     t('Name'),

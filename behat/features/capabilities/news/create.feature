@@ -23,6 +23,9 @@ Feature: Create News
     And I attach the file "/fixtures/files/pdf-file.pdf" to "Add a new file"
     And I click "Reminder"
     And I should see "Reminder email"
+    And I click "Scheduling options"
+    And I should see "Publish on"
+    And I should see "Unpublish on"
     And I press "Save"
     Then I should see the success message "News TEST NEWS has been created."
     And I should see the heading "TEST NEWS"
@@ -31,6 +34,7 @@ Feature: Create News
     And I should see an ".field-name-field-image img" element
     And I should see "pdf-file.pdf"
     And I should see "Share"
+    Then the url should match "/news/test-news"
 
     Given I am an anonymous user
     And I visit "node/add/news"

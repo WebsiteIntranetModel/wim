@@ -13,20 +13,21 @@ projects[apachesolr_exclude_node] = 1.4
 projects[autologout] = 4.4
 projects[bean] = 1.11
 projects[breakpoints] = 1.4
+projects[bootstrap_fieldgroup] = 1.2
 projects[context] = 3.7
 projects[context_condition_theme] = 1.0
 projects[colectomy] = 1.0-beta2
 projects[ctools] = 1.10
 projects[date] = 2.9
 projects[date_facets] = 1.0
-projects[elysia_cron] = 2.1
+projects[elysia_cron] = 2.2
 projects[email] = 1.3
 projects[encrypt] = 2.3
-projects[entity] = 1.7
-projects[entityreference] = 1.1
+projects[entity] = 1.8
+projects[entityreference] = 1.2
 projects[facetapi] = 1.5
 projects[features] = 2.10
-projects[felix] = 1.0-beta8
+projects[felix] = 1.0-beta9
 projects[field_group] = 1.5
 projects[file_entity] = 2.0-beta3
 projects[flood_control] = 1.0
@@ -44,10 +45,14 @@ projects[module_filter] = 2.0
 projects[nodequeue] = 2.1
 projects[l10n_update] = 2.0
 projects[link] = 1.4
+projects[libraries] = 2.3
 projects[linkit] = 3.5
+projects[paragraphs] = 1.0-rc4
 projects[password_policy] = 1.12
+projects[pathauto] = 1.3
 projects[picture] = 2.13
 projects[redirect] = 1.0-rc3
+projects[scheduler] = 1.5
 projects[strongarm] = 2.0
 projects[special_menu_items] = 2.0
 projects[token] = 1.6
@@ -69,6 +74,9 @@ projects[bootstrap] = 3.5
 ; Fixing bug when Features module can't include file containing exported taxonomy vocabulary because it hasn't included file integrating Features with Taxonomy yet.
 ; https://www.drupal.org/node/2143765#comment-10088780
 projects[features][patch][2143765_7] = https://www.drupal.org/files/issues/features-hook_modules_enabled_include_file_issue-2143765-7.patch
+; Fixing Notice: Undefined property: stdClass::$status in features_export_form
+; https://www.drupal.org/node/2324973
+projects[features][patch][2324973_19] = https://www.drupal.org/files/issues/undefined-property-status-2324973-19.patch
 ; Fixing bug with the location field ajax callback
 ; https://www.drupal.org/node/1997658#comment-10532078
 projects[location][patch][1997658_6] = https://www.drupal.org/files/issues/location-1997658-46.patch
@@ -78,7 +86,12 @@ projects[location][patch][2781227_1] = https://www.drupal.org/files/issues/locat
 ; Add migration support for Bean
 ; https://www.drupal.org/node/2295973#comment-11536795
 projects[bean][patch][2295973_11] = https://www.drupal.org/files/issues/bean-migrate-support-2295973-11.patch
-
+; Fix "Select all" checkbox works only once
+; https://www.drupal.org/node/2608360#comment-11620927
+projects[views_bulk_operations][patch][2608360_14] = https://www.drupal.org/files/issues/2608360-14.patch
+; Fix "Show fewer" link for Facet API filters
+; https://www.drupal.org/node/2327997
+projects[facetapi][patch][2327997_3] = https://www.drupal.org/files/issues/facetapi-2327997-3-show-fewer-links.patch
 
 ; Custom
 ; a11ychecker_custom, cannot be included until https://www.drupal.org/node/2570883 is resolved.
@@ -89,4 +102,8 @@ projects[bean][patch][2295973_11] = https://www.drupal.org/files/issues/bean-mig
 
 ; CKEditor 4.4.6
 libraries[ckeditor][download][type] = get
-libraries[ckeditor][download][url] = http://download.cksource.com/CKEditor/CKEditor/CKEditor%204.4.6/ckeditor_4.4.6_full.tar.gz
+libraries[ckeditor][download][url] = http://ckeditor.com/builder/download/4aa56d967057f1cfe925bceb9b98049d
+
+; Slick
+libraries[slick][download][type] = get
+libraries[slick][download][url] = https://github.com/kenwheeler/slick/archive/master.zip

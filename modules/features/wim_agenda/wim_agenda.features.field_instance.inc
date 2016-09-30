@@ -353,6 +353,12 @@ function wim_agenda_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 4,
       ),
+      'search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'short' => array(
         'label' => 'above',
         'settings' => array(),

@@ -17,11 +17,15 @@ Feature: Create FAQ
     And I select "Other" from "Category"
     And I click "Reminder"
     And I should see "Reminder email"
+    And I click "Scheduling options"
+    And I should see "Publish on"
+    And I should see "Unpublish on"
     And I press "Save"
     Then I should see the success message "FAQ TEST FAQ QUESTION has been created."
     And I should see the heading "TEST FAQ QUESTION"
     And I should see "ANSWER"
     And I should see "Share"
+    Then the url should match "/faq/test-faq-question"
 
     Given I am an anonymous user
     And I visit "node/add/faq"

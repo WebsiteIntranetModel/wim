@@ -23,14 +23,18 @@ Feature: Create Agenda
       | Promoted | 0 |
     And I attach the file "/fixtures/images/drupal-icon.png" to "Image"
     And I select "Netherlands" from "Country"
+    And I wait for AJAX to finish
     And I click "Reminder"
     And I should see "Reminder email"
-    And I wait for AJAX to finish
+    And I click "Scheduling options"
+    And I should see "Publish on"
+    And I should see "Unpublish on"
     And I press "Save"
     Then I should see the success message "Agenda TEST AGENDA has been created."
     And I should see the heading "TEST AGENDA"
     And I should see "TEST AGENDA BODY"
     And I should see "Share"
+    Then the url should match "/agenda/test-agenda"
 
     Given I am an anonymous user
     And I visit "node/add/agenda"

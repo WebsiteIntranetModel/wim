@@ -97,12 +97,39 @@ function external_crawler_site_add_form() {
     '#description' => t('List of excluded URLs, one per line.'),
   );
 
+  $form['content_exclude'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Content exclude'),
+    '#access' => user_access('access content include/exclude'),
+    '#default_value' => 'script, style',
+    '#description' => t('CSS selector to exclude elements from index.(e.g "script, a.myclass")'),
+  );
+
+  $form['content_include'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Content include'),
+    '#access' => user_access('access content include/exclude'),
+    '#description' => t('CSS selector to include elements to index.(e.g "body > p")'),
+  );
+
   $form['submit'] = array(
     '#type' => 'submit',
     '#value' => t('Save'),
   );
 
+  $form['#validate'][] = 'external_crawler_site_form_validate';
+
   return $form;
+}
+
+/**
+ * Validation function for form.
+ */
+function external_crawler_site_form_validate(&$form, &$form_state) {
+  $values = $form_state['values'];
+  if (!url_is_external($values['url'])) {
+    form_set_error('url', t('Incorrect format of site URL.'));
+  }
 }
 
 /**
@@ -122,8 +149,7 @@ function external_crawler_site_edit_form($form, &$form_state) {
   $form = array();
   $site = _external_crawler_fetch_sites($form_state['build_info']['args'][0]);
 
-  if ($site && isset($site[0]) && is_object($site[0])) {
-    $site = $site[0];
+  if ($site) {
     drupal_set_title(t('Edit @site site.', array('@site' => $site->name)));
 
     $form['site_id'] = array(
@@ -185,6 +211,22 @@ function external_crawler_site_edit_form($form, &$form_state) {
       '#default_value' => $site->url_exclude,
     );
 
+    $form['content_exclude'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Content exclude'),
+      '#access' => user_access('access content include/exclude'),
+      '#default_value' => $site->content_exclude,
+      '#description' => t('CSS selector to exclude elements from index, separated by comma.(e.g "script, a.myclass")'),
+    );
+
+    $form['content_include'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Content include'),
+      '#access' => user_access('access content include/exclude'),
+      '#default_value' => $site->content_include,
+      '#description' => t('CSS selector to specify which element on page should be added to index.(e.g "body > p")'),
+    );
+
     $form['submit'] = array(
       '#type' => 'submit',
       '#value' => t('Save'),
@@ -204,6 +246,8 @@ function external_crawler_site_edit_form($form, &$form_state) {
       '#markup' => t('Site does not exist.'),
     );
   }
+
+  $form['#validate'][] = 'external_crawler_site_form_validate';
 
   return $form;
 }

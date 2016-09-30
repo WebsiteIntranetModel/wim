@@ -7,7 +7,6 @@ Feature: View Meta menu
   Scenario: As a AN I should be able to see Meta menu links
     Given I am an anonymous user
     And I am on the homepage
-    Then I should see the link "Home" in the "Meta left"
-    When I click "Home" in the "Meta left"
+    Then I should see the link "Home" in the "Meta"
+    When I click "Home" in the "Meta"
     Then I should be on the homepage
-    
