@@ -21,11 +21,12 @@ function wim_slider_field_default_field_instances() {
         'label' => 'hidden',
         'module' => 'slick_paragraphs',
         'settings' => array(
-          'adaptiveHeight' => TRUE,
-          'autoplay' => TRUE,
+          'adaptiveHeight' => 1,
+          'autoplay' => 1,
           'autoplaySpeed' => 2000,
-          'dots' => TRUE,
-          'fade' => TRUE,
+          'dots' => 0,
+          'fade' => 1,
+          'pause' => 1,
           'view_mode' => 'full',
         ),
         'type' => 'slick_paragraphs',
@@ -73,9 +74,8 @@ function wim_slider_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'hidden',
-        'module' => 'text',
         'settings' => array(),
-        'type' => 'text_default',
+        'type' => 'hidden',
         'weight' => 3,
       ),
       'paragraphs_editor_preview' => array(
