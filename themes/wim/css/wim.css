@@ -3099,6 +3099,12 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   color: #333;
 }
 
+/* DocReader
+---------------------*/
+.docreader {
+  margin-left: 5px;
+}
+
 .nav-tabs {
   border-bottom: 1px solid #ddd;
 }
@@ -4367,6 +4373,11 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
     display: inline-block;
     margin-bottom: 0;
     padding-right: 5px;
+  }
+  .rsbtn{
+    float: right;
+    margin-top: -11px;
+    margin-bottom: 0;
   }
   .navbar.container, body.in-maintenance .navbar#page{
     max-width: 970px;

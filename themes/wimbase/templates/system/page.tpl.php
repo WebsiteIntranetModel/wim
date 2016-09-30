@@ -131,15 +131,15 @@
 
   <div role="main" class="main-container <?php print $container_class; ?>">
 
+    <?php if (isset($readspeaker)): ?>
+      <?php print render($readspeaker); ?>
+    <?php endif; ?>
     <?php if (!empty($breadcrumb) && !$is_front): ?>
       <div class="row">
         <?php if (!empty($breadcrumb)): print $breadcrumb; endif; ?>
       </div>
     <?php endif; ?>
 
-    <?php if (isset($readspeaker)): ?>
-      <?php print render($readspeaker); ?>
-    <?php endif; ?>
 
     <?php if (!empty($page['highlighted'])): ?>
       <?php print render($page['highlighted']); ?>
