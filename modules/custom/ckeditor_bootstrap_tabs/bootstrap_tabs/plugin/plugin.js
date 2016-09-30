@@ -44,7 +44,7 @@
         },
         editables: {
           content: '',
-          nav: {selector: '.nav', allowedContent: 'ul li a'}
+          nav: {selector: '.tabnav', allowedContent: 'ul[!role](nav, nav-tabs); li[!role](active); a[!href, !aria-controls, !role, !data-toggle]'}
         },
         template: '<div class="bootstrap-tab"></div>',
         dialog: 'bootstrap_tabs',
@@ -82,16 +82,15 @@
           for (var i = 1; i <= tabCount; i++) {
             active = (i === 1) ? ' active' : '';
             tab_titles += '<li role="presentation" class="' + active + '">' +
-              '<a contenteditable="true" href="#tab' + num + '-' + i + '" aria-controls="tab' + num + '-' + i + '" role="tab" data-toggle="tab">Tab' + i + '</a>' +
+              '<a href="#tab' + num + '-' + i + '" aria-controls="tab' + num + '-' + i + '" role="tab" data-toggle="tab">Tab' + i + '</a>' +
               '</li>';
             tab_content += '<div role="tabpanel" class="tab-pane' + active + '" id="tab' + num + '-' + i + '">Content for tab' + i + '</div>';
           }
-          // @todo use drupal theme
-          content = '<ul class="nav nav-tabs" role="tablist">' + tab_titles + '</ul>' +
+          var content = '<div class="tabnav"><ul class="nav nav-tabs" role="tablist">' + tab_titles + '</ul></div>' +
             '<div class="tab-content">' + tab_content + '</div>';
           row.appendHtml(content);
           this.createEditable(tabCount);
-          this.initEditable('nav', {selector: '.nav', allowedContent: 'div ul li a'});
+          this.initEditable('nav', {selector: '.tabnav', allowedContent: 'ul[!role](nav, nav-tabs); li[!role](active); a[!href, !aria-controls, !role, !data-toggle]'});
         },
         // Create editable.
         createEditable: function (tabCount) {
@@ -196,7 +195,7 @@
             var listItem = element.getAscendant('li');
             var count = listItem.getParent().getChildCount() + 1;
             var tab = '<li role="presentation">' +
-              '<a contenteditable="true" href="#tab' + num + '-' + count + '" aria-controls="tab' + num + '-' + count + '" role="tab" data-toggle="tab">Tab' + count + '</a>' +
+              '<a href="#tab' + num + '-' + count + '" aria-controls="tab' + num + '-' + count + '" role="tab" data-toggle="tab">Tab' + count + '</a>' +
               '</li>';
             var newTab = new CKEDITOR.dom.element.createFromHtml(tab);
             var content = '<div role="tabpanel" class="tab-pane" id="tab' + num + '-' + count + '">Content for tab' + count + '</div>';
