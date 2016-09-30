@@ -1,0 +1,15 @@
+<?php
+/**
+ * @file
+ * Install file.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function wim_rss_install() {
+  $role = user_role_load_by_name('webmaster');
+  user_role_grant_permissions($role->rid, array('administer news feeds'));
+  user_role_grant_permissions(DRUPAL_AUTHENTICATED_RID, array('access news feeds'));
+  user_role_grant_permissions(DRUPAL_ANONYMOUS_RID, array('access news feeds'));
+}
