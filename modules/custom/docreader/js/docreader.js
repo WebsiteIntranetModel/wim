@@ -24,8 +24,8 @@
 
         if ($.inArray(extension, supported_file_extensions)) {
           var fileUrl = $(link).attr("href");
-          var docReaderLink = Drupal.theme.prototype.docReaderLink(cid, language, buttonText, fileUrl, iconSrc);
-          $(docReaderLink).insertAfter($(link));
+          var docReaderLink = Drupal.theme('docReaderLink', cid, language, buttonText, fileUrl, iconSrc);
+          $(docReaderLink).once('docread-button').insertAfter($(link));
         }
       })
     }
