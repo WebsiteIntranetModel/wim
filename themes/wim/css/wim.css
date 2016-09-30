@@ -3185,22 +3185,22 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   color: white;
 }
 
-.block.bean-view-mode-default {
+.block.bean-view-mode-default:not('slider') {
   position: relative;
 }
 
-.block.bean-view-mode-default.editorial-image {
+.block.bean-view-mode-default:not('slider').editorial-image {
   padding-left: 75px;
 }
 
-.block.bean-view-mode-default h2.block-title {
+.block.bean-view-mode-default:not('slider') h2.block-title {
   border-top: none;
   background: none;
   padding: 10px 0;
   color: #0080a8;
 }
 
-.block.bean-view-mode-default .field-type-image {
+.block.bean-view-mode-default:not('slider') .field-type-image {
   position: absolute;
   left: 20px;
   top: 10px;
@@ -4377,7 +4377,7 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   .rsbtn{
     float: right;
     margin-top: -11px;
-    margin-bottom: 0;
+    margin-bottom: 4px;
   }
   .navbar.container, body.in-maintenance .navbar#page{
     max-width: 970px;

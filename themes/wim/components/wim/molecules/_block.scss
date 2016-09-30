@@ -43,20 +43,22 @@
     }
   }
   &.bean-view-mode-default {
-    position: relative;
-    &.editorial-image {
-      padding-left: 75px;
-    }
-    h2.block-title {
-      border-top: none;
-      background: none;
-      padding: 10px 0;
-      color: $brand-primary;
-    }
-    .field-type-image {
-      position: absolute;
-      left: 20px;
-      top: 10px;
+    &:not('slider'){
+      position: relative;
+      &.editorial-image {
+        padding-left: 75px;
+      }
+      h2.block-title {
+        border-top: none;
+        background: none;
+        padding: 10px 0;
+        color: $brand-primary;
+      }
+      .field-type-image {
+        position: absolute;
+        left: 20px;
+        top: 10px;
+      }
     }
   }
 }

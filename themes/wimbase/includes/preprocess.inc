@@ -120,6 +120,7 @@ function wimbase_preprocess_block(&$variables) {
   // Process Bean blocks.
   if ($block->module === 'bean' && $bean = bean_load_delta($block->delta)) {
     $variables['title_url'] = NULL;
+    $variables['classes_array'][] = drupal_html_class($bean->type);
     $variables['theme_hook_suggestions'][] = 'block__bean_' . strtr($bean->type, '_', '-');
     $bean_view_mode = $bean->view_mode;
 
