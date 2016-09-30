@@ -13,6 +13,7 @@ projects[apachesolr_exclude_node] = 1.4
 projects[autologout] = 4.4
 projects[bean] = 1.11
 projects[breakpoints] = 1.4
+projects[bootstrap_fieldgroup] = 1.2
 projects[context] = 3.7
 projects[context_condition_theme] = 1.0
 projects[colectomy] = 1.0-beta2

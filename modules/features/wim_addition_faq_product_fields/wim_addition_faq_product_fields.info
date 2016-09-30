@@ -14,6 +14,7 @@ dependencies[] = text
 dependencies[] = wim_core
 dependencies[] = wim_faq
 dependencies[] = wim_product
+dependencies[] = bootstrap_fieldgroup
 features[ctools][] = field_group:field_group:1
 features[features_api][] = api:2
 features[field_base][] = field_faq_more_information

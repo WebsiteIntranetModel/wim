@@ -119,13 +119,12 @@ function wim_addition_faq_product_fields_field_group_info() {
       2 => 'field_related_faq',
       3 => 'field_related_product',
     ),
-    'format_type' => 'htab',
+    'format_type' => 'bootstrap_fieldgroup_nav_item',
     'format_settings' => array(
-      'formatter' => 'closed',
+      'formatter' => '',
       'instance_settings' => array(
-        'description' => '',
-        'classes' => 'group-product-tab1 field-group-htab',
-        'id' => '',
+        'classes' => '',
+        'required_fields' => 1,
       ),
     ),
   );
@@ -146,13 +145,12 @@ function wim_addition_faq_product_fields_field_group_info() {
     'children' => array(
       0 => 'field_product_conditions',
     ),
-    'format_type' => 'htab',
+    'format_type' => 'bootstrap_fieldgroup_nav_item',
     'format_settings' => array(
-      'formatter' => 'closed',
+      'formatter' => '',
       'instance_settings' => array(
-        'description' => '',
-        'classes' => 'group-product-tab2 field-group-htab',
-        'id' => '',
+        'classes' => '',
+        'required_fields' => 1,
       ),
     ),
   );
@@ -174,13 +172,12 @@ function wim_addition_faq_product_fields_field_group_info() {
       0 => 'field_product_forms',
       1 => 'field_product_request',
     ),
-    'format_type' => 'htab',
+    'format_type' => 'bootstrap_fieldgroup_nav_item',
     'format_settings' => array(
-      'formatter' => 'closed',
+      'formatter' => '',
       'instance_settings' => array(
-        'description' => '',
-        'classes' => 'group-product-tab3 field-group-htab',
-        'id' => '',
+        'classes' => '',
+        'required_fields' => 1,
       ),
     ),
   );
@@ -201,13 +198,12 @@ function wim_addition_faq_product_fields_field_group_info() {
     'children' => array(
       0 => 'field_product_period',
     ),
-    'format_type' => 'htab',
+    'format_type' => 'bootstrap_fieldgroup_nav_item',
     'format_settings' => array(
-      'formatter' => 'closed',
+      'formatter' => '',
       'instance_settings' => array(
-        'description' => '',
-        'classes' => 'group-product-tab4 field-group-htab',
-        'id' => '',
+        'classes' => '',
+        'required_fields' => 1,
       ),
     ),
   );
@@ -228,13 +224,12 @@ function wim_addition_faq_product_fields_field_group_info() {
     'children' => array(
       0 => 'field_product_objection',
     ),
-    'format_type' => 'htab',
+    'format_type' => 'bootstrap_fieldgroup_nav_item',
     'format_settings' => array(
-      'formatter' => 'closed',
+      'formatter' => '',
       'instance_settings' => array(
-        'description' => '',
-        'classes' => 'group-product-tab5 field-group-htab',
-        'id' => '',
+        'classes' => '',
+        'required_fields' => 1,
       ),
     ),
   );
@@ -255,13 +250,12 @@ function wim_addition_faq_product_fields_field_group_info() {
     'children' => array(
       0 => 'field_product_costs',
     ),
-    'format_type' => 'htab',
+    'format_type' => 'bootstrap_fieldgroup_nav_item',
     'format_settings' => array(
-      'formatter' => 'closed',
+      'formatter' => '',
       'instance_settings' => array(
-        'description' => '',
-        'classes' => 'group-product-tab6 field-group-htab',
-        'id' => '',
+        'classes' => '',
+        'required_fields' => 1,
       ),
     ),
   );
@@ -282,13 +276,12 @@ function wim_addition_faq_product_fields_field_group_info() {
     'children' => array(
       0 => 'field_product_contact',
     ),
-    'format_type' => 'htab',
+    'format_type' => 'bootstrap_fieldgroup_nav_item',
     'format_settings' => array(
-      'formatter' => 'closed',
+      'formatter' => '',
       'instance_settings' => array(
-        'description' => '',
-        'classes' => 'group-product-tab7 field-group-htab',
-        'id' => '',
+        'classes' => '',
+        'required_fields' => 1,
       ),
     ),
   );
@@ -315,13 +308,17 @@ function wim_addition_faq_product_fields_field_group_info() {
       5 => 'group_product_tab6',
       6 => 'group_product_tab7',
     ),
-    'format_type' => 'htabs',
+    'format_type' => 'bootstrap_fieldgroup_nav',
     'format_settings' => array(
-      'formatter' => '',
+      'label' => 'Tabs',
       'instance_settings' => array(
-        'classes' => 'group-product-tabs field-group-htabs',
-        'id' => '',
+        'bootstrap_nav_type' => 'tabs',
+        'bootstrap_stacked' => '0',
+        'bootstrap_orientation' => '0',
+        'classes' => '',
+        'required_fields' => 1,
       ),
+      'formatter' => '',
     ),
   );
   $field_groups['group_product_tabs|node|product|default'] = $field_group;
