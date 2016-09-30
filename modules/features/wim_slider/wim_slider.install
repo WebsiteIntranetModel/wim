@@ -1,0 +1,37 @@
+<?php
+/**
+ * @file
+ * Install file.
+ */
+
+/**
+ * Set permissions.
+ */
+function wim_slider_install() {
+  $content_editor = user_role_load_by_name('content editor');
+  user_role_grant_permissions($content_editor->rid, array(
+    'view any slider bean',
+    'create any slider bean',
+    'edit any slider bean',
+  ));
+
+  $content_manager = user_role_load_by_name('content manager');
+  user_role_grant_permissions($content_manager->rid, array(
+    'view any slider bean',
+    'create any slider bean',
+    'edit any slider bean',
+    'delete any slider bean',
+  ));
+
+  $webmaster = user_role_load_by_name('webmaster');
+  user_role_grant_permissions($webmaster->rid, array(
+    'view any slider bean',
+    'create any slider bean',
+    'edit any slider bean',
+    'delete any slider bean',
+  ));
+
+  user_role_grant_permissions(DRUPAL_AUTHENTICATED_RID, array('view any slider bean'));
+  user_role_grant_permissions(DRUPAL_ANONYMOUS_RID, array('view any slider bean'));
+
+}
