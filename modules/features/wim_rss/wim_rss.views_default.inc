@@ -207,66 +207,6 @@ function wim_rss_views_default_views() {
     _wim_rss_agenda_display($view);
   }
 
-  /* Display: RSS Block */
-  $handler = $view->new_display('block', 'RSS Block', 'block_1');
-  $handler->display->display_options['defaults']['pager'] = FALSE;
-  $handler->display->display_options['pager']['type'] = 'some';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '5';
-  $handler->display->display_options['pager']['options']['offset'] = '0';
-  $handler->display->display_options['defaults']['relationships'] = FALSE;
-  /* Relationship: Feeds item: Owner feed */
-  $handler->display->display_options['relationships']['feed_nid']['id'] = 'feed_nid';
-  $handler->display->display_options['relationships']['feed_nid']['table'] = 'feeds_item';
-  $handler->display->display_options['relationships']['feed_nid']['field'] = 'feed_nid';
-  $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Field: Link */
-  $handler->display->display_options['fields']['field_link']['id'] = 'field_link';
-  $handler->display->display_options['fields']['field_link']['table'] = 'field_data_field_link';
-  $handler->display->display_options['fields']['field_link']['field'] = 'field_link';
-  $handler->display->display_options['fields']['field_link']['label'] = '';
-  $handler->display->display_options['fields']['field_link']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_link']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_link']['click_sort_column'] = 'url';
-  $handler->display->display_options['fields']['field_link']['type'] = 'link_plain';
-  /* Field: Content: Title */
-  $handler->display->display_options['fields']['title']['id'] = 'title';
-  $handler->display->display_options['fields']['title']['table'] = 'node';
-  $handler->display->display_options['fields']['title']['field'] = 'title';
-  $handler->display->display_options['fields']['title']['label'] = '';
-  $handler->display->display_options['fields']['title']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['title']['alter']['text'] = '<a href="[field_link]">[title]</a>';
-  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
-  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  $handler->display->display_options['fields']['title']['element_type'] = 'h3';
-  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
-  $handler->display->display_options['defaults']['arguments'] = FALSE;
-  /* Contextual filter: Feeds item: Owner feed nid */
-  $handler->display->display_options['arguments']['feed_nid']['id'] = 'feed_nid';
-  $handler->display->display_options['arguments']['feed_nid']['table'] = 'feeds_item';
-  $handler->display->display_options['arguments']['feed_nid']['field'] = 'feed_nid';
-  $handler->display->display_options['arguments']['feed_nid']['default_action'] = 'default';
-  $handler->display->display_options['arguments']['feed_nid']['default_argument_type'] = 'fixed';
-  $handler->display->display_options['arguments']['feed_nid']['summary']['number_of_records'] = '0';
-  $handler->display->display_options['arguments']['feed_nid']['summary']['format'] = 'default_summary';
-  $handler->display->display_options['arguments']['feed_nid']['summary_options']['items_per_page'] = '25';
-  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
-  $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Filter criterion: Content: Published */
-  $handler->display->display_options['filters']['status']['id'] = 'status';
-  $handler->display->display_options['filters']['status']['table'] = 'node';
-  $handler->display->display_options['filters']['status']['field'] = 'status';
-  $handler->display->display_options['filters']['status']['value'] = 1;
-  $handler->display->display_options['filters']['status']['group'] = 1;
-  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-  /* Filter criterion: Content: Type */
-  $handler->display->display_options['filters']['type']['id'] = 'type';
-  $handler->display->display_options['filters']['type']['table'] = 'node';
-  $handler->display->display_options['filters']['type']['field'] = 'type';
-  $handler->display->display_options['filters']['type']['value'] = array(
-    'rss' => 'rss',
-  );
-
   $translatables['rss_feeds'] = array(
     t('Master'),
     t('more'),
@@ -288,10 +228,6 @@ function wim_rss_views_default_views() {
     t('Agenda page'),
     t('RSS agenda'),
     t('Agenda feed'),
-    t('RSS Block'),
-    t('Owner feed'),
-    t('<a href="[field_link]">[title]</a>'),
-    t('All'),
   );
 
   $export['rss_feeds'] = $view;
