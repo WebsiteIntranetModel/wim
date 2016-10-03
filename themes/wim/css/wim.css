@@ -3107,6 +3107,7 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
 
 .nav-tabs {
   border-bottom: 1px solid #ddd;
+  margin-top: 10px;
 }
 
 .nav-tabs > li {
