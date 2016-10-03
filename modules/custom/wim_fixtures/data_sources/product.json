@@ -2,9 +2,11 @@
   {
     "id": 1,
     "title": "Product 1",
-    "body": "logem ipsum",
+    "body": "Pellentesque in ipsum id orci porta dapibus. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Praesent sapien massa, convallis a pellentesque nec, egestas ",
     "body:summary": "",
+    "field_lead_paragraph": "",
     "field_image": "/drupal-icon.png",
+    "field_lead_image":"/icon-roze-2.png",
     "field_tags": "2,4",
     "field_publication_date": "2026-06-27 00:00:00",
     "field_promoted": 1,
@@ -13,12 +15,40 @@
   {
     "id": 2,
     "title": "Product 2",
-    "body": "logem ipsum",
+    "body": "Pellentesque in ipsum id orci porta dapibus. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Praesent sapien massa, convallis a pellentesque nec, egestas ",
     "body:summary": "",
+    "field_lead_paragraph": "Lead paragraph demo content. In verband met &nbsp;met renovatieplannen is de huur",
     "field_image": "/drupal-icon.png",
+    "field_lead_image":"/icon-roze-2.png",
     "field_tags": "1,3",
-    "field_publication_date": "2016-06-27 00:00:00",
+    "field_publication_date": "2016-02-27 00:00:00",
     "field_promoted": 0,
     "author": 2
+  },
+  {
+    "id": 3,
+    "title": "Product 3 with Lead Paragraph",
+    "body": "Quisque velit nisi, pretium ut lacinia in, elementum id enim.",
+    "body:summary": "",
+    "field_lead_paragraph": "Lead paragraph demo content. In verband met &nbsp;met renovatieplannen is de huur",
+    "field_image": "",
+    "field_lead_image":"/icon-roze.png",
+    "field_tags": "2,4",
+    "field_publication_date": "2026-06-17 00:00:00",
+    "field_promoted": 1,
+    "author": 1
+  },
+  {
+    "id": 4,
+    "title": "Product 4 Lead Paragraph empty",
+    "body": "Quisque velit nisi, pretium ut lacinia in, elementum id enim.",
+    "body:summary": "",
+    "field_lead_paragraph": "",
+    "field_image": "",
+    "field_lead_image":"",
+    "field_tags": "2,4",
+    "field_publication_date": "2026-02-10 00:00:00",
+    "field_promoted": 1,
+    "author": 1
   }
 ]

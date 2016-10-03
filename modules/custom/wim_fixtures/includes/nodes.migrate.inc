@@ -36,7 +36,9 @@ class BasicPageMigration extends NodeMigration {
       'title' => t('Node title'),
       'body' => t('Node body'),
       'summary' => t('Node summary'),
+      'field_lead_paragraph' => t('Lead paragraph'),
       'field_image' => t('Node image'),
+      'field_lead_image' => t('Lead image'),
       'field_tags' => t('Node tags'),
       'field_publication_date' => t('Custom publication date'),
       'field_promoted' => t('Promoted flag'),
@@ -61,6 +63,7 @@ class BasicPageMigration extends NodeMigration {
       'title',
       'body',
       'body:summary',
+      'field_lead_paragraph',
       'field_publication_date',
       'field_promoted',
     ));
@@ -80,6 +83,13 @@ class BasicPageMigration extends NodeMigration {
       ->sourceMigration('WIM_Term_Tags');
     $this->addFieldMapping('field_tags:source_type')
       ->defaultValue('tid');
+    $this->addFieldMapping('field_lead_image', 'field_lead_image')
+      ->sourceMigration('WIM_File');
+    $this->addFieldMapping('field_lead_image:alt')->defaultValue('');
+    $this->addFieldMapping('field_lead_image:file_class')
+      ->defaultValue('MigrateFileFid');
+    $this->addFieldMapping('field_lead_image:preserve_files')
+      ->defaultValue(FALSE);
   }
 
 }
@@ -180,7 +190,9 @@ class ProductMigration extends NodeMigration {
       'title' => t('Node title'),
       'body' => t('Node body'),
       'body:summary' => t('Node summary'),
+      'field_lead_paragraph' => t('Lead paragraph'),
       'field_image' => t('Node image'),
+      'field_lead_image' => t('Lead image'),
       'field_tags' => t('Node tags'),
       'field_publication_date' => t('Custom publication date'),
       'field_promoted' => t('Promoted flag'),
@@ -203,6 +215,7 @@ class ProductMigration extends NodeMigration {
       'title',
       'body',
       'body:summary',
+      'field_lead_paragraph',
       'field_publication_date',
       'field_promoted',
     ));
@@ -221,6 +234,13 @@ class ProductMigration extends NodeMigration {
       ->sourceMigration('WIM_Term_Tags');
     $this->addFieldMapping('field_tags:source_type')
       ->defaultValue('tid');
+    $this->addFieldMapping('field_lead_image', 'field_lead_image')
+      ->sourceMigration('WIM_File');
+    $this->addFieldMapping('field_lead_image:alt')->defaultValue('');
+    $this->addFieldMapping('field_lead_image:file_class')
+      ->defaultValue('MigrateFileFid');
+    $this->addFieldMapping('field_lead_image:preserve_files')
+      ->defaultValue(FALSE);
   }
 
 }
@@ -247,6 +267,7 @@ class NewsMigration extends NodeMigration {
       'title' => t('Node title'),
       'body' => t('Node body'),
       'body:summary' => t('Node summary'),
+      'field_lead_paragraph' => t('Lead paragraph'),
       'field_image' => t('Node image'),
       'field_tags' => t('Node tags'),
       'field_publication_date' => t('Custom publication date'),
@@ -274,6 +295,7 @@ class NewsMigration extends NodeMigration {
       'title',
       'body',
       'body:summary',
+      'field_lead_paragraph',
       'field_publication_date',
       'field_promoted',
     ));
@@ -397,6 +419,7 @@ class AgendaMigration extends NodeMigration {
       'title' => t('Title'),
       'body' => t('Body'),
       'body:summary' => t('Node summary'),
+      'field_lead_paragraph' => t('Lead paragraph'),
       'field_image' => t('Node Image'),
       'field_agenda_date' => t('Date'),
       'name' => t('Location name'),
@@ -427,6 +450,7 @@ class AgendaMigration extends NodeMigration {
       'title',
       'body',
       'body:summary',
+      'field_lead_paragraph',
       'field_agenda_date',
       'field_promoted',
     ));
