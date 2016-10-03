@@ -13,6 +13,36 @@ function wim_agenda_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_introduction|node|agenda|form';
+  $field_group->group_name = 'group_introduction';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'agenda';
+  $field_group->mode = 'form';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Introduction',
+    'weight' => '1',
+    'children' => array(
+      0 => 'field_lead_paragraph',
+      1 => 'field_lead_image',
+    ),
+    'format_type' => 'fieldset',
+    'format_settings' => array(
+      'label' => 'Introduction',
+      'instance_settings' => array(
+        'required_fields' => 1,
+        'id' => '',
+        'classes' => 'group-introduction field-group-fieldset',
+        'description' => '',
+      ),
+      'formatter' => 'collapsed',
+    ),
+  );
+  $field_groups['group_introduction|node|agenda|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_reminder|node|agenda|form';
   $field_group->group_name = 'group_reminder';
   $field_group->entity_type = 'node';
@@ -21,7 +51,7 @@ function wim_agenda_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Reminder',
-    'weight' => '44',
+    'weight' => '13',
     'children' => array(
       0 => 'field_reminder_email',
     ),
@@ -40,6 +70,7 @@ function wim_agenda_field_group_info() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('Introduction');
   t('Reminder');
 
   return $field_groups;

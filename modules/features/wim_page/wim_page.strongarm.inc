@@ -57,13 +57,16 @@ function wim_page_strongarm() {
           'weight' => '0',
         ),
         'locations' => array(
-          'weight' => '30',
+          'weight' => '6',
         ),
         'metatags' => array(
-          'weight' => '40',
+          'weight' => '9',
         ),
         'redirect' => array(
-          'weight' => '30',
+          'weight' => '8',
+        ),
+        'path' => array(
+          'weight' => '7',
         ),
       ),
       'display' => array(),

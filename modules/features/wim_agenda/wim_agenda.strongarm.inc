@@ -57,13 +57,16 @@ function wim_agenda_strongarm() {
           'weight' => '0',
         ),
         'locations' => array(
-          'weight' => '4',
+          'weight' => '5',
         ),
         'redirect' => array(
-          'weight' => '8',
+          'weight' => '9',
         ),
         'metatags' => array(
-          'weight' => '9',
+          'weight' => '10',
+        ),
+        'path' => array(
+          'weight' => '11',
         ),
       ),
       'display' => array(),
