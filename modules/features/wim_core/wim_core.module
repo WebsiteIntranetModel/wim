@@ -225,9 +225,10 @@ function wim_core_form_alter(&$form, &$form_state, $form_id) {
  */
 function wim_core_cronapi($op, $job = NULL) {
 
-  $items['scheduler'] = array(
+  $items['scheduler_cron'] = array(
     'description' => 'Run scheduler.',
     'rule' => '*/5 * * * *',
+    'callback' => 'scheduler_cron',
   );
 
   return $items;
