@@ -75,24 +75,34 @@ projects[bootstrap] = 3.5
 ; Fixing bug when Features module can't include file containing exported taxonomy vocabulary because it hasn't included file integrating Features with Taxonomy yet.
 ; https://www.drupal.org/node/2143765#comment-10088780
 projects[features][patch][2143765_7] = https://www.drupal.org/files/issues/features-hook_modules_enabled_include_file_issue-2143765-7.patch
+
 ; Fixing Notice: Undefined property: stdClass::$status in features_export_form
 ; https://www.drupal.org/node/2324973
 projects[features][patch][2324973_19] = https://www.drupal.org/files/issues/undefined-property-status-2324973-19.patch
+
 ; Fixing bug with the location field ajax callback
 ; https://www.drupal.org/node/1997658#comment-10532078
 projects[location][patch][1997658_6] = https://www.drupal.org/files/issues/location-1997658-46.patch
+
 ; Fixing bug with the location Google maps link
 ; https://www.drupal.org/node/2781227
 projects[location][patch][2781227_1] = https://www.drupal.org/files/issues/location-google-maps-link-2781227-1.patch
+
 ; Add migration support for Bean
 ; https://www.drupal.org/node/2295973#comment-11536795
 projects[bean][patch][2295973_11] = https://www.drupal.org/files/issues/bean-migrate-support-2295973-11.patch
+
 ; Fix "Select all" checkbox works only once
 ; https://www.drupal.org/node/2608360#comment-11620927
 projects[views_bulk_operations][patch][2608360_14] = https://www.drupal.org/files/issues/2608360-14.patch
+
 ; Fix "Show fewer" link for Facet API filters
 ; https://www.drupal.org/node/2327997
 projects[facetapi][patch][2327997_3] = https://www.drupal.org/files/issues/facetapi-2327997-3-show-fewer-links.patch
+
+; Fix notice from Felix module
+; https://www.drupal.org/node/2811151
+projects[felix][patch][2811151] = https://www.drupal.org/files/issues/felix-invalid-foreach-2811151-1.patch
 
 ; Custom
 ; a11ychecker_custom
