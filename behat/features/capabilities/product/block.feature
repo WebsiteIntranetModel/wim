@@ -12,5 +12,5 @@ Feature: Add Product as blocks
     And I click "Introduction"
     And I click "Product 3 with Lead Paragraph"
     Then I should be on "agenda"
-    And I should not see the link "Product 3 with Lead Paragraph"
+    And I should see the link "Product 3 with Lead Paragraph"
     And I should see "Lead paragraph demo content"

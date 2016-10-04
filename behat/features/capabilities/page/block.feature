@@ -12,5 +12,5 @@ Feature: Add Basic page as blocks
     And I click "Introduction"
     And I click "Test page with Lead Paragraph"
     Then I should be on "agenda"
-    And I should not see the link "Test page with Lead Paragraph"
+    And I should see the link "Test page with Lead Paragraph"
     And I should see "Lead paragraph demo content"
