@@ -23,7 +23,7 @@ function wim_slider_field_default_field_instances() {
         'settings' => array(
           'adaptiveHeight' => 1,
           'autoplay' => 1,
-          'autoplaySpeed' => 2000,
+          'autoplaySpeed' => 5000,
           'dots' => 0,
           'fade' => 1,
           'pause' => 1,
@@ -140,7 +140,7 @@ function wim_slider_field_default_field_instances() {
       'alt_field' => 0,
       'default_image' => 0,
       'file_directory' => 'slider-item',
-      'file_extensions' => 'jpg jpeg',
+      'file_extensions' => 'jpg jpeg png',
       'max_filesize' => '',
       'max_resolution' => '',
       'min_resolution' => '',
