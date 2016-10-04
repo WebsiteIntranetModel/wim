@@ -53,4 +53,5 @@ features[variable][] = scheduler_unpublish_enable_news
 features[variable][] = scheduler_use_vertical_tabs_news
 features[views_view][] = news
 features_exclude[field_base][body] = body
+features_exclude[variable][pathauto_node_news_pattern] = pathauto_node_news_pattern
 project path = profiles/wim/modules/features
