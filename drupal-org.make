@@ -35,6 +35,7 @@ projects[hansel] = 1.6
 projects[honeypot] = 1.22
 projects[jquery_update] = 2.7
 projects[location] = 3.7
+projects[logging_alerts] = 2.2
 projects[magic] = 2.2
 projects[media] = 2.0-beta2
 projects[menu_block] = 2.7
@@ -100,7 +101,7 @@ libraries[a11ychecker][download][url] = "http://a11ychecker.download.cksource.co
 libraries[a11ychecker][destination] = "libraries"
 libraries[a11ychecker][subdir] = "ckeditor_plugins"
 
-; CKEditor 4.4.6
+; CKEditor 4.5.11
 libraries[ckeditor][download][type] = get
 libraries[ckeditor][download][url] = http://ckeditor.com/builder/download/4aa56d967057f1cfe925bceb9b98049d
 
