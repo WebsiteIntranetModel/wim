@@ -181,6 +181,12 @@ function wimbase_preprocess_block(&$variables) {
   if ($bean_view_mode) {
     $variables['classes_array'][] = 'bean-view-mode-' . drupal_html_class($bean_view_mode);
   }
+
+  // Add theme suggestion for node blocks.
+  if ($block->module === 'node' && isset($block->data['viewmode'])) {
+    $variables['theme_hook_suggestions'][] = 'block__node_' . strtr($block->data['viewmode'], '_', '-');
+    $variables['title_url'] = url($block->detail_path);
+  }
 }
 
 /**

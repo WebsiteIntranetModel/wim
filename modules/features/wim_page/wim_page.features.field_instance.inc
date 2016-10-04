@@ -83,9 +83,13 @@ function wim_page_field_default_field_instances() {
       ),
       'introduction' => array(
         'label' => 'hidden',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 5,
+        'module' => 'image',
+        'settings' => array(
+          'image_link' => 'content',
+          'image_style' => 'pictogram',
+        ),
+        'type' => 'image',
+        'weight' => 0,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -142,68 +146,6 @@ function wim_page_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-page-field_lead_image'.
-  $field_instances['node-page-field_lead_image'] = array(
-    'bundle' => 'page',
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'hidden',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 6,
-      ),
-      'introduction' => array(
-        'label' => 'hidden',
-        'module' => 'image',
-        'settings' => array(
-          'image_link' => 'content',
-          'image_style' => 'pictogram',
-        ),
-        'type' => 'image',
-        'weight' => 0,
-      ),
-      'search_result' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_lead_image',
-    'label' => 'Introducing image',
-    'required' => 0,
-    'settings' => array(
-      'alt_field' => 0,
-      'default_image' => 0,
-      'file_directory' => 'basic/lead_images',
-      'file_extensions' => 'png gif jpg jpeg',
-      'max_filesize' => '',
-      'max_resolution' => '',
-      'min_resolution' => '',
-      'title_field' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'image',
-      'settings' => array(
-        'preview_image_style' => 'thumbnail',
-        'progress_indicator' => 'throbber',
-      ),
-      'type' => 'image_image',
-      'weight' => 12,
-    ),
-  );
-
   // Exported field_instance: 'node-page-field_lead_paragraph'.
   $field_instances['node-page-field_lead_paragraph'] = array(
     'bundle' => 'page',
@@ -257,7 +199,7 @@ function wim_page_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 13,
+      'weight' => 4,
     ),
   );
 
@@ -282,7 +224,7 @@ function wim_page_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 6,
+        'weight' => 5,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -399,7 +341,7 @@ function wim_page_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 7,
+        'weight' => 6,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -489,7 +431,6 @@ function wim_page_field_default_field_instances() {
   t('Check if You want to stick this node on top of lists');
   t('Enter a comma-separated list of tags.');
   t('Image');
-  t('Introducing image');
   t('Lead paragraph');
   t('Promoted');
   t('Publication date');

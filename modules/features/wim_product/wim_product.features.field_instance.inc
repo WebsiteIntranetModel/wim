@@ -22,13 +22,13 @@ function wim_product_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 1,
+        'weight' => 0,
       ),
       'introduction' => array(
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 5,
+        'weight' => 4,
       ),
       'search_result' => array(
         'label' => 'hidden',
@@ -77,19 +77,19 @@ function wim_product_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'hidden',
-        'module' => 'image',
-        'settings' => array(
-          'image_link' => '',
-          'image_style' => 'large',
-        ),
-        'type' => 'image',
-        'weight' => 0,
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 1,
       ),
       'introduction' => array(
         'label' => 'hidden',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 2,
+        'module' => 'image',
+        'settings' => array(
+          'image_link' => 'content',
+          'image_style' => 'pictogram',
+        ),
+        'type' => 'image',
+        'weight' => 0,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -146,68 +146,6 @@ function wim_product_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-product-field_lead_image'.
-  $field_instances['node-product-field_lead_image'] = array(
-    'bundle' => 'product',
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 6,
-      ),
-      'introduction' => array(
-        'label' => 'hidden',
-        'module' => 'image',
-        'settings' => array(
-          'image_link' => 'content',
-          'image_style' => 'pictogram',
-        ),
-        'type' => 'image',
-        'weight' => 0,
-      ),
-      'search_result' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_lead_image',
-    'label' => 'Introducing image',
-    'required' => 0,
-    'settings' => array(
-      'alt_field' => 0,
-      'default_image' => 0,
-      'file_directory' => 'product/lead_images',
-      'file_extensions' => 'png gif jpg jpeg',
-      'max_filesize' => '',
-      'max_resolution' => '',
-      'min_resolution' => '',
-      'title_field' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'image',
-      'settings' => array(
-        'preview_image_style' => 'thumbnail',
-        'progress_indicator' => 'throbber',
-      ),
-      'type' => 'image_image',
-      'weight' => 12,
-    ),
-  );
-
   // Exported field_instance: 'node-product-field_lead_paragraph'.
   $field_instances['node-product-field_lead_paragraph'] = array(
     'bundle' => 'product',
@@ -219,7 +157,7 @@ function wim_product_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 7,
+        'weight' => 6,
       ),
       'introduction' => array(
         'label' => 'hidden',
@@ -261,7 +199,7 @@ function wim_product_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 13,
+      'weight' => 4,
     ),
   );
 
@@ -286,7 +224,7 @@ function wim_product_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 7,
+        'weight' => 6,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -335,7 +273,7 @@ function wim_product_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 4,
+        'weight' => 3,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -403,7 +341,7 @@ function wim_product_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 3,
+        'weight' => 2,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -453,7 +391,7 @@ function wim_product_field_default_field_instances() {
         'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 6,
+        'weight' => 5,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -492,7 +430,6 @@ function wim_product_field_default_field_instances() {
   t('Body');
   t('Check if You want to stick this node on top of lists');
   t('Image');
-  t('Introducing image');
   t('Lead paragraph');
   t('Promoted');
   t('Publication date');

@@ -24,7 +24,6 @@ features[field_group][] = group_introduction|node|page|form
 features[field_group][] = group_reminder|node|page|form
 features[field_instance][] = node-page-body
 features[field_instance][] = node-page-field_image
-features[field_instance][] = node-page-field_lead_image
 features[field_instance][] = node-page-field_lead_paragraph
 features[field_instance][] = node-page-field_promoted
 features[field_instance][] = node-page-field_publication_date

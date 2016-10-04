@@ -23,7 +23,7 @@ function wim_product_field_group_info() {
     'label' => 'Introduction',
     'weight' => '1',
     'children' => array(
-      0 => 'field_lead_image',
+      0 => 'field_image',
       1 => 'field_lead_paragraph',
     ),
     'format_type' => 'fieldset',

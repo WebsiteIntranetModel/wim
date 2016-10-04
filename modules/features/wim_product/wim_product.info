@@ -23,7 +23,6 @@ features[field_group][] = group_introduction|node|product|form
 features[field_group][] = group_reminder|node|product|form
 features[field_instance][] = node-product-body
 features[field_instance][] = node-product-field_image
-features[field_instance][] = node-product-field_lead_image
 features[field_instance][] = node-product-field_lead_paragraph
 features[field_instance][] = node-product-field_promoted
 features[field_instance][] = node-product-field_publication_date
