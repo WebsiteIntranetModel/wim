@@ -1,0 +1,15 @@
+<?php
+
+/**
+ * @file
+ * Installation instructions and schema.
+ */
+
+/**
+ * Implements hook_uninstall().
+ */
+function kcmsurvey_uninstall() {
+  // Remove all variables used by the module.
+  variable_get('kcmsurvey_pages');
+  variable_get('kcmsurvey');
+}
