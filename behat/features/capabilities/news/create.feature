@@ -14,6 +14,8 @@ Feature: Create News
       | Tags    | Tag1, Tag2   |
     And I fill in wysiwyg on field Summary with "SUMMARY-TEXT"
     And I fill in wysiwyg on field Body with "BODY CONTENT"
+    And I click "Introduction"
+    And I fill in wysiwyg on field "Lead paragraph" with "Lead paragraph demo content"
     And I click "Publishing options"
     And I check the box "Promoted"
     And I fill in the following:

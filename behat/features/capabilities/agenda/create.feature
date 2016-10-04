@@ -18,6 +18,8 @@ Feature: Create Agenda
       | Postal code   | 1011                   |
       | Tags          | Tag1, Tag2             |
     And I fill in wysiwyg on field Body with "TEST AGENDA BODY"
+    And I click "Introduction"
+    And I fill in wysiwyg on field "Lead paragraph" with "Lead paragraph demo content"
     And I click "Publishing options"
     And I fill in the following:
       | Promoted | 0 |

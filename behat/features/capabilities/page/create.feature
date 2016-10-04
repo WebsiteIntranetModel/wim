@@ -16,7 +16,9 @@ Feature: Create basic page
       | Date | 27/06/2026 |
       | Time | 11:10:00   |
     Then I should see "Promoted"
+    And I click "Introduction"
     And I attach the file "/fixtures/images/drupal-icon.png" to "Image"
+    And I fill in wysiwyg on field "Lead paragraph" with "Lead paragraph demo content"
     And I click "Reminder"
     And I should see "Reminder email"
     And I click "Scheduling options"
