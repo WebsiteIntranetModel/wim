@@ -24,6 +24,12 @@ function wim_product_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 1,
       ),
+      'introduction' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 5,
+      ),
       'search_result' => array(
         'label' => 'hidden',
         'module' => 'text',
@@ -78,6 +84,12 @@ function wim_product_field_default_field_instances() {
         ),
         'type' => 'image',
         'weight' => 0,
+      ),
+      'introduction' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 2,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -142,13 +154,19 @@ function wim_product_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 6,
+      ),
+      'introduction' => array(
+        'label' => 'hidden',
         'module' => 'image',
         'settings' => array(
-          'image_link' => '',
-          'image_style' => '',
+          'image_link' => 'content',
+          'image_style' => 'pictogram',
         ),
         'type' => 'image',
-        'weight' => 6,
+        'weight' => 0,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -165,7 +183,7 @@ function wim_product_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_lead_image',
-    'label' => 'Image',
+    'label' => 'Introducing image',
     'required' => 0,
     'settings' => array(
       'alt_field' => 0,
@@ -199,10 +217,16 @@ function wim_product_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 7,
+      ),
+      'introduction' => array(
+        'label' => 'hidden',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 7,
+        'weight' => 1,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -258,6 +282,12 @@ function wim_product_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 5,
       ),
+      'introduction' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 7,
+      ),
       'search_result' => array(
         'label' => 'above',
         'settings' => array(),
@@ -300,6 +330,12 @@ function wim_product_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 3,
+      ),
+      'introduction' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 4,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -363,6 +399,12 @@ function wim_product_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 2,
       ),
+      'introduction' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 3,
+      ),
       'search_result' => array(
         'label' => 'above',
         'settings' => array(),
@@ -407,6 +449,12 @@ function wim_product_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 4,
       ),
+      'introduction' => array(
+        'label' => 'inline',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 6,
+      ),
       'search_result' => array(
         'label' => 'above',
         'settings' => array(),
@@ -444,6 +492,7 @@ function wim_product_field_default_field_instances() {
   t('Body');
   t('Check if You want to stick this node on top of lists');
   t('Image');
+  t('Introducing image');
   t('Lead paragraph');
   t('Promoted');
   t('Publication date');
