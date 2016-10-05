@@ -7,6 +7,9 @@
     "field_tags": "2,4",
     "field_show_on_overview": 1,
     "field_faq_category": 1,
+    "meta_title": "",
+    "meta_keywords": "",
+    "meta_description": "",
     "author": 1
   },
   {
@@ -17,6 +20,9 @@
     "field_tags": "1,3",
     "field_show_on_overview": 0,
     "field_faq_category": 2,
+    "meta_title": "",
+    "meta_keywords": "",
+    "meta_description": "",
     "author": 2
   },
   {
@@ -27,6 +33,9 @@
     "field_tags": "2,4",
     "field_show_on_overview": 1,
     "field_faq_category": 2,
+    "meta_title": "",
+    "meta_keywords": "",
+    "meta_description": "",
     "author": 1
   },
   {
@@ -37,6 +46,9 @@
     "field_tags": "1,4",
     "field_show_on_overview": 1,
     "field_faq_category": 2,
+    "meta_title": "",
+    "meta_keywords": "",
+    "meta_description": "",
     "author": 1
   },
   {
@@ -47,6 +59,22 @@
     "field_tags": "1,4",
     "field_show_on_overview": 1,
     "field_faq_category": 2,
+    "meta_title": "",
+    "meta_keywords": "",
+    "meta_description": "",
+    "author": 2
+  },
+  {
+    "id": 6,
+    "title": "FAQ Metatag test",
+    "body": "Mauris blandit aliquet elit",
+    "field_faq_additional_information": "Some addition information",
+    "field_tags": "1,4",
+    "field_show_on_overview": 1,
+    "field_faq_category": 2,
+    "meta_title": "Metatag title",
+    "meta_keywords": "keyword1, keyword2",
+    "meta_description": "This is a small description.",
     "author": 2
   }
 ]

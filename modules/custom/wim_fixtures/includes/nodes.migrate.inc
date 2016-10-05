@@ -40,6 +40,9 @@ class BasicPageMigration extends NodeMigration {
       'field_tags' => t('Node tags'),
       'field_publication_date' => t('Custom publication date'),
       'field_promoted' => t('Promoted flag'),
+      'meta_title' => t('Metatag title'),
+      'meta_keywords' => t('Metatag keywords'),
+      'meta_description' => t('Metatag description'),
       'author' => t('Node creator'),
     );
 
@@ -80,6 +83,9 @@ class BasicPageMigration extends NodeMigration {
       ->sourceMigration('WIM_Term_Tags');
     $this->addFieldMapping('field_tags:source_type')
       ->defaultValue('tid');
+    $this->addFieldMapping('metatag_title', 'meta_title');
+    $this->addFieldMapping('metatag_description', 'meta_description');
+    $this->addFieldMapping('metatag_keywords', 'meta_keywords');
   }
 
 }
@@ -112,6 +118,9 @@ class PersonMigration extends NodeMigration {
       'field_person_phone' => t('Phone'),
       'field_email' => t('Email'),
       'field_person_address' => t('Address'),
+      'meta_title' => t('Metatag title'),
+      'meta_keywords' => t('Metatag keywords'),
+      'meta_description' => t('Metatag description'),
     );
 
     $this->source = new MigrateSourceList(new WIMListJSON($this->dataSources . $this->fileName),
@@ -154,6 +163,9 @@ class PersonMigration extends NodeMigration {
       ->sourceMigration('WIM_Term_Tags');
     $this->addFieldMapping('field_tags:source_type')
       ->defaultValue('tid');
+    $this->addFieldMapping('metatag_title', 'meta_title');
+    $this->addFieldMapping('metatag_description', 'meta_description');
+    $this->addFieldMapping('metatag_keywords', 'meta_keywords');
   }
 
 }
@@ -185,6 +197,9 @@ class ProductMigration extends NodeMigration {
       'field_publication_date' => t('Custom publication date'),
       'field_promoted' => t('Promoted flag'),
       'author' => t('Node creator'),
+      'meta_title' => t('Metatag title'),
+      'meta_keywords' => t('Metatag keywords'),
+      'meta_description' => t('Metatag description'),
     );
     $this->source = new MigrateSourceList(new WIMListJSON($this->dataSources . $this->fileName),
       new WIMItemJSON($this->dataSources . $this->fileName, array()), $columns);
@@ -221,6 +236,9 @@ class ProductMigration extends NodeMigration {
       ->sourceMigration('WIM_Term_Tags');
     $this->addFieldMapping('field_tags:source_type')
       ->defaultValue('tid');
+    $this->addFieldMapping('metatag_title', 'meta_title');
+    $this->addFieldMapping('metatag_description', 'meta_description');
+    $this->addFieldMapping('metatag_keywords', 'meta_keywords');
   }
 
 }
@@ -254,6 +272,9 @@ class NewsMigration extends NodeMigration {
       'field_news_category' => t('News category'),
       'field_promoted' => t('Promoted flag'),
       'author' => t('Node creator'),
+      'meta_title' => t('Metatag title'),
+      'meta_keywords' => t('Metatag keywords'),
+      'meta_description' => t('Metatag description'),
     );
 
     $this->source = new MigrateSourceList(new WIMListJSON($this->dataSources . $this->fileName),
@@ -300,6 +321,10 @@ class NewsMigration extends NodeMigration {
       ->sourceMigration('WIM_Term_Categories');
     $this->addFieldMapping('field_news_category:source_type')
       ->defaultValue('tid');
+    $this->addFieldMapping('metatag_title', 'meta_title');
+    $this->addFieldMapping('metatag_description', 'meta_description');
+    $this->addFieldMapping('metatag_keywords', 'meta_keywords');
+
   }
 
 }
@@ -332,6 +357,9 @@ class FaqMigration extends NodeMigration {
       'field_show_on_overview' => t('Show on overview flag'),
       'field_faq_category' => t('FAQ category'),
       'author' => t('Node creator'),
+      'meta_title' => t('Metatag title'),
+      'meta_keywords' => t('Metatag keywords'),
+      'meta_description' => t('Metatag description'),
     );
 
     $this->source = new MigrateSourceList(new WIMListJSON($this->dataSources . $this->fileName),
@@ -369,6 +397,9 @@ class FaqMigration extends NodeMigration {
       ->sourceMigration('WIM_Faq_Categories');
     $this->addFieldMapping('field_faq_category:source_type')
       ->defaultValue('tid');
+    $this->addFieldMapping('metatag_title', 'meta_title');
+    $this->addFieldMapping('metatag_description', 'meta_description');
+    $this->addFieldMapping('metatag_keywords', 'meta_keywords');
   }
 
 }
@@ -407,6 +438,9 @@ class AgendaMigration extends NodeMigration {
       'field_tags' => t('Tags'),
       'field_promoted' => t('Promoted flag'),
       'author' => t('Node creator'),
+      'meta_title' => t('Metatag title'),
+      'meta_keywords' => t('A comma-separated list of keywords about the page. This meta tag is not supported by most search engines anymore.'),
+      'meta_description' => t('Metatag description'),
     );
 
     $this->source = new MigrateSourceList(new WIMListJSON($this->dataSources . $this->fileName),
@@ -453,6 +487,9 @@ class AgendaMigration extends NodeMigration {
     $this->addFieldMapping('field_tags:source_type')
       ->defaultValue('tid');
 
+    $this->addFieldMapping('metatag_title', 'meta_title');
+    $this->addFieldMapping('metatag_description', 'meta_description');
+    $this->addFieldMapping('metatag_keywords', 'meta_keywords');
   }
 
 }

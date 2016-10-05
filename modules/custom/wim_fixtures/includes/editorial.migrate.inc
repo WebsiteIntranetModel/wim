@@ -28,6 +28,9 @@ class EditorialMigration extends WIMMigration {
       'field_body' => t('Body'),
       'field_link' => t('Link'),
       'field_image' => t('Image'),
+      'meta_title' => t('Metatag title'),
+      'meta_keywords' => t('Metatag keywords'),
+      'meta_description' => t('Metatag description'),
     );
 
     $this->source = new MigrateSourceList(new WIMListJSON($this->dataSources . $this->fileName),
