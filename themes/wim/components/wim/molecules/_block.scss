@@ -43,7 +43,7 @@
     }
   }
   &.bean-view-mode-default {
-    &:not('slider'){
+    &:not(.slider){
       position: relative;
       &.editorial-image {
         padding-left: 75px;
