@@ -60,6 +60,9 @@ function wim_install() {
 
   // Pathauto configuration.
   _wim_default_pathauto();
+
+  // Change media render.
+  variable_set('media_wysiwyg_default_render', 'field_attach');
 }
 
 /**
