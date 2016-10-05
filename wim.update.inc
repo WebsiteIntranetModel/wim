@@ -17,8 +17,22 @@ function wim_update_7000(&$sandbox) {
 
 /**
  * WIM-1186 - Can not add a link to an image in ckeditor.
+ * WIM-1072 - Sitemap XML support.
  */
 function wim_update_7001(&$sandbox) {
   // Change media render.
   variable_set('media_wysiwyg_default_render', 'field_attach');
+
+  // Revert features.
+  features_revert(array(
+    'wim_core',
+    'wim_agenda',
+    'wim_faq',
+    'wim_news',
+    'wim_page',
+    'wim_person',
+    'wim_product',
+    'wim_subject',
+    'wim_webform',
+  ));
 }
