@@ -48,5 +48,7 @@ features[variable][] = scheduler_publish_enable_faq
 features[variable][] = scheduler_publish_touch_faq
 features[variable][] = scheduler_unpublish_enable_faq
 features[variable][] = scheduler_use_vertical_tabs_faq
+features[variable][] = xmlsitemap_settings_node_faq
 features[views_view][] = faq
+features_exclude[variable][pathauto_node_faq_pattern] = pathauto_node_faq_pattern
 project path = profiles/wim/modules/features

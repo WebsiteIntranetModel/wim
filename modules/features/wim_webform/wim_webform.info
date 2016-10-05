@@ -37,4 +37,6 @@ features[variable][] = scheduler_publish_touch_webform
 features[variable][] = scheduler_unpublish_enable_webform
 features[variable][] = scheduler_use_vertical_tabs_webform
 features[variable][] = webform_node_webform
+features[variable][] = xmlsitemap_settings_node_webform
+features_exclude[variable][pathauto_node_webform_pattern] = pathauto_node_webform_pattern
 project path = profiles/wim/modules/features
