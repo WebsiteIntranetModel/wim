@@ -3230,6 +3230,7 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   position: absolute;
   left: 20px;
   top: 10px;
+  margin: 0;
 }
 
 #block-views-agenda-upcoming-agenda {
@@ -3781,7 +3782,7 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   margin-top: 1.25em;
 }
 
-.node-view-mode-full .node .field-name-field-lead-paragraph {
+.node.node-view-mode-full .field-name-field-lead-paragraph {
   font-weight: bold;
   margin: 1em 0;
 }

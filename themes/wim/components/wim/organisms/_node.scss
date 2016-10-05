@@ -10,8 +10,8 @@
       margin-top: 1.25em;
     }
   }
-  .field-name-field-lead-paragraph {
-    .node-view-mode-full & {
+  &.node-view-mode-full {
+    .field-name-field-lead-paragraph {
       font-weight: bold;
       margin: 1em 0;
     }
