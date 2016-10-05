@@ -3781,7 +3781,7 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   margin-top: 1.25em;
 }
 
-.node-view-mode-default .node .field-name-field-lead-paragraph {
+.node-view-mode-full .node .field-name-field-lead-paragraph {
   font-weight: bold;
   margin: 1em 0;
 }
