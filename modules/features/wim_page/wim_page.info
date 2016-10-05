@@ -41,4 +41,6 @@ features[variable][] = scheduler_publish_enable_page
 features[variable][] = scheduler_publish_touch_page
 features[variable][] = scheduler_unpublish_enable_page
 features[variable][] = scheduler_use_vertical_tabs_page
+features[variable][] = xmlsitemap_settings_node_page
+features_exclude[variable][pathauto_node_page_pattern] = pathauto_node_page_pattern
 project path = profiles/wim/modules/features
