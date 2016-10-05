@@ -129,7 +129,7 @@
     </div>
   <?php endif; ?>
 
-  <div role="main" class="main-container <?php print $container_class; ?>">
+  <div role="main" class="main-container <?php print $container_class; ?>" id="main">
 
     <?php if (isset($readspeaker)): ?>
       <?php print render($readspeaker); ?>

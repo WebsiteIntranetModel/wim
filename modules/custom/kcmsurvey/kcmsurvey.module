@@ -1,0 +1,111 @@
+<?php
+/**
+ * @file
+ * Code for the kcmsurvey.
+ */
+
+/**
+ * Implements hook_permission().
+ */
+function kcmsurvey_permission() {
+  return array(
+    'administer kcmsurvey' => array(
+      'title' => t('Administer KCM Survey module'),
+      'description' => t('Set KCM Survey script.'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_menu().
+ */
+function kcmsurvey_menu() {
+  $items['admin/config/services/kcmsurvey'] = array(
+    'title' => 'KCM Survey',
+    'description' => 'Klantcontact Monitor external javascript settings',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('kcmsurvey_admin_form'),
+    'access arguments' => array('administer kcmsurvey'),
+    'type' => MENU_NORMAL_ITEM,
+    'file' => 'kcmsurvey.admin.inc',
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_page_build().
+ */
+function kcmsurvey_page_build(&$page) {
+  // Adding attachments to an element of type page does not work,
+  // because then the html theme_wrapper runs before attachments processing.
+  // The page template does render regions,
+  // so page attachments can be added there.
+  if (path_is_admin(current_path())) {
+    // Don't render survey link on admin pages.
+    return;
+  }
+
+  if (!isset($page['page_bottom'])) {
+    $page['page_bottom'] = array();
+  }
+  $page['page_bottom']['kcmsurvey_page_attachments'] = array(
+    '#pre_render' => array('kcm_survey_pre_render'),
+  );
+}
+
+/**
+ * Pre render function.
+ *
+ * @param array $element
+ *    Rendered element.
+ *
+ * @return mixed
+ *    Element.
+ */
+function kcm_survey_pre_render($element) {
+  _kcmsurvey_page_attachments($element);
+  return $element;
+}
+
+/**
+ * Helper function to attach KCM survey script.
+ *
+ * @param array $page
+ *    Page array.
+ */
+function _kcmsurvey_page_attachments(array &$page) {
+  $kcmsurvey_script_url = variable_get('kcmsurvey_script_url');
+  if ($kcmsurvey_script_url) {
+    // Match path if necessary.
+    /** @var array $settings */
+    $settings = variable_get('kcmsurvey', array());
+
+    // Similar for block visibility behavior.
+    if (isset($settings['pages'])) {
+      // Convert path to lowercase. This allows comparison of the same path
+      // with different case. Ex: /Page, /page, /PAGE.
+      $pages = drupal_strtolower($settings['pages']);
+      if ($settings['visibility'] < BLOCK_VISIBILITY_PHP) {
+        // Convert the Drupal path to lowercase.
+        $path = drupal_strtolower(drupal_get_path_alias($_GET['q']));
+        // Compare the lowercase internal and lowercase path alias (if any).
+        $page_match = drupal_match_path($path, $pages);
+        if ($path != $_GET['q']) {
+          $page_match = $page_match || drupal_match_path($_GET['q'], $pages);
+        }
+        $page_match = !($settings['visibility'] xor $page_match);
+      }
+      else {
+        $page_match = FALSE;
+      }
+    }
+    else {
+      $page_match = TRUE;
+    }
+
+    if ($page_match) {
+      $page['#attached']['js'][$kcmsurvey_script_url] = array('type' => 'external');
+    }
+  }
+}
