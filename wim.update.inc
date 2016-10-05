@@ -28,3 +28,11 @@ function wim_update_7001(&$sandbox) {
     'wim_agenda',
   ));
 }
+
+/**
+ * WIM-1186 - Can not add a link to an image in ckeditor.
+ */
+function wim_update_7002(&$sandbox) {
+  // Change media render.
+  variable_set('media_wysiwyg_default_render', 'field_attach');
+}

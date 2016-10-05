@@ -46,7 +46,10 @@
     "title": "Testing media 2",
     "body": "Just some demo description",
     "summary": "",
+<<<<<<< HEAD
     "field_lead_paragraph": "Lead paragraph demo content. In verband met &nbsp;met renovatieplannen is de huur",
+=======
+>>>>>>> 745203d51fc38741788587189369fb6bef4455ae
     "field_image": "/gorilla.jpg",
     "field_tags": "1",
     "field_promoted": "0",
