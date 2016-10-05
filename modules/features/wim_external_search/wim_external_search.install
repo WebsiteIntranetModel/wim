@@ -20,7 +20,7 @@ function wim_external_search_install() {
     'delta' => $delta,
     'detail_path' => NULL,
     'data' => array(
-      'subject' => st('Filter by source'),
+      'subject' => st('Filter by External Source'),
       'config' => array(
         'bootstrap_layout' => 12,
         'new_row' => 0,
@@ -65,4 +65,27 @@ function wim_external_search_uninstall() {
     ->condition('module', 'bean')
     ->condition('delta', $delta)
     ->execute();
+}
+
+/**
+ * Change filter block title.
+ */
+function wim_external_search_update_7000() {
+  $string = facetapi_build_delta('apachesolr@solr', 'block', 'external_source');
+  $map = facetapi_get_delta_map();
+  $delta = array_search($string, $map);
+
+  $block = db_select('felix_block', 'cb')
+    ->fields('cb')
+    ->condition('cb.delta', $delta)
+    ->execute()
+    ->fetchObject();
+
+  if ($block) {
+    $block->data = unserialize($block->data);
+    $block->data['subject'] = t('Filter by External Source');
+    $block->data = serialize($block->data);
+    drupal_write_record('felix_block', $block, array('fbid'));
+  }
+
 }

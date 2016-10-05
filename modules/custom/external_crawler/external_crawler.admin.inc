@@ -93,7 +93,7 @@ function external_crawler_site_add_form() {
   );
   $form['url_exclude'] = array(
     '#type' => 'textarea',
-    '#title' => t('Exluded paths'),
+    '#title' => t('Excluded paths'),
     '#description' => t('List of excluded URLs, one per line.'),
   );
 
@@ -206,7 +206,7 @@ function external_crawler_site_edit_form($form, &$form_state) {
     );
     $form['url_exclude'] = array(
       '#type' => 'textarea',
-      '#title' => t('Exluded paths'),
+      '#title' => t('Excluded paths'),
       '#description' => t('List of excluded URLs, one per line.'),
       '#default_value' => $site->url_exclude,
     );

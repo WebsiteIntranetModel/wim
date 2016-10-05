@@ -9,6 +9,9 @@
     "field_tags": "2,4",
     "field_publication_date": "2026-06-27 00:00:00",
     "field_promoted": 1,
+    "meta_title": "",
+    "meta_keywords": "",
+    "meta_description": "",
     "author": 1
   },
   {
@@ -21,10 +24,28 @@
     "field_tags": "1,3",
     "field_publication_date": "2016-02-27 00:00:00",
     "field_promoted": 0,
+    "meta_title": "",
+    "meta_keywords": "",
+    "meta_description": "",
     "author": 2
   },
   {
     "id": 3,
+    "title": "Product Metatag test",
+    "body": "logem ipsum",
+    "body:summary": "",
+    "field_lead_paragraph": "Lead paragraph demo content. In verband met &nbsp;met renovatieplannen is de huur",
+    "field_image": "/drupal-icon.png",
+    "field_tags": "1,3",
+    "field_publication_date": "2016-06-27 00:00:00",
+    "field_promoted": 0,
+    "meta_title": "Metatag title",
+    "meta_keywords": "keyword1, keyword2",
+    "meta_description": "This is a small description.",
+    "author": 2
+  },
+  {
+    "id": 4,
     "title": "Product 3 with Lead Paragraph",
     "body": "Quisque velit nisi, pretium ut lacinia in, elementum id enim.",
     "body:summary": "",
@@ -33,10 +54,13 @@
     "field_tags": "2,4",
     "field_publication_date": "2026-06-17 00:00:00",
     "field_promoted": 1,
+    "meta_title": "",
+    "meta_keywords": "",
+    "meta_description": "",
     "author": 1
   },
   {
-    "id": 4,
+    "id": 5,
     "title": "Product 4 Lead Paragraph empty",
     "body": "Quisque velit nisi, pretium ut lacinia in, elementum id enim.",
     "body:summary": "",
@@ -45,6 +69,9 @@
     "field_tags": "2,4",
     "field_publication_date": "2026-02-10 00:00:00",
     "field_promoted": 1,
+    "meta_title": "",
+    "meta_keywords": "",
+    "meta_description": "",
     "author": 1
   }
 ]

@@ -590,20 +590,6 @@ function _custom_lists_build_title($list) {
 }
 
 /**
- * Implements hook_preprocess_html().
- *
- * Used for adding a css class to the page if defined on the list.
- */
-function custom_lists_preprocess_html(&$vars) {
-  // Check if there is a list on this page.
-  $list = custom_lists_get_current(current_path());
-
-  if ($list && isset($list['css_class']) && !empty($list['css_class'])) {
-    $vars['classes_array'][] = $list['css_class'];
-  }
-}
-
-/**
  * Get first list from lists array.
  */
 function custom_lists_get_current($page_url = NULL) {
