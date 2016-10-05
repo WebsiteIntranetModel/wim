@@ -14,3 +14,17 @@ function wim_update_7000(&$sandbox) {
   // Revert feature.
   features_revert(array('wim_text_formats'));
 }
+
+/**
+ * WIM-627 - Add Lead Paragraph to content types.
+ */
+function wim_update_7001(&$sandbox) {
+  // Revert features.
+  features_revert(array(
+    'wim_block_management',
+    'wim_news',
+    'wim_product',
+    'wim_page',
+    'wim_agenda',
+  ));
+}
