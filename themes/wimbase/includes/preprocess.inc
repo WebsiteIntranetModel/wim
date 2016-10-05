@@ -30,6 +30,9 @@ function wimbase_preprocess_node(&$variables) {
       $variables['product_link'] = l(t('Back to product'), '/node/' . $parameters['product'], array('attributes' => array('class' => array('back-link'))));
     }
   }
+
+  $variables['classes_array'][] = drupal_html_class('node-view-mode-' . $view_mode);
+
 }
 
 /**
@@ -112,6 +115,7 @@ function wimbase_preprocess_region(&$variables) {
  */
 function wimbase_preprocess_block(&$variables) {
   $block = &$variables['block'];
+  $has_image_class = 'has-image';
   // Be default we show all blocks in a new row.
   $block->new_row = TRUE;
   $block->bootstrap_layout = WIM_BLOCK_MANAGEMENT_BOOTSTRAP_FULL_WIDTH;
@@ -129,7 +133,7 @@ function wimbase_preprocess_block(&$variables) {
     }
 
     if ($bean_view_mode === 'default' && isset($bean->field_image) && $bean->field_image) {
-      $variables['classes_array'][] = 'editorial-image';
+      $variables['classes_array'][] = $has_image_class;
     }
   }
 
@@ -162,7 +166,7 @@ function wimbase_preprocess_block(&$variables) {
         if ($bean->type === 'editorial') {
           // Editorial added via Felix we process according to settings.
           if ($config['bean_view_mode'] === 'default' && $bean->field_image) {
-            $variables['classes_array'][] = 'editorial-image';
+            $variables['classes_array'][] = $has_image_class;
           }
         }
       }
@@ -186,6 +190,10 @@ function wimbase_preprocess_block(&$variables) {
   if ($block->module === 'node' && isset($block->data['viewmode'])) {
     $variables['theme_hook_suggestions'][] = 'block__node_' . strtr($block->data['viewmode'], '_', '-');
     $variables['title_url'] = url($block->detail_path);
+    $node = node_load($block->delta);
+    if(isset($node->field_image) && !empty($node->field_image)){
+      $variables['classes_array'][] = $has_image_class;
+    }
   }
 }
 
