@@ -10,6 +10,9 @@
     "field_person_phone":"+3 404 34343",
     "field_email":"user+norris@example.com",
     "field_person_address":"<p>Ryan, Oklahoma, U.S. <a class=\"u-textUserColor\" href=\"http://t.co/8ty3x173jK\" rel=\"me nofollow\" target=\"_blank\" title=\"http://www.chucknorris.com\">chucknorris.com</a> <a class=\"twitter-follow-button\" data-size=\"large\" href=\"https://twitter.com/chucknorris\"> Follow @chucknorris</a></p>",
+    "meta_title": "",
+    "meta_keywords": "",
+    "meta_description": "",
     "author":"7"
   },
   {
@@ -23,6 +26,9 @@
     "field_person_phone":"+3 404 3323332",
     "field_email":"user+jack@example.com",
     "field_person_address":"Los Angeles, California, U.S.",
+    "meta_title": "",
+    "meta_keywords": "",
+    "meta_description": "",
     "author":"10"
   },
   {
@@ -36,6 +42,9 @@
     "field_person_phone":"+3 404 1123332",
     "field_email":"user+john@example.com",
     "field_person_address":"Los Angeles, California, U.S.",
+    "meta_title": "",
+    "meta_keywords": "",
+    "meta_description": "",
     "author":"9"
   },
   {
@@ -49,6 +58,25 @@
     "field_person_phone":"+3 404 9923332",
     "field_email":"user+stark@example.com",
     "field_person_address":"Los Angeles, California, U.S.",
+    "meta_title": "",
+    "meta_keywords": "",
+    "meta_description": "",
+    "author":"9"
+  },
+  {
+    "id":"5",
+    "title":"Person Metatag test",
+    "body":"<p><b>Anthony Edward Stark</b>, called <b>Tony</b> by most, is an eccentric genius, billionaire, playboy and philanthropist. He is also the <a href=\"/wiki/Category:Iron_Man_Armors\" title=\"Category:Iron Man Armors\">armored</a> superhero known as <b>Iron Man</b>. Fresh off from defeating enemies all over the world, Stark reluctantly agreed to serve as a consultant to <a href=\"/wiki/Nick_Fury\" title=\"Nick Fury\">Nick Fury</a>'s peacekeeping intelligence agency <a href=\"/wiki/S.H.I.E.L.D.\" title=\"S.H.I.E.L.D.\">S.H.I.E.L.D.</a> Stark joined the <a href=\"/wiki/Avengers\" title=\"Avengers\">Avengers</a> and helped defeat the <a href=\"/wiki/Chitauri\" title=\"Chitauri\">Chitauri</a> and <a href=\"/wiki/Loki\" title=\"Loki\">Loki</a> during the <a href=\"/wiki/Battle_of_New_York\" title=\"Battle of New York\">Battle of New York</a>. Due to the battle, he suffered from post-traumatic stress disorder, leading him to create the <a href=\"/wiki/Iron_Legion\" title=\"Iron Legion\">Iron Legion</a>. After the <a href=\"/wiki/Battle_on_the_Norco\" title=\"Battle on the Norco\">Battle on the Norco</a>, the final event of <a href=\"/wiki/Aldrich_Killian%27s_War\" title=\"Aldrich Killian's War\">Aldrich Killian's War</a>, he destroyed all of his armors with the <a href=\"/wiki/Clean_Slate_Protocol\" title=\"Clean Slate Protocol\">Clean Slate Protocol</a>.\n</p>",
+    "summary":"",
+    "field_image":"/tony_stark.jpg",
+    "field_tags":"3",
+    "field_person_roles":"Consultant for S.H.I.E.L.D., CEO of Stark Industries",
+    "field_person_phone":"+3 404 9923332",
+    "field_email":"user+stark@example.com",
+    "field_person_address":"Los Angeles, California, U.S.",
+    "meta_title": "Metatag title",
+    "meta_keywords": "keyword1, keyword2",
+    "meta_description": "This is a small description.",
     "author":"9"
   }
 ]

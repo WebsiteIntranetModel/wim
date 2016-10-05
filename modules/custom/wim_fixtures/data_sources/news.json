@@ -10,6 +10,9 @@
     "field_attachment": "",
     "field_news_category": "",
     "field_promoted": "0",
+    "meta_title": "",
+    "meta_keywords": "",
+    "meta_description": "",
     "author": ""
   },
   {
@@ -23,6 +26,9 @@
     "field_attachment": "",
     "field_news_category": "3",
     "field_promoted": "0",
+    "meta_title": "",
+    "meta_keywords": "",
+    "meta_description": "",
     "author": "2"
   },
   {
@@ -36,6 +42,9 @@
     "field_attachment": "",
     "field_news_category": "3",
     "field_promoted": "0",
+    "meta_title": "",
+    "meta_keywords": "",
+    "meta_description": "",
     "author": "2"
   },
   {
@@ -49,6 +58,9 @@
     "field_attachment": "",
     "field_news_category": "3",
     "field_promoted": "0",
+    "meta_title": "",
+    "meta_keywords": "",
+    "meta_description": "",
     "author": "2"
   },
   {
@@ -62,6 +74,9 @@
     "field_attachment": "",
     "field_news_category": "3",
     "field_promoted": "0",
+    "meta_title": "",
+    "meta_keywords": "",
+    "meta_description": "",
     "author": "2"
   },
   {
@@ -75,6 +90,25 @@
     "field_attachment": "",
     "field_news_category": "3",
     "field_promoted": "0",
+    "meta_title": "",
+    "meta_keywords": "",
+    "meta_description": "",
+    "author": "2"
+  },
+  {
+    "id": "7",
+    "title": "News Metatag test",
+    "body": "<p>De Voedselbank is momenteel tijdelijk gehuisvest aan de Westerlaan. In verband met &nbsp;met renovatieplannen is de huur per 1 februari 2017 opgezegd. Samen met de gemeente is de Voedselbank op zoek gegaan naar een geschikt pand dat door de Voedselbank (bij voorkeur gratis) gebruikt kan worden.</p><p>De enige mogelijkheid bleek een vrijstaand huurpand aan de Stephensonstraat te zijn. Mede door de regels voor voedselkwaliteit van de Vereniging Nederlandse Voedselbanken &nbsp;en van de voedsel- en warenautoriteit zijn er investeringen nodig die zich lastig laten combineren met gratis, en daarmee vaak tijdelijk, gebruik van het pand.</p><p>Bovendien legt het voortdurend verhuizen een te grote claim op de organisatie qua mankracht en financiële middelen. Met het pand aan de George Stephensonstraat is voor &nbsp;langere termijn onderdak gevonden van waaruit de Voedselbank de voedselpakketten aan haar klanten gratis kan blijven verstrekken. Omdat de gemeente groot belang hecht aan de inspanningen van de voedselbank is besloten tijdelijk ondersteuning te bieden.</p>\\t",
+    "body:summary": "Quisque velit nisi, pretium ut lacinia in, elementum id enim. Vestibulum ante quam vel,",
+    "field_image": "/algemeen.jpg",
+    "field_tags": "4,3",
+    "field_publication_date": "2016-01-25 00:00:00",
+    "field_attachment": "",
+    "field_news_category": "3",
+    "field_promoted": "0",
+    "meta_title": "Metatag title",
+    "meta_keywords": "keyword1, keyword2",
+    "meta_description": "This is a small description.",
     "author": "2"
   }
 ]

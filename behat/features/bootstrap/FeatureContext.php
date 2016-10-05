@@ -468,4 +468,46 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
     }
   }
 
+  /**
+   * I see the metatag.
+   *
+   * @param string $metaname
+   *    Title for field.
+   * @param string $text
+   *    Entered text.
+   *
+   * @throws \Exception
+   *
+   * @When I see the metatag :metaname with :text
+   */
+  public function seeTheMeta($metaname, $text) {
+    $page = $this->getSession()->getPage();
+
+    $contents = $page->find('xpath', '//meta[@name="' . $metaname . '"]');
+
+    if (is_null($contents) || trim($contents->getAttribute('content')) !== trim($text)) {
+      throw new Exception(sprintf("Content '%s' not found", $text));
+    }
+  }
+
+  /**
+   * I see the title metatag.
+   *
+   * @param string $text
+   *    Entered text.
+   *
+   * @throws \Exception
+   *
+   * @When I see the title meta with :text
+   */
+  public function seeTheTitleMeta($text) {
+    $page = $this->getSession()->getPage();
+
+    $content = $page->find('xpath', '//title[text()="' . $text . '"]');
+
+    if (is_null($content)) {
+      throw new Exception(sprintf("Title content '%s' not found", $text));
+    }
+  }
+
 }
