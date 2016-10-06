@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Code for the Custom Lists.
+ * Code for the External Crawler.
  */
 
 include_once 'external_crawler.functions.inc';

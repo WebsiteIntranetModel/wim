@@ -1,0 +1,14 @@
+<?php
+
+/**
+ * @file
+ * Code for the XML Crawler.
+ */
+
+/**
+ * 1. Register XML files, give it a name as well.
+ * 2. Add as site name to external crawler.
+ * 2. Create cronjob that run through the XML files to gather links.
+ * 3. Add links to external crawler.
+ */
+
