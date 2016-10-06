@@ -36,6 +36,7 @@ class BasicPageMigration extends NodeMigration {
       'title' => t('Node title'),
       'body' => t('Node body'),
       'summary' => t('Node summary'),
+      'field_lead_paragraph' => t('Lead paragraph'),
       'field_image' => t('Node image'),
       'field_tags' => t('Node tags'),
       'field_publication_date' => t('Custom publication date'),
@@ -64,6 +65,7 @@ class BasicPageMigration extends NodeMigration {
       'title',
       'body',
       'body:summary',
+      'field_lead_paragraph',
       'field_publication_date',
       'field_promoted',
     ));
@@ -192,6 +194,7 @@ class ProductMigration extends NodeMigration {
       'title' => t('Node title'),
       'body' => t('Node body'),
       'body:summary' => t('Node summary'),
+      'field_lead_paragraph' => t('Lead paragraph'),
       'field_image' => t('Node image'),
       'field_tags' => t('Node tags'),
       'field_publication_date' => t('Custom publication date'),
@@ -218,6 +221,7 @@ class ProductMigration extends NodeMigration {
       'title',
       'body',
       'body:summary',
+      'field_lead_paragraph',
       'field_publication_date',
       'field_promoted',
     ));
@@ -265,6 +269,7 @@ class NewsMigration extends NodeMigration {
       'title' => t('Node title'),
       'body' => t('Node body'),
       'body:summary' => t('Node summary'),
+      'field_lead_paragraph' => t('Lead paragraph'),
       'field_image' => t('Node image'),
       'field_tags' => t('Node tags'),
       'field_publication_date' => t('Custom publication date'),
@@ -295,6 +300,7 @@ class NewsMigration extends NodeMigration {
       'title',
       'body',
       'body:summary',
+      'field_lead_paragraph',
       'field_publication_date',
       'field_promoted',
     ));
@@ -428,6 +434,7 @@ class AgendaMigration extends NodeMigration {
       'title' => t('Title'),
       'body' => t('Body'),
       'body:summary' => t('Node summary'),
+      'field_lead_paragraph' => t('Lead paragraph'),
       'field_image' => t('Node Image'),
       'field_agenda_date' => t('Date'),
       'name' => t('Location name'),
@@ -461,6 +468,7 @@ class AgendaMigration extends NodeMigration {
       'title',
       'body',
       'body:summary',
+      'field_lead_paragraph',
       'field_agenda_date',
       'field_promoted',
     ));
