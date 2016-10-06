@@ -104,6 +104,10 @@ projects[facetapi][patch][2327997_3] = https://www.drupal.org/files/issues/facet
 ; https://www.drupal.org/node/2811151
 projects[felix][patch][2811151] = https://www.drupal.org/files/issues/felix-invalid-foreach-2811151-1.patch
 
+; Fix Undefined index, value in webform_encrypt_webform_submission_presave()
+; https://www.drupal.org/node/2413111
+projects[webform_encrypt][patch][2413111] = https://www.drupal.org/files/issues/webform_encrypt-Undefined-index-value-2413111-%235-7.x-1.1.patch
+
 ; Custom
 ; a11ychecker_custom
 libraries[a11ychecker][download][type] = "get"
