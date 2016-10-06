@@ -62,6 +62,12 @@ function slick_paragraphs_field_formatter_settings_form($field, $instance, $view
     '#default_value' => slick_paragraphs_fields_default_settings('dots', $settings),
   );
 
+  $elements['pause'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Pause'),
+    '#default_value' => slick_paragraphs_fields_default_settings('pause', $settings),
+  );
+
   $elements['adaptiveHeight'] = array(
     '#type' => 'checkbox',
     '#title' => t('Adaptive Height'),
@@ -120,6 +126,8 @@ function slick_paragraphs_field_formatter_view($entity_type, $entity, $field, $i
     'fade' => slick_paragraphs_fields_default_settings('fade', $settings),
     'dots' => slick_paragraphs_fields_default_settings('dots', $settings),
     'adaptiveHeight' => slick_paragraphs_fields_default_settings('adaptiveHeight', $settings),
+    'pause' => slick_paragraphs_fields_default_settings('pause', $settings),
+    'pauseOnHover' => FALSE,
   );
 
   $element['#theme_wrappers'] = array('paragraphs_items');
@@ -145,6 +153,7 @@ function slick_paragraphs_fields_default_settings($setting = NULL, $settings = a
     'fade' => TRUE,
     'dots' => TRUE,
     'adaptiveHeight' => TRUE,
+    'pause' => TRUE,
   );
 
   if ($setting && $settings && isset($settings[$setting])) {

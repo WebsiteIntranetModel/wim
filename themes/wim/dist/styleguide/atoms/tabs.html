@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <title>Tabs - WIM</title>
+    <base href="../../">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" type="text/css" rel="stylesheet" media="screen">
+    <link href="css/wim.css" type="text/css" rel="stylesheet" media="screen">
+    <link href="css/prism.css" type="text/css" rel="stylesheet" media="screen">
+  </head>
+  <body class="styleguide">
+    <div class="meta-wrapper container container-nopadding">
+      <div class="region region-meta-left">
+        <section id="block-menu-menu-meta-menu" class="block block-menu col-md-12 clearfix">
+          <ul class="menu nav">
+            <li class="first last leaf active"><a href="/" class="active">Home</a></li>
+          </ul>
+        </section>
+      </div>
+    </div>
+    <div class="main-wrapper container">
+      <header id="header" class="navbar container navbar-default">
+        <div class="navbar-header"><a href="index.html" title="Home" class="logo navbar-btn pull-left"><img src="../logo.png" alt="Home"></a>
+          <div class="region region-header"></div>
+          <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle"> Menu</button>
+        </div>
+        <div class="navbar-collapse collapse">
+          <nav role="navigation">
+            <ul class="menu nav navbar-nav">
+              <li class="leaf"><a href="starterkit.html">Themer's Starterkit</a></li>
+              <li class="first parent-dropdown"><a href="#" title="" data-target="#" data-toggle="dropdown" class="dropdown-toggle">Styleguide</a>
+                <ul class="dropdown-menu">
+                  <li class="first leaf"><a href="styleguide/atoms.html">Atoms</a></li>
+                  <li class="leaf"><a href="styleguide/molecules.html">Molecules</a></li>
+                  <li class="last leaf"><a href="styleguide/organisms.html">Organisms</a></li>
+                </ul>
+              </li>
+              <li class="leaf parent-dropdown"><a href="#" title="" data-target="#" data-toggle="dropdown" class="dropdown-toggle">Accessibility</a>
+                <ul class="dropdown-menu">
+                  <li class="first leaf"><a href="accessibility/introduction.html">Introduction</a></li>
+                  <li class="leaf"><a href="accessibility/tooling.html">Tooling</a></li>
+                  <li class="last leaf"><a href="accessibility/guidelines.html">Guidelines</a></li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+      <div id="page-banner" role="banner"></div>
+      <!-- Create region for banner and render it here. We moved header to the navbar header section.-->
+      <div role="main" class="main-container container">
+        <div class="row">
+          <aside role="complementary" class="col-sm-3">
+            <div class="region region-sidebar-first">
+              <section id="block-system-management" class="block block-system block-menu clearfix">
+                <h1 class="block-title">Atoms</h1>
+                <ul class="menu nav">
+                  <li><a href="styleguide/atoms/colors.html">Colors</a></li>
+                  <li><a href="styleguide/atoms/typography.html">Typography</a></li>
+                  <li><a href="styleguide/atoms/icons.html">Icons</a></li>
+                  <li><a href="styleguide/atoms/buttons.html">Buttons</a></li>
+                  <li><a href="styleguide/atoms/form-elements.html">Form elements</a></li>
+                  <li><a href="styleguide/atoms/messages.html">Messages</a></li>
+                  <li><a href="styleguide/atoms/tabs.html">Tabs</a></li>
+                  <li><a href="#">...</a></li>
+                </ul>
+              </section>
+            </div>
+          </aside>
+          <!-- /#sidebar-first-->
+          <section class="col-sm-9"><a id="main-content"></a>
+            <div class="region region-content">
+              <section id="block-system-main" class="block block-system clearfix">
+                <h1>Tabs</h1>
+                <p>Inline Tabs, what you can use for all pages</p>
+                <div class="bootstrap-tab">
+                  <ul role="tablist" class="nav nav-tabs">
+                    <li role="presentation" class="active"><a aria-controls="tab2-1" data-toggle="tab" href="#tab2-1" role="tab" aria-expanded="true">Tab1</a></li>
+                    <li role="presentation"><a aria-controls="tab2-2" data-toggle="tab" href="#tab2-2" role="tab" aria-expanded="false">Tab2</a></li>
+                    <li role="presentation"><a aria-controls="tab2-3" data-toggle="tab" href="#tab2-3" role="tab" aria-expanded="false">Tab3</a></li>
+                    <li role="presentation"><a aria-controls="tab2-4" data-toggle="tab" href="#tab2-4" role="tab">Tab4</a></li>
+                    <li role="presentation"><a aria-controls="tab2-5" data-toggle="tab" href="#tab2-5" role="tab">Tab5</a></li>
+                  </ul>
+                  <div class="tab-content">
+                    <div id="tab2-1" role="tabpanel" class="tab-pane active">
+                      <p>Content for tab1</p>
+                    </div>
+                    <div id="tab2-2" role="tabpanel" class="tab-pane">
+                      <p>Content for tab2</p>
+                    </div>
+                    <div id="tab2-3" role="tabpanel" class="tab-pane">
+                      <p>Content for tab3</p>
+                    </div>
+                    <div id="tab2-4" role="tabpanel" class="tab-pane">
+                      <p>Content for tab4</p>
+                    </div>
+                    <div id="tab2-5" role="tabpanel" class="tab-pane">
+                      <p>Content for tab5</p>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/prism.js">
+      <script>
+        // Escape code
+        // ============================================================
+        
+        var $lang_markup       = document.querySelectorAll('pre code.language-markup')
+            $lang_js           = document.querySelectorAll('script.atomic-js'),
+            $lang_jscode       = document.querySelectorAll('pre code.language-javascript')
+            lang_markupsnippet = [],
+            lang_jsnippet      = [];
+        
+        
+        // Markup
+        // order matters!
+        // ============================================================
+        
+        for(var i = 0, l = $lang_markup.length; i < l; i++) {
+          lang_markupsnippet.push(
+            $lang_markup[i].innerHTML.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+          );
+          $lang_markup[i].innerHTML = lang_markupsnippet[i];
+        }
+        
+        
+        // JavaScript
+        // order matters!
+        // ============================================================
+        for(var i = 0, l = $lang_jscode.length; i < l; i++) {
+          lang_jsnippet.push(
+            $lang_jscode[i].innerHTML.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+          );
+        }
+        
+        for(var i = 0, l = $lang_js.length; i < l; i++) {
+          $lang_js[i].innerHTML = lang_jsnippet[i];
+        }
+      </script>
+    </script>
+  </body>
+</html>

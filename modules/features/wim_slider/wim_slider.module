@@ -1,0 +1,39 @@
+<?php
+/**
+ * @file
+ * Code for the WIM Slider feature.
+ */
+
+include_once 'wim_slider.features.inc';
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ */
+function wim_slider_form_bean_form_alter(&$form, &$form_state, $form_id) {
+  $bundle = $form['#bundle'];
+
+  // Hide some unnecessary settings for slider.
+  if ($bundle === 'slider') {
+    if (isset($form['view_mode'])) {
+      $form['view_mode']['#access'] = FALSE;
+    }
+    if (isset($form['redirect'])) {
+      $form['redirect']['#access'] = FALSE;
+    }
+  }
+}
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ */
+function wim_slider_form_felix_attributes_form_alter(&$form, &$form_state, $form_id) {
+  $felix_block = $form['#felix_block'];
+
+  // Hide view mode field.
+  if ($felix_block->module === 'bean') {
+    $bean = bean_load_delta($felix_block->delta);
+    if ($bean->type === 'slider') {
+      $form['bean_view_mode']['#access'] = FALSE;
+    }
+  }
+}

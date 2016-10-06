@@ -48,12 +48,21 @@ function wim_block_management_felix_default_block_sets() {
     ),
     'nodetypes' => array(
       0 => array(
+        'nodetype' => 'page',
+      ),
+      1 => array(
+        'nodetype' => 'product',
+      ),
+      2 => array(
         'nodetype' => 'webform',
       ),
     ),
     'viewmodes' => array(
       0 => array(
         'viewmode' => 'full',
+      ),
+      1 => array(
+        'viewmode' => 'introduction',
       ),
     ),
   );

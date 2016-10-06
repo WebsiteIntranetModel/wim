@@ -135,14 +135,6 @@ function custom_lists_list_form($form, &$form_state, $list_key = NULL) {
     ),
     '#default_value' => !empty($list['type']) ? $list['type'] : 'content',
   );
-  $form['general']['css_class'] = array(
-    '#type' => 'textfield',
-    '#title' => t('CSS class'),
-    '#size' => 30,
-    '#required' => FALSE,
-    '#description' => t('The CSS class to use for both the block and page display.'),
-    '#default_value' => !empty($list['css_class']) ? $list['css_class'] : '',
-  );
 
   $form['type-settings'] = array(
     '#type' => 'fieldset',
@@ -470,7 +462,6 @@ function custom_lists_list_form_submit($form, &$form_state) {
     'path' => $form_state['values']['path'],
     'title' => $form_state['values']['title'],
     'display_title' => $form_state['values']['display_title'],
-    'css_class' => $form_state['values']['css_class'],
     'page-items' => $form_state['values']['page-items'],
     'block-items' => $form_state['values']['block-items'],
     'type' => $form_state['values']['type'],

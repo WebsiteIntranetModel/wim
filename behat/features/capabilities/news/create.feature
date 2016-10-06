@@ -14,6 +14,8 @@ Feature: Create News
       | Tags    | Tag1, Tag2   |
     And I fill in wysiwyg on field Summary with "SUMMARY-TEXT"
     And I fill in wysiwyg on field Body with "BODY CONTENT"
+    And I click "Introduction"
+    And I fill in wysiwyg on field "Lead paragraph" with "Lead paragraph demo content"
     And I click "Publishing options"
     And I check the box "Promoted"
     And I fill in the following:
@@ -34,6 +36,7 @@ Feature: Create News
     And I should see an ".field-name-field-image img" element
     And I should see "pdf-file.pdf"
     And I should see "Share"
+    Then the url should match "/news/test-news"
 
     Given I am an anonymous user
     And I visit "node/add/news"

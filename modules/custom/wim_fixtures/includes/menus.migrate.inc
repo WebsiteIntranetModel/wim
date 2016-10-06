@@ -24,20 +24,22 @@ class TopTasksMenuMigration extends WIMMigration {
     $this->menuName = $arguments['menu_name'];
 
     $columns = array(
-      array('mlid', t('Link id')),
-      array('link_title', t('Link title')),
-      array('link_path', t('Link path')),
-      array('expanded', t('Link expanded')),
-      array('has_children', t('Link has children')),
-      array('plid', t('Parent id')),
-      array('depth', t('Depth')),
-      array('icon', t('Icon')),
+      'id' => t('Link id'),
+      'link_title' => t('Link title'),
+      'link_path' => t('Link path'),
+      'expanded' => t('Link expanded'),
+      'has_children' => t('Link has children'),
+      'plid' => t('Parent id'),
+      'depth' => t('Depth'),
+      'icon' => t('Icon'),
     );
 
-    $this->source = new MigrateSourceCSV($this->dataSources . $this->fileName, $columns, array('header_rows' => 1));
+    $this->source = new MigrateSourceList(new WIMListJSON($this->dataSources . $this->fileName),
+      new WIMItemJSON($this->dataSources . $this->fileName, array()), $columns);
+
     $this->destination = new MigrateDestinationMenuLinks();
     $this->map = new MigrateSQLMap($this->machineName, array(
-      'mlid' => array(
+      'id' => array(
         'type' => 'int',
         'unsigned' => TRUE,
         'not null' => TRUE,
@@ -105,15 +107,17 @@ class SocialMediaMenuMigration extends WIMMigration {
     $this->menuName = $arguments['menu_name'];
 
     $columns = array(
-      array('mlid', t('Link id')),
-      array('link_title', t('Link title')),
-      array('link_path', t('Link path')),
+      'id' => t('Link id'),
+      'link_title' => t('Link title'),
+      'link_path' => t('Link path'),
     );
 
-    $this->source = new MigrateSourceCSV($this->dataSources . $this->fileName, $columns, array('header_rows' => 1));
+    $this->source = new MigrateSourceList(new WIMListJSON($this->dataSources . $this->fileName),
+      new WIMItemJSON($this->dataSources . $this->fileName, array()), $columns);
+
     $this->destination = new MigrateDestinationMenuLinks();
     $this->map = new MigrateSQLMap($this->machineName, array(
-      'mlid' => array(
+      'id' => array(
         'type' => 'int',
         'unsigned' => TRUE,
         'not null' => TRUE,

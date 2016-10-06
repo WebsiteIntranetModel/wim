@@ -5,6 +5,8 @@
  * Install, update and uninstall functions for the WIM distribution.
  */
 
+require_once 'wim.update.inc';
+
 /**
  * Implements hook_install().
  *
@@ -19,8 +21,6 @@ function wim_install() {
   _wim_set_up_roles_and_permissions();
   // Set date formats.
   _wim_set_date_formats();
-  // Set text formats.
-  _wim_set_text_formats();
   // Set blocks.
   _wim_set_blocks();
   // Add menu items.
@@ -57,6 +57,12 @@ function wim_install() {
 
   // Set content types with social share links.
   _wim_default_sss();
+
+  // Pathauto configuration.
+  _wim_default_pathauto();
+
+  // Change media render.
+  variable_set('media_wysiwyg_default_render', 'field_attach');
 }
 
 /**
@@ -194,148 +200,6 @@ function _wim_set_date_formats() {
 }
 
 /**
- * Set text formats.
- */
-function _wim_set_text_formats() {
-  $formats = array();
-  // Exported format: Filtered HTML.
-  $formats['filtered_html'] = array(
-    'format' => 'filtered_html',
-    'name' => 'Filtered HTML',
-    'cache' => 1,
-    'status' => 1,
-    'weight' => -9,
-    'filters' => array(
-      'filter_url' => array(
-        'weight' => 0,
-        'status' => 1,
-        'settings' => array(
-          'filter_url_length' => 72,
-        ),
-      ),
-      'filter_html' => array(
-        'weight' => 1,
-        'status' => 1,
-        'settings' => array(
-          'allowed_html' => '<a> <em> <strong> <cite> <blockquote> <code> <ul> <ol> <li> <dl> <dt> <dd> <table> <tr> <th> <td> <thead> <tbody> <tfoot> <caption> <h2> <h3> <h4> <h5> <h6> <p> <br> <b> <i> <u> <abbr> <acronym> <object> <embed> <param> <span> <iframe> <area> <map> <img>',
-          'filter_html_help' => 1,
-          'filter_html_nofollow' => 0,
-        ),
-      ),
-      'filter_autop' => array(
-        'weight' => 2,
-        'status' => 1,
-        'settings' => array(),
-      ),
-      'filter_htmlcorrector' => array(
-        'weight' => 10,
-        'status' => 1,
-        'settings' => array(),
-      ),
-      'inlinetabs' => array(
-        'weight' => 50,
-        'status' => 1,
-        'settings' => array(),
-      ),
-      'pathologic' => array(
-        'weight' => 50,
-        'status' => 1,
-        'settings' => array(
-          'local_paths' => '',
-          'protocol_style' => 'full',
-        ),
-      ),
-    ),
-  );
-  // Exported format: Full HTML.
-  $formats['full_html'] = array(
-    'format' => 'full_html',
-    'name' => 'Full HTML',
-    'cache' => 1,
-    'status' => 1,
-    'weight' => -10,
-    'filters' => array(
-      'filter_url' => array(
-        'weight' => -47,
-        'status' => 1,
-        'settings' => array(
-          'filter_url_length' => 72,
-        ),
-      ),
-      'filter_html' => array(
-        'weight' => 1,
-        'status' => 1,
-        'settings' => array(
-          'allowed_html' => '<a> <em> <strong> <cite> <blockquote> <code> <ul> <ol> <li> <dl> <dt> <dd> <table> <tr> <th> <td> <thead> <tbody> <tfoot> <caption> <h2> <h3> <h4> <h5> <h6> <p> <br> <b> <i> <u> <abbr> <acronym> <object> <embed> <param> <span> <iframe> <area> <map> <img>',
-          'filter_html_help' => 1,
-          'filter_html_nofollow' => 0,
-        ),
-      ),
-      'filter_autop' => array(
-        'weight' => -42,
-        'status' => 1,
-        'settings' => array(),
-      ),
-      'media_filter' => array(
-        'weight' => -41,
-        'status' => 1,
-        'settings' => array(),
-      ),
-      'filter_htmlcorrector' => array(
-        'weight' => -40,
-        'status' => 1,
-        'settings' => array(),
-      ),
-      'pathologic' => array(
-        'weight' => -39,
-        'status' => 1,
-        'settings' => array(
-          'local_paths' => '',
-          'protocol_style' => 'full',
-        ),
-      ),
-      'filter_wiki_links' => array(
-        'weight' => -38,
-        'status' => 1,
-        'settings' => array(),
-      ),
-      'inlinetabs' => array(
-        'weight' => 50,
-        'status' => 1,
-        'settings' => array(),
-      ),
-    ),
-  );
-  // Exported format: Plain text.
-  $formats['plain_text'] = array(
-    'format' => 'plain_text',
-    'name' => 'Plain text',
-    'cache' => 1,
-    'status' => 1,
-    'weight' => -8,
-    'filters' => array(
-      'filter_html_escape' => array(
-        'weight' => 0,
-        'status' => 1,
-        'settings' => array(),
-      ),
-      'filter_url' => array(
-        'weight' => 1,
-        'status' => 1,
-        'settings' => array(
-          'filter_url_length' => 72,
-        ),
-      ),
-      'filter_autop' => array(
-        'weight' => 2,
-        'status' => 1,
-        'settings' => array(),
-      ),
-    ),
-  );
-}
-
-/**
  * Set default blocks.
  */
 function _wim_set_blocks() {
@@ -348,7 +212,7 @@ function _wim_set_blocks() {
       'theme' => $default_theme,
       'status' => BLOCK_CUSTOM_ENABLED,
       'weight' => 0,
-      'region' => 'meta_left',
+      'region' => 'meta',
       'pages' => '',
       'visibility' => 0,
       'title' => '<none>',
@@ -503,6 +367,14 @@ function _wim_create_page($page_type, $bundle = 'page', $language = LANGUAGE_NON
 
   $node = node_submit($node);
   node_save($node);
+
+  if (module_exists('xmlsitemap')) {
+    // Exclude this nodes from sitemap.xml.
+    $link = xmlsitemap_node_create_link($node);
+    $link['status'] = 0;
+    $link['status_override'] = 1;
+    xmlsitemap_link_save($link, array($link['type'] => $node));
+  }
 
   return isset($node->nid) ? $node->nid : '';
 }
@@ -825,6 +697,32 @@ function _wim_default_sss() {
 
   foreach ($types as $type) {
     variable_set('wim_sss_node_enabled_' . $type, 1);
+  }
+}
+
+/**
+ * Default settings for pathauto.
+ */
+function _wim_default_pathauto() {
+  variable_set('pathauto_ignore_words', '');
+  variable_set('pathauto_update_action', 0);
+  variable_set('pathauto_reduce_ascii', 1);
+  variable_set('pathauto_node_pattern', '[node:content-type]/[node:title]');
+  $types = node_type_get_types();
+
+  $default_mapping = array(
+    'agenda' => 'agenda/[node:title]',
+    'faq' => 'faq/[node:title]',
+    'news' => 'news/[node:title]',
+    'page' => '[node:title]',
+    'person' => 'person/[node:title]',
+    'product' => 'product/[node:title]',
+    'subject_page' => '[node:title]',
+    'webform' => 'webform/[node:title]',
+  );
+
+  foreach ($types as $type) {
+    variable_set('pathauto_node_' . $type->type . '_pattern', $default_mapping[$type->type]);
   }
 }
 

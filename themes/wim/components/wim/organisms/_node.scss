@@ -1,0 +1,180 @@
+
+.node {
+  .field-type-image {
+    margin: 1em 0;
+  }
+  .content {
+    h1, h2, h3, h4, h5, h6 {
+      color: $brand-primary;
+      margin-bottom: 0.75em;
+      margin-top: 1.25em;
+    }
+  }
+  &.node-view-mode-full {
+    .field-name-field-lead-paragraph {
+      font-weight: bold;
+      margin: 1em 0;
+    }
+  }
+}
+
+.field-label-inline {
+  margin: 1em 0;
+  .field-label {
+    font-weight: normal;
+  }
+  .field-items {
+    .field-item {
+      display: inline-block;
+      padding: 0 3px;
+      a {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.node-teaser {
+  border-bottom: 1px solid $brand-border;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+
+  .teaser-body {
+    overflow: hidden;
+    h2 {
+      font-size: 16px;
+      line-height: 1.6;
+      margin-top: 0;
+      font-weight: normal;
+    }
+    p {
+      line-height: 1.6;
+    }
+  }
+  &:last-child {
+    border-bottom: none;
+    .view & {
+      border-bottom: 1px solid $brand-border;
+    }
+
+    .view .view-content > div:last-child & {
+      border-bottom: none;
+    }
+  }
+  .teaser-image {
+    margin-right: 1em;
+    @include MQ($screen-xs) {
+      float: left;
+      width: 140px;
+    }
+    .field-type-image {
+      @include MQ($screen-xs) {
+        margin-bottom: 0;
+      }
+      img {
+        width: 100%;
+      }
+    }
+  }
+  &.node-agenda {
+    position: relative;
+    .fields-wrapper {
+      min-width: 60px;
+      min-height: 60px;
+      float: left;
+      max-width: 110px;
+      @include MQ($screen-xs) {
+        width: auto;
+        max-width: none;
+      }
+    }
+    .date-display-single {
+      position: absolute;
+      left: 5px;
+      top: 5px;
+      background-color: white;
+      width: 40px;
+      height: 46px;
+      text-align: center;
+      border: 1px solid $brand-grey-light;
+      span {
+        display: block;
+        &.day {
+          font-size: 20px;
+          line-height: 24px;
+        }
+        &.month {
+          font-size: 12px;
+          font-weight: normal;
+        }
+      }
+    }
+  }
+  &.node-teaser-short {
+    font-size: 13px;
+    .teaser-body {
+      h3 {
+        margin-top: 0;
+        margin-bottom: 0;
+        line-height: 1.6;
+        font-size: 14px;
+      }
+      .field {
+        display: inline;
+        padding-right: 5px;
+        * {
+          display: inline;
+        }
+      }
+      .field-type-datetime {
+        font-weight: 700;
+        &:after {
+          content: " —";
+          font-weight: normal;
+        }
+      }
+    }
+    &.node-agenda {
+      min-height: 56px;
+      .teaser-body {
+        .field {
+          display: block;
+          padding-right: 0;
+          * {
+            display: block;
+          }
+        }
+        padding-left: 50px;
+        .field-type-datetime {
+          &:after {
+            display: none;
+          }
+          .date-display-single {
+            left: 0;
+            top: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+.page-news {
+  .page-header {
+    padding: 10px;
+    border-top: 1px solid $brand-light;
+    background: $brand-block-title-bg;
+    margin-bottom: 10px;
+    font-size: 130%;
+  }
+}
+
+.page-faq {
+  .main-container {
+    .col-sm-12 {
+      width: 50%;
+      margin: 0 auto;
+      float: none;
+    }
+  }
+}

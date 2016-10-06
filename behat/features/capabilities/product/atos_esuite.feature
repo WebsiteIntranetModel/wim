@@ -7,7 +7,7 @@ Feature: Check Atos E-Suite fields
   Scenario: Checking Atos E-Suite fields if exist
     Given I am logged in as a "content manager"
     And I am on "node/add/product"
-    And I click "PCD information"
+    And I click "PDC information"
     When I fill in the following:
       | title                                           | TEST ATOS ESUITE PRODUCT |
       | edit-field-product-related-laws-und-0-title     | Related Law              |
@@ -33,14 +33,21 @@ Feature: Check Atos E-Suite fields
     Then I press "Save"
     Then I should see the success message "Product TEST ATOS ESUITE PRODUCT has been created."
     And I should see the link "Related Law"
+    And I click "Particulars"
     And I should see the link "Form Link"
+    And I should see "Request Content"
+    And I click "Description"
     And I should see the link "More info Link"
     And I should see the link "Question 2"
     And I should not see the link "Product 2"
-    And I should see "Request Content"
+    And I click "Contact"
     And I should see "Contact Content"
+    And I click "Objection"
     And I should see "Objection Content"
+    And I click "Costs"
     And I should see "Costs Content"
     And I should see "Procedure Content"
+    And I click "Period"
     And I should see "Period Content"
+    And I click "Conditions"
     And I should see "Conditions Content"

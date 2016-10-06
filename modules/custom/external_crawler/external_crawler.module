@@ -17,7 +17,7 @@ function external_crawler_menu() {
     'title' => 'External Crawler',
     'page callback' => 'external_crawler_page_list',
     'access arguments' => array('administer external crawler'),
-    'type' => MENU_LOCAL_TASK,
+    'type' => MENU_NORMAL_ITEM,
     'file' => 'external_crawler.admin.inc',
   );
 

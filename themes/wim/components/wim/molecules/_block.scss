@@ -1,0 +1,104 @@
+.block {
+  .main-container & {
+    margin-bottom: 20px;
+  }
+  .block-title {
+    padding: 10px;
+    border-top: 1px solid $brand-light;
+    background: $brand-block-title-bg;
+    margin-bottom: 10px;
+    font-size: 130%;
+    margin-top: 0;
+  }
+  .view {
+    margin: 0 10px;
+  }
+  &.block-felix {
+    h2.block-title {
+      border: 1px solid $brand-light;
+      background: $brand-block-title-bg;
+      font-size: 14px;
+      padding: 5px;
+      color: lighten(black, 45.5%);
+      position: relative;
+      &:after {
+        content: "FELIX";
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        color: lighten($gray-base, 70%);
+      }
+    }
+  }
+  &.bean-view-mode-link-title {
+    h2.block-title {
+      padding: 16px 10px;
+      background-color: $brand-primary;
+      color: white;
+      min-height: 80px;
+      margin-bottom: 0;
+      a {
+        color: white;
+      }
+    }
+  }
+  &.bean-view-mode-default {
+    &:not(.slider) {
+      position: relative;
+      &.has-image,
+      &.editorial-image {
+        padding-left: 75px;
+      }
+      h2.block-title {
+        border-top: none;
+        background: none;
+        padding: 10px 0;
+        color: $brand-primary;
+      }
+      .field-type-image {
+        position: absolute;
+        left: 20px;
+        top: 10px;
+      }
+    }
+  }
+  &.block-node {
+    position: relative;
+    &.has-image {
+      padding-left: 75px;
+    }
+    h2.block-title {
+      border-top: none;
+      background: none;
+      padding: 10px 0;
+      color: $brand-primary;
+    }
+    .node {
+      position: static;
+    }
+    .field-type-image {
+      position: absolute;
+      left: 20px;
+      top: 10px;
+      margin: 0;
+    }
+  }
+}
+
+#block-views-agenda-upcoming-agenda {
+  overflow: hidden;
+  .more-link {
+    float: left;
+  }
+  .view-footer {
+    float: right;
+    a {
+      font-weight: bold;
+      &:before {
+        content: "\f044";
+        @extend .fa;
+        margin-right: 3px;
+      }
+    }
+  }
+}

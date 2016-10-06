@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "name": "Education"
+  },
+  {
+    "id": 2,
+    "name": "Construction"
+  },
+  {
+    "id": 3,
+    "name": "Advertising"
+  },
+  {
+    "id": 4,
+    "name": "Arts and culture"
+  },
+  {
+    "id": 5,
+    "name": "Banking"
+  }
+]

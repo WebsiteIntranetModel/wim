@@ -1,5 +1,5 @@
 name = Atos Esuite
-description = VAC & PCD Import from Atos eSuite
+description = VAC & PDC Import from Atos eSuite
 core = 7.x
 package = WIM
 version = 7.x-1.0

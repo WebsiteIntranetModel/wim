@@ -16,7 +16,9 @@ Feature: Create basic page
       | Date | 27/06/2026 |
       | Time | 11:10:00   |
     Then I should see "Promoted"
+    And I click "Introduction"
     And I attach the file "/fixtures/images/drupal-icon.png" to "Image"
+    And I fill in wysiwyg on field "Lead paragraph" with "Lead paragraph demo content"
     And I click "Reminder"
     And I should see "Reminder email"
     And I click "Scheduling options"
@@ -26,6 +28,7 @@ Feature: Create basic page
     And I should see the success message "Basic page This is a test basic page has been created."
     And I should see "Body description text"
     And I should see "Share"
+    Then the url should match "/this-is-a-test-basic-page"
 
     Given I am logged in as a "content manager"
     And I am at "admin/structure/taxonomy/tags"

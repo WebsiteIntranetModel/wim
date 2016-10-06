@@ -18,6 +18,8 @@ Feature: Create Agenda
       | Postal code   | 1011                   |
       | Tags          | Tag1, Tag2             |
     And I fill in wysiwyg on field Body with "TEST AGENDA BODY"
+    And I click "Introduction"
+    And I fill in wysiwyg on field "Lead paragraph" with "Lead paragraph demo content"
     And I click "Publishing options"
     And I fill in the following:
       | Promoted | 0 |
@@ -34,6 +36,7 @@ Feature: Create Agenda
     And I should see the heading "TEST AGENDA"
     And I should see "TEST AGENDA BODY"
     And I should see "Share"
+    Then the url should match "/agenda/test-agenda"
 
     Given I am an anonymous user
     And I visit "node/add/agenda"
