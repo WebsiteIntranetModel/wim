@@ -99,10 +99,15 @@ function external_crawler_menu_local_tasks_alter(&$data, $router_item, $root_pat
 function external_crawler_cron() {
   module_load_include('inc', 'external_crawler');
 
-  $sites = db_select('external_crawler_site', 's')
-    ->fields('s')
-    ->execute()
-    ->fetchAll();
+  $query = db_select('external_crawler_site', 's')
+    ->fields('s');
+
+  // Handle only non XML sites.
+  if (module_exists('xml_crawler')) {
+    $query->condition('s.is_xml', '1', '!=');
+  }
+
+  $sites = $query->execute()->fetchAll();
 
   foreach ($sites as $site) {
     // First check or this site has ever run from root.

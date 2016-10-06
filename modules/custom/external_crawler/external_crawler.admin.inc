@@ -151,6 +151,7 @@ function external_crawler_site_edit_form($form, &$form_state) {
 
   if ($site) {
     drupal_set_title(t('Edit @site site.', array('@site' => $site->name)));
+    $form_state['site'] = $site;
 
     $form['site_id'] = array(
       '#type' => 'value',
@@ -168,6 +169,7 @@ function external_crawler_site_edit_form($form, &$form_state) {
       '#type' => 'textfield',
       '#title' => t('URL'),
       '#required' => TRUE,
+      '#maxlength' => 255,
       '#description' => t('Site start page URL. Crawler will start index from this page.'),
       '#default_value' => $site->url,
     );

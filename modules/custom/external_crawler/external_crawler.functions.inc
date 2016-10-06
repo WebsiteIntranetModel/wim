@@ -17,13 +17,13 @@ function _external_crawler_get_pagedata($pagekey, $new_data = array()) {
 
   if (!$pagedata) {
     $pagedata = $new_data + array(
-      'pagekey' => $pagekey,
-      'site_id' => NULL,
-      'url' => NULL,
-      'date' => NULL,
-      'depth' => 1,
-      'title' => NULL,
-    );
+        'pagekey' => $pagekey,
+        'site_id' => NULL,
+        'url' => NULL,
+        'date' => NULL,
+        'depth' => 1,
+        'title' => NULL,
+      );
   }
   return $pagedata;
 }
@@ -187,6 +187,9 @@ function external_crawler_save_site($fields) {
   $site->url_exclude = check_plain($fields['url_exclude']);
   $site->content_exclude = check_plain($fields['content_exclude']);
   $site->content_include = check_plain($fields['content_include']);
+
+  // Gives opportunity alter site data before save.
+  drupal_alter('external_crawler_save_site', $site, $fields);
 
   drupal_write_record('external_crawler_site', $site, !empty($site->site_id) ? array('site_id') : array());
 }
