@@ -35,3 +35,10 @@ function wim_slider_install() {
   user_role_grant_permissions(DRUPAL_ANONYMOUS_RID, array('view any slider bean'));
 
 }
+
+/**
+ * Revert Slider feature.
+ */
+function wim_slider_update_7000() {
+  features_revert(array('wim_slider'));
+}

@@ -3950,10 +3950,6 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   float: none;
 }
 
-.slick-slider {
-  max-width: 360px;
-}
-
 .slick-slider .slick-arrow {
   position: absolute;
   top: 10px;
