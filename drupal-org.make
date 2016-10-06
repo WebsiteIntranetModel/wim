@@ -69,7 +69,7 @@ projects[wysiwyg] = 2.x-dev
 
 ; Themes
 projects[adminimal_theme] = 1.24
-projects[bootstrap] = 3.5
+projects[bootstrap] = 3.6
 
 ; Patches
 ; Fixing bug when Features module can't include file containing exported taxonomy vocabulary because it hasn't included file integrating Features with Taxonomy yet.
