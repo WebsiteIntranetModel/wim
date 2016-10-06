@@ -57,13 +57,16 @@ function wim_news_strongarm() {
           'weight' => '0',
         ),
         'locations' => array(
-          'weight' => '30',
+          'weight' => '8',
         ),
         'metatags' => array(
-          'weight' => '40',
+          'weight' => '11',
         ),
         'redirect' => array(
-          'weight' => '30',
+          'weight' => '10',
+        ),
+        'path' => array(
+          'weight' => '9',
         ),
       ),
       'display' => array(),

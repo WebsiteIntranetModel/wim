@@ -8,7 +8,6 @@ Feature: Create Product
     Given I am logged in as a "content editor"
     And I am on "node/add/product"
     Then I should not see "No access (403)"
-    And I should see "Image"
     When I fill in the following:
       | title | TEST PRODUCT |
       | Tags  | Tag1, Tag2   |
@@ -22,6 +21,9 @@ Feature: Create Product
     And I click "Scheduling options"
     And I should see "Publish on"
     And I should see "Unpublish on"
+    When I click "Introduction"
+    Then I should see "Image"
+    And I fill in wysiwyg on field "Lead paragraph" with "Lead paragraph demo content"
     And I press "Save"
     Then I should see the success message "Product TEST PRODUCT has been created."
     And I should see the heading "TEST PRODUCT"
