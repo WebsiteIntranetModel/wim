@@ -41,7 +41,7 @@ function wim_slider_default_picture_mapping() {
       ),
       '2x' => array(
         'mapping_type' => 'image_style',
-        'image_style' => 'slider_mobile',
+        'image_style' => 'slider_tablet',
       ),
     ),
   );
