@@ -50,6 +50,9 @@ function wim_page_strongarm() {
       'token' => array(
         'custom_settings' => FALSE,
       ),
+      'introduction' => array(
+        'custom_settings' => TRUE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
@@ -57,13 +60,16 @@ function wim_page_strongarm() {
           'weight' => '0',
         ),
         'locations' => array(
-          'weight' => '30',
+          'weight' => '6',
         ),
         'metatags' => array(
-          'weight' => '40',
+          'weight' => '9',
         ),
         'redirect' => array(
-          'weight' => '30',
+          'weight' => '8',
+        ),
+        'path' => array(
+          'weight' => '7',
         ),
       ),
       'display' => array(),

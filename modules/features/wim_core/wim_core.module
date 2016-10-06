@@ -47,6 +47,10 @@ function wim_core_entity_info_alter(&$entity_info) {
     'label' => t('Short'),
     'custom settings' => FALSE,
   );
+  $entity_info['node']['view modes']['introduction'] = array(
+    'label' => t('Introduction'),
+    'custom settings' => FALSE,
+  );
 }
 
 /**

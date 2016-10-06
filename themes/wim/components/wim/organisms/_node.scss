@@ -10,6 +10,12 @@
       margin-top: 1.25em;
     }
   }
+  &.node-view-mode-full {
+    .field-name-field-lead-paragraph {
+      font-weight: bold;
+      margin: 1em 0;
+    }
+  }
 }
 
 .field-label-inline {

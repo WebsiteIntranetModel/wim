@@ -16,11 +16,25 @@ function wim_update_7000(&$sandbox) {
 }
 
 /**
+ * WIM-627 - Add Lead Paragraph to content types.
+ */
+function wim_update_7001(&$sandbox) {
+  // Revert features.
+  features_revert(array(
+    'wim_block_management',
+    'wim_news',
+    'wim_product',
+    'wim_page',
+    'wim_agenda',
+  ));
+}
+
+/**
  * WIM-1186 - Can not add a link to an image in ckeditor.
  *
  * WIM-1072 - Sitemap XML support.
  */
-function wim_update_7001(&$sandbox) {
+function wim_update_7002(&$sandbox) {
   // Change media render.
   variable_set('media_wysiwyg_default_render', 'field_attach');
 
