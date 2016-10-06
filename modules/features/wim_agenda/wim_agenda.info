@@ -47,6 +47,7 @@ features[variable][] = scheduler_publish_enable_agenda
 features[variable][] = scheduler_publish_touch_agenda
 features[variable][] = scheduler_unpublish_enable_agenda
 features[variable][] = scheduler_use_vertical_tabs_agenda
+features[variable][] = xmlsitemap_settings_node_agenda
 features[views_view][] = agenda
 features_exclude[variable][pathauto_node_agenda_pattern] = pathauto_node_agenda_pattern
 project path = profiles/wim/modules/features
