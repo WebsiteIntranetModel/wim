@@ -191,7 +191,7 @@ function wimbase_preprocess_block(&$variables) {
     $variables['theme_hook_suggestions'][] = 'block__node_' . strtr($block->data['viewmode'], '_', '-');
     $variables['title_url'] = url($block->detail_path);
     $node = node_load($block->delta);
-    if(isset($node->field_image) && !empty($node->field_image)){
+    if (isset($node->field_image) && !empty($node->field_image)) {
       $variables['classes_array'][] = $has_image_class;
     }
   }
