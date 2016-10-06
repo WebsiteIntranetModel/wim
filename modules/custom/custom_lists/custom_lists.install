@@ -5,16 +5,6 @@
  */
 
 /**
- * Implements hook_install().
- */
-function custom_lists_install() {
-  $role = user_role_load_by_name('webmaster');
-  user_role_grant_permissions($role->rid, array('administer custom lists'));
-  $role = user_role_load_by_name('content manager');
-  user_role_grant_permissions($role->rid, array('administer custom lists'));
-}
-
-/**
  * Implements hook_schema().
  */
 function custom_lists_schema() {
