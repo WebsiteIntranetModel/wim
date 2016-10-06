@@ -744,6 +744,7 @@ function _wim_permissions($role) {
       'administer taxonomy',
       'administer redirects',
       'administer content reminder',
+      'administer xmlsitemap',
       'manage felix blocks',
       'access contextual links',
       'administer custom lists',
