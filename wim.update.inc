@@ -68,6 +68,10 @@ function wim_update_7002(&$sandbox) {
       xmlsitemap_link_save($link, array($link['type'] => $node));
     }
     // On next cron run items will be removed.
+    variable_set('xmlsitemap_rebuild_needed', TRUE);
+
+    $role = user_role_load_by_name('webmaster');
+    user_role_grant_permissions($role->rid, array('administer xmlsitemap'));
   }
 
 }
