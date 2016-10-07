@@ -16,17 +16,25 @@ function external_crawler_page_list() {
     t('Check interval'),
     t('Depth'),
     t('Crawled pages'),
+    t('Crawled'),
     t('Actions'),
   );
 
   $rows = array();
   foreach ($sites as $site) {
+    $xml_marker = NULL;
+
+    if (module_exists('xml_crawler')) {
+      $xml_marker = $site->is_xml ? '(XML page)' : NULL;
+    }
+
     $actions = l(t('Edit'), $base_acrions_url . $site->site_id . '/edit') . '/' . l(t('Delete'), $base_acrions_url . $site->site_id . '/delete');
     $rows[] = array(
-      l($site->name, $site->url),
+      l($site->name, $site->url) . ' ' . $xml_marker,
       format_interval($site->check_interval),
       $site->max_depth,
       _external_crawler_fetch_pages($site->site_id, NULL, TRUE),
+      $site->last_crawl ? format_date($site->last_crawl, 'long') : 'n/a',
       $actions,
     );
   }
