@@ -17,13 +17,13 @@ function _external_crawler_get_pagedata($pagekey, $new_data = array()) {
 
   if (!$pagedata) {
     $pagedata = $new_data + array(
-        'pagekey' => $pagekey,
-        'site_id' => NULL,
-        'url' => NULL,
-        'date' => NULL,
-        'depth' => 1,
-        'title' => NULL,
-      );
+      'pagekey' => $pagekey,
+      'site_id' => NULL,
+      'url' => NULL,
+      'date' => NULL,
+      'depth' => 1,
+      'title' => NULL,
+    );
   }
   return $pagedata;
 }

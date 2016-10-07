@@ -1,4 +1,8 @@
 <?php
+/**
+ * @file
+ * Instalation file.
+ */
 
 /**
  * Implements hook_schema_alter().

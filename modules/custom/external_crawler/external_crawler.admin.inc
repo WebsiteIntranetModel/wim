@@ -54,7 +54,7 @@ function external_crawler_site_add_form() {
     '#description' => t('Site name'),
   );
   $form['url'] = array(
-    '#type' => 'textfield',
+    '#type' => 'textarea',
     '#title' => t('URL'),
     '#required' => TRUE,
     '#description' => t('Site start page URL. Crawler will start index from this page.'),
@@ -166,10 +166,9 @@ function external_crawler_site_edit_form($form, &$form_state) {
       '#default_value' => $site->name,
     );
     $form['url'] = array(
-      '#type' => 'textfield',
+      '#type' => 'textarea',
       '#title' => t('URL'),
       '#required' => TRUE,
-      '#maxlength' => 255,
       '#description' => t('Site start page URL. Crawler will start index from this page.'),
       '#default_value' => $site->url,
     );
