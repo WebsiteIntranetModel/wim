@@ -173,6 +173,25 @@ function wim_addition_faq_product_fields_field_default_field_bases() {
     'type' => 'text_long',
   );
 
+  // Exported field_base: 'field_product_particulars'.
+  $field_bases['field_product_particulars'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_product_particulars',
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(),
+    'translatable' => 0,
+    'type' => 'text_long',
+  );
+
   // Exported field_base: 'field_product_period'.
   $field_bases['field_product_period'] = array(
     'active' => 1,

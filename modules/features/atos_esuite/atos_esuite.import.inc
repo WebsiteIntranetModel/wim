@@ -332,11 +332,11 @@ function atos_esuite_map_node_product(stdClass $node, DOMDocument $documentDOM, 
 
   // Helper array to map xml tags to fields in node.
   $mapping = array(
-    'aanvraag' => 'field_product_request',
+    'aanvraag' => 'field_product_procedure',
     'contact' => 'field_product_contact',
     'bezwaar' => 'field_product_objection',
     'kosten' => 'field_product_costs',
-    'bijzonderheden' => 'field_product_procedure',
+    'bijzonderheden' => 'field_product_particulars',
     'termijn' => 'field_product_period',
     'voorwaarden' => 'field_product_conditions',
 
