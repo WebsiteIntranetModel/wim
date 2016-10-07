@@ -324,56 +324,6 @@ function wim_page_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-page-field_reminder_email'.
-  $field_instances['node-page-field_reminder_email'] = array(
-    'bundle' => 'page',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 5,
-      ),
-      'introduction' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 6,
-      ),
-      'search_result' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_reminder_email',
-    'label' => 'Reminder email',
-    'required' => 0,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'email',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'email_textfield',
-      'weight' => 102,
-    ),
-  );
-
   // Exported field_instance: 'node-page-field_tags'.
   $field_instances['node-page-field_tags'] = array(
     'bundle' => 'page',
@@ -434,7 +384,6 @@ function wim_page_field_default_field_instances() {
   t('Lead paragraph');
   t('Promoted');
   t('Publication date');
-  t('Reminder email');
   t('Tags');
   t('You can use this field to display a custom publication date instead of the default creation date of the content item.');
 

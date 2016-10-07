@@ -347,50 +347,6 @@ function wim_person_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-person-field_reminder_email'.
-  $field_instances['node-person-field_reminder_email'] = array(
-    'bundle' => 'person',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 7,
-      ),
-      'search_result' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 3,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 5,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_reminder_email',
-    'label' => 'Reminder email',
-    'required' => 0,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'email',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'email_textfield',
-      'weight' => 12,
-    ),
-  );
-
   // Exported field_instance: 'node-person-field_tags'.
   $field_instances['node-person-field_tags'] = array(
     'bundle' => 'person',
@@ -443,7 +399,6 @@ function wim_person_field_default_field_instances() {
   t('Email');
   t('Image');
   t('Phone');
-  t('Reminder email');
   t('Roles');
   t('Tags');
 
