@@ -175,18 +175,20 @@ function external_crawler_save_page($pagedata, $document) {
 /**
  * Save site data.
  */
-function external_crawler_save_site($fields) {
-  $site = new stdClass();
-  $site->site_id = isset($fields['site_id']) ? $fields['site_id'] : NULL;
+function external_crawler_save_site($fields = array(), $site = NULL) {
+  if (!$site) {
+    $site = new stdClass();
+    $site->site_id = isset($fields['site_id']) ? $fields['site_id'] : NULL;
 
-  $site->name = check_plain($fields['name']);
-  $site->url = $fields['url'];
-  $site->check_interval = $fields['check_interval'];
-  $site->max_depth = $fields['max_depth'];
-  $site->max_run = $fields['max_run'];
-  $site->url_exclude = check_plain($fields['url_exclude']);
-  $site->content_exclude = check_plain($fields['content_exclude']);
-  $site->content_include = check_plain($fields['content_include']);
+    $site->name = check_plain($fields['name']);
+    $site->url = $fields['url'];
+    $site->check_interval = $fields['check_interval'];
+    $site->max_depth = $fields['max_depth'];
+    $site->max_run = $fields['max_run'];
+    $site->url_exclude = check_plain($fields['url_exclude']);
+    $site->content_exclude = check_plain($fields['content_exclude']);
+    $site->content_include = check_plain($fields['content_include']);
+  }
 
   // Gives opportunity alter site data before save.
   drupal_alter('external_crawler_save_site', $site, $fields);
@@ -234,4 +236,12 @@ function _external_crawler_fetch_pages($site_id = NULL, $limit = NULL, $only_cou
   $pages = $query->execute()->fetchAll();
 
   return $pages;
+}
+
+/**
+ * Update last crawl date for site.
+ */
+function _external_crawler_update_site_date(stdClass $site) {
+  $site->last_crawl = time();
+  external_crawler_save_site(array(), $site);
 }

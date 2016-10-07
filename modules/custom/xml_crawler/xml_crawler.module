@@ -72,7 +72,11 @@ function xml_crawler_cron() {
 
   if ($sites) {
     foreach ($sites as $site) {
-      _xml_crawler_crawle_xml($site);
+      if ($site->last_crawl <= time() - $site->check_interval) {
+        _xml_crawler_crawle_xml($site);
+        // Update last crawl date.
+        _external_crawler_update_site_date($site);
+      }
     }
   }
 }

@@ -115,6 +115,8 @@ function external_crawler_cron() {
     $pagedata = _external_crawler_get_pagedata($pagekey);
     if (!$pagedata['date']) {
       _external_crawler_index_page($site->url, $site);
+      // Update site last crawl date.
+      _external_crawler_update_site_date($site);
     }
 
     // Setup query to retrieve the pages.
@@ -133,6 +135,11 @@ function external_crawler_cron() {
     // Index the pages.
     foreach ($pages as $page) {
       _external_crawler_index_page($page->url, $site);
+    }
+
+    // Update site last crawl date.
+    if ($pages) {
+      _external_crawler_update_site_date($site);
     }
   }
 }
