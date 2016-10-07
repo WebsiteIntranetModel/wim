@@ -37,3 +37,63 @@ function wim_slider_form_felix_attributes_form_alter(&$form, &$form_state, $form
     }
   }
 }
+
+/**
+ * Implements hook_image_default_styles().
+ */
+function wim_slider_image_default_styles() {
+  $styles = array();
+
+  $styles['slider_desktop'] = array(
+    'name' => 'slider_desktop',
+    'label' => 'Slider desktop (1200xAUTO)',
+    'effects' => array(
+      array(
+        'module' => 'image',
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => 1200,
+          'height' => '',
+          'upscale' => 0,
+        ),
+        'weight' => 0,
+      ),
+    ),
+  );
+
+  $styles['slider_tablet'] = array(
+    'name' => 'slider_tablet',
+    'label' => 'Slider tablet (768xAUTO)',
+    'effects' => array(
+      array(
+        'module' => 'image',
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => 768,
+          'height' => '',
+          'upscale' => 0,
+        ),
+        'weight' => 0,
+      ),
+    ),
+  );
+
+  $styles['slider_mobile'] = array(
+    'name' => 'slider_mobile',
+    'label' => 'Slider mobile (480xAUTO)',
+    'effects' => array(
+      array(
+        'module' => 'image',
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => 480,
+          'height' => '',
+          'upscale' => 0,
+        ),
+        'weight' => 0,
+      ),
+    ),
+  );
+
+  return $styles;
+}

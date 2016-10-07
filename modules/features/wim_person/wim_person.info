@@ -36,6 +36,7 @@ features[variable][] = scheduler_publish_enable_person
 features[variable][] = scheduler_publish_touch_person
 features[variable][] = scheduler_unpublish_enable_person
 features[variable][] = scheduler_use_vertical_tabs_person
+features[variable][] = xmlsitemap_settings_node_person
 features_exclude[field_base][field_reminder_email] = field_reminder_email
 features_exclude[field_group][group_reminder|node|person|form] = group_reminder|node|person|form
 features_exclude[field_instance][node-person-field_reminder_email] = node-person-field_reminder_email

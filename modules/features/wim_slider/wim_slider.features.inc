@@ -11,4 +11,7 @@ function wim_slider_ctools_plugin_api($module = NULL, $api = NULL) {
   if ($module == "bean_admin_ui" && $api == "bean") {
     return array("version" => "5");
   }
+  if ($module == "picture" && $api == "default_picture_mapping") {
+    return array("version" => "2");
+  }
 }
