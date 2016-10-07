@@ -41,7 +41,6 @@ features[variable][] = menu_parent_agenda
 features[variable][] = node_options_agenda
 features[variable][] = node_preview_agenda
 features[variable][] = node_submitted_agenda
-features[variable][] = pathauto_node_agenda_pattern
 features[variable][] = scheduler_publish_enable_agenda
 features[variable][] = scheduler_publish_touch_agenda
 features[variable][] = scheduler_unpublish_enable_agenda
