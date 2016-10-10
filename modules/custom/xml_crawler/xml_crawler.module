@@ -1,0 +1,95 @@
+<?php
+
+/**
+ * @file
+ * Code for the XML Crawler.
+ */
+
+module_load_include('inc', 'xml_crawler');
+
+/**
+ * Implements hook_external_crawler_save_site_alter().
+ */
+function xml_crawler_external_crawler_save_site_alter(&$site, $fields) {
+  if (isset($fields['is_xml'], $fields['xml_type']) && $fields['is_xml'] && $fields['xml_type']) {
+    $site->is_xml = $fields['is_xml'];
+    $site->xml_type = $fields['xml_type'];
+    $site->max_depth = 1;
+  }
+}
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ */
+function xml_crawler_form_alter(&$form, &$form_state, $form_id) {
+  // Add checkbox for XML marker.
+  if ($form_id === 'external_crawler_site_edit_form' || $form_id === 'external_crawler_site_add_form') {
+    $form['name']['#weight'] = -10;
+    $form['url']['#weight'] = -9;
+    $form['is_xml'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Is XML'),
+      '#description' => t('This site contain XML page.'),
+      '#weight' => -8,
+      '#default_value' => isset($form_state['site']->is_xml) ? $form_state['site']->is_xml : 0,
+    );
+
+    $form['max_depth']['#states'] = array(
+      'invisible' => array(
+        ':input[name="is_xml"]' => array('checked' => TRUE),
+      ),
+    );
+
+    $form['xml_type'] = array(
+      '#type' => 'select',
+      '#title' => t('XML type'),
+      '#weight' => -7,
+      '#options' => _xml_crawler_get_xml_types(),
+      '#default_value' => isset($form_state['site']->xml_type) ? $form_state['site']->xml_type : NULL,
+      '#states' => array(
+        'visible' => array(
+          ':input[name="is_xml"]' => array('checked' => TRUE),
+        ),
+        'required' => array(
+          ':input[name="is_xml"]' => array('checked' => TRUE),
+        ),
+      ),
+    );
+  }
+
+}
+
+/**
+ * Implements hook_cron().
+ */
+function xml_crawler_cron() {
+
+  $sites = db_select('external_crawler_site', 's')
+    ->fields('s')
+    ->condition('s.is_xml', '1')
+    ->execute()
+    ->fetchAll();
+
+  if ($sites) {
+    foreach ($sites as $site) {
+      if ($site->last_crawl <= time() - $site->check_interval) {
+        _xml_crawler_crawle_xml($site);
+        // Update last crawl date.
+        _external_crawler_update_site_date($site);
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_cronapi().
+ */
+function xml_crawler_cronapi($op, $job = NULL) {
+  // Run every hour.
+  $items['xml_crawler_cron'] = array(
+    'description' => 'Run XML Crawler',
+    'rule' => '0 */1 * * *',
+  );
+
+  return $items;
+}

@@ -16,17 +16,25 @@ function external_crawler_page_list() {
     t('Check interval'),
     t('Depth'),
     t('Crawled pages'),
+    t('Crawled'),
     t('Actions'),
   );
 
   $rows = array();
   foreach ($sites as $site) {
+    $xml_marker = NULL;
+
+    if (module_exists('xml_crawler')) {
+      $xml_marker = $site->is_xml ? '(XML page)' : NULL;
+    }
+
     $actions = l(t('Edit'), $base_acrions_url . $site->site_id . '/edit') . '/' . l(t('Delete'), $base_acrions_url . $site->site_id . '/delete');
     $rows[] = array(
-      l($site->name, $site->url),
+      l($site->name, $site->url) . ' ' . $xml_marker,
       format_interval($site->check_interval),
       $site->max_depth,
       _external_crawler_fetch_pages($site->site_id, NULL, TRUE),
+      $site->last_crawl ? format_date($site->last_crawl, 'long') : 'n/a',
       $actions,
     );
   }
@@ -54,7 +62,7 @@ function external_crawler_site_add_form() {
     '#description' => t('Site name'),
   );
   $form['url'] = array(
-    '#type' => 'textfield',
+    '#type' => 'textarea',
     '#title' => t('URL'),
     '#required' => TRUE,
     '#description' => t('Site start page URL. Crawler will start index from this page.'),
@@ -151,6 +159,7 @@ function external_crawler_site_edit_form($form, &$form_state) {
 
   if ($site) {
     drupal_set_title(t('Edit @site site.', array('@site' => $site->name)));
+    $form_state['site'] = $site;
 
     $form['site_id'] = array(
       '#type' => 'value',
@@ -165,7 +174,7 @@ function external_crawler_site_edit_form($form, &$form_state) {
       '#default_value' => $site->name,
     );
     $form['url'] = array(
-      '#type' => 'textfield',
+      '#type' => 'textarea',
       '#title' => t('URL'),
       '#required' => TRUE,
       '#description' => t('Site start page URL. Crawler will start index from this page.'),
