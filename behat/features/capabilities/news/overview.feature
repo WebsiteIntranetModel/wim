@@ -43,7 +43,7 @@ Feature: News overview
 
     # Test date filters
     When I fill in "edit-field-publication-date-value-value-datepicker-popup-0" with "01 June 2016"
-    Then I should see "05 July 2016"
+    Then I should see "05 June 2016"
     And I should not see "12 May 2016"
     When I press the "Clear" button
     Then I should see "12 May 2016"
