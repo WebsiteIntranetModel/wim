@@ -182,7 +182,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'module' => 'file',
         'settings' => array(),
         'type' => 'file_default',
-        'weight' => 16,
+        'weight' => 6,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -307,7 +307,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 41,
+      'weight' => 40,
     ),
   );
 
@@ -323,7 +323,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 14,
+        'weight' => 5,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -353,7 +353,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'rows' => 20,
       ),
       'type' => 'text_textarea',
-      'weight' => 43,
+      'weight' => 42,
     ),
   );
 
@@ -369,7 +369,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_default',
-        'weight' => 9,
+        'weight' => 5,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -525,7 +525,58 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 42,
+      'weight' => 41,
+    ),
+  );
+
+  // Exported field_instance: 'node-product-field_product_particulars'.
+  $field_instances['node-product-field_product_particulars'] = array(
+    'bundle' => 'product',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'abovec',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 4,
+      ),
+      'search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_product_particulars',
+    'label' => 'Particulars',
+    'required' => 0,
+    'settings' => array(
+      'linkit' => array(
+        'button_text' => 'Search',
+        'enable' => 0,
+        'profile' => '',
+      ),
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 5,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 43,
     ),
   );
 
@@ -587,7 +638,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 8,
+        'weight' => 3,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -696,7 +747,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 10,
+        'weight' => 6,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -742,7 +793,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_default',
-        'weight' => 11,
+        'weight' => 5,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -900,6 +951,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
   t('Forms');
   t('More information');
   t('Objection');
+  t('Particulars');
   t('Period');
   t('Procedure');
   t('Related FAQ items');

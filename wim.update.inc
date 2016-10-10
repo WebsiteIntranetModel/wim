@@ -49,6 +49,7 @@ function wim_update_7002(&$sandbox) {
     'wim_product',
     'wim_subject',
     'wim_webform',
+    'wim_addition_faq_product_fields',
   ));
 
   // Exclude some basic page nodes.

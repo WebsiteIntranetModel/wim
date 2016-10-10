@@ -55,9 +55,10 @@ function wim_addition_faq_product_fields_field_group_info() {
       2 => 'field_product_contact',
       3 => 'field_product_costs',
       4 => 'field_product_objection',
-      5 => 'field_product_procedure',
-      6 => 'field_product_period',
+      5 => 'field_product_period',
+      6 => 'field_product_procedure',
       7 => 'field_product_request',
+      8 => 'field_product_particulars',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
@@ -171,6 +172,7 @@ function wim_addition_faq_product_fields_field_group_info() {
     'children' => array(
       0 => 'field_product_forms',
       1 => 'field_product_request',
+      2 => 'field_product_particulars',
     ),
     'format_type' => 'bootstrap_fieldgroup_nav_item',
     'format_settings' => array(
@@ -272,7 +274,7 @@ function wim_addition_faq_product_fields_field_group_info() {
   $field_group->parent_name = 'group_product_tabs';
   $field_group->data = array(
     'label' => 'Contact',
-    'weight' => '23',
+    'weight' => '24',
     'children' => array(
       0 => 'field_product_contact',
     ),
