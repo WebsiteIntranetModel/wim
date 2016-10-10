@@ -25,9 +25,9 @@ function _xml_crawler_get_xml_types($type = NULL) {
  *    Site object.
  */
 function _xml_crawler_crawle_xml(stdClass $site) {
+  $pages = array();
   $response = drupal_http_request($site->url);
   if ($response->code === '200') {
-    $pages = array();
     $dom = new DOMDocument();
     $dom->loadXML($response->data);
 
@@ -65,23 +65,40 @@ function _xml_crawler_crawle_xml(stdClass $site) {
 function _xml_crawler_durp_get_pages(DOMDocument $dom) {
   $base_url = NULL;
   $pages = array();
+  $xml_pages = array();
 
-  foreach ($dom->getElementsByTagName('Plan') as $record) {
-    // Get basic page URL.
-    $base_url = $record->getElementsByTagName('Onderdelen')->item(0)->getAttribute('BasisURL');
-    $sub_pages = array();
-    if ($base_url) {
-      // Find all subpages.
-      foreach ($record->getElementsByTagName('Toelichting') as $sub_record) {
-        $sub_pages[] = $sub_record->nodeValue;
-      }
-      if ($sub_pages) {
-        // Crawle subpages.
-        foreach ($sub_pages as $sub_page_url) {
-          // Build url based on base url and subpage url.
-          $crawle_page_url = $base_url . $sub_page_url;
-          if (valid_url($crawle_page_url)) {
-            $pages[] = $crawle_page_url;
+  foreach ($dom->getElementsByTagName('Dossier') as $record) {
+    // Get detailed XMLs.
+    foreach ($record->getElementsByTagName('Plan') as $sub_record) {
+      $xml_pages[] = $sub_record->getElementsByTagName('GeleideFormulier')->item(0)->nodeValue;
+    }
+  }
+
+  // Parse detailed XMLs.
+  foreach ($xml_pages as $xml_page_url) {
+    $response = drupal_http_request($xml_page_url);
+
+    if ($response->code === '200') {
+      $sub_xml_dom = new DOMDocument();
+      $sub_xml_dom->loadXML($response->data);
+
+      foreach ($sub_xml_dom->getElementsByTagName('Plan') as $sub_xml_record) {
+        // Get basic page URL.
+        $base_url = $sub_xml_record->getElementsByTagName('Onderdelen')->item(0)->getAttribute('BasisURL');
+        $sub_pages = array();
+        if ($base_url) {
+          // Find all subpages.
+          foreach ($sub_xml_record->getElementsByTagName('Toelichting') as $sub_record) {
+            $sub_pages[] = $sub_record->nodeValue;
+          }
+
+          // Crawle subpages.
+          foreach ($sub_pages as $sub_page_url) {
+            // Build url based on base url and subpage url.
+            $crawle_page_url = $base_url . $sub_page_url;
+            if (valid_url($crawle_page_url)) {
+              $pages[] = $crawle_page_url;
+            }
           }
         }
       }
