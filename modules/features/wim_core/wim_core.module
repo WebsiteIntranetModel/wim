@@ -177,6 +177,15 @@ function wim_core_image_default_styles() {
 }
 
 /**
+ * Implements hook_webform_node_defaults_alter().
+ *
+ * @see webform_node_defaults()
+ */
+function wim_core_webform_node_defaults_alter(&$defaults) {
+  $defaults['redirect_url'] = '<none>';
+}
+
+/**
  * Implements hook_form_alter().
  */
 function wim_core_form_alter(&$form, &$form_state, $form_id) {
