@@ -24,13 +24,35 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
   private $minkContext;
 
   /**
-   * I wait for (seconds) seconds.
+   * This will be run when Behat testing suite is started.
    *
-   * @When I wait for :arg1 seconds
+   * Add logout link to the main menu.
+   *
+   * @BeforeSuite
    */
-  public function iWaitForSeconds($seconds, $condition = '') {
-    $milliseconds = (int) ($seconds * 1000);
-    $this->getSession()->wait($milliseconds, $condition);
+  public static function addLogoutItem(BeforeSuiteScope $scope) {
+    $item = array(
+      'link_path' => 'user/logout',
+      'link_title' => 'Log out',
+      'menu_name' => 'main-menu',
+      'weight' => 0,
+      'language' => LANGUAGE_NONE,
+      'plid' => 0,
+      'module' => 'menu',
+    );
+
+    menu_link_save($item);
+  }
+
+  /**
+   * This will be run when Behat testing suite is ended.
+   *
+   * Remove logout link.
+   *
+   * @AfterSuite
+   */
+  public static function removeLogoutItem(AfterSuiteScope $scope) {
+    menu_link_delete(NULL, 'user/logout');
   }
 
   /**
@@ -508,6 +530,16 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
     if (is_null($content)) {
       throw new Exception(sprintf("Title content '%s' not found", $text));
     }
+  }
+
+  /**
+   * I wait for (seconds) seconds.
+   *
+   * @When I wait for :arg1 seconds
+   */
+  public function iWaitForSeconds($seconds, $condition = '') {
+    $milliseconds = (int) ($seconds * 1000);
+    $this->getSession()->wait($milliseconds, $condition);
   }
 
 }
