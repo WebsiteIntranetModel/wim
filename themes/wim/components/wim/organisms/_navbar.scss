@@ -104,7 +104,9 @@
   }
   &:hover {
     .dropdown-menu {
-      display: block;
+      @include MQ($screen-sm) {
+        display: block;
+      }
     }
   }
   &.parent-dropdown {
