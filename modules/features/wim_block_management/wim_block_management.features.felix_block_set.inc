@@ -38,10 +38,6 @@ function wim_block_management_felix_default_block_sets() {
         'delta' => '*',
       ),
       6 => array(
-        'module' => 'user',
-        'delta' => 'login',
-      ),
-      7 => array(
         'module' => 'views',
         'delta' => '*',
       ),
