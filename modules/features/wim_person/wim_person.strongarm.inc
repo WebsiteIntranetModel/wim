@@ -43,6 +43,9 @@ function wim_person_strongarm() {
       'short' => array(
         'custom_settings' => FALSE,
       ),
+      'introduction' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(

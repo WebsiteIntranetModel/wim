@@ -22,7 +22,7 @@ function wim_person_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 1,
+        'weight' => 5,
       ),
       'search_result' => array(
         'label' => 'hidden',
@@ -72,7 +72,7 @@ function wim_person_field_default_field_instances() {
         'module' => 'email',
         'settings' => array(),
         'type' => 'email_default',
-        'weight' => 3,
+        'weight' => 2,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -204,7 +204,7 @@ function wim_person_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 5,
+        'weight' => 4,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -255,7 +255,7 @@ function wim_person_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 4,
+        'weight' => 3,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -307,7 +307,7 @@ function wim_person_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 2,
+        'weight' => 1,
       ),
       'search_result' => array(
         'label' => 'above',
