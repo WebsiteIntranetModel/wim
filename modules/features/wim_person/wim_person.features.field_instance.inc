@@ -200,7 +200,7 @@ function wim_person_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'hidden',
+        'label' => 'inline',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
@@ -303,7 +303,7 @@ function wim_person_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'hidden',
+        'label' => 'inline',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
@@ -325,7 +325,7 @@ function wim_person_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_person_roles',
-    'label' => 'Roles',
+    'label' => 'Role',
     'required' => 0,
     'settings' => array(
       'linkit' => array(
@@ -399,7 +399,7 @@ function wim_person_field_default_field_instances() {
   t('Email');
   t('Image');
   t('Phone');
-  t('Roles');
+  t('Role');
   t('Tags');
 
   return $field_instances;
