@@ -1,0 +1,6 @@
+name = XML crawler
+description = Extends External Crawler module with XML files.
+package = Search Toolkit
+core = 7.x
+
+dependencies[] = external_crawler

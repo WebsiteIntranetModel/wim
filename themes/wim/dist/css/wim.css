@@ -3559,10 +3559,6 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   color: white;
 }
 
-.navbar-default .navbar-nav > li:hover .dropdown-menu {
-  display: block;
-}
-
 .navbar-default .navbar-nav > li.parent-dropdown > a {
   position: relative;
 }
@@ -4419,6 +4415,9 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   }
   .navbar-default .navbar-collapse{
     border-top: 4px solid #efe5ef;
+  }
+  .navbar-default .navbar-nav > li:hover .dropdown-menu{
+    display: block;
   }
   .block-search .input-group{
     display: table;
