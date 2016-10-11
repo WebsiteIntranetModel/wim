@@ -26,7 +26,7 @@ function wim_news_views_default_views() {
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'time';
-  $handler->display->display_options['cache']['results_lifespan'] = '60';
+  $handler->display->display_options['cache']['results_lifespan'] = '-1';
   $handler->display->display_options['cache']['results_lifespan_custom'] = '0';
   $handler->display->display_options['cache']['output_lifespan'] = '60';
   $handler->display->display_options['cache']['output_lifespan_custom'] = '0';
