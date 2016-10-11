@@ -36,11 +36,11 @@ function wim_text_formats_default_linkit_profiles() {
         'enabled' => 0,
         'weight' => '-10',
       ),
-      'entity:file' => array(
+      'entity:user' => array(
         'enabled' => 0,
         'weight' => '-10',
       ),
-      'entity:user' => array(
+      'entity:file' => array(
         'enabled' => 0,
         'weight' => '-10',
       ),
@@ -55,8 +55,10 @@ function wim_text_formats_default_linkit_profiles() {
         'page' => 0,
         'faq' => 0,
         'news' => 0,
+        'person' => 0,
         'product' => 0,
         'subject_page' => 0,
+        'webform' => 0,
       ),
       'group_by_bundle' => 1,
       'include_unpublished' => 0,
@@ -87,6 +89,10 @@ function wim_text_formats_default_linkit_profiles() {
       'url_method' => '2',
     ),
     'attribute_plugins' => array(
+      'alt' => array(
+        'enabled' => 1,
+        'weight' => '-10',
+      ),
       'accesskey' => array(
         'enabled' => 1,
         'weight' => '-10',
