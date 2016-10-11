@@ -354,7 +354,7 @@ body.in-maintenance #page {
   content: "";
 }
 
-.fa-check:before, .block-facetapi ul:not(.contextual-links) a.facetapi-active:before {
+.fa-check:before, .block-facetapi ul:not(.contextual-links) a.facetapi-active:before, #cc-notification.cc-custom #cc-notification-wrapper #cc-notification-permissions ul li:before, #cc-notification.cc-custom #cc-notification-wrapper ul.cc-notification-buttons li a#cc-approve-button-allsites:before, #cc-notification.cc-custom #cc-notification-wrapper ul.cc-notification-buttons li a#cc-approve-button-thissite:before {
   content: "";
 }
 
@@ -4024,6 +4024,107 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   color: #ffffff;
 }
 
+#cc-notification.cc-custom {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+#cc-notification.cc-custom #cc-notification-wrapper {
+  max-width: 1170px;
+  padding: 20px 15px;
+  margin: 0 auto;
+}
+
+#cc-notification.cc-custom #cc-notification-wrapper h2 {
+  color: black;
+}
+
+#cc-notification.cc-custom #cc-notification-wrapper #cc-notification-permissions {
+  display: block;
+}
+
+#cc-notification.cc-custom #cc-notification-wrapper #cc-notification-permissions ul {
+  margin-bottom: 25px;
+  float: none;
+}
+
+#cc-notification.cc-custom #cc-notification-wrapper #cc-notification-permissions ul li {
+  margin-left: 0;
+  padding-left: 30px;
+}
+
+#cc-notification.cc-custom #cc-notification-wrapper #cc-notification-permissions ul li #cc-checkbox-analytics {
+  display: none;
+}
+
+#cc-notification.cc-custom #cc-notification-wrapper #cc-notification-permissions ul li:before {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #0080a8;
+  line-height: 20px;
+  border: 1px solid #0080a8;
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  vertical-align: top;
+  text-align: center;
+  font-weight: bold;
+  color: #ffffff;
+  margin-left: -30px;
+  margin-top: -3px;
+  margin-right: 4px;
+}
+
+#cc-notification.cc-custom #cc-notification-wrapper #cc-notification-permissions ul li.cc-notification-permissions-inactive:before {
+  content: "";
+  background-color: #fff;
+  border: 1px solid #e6e6e6;
+}
+
+#cc-notification.cc-custom #cc-notification-wrapper #cc-notification-permissions ul li label {
+  font-weight: normal;
+  color: #6e6e6e;
+}
+
+#cc-notification.cc-custom #cc-notification-wrapper #cc-notification-permissions ul li label strong {
+  color: #000000;
+}
+
+#cc-notification.cc-custom #cc-notification-wrapper ul.cc-notification-buttons li a {
+  color: #ffffff;
+  background: #0080a8;
+  font-size: 14px;
+  padding: 10px;
+  font-family: "Roboto Slab", Georgia, "Times New Roman", Times, serif;
+  letter-spacing: 0;
+}
+
+#cc-notification.cc-custom #cc-notification-wrapper ul.cc-notification-buttons li a:hover {
+  box-shadow: none;
+  background-color: #005975;
+}
+
+#cc-notification.cc-custom #cc-notification-wrapper ul.cc-notification-buttons li a#cc-approve-button-allsites, #cc-notification.cc-custom #cc-notification-wrapper ul.cc-notification-buttons li a#cc-approve-button-thissite {
+  background-color: #5cb85c;
+}
+
+#cc-notification.cc-custom #cc-notification-wrapper ul.cc-notification-buttons li a#cc-approve-button-allsites:hover, #cc-notification.cc-custom #cc-notification-wrapper ul.cc-notification-buttons li a#cc-approve-button-thissite:hover {
+  background-color: #449d44;
+}
+
+#cc-notification.cc-custom #cc-notification-wrapper ul.cc-notification-buttons li a#cc-approve-button-allsites:before, #cc-notification.cc-custom #cc-notification-wrapper ul.cc-notification-buttons li a#cc-approve-button-thissite:before {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin-right: 3px;
+}
+
 .main-container .menu-top-tasks .menu-wrapper {
   border: 1px solid #ddd;
   position: relative;
@@ -4429,6 +4530,11 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   .block-search .input-group .input-group-btn{
     float: none;
     width: auto;
+  }
+  #cc-notification.cc-custom #cc-notification-wrapper #cc-notification-permissions ul{
+    margin-bottom: 0;
+    float: left;
+    width: 60%;
   }
   .main-container .menu-top-tasks .menu-wrapper{
     min-height: 170px;
