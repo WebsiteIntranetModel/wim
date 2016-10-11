@@ -5,6 +5,16 @@
  */
 
 /**
+ * Implements hook_install().
+ */
+function cookie_consent_install() {
+  $role = user_role_load_by_name('webmaster');
+  if ($role) {
+    user_role_grant_permissions($role->rid, array('administer cookie_consent'));
+  }
+}
+
+/**
  * Implements hook_schema().
  */
 function cookie_consent_schema() {
