@@ -14,11 +14,10 @@ $plugin = array(
  *
  * @param array $plugin
  *   This is the plugin definition.
- *
  * @param array $settings
  *   An array of settings for this attribute. This is from the profile settings.
  *
- * @return
+ * @return array
  *   An FAPI element.
  *
  * @see LinkitProfile::setAttributes()
