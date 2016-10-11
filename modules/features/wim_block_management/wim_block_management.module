@@ -33,13 +33,24 @@ function wim_block_management_form_felix_attributes_form_alter(&$form, &$form_st
   );
 
   if ($felix_block->module === 'bean') {
-    $form['subject']['#description'] = t('Leave empty to use the title from the bean block.');
-    $bean_info = entity_get_info('bean');
     $bean = bean_load_delta($felix_block->delta);
-    $view_modes = array();
-    foreach ($bean_info['view modes'] as $mode_key => $mode) {
-      $view_modes[$mode_key] = $mode['label'];
+    $form['subject']['#description'] = t('Leave empty to use the title from the bean block.');
+    $entity_type = $bean->entityType();
+    $bundle = $bean->type;
+
+    $entity_info = entity_get_info($entity_type);
+    $view_mode_list = $entity_info['view modes'];
+    $view_mode_settings = field_view_mode_settings($entity_type, $bundle);
+
+    foreach ($view_mode_list as $view_mode_name => $view_mode_info) {
+      if (!empty($view_mode_settings[$view_mode_name]['custom_settings'])) {
+        $view_modes[$view_mode_name] = $view_mode_info['label'];
+      }
     }
+
+    // If no custom view modes selected, add default.
+    $view_modes['default'] = t('Default');
+
     $form['bean_view_mode'] = array(
       '#title' => t('View mode'),
       '#type' => 'select',
