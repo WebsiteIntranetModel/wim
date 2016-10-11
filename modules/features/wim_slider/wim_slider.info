@@ -23,5 +23,6 @@ features[field_instance][] = paragraphs_item-slider_item-field_body
 features[field_instance][] = paragraphs_item-slider_item-field_image
 features[field_instance][] = paragraphs_item-slider_item-field_link
 features[field_instance][] = paragraphs_item-slider_item-field_title
+features[paragraphs][] = slider_item
 features[picture_mapping][] = slider
 project path = profiles/wim/modules/features
