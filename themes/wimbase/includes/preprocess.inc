@@ -61,7 +61,6 @@ function wimbase_preprocess_region(&$variables) {
     $total_col = 0;
     $rows = array();
     $row_id = 0;
-    $same_row = FALSE;
     foreach (element_children($variables['elements']) as $element_id) {
       if (isset($variables['elements'][$element_id]['#block'])) {
         $block = $variables['elements'][$element_id]['#block'];
@@ -71,8 +70,6 @@ function wimbase_preprocess_region(&$variables) {
           $row_id++;
           $rows[$row_id][] = $variables['elements'][$element_id]['#children'];
           $total_col = 0;
-          // Next element can't be placed in the same row with current.
-          $same_row = FALSE;
         }
         else {
           $total_col += $block->bootstrap_layout;
@@ -85,10 +82,6 @@ function wimbase_preprocess_region(&$variables) {
           }
           // Add elements together in the same row.
           else {
-            if (!$same_row) {
-              $row_id++;
-              $same_row = TRUE;
-            }
             $rows[$row_id][] = $variables['elements'][$element_id]['#children'];
           }
         }
