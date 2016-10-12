@@ -15,6 +15,11 @@ function _xml_crawler_get_xml_types($type = NULL) {
     'gvop' => 'GVOP',
     'durp' => 'DURP',
   );
+
+  if ($new_types = module_invoke_all('xml_crawler_xml_types')) {
+    $xml_types = array_merge($xml_types, $new_types);
+  }
+
   return $type ? $xml_types[$type] : $xml_types;
 }
 
@@ -46,6 +51,8 @@ function _xml_crawler_crawle_xml(stdClass $site) {
       $pages = _xml_crawler_durp_get_pages($dom);
     }
 
+    // Allow other modules alter pages before they will be indexed.
+    drupal_alter('xml_crawler_pages', $pages, $dom, $site);
     // Crawle pages.
     foreach ($pages as $page_url) {
       _external_crawler_index_page($page_url, $site);
