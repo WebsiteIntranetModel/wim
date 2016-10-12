@@ -270,7 +270,8 @@ function wim_faq_views_default_views() {
   $handler->display->display_options['header']['result']['id'] = 'result';
   $handler->display->display_options['header']['result']['table'] = 'views';
   $handler->display->display_options['header']['result']['field'] = 'result';
-  $handler->display->display_options['header']['result']['content'] = '@total items found';
+  $handler->display->display_options['header']['result']['content'] = '@total item(s) found';
+  $handler->display->display_options['header']['result']['empty'] = TRUE;
   $handler->display->display_options['defaults']['empty'] = FALSE;
   /* No results behavior: Global: Text area */
   $handler->display->display_options['empty']['area']['id'] = 'area';
@@ -447,7 +448,7 @@ function wim_faq_views_default_views() {
     t('‹ previous'),
     t('next ›'),
     t('last »'),
-    t('@total items found'),
+    t('@total item(s) found'),
     t('Question'),
     t('Weight Selector'),
     t('Answer'),
