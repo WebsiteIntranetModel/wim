@@ -201,6 +201,28 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
   }
 
   /**
+   * Before run cookie message test enable it.
+   *
+   * @BeforeScenario @cookie
+   */
+  public function enableCookieModule() {
+    module_enable(array('cookie_consent'));
+    variable_set('cookie_consent_style', 'custom');
+    variable_set('cookie_consent_roles', drupal_map_assoc(array(DRUPAL_ANONYMOUS_RID)));
+  }
+
+  /**
+   * After run cookie message test disable it.
+   *
+   * @AfterScenario @cookie
+   */
+  public function disableCookieModule($event) {
+    variable_del('cookie_consent_style');
+    variable_del('cookie_consent_roles');
+    module_disable(array('cookie_consent'));
+  }
+
+  /**
    * Checks if an option is selected in the dropdown.
    *
    * @param string $option

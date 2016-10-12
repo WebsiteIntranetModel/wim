@@ -1,0 +1,91 @@
+#cc-notification {
+  &.cc-custom {
+    background-color: rgba(255, 255, 255, 0.9);
+    #cc-notification-wrapper {
+      max-width: 1170px;
+      padding: 20px 15px;
+      margin: 0 auto;
+      h2 {
+        color: black;
+      }
+      #cc-notification-permissions {
+        display: block;
+        ul {
+          margin-bottom: 25px;
+          float: none;
+          @include MQ($screen-tablet) {
+            margin-bottom: 0;
+            float: left;
+            width: 60%;
+          }
+          li {
+            margin-left: 0;
+            padding-left: 30px;
+            @extend .fa-check;
+            #cc-checkbox-analytics {
+              display: none;
+            }
+            &:before {
+              @include fa-icon;
+              background-color: $brand-primary;
+              line-height: 20px;
+              border: 1px solid $brand-primary;
+              display: inline-block;
+              width: 22px;
+              height: 22px;
+              vertical-align: top;
+              text-align: center;
+              font-weight: bold;
+              color: #ffffff;
+              margin-left: -30px;
+              margin-top: -3px;
+              margin-right: 4px;
+            }
+            &.cc-notification-permissions-inactive {
+              &:before {
+                content: "";
+                background-color: #fff;
+                border: 1px solid lighten($gray-base, 90%);
+              }
+            }
+            label{
+              font-weight: normal;
+              strong{
+                color: #000000;
+              }
+              color: #6e6e6e;
+            }
+          }
+        }
+      }
+      ul.cc-notification-buttons {
+        li {
+          a {
+            color: #ffffff;
+            background: $brand-primary;
+            font-size: 14px;
+            padding: 10px;
+            font-family: $font-family-serif;
+            letter-spacing: 0;
+            &:hover{
+              box-shadow: none;
+              background-color: darken($brand-primary, 10%);
+            }
+            &#cc-approve-button-allsites,
+            &#cc-approve-button-thissite {
+              background-color: $brand-success;
+              &:hover{
+                background-color: darken($brand-success, 10%);
+              }
+              @extend .fa-check;
+              &:before {
+                @include fa-icon;
+                margin-right: 3px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

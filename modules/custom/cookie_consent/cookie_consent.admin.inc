@@ -73,7 +73,7 @@ function cookie_consent_admin_form() {
       'monochrome' => t('Monochrome'),
       'custom' => t('Custom'),
     ),
-    '#default_value' => variable_get('cookie_consent_style', 'monochrome'),
+    '#default_value' => variable_get('cookie_consent_style', 'custom'),
     '#title' => t('Cookie Consent Style'),
     '#description' => t('Select the desired style for the Cookie Consent feature. If you choose custom, you have to implement your own style.'),
   );
