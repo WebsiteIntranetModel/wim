@@ -10,7 +10,7 @@ Feature: Create person
     When I fill in the following:
       | Title | Bruce Wayne         |
       | Tags  | BSCPGTEST, BSCPGTAG |
-      | Roles | Batman              |
+      | Role | Batman              |
       | Phone | 03023 302302 3      |
       | Email | batman@test.com     |
     And I fill in wysiwyg on field Body with "Body description text"
