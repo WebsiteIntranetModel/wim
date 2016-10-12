@@ -19,7 +19,7 @@ function external_crawler_build_document($pagekey, $url, $title, $body, $site_id
   $document->site = url(NULL, array('absolute' => TRUE));
   $document->hash = apachesolr_site_hash();
   $document->entity_id = $site_id;
-  $document->entity_type = 'external_crawler';
+  $document->entity_type = EXTERNAL_CRAWLER_ENTITY_TYPE;
   $document->language = LANGUAGE_NONE;
   $document->url = $url;
 
