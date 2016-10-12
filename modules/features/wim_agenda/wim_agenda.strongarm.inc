@@ -156,5 +156,12 @@ function wim_agenda_strongarm() {
   );
   $export['xmlsitemap_settings_node_agenda'] = $strongarm;
 
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'yoast_seo_enable_node__agenda';
+  $strongarm->value = TRUE;
+  $export['yoast_seo_enable_node__agenda'] = $strongarm;
+
   return $export;
 }
