@@ -67,6 +67,7 @@ projects[webform_encrypt] = 1.1
 projects[weight] = 3.1
 projects[wysiwyg] = 2.x-dev
 projects[xmlsitemap] = 2.3
+projects[yoast_seo] = 1.0
 
 ; Themes
 projects[adminimal_theme] = 1.24
