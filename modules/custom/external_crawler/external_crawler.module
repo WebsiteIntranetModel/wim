@@ -7,6 +7,8 @@
 
 include_once 'external_crawler.functions.inc';
 
+define('EXTERNAL_CRAWLER_ENTITY_TYPE', 'external_crawler');
+
 /**
  * Implements hook_menu().
  */

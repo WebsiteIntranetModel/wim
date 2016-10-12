@@ -25,7 +25,7 @@ function external_crawler_schema() {
       ),
       'url' => array(
         'type' => 'varchar',
-        'length' => 255,
+        'length' => 600,
         'not null' => TRUE,
       ),
       'check_interval' => array(
@@ -83,7 +83,7 @@ function external_crawler_schema() {
     'fields' => array(
       'pagekey' => array(
         'type' => 'varchar',
-        'length' => 64,
+        'length' => 200,
         'not null' => TRUE,
       ),
       'site_id' => array(
@@ -93,12 +93,12 @@ function external_crawler_schema() {
       ),
       'url' => array(
         'type' => 'varchar',
-        'length' => 255,
+        'length' => 600,
         'not null' => TRUE,
       ),
       'title' => array(
         'type' => 'varchar',
-        'length' => 255,
+        'length' => 2500,
         'not null' => FALSE,
       ),
       'date' => array(
@@ -139,4 +139,48 @@ function external_crawler_install() {
 function external_crawler_update_7000() {
   $schema = drupal_get_schema('external_crawler_site');
   db_add_field('external_crawler_site', 'last_crawl', $schema['fields']['last_crawl']);
+}
+
+/**
+ * Update fields length.
+ */
+function external_crawler_update_7001() {
+  // Increase page URL length.
+  db_change_field('external_crawler_page', 'url', 'url', array(
+    'type' => 'varchar',
+    'length' => 600,
+    'not null' => TRUE,
+  ));
+
+  // Increase page title length.
+  db_change_field('external_crawler_page', 'title', 'title', array(
+    'type' => 'varchar',
+    'length' => 2500,
+    'not null' => FALSE,
+  ));
+
+  // Increase page pagekey length.
+  db_change_field('external_crawler_page', 'pagekey', 'pagekey', array(
+    'type' => 'varchar',
+    'length' => 200,
+    'not null' => TRUE,
+  ));
+
+  // Increase site URL length.
+  db_change_field('external_crawler_site', 'url', 'url', array(
+    'type' => 'varchar',
+    'length' => 600,
+    'not null' => TRUE,
+  ));
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function external_crawler_uninstall() {
+  module_load_include('inc', 'apachesolr', 'apachesolr.index');
+
+  // Delete from index our pages.
+  $env_id = apachesolr_default_environment();
+  apachesolr_index_delete_index($env_id, 'external_crawler');
 }

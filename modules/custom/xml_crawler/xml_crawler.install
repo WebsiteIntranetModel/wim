@@ -36,6 +36,16 @@ function xml_crawler_install() {
  * Implements hook_uninstall().
  */
 function xml_crawler_uninstall() {
+  module_load_include('inc', 'external_crawler', 'external_crawler.functions');
+
+  // Remove XML sites.
+  $sites = _external_crawler_fetch_sites();
+  foreach ($sites as $site) {
+    if ($site->is_xml) {
+      external_crawler_delete_site($site->site_id);
+    }
+  }
+
   db_drop_field('external_crawler_site', 'is_xml');
   db_drop_field('external_crawler_site', 'xml_type');
 }
