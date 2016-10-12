@@ -214,6 +214,10 @@ function wim_core_form_alter(&$form, &$form_state, $form_id) {
         $form[$field_name]['#language'] = $form['options'][$field_name]['#language'];
       }
     }
+    // Users which can revert revisions can create them as well.
+    $form['revision_information']['#access'] = user_access('revert revisions');
+    $form['revision_information']['revision']['#access'] = user_access('revert revisions');
+    $form['revision_information']['log']['#access'] = user_access('revert revisions');
   }
 
   // Allow to access publishing options tab.
