@@ -61,8 +61,9 @@ function _content_reminder_prepare_nodes($nodes, $mailtype) {
     $loaded_node[$node->nid] = node_load($node->nid);
   }
 
-  $emailremindernodes = $emails = array();
+  $emailremindernodes = array();
   foreach ($loaded_node as $node) {
+    $emails = array();
     if (!empty($node->field_reminder_email)) {
       foreach ($node->field_reminder_email[LANGUAGE_NONE] as $mail_list) {
         foreach ($mail_list as $value) {

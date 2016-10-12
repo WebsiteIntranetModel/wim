@@ -51,6 +51,7 @@ function wim_update_7002(&$sandbox) {
     'wim_webform',
     'wim_addition_faq_product_fields',
     'wim_text_formats',
+    'wim_block_management',
   ));
 
   // Exclude some basic page nodes.

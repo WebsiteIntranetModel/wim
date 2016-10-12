@@ -118,7 +118,8 @@ function wim_core_views_default_views() {
   $handler->display->display_options['header']['result']['id'] = 'result';
   $handler->display->display_options['header']['result']['table'] = 'views';
   $handler->display->display_options['header']['result']['field'] = 'result';
-  $handler->display->display_options['header']['result']['content'] = '@total items found';
+  $handler->display->display_options['header']['result']['content'] = '@total item(s) found';
+  $handler->display->display_options['header']['result']['empty'] = TRUE;
   /* No results behavior: Global: Unfiltered text */
   $handler->display->display_options['empty']['area_text_custom']['id'] = 'area_text_custom';
   $handler->display->display_options['empty']['area_text_custom']['table'] = 'views';
@@ -377,7 +378,7 @@ function wim_core_views_default_views() {
     t('‹ previous'),
     t('next ›'),
     t('last »'),
-    t('@total items found'),
+    t('@total item(s) found'),
     t('No content available.'),
     t('author'),
     t('term'),
@@ -507,7 +508,8 @@ function wim_core_views_default_views() {
   $handler->display->display_options['header']['result']['id'] = 'result';
   $handler->display->display_options['header']['result']['table'] = 'views';
   $handler->display->display_options['header']['result']['field'] = 'result';
-  $handler->display->display_options['header']['result']['content'] = '@total items found';
+  $handler->display->display_options['header']['result']['content'] = '@total item(s) found';
+  $handler->display->display_options['header']['result']['empty'] = TRUE;
   /* No results behavior: Global: Unfiltered text */
   $handler->display->display_options['empty']['area_text_custom']['id'] = 'area_text_custom';
   $handler->display->display_options['empty']['area_text_custom']['table'] = 'views';
@@ -740,7 +742,7 @@ function wim_core_views_default_views() {
     t('‹ previous'),
     t('next ›'),
     t('last »'),
-    t('@total items found'),
+    t('@total item(s) found'),
     t('No content available.'),
     t('User who uploaded'),
     t('Content'),
