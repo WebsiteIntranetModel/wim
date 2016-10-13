@@ -1,5 +1,5 @@
 .tabs-left > .nav-tabs > li > a {
-  background: $brand-light;
+  background: $gray-lighter;
   color: black;
   border-radius: 0;
   margin-bottom: 0;
@@ -31,7 +31,6 @@
 
 .tabs-left > .nav-tabs > .active {
   margin: 0;
-  // margin-bottom: 1px;
 }
 
 .tabs-left > .nav-tabs > .active > a,

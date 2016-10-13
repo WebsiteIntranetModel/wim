@@ -13,7 +13,7 @@
         ul {
           margin-bottom: 25px;
           float: none;
-          @include MQ($screen-tablet) {
+          @include MQ($screen-sm) {
             margin-bottom: 0;
             float: left;
             width: 60%;

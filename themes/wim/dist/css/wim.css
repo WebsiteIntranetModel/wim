@@ -1,4 +1,11 @@
 @charset "UTF-8";
+/*
+* Modify variables used in the wim sub theme here. The value set in this file will be used when compiling the scss.
+* Uncomment a variable of you likings and change the value. Make sure to recompile the CSS!
+*
+* It is also possible to @import new font faces here. Just import the various source files and set the font-family
+* variables according to the font family name.
+*/
 .dropdown-menu > li > a:active,
 .dropdown-menu > li > a:focus, .navbar-default .navbar-nav > .open > a,
 .navbar-default .navbar-nav > .open > a:hover,
@@ -7,38 +14,6 @@
   outline-offset: -2px;
   outline-style: auto;
   outline-width: 5px;
-}
-
-@font-face {
-  font-family: 'Droid Sans';
-  src: url("../fonts/DroidSans-webfont.eot");
-  src: url("../fonts/DroidSans-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/DroidSans-webfont.woff") format("woff"), url("../fonts/DroidSans-webfont.ttf") format("truetype"), url("../fonts/DroidSans-webfont.svg#droid_sansregular") format("svg");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Droid Sans';
-  src: url("../fonts/DroidSans-Bold-webfont.eot");
-  src: url("../fonts/DroidSans-Bold-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/DroidSans-Bold-webfont.woff") format("woff"), url("../fonts/DroidSans-Bold-webfont.ttf") format("truetype"), url("../fonts/DroidSans-Bold-webfont.svg#droid_sansbold") format("svg");
-  font-weight: bold;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Roboto Slab';
-  src: url("../fonts/RobotoSlab-Regular-webfont.eot");
-  src: url("../fonts/RobotoSlab-Regular-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/RobotoSlab-Regular-webfont.woff") format("woff"), url("../fonts/RobotoSlab-Regular-webfont.ttf") format("truetype"), url("../fonts/RobotoSlab-Regular-webfont.svg#roboto_slabregular") format("svg");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Roboto Slab';
-  src: url("../fonts/RobotoSlab-Bold-webfont.eot");
-  src: url("../fonts/RobotoSlab-Bold-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/RobotoSlab-Bold-webfont.woff") format("woff"), url("../fonts/RobotoSlab-Bold-webfont.ttf") format("truetype"), url("../fonts/RobotoSlab-Bold-webfont.svg#roboto_slabbold") format("svg");
-  font-weight: bold;
-  font-style: normal;
 }
 
 body {
@@ -91,6 +66,38 @@ body.in-maintenance #page {
   margin-bottom: 20px;
   margin-top: 10px;
   padding: 20px;
+}
+
+@font-face {
+  font-family: 'Droid Sans';
+  src: url("../fonts/DroidSans-webfont.eot");
+  src: url("../fonts/DroidSans-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/DroidSans-webfont.woff") format("woff"), url("../fonts/DroidSans-webfont.ttf") format("truetype"), url("../fonts/DroidSans-webfont.svg#droid_sansregular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Droid Sans';
+  src: url("../fonts/DroidSans-Bold-webfont.eot");
+  src: url("../fonts/DroidSans-Bold-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/DroidSans-Bold-webfont.woff") format("woff"), url("../fonts/DroidSans-Bold-webfont.ttf") format("truetype"), url("../fonts/DroidSans-Bold-webfont.svg#droid_sansbold") format("svg");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto Slab';
+  src: url("../fonts/RobotoSlab-Regular-webfont.eot");
+  src: url("../fonts/RobotoSlab-Regular-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/RobotoSlab-Regular-webfont.woff") format("woff"), url("../fonts/RobotoSlab-Regular-webfont.ttf") format("truetype"), url("../fonts/RobotoSlab-Regular-webfont.svg#roboto_slabregular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto Slab';
+  src: url("../fonts/RobotoSlab-Bold-webfont.eot");
+  src: url("../fonts/RobotoSlab-Bold-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/RobotoSlab-Bold-webfont.woff") format("woff"), url("../fonts/RobotoSlab-Bold-webfont.ttf") format("truetype"), url("../fonts/RobotoSlab-Bold-webfont.svg#roboto_slabbold") format("svg");
+  font-weight: bold;
+  font-style: normal;
 }
 
 /*!
@@ -3033,6 +3040,14 @@ h1, h2, .block-facetapi h2.block-title, h3, h4, h5, h6 {
   color: #0080a8;
 }
 
+a {
+  color: #0080a8;
+}
+
+a:hover {
+  color: #00465c;
+}
+
 a.back-link {
   display: inline-block;
 }
@@ -3051,12 +3066,12 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
 }
 
 .form-text {
-  border: 1px solid #d0d0d0;
+  border: 1px solid #777777;
   box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .form-textarea {
-  border: 1px solid #d0d0d0;
+  border: 1px solid #777777;
   box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -3100,13 +3115,18 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
 }
 
 .breadcrumb .active {
-  color: #333;
+  color: #333333;
 }
 
 /* DocReader
 ---------------------*/
 .docreader {
   margin-left: 5px;
+}
+
+.btn-primary {
+  background-color: #0080a8;
+  border-color: #00465c;
 }
 
 .nav-tabs {
@@ -3150,8 +3170,8 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
 
 .block .block-title {
   padding: 10px;
-  border-top: 1px solid #efe5ef;
-  background: #fdfbfd;
+  border-top: 1px solid #eeeeee;
+  background: #eeeeee;
   margin-bottom: 10px;
   font-size: 130%;
   margin-top: 0;
@@ -3159,6 +3179,23 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
 
 .block .view {
   margin: 0 10px;
+}
+
+.block.block-felix h2.block-title {
+  border: 1px solid #747474;
+  background: #eeeeee;
+  font-size: 14px;
+  padding: 5px;
+  color: #747474;
+  position: relative;
+}
+
+.block.block-felix h2.block-title:after {
+  content: "FELIX";
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  color: #b3b3b3;
 }
 
 .block.bean-view-mode-link-title h2.block-title {
@@ -3292,7 +3329,7 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
 }
 
 .tabs-left > .nav-tabs > li > a {
-  background: #efe5ef;
+  background: #eeeeee;
   color: black;
   border-radius: 0;
   margin-bottom: 0;
@@ -3367,7 +3404,7 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   border: none;
   border-radius: 0;
   box-shadow: none;
-  border-bottom: 1px solid #efe5ef;
+  border-bottom: 1px solid #eeeeee;
 }
 
 #accordion .panel + .panel,
@@ -3377,7 +3414,7 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
 
 #accordion .panel:first-child,
 .views-bootstrap-accordion-plugin-style .panel:first-child {
-  border-top: 1px solid #efe5ef;
+  border-top: 1px solid #eeeeee;
 }
 
 #accordion .panel-body,
@@ -3433,7 +3470,7 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   padding: 0;
   background: none;
   border-top: none;
-  color: #222222;
+  color: #fe229b;
 }
 
 .footer .block h3:first-of-type,
@@ -3788,7 +3825,7 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
 }
 
 .node-teaser {
-  border-bottom: 1px solid #eaeaea;
+  border-bottom: 1px solid #eeeeee;
   margin-bottom: 10px;
   padding-bottom: 10px;
 }
@@ -3813,7 +3850,7 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
 }
 
 .view .node-teaser:last-child {
-  border-bottom: 1px solid #eaeaea;
+  border-bottom: 1px solid #eeeeee;
 }
 
 .view .view-content > div:last-child .node-teaser:last-child {
@@ -3847,7 +3884,7 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   width: 40px;
   height: 46px;
   text-align: center;
-  border: 1px solid #efefef;
+  border: 1px solid #eeeeee;
 }
 
 .node-teaser.node-agenda .date-display-single span {
@@ -3921,8 +3958,8 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
 
 .page-news .page-header {
   padding: 10px;
-  border-top: 1px solid #efe5ef;
-  background: #fdfbfd;
+  border-top: 1px solid #eeeeee;
+  background: #eeeeee;
   margin-bottom: 10px;
   font-size: 130%;
 }
@@ -4118,7 +4155,7 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
 }
 
 .main-container .menu-top-tasks .menu-wrapper .menu {
-  background-color: #efefef;
+  background-color: #eeeeee;
 }
 
 .main-container .menu-top-tasks .menu-wrapper .menu .dropdown {
@@ -4240,8 +4277,8 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
 
 .social-links h3 {
   padding: 10px;
-  border-top: 1px solid #efe5ef;
-  background: #fdfbfd;
+  border-top: 1px solid #eeeeee;
+  background: #eeeeee;
   margin-bottom: 10px;
   font-size: 100%;
   font-weight: normal;
@@ -4317,8 +4354,8 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
 .node-type-agenda .field-label-abovec .field-label,
 .node-type-agenda .field-label-above .field-label {
   padding: 10px;
-  border-top: 1px solid #efe5ef;
-  background: #fdfbfd;
+  border-top: 1px solid #eeeeee;
+  background: #eeeeee;
   margin-bottom: 10px;
   font-size: 100%;
   font-weight: normal;
@@ -4347,8 +4384,8 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
 .node-type-product .field-label-abovec .field-label,
 .node-type-product .field-label-above .field-label {
   padding: 10px;
-  border-top: 1px solid #efe5ef;
-  background: #fdfbfd;
+  border-top: 1px solid #eeeeee;
+  background: #eeeeee;
   margin-bottom: 10px;
   font-size: 100%;
   font-weight: normal;
@@ -4412,12 +4449,12 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   font-size: 15px;
   line-height: 24px;
   font-family: "Roboto Slab", Georgia, "Times New Roman", Times, serif;
-  border-bottom: 1px solid #efe5ef;
+  border-bottom: 1px solid #eeeeee;
   border-radius: 0;
 }
 
 .block .view-faq .view-content .views-row:first-child {
-  border-top: 1px solid #efe5ef;
+  border-top: 1px solid #eeeeee;
 }
 
 .block .view-faq .view-content .views-row a {
@@ -4440,7 +4477,7 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
 .form-group.error .help-inline,
 .form-group.has-error .help-block,
 .form-group.has-error .help-inline {
-  color: #333;
+  color: #333333;
 }
 
 .submitted {
@@ -4502,7 +4539,7 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
     margin: 0;
   }
   .navbar-default .navbar-collapse{
-    border-top: 4px solid #efe5ef;
+    border-top: 4px solid #eeeeee;
   }
   .navbar-default .navbar-nav > li:hover .dropdown-menu{
     display: block;
@@ -4581,9 +4618,6 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   body:after{
     content: "desktop";
   }
-  .footer{
-    padding: 20px 0;
-  }
   .navbar.container, body.in-maintenance .navbar#page{
     max-width: 1170px;
   }
@@ -4594,6 +4628,15 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   .navbar-default .navbar-nav > .active > a:focus{
     border-top: 4px solid #ddd;
     margin-top: -4px;
+  }
+}
+
+@media screen and (min-width: 1200px){
+  .footer{
+    padding: 20px 0;
+  }
+  .navbar.container, body.in-maintenance .navbar#page{
+    max-width: 1170px;
   }
   .slick-slider .slick-arrow{
     top: 20px;
@@ -4614,12 +4657,6 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   .slick-slider .slider-text-warapper{
     font-size: 18px;
     line-height: 28px;
-  }
-}
-
-@media screen and (min-width: 1200px){
-  .navbar.container, body.in-maintenance .navbar#page{
-    max-width: 1170px;
   }
 }
 

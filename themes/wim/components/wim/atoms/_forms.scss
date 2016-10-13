@@ -2,12 +2,12 @@
   color: $gray-dark;
 }
 .form-text {
-  border: 1px solid $brand-grey-normal;
+  border: 1px solid $gray-light;
   box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .form-textarea {
-  border: 1px solid $brand-grey-normal;
+  border: 1px solid $gray-light;
   box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -22,7 +22,7 @@
     .form-file {
       vertical-align: top;
       margin-bottom: 10px;
-      @include MQ($screen-tablet) {
+      @include MQ($screen-sm) {
         margin-bottom: 0;
         margin-right: 5px;
         display: inline-block;
@@ -36,7 +36,7 @@
   .webform-container-inline {
     div.form-item {
       display: block;
-      @include MQ($screen-tablet) {
+      @include MQ($screen-sm) {
         display: inline-block;
         margin-bottom: 0;
         padding-right: 5px;
