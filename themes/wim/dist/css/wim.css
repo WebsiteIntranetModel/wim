@@ -3161,23 +3161,6 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   margin: 0 10px;
 }
 
-.block.block-felix h2.block-title {
-  border: 1px solid #efe5ef;
-  background: #fdfbfd;
-  font-size: 14px;
-  padding: 5px;
-  color: #747474;
-  position: relative;
-}
-
-.block.block-felix h2.block-title:after {
-  content: "FELIX";
-  position: absolute;
-  right: 5px;
-  top: 5px;
-  color: #b3b3b3;
-}
-
 .block.bean-view-mode-link-title h2.block-title {
   padding: 16px 10px;
   background-color: #0080a8;
@@ -4553,6 +4536,7 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   .main-container .menu-top-tasks .menu-wrapper .menu .dropdown:hover .dropdown-toggle{
     background-color: #0080a8;
     color: white;
+    text-decoration: underline;
   }
   .main-container .menu-top-tasks .menu-wrapper .menu .dropdown:hover .dropdown-toggle:after{
     display: block !important;

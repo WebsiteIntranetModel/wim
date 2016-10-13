@@ -13,23 +13,6 @@
   .view {
     margin: 0 10px;
   }
-  &.block-felix {
-    h2.block-title {
-      border: 1px solid $brand-light;
-      background: $brand-block-title-bg;
-      font-size: 14px;
-      padding: 5px;
-      color: lighten(black, 45.5%);
-      position: relative;
-      &:after {
-        content: "FELIX";
-        position: absolute;
-        right: 5px;
-        top: 5px;
-        color: lighten($gray-base, 70%);
-      }
-    }
-  }
   &.bean-view-mode-link-title {
     h2.block-title {
       padding: 16px 10px;
