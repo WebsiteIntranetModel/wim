@@ -17,7 +17,14 @@ Feature: Create basic page
       | Time | 11:10:00   |
     Then I should see "Promoted"
     And I click "Introduction"
-    And I attach the file "/fixtures/images/drupal-icon.png" to "Image"
+    And I click "Browse"
+    Then I wait for AJAX to finish
+    And I wait for 5 seconds
+    And I switch to the iframe "mediaBrowser"
+    And I attach the file "/fixtures/images/drupal-icon.png" to "Upload a new file"
+    And I press "Next"
+    Then I press "Save"
+    When I switch back from an iframe
     And I fill in wysiwyg on field "Lead paragraph" with "Lead paragraph demo content"
     And I click "Reminder"
     And I should see "Reminder email"
