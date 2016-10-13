@@ -1,36 +1,4 @@
 @charset "UTF-8";
-@font-face {
-  font-family: 'Droid Sans';
-  src: url("../fonts/DroidSans-webfont.eot");
-  src: url("../fonts/DroidSans-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/DroidSans-webfont.woff") format("woff"), url("../fonts/DroidSans-webfont.ttf") format("truetype"), url("../fonts/DroidSans-webfont.svg#droid_sansregular") format("svg");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Droid Sans';
-  src: url("../fonts/DroidSans-Bold-webfont.eot");
-  src: url("../fonts/DroidSans-Bold-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/DroidSans-Bold-webfont.woff") format("woff"), url("../fonts/DroidSans-Bold-webfont.ttf") format("truetype"), url("../fonts/DroidSans-Bold-webfont.svg#droid_sansbold") format("svg");
-  font-weight: bold;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Roboto Slab';
-  src: url("../fonts/RobotoSlab-Regular-webfont.eot");
-  src: url("../fonts/RobotoSlab-Regular-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/RobotoSlab-Regular-webfont.woff") format("woff"), url("../fonts/RobotoSlab-Regular-webfont.ttf") format("truetype"), url("../fonts/RobotoSlab-Regular-webfont.svg#roboto_slabregular") format("svg");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Roboto Slab';
-  src: url("../fonts/RobotoSlab-Bold-webfont.eot");
-  src: url("../fonts/RobotoSlab-Bold-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/RobotoSlab-Bold-webfont.woff") format("woff"), url("../fonts/RobotoSlab-Bold-webfont.ttf") format("truetype"), url("../fonts/RobotoSlab-Bold-webfont.svg#roboto_slabbold") format("svg");
-  font-weight: bold;
-  font-style: normal;
-}
-
 /*
 * Modify variables used in the wim sub theme here. The value set in this file will be used when compiling the scss.
 * Uncomment a variable of you likings and change the value. Make sure to recompile the CSS!
@@ -98,6 +66,38 @@ body.in-maintenance #page {
   margin-bottom: 20px;
   margin-top: 10px;
   padding: 20px;
+}
+
+@font-face {
+  font-family: 'Droid Sans';
+  src: url("../fonts/DroidSans-webfont.eot");
+  src: url("../fonts/DroidSans-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/DroidSans-webfont.woff") format("woff"), url("../fonts/DroidSans-webfont.ttf") format("truetype"), url("../fonts/DroidSans-webfont.svg#droid_sansregular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Droid Sans';
+  src: url("../fonts/DroidSans-Bold-webfont.eot");
+  src: url("../fonts/DroidSans-Bold-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/DroidSans-Bold-webfont.woff") format("woff"), url("../fonts/DroidSans-Bold-webfont.ttf") format("truetype"), url("../fonts/DroidSans-Bold-webfont.svg#droid_sansbold") format("svg");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto Slab';
+  src: url("../fonts/RobotoSlab-Regular-webfont.eot");
+  src: url("../fonts/RobotoSlab-Regular-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/RobotoSlab-Regular-webfont.woff") format("woff"), url("../fonts/RobotoSlab-Regular-webfont.ttf") format("truetype"), url("../fonts/RobotoSlab-Regular-webfont.svg#roboto_slabregular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto Slab';
+  src: url("../fonts/RobotoSlab-Bold-webfont.eot");
+  src: url("../fonts/RobotoSlab-Bold-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/RobotoSlab-Bold-webfont.woff") format("woff"), url("../fonts/RobotoSlab-Bold-webfont.ttf") format("truetype"), url("../fonts/RobotoSlab-Bold-webfont.svg#roboto_slabbold") format("svg");
+  font-weight: bold;
+  font-style: normal;
 }
 
 /*!
@@ -2967,11 +2967,6 @@ body.in-maintenance #page {
   clip: auto;
 }
 
-.btn-primary {
-  background-color: #0080a8;
-  border-color: #00465c;
-}
-
 html {
   font-size: 62.5%;
 }
@@ -3127,6 +3122,11 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
 ---------------------*/
 .docreader {
   margin-left: 5px;
+}
+
+.btn-primary {
+  background-color: #0080a8;
+  border-color: #00465c;
 }
 
 .nav-tabs {
@@ -3470,7 +3470,7 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   padding: 0;
   background: none;
   border-top: none;
-  color: red;
+  color: #fe229b;
 }
 
 .footer .block h3:first-of-type,
