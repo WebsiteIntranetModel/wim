@@ -19,7 +19,6 @@ Feature: Add Editorial blocks
     And I attach the file "/fixtures/images/drupal-icon.png" to "Upload a new file"
     And I press "Next"
     Then I press "Save"
-    Then I wait for AJAX to finish
     When I switch back from an iframe
     And I select "Default" from "View Mode"
     And I press "Save"
@@ -40,7 +39,6 @@ Feature: Add Editorial blocks
     And I attach the file "/fixtures/images/drupal-icon.png" to "Upload a new file"
     And I press "Next"
     Then I press "Save"
-    Then I wait for AJAX to finish
     When I switch back from an iframe
     And I press "Save"
     Then I should see the success message "Editorial TEST EDITORIAL TITLE has been created."
