@@ -1,23 +1,3 @@
 .block {
-  margin-bottom: 30px;
-
-  .entity {
-    background-color: white;
-    @extend .z-depth-1;
-
-    .content {
-      padding: 15px;
-    }
-  }
-
-  &:not(.editorial):first-child h2.block-title {
-    margin-top: 20px;
-    margin-bottom: 20px;
-  }
-
-}
-
-.sidebar-second .region-sidebar-second .block,
-.sidebar-second .region-sidebar-second .block-custom-lists {
-  box-shadow: none;
+  // Add your styles here
 }

@@ -1,10 +1,10 @@
 @charset "UTF-8";
 
 // Base assets, typography and layout
+@import 'wim/base/fonts';
 @import 'wim/base/variables';
 @import 'wim/theme';
 @import "wim/base/mixins";
-@import 'wim/base/fonts';
 @import 'wim/base/layout';
 
 // Atoms

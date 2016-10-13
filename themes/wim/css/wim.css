@@ -1,21 +1,4 @@
 @charset "UTF-8";
-/*
-* Modify variables used in the wim sub theme here. The value set in this file will be used when compiling the scss.
-* Uncomment a variable of you likings and change the value. Make sure to recompile the CSS!
-*
-* It is also possible to @import new font faces here. Just import the various source files and set the font-family
-* variables according to the font family name.
-*/
-.dropdown-menu > li > a:active,
-.dropdown-menu > li > a:focus, .navbar-default .navbar-nav > .open > a,
-.navbar-default .navbar-nav > .open > a:hover,
-.navbar-default .navbar-nav > .open > a:focus, .main-container .menu-top-tasks .menu-wrapper .menu .dropdown .dropdown-toggle:focus, .main-container .menu-top-tasks .menu-wrapper .menu .dropdown .dropdown-menu li a:focus {
-  outline-color: #3b99fc;
-  outline-offset: -2px;
-  outline-style: auto;
-  outline-width: 5px;
-}
-
 @font-face {
   font-family: 'Droid Sans';
   src: url("../fonts/DroidSans-webfont.eot");
@@ -46,6 +29,23 @@
   src: url("../fonts/RobotoSlab-Bold-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/RobotoSlab-Bold-webfont.woff") format("woff"), url("../fonts/RobotoSlab-Bold-webfont.ttf") format("truetype"), url("../fonts/RobotoSlab-Bold-webfont.svg#roboto_slabbold") format("svg");
   font-weight: bold;
   font-style: normal;
+}
+
+/*
+* Modify variables used in the wim sub theme here. The value set in this file will be used when compiling the scss.
+* Uncomment a variable of you likings and change the value. Make sure to recompile the CSS!
+*
+* It is also possible to @import new font faces here. Just import the various source files and set the font-family
+* variables according to the font family name.
+*/
+.dropdown-menu > li > a:active,
+.dropdown-menu > li > a:focus, .navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus, .main-container .menu-top-tasks .menu-wrapper .menu .dropdown .dropdown-toggle:focus, .main-container .menu-top-tasks .menu-wrapper .menu .dropdown .dropdown-menu li a:focus {
+  outline-color: #3b99fc;
+  outline-offset: -2px;
+  outline-style: auto;
+  outline-width: 5px;
 }
 
 body {
@@ -3466,7 +3466,7 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   padding: 0;
   background: none;
   border-top: none;
-  color: #fe229b;
+  color: red;
 }
 
 .footer .block h3:first-of-type,
