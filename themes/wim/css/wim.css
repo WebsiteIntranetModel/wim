@@ -3046,6 +3046,10 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   margin-bottom: 10px;
 }
 
+.form-control {
+  color: #333333;
+}
+
 .form-text {
   border: 1px solid #d0d0d0;
   box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.1);
@@ -3446,7 +3450,7 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   padding: 0;
   background: none;
   border-top: none;
-  color: #fe229b;
+  color: #222222;
 }
 
 .footer .block h3:first-of-type,
