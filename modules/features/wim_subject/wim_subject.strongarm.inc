@@ -143,5 +143,22 @@ function wim_subject_strongarm() {
   $strongarm->value = '1';
   $export['scheduler_use_vertical_tabs_subject_page'] = $strongarm;
 
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'xmlsitemap_settings_node_subject_page';
+  $strongarm->value = array(
+    'status' => '1',
+    'priority' => '0.5',
+  );
+  $export['xmlsitemap_settings_node_subject_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'yoast_seo_enable_node__subject_page';
+  $strongarm->value = 0;
+  $export['yoast_seo_enable_node__subject_page'] = $strongarm;
+
   return $export;
 }

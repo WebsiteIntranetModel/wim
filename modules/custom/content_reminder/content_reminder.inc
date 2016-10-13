@@ -7,7 +7,7 @@
 /**
  * Private function to get all nodes that require updates.
  */
-function _get_required_nodes() {
+function _content_reminder_get_required_nodes() {
 
   $orcond = db_or();
   $types = node_type_get_types();
@@ -45,7 +45,7 @@ function _get_required_nodes() {
 /**
  * Private function to send an e-mail with nodes that require an update.
  */
-function _prepare_nodes($nodes, $mailtype) {
+function _content_reminder_prepare_nodes($nodes, $mailtype) {
 
   $email_nodes = array();
   foreach ($nodes as $node) {
@@ -61,8 +61,9 @@ function _prepare_nodes($nodes, $mailtype) {
     $loaded_node[$node->nid] = node_load($node->nid);
   }
 
-  $emailremindernodes = $emails = array();
+  $emailremindernodes = array();
   foreach ($loaded_node as $node) {
+    $emails = array();
     if (!empty($node->field_reminder_email)) {
       foreach ($node->field_reminder_email[LANGUAGE_NONE] as $mail_list) {
         foreach ($mail_list as $value) {
@@ -82,15 +83,15 @@ function _prepare_nodes($nodes, $mailtype) {
   }
 
   // Mail the node author (user).
-  _send_mails($email_nodes, $mailtype);
+  _content_reminder_send_mails($email_nodes, $mailtype);
   // Mail the people defined in the node's "reminder email field".
-  _send_mails($emailremindernodes, $mailtype);
+  _content_reminder_send_mails($emailremindernodes, $mailtype);
 }
 
 /**
  * Private function to get expired nodes and update the status to 0 if needed.
  */
-function _get_old_nodes() {
+function _content_reminder_get_old_nodes() {
 
   $orcond = db_or();
   $types = node_type_get_types();
@@ -177,7 +178,7 @@ function _get_old_nodes() {
 /**
  * Private function to send e-mails.
  */
-function _send_mails($mailnodes, $mailtype) {
+function _content_reminder_send_mails($mailnodes, $mailtype) {
   foreach ($mailnodes as $mail => $nodes) {
     $build = array(
       '#theme' => 'content_reminder',

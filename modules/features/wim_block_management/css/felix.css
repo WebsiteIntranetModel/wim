@@ -1,0 +1,17 @@
+
+.block.block-felix h2.block-title {
+  background: #fdfbfd;
+  position: relative;
+  font-size: 1em;
+  border: 2px dashed #efe5ef;
+  padding: 1em;
+  color: #747474;
+}
+
+.block.block-felix  h2.block-title:after {
+  content: "FELIX";
+  position: absolute;
+  right: 1em;
+  top: 1em;
+  color: #b3b3b3;
+}

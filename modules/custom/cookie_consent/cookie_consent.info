@@ -1,0 +1,6 @@
+name = Cookie Consent
+description = Cookie Consent
+core = 7.x
+package = WIM
+
+configure = admin/config/user-interface/cookie-consent

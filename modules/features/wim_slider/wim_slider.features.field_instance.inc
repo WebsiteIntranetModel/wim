@@ -23,7 +23,7 @@ function wim_slider_field_default_field_instances() {
         'settings' => array(
           'adaptiveHeight' => 1,
           'autoplay' => 1,
-          'autoplaySpeed' => 2000,
+          'autoplaySpeed' => 5000,
           'dots' => 0,
           'fade' => 1,
           'pause' => 1,
@@ -117,12 +117,23 @@ function wim_slider_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'hidden',
-        'module' => 'image',
+        'module' => 'picture',
         'settings' => array(
+          'colorbox_settings' => array(
+            'colorbox_caption' => 'auto',
+            'colorbox_caption_custom' => '',
+            'colorbox_gallery' => 'post',
+            'colorbox_gallery_custom' => '',
+            'colorbox_group' => '',
+            'colorbox_multivalue_index' => NULL,
+          ),
+          'fallback_image_style' => 'slider_desktop',
           'image_link' => '',
-          'image_style' => 'slide',
+          'lazyload' => 0,
+          'lazyload_aspect_ratio' => 0,
+          'picture_mapping' => 'slider',
         ),
-        'type' => 'image',
+        'type' => 'picture',
         'weight' => 0,
       ),
       'paragraphs_editor_preview' => array(
@@ -137,10 +148,10 @@ function wim_slider_field_default_field_instances() {
     'label' => 'Image',
     'required' => 1,
     'settings' => array(
-      'alt_field' => 0,
+      'alt_field' => 1,
       'default_image' => 0,
       'file_directory' => 'slider-item',
-      'file_extensions' => 'jpg jpeg',
+      'file_extensions' => 'jpg jpeg png',
       'max_filesize' => '',
       'max_resolution' => '',
       'min_resolution' => '',
@@ -149,12 +160,19 @@ function wim_slider_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'image',
+      'module' => 'media',
       'settings' => array(
+        'allowed_schemes' => array(
+          'public' => 'public',
+        ),
+        'allowed_types' => array(
+          'image' => 'image',
+        ),
+        'browser_plugins' => array(),
         'preview_image_style' => 'thumbnail',
         'progress_indicator' => 'throbber',
       ),
-      'type' => 'image_image',
+      'type' => 'media_generic',
       'weight' => 1,
     ),
   );

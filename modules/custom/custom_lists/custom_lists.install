@@ -46,3 +46,10 @@ function custom_lists_schema() {
 
   return $schema;
 }
+
+/**
+ * Implements hook_uninstall().
+ */
+function custom_lists_uninstall() {
+  variable_del('custom_lists_exclude_menus');
+}

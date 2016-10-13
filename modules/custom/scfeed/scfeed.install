@@ -38,3 +38,10 @@ function scfeed_enable() {
     scfeed_rebuild(TRUE);
   }
 }
+
+/**
+ * Implements hook_uninstall().
+ */
+function scfeed_uninstall() {
+  variable_del('scfeed_authority');
+}

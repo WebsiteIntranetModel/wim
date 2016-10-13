@@ -57,13 +57,16 @@ function wim_agenda_strongarm() {
           'weight' => '0',
         ),
         'locations' => array(
-          'weight' => '4',
+          'weight' => '5',
         ),
         'redirect' => array(
-          'weight' => '8',
+          'weight' => '9',
         ),
         'metatags' => array(
-          'weight' => '9',
+          'weight' => '10',
+        ),
+        'path' => array(
+          'weight' => '11',
         ),
       ),
       'display' => array(),
@@ -142,6 +145,23 @@ function wim_agenda_strongarm() {
   $strongarm->name = 'scheduler_use_vertical_tabs_agenda';
   $strongarm->value = '1';
   $export['scheduler_use_vertical_tabs_agenda'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'xmlsitemap_settings_node_agenda';
+  $strongarm->value = array(
+    'status' => '1',
+    'priority' => '0.5',
+  );
+  $export['xmlsitemap_settings_node_agenda'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'yoast_seo_enable_node__agenda';
+  $strongarm->value = TRUE;
+  $export['yoast_seo_enable_node__agenda'] = $strongarm;
 
   return $export;
 }

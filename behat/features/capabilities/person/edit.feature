@@ -6,7 +6,7 @@ Feature: Edit person
 
   Scenario: As a CM I should be able to successfully edit person
     Given "person" content:
-      | title       | body          | Roles    | Phone   | Email       | author         |
+      | title       | body          | Role    | Phone   | Email       | author         |
       | TEST-PERSON | BODY-CONTENT1 | testrole | 777-777 | jn@test.com | jack_nicholson |
     Given I am an anonymous user
     And I am on the homepage
@@ -24,7 +24,7 @@ Feature: Edit person
     Then I should not see "No access (403)"
     When I fill in the following:
       | Title | EDITED-PERSON |
-      | Roles | kamikadze     |
+      | Role | kamikadze     |
       | Email | jn+1@test.com |
       | Phone | 222-333       |
     And I fill in wysiwyg on field Body with "BODY-CONTENT2"

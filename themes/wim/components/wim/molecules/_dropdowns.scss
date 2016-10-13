@@ -1,12 +1,12 @@
 .dropdown-menu{
-  @media (max-width: $screen-sm-min - 1) {
+  @media (max-width: $screen-sm - 1) {
     position: static;
     float: none;
   }
 }
 .dropdown-menu > li{
   &.mobile{
-    @media (min-width: $screen-sm-min) {
+    @media (min-width: $screen-sm) {
       display: none;
     }
   }

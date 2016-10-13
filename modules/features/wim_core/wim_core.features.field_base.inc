@@ -91,6 +91,25 @@ function wim_core_field_default_field_bases() {
     'type' => 'image',
   );
 
+  // Exported field_base: 'field_lead_paragraph'.
+  $field_bases['field_lead_paragraph'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_lead_paragraph',
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(),
+    'translatable' => 0,
+    'type' => 'text_long',
+  );
+
   // Exported field_base: 'field_link'.
   $field_bases['field_link'] = array(
     'active' => 1,
@@ -256,21 +275,6 @@ function wim_core_field_default_field_bases() {
     ),
     'translatable' => 0,
     'type' => 'datetime',
-  );
-
-  // Exported field_base: 'field_reminder_email'.
-  $field_bases['field_reminder_email'] = array(
-    'active' => 1,
-    'cardinality' => -1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_reminder_email',
-    'indexes' => array(),
-    'locked' => 0,
-    'module' => 'email',
-    'settings' => array(),
-    'translatable' => 0,
-    'type' => 'email',
   );
 
   // Exported field_base: 'field_tags'.

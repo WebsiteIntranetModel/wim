@@ -30,6 +30,9 @@ function wimbase_preprocess_node(&$variables) {
       $variables['product_link'] = l(t('Back to product'), '/node/' . $parameters['product'], array('attributes' => array('class' => array('back-link'))));
     }
   }
+
+  $variables['classes_array'][] = drupal_html_class('node-view-mode-' . $view_mode);
+
 }
 
 /**
@@ -58,7 +61,6 @@ function wimbase_preprocess_region(&$variables) {
     $total_col = 0;
     $rows = array();
     $row_id = 0;
-    $same_row = FALSE;
     foreach (element_children($variables['elements']) as $element_id) {
       if (isset($variables['elements'][$element_id]['#block'])) {
         $block = $variables['elements'][$element_id]['#block'];
@@ -68,8 +70,6 @@ function wimbase_preprocess_region(&$variables) {
           $row_id++;
           $rows[$row_id][] = $variables['elements'][$element_id]['#children'];
           $total_col = 0;
-          // Next element can't be placed in the same row with current.
-          $same_row = FALSE;
         }
         else {
           $total_col += $block->bootstrap_layout;
@@ -82,10 +82,6 @@ function wimbase_preprocess_region(&$variables) {
           }
           // Add elements together in the same row.
           else {
-            if (!$same_row) {
-              $row_id++;
-              $same_row = TRUE;
-            }
             $rows[$row_id][] = $variables['elements'][$element_id]['#children'];
           }
         }
@@ -112,6 +108,7 @@ function wimbase_preprocess_region(&$variables) {
  */
 function wimbase_preprocess_block(&$variables) {
   $block = &$variables['block'];
+  $has_image_class = 'has-image';
   // Be default we show all blocks in a new row.
   $block->new_row = TRUE;
   $block->bootstrap_layout = WIM_BLOCK_MANAGEMENT_BOOTSTRAP_FULL_WIDTH;
@@ -129,7 +126,7 @@ function wimbase_preprocess_block(&$variables) {
     }
 
     if ($bean_view_mode === 'default' && isset($bean->field_image) && $bean->field_image) {
-      $variables['classes_array'][] = 'editorial-image';
+      $variables['classes_array'][] = $has_image_class;
     }
   }
 
@@ -162,7 +159,7 @@ function wimbase_preprocess_block(&$variables) {
         if ($bean->type === 'editorial') {
           // Editorial added via Felix we process according to settings.
           if ($config['bean_view_mode'] === 'default' && $bean->field_image) {
-            $variables['classes_array'][] = 'editorial-image';
+            $variables['classes_array'][] = $has_image_class;
           }
         }
       }
@@ -180,6 +177,16 @@ function wimbase_preprocess_block(&$variables) {
   // Build class for the Bean block view mode.
   if ($bean_view_mode) {
     $variables['classes_array'][] = 'bean-view-mode-' . drupal_html_class($bean_view_mode);
+  }
+
+  // Add theme suggestion for node blocks.
+  if ($block->module === 'node' && isset($block->data['viewmode'])) {
+    $variables['theme_hook_suggestions'][] = 'block__node_' . strtr($block->data['viewmode'], '_', '-');
+    $variables['title_url'] = url($block->detail_path);
+    $node = node_load($block->delta);
+    if (isset($node->field_image) && !empty($node->field_image)) {
+      $variables['classes_array'][] = $has_image_class;
+    }
   }
 }
 

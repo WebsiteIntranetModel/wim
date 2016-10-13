@@ -20,7 +20,7 @@ projects[colectomy] = 1.0-beta2
 projects[ctools] = 1.10
 projects[date] = 2.9
 projects[date_facets] = 1.0
-projects[elysia_cron] = 2.2
+projects[elysia_cron] = 2.3
 projects[email] = 1.3
 projects[encrypt] = 2.3
 projects[entity] = 1.8
@@ -35,6 +35,7 @@ projects[hansel] = 1.6
 projects[honeypot] = 1.22
 projects[jquery_update] = 2.7
 projects[location] = 3.7
+projects[logging_alerts] = 2.2
 projects[magic] = 2.2
 projects[media] = 2.0-beta2
 projects[menu_block] = 2.7
@@ -65,33 +66,65 @@ projects[webform_clear] = 2.0
 projects[webform_encrypt] = 1.1
 projects[weight] = 3.1
 projects[wysiwyg] = 2.x-dev
+projects[xmlsitemap] = 2.3
+projects[yoast_seo] = 1.0
 
 ; Themes
 projects[adminimal_theme] = 1.24
-projects[bootstrap] = 3.5
+projects[bootstrap] = 3.6
 
 ; Patches
+; Features
 ; Fixing bug when Features module can't include file containing exported taxonomy vocabulary because it hasn't included file integrating Features with Taxonomy yet.
 ; https://www.drupal.org/node/2143765#comment-10088780
 projects[features][patch][2143765_7] = https://www.drupal.org/files/issues/features-hook_modules_enabled_include_file_issue-2143765-7.patch
+
 ; Fixing Notice: Undefined property: stdClass::$status in features_export_form
 ; https://www.drupal.org/node/2324973
 projects[features][patch][2324973_19] = https://www.drupal.org/files/issues/undefined-property-status-2324973-19.patch
+
+; Location
 ; Fixing bug with the location field ajax callback
 ; https://www.drupal.org/node/1997658#comment-10532078
 projects[location][patch][1997658_6] = https://www.drupal.org/files/issues/location-1997658-46.patch
+
 ; Fixing bug with the location Google maps link
 ; https://www.drupal.org/node/2781227
 projects[location][patch][2781227_1] = https://www.drupal.org/files/issues/location-google-maps-link-2781227-1.patch
+
+; Bean
 ; Add migration support for Bean
 ; https://www.drupal.org/node/2295973#comment-11536795
 projects[bean][patch][2295973_11] = https://www.drupal.org/files/issues/bean-migrate-support-2295973-11.patch
+
+; Fix view modes for Bean blocks
+; https://www.drupal.org/node/1911234
+projects[bean][patch][1911234_6] = https://www.drupal.org/files/issues/select-from-enabled-view-modes-1911234-6.patch
+
+; Views
+; Add plural format to views_handler_area_result
+; https://www.drupal.org/node/1793500#comment-10875360
+projects[views][patch][1793500_13] = https://www.drupal.org/files/issues/views-area-results-plural-1793500-13.patch
+
+; Views bulk operations
 ; Fix "Select all" checkbox works only once
 ; https://www.drupal.org/node/2608360#comment-11620927
 projects[views_bulk_operations][patch][2608360_14] = https://www.drupal.org/files/issues/2608360-14.patch
+
+; Facet API
 ; Fix "Show fewer" link for Facet API filters
 ; https://www.drupal.org/node/2327997
 projects[facetapi][patch][2327997_3] = https://www.drupal.org/files/issues/facetapi-2327997-3-show-fewer-links.patch
+
+; Felix
+; Fix notice from Felix module
+; https://www.drupal.org/node/2811151
+projects[felix][patch][2811151] = https://www.drupal.org/files/issues/felix-invalid-foreach-2811151-1.patch
+
+; Webform
+; Fix Undefined index, value in webform_encrypt_webform_submission_presave()
+; https://www.drupal.org/node/2413111
+projects[webform_encrypt][patch][2413111] = https://www.drupal.org/files/issues/webform_encrypt-Undefined-index-value-2413111-%235-7.x-1.1.patch
 
 ; Custom
 ; a11ychecker_custom, cannot be included until https://www.drupal.org/node/2570883 is resolved.
@@ -100,7 +133,7 @@ projects[facetapi][patch][2327997_3] = https://www.drupal.org/files/issues/facet
 ;libraries[a11ychecker][destination] = "libraries"
 ;libraries[a11ychecker][subdir] = "ckeditor_plugins"
 
-; CKEditor 4.4.6
+; CKEditor 4.5.11
 ;libraries[ckeditor][download][type] = get
 ;libraries[ckeditor][download][url] = http://ckeditor.com/builder/download/4aa56d967057f1cfe925bceb9b98049d
 

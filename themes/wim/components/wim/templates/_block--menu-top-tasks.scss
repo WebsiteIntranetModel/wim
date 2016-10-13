@@ -7,7 +7,7 @@
         min-height: 170px;
       }
       .menu {
-        background-color: $brand-grey-light;
+        background-color: $gray-lighter;
         @include MQ($screen-sm) {
           min-height: 170px;
           width: 30.9859%;
@@ -47,6 +47,7 @@
               .dropdown-toggle {
                 background-color: $brand-primary;
                 color: white;
+                text-decoration: underline;
                 &:after {
                   display: block !important;
                 }
@@ -170,4 +171,3 @@
     }
   }
 }
-

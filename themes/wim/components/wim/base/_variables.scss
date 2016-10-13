@@ -1,101 +1,47 @@
-// Extra small screen / phone
-$screen-xs:                  480px !default;
-$screen-xs-min:              $screen-xs !default;
-$screen-phone:               $screen-xs-min !default;
+$body-bg:               #d0d0d0 ;
 
-// Small screen / tablet
-$screen-sm:                  768px !default;
-$screen-sm-min:              $screen-sm !default;
-$screen-tablet:              $screen-sm-min !default;
+$font-family-sans-serif:    "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif ;
+$font-family-serif:         "Roboto Slab", Georgia, "Times New Roman", Times, serif ;
 
-// Medium screen / desktop
-$screen-md:                  992px !default;
-$screen-md-min:              $screen-md !default;
-$screen-desktop:             $screen-md-min !default;
+$screen-xs:                  480px ;
+$screen-sm:                  768px ;
+$screen-md:                  992px ;
+$screen-lg:                  1200px ;
 
-// Large screen / wide desktop
-$screen-lg:                  1200px !default;
-$screen-lg-min:              $screen-lg !default;
-$screen-lg-desktop:          $screen-lg-min !default;
-// So media queries don't overlap when required, provide a maximum
-$screen-xs-max:              ($screen-sm-min - 1) !default;
-$screen-sm-max:              ($screen-md-min - 1) !default;
-$screen-md-max:              ($screen-lg-min - 1) !default;
+$grid-gutter-width:         30px ;
 
-$grid-gutter-width:         30px !default;
+$container-desktop:            (940px + $grid-gutter-width) ;
+$container-md:                 $container-desktop ;
+$container-large-desktop:      (1140px + $grid-gutter-width) ;
+$container-lg:                 $container-large-desktop ;
 
-// Medium screen / desktop
-$container-desktop:            (940px + $grid-gutter-width) !default;
-$container-md:                 $container-desktop !default;
+$brand-primary: #0080a8;
+$brand-secondary: #fe229b;
+$brand-success: #5cb85c;
+$brand-info:    #5bc0de;
+$brand-warning: #f0ad4e;
+$brand-danger:  #d9534f;
 
-// Large screen / wide desktop
-$container-large-desktop:      (1140px + $grid-gutter-width) !default;
-$container-lg:                 $container-large-desktop !default;
+$gray-base:              #000 ;
+$gray-darker:            lighten($gray-base, 13.5%) ; // #222
+$gray-dark:              lighten($gray-base, 20%) ;   // #333
+$gray:                   lighten($gray-base, 33.5%) ; // #555
+$gray-light:             lighten($gray-base, 46.7%) ; // #777
+$gray-lighter:           lighten($gray-base, 93.5%) ; // #eee
 
+$link-color:            $brand-primary ;
+$link-hover-color:      darken($link-color, 15%) ;
 
-// Typography
-$font-family-sans-serif:    "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
-$font-family-serif:         "Roboto Slab", Georgia, "Times New Roman", Times, serif !default;
+$text-color:            $gray-dark ;
+$table-border-color:            #ddd ;
 
-// Colors
-$brand-primary: #0080a8 !default; // #29b8e4
-$brand-success: #5cb85c !default;
-$brand-info:    #5bc0de !default;
-$brand-warning: #f0ad4e !default;
-$brand-danger:  #d9534f !default;
+$nav-tabs-border-color:                     #ddd ;
+$nav-tabs-link-hover-border-color:          $brand-primary ;
+$nav-tabs-active-link-hover-bg:             $brand-primary ;
+$nav-tabs-active-link-hover-color:          white ;
+$nav-tabs-active-link-hover-border-color:   #ddd ;
+$nav-tabs-justified-link-border-color:            #ddd ;
+$nav-tabs-justified-active-link-border-color:     $body-bg ;
 
-$gray-base:              #000 !default;
-$gray-darker:            lighten($gray-base, 13.5%) !default; // #222
-$gray-dark:              lighten($gray-base, 20%) !default;   // #333
-$gray:                   lighten($gray-base, 33.5%) !default; // #555
-$gray-light:             lighten($gray-base, 46.7%) !default; // #777
-$gray-lighter:           lighten($gray-base, 93.5%) !default; // #eee
-
-$body-bg:               #d0d0d0 !default;
-//** Global text color on `<body>`.
-$text-color:            $gray-dark !default;
-//** Global textual link color.
-$link-color:            $brand-primary !default;
-//** Link hover color set via `darken()` function.
-$link-hover-color:      darken($link-color, 15%) !default;
-//** Link hover decoration.
-$link-hover-decoration: underline !default;
-//** Border color for table and cell borders.
-$table-border-color:            #ddd !default;
-//== Tabs
-$nav-tabs-border-color:                     #ddd !default;
-//** Unit-less `line-height` for use in components like buttons.
-$line-height-base:        1.428571429 !default; // 20/14
-$border-radius-base:        4px !default;
-
-//== Tabs
-$nav-tabs-border-color:                     #ddd !default;
-
-$nav-tabs-link-hover-border-color:          $brand-primary !default;
-
-$nav-tabs-active-link-hover-bg:             $brand-primary !default;
-$nav-tabs-active-link-hover-color:          white !default;
-$nav-tabs-active-link-hover-border-color:   #ddd !default;
-
-$nav-tabs-justified-link-border-color:            #ddd !default;
-$nav-tabs-justified-active-link-border-color:     $body-bg !default;
-
-
-
-// ***********************
-// Non Bootstrap variables
-// ***********************
-
-// Footer Block title colors
-$footer-block-title-colors: #fe229b;
-
-// Custom classes (should be removed)
-$brand-light: #efe5ef;
-$brand-dark: #330033;
-$brand-heading: #660066;
-$brand-button: #660066;
-$brand-border: #eaeaea;
-$brand-block-title-bg: #fdfbfd;
-$brand-body: #333;
-$brand-grey-normal: #d0d0d0;
-$brand-grey-light: #efefef;
+$line-height-base:        1.428571429 ; // 20/14
+$border-radius-base:        4px ;

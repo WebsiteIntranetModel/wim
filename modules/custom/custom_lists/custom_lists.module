@@ -496,9 +496,16 @@ function custom_lists_delete($list_key) {
 function custom_lists_hansel_get_parent($path) {
   if (preg_match('/^node\\/([0-9]+)/', $path, $match) && ($node = node_load($match[1]))) {
     $lists = custom_lists_get();
+    $referer_url = $_SERVER['HTTP_REFERER'];
+    $referer_path = NULL;
+    if ($parsed_url = parse_url($referer_url)) {
+      $referer_path = $parsed_url['path'];
+      $referer_path = str_replace('/', '', $referer_path);
+    }
     foreach ($lists as $list) {
       $contains_node = FALSE;
-      if ($list['type'] == 'content' && $list['provide-page'] && ($list['node-type'] == $node->type || $list['node-type'] == '_any')) {
+      $list_path = str_replace('/', '', $list['path']);
+      if ($list_path === $referer_path && $list['type'] === 'content' && $list['provide-page'] && ($list['node-type'] == $node->type || $list['node-type'] === '_any')) {
         $contains_node = TRUE;
       }
       if ($contains_node && !empty($list['taxonomy'])) {
@@ -513,24 +520,7 @@ function custom_lists_hansel_get_parent($path) {
         }
       }
       if ($contains_node) {
-        // This list is a parent of the displayed node.
-        // Get the correct title from menu (if possible) or list.
-        $menus = menu_get_menus();
-        if (isset($menus['devel'])) {
-          unset($menus['devel']);
-        }
-        $menus = array_keys($menus);
-        drupal_alter('hansel_menus', $menus);
-        $menu_item = db_select('menu_links', 'ml')
-          ->fields('ml', array('link_title'))
-          ->condition('ml.menu_name', $menus)
-          ->condition('ml.link_path', $list['path'])
-          ->condition('ml.hidden', 0)
-          ->orderBy('ml.depth')
-          ->range(0, 1)
-          ->execute()
-          ->fetchObject();
-        $title = $menu_item ? $menu_item->link_title : $list['display_title'];
+        $title = $list['display_title'];
         return array(
           'path' => $list['path'],
           'title' => $title,
@@ -587,20 +577,6 @@ function _custom_lists_build_title($list) {
 
   // No icon uploaded, use the regular title.
   return $list['display_title'];
-}
-
-/**
- * Implements hook_preprocess_html().
- *
- * Used for adding a css class to the page if defined on the list.
- */
-function custom_lists_preprocess_html(&$vars) {
-  // Check if there is a list on this page.
-  $list = custom_lists_get_current(current_path());
-
-  if ($list && isset($list['css_class']) && !empty($list['css_class'])) {
-    $vars['classes_array'][] = $list['css_class'];
-  }
 }
 
 /**

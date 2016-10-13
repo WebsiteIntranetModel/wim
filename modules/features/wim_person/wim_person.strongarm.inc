@@ -43,6 +43,9 @@ function wim_person_strongarm() {
       'short' => array(
         'custom_settings' => FALSE,
       ),
+      'introduction' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
@@ -135,6 +138,23 @@ function wim_person_strongarm() {
   $strongarm->name = 'scheduler_use_vertical_tabs_person';
   $strongarm->value = '1';
   $export['scheduler_use_vertical_tabs_person'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'xmlsitemap_settings_node_person';
+  $strongarm->value = array(
+    'status' => '1',
+    'priority' => '0.5',
+  );
+  $export['xmlsitemap_settings_node_person'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'yoast_seo_enable_node__person';
+  $strongarm->value = 0;
+  $export['yoast_seo_enable_node__person'] = $strongarm;
 
   return $export;
 }

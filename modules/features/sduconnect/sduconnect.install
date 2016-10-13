@@ -14,6 +14,16 @@ function sduconnect_install() {
 }
 
 /**
+ * Implements hook_uninstall().
+ */
+function sduconnect_uninstall() {
+  variable_del('sduconnect_account');
+  variable_del('sduconnect_content_structure');
+  variable_del('sduconnect_delete_logs_after');
+  variable_del('sduconnect_delete_logs_after');
+}
+
+/**
  * Implements hook_schema().
  */
 function sduconnect_schema() {

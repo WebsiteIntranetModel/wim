@@ -7,6 +7,7 @@ dependencies[] = ctools
 dependencies[] = features
 dependencies[] = filter
 dependencies[] = linkit
+dependencies[] = media_wysiwyg
 dependencies[] = wysiwyg
 features[ctools][] = linkit:linkit_profiles:1
 features[features_api][] = api:2

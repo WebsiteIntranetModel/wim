@@ -35,7 +35,6 @@ features[field_base][] = field_title
 features[field_instance][] = bean-editorial-field_body
 features[field_instance][] = bean-editorial-field_image
 features[field_instance][] = bean-editorial-field_link
-features[paragraphs][] = slider_item
 features[views_view][] = admin_bean_block
 features_exclude[dependencies][paragraphs] = paragraphs
 features_exclude[field_instance][paragraphs_item-slider_item-field_body] = paragraphs_item-slider_item-field_body

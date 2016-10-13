@@ -2,9 +2,10 @@
 
 // Base assets, typography and layout
 @import 'wim/base/variables';
+@import 'wim/theme';
 @import "wim/base/mixins";
-@import 'wim/base/fonts';
 @import 'wim/base/layout';
+@import 'wim/base/fonts';
 
 // Atoms
 @import 'wim/atoms/fontawesome/font-awesome';
@@ -12,6 +13,7 @@
 @import 'wim/atoms/forms';
 @import 'wim/atoms/breadcrumb';
 @import 'wim/atoms/readspeaker';
+@import 'wim/atoms/buttons';
 
 // Molecules
 @import 'wim/molecules/navs';
@@ -28,6 +30,7 @@
 @import 'wim/organisms/meta';
 @import 'wim/organisms/node';
 @import 'wim/organisms/slider';
+@import 'wim/organisms/cc-notification';
 
 // Templates
 @import 'wim/templates/block--menu-top-tasks';

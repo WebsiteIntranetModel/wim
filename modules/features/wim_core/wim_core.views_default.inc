@@ -118,7 +118,10 @@ function wim_core_views_default_views() {
   $handler->display->display_options['header']['result']['id'] = 'result';
   $handler->display->display_options['header']['result']['table'] = 'views';
   $handler->display->display_options['header']['result']['field'] = 'result';
-  $handler->display->display_options['header']['result']['content'] = '@total items found';
+  $handler->display->display_options['header']['result']['empty'] = TRUE;
+  $handler->display->display_options['header']['result']['content'] = '@total item found';
+  $handler->display->display_options['header']['result']['format_plural'] = TRUE;
+  $handler->display->display_options['header']['result']['format_plural_plural'] = '@total items found';
   /* No results behavior: Global: Unfiltered text */
   $handler->display->display_options['empty']['area_text_custom']['id'] = 'area_text_custom';
   $handler->display->display_options['empty']['area_text_custom']['table'] = 'views';
@@ -377,6 +380,7 @@ function wim_core_views_default_views() {
     t('‹ previous'),
     t('next ›'),
     t('last »'),
+    t('@total item found'),
     t('@total items found'),
     t('No content available.'),
     t('author'),
@@ -384,12 +388,8 @@ function wim_core_views_default_views() {
     t('- Choose an operation -'),
     t('Change author'),
     t('Delete'),
-    t('Stick'),
-    t('Unstick'),
     t('Change value'),
-    t('Promote to front page'),
     t('Publish'),
-    t('Demote from front page'),
     t('Unpublish'),
     t('Title'),
     t('Type'),
@@ -511,7 +511,10 @@ function wim_core_views_default_views() {
   $handler->display->display_options['header']['result']['id'] = 'result';
   $handler->display->display_options['header']['result']['table'] = 'views';
   $handler->display->display_options['header']['result']['field'] = 'result';
-  $handler->display->display_options['header']['result']['content'] = '@total items found';
+  $handler->display->display_options['header']['result']['empty'] = TRUE;
+  $handler->display->display_options['header']['result']['content'] = '@total item found';
+  $handler->display->display_options['header']['result']['format_plural'] = TRUE;
+  $handler->display->display_options['header']['result']['format_plural_plural'] = '@total items found';
   /* No results behavior: Global: Unfiltered text */
   $handler->display->display_options['empty']['area_text_custom']['id'] = 'area_text_custom';
   $handler->display->display_options['empty']['area_text_custom']['table'] = 'views';
@@ -744,7 +747,7 @@ function wim_core_views_default_views() {
     t('‹ previous'),
     t('next ›'),
     t('last »'),
-    t('@total items found'),
+    t('@total item(s) found'),
     t('No content available.'),
     t('User who uploaded'),
     t('Content'),

@@ -47,6 +47,10 @@ function wim_core_entity_info_alter(&$entity_info) {
     'label' => t('Short'),
     'custom settings' => FALSE,
   );
+  $entity_info['node']['view modes']['introduction'] = array(
+    'label' => t('Introduction'),
+    'custom settings' => FALSE,
+  );
 }
 
 /**
@@ -173,6 +177,15 @@ function wim_core_image_default_styles() {
 }
 
 /**
+ * Implements hook_webform_node_defaults_alter().
+ *
+ * @see webform_node_defaults()
+ */
+function wim_core_webform_node_defaults_alter(&$defaults) {
+  $defaults['redirect_url'] = '<none>';
+}
+
+/**
  * Implements hook_form_alter().
  */
 function wim_core_form_alter(&$form, &$form_state, $form_id) {
@@ -201,6 +214,10 @@ function wim_core_form_alter(&$form, &$form_state, $form_id) {
         $form[$field_name]['#language'] = $form['options'][$field_name]['#language'];
       }
     }
+    // Users which can revert revisions can create them as well.
+    $form['revision_information']['#access'] = user_access('revert revisions');
+    $form['revision_information']['revision']['#access'] = user_access('revert revisions');
+    $form['revision_information']['log']['#access'] = user_access('revert revisions');
   }
 
   // Allow to access publishing options tab.
@@ -225,9 +242,10 @@ function wim_core_form_alter(&$form, &$form_state, $form_id) {
  */
 function wim_core_cronapi($op, $job = NULL) {
 
-  $items['scheduler'] = array(
+  $items['scheduler_cron'] = array(
     'description' => 'Run scheduler.',
     'rule' => '*/5 * * * *',
+    'callback' => 'scheduler_cron',
   );
 
   return $items;

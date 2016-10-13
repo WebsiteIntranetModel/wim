@@ -18,10 +18,19 @@ Feature: Create Agenda
       | Postal code   | 1011                   |
       | Tags          | Tag1, Tag2             |
     And I fill in wysiwyg on field Body with "TEST AGENDA BODY"
+    And I click "Introduction"
+    And I fill in wysiwyg on field "Lead paragraph" with "Lead paragraph demo content"
     And I click "Publishing options"
     And I fill in the following:
       | Promoted | 0 |
-    And I attach the file "/fixtures/images/drupal-icon.png" to "Image"
+    And I click "Browse"
+    Then I wait for AJAX to finish
+    And I wait for 5 seconds
+    And I switch to the iframe "mediaBrowser"
+    And I attach the file "/fixtures/images/drupal-icon.png" to "Upload a new file"
+    And I press "Next"
+    Then I press "Save"
+    When I switch back from an iframe
     And I select "Netherlands" from "Country"
     And I wait for AJAX to finish
     And I click "Reminder"

@@ -24,13 +24,35 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
   private $minkContext;
 
   /**
-   * I wait for (seconds) seconds.
+   * This will be run when Behat testing suite is started.
    *
-   * @When I wait for :arg1 seconds
+   * Add logout link to the main menu.
+   *
+   * @BeforeSuite
    */
-  public function iWaitForSeconds($seconds, $condition = '') {
-    $milliseconds = (int) ($seconds * 1000);
-    $this->getSession()->wait($milliseconds, $condition);
+  public static function addLogoutItem(BeforeSuiteScope $scope) {
+    $item = array(
+      'link_path' => 'user/logout',
+      'link_title' => 'Log out',
+      'menu_name' => 'main-menu',
+      'weight' => 0,
+      'language' => LANGUAGE_NONE,
+      'plid' => 0,
+      'module' => 'menu',
+    );
+
+    menu_link_save($item);
+  }
+
+  /**
+   * This will be run when Behat testing suite is ended.
+   *
+   * Remove logout link.
+   *
+   * @AfterSuite
+   */
+  public static function removeLogoutItem(AfterSuiteScope $scope) {
+    menu_link_delete(NULL, 'user/logout');
   }
 
   /**
@@ -176,6 +198,28 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
   protected static function revertMigration($machine_name) {
     $migration = Migration::getInstance($machine_name);
     $migration->processRollback(array('force' => TRUE));
+  }
+
+  /**
+   * Before run cookie message test enable it.
+   *
+   * @BeforeScenario @cookie
+   */
+  public function enableCookieModule() {
+    module_enable(array('cookie_consent'));
+    variable_set('cookie_consent_style', 'custom');
+    variable_set('cookie_consent_roles', drupal_map_assoc(array(DRUPAL_ANONYMOUS_RID)));
+  }
+
+  /**
+   * After run cookie message test disable it.
+   *
+   * @AfterScenario @cookie
+   */
+  public function disableCookieModule($event) {
+    variable_del('cookie_consent_style');
+    variable_del('cookie_consent_roles');
+    module_disable(array('cookie_consent'));
   }
 
   /**
@@ -466,6 +510,76 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
         throw new Exception(sprintf("Failed asserting element '%s' is disabled", $name));
       }
     }
+  }
+
+  /**
+   * I see the metatag.
+   *
+   * @param string $metaname
+   *    Title for field.
+   * @param string $text
+   *    Entered text.
+   *
+   * @throws \Exception
+   *
+   * @When I see the metatag :metaname with :text
+   */
+  public function seeTheMeta($metaname, $text) {
+    $page = $this->getSession()->getPage();
+
+    $contents = $page->find('xpath', '//meta[@name="' . $metaname . '"]');
+
+    if (is_null($contents) || trim($contents->getAttribute('content')) !== trim($text)) {
+      throw new Exception(sprintf("Content '%s' not found", $text));
+    }
+  }
+
+  /**
+   * I see the title metatag.
+   *
+   * @param string $text
+   *    Entered text.
+   *
+   * @throws \Exception
+   *
+   * @When I see the title meta with :text
+   */
+  public function seeTheTitleMeta($text) {
+    $page = $this->getSession()->getPage();
+
+    $content = $page->find('xpath', '//title[text()="' . $text . '"]');
+
+    if (is_null($content)) {
+      throw new Exception(sprintf("Title content '%s' not found", $text));
+    }
+  }
+
+  /**
+   * I wait for (seconds) seconds.
+   *
+   * @When I wait for :arg1 seconds
+   */
+  public function iWaitForSeconds($seconds, $condition = '') {
+    $milliseconds = (int) ($seconds * 1000);
+    $this->getSession()->wait($milliseconds, $condition);
+  }
+
+  /**
+   * I switch to the iframe "name".
+   *
+   * @Given /^I switch to the iframe "([^"]*)"$/
+   */
+  public function iSwitchToIframe($arg1 = NULL) {
+    $this->getSession()->switchToIFrame($arg1);
+  }
+
+  /**
+   * I switch back from an iframe.
+   *
+   * @When I switch back from an iframe
+   */
+  public function iSwitchBackFromAnIframe() {
+    $this->getSession()->switchToIFrame();
   }
 
 }

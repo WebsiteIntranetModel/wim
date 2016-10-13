@@ -57,6 +57,8 @@ dependencies[] = userprotect
 dependencies[] = views
 dependencies[] = views_bulk_operations
 dependencies[] = wysiwyg
+dependencies[] = xmlsitemap
+dependencies[] = yoast_seo
 
 ; Features
 dependencies[] = wim_agenda

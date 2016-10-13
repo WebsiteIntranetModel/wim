@@ -28,6 +28,9 @@ class EditorialMigration extends WIMMigration {
       'field_body' => t('Body'),
       'field_link' => t('Link'),
       'field_image' => t('Image'),
+      'meta_title' => t('Metatag title'),
+      'meta_keywords' => t('Metatag keywords'),
+      'meta_description' => t('Metatag description'),
     );
 
     $this->source = new MigrateSourceList(new WIMListJSON($this->dataSources . $this->fileName),
@@ -51,7 +54,7 @@ class EditorialMigration extends WIMMigration {
 
     $this->addFieldMapping('field_image', 'field_image')
       ->sourceMigration('WIM_File');
-    $this->addFieldMapping('field_image:alt')->defaultValue('');
+    $this->addFieldMapping('field_image:alt')->defaultValue('Alt text');
     $this->addFieldMapping('field_image:file_class')
       ->defaultValue('MigrateFileFid');
     $this->addFieldMapping('field_image:preserve_files')

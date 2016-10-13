@@ -23,8 +23,8 @@
         );
 
         // Add pause button to slider.
-        if (sliderOptions.pause) {
-          $slider.once('slick-pause').append(Drupal.theme('slickPause'));
+        if (sliderOptions.pause && $('.slick-track>.field-item', $slider).length > 1) {
+          $('.slick-list', $slider).once('slick-pause').append(Drupal.theme('slickPause'));
           $('.slick-pause', $slider).on('click', function () {
             var $pauseBtn = $(this);
             if ($pauseBtn.hasClass('paused')) {

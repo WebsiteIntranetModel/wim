@@ -2,10 +2,12 @@
 
 /**
  * @file
- * Code for the Custom Lists.
+ * Code for the External Crawler.
  */
 
 include_once 'external_crawler.functions.inc';
+
+define('EXTERNAL_CRAWLER_ENTITY_TYPE', 'external_crawler');
 
 /**
  * Implements hook_menu().
@@ -17,7 +19,7 @@ function external_crawler_menu() {
     'title' => 'External Crawler',
     'page callback' => 'external_crawler_page_list',
     'access arguments' => array('administer external crawler'),
-    'type' => MENU_LOCAL_TASK,
+    'type' => MENU_NORMAL_ITEM,
     'file' => 'external_crawler.admin.inc',
   );
 
@@ -99,10 +101,15 @@ function external_crawler_menu_local_tasks_alter(&$data, $router_item, $root_pat
 function external_crawler_cron() {
   module_load_include('inc', 'external_crawler');
 
-  $sites = db_select('external_crawler_site', 's')
-    ->fields('s')
-    ->execute()
-    ->fetchAll();
+  $query = db_select('external_crawler_site', 's')
+    ->fields('s');
+
+  // Handle only non XML sites.
+  if (module_exists('xml_crawler')) {
+    $query->condition('s.is_xml', '1', '!=');
+  }
+
+  $sites = $query->execute()->fetchAll();
 
   foreach ($sites as $site) {
     // First check or this site has ever run from root.
@@ -110,6 +117,8 @@ function external_crawler_cron() {
     $pagedata = _external_crawler_get_pagedata($pagekey);
     if (!$pagedata['date']) {
       _external_crawler_index_page($site->url, $site);
+      // Update site last crawl date.
+      _external_crawler_update_site_date($site);
     }
 
     // Setup query to retrieve the pages.
@@ -128,6 +137,11 @@ function external_crawler_cron() {
     // Index the pages.
     foreach ($pages as $page) {
       _external_crawler_index_page($page->url, $site);
+    }
+
+    // Update site last crawl date.
+    if ($pages) {
+      _external_crawler_update_site_date($site);
     }
   }
 }

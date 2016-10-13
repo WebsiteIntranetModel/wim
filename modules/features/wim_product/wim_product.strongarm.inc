@@ -50,6 +50,9 @@ function wim_product_strongarm() {
       'token' => array(
         'custom_settings' => FALSE,
       ),
+      'introduction' => array(
+        'custom_settings' => TRUE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
@@ -57,13 +60,16 @@ function wim_product_strongarm() {
           'weight' => '0',
         ),
         'locations' => array(
-          'weight' => '5',
+          'weight' => '6',
         ),
         'metatags' => array(
-          'weight' => '40',
+          'weight' => '10',
         ),
         'redirect' => array(
-          'weight' => '30',
+          'weight' => '9',
+        ),
+        'path' => array(
+          'weight' => '8',
         ),
       ),
       'display' => array(),
@@ -142,6 +148,23 @@ function wim_product_strongarm() {
   $strongarm->name = 'scheduler_use_vertical_tabs_product';
   $strongarm->value = '1';
   $export['scheduler_use_vertical_tabs_product'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'xmlsitemap_settings_node_product';
+  $strongarm->value = array(
+    'status' => '1',
+    'priority' => '0.6',
+  );
+  $export['xmlsitemap_settings_node_product'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'yoast_seo_enable_node__product';
+  $strongarm->value = 1;
+  $export['yoast_seo_enable_node__product'] = $strongarm;
 
   return $export;
 }

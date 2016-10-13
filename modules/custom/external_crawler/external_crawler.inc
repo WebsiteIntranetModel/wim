@@ -19,7 +19,7 @@ function external_crawler_build_document($pagekey, $url, $title, $body, $site_id
   $document->site = url(NULL, array('absolute' => TRUE));
   $document->hash = apachesolr_site_hash();
   $document->entity_id = $site_id;
-  $document->entity_type = 'external_crawler';
+  $document->entity_type = EXTERNAL_CRAWLER_ENTITY_TYPE;
   $document->language = LANGUAGE_NONE;
   $document->url = $url;
 
@@ -78,7 +78,7 @@ function _external_crawler_index_page_crawl($site, $pagedata, Crawler $nodeCrawl
 
       $is_excluded = drupal_match_path($link->getUri(), $site->url_exclude);
 
-      if (isset($link_data['host']) && $link_data['host'] == $url_data['host'] && !$is_excluded) {
+      if ((isset($link_data['host']) && $link_data['host'] == $url_data['host'] && !$is_excluded) || (isset($site->is_xml) && $site->is_xml)) {
         $new_pagedata = _external_crawler_get_pagedata(
           _external_crawler_generate_pagekey($site, $link->getUri()),
           array(
@@ -154,7 +154,9 @@ function _external_crawler_index_page($url, stdClass $site) {
 
     if (empty($document['title'])) {
       // No title was provided. Generate a title from the URL.
-      $document['title'] = urldecode(reset(array_reverse(explode('/', $url))));
+      $string = explode('/', $url);
+      $string_array = array_reverse($string);
+      $document['title'] = urldecode(reset($string_array));
     }
 
     // Set latest crawl data.
