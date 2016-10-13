@@ -23,7 +23,15 @@ Feature: Create Agenda
     And I click "Publishing options"
     And I fill in the following:
       | Promoted | 0 |
-    And I attach the file "/fixtures/images/drupal-icon.png" to "Image"
+    And I click "Browse"
+    Then I wait for AJAX to finish
+    And I wait for 5 seconds
+    And I switch to the iframe "mediaBrowser"
+    And I attach the file "/fixtures/images/drupal-icon.png" to "Upload a new file"
+    And I press "Next"
+    Then I press "Save"
+    Then I wait for AJAX to finish
+    When I switch back from an iframe
     And I select "Netherlands" from "Country"
     And I wait for AJAX to finish
     And I click "Reminder"

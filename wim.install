@@ -832,6 +832,7 @@ function _wim_permissions($role) {
       'edit any webform content',
       'set webform_clear times',
       // Files.
+      'create files',
       'use media wysiwyg',
       'access media browser',
       'bypass file access',
@@ -943,6 +944,7 @@ function _wim_permissions($role) {
       'edit own webform content',
       'set webform_clear times',
       // Files.
+      'create files',
       'use media wysiwyg',
       'access media browser',
       'administer files',
@@ -1007,6 +1009,7 @@ function _wim_permissions($role) {
       'edit any editorial bean',
       'manage felix blocks',
       // Files.
+      'create files',
       'use media wysiwyg',
       'access media browser',
       'edit any audio files',

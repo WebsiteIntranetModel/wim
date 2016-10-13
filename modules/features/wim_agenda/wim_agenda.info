@@ -10,6 +10,7 @@ dependencies[] = features
 dependencies[] = field_group
 dependencies[] = image
 dependencies[] = location_cck
+dependencies[] = media
 dependencies[] = metatag
 dependencies[] = options
 dependencies[] = picture

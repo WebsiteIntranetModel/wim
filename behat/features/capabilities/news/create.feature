@@ -21,7 +21,15 @@ Feature: Create News
     And I fill in the following:
       | Date | 30/06/2016 |
       | Time | 02:22:00   |
-    And I attach the file "/fixtures/images/drupal-icon.png" to "Image"
+    And I click "Browse"
+    Then I wait for AJAX to finish
+    And I wait for 5 seconds
+    And I switch to the iframe "mediaBrowser"
+    And I attach the file "/fixtures/images/drupal-icon.png" to "Upload a new file"
+    And I press "Next"
+    Then I press "Save"
+    When I switch back from an iframe
+    Then I wait for AJAX to finish
     And I attach the file "/fixtures/files/pdf-file.pdf" to "Add a new file"
     And I click "Reminder"
     And I should see "Reminder email"
