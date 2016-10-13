@@ -74,7 +74,7 @@ class BasicPageMigration extends NodeMigration {
 
     $this->addFieldMapping('field_image', 'field_image')
       ->sourceMigration('WIM_File');
-    $this->addFieldMapping('field_image:alt')->defaultValue('');
+    $this->addFieldMapping('field_image:alt')->defaultValue('Alt text');
     $this->addFieldMapping('field_image:file_class')
       ->defaultValue('MigrateFileFid');
     $this->addFieldMapping('field_image:preserve_files')
@@ -154,7 +154,7 @@ class PersonMigration extends NodeMigration {
 
     $this->addFieldMapping('field_image', 'field_image')
       ->sourceMigration('WIM_File');
-    $this->addFieldMapping('field_image:alt')->defaultValue('');
+    $this->addFieldMapping('field_image:alt')->defaultValue('Alt text');
     $this->addFieldMapping('field_image:file_class')
       ->defaultValue('MigrateFileFid');
     $this->addFieldMapping('field_image:preserve_files')
@@ -229,7 +229,7 @@ class ProductMigration extends NodeMigration {
     $this->addFieldMapping('body:format')->defaultValue('full_html');
     $this->addFieldMapping('field_image', 'field_image')
       ->sourceMigration('WIM_File');
-    $this->addFieldMapping('field_image:alt')->defaultValue('');
+    $this->addFieldMapping('field_image:alt')->defaultValue('Alt text');
     $this->addFieldMapping('field_image:file_class')
       ->defaultValue('MigrateFileFid');
     $this->addFieldMapping('field_image:preserve_files')
@@ -308,7 +308,7 @@ class NewsMigration extends NodeMigration {
     $this->addFieldMapping('body:format')->defaultValue('full_html');
     $this->addFieldMapping('field_image', 'field_image')
       ->sourceMigration('WIM_File');
-    $this->addFieldMapping('field_image:alt')->defaultValue('');
+    $this->addFieldMapping('field_image:alt')->defaultValue('Alt text');
     $this->addFieldMapping('field_image:file_class')
       ->defaultValue('MigrateFileFid');
 
@@ -479,7 +479,7 @@ class AgendaMigration extends NodeMigration {
 
     $this->addFieldMapping('field_image', 'field_image')
       ->sourceMigration('WIM_File');
-    $this->addFieldMapping('field_image:alt')->defaultValue('');
+    $this->addFieldMapping('field_image:alt')->defaultValue('Alt text');
     $this->addFieldMapping('field_image:file_class')
       ->defaultValue('MigrateFileFid');
 
