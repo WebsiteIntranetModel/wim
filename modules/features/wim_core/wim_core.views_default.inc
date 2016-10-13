@@ -118,8 +118,10 @@ function wim_core_views_default_views() {
   $handler->display->display_options['header']['result']['id'] = 'result';
   $handler->display->display_options['header']['result']['table'] = 'views';
   $handler->display->display_options['header']['result']['field'] = 'result';
-  $handler->display->display_options['header']['result']['content'] = '@total item(s) found';
   $handler->display->display_options['header']['result']['empty'] = TRUE;
+  $handler->display->display_options['header']['result']['content'] = '@total item found';
+  $handler->display->display_options['header']['result']['format_plural'] = TRUE;
+  $handler->display->display_options['header']['result']['format_plural_plural'] = '@total items found';
   /* No results behavior: Global: Unfiltered text */
   $handler->display->display_options['empty']['area_text_custom']['id'] = 'area_text_custom';
   $handler->display->display_options['empty']['area_text_custom']['table'] = 'views';
@@ -378,7 +380,8 @@ function wim_core_views_default_views() {
     t('‹ previous'),
     t('next ›'),
     t('last »'),
-    t('@total item(s) found'),
+    t('@total item found'),
+    t('@total items found'),
     t('No content available.'),
     t('author'),
     t('term'),
@@ -508,8 +511,10 @@ function wim_core_views_default_views() {
   $handler->display->display_options['header']['result']['id'] = 'result';
   $handler->display->display_options['header']['result']['table'] = 'views';
   $handler->display->display_options['header']['result']['field'] = 'result';
-  $handler->display->display_options['header']['result']['content'] = '@total item(s) found';
   $handler->display->display_options['header']['result']['empty'] = TRUE;
+  $handler->display->display_options['header']['result']['content'] = '@total item found';
+  $handler->display->display_options['header']['result']['format_plural'] = TRUE;
+  $handler->display->display_options['header']['result']['format_plural_plural'] = '@total items found';
   /* No results behavior: Global: Unfiltered text */
   $handler->display->display_options['empty']['area_text_custom']['id'] = 'area_text_custom';
   $handler->display->display_options['empty']['area_text_custom']['table'] = 'views';
