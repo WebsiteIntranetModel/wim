@@ -101,6 +101,11 @@ projects[bean][patch][2295973_11] = https://www.drupal.org/files/issues/bean-mig
 ; https://www.drupal.org/node/1911234
 projects[bean][patch][1911234_6] = https://www.drupal.org/files/issues/select-from-enabled-view-modes-1911234-6.patch
 
+; Views
+; Add plural format to views_handler_area_result
+; https://www.drupal.org/node/1793500#comment-10875360
+projects[views][patch][1793500_13] = https://www.drupal.org/files/issues/views-area-results-plural-1793500-13.patch
+
 ; Views bulk operations
 ; Fix "Select all" checkbox works only once
 ; https://www.drupal.org/node/2608360#comment-11620927

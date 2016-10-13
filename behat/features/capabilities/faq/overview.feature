@@ -31,7 +31,7 @@ Feature: FAQ overview
     And I select "FAQ" from "Type"
     And I press "Apply"
     And I wait for AJAX to finish
-    And I should see "item(s) found"
+    And I should see "items found"
     And I click "edit" in the "Question 2" row
     And I check the box "Show this FAQ in the FAQ overview"
     And I press "Save"
