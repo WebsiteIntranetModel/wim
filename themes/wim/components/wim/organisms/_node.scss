@@ -35,7 +35,7 @@
 }
 
 .node-teaser {
-  border-bottom: 1px solid $brand-border;
+  border-bottom: 1px solid $gray-lighter;
   margin-bottom: 10px;
   padding-bottom: 10px;
 
@@ -54,7 +54,7 @@
   &:last-child {
     border-bottom: none;
     .view & {
-      border-bottom: 1px solid $brand-border;
+      border-bottom: 1px solid $gray-lighter;
     }
 
     .view .view-content > div:last-child & {
@@ -96,7 +96,7 @@
       width: 40px;
       height: 46px;
       text-align: center;
-      border: 1px solid $brand-grey-light;
+      border: 1px solid $gray-lighter;
       span {
         display: block;
         &.day {
@@ -162,8 +162,8 @@
 .page-news {
   .page-header {
     padding: 10px;
-    border-top: 1px solid $brand-light;
-    background: $brand-block-title-bg;
+    border-top: 1px solid $gray-lighter;
+    background: $gray-lighter;
     margin-bottom: 10px;
     font-size: 130%;
   }

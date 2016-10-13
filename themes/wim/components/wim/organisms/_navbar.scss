@@ -65,7 +65,7 @@
   margin-top: -16px;
   background: $brand-primary;
   @include MQ($screen-sm) {
-    border-top: 4px solid #efe5ef;
+    border-top: 4px solid $gray-lighter;
   }
 }
 
@@ -116,7 +116,7 @@
       &:before {
         display: none;
       }
-      @media (max-width: $screen-sm-min - 1) {
+      @media (max-width: $screen-sm - 1) {
         &:before {
           @include fa-icon;
           position: absolute;
@@ -145,7 +145,7 @@
   @extend %outline;
 }
 
-@media (max-width: $screen-sm-min - 1) {
+@media (max-width: $screen-sm - 1) {
   .navbar-default .navbar-nav .open .dropdown-menu > li > a {
     line-height: 1.42857;
     color: white;

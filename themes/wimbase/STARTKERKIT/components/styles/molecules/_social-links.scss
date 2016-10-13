@@ -1,0 +1,52 @@
+.social-links {
+  h3 {
+    font-size: $font-size-h5;
+  }
+  .social {
+    margin: 10px 0;
+    padding: 0;
+  }
+  .social li {
+    display: inline-block;
+    margin-right: 5px;
+  }
+  .social li a {
+    background-color: $brand-primary;
+    border-radius: 50%;
+    text-align: center;
+    padding: 7px 10px;
+    height: 35px;
+    width: 35px;
+    font-size: 0;
+    display: block;
+    transition: .2s transform ease;
+
+    &:before {
+      font-size: 15px;
+      color: white;
+      font-weight: normal;
+    }
+
+    &:hover {
+      text-decoration: none;
+      transform: scale(1.1);
+    }
+  }
+
+  .fa-facebook-square {
+    @extend .icon-facebook;
+  }
+
+  .fa-linkedin-square {
+    @extend .icon-linkedin;
+  }
+
+  .fa-google-plus-square {
+    @extend .icon-google;
+  }
+
+  .fa-twitter-square {
+    @extend .icon-twitter;
+  }
+
+}

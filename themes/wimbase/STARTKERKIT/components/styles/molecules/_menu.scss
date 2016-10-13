@@ -1,0 +1,17 @@
+.block-menu-block {
+
+  @include MQ($screen-sm) {
+    &.col-md-12 .menu.nav {
+      column-count: 3;
+      -moz-column-count: 3;
+    }
+  }
+
+  .menu.nav .leaf {
+    @extend .arrow-title;
+    a {
+      font-size: $font-size-h5;
+    }
+  }
+
+}

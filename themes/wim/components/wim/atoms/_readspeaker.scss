@@ -1,5 +1,5 @@
 .rsbtn {
-  @include MQ($screen-tablet) {
+  @include MQ($screen-sm) {
     float: right;
     margin-top: -11px;
     margin-bottom: 4px;

@@ -1,0 +1,81 @@
+.menu-top-tasks {
+
+  .menu-wrapper {
+    position: relative;
+  }
+
+  .menu-wrapper:before {
+    top: 5px;
+    left: 3px;
+    right: 3px;
+    content: '';
+    background: white;
+    width: auto;
+    height: 300px;
+    position: absolute;
+  }
+
+  .menu {
+    width: 100%;
+    display: flex;
+    -webkit-flex-flow: row wrap;
+    justify-content: space-around;
+    text-align: center;
+  }
+
+  .menu > li {
+    // display: block;
+    width: 100%;
+
+    @include MQ($screen-sm) {
+      // display: inline-block;
+      // float: left;
+      width: (100%/6);
+    }
+  }
+
+  .menu > li > a {
+    margin: 5px 2px;
+    display: block;
+    background-color: $brand-primary;
+    color: white;
+    padding: 1em 1em;
+    font-size: 1em;
+    transition: .2s transform ease;
+    transform: scale(1);
+    z-index: 0;
+    @extend .z-depth-1;
+
+    &:hover,
+    &:focus {
+      z-index: 1;
+      transform: scale(1.05);
+    }
+
+    @include MQ($screen-sm) {
+      text-align: center;
+      padding-top: 2em;
+      height: 150px;
+    }
+
+    &:before {
+      display: none;
+    }
+
+    span {
+      margin-right: 1em;
+    }
+
+    @include MQ($screen-sm) {
+
+      span {
+        margin-right: 0;
+        display: block;
+        margin-bottom: 1em;
+      }
+
+    }
+
+  }
+
+}

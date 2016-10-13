@@ -1,0 +1,75 @@
+.btn {
+  border-radius: 0;
+  border: none;
+  font-family: $font-family-sans-serif;
+  font-weight: bold;
+}
+
+.btn-default {
+  background-color: $brand-primary;
+  color: white;
+
+  &:hover {
+    color: white;
+    background-color: darken($brand-primary, 15%);
+  }
+}
+
+.btn-primary {
+  @extend .btn-flat;
+
+  &:hover {
+    text-decoration: underline;
+    background-color: $brand-primary;
+  }
+}
+
+.btn-flat {
+  display: inline-block;
+  background: $brand-primary;
+  color: white;
+
+  padding: 10px 20px 10px 30px;
+  display: inline-block;
+  position: relative;
+  @extend .icon-arrowright;
+
+  &:before {
+    position: absolute;
+    font-size: 10px;
+    margin-right: 1em;
+    top: 13px;
+    left: 10px;
+    transition: .2s left ease, .2s background ease;
+  }
+
+  &:hover:before {
+    left: 15px;
+  }
+}
+
+.btn-outline {
+  border: 1px solid white;
+  color: white;
+  position: relative;
+  padding-left: 30px;
+  @extend .icon-arrowright;
+
+  &:before {
+    position: absolute;
+    font-size: 10px;
+    margin-right: 1em;
+    top: 13px;
+    left: 10px;
+    transition: .2s left ease, .2s background ease;
+  }
+
+  &:hover:before {
+    left: 15px;
+  }
+
+  &:hover {
+    color: $link-color;
+    background: white;
+  }
+}

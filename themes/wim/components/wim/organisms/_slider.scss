@@ -4,7 +4,7 @@
     top: 10px;
     font-size: 24px;
     line-height: 24px;
-    @include MQ($screen-desktop) {
+    @include MQ($screen-lg) {
       top: 20px;
       font-size: 42px;
       line-height: 42px;
@@ -21,14 +21,14 @@
     &.slick-prev {
       @extend .fa-chevron-circle-left;
       left: 10px;
-      @include MQ($screen-desktop) {
+      @include MQ($screen-lg) {
         left: 20px;
       }
     }
     &.slick-next {
       @extend .fa-chevron-circle-right;
       right: 10px;
-      @include MQ($screen-desktop) {
+      @include MQ($screen-lg) {
         right: 20px;
       }
     }
@@ -48,7 +48,7 @@
     transform: translateX(-50%);
     font-size: 18px;
     line-height: 24px;
-    @include MQ($screen-desktop) {
+    @include MQ($screen-lg) {
       font-size: 42px;
       line-height: 42px;
       top: 20px;
@@ -73,7 +73,7 @@
     padding: 5px 10px;
     font-size: 14px;
     line-height: 20px;
-    @include MQ($screen-desktop) {
+    @include MQ($screen-lg) {
       font-size: 18px;
       line-height: 28px;
     }

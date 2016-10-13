@@ -1,0 +1,20 @@
+.logo {
+  display: block;
+  margin: 0;
+
+  img {
+    width: 95px;
+    height: 35px;
+    margin-top: 0px;
+
+  }
+
+  @include MQ($screen-sm) {
+    margin-top: -10px;
+
+    img {
+      width: 150px;
+      height: 50px;
+    }
+  }
+}
