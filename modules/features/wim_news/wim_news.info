@@ -12,7 +12,6 @@ dependencies[] = field_group
 dependencies[] = file
 dependencies[] = image
 dependencies[] = list
-dependencies[] = media
 dependencies[] = metatag
 dependencies[] = options
 dependencies[] = picture

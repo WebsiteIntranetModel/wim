@@ -7,7 +7,6 @@ dependencies[] = ctools
 dependencies[] = email
 dependencies[] = features
 dependencies[] = image
-dependencies[] = media
 dependencies[] = picture
 dependencies[] = strongarm
 dependencies[] = taxonomy

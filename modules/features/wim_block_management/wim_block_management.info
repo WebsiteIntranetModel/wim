@@ -12,7 +12,6 @@ dependencies[] = features
 dependencies[] = felix
 dependencies[] = image
 dependencies[] = link
-dependencies[] = media
 dependencies[] = text
 dependencies[] = views
 dependencies[] = wim_core
