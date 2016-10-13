@@ -3066,6 +3066,10 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   margin-bottom: 10px;
 }
 
+.form-control {
+  color: #333333;
+}
+
 .form-text {
   border: 1px solid #777777;
   box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.1);
@@ -4569,6 +4573,7 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   .main-container .menu-top-tasks .menu-wrapper .menu .dropdown:hover .dropdown-toggle{
     background-color: #0080a8;
     color: white;
+    text-decoration: underline;
   }
   .main-container .menu-top-tasks .menu-wrapper .menu .dropdown:hover .dropdown-toggle:after{
     display: block !important;

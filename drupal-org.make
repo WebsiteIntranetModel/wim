@@ -20,7 +20,7 @@ projects[colectomy] = 1.0-beta2
 projects[ctools] = 1.10
 projects[date] = 2.9
 projects[date_facets] = 1.0
-projects[elysia_cron] = 2.2
+projects[elysia_cron] = 2.3
 projects[email] = 1.3
 projects[encrypt] = 2.3
 projects[entity] = 1.8
@@ -67,6 +67,7 @@ projects[webform_encrypt] = 1.1
 projects[weight] = 3.1
 projects[wysiwyg] = 2.x-dev
 projects[xmlsitemap] = 2.3
+projects[yoast_seo] = 1.0
 
 ; Themes
 projects[adminimal_theme] = 1.24
@@ -99,6 +100,11 @@ projects[bean][patch][2295973_11] = https://www.drupal.org/files/issues/bean-mig
 ; Fix view modes for Bean blocks
 ; https://www.drupal.org/node/1911234
 projects[bean][patch][1911234_6] = https://www.drupal.org/files/issues/select-from-enabled-view-modes-1911234-6.patch
+
+; Views
+; Add plural format to views_handler_area_result
+; https://www.drupal.org/node/1793500#comment-10875360
+projects[views][patch][1793500_13] = https://www.drupal.org/files/issues/views-area-results-plural-1793500-13.patch
 
 ; Views bulk operations
 ; Fix "Select all" checkbox works only once

@@ -22,7 +22,15 @@ Feature: Create Product
     And I should see "Publish on"
     And I should see "Unpublish on"
     When I click "Introduction"
-    Then I should see "Image"
+    And I click "Browse"
+    Then I wait for AJAX to finish
+    And I wait for 5 seconds
+    And I switch to the iframe "mediaBrowser"
+    And I attach the file "/fixtures/images/drupal-icon.png" to "Upload a new file"
+    And I press "Next"
+    Then I press "Save"
+    When I switch back from an iframe
+
     And I fill in wysiwyg on field "Lead paragraph" with "Lead paragraph demo content"
     And I press "Save"
     Then I should see the success message "Product TEST PRODUCT has been created."

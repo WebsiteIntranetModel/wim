@@ -49,9 +49,9 @@ function cookie_consent_permission() {
 }
 
 /**
- * Implements hook_init().
+ * Custom function to attache additional js for cookie.
  */
-function cookie_consent_init() {
+function _cookie_consent_attach(&$page) {
   global $base_root, $user, $_cookie_consent;
 
   $paths = path_get_admin_paths();
@@ -62,7 +62,7 @@ function cookie_consent_init() {
     $domains = variable_get('cookie_consent_domains', array());
     $current_domain = domain_get_domain();
 
-    if (isset($domains[$current_domain['domain_id']])) {
+    if (is_array($domains) && isset($domains[$current_domain['domain_id']])) {
       $domain = FALSE;
     }
   }
@@ -110,13 +110,16 @@ function cookie_consent_init() {
     'link' => $link,
   );
 
-  drupal_add_js('var ccOptions = ' . drupal_json_encode($options) . ';', 'inline');
-
-  // Load the necessary files.
+  // Attach the necessary files.
   $path = drupal_get_path('module', 'cookie_consent');
-  drupal_add_css($path . '/css/cc_style.css');
-  drupal_add_js($path . '/js/plugin.js');
-  drupal_add_js($path . '/js/cookie_consent.js');
+  $page['page_bottom']['cookie_consent']['#attached']['css'] = array(
+    $path . '/css/cc_style.css' => array('every_page' => TRUE),
+  );
+  $page['page_bottom']['cookie_consent']['#attached']['js'] = array(
+    $path . '/js/plugin.js' => array('every_page' => TRUE),
+    $path . '/js/cookie_consent.js' => array('every_page' => TRUE),
+    array('data' => 'var ccOptions = ' . drupal_json_encode($options) . ';', 'type' => 'inline'),
+  );
 }
 
 /**
@@ -250,6 +253,7 @@ function cookie_consent_process_html_tag(&$vars) {
  */
 function cookie_consent_page_alter(&$page) {
   global $_cookie_consent;
+  _cookie_consent_attach($page);
   if ($_cookie_consent and variable_get('cookie_consent_filter_iframe', FALSE)) {
     $page['#post_render'][] = 'cookie_consent_alter_iframe';
   }

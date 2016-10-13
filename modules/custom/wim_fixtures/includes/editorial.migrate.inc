@@ -54,7 +54,7 @@ class EditorialMigration extends WIMMigration {
 
     $this->addFieldMapping('field_image', 'field_image')
       ->sourceMigration('WIM_File');
-    $this->addFieldMapping('field_image:alt')->defaultValue('');
+    $this->addFieldMapping('field_image:alt')->defaultValue('Alt text');
     $this->addFieldMapping('field_image:file_class')
       ->defaultValue('MigrateFileFid');
     $this->addFieldMapping('field_image:preserve_files')

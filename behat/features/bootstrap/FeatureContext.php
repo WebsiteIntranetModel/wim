@@ -564,4 +564,22 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
     $this->getSession()->wait($milliseconds, $condition);
   }
 
+  /**
+   * I switch to the iframe "name".
+   *
+   * @Given /^I switch to the iframe "([^"]*)"$/
+   */
+  public function iSwitchToIframe($arg1 = NULL) {
+    $this->getSession()->switchToIFrame($arg1);
+  }
+
+  /**
+   * I switch back from an iframe.
+   *
+   * @When I switch back from an iframe
+   */
+  public function iSwitchBackFromAnIframe() {
+    $this->getSession()->switchToIFrame();
+  }
+
 }

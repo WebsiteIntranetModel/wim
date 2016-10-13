@@ -51,6 +51,7 @@ function wim_update_7002(&$sandbox) {
     'wim_webform',
     'wim_addition_faq_product_fields',
     'wim_text_formats',
+    'wim_block_management',
   ));
 
   // Exclude some basic page nodes.
@@ -74,6 +75,11 @@ function wim_update_7002(&$sandbox) {
 
     $role = user_role_load_by_name('webmaster');
     user_role_grant_permissions($role->rid, array('administer xmlsitemap'));
+    user_role_grant_permissions($role->rid, array('create files'));
+    $role = user_role_load_by_name('content manager');
+    user_role_grant_permissions($role->rid, array('create files'));
+    $role = user_role_load_by_name('content editor');
+    user_role_grant_permissions($role->rid, array('create files'));
   }
 
 }
