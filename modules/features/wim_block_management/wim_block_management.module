@@ -113,12 +113,16 @@ function wim_block_management_entity_delete($entity, $type) {
  * Implements hook_preprocess_page().
  */
 function wim_block_management_preprocess_page(&$variables) {
+  $module_path = drupal_get_path('module', 'wim_block_management');
   // Add extra js and css for the Felix add page.
   if (current_path() === 'felix-blocks/add' && !isset($_GET['token'])) {
-    $module_path = drupal_get_path('module', 'wim_block_management');
     drupal_add_js($module_path . '/js/wim_block_management.js');
     drupal_add_css($module_path . '/css/wim_block_management.css');
   }
+
+  // Add css for Felix regions on all pages.
+  drupal_add_css($module_path . '/css/felix.css');
+
 }
 
 /**
