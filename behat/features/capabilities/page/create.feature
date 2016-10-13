@@ -25,7 +25,6 @@ Feature: Create basic page
     And I press "Next"
     Then I press "Save"
     When I switch back from an iframe
-    Then I wait for AJAX to finish
     And I fill in wysiwyg on field "Lead paragraph" with "Lead paragraph demo content"
     And I click "Reminder"
     And I should see "Reminder email"

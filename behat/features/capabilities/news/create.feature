@@ -29,7 +29,6 @@ Feature: Create News
     And I press "Next"
     Then I press "Save"
     When I switch back from an iframe
-    Then I wait for AJAX to finish
     And I attach the file "/fixtures/files/pdf-file.pdf" to "Add a new file"
     And I click "Reminder"
     And I should see "Reminder email"

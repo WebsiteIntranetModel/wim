@@ -30,7 +30,6 @@ Feature: Create Agenda
     And I attach the file "/fixtures/images/drupal-icon.png" to "Upload a new file"
     And I press "Next"
     Then I press "Save"
-    Then I wait for AJAX to finish
     When I switch back from an iframe
     And I select "Netherlands" from "Country"
     And I wait for AJAX to finish

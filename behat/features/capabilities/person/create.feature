@@ -23,7 +23,6 @@ Feature: Create person
     And I press "Next"
     Then I press "Save"
     When I switch back from an iframe
-    Then I wait for AJAX to finish
     And I click "Reminder"
     And I should see "Reminder email"
     And I click "Scheduling options"
