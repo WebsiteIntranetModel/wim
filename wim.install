@@ -63,6 +63,11 @@ function wim_install() {
 
   // Change media render.
   variable_set('media_wysiwyg_default_render', 'field_attach');
+
+  if (module_exists('chosen')) {
+    variable_set('chosen_jquery_selector', 'select.chosen-enable');
+    variable_set('chosen_include', 0);
+  }
 }
 
 /**

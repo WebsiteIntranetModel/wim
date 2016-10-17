@@ -86,6 +86,7 @@ function wim_update_7002(&$sandbox) {
 
 /**
  * Enable Chosen module.
+ *
  * WIM-1208 - Remove certain options from Linkit.
  *
  * WIM-1245 - Changed widget type for Attachments.
@@ -93,6 +94,11 @@ function wim_update_7002(&$sandbox) {
 function wim_update_7003(&$sandbox) {
   if (!module_exists('chosen')) {
     module_enable(array('chosen'));
+  }
+
+  if (module_exists('chosen')) {
+    variable_set('chosen_jquery_selector', 'select.chosen-enable');
+    variable_set('chosen_include', 0);
   }
 }
 
