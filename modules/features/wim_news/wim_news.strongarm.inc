@@ -156,12 +156,5 @@ function wim_news_strongarm() {
   );
   $export['xmlsitemap_settings_node_news'] = $strongarm;
 
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'yoast_seo_enable_node__news';
-  $strongarm->value = 1;
-  $export['yoast_seo_enable_node__news'] = $strongarm;
-
   return $export;
 }

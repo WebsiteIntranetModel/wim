@@ -180,12 +180,5 @@ function wim_webform_strongarm() {
   );
   $export['xmlsitemap_settings_node_webform'] = $strongarm;
 
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'yoast_seo_enable_node__webform';
-  $strongarm->value = 0;
-  $export['yoast_seo_enable_node__webform'] = $strongarm;
-
   return $export;
 }
