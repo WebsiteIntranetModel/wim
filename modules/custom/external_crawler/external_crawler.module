@@ -166,7 +166,7 @@ function external_crawler_preprocess_search_result(&$variables) {
   if ($variables['result']['fields']['entity_type'] === 'external_crawler') {
     $variables['url'] = $variables['result']['fields']['url'];
     $variables['result']['link'] = $variables['result']['fields']['url'];
-    $variables['snippet'] = preg_replace("/\r|\n/", "", $variables['snippet']);
+    $variables['snippet'] = _external_crawler_clear_body($variables['snippet']);
   }
 }
 
