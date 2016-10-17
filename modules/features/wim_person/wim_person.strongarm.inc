@@ -149,12 +149,5 @@ function wim_person_strongarm() {
   );
   $export['xmlsitemap_settings_node_person'] = $strongarm;
 
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'yoast_seo_enable_node__person';
-  $strongarm->value = 0;
-  $export['yoast_seo_enable_node__person'] = $strongarm;
-
   return $export;
 }
