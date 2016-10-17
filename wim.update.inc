@@ -86,6 +86,8 @@ function wim_update_7002(&$sandbox) {
 
 /**
  * WIM-1208 - Remove certain options from Linkit.
+ *
+ * WIM-1245 - Changed widget type for Attachments.
  */
 function wim_update_7003(&$sandbox) {
   // Revert features.

@@ -86,12 +86,14 @@
   hide($content['links']);
   hide($content['field_tags']);
   print render($content);
+  $tags = render($content['field_tags']);
+  $links = render($content['links']);
   ?>
-  <?php if (!empty($content['field_tags']) || !empty($content['links'])): ?>
-    <footer>
-      <?php print render($content['field_tags']); ?>
-      <?php print render($content['links']); ?>
-    </footer>
+  <?php if (!empty($tags) || !empty($links)): ?>
+    <div class="node-footer">
+      <?php print $tags; ?>
+      <?php print $links; ?>
+    </div>
   <?php endif; ?>
   <?php print render($content['comments']); ?>
 </article>
