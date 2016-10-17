@@ -56,4 +56,6 @@ features_exclude[field_base][field_reminder_email] = field_reminder_email
 features_exclude[field_group][group_reminder|node|news|form] = group_reminder|node|news|form
 features_exclude[field_instance][node-news-field_reminder_email] = node-news-field_reminder_email
 features_exclude[variable][pathauto_node_news_pattern] = pathauto_node_news_pattern
+features_exclude[dependencies][content_reminder] = content_reminder
+features_exclude[dependencies][media] = media
 project path = profiles/wim/modules/features
