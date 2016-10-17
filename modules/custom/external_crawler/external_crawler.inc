@@ -24,7 +24,7 @@ function external_crawler_build_document($pagekey, $url, $title, $body, $site_id
   $document->url = $url;
 
   $document->addField('label', $title);
-  $document->addField('content', strip_tags($body));
+  $document->addField('content', _external_crawler_clear_body($body));
 
   $document->addField('domain_id', 1);
   $document->addField('domain_site', 1);
@@ -256,4 +256,25 @@ function _external_crawler_index_page_document($site, $result, &$document, &$pag
   if (isset($text)) {
     $document['body'] .= $text;
   }
+}
+
+/**
+ * Clear text from specific characters.
+ */
+function _external_crawler_clear_body($body) {
+  $body = strip_tags($body);
+  $body = preg_replace("/\r|\n/", " ", $body);
+  $special_characters = array(
+    ']>',
+    '[',
+    '<!--',
+    '-->',
+    '<!',
+    ']&gt;',
+    '  ',
+  );
+
+  $body = str_replace($special_characters, ' ', $body);
+
+  return $body;
 }
