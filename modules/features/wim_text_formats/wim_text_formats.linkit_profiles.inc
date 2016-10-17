@@ -93,26 +93,6 @@ function wim_text_formats_default_linkit_profiles() {
         'enabled' => 1,
         'weight' => '-10',
       ),
-      'accesskey' => array(
-        'enabled' => 1,
-        'weight' => '-10',
-      ),
-      'target' => array(
-        'enabled' => 1,
-        'weight' => '-10',
-      ),
-      'class' => array(
-        'enabled' => 1,
-        'weight' => '-10',
-      ),
-      'rel' => array(
-        'enabled' => 0,
-        'weight' => '-10',
-      ),
-      'id' => array(
-        'enabled' => 1,
-        'weight' => '-10',
-      ),
       'title' => array(
         'enabled' => 1,
         'weight' => '-10',
