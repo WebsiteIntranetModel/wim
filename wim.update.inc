@@ -83,3 +83,12 @@ function wim_update_7002(&$sandbox) {
   }
 
 }
+
+/**
+ * Enable Chosen module.
+ */
+function wim_update_7003(&$sandbox) {
+  if (!module_exists('chosen')) {
+    module_enable('chosen');
+  }
+}
