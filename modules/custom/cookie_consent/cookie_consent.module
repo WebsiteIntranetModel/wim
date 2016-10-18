@@ -145,7 +145,6 @@ function cookie_consent_cookie_consent_categories() {
   $cookies['analytics'] = array(
     'title' => t('Analytics'),
     'description' => t('We anonymously measure your use of this website to improve your experience.'),
-    'default' => TRUE,
   );
 
   return $cookies;
