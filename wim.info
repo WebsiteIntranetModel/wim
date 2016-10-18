@@ -25,6 +25,7 @@ dependencies[] = autologout
 dependencies[] = breakpoints
 dependencies[] = colectomy
 dependencies[] = ctools
+dependencies[] = chosen
 dependencies[] = date_views
 dependencies[] = elysia_cron
 dependencies[] = email

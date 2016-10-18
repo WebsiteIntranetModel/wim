@@ -27,8 +27,12 @@ function custom_lists_admin() {
         $data[] = t('Type: !type', array('!type' => $types[$list['node-type']]));
       }
       if (!empty($list['taxonomy'])) {
-        $term = taxonomy_term_load($list['taxonomy']);
-        $data[] = t('Taxonomy: !term', array('!term' => l($term->name, 'taxonomy/term/' . $term->tid)));
+        $terms = array();
+        foreach ($list['taxonomy'] as $term_id) {
+          $term = taxonomy_term_load($term_id);
+          $terms[] = l($term->name, 'taxonomy/term/' . $term->tid);
+        }
+        $data[] = t('Taxonomy: !terms', array('!terms' => implode($terms, ',')));
       }
     }
     else {
@@ -179,22 +183,19 @@ function custom_lists_list_form($form, &$form_state, $list_key = NULL) {
     ),
   );
 
-  $def_taxonomy = '';
-  if (!empty($list['taxonomy'])) {
-    $term = taxonomy_term_load($list['taxonomy']);
-    $def_taxonomy = $term->name;
-  }
   $form['type-settings']['taxonomy'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Term'),
-    '#autocomplete_path' => 'custom_lists/taxonomy/autocomplete',
-    '#maxlength' => 255,
-    '#default_value' => $def_taxonomy,
+    '#type' => 'select',
+    '#multiple' => TRUE,
+    '#title' => t('Terms'),
+    '#chosen' => TRUE,
+    '#options' => _custom_lists_get_terms(),
+    '#default_value' => isset($list['taxonomy']) ? $list['taxonomy'] : array(),
     '#attributes' => array(
       'class' => array(
         'type-setting',
         'type-setting-content',
       ),
+      'data-placeholder' => t('Select terms'),
     ),
   );
   $form['type-settings']['extra-filters'] = array(
@@ -441,12 +442,6 @@ function custom_lists_list_form_validate($form, &$form_state) {
  */
 function custom_lists_list_form_submit($form, &$form_state) {
 
-  // Get taxonomy term id.
-  if (!empty($form_state['values']['taxonomy'])) {
-    $terms = taxonomy_get_term_by_name($form_state['values']['taxonomy']);
-    $form_state['values']['taxonomy'] = key($terms);
-  }
-
   // Empty some useless data.
   if ($form_state['values']['type'] == 'content') {
     $form_state['values']['menu-item'] = NULL;
@@ -515,6 +510,7 @@ function custom_lists_taxonomy_autocomplete($term_search = '', $node_type = '') 
     ->execute()
     ->fetchAllKeyed();
 
+  $term_matches = array();
   foreach ($tags_return as $tid => $name) {
     $n = $name;
     // Term names containing commas or quotes must be wrapped in quotes.
@@ -584,4 +580,20 @@ function _custom_lists_menu_options_filter($link, $prefix = '') {
   }
 
   return $options;
+}
+
+/**
+ * Fetch all terms on the site.
+ */
+function _custom_lists_get_terms() {
+  $terms = array();
+  $vocabularies = taxonomy_get_vocabularies();
+  foreach ($vocabularies as $voc) {
+    $tree = taxonomy_get_tree($voc->vid);
+    foreach ($tree as $term) {
+      $terms[$voc->name][$term->tid] = $term->name;
+    }
+  }
+
+  return $terms;
 }

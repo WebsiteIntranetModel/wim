@@ -17,6 +17,7 @@ projects[bootstrap_fieldgroup] = 1.2
 projects[context] = 3.7
 projects[context_condition_theme] = 1.0
 projects[colectomy] = 1.0-beta2
+projects[chosen] = 2.0
 projects[ctools] = 1.10
 projects[date] = 2.9
 projects[date_facets] = 1.0
@@ -139,3 +140,7 @@ libraries[ckeditor][download][url] = http://ckeditor.com/builder/download/4aa56d
 ; Slick
 libraries[slick][download][type] = get
 libraries[slick][download][url] = https://github.com/kenwheeler/slick/archive/master.zip
+
+; Chosen
+libraries[chosen][download][type] = get
+libraries[chosen][download][url] = https://github.com/harvesthq/chosen/releases/download/v1.6.2/chosen_v1.6.2.zip
