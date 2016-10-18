@@ -90,6 +90,8 @@ function wim_update_7002(&$sandbox) {
  * WIM-1208 - Remove certain options from Linkit.
  *
  * WIM-1245 - Changed widget type for Attachments.
+ *
+ * WIM-1193 - Fixed permissions for roles.
  */
 function wim_update_7003(&$sandbox) {
   if (!module_exists('chosen')) {
@@ -106,4 +108,7 @@ function wim_update_7003(&$sandbox) {
     'wim_text_formats',
     'wim_news',
   ));
+
+  $role = user_role_load_by_name('administrator');
+  user_role_grant_permissions($role->rid, array('change own role'));
 }
