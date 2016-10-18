@@ -100,15 +100,11 @@ function wim_update_7003(&$sandbox) {
     variable_set('chosen_jquery_selector', 'select.chosen-enable');
     variable_set('chosen_include', 0);
   }
-}
 
-/**
- * WIM-1208 - Remove certain options from Linkit.
- */
-function wim_update_7004(&$sandbox) {
   // Revert features.
   features_revert(array(
     'wim_text_formats',
     'wim_news',
   ));
 }
+
