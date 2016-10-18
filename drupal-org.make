@@ -18,7 +18,7 @@ projects[context] = 3.7
 projects[context_condition_theme] = 1.0
 projects[colectomy] = 1.0-beta2
 projects[chosen] = 2.0
-projects[ctools] = 1.10
+projects[ctools] = 1.11
 projects[date] = 2.9
 projects[date_facets] = 1.0
 projects[elysia_cron] = 2.3
@@ -82,6 +82,10 @@ projects[features][patch][2143765_7] = https://www.drupal.org/files/issues/featu
 ; Fixing Notice: Undefined property: stdClass::$status in features_export_form
 ; https://www.drupal.org/node/2324973
 projects[features][patch][2324973_19] = https://www.drupal.org/files/issues/undefined-property-status-2324973-19.patch
+
+; Ctools
+; Fixing css for dropdown buttons
+projects[ctools][patch][1966072_4] = https://www.drupal.org/files/ctools-ops-dropbutton-css-1966072-4.patch
 
 ; Location
 ; Fixing bug with the location field ajax callback

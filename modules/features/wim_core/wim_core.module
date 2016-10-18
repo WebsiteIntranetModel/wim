@@ -28,6 +28,10 @@ function wim_core_permission() {
       'title' => t('Access taxonomy pages'),
       'description' => t('User can access taxonomy pages like taxonomy/term/[tid].'),
     ),
+    'change own role' => array(
+      'title' => t('Access to change own roles'),
+      'description' => t('User has access set own role.'),
+    ),
   );
 }
 
@@ -189,6 +193,8 @@ function wim_core_webform_node_defaults_alter(&$defaults) {
  * Implements hook_form_alter().
  */
 function wim_core_form_alter(&$form, &$form_state, $form_id) {
+  global $user;
+
   // @todo remove this when the issue will be fixed and the new version is released.
   // https://www.drupal.org/node/2632640.
   if ($form_id === 'views_form_faq_admin_faq' && isset($form['field_weight_selector'])) {
@@ -235,6 +241,17 @@ function wim_core_form_alter(&$form, &$form_state, $form_id) {
     $form['scheduler_settings']['#weight'] = 100;
   }
 
+  // Fix permission for changing own role.
+  if ($form_id === 'user_profile_form') {
+    $form['account']['roles']['#access'] = user_access('change own role') ? TRUE : FALSE;
+  }
+
+  // Only Administrator can change roles info and remove.
+  if ($form_id === 'user_admin_role') {
+    if (!in_array('administrator', $user->roles, TRUE)) {
+      drupal_goto('admin/people/permissions/roles');
+    }
+  }
 }
 
 /**

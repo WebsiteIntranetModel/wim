@@ -209,6 +209,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
     module_enable(array('cookie_consent'));
     variable_set('cookie_consent_style', 'custom');
     variable_set('cookie_consent_roles', drupal_map_assoc(array(DRUPAL_ANONYMOUS_RID)));
+    variable_set('cookie_consent_analytics', 'google_analytics/googleanalytics.js');
   }
 
   /**
