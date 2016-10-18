@@ -141,3 +141,13 @@ function wim_block_management_form_felix_remove_form_alter(&$form, &$form_state,
     );
   }
 }
+
+/**
+ * Implements hook_form_alter().
+ */
+function wim_block_management_form_alter(&$form, &$form_state, $form_id) {
+  // Hide redirect field.
+  if (in_array($form_id, array('bean_form', 'user_profile_form'), TRUE)) {
+    $form['redirect']['#access'] = FALSE;
+  }
+}
