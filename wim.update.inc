@@ -107,4 +107,3 @@ function wim_update_7003(&$sandbox) {
     'wim_news',
   ));
 }
-
