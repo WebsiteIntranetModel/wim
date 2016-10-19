@@ -17,7 +17,8 @@ projects[bootstrap_fieldgroup] = 1.2
 projects[context] = 3.7
 projects[context_condition_theme] = 1.0
 projects[colectomy] = 1.0-beta2
-projects[ctools] = 1.10
+projects[chosen] = 2.0
+projects[ctools] = 1.11
 projects[date] = 2.9
 projects[date_facets] = 1.0
 projects[elysia_cron] = 2.3
@@ -82,6 +83,10 @@ projects[features][patch][2143765_7] = https://www.drupal.org/files/issues/featu
 ; https://www.drupal.org/node/2324973
 projects[features][patch][2324973_19] = https://www.drupal.org/files/issues/undefined-property-status-2324973-19.patch
 
+; Ctools
+; Fixing css for dropdown buttons
+projects[ctools][patch][1966072_4] = https://www.drupal.org/files/ctools-ops-dropbutton-css-1966072-4.patch
+
 ; Location
 ; Fixing bug with the location field ajax callback
 ; https://www.drupal.org/node/1997658#comment-10532078
@@ -139,3 +144,7 @@ projects[webform_encrypt][patch][2413111] = https://www.drupal.org/files/issues/
 ; Slick
 libraries[slick][download][type] = get
 libraries[slick][download][url] = https://github.com/kenwheeler/slick/archive/master.zip
+
+; Chosen
+libraries[chosen][download][type] = get
+libraries[chosen][download][url] = https://github.com/harvesthq/chosen/releases/download/v1.6.2/chosen_v1.6.2.zip

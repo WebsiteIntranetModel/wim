@@ -300,7 +300,7 @@ function custom_lists_content_nodes($list, $items, $full_load = TRUE) {
   }
   if (!empty($list['taxonomy'])) {
     $query->join('taxonomy_index', 'ti', 'ti.nid = n.nid');
-    $query->condition('ti.tid', $list['taxonomy']);
+    $query->condition('ti.tid', $list['taxonomy'], 'IN');
   }
 
   // Custom filters for certain use cases.

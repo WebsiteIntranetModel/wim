@@ -1,7 +1,6 @@
 name = Website Intranet Model
 distribution_name = Website Intranet Model
 description = Installation profile for the WIM distribution.
-exclusive = TRUE
 core = 7.x
 
 files[] = wim.test
@@ -25,6 +24,7 @@ dependencies[] = autologout
 dependencies[] = breakpoints
 dependencies[] = colectomy
 dependencies[] = ctools
+dependencies[] = chosen
 dependencies[] = date_views
 dependencies[] = elysia_cron
 dependencies[] = email

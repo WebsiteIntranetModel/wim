@@ -209,6 +209,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
     module_enable(array('cookie_consent'));
     variable_set('cookie_consent_style', 'custom');
     variable_set('cookie_consent_roles', drupal_map_assoc(array(DRUPAL_ANONYMOUS_RID)));
+    variable_set('cookie_consent_analytics', 'google_analytics/googleanalytics.js');
   }
 
   /**
@@ -580,6 +581,29 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
    */
   public function iSwitchBackFromAnIframe() {
     $this->getSession()->switchToIFrame();
+  }
+
+  /**
+   * Click nth link element with given name.
+   *
+   * @When I click :num nth :link
+   *
+   * @throws \Exception
+   *   If nth link or link cannot be found.
+   */
+  public function iClickNthElement($num, $link) {
+    $page = $this->getSession()->getPage();
+    $links = $page->findAll('named', array('link', $link));
+    if ((int) $num > count($links)) {
+      throw new \Exception(sprintf('The "%s" nth link was not found on the page %s', $num, $this->getSession()->getCurrentUrl()));
+    }
+    // Find the link within the region.
+    $linkObj = $links[$num - 1];
+    if (empty($linkObj)) {
+      throw new \Exception(sprintf('The link "%s" was not found with number "%s" on the page %s', $link, $num, $this->getSession()->getCurrentUrl()));
+    }
+
+    $linkObj->click();
   }
 
 }
