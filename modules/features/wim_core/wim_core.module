@@ -243,7 +243,9 @@ function wim_core_form_alter(&$form, &$form_state, $form_id) {
 
   // Fix permission for changing own role.
   if ($form_id === 'user_profile_form') {
-    $form['account']['roles']['#access'] = user_access('change own role') ? TRUE : FALSE;
+    if (!user_access('change own role') && isset($form['account']['roles'])) {
+      $form['account']['roles']['#options'] = array_diff($form['account']['roles']['#options'], array('administrator'));
+    }
   }
 
   // Only Administrator can change roles info and remove.
