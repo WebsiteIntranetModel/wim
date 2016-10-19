@@ -96,7 +96,9 @@ function _xml_crawler_durp_get_pages(DOMDocument $dom) {
         if ($base_url) {
           // Find all subpages.
           foreach ($sub_xml_record->getElementsByTagName('Toelichting') as $sub_record) {
-            $sub_pages[] = $sub_record->nodeValue;
+            if (_xml_crawler_is_page_url($sub_record->nodeValue)) {
+              $sub_pages[] = $sub_record->nodeValue;
+            }
           }
 
           // Crawle subpages.
@@ -159,4 +161,17 @@ function _xml_crawler_cvdr_get_pages(DOMDocument $dom) {
   }
 
   return $pages;
+}
+
+/**
+ * Check if given URL is URL to HTML page.
+ */
+function _xml_crawler_is_page_url($url) {
+  $url = strtolower($url);
+  $is_page_url = FALSE;
+  if (stripos($url, '.html') !== FALSE) {
+    $is_page_url = TRUE;
+  }
+
+  return $is_page_url;
 }
