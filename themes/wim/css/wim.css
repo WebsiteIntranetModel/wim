@@ -3153,12 +3153,12 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
 .nav-tabs > li > a:hover {
   color: white;
   border-color: #0080a8 #0080a8 #ddd;
-  background-color: #0080a8;
+  background-color: #00465c;
 }
 
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
   color: white;
-  background-color: #0080a8;
+  background-color: #00465c;
   border: 1px solid #ddd;
   border-bottom-color: transparent;
   cursor: default;
@@ -3560,6 +3560,9 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
 
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus,
+.navbar-default .navbar-nav > .active-trail > a,
+.navbar-default .navbar-nav > .active-trail > a:hover,
+.navbar-default .navbar-nav > .active-trail > a:focus,
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
@@ -4492,6 +4495,7 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
     width: 140px;
   }
   .node-teaser .teaser-image .field-type-image{
+    margin-top: 0;
     margin-bottom: 0;
   }
   .node-teaser.node-agenda .fields-wrapper{
@@ -4539,7 +4543,7 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
     margin: 0;
   }
   .navbar-default .navbar-collapse{
-    border-top: 4px solid #eeeeee;
+    border-top: 4px solid #ddd;
   }
   .navbar-default .navbar-nav > li:hover .dropdown-menu{
     display: block;
@@ -4623,6 +4627,9 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   }
   .navbar-default .navbar-nav > li > a:hover,
   .navbar-default .navbar-nav > li > a:focus,
+  .navbar-default .navbar-nav > .active-trail > a,
+  .navbar-default .navbar-nav > .active-trail > a:hover,
+  .navbar-default .navbar-nav > .active-trail > a:focus,
   .navbar-default .navbar-nav > .active > a,
   .navbar-default .navbar-nav > .active > a:hover,
   .navbar-default .navbar-nav > .active > a:focus{
