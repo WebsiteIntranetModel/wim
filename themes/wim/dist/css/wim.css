@@ -21,6 +21,10 @@ body {
   font-family: "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
+#skip-link a {
+  color: black;
+}
+
 .main-wrapper {
   padding: 0;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
@@ -3478,6 +3482,15 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   margin-top: 0;
 }
 
+.footer .block a {
+  color: #00465c;
+  text-decoration: underline;
+}
+
+.footer .block a:hover {
+  text-decoration: none;
+}
+
 .footer .menu {
   padding-left: 2.8em;
 }
@@ -3491,6 +3504,7 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
 .footer .menu li a {
   padding: 0;
   display: inline;
+  color: #0080a8;
 }
 
 .footer .menu li a:before {
@@ -3556,6 +3570,8 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
 .navbar-default .navbar-nav > li > a {
   color: white;
   text-decoration: none;
+  font-family: "Roboto Slab", Georgia, "Times New Roman", Times, serif;
+  font-size: 1.2em;
 }
 
 .navbar-default .navbar-nav > li > a:hover,
