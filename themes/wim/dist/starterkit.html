@@ -57,7 +57,91 @@
             <div class="region region-content">
               <section id="block-system-main" class="block block-system clearfix">
                 <h1>Starterkit</h1>
-                <p>Waiting for filling contents.</p>
+                <h2><a id="WIM_theming_guidelines_0"></a>WIM theming guidelines</h2>
+                <p>We set up the current theme architecture to provide maximal flexibility and sustainability for future theme developers. We use Bootstrap to provide an accessible and robust front-end, but we only compile the Bootstrap css that we actually need in the wimbase theme. You can choose to make use of our default WIM theme or pick one of the  approaches that fits your needs. Read the guidelines carefully to make sure you gain all the advantages of future distribution updates.</p>
+                <h3><a id="Prerequisites_4"></a>Prerequisites</h3>
+                <ul>
+                  <li>Basic knowledge of using the command line</li>
+                  <li>Node and Node Package Manager installed</li>
+                  <li>Have an understanding of what taskrunners do</li>
+                  <li>Have an understanding of the atomic design pattern</li>
+                </ul>
+                <h3><a id="Theme_architecture_10"></a>Theme architecture</h3>
+                <ol>
+                  <li><strong>core</strong></li>
+                </ol>
+                <ul>
+                  <li>Contains the default Drupal templates</li>
+                </ul>
+                <ol start="2">
+                  <li><strong>bootstrap</strong></li>
+                </ol>
+                <ul>
+                  <li>Contains the default Bootstrap templates</li>
+                  <li>Implements Bootstrap logic</li>
+                </ul>
+                <ol start="3">
+                  <li><strong>wimbase</strong></li>
+                </ol>
+                <ul>
+                  <li>Overrides both core and Bootstrap templates</li>
+                  <li>Contains WIM theme logic</li>
+                  <li>Contains necessary Bootstrap styles</li>
+                  <li>Contains a sub theme STARTERKIT</li>
+                </ul>
+                <ol start="4">
+                  <li><strong>wim (enabled and default, but optional)</strong></li>
+                </ol>
+                <ul>
+                  <li>Contains WIM default styles</li>
+                  <li>Contains gulp taskrunner</li>
+                  <li>Contains styleguide</li>
+                </ul>
+                <h3><a id="IMPORTANT_Make_sure_WIM_stays_updatable_26"></a>IMPORTANT! Make sure WIM stays updatable</h3>
+                <p>It is important to not change the scss files (except for some) provided in the wim sub theme itself. These files can be updated in future releases and start conflicting with the work you’ve done.</p>
+                <h3><a id="Approach_1_Change_some_color_and_font_settings_29"></a>Approach 1: Change some color and font settings</h3>
+                <p>Use the wim default theme and make some small changes before recompiling the styles. Follow these steps to make wim align with your brand design:</p>
+                <ol>
+                  <li>Navigate to the root of the wim theme</li>
+                </ol>
+                <pre>$ cd profiles/wim/themes/wim/</pre>
+                <ol start="2">
+                  <li>Install packages</li>
+                </ol>
+                <pre>$ npm install</pre>
+                <ol start="3">
+                  <li>Run gulp watch task that will compile your css</li>
+                </ol>
+                <pre>$ gulp</pre>
+                <ol start="4">
+                  <li>Change variables in _theme.scss</li>
+                </ol>
+                <pre>$ open components/_theme.scss</pre>
+                <p><strong>Notes:</strong> New WIM releases will come with a newly compiled CSS file. You need to recompile the CSS with gulp after merging the latest code, so your custom variables are implemented again.</p>
+                <h3><a id="Approach_2_Create_a_custom_theme_with_the_WIM_starterkit_51"></a>Approach 2: Create a custom theme with the WIM starterkit</h3>
+                <p>Use the starterkit provided in the wimbase theme to create a highly customized sub theme.</p>
+                <ol>
+                  <li>Navigate to the root of the wim theme</li>
+                </ol>
+                <pre>$ cd profiles/wim/themes/wimbase/</pre>
+                <ol start="2">
+                  <li>Copy and rename the starterkit to the themes folder of your installation</li>
+                </ol>
+                <pre>$ cp -R STARTERKIT ../../../../sites/all/themes/YOURTHEME</pre>
+                <ol start="3">
+                  <li>navigate to your theme and rename .info file</li>
+                </ol>
+                <pre>$ cd ../../../../sites/all/themes/YOURTHEME
+$ mv STARTERKIT.info.txt YOURTHEME.info</pre>
+                <ol start="4">
+                  <li>Rename value in template.php</li>
+                </ol>
+                <pre>open template.php (change the STARTERKIT value)</pre>
+                <ol start="5">
+                  <li>Enable YOURTHEME and set as default</li>
+                </ol>
+                <pre>Go to /admin/appearance/ and set YOURTHEME as your default theme</pre>
+                <p><strong>Notes:</strong> We advice to follow the atomic design principles while expanding your scss base. For more information visit: <a href="http://bradfrost.com/blog/post/atomic-web-design/">http://bradfrost.com/blog/post/atomic-web-design/</a></p>
               </section>
             </div>
           </section>
