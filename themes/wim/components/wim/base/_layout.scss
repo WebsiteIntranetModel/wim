@@ -2,6 +2,11 @@ body {
   background-color: $body-bg;
   font-family: $font-family-sans-serif;
 }
+
+#skip-link a {
+  color: black;
+}
+
 .main-wrapper {
   padding: 0;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);

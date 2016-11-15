@@ -21,6 +21,14 @@
         margin-top: 0;
       }
     }
+
+    a {
+      color: #00465c;
+      text-decoration: underline;
+      &:hover {
+        text-decoration: none;
+      }
+    }
   }
   .menu {
     padding-left: 2.8em;
@@ -31,6 +39,7 @@
       a {
         padding: 0;
         display: inline;
+        color: $brand-primary;
         &:before {
           display: none;
         }
