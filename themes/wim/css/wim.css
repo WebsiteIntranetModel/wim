@@ -3114,6 +3114,14 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   margin: -15px 0 0;
 }
 
+.breadcrumb a {
+  text-decoration: underline;
+}
+
+.breadcrumb a:hover {
+  text-decoration: none;
+}
+
 .breadcrumb .active {
   color: #333333;
 }
