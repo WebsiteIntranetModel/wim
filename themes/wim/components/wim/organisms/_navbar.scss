@@ -71,6 +71,8 @@
 .navbar-default .navbar-nav > li > a {
   font-size: 16px;
   font-family: $font-family-serif;
+  color: white;
+
   @include MQ($screen-sm) {
     font-size: 14px;
     padding: 12px 10px;
