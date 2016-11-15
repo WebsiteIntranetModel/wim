@@ -5,6 +5,16 @@
 
   .input-group {
     display: block;
+    padding: 5px;
+    border-radius: 4px;
+    background-color: $nav-tabs-border-color;
+
+    &:after {
+      content: '';
+      clear: both;
+      display: block;
+    }
+
     @include MQ($screen-sm) {
       display: table;
     }
@@ -12,6 +22,8 @@
       width: 75%;
       float: left;
       box-sizing: border-box;
+      border: none;
+
       @include MQ($screen-sm) {
         float: none;
         width: 100%;
@@ -26,6 +38,8 @@
       }
       .btn {
         width: 100%;
+        line-height: 1.6;
+        border: 0;
       }
     }
   }

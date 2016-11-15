@@ -3613,12 +3613,22 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
 
 .block-search .input-group {
   display: block;
+  padding: 5px;
+  border-radius: 4px;
+  background-color: #ddd;
+}
+
+.block-search .input-group:after {
+  content: '';
+  clear: both;
+  display: block;
 }
 
 .block-search .input-group .form-text {
   width: 75%;
   float: left;
   box-sizing: border-box;
+  border: none;
 }
 
 .block-search .input-group .input-group-btn {
@@ -3628,6 +3638,8 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
 
 .block-search .input-group .input-group-btn .btn {
   width: 100%;
+  line-height: 1.6;
+  border: 0;
 }
 
 .block-search .form-group {
@@ -4577,7 +4589,6 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   .main-container .menu-top-tasks .menu-wrapper .menu .dropdown:hover .dropdown-toggle{
     background-color: #0080a8;
     color: white;
-    text-decoration: underline;
   }
   .main-container .menu-top-tasks .menu-wrapper .menu .dropdown:hover .dropdown-toggle:after{
     display: block !important;
