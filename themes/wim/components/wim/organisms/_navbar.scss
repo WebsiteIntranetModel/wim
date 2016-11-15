@@ -69,10 +69,16 @@
 }
 
 .navbar-default .navbar-nav > li > a {
-  color: white;
-  text-decoration: none;
+  font-size: 16px;
   font-family: $font-family-serif;
-  font-size: 1.2em;
+  @include MQ($screen-sm) {
+    font-size: 14px;
+    padding: 12px 10px;
+  }
+  @include MQ($screen-lg) {
+    font-size: 16px;
+    padding: 15px 10px;
+  }
 }
 
 .navbar-default .navbar-nav > li > a:hover,

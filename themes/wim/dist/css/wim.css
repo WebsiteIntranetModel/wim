@@ -3117,6 +3117,7 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   background: white;
   margin: -15px 0 0;
   color: #666;
+  font-size: 11px;
 }
 
 .breadcrumb .active {
@@ -3572,10 +3573,8 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
 }
 
 .navbar-default .navbar-nav > li > a {
-  color: white;
-  text-decoration: none;
+  font-size: 16px;
   font-family: "Roboto Slab", Georgia, "Times New Roman", Times, serif;
-  font-size: 1.2em;
 }
 
 .navbar-default .navbar-nav > li > a:hover,
@@ -4184,6 +4183,34 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   margin-right: 3px;
 }
 
+div[class*=region-sidebar] section[id*=main-menu-submenu] .block-title {
+  margin-bottom: 0;
+}
+
+div[class*=region-sidebar] div[class*=main-menu-submenu] ul > li {
+  background-color: #eeeeee;
+  border-top: 1px solid #fff;
+  margin-bottom: 0;
+}
+
+div[class*=region-sidebar] div[class*=main-menu-submenu] ul > li a:before {
+  margin-right: 3px;
+}
+
+div[class*=region-sidebar] div[class*=main-menu-submenu] ul > li ul > li {
+  background-color: #f4f4f4;
+}
+
+div[class*=region-sidebar] div[class*=main-menu-submenu] ul > li ul > li a {
+  padding-left: 30px;
+}
+
+div[class*=region-sidebar] div[class*=main-menu-submenu] ul a.active,
+div[class*=region-sidebar] div[class*=main-menu-submenu] ul a.active-trail {
+  color: #000 !important;
+  font-weight: 700;
+}
+
 .main-container .menu-top-tasks .menu-wrapper {
   border: 1px solid #ddd;
   position: relative;
@@ -4582,6 +4609,10 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   .navbar-default .navbar-collapse{
     border-top: 4px solid #ddd;
   }
+  .navbar-default .navbar-nav > li > a{
+    font-size: 14px;
+    padding: 12px 10px;
+  }
   .navbar-default .navbar-nav > li:hover .dropdown-menu{
     display: block;
   }
@@ -4680,6 +4711,10 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   }
   .navbar.container, body.in-maintenance .navbar#page{
     max-width: 1170px;
+  }
+  .navbar-default .navbar-nav > li > a{
+    font-size: 16px;
+    padding: 15px 10px;
   }
   .slick-slider .slick-arrow{
     top: 20px;
