@@ -3070,12 +3070,12 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
 }
 
 .form-text {
-  border: 1px solid #777777;
+  border: 1px solid #ddd;
   box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .form-textarea {
-  border: 1px solid #777777;
+  border: 1px solid #ddd;
   box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -3180,6 +3180,10 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   margin-bottom: 10px;
   font-size: 130%;
   margin-top: 0;
+}
+
+.block .block-title a {
+  color: #222222;
 }
 
 .block .view {
