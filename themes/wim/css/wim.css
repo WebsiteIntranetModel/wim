@@ -3471,7 +3471,6 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   padding: 0;
   background: none;
   border-top: none;
-  color: #fe229b;
 }
 
 .footer .block h3:first-of-type,
