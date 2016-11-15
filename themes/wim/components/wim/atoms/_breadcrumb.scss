@@ -1,13 +1,8 @@
 .breadcrumb {
   background: white;
   margin: -15px 0 0;
-  a {
-    text-decoration: underline;
+  color: $gray-light;
 
-    &:hover {
-      text-decoration: none;
-    }
-  }
   .active {
     color: $gray-dark;
   }

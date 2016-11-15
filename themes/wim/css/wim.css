@@ -3112,14 +3112,7 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
 .breadcrumb {
   background: white;
   margin: -15px 0 0;
-}
-
-.breadcrumb a {
-  text-decoration: underline;
-}
-
-.breadcrumb a:hover {
-  text-decoration: none;
+  color: #777777;
 }
 
 .breadcrumb .active {
