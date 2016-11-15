@@ -17,7 +17,7 @@
 }
 
 body {
-  background-color: #d0d0d0;
+  background-color: #F0F0F0;
   font-family: "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
@@ -3112,6 +3112,7 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
 .breadcrumb {
   background: white;
   margin: -15px 0 0;
+  color: #666;
 }
 
 .breadcrumb .active {
@@ -3470,7 +3471,6 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   padding: 0;
   background: none;
   border-top: none;
-  color: #fe229b;
 }
 
 .footer .block h3:first-of-type,
