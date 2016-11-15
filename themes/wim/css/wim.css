@@ -17,7 +17,7 @@
 }
 
 body {
-  background-color: #d0d0d0;
+  background-color: #F0F0F0;
   font-family: "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
@@ -3112,7 +3112,7 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
 .breadcrumb {
   background: white;
   margin: -15px 0 0;
-  color: #777777;
+  color: #666;
 }
 
 .breadcrumb .active {
