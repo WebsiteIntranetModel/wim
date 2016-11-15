@@ -4221,6 +4221,11 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   position: relative;
 }
 
+.main-container .menu-top-tasks .menu-wrapper .menu .dropdown .dropdown-toggle:focus {
+  background-color: #0080a8;
+  color: white;
+}
+
 .main-container .menu-top-tasks .menu-wrapper .menu .dropdown .dropdown-toggle:after {
   border-color: transparent transparent transparent #0080a8;
   -o-border-image: none;
