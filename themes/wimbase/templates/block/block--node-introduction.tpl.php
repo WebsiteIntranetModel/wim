@@ -46,7 +46,7 @@
  * @ingroup templates
  */
 ?>
-<section id="<?php print $block_html_id; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
+<section aria-label="introduction" id="<?php print $block_html_id; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
   <?php print render($title_prefix); ?>
   <?php if ($title): ?>
     <?php if ($title_url): ?>
@@ -58,5 +58,4 @@
   <?php print render($title_suffix); ?>
 
   <?php print $content ?>
-
 </section>
