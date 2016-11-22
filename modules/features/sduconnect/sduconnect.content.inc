@@ -80,6 +80,10 @@ function sduconnect_set_pdc_content(DOMXPath $xpath, &$node, $private = FALSE) {
       $node->field_related_product[LANGUAGE_NONE][] = array('target_id' => SDUCONNECT_PRODUCT . '-' . trim($item));
     }
   }
+  elseif (empty($items) && !empty($node->field_related_product)) {
+    unset($node->field_related_product);
+    $node->field_related_product = array();
+  }
 
   // Related FAQ items.
   $items = sduconnect_nodelist_to_array($xpath->query('//m:page/m:product/m:vac_relaties/m:vac_relatie/@base_id'));
@@ -88,6 +92,10 @@ function sduconnect_set_pdc_content(DOMXPath $xpath, &$node, $private = FALSE) {
     foreach ($items as $item) {
       $node->field_related_faq[LANGUAGE_NONE][] = array('target_id' => SDUCONNECT_FAQ . '-' . trim($item));
     }
+  }
+  elseif (empty($items) && !empty($node->field_related_faq)) {
+    unset($node->field_related_faq);
+    $node->field_related_faq = array();
   }
 
   $default_content_labels = array(
@@ -165,6 +173,10 @@ function sduconnect_set_pdc_content(DOMXPath $xpath, &$node, $private = FALSE) {
   if ($items) {
     $node->field_product_more_information = array(LANGUAGE_NONE => $items);
   }
+  elseif (empty($items) && !empty($node->field_product_more_information)) {
+    unset($node->field_product_more_information);
+    $node->field_product_more_information = array();
+  }
 
   // Related laws.
   $names = sduconnect_nodelist_to_array($xpath->query('//m:page/m:product/m:law_rules/m:law_rule/m:law_rule_name'));
@@ -179,6 +191,10 @@ function sduconnect_set_pdc_content(DOMXPath $xpath, &$node, $private = FALSE) {
   if ($items) {
     $node->field_product_related_laws = array(LANGUAGE_NONE => $items);
   }
+  elseif (empty($items) && !empty($node->field_product_related_laws)) {
+    unset($node->field_product_related_laws);
+    $node->field_product_related_laws = array();
+  }
 
   // Forms.
   $names = sduconnect_nodelist_to_array($xpath->query('//m:page/m:product/m:formulieren_extern/m:formulier/m:label'));
@@ -192,6 +208,10 @@ function sduconnect_set_pdc_content(DOMXPath $xpath, &$node, $private = FALSE) {
   }
   if ($items) {
     $node->field_product_forms = array(LANGUAGE_NONE => $items);
+  }
+  elseif (empty($items) && !empty($node->field_product_forms)) {
+    unset($node->field_product_forms);
+    $node->field_product_forms = array();
   }
 
   // Helper array to map xml tags to fields in node.
@@ -210,10 +230,10 @@ function sduconnect_set_pdc_content(DOMXPath $xpath, &$node, $private = FALSE) {
   );
 
   // Here we set mapped fields.
-  foreach ($mapping as $query => $filed_name) {
+  foreach ($mapping as $query => $field_name) {
     $field = sduconnect_nodelist_to_string($xpath->query($query));
     if (strlen($field) > 0) {
-      $node->$filed_name = array(
+      $node->$field_name = array(
         LANGUAGE_NONE => array(
           array(
             'value' => $field,
@@ -221,6 +241,10 @@ function sduconnect_set_pdc_content(DOMXPath $xpath, &$node, $private = FALSE) {
           ),
         ),
       );
+    }
+    elseif (strlen($field) == 0 && !empty($node->$field_name)) {
+      unset($node->$field_name);
+      $node->$field_name = array();
     }
   }
 
@@ -242,6 +266,10 @@ function sduconnect_set_pdc_content(DOMXPath $xpath, &$node, $private = FALSE) {
         ),
       ),
     );
+  }
+  elseif (empty($items) && !empty($node->field_product_request)) {
+    unset($node->field_product_request);
+    $node->field_product_request = array();
   }
 
   // Tags.

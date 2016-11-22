@@ -114,9 +114,18 @@ function wim_update_7003(&$sandbox) {
 }
 
 /**
- * Enable wimbase theme.
+ * Enable the i18n modules to make fields translatable.
  */
 function wim_update_7004(&$sandbox) {
+  if (!module_exists('i18n')) {
+    module_enable(array('i18n', 'i18n_field'));
+  }
+}
+
+/**
+ * Enable wimbase theme.
+ */
+function wim_update_7005(&$sandbox) {
   $theme_name = 'wimbase';
   $themes = list_themes();
 

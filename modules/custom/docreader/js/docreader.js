@@ -14,7 +14,7 @@
       var buttonText = docReaderSettings.button_text;
 
       $fileLinks.once('docreader').each(function (index, link) {
-        var match_extension_regexp = new RegExp(/\.([a-z0-9]+)$/, 'i');
+        var match_extension_regexp = new RegExp(/\.([a-zA-Z0-9]+)$/);
         var extension = null;
         if (match_extension_regexp.test($(link).attr("href")) === true) {
           extension = $(link).attr("href").match(match_extension_regexp)[1];
