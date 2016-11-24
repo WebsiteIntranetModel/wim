@@ -121,3 +121,15 @@ function wim_update_7004(&$sandbox) {
     module_enable(array('i18n', 'i18n_field'));
   }
 }
+
+/**
+ * Enable wimbase theme.
+ */
+function wim_update_7005(&$sandbox) {
+  $theme_name = 'wimbase';
+  $themes = list_themes();
+
+  if (isset($themes[$theme_name]) && $themes[$theme_name]->status == 0) {
+    theme_enable(array($theme_name));
+  }
+}

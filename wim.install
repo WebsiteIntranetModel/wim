@@ -76,8 +76,9 @@ function wim_install() {
 function _wim_set_up_theme() {
   $admin_theme = 'adminimal';
   $default_theme = 'wim';
+  $base_theme = 'wimbase';
 
-  theme_enable(array($default_theme, $admin_theme));
+  theme_enable(array($default_theme, $admin_theme, $base_theme));
   variable_set('theme_default', $default_theme);
   variable_set('admin_theme', $admin_theme);
   variable_set('node_admin_theme', '1');
