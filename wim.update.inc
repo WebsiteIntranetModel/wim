@@ -112,3 +112,24 @@ function wim_update_7003(&$sandbox) {
   $role = user_role_load_by_name('administrator');
   user_role_grant_permissions($role->rid, array('change own role'));
 }
+
+/**
+ * Enable the i18n modules to make fields translatable.
+ */
+function wim_update_7004(&$sandbox) {
+  if (!module_exists('i18n')) {
+    module_enable(array('i18n', 'i18n_field'));
+  }
+}
+
+/**
+ * Enable wimbase theme.
+ */
+function wim_update_7005(&$sandbox) {
+  $theme_name = 'wimbase';
+  $themes = list_themes();
+
+  if (isset($themes[$theme_name]) && $themes[$theme_name]->status == 0) {
+    theme_enable(array($theme_name));
+  }
+}

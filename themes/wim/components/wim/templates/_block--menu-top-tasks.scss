@@ -47,7 +47,7 @@
               .dropdown-toggle {
                 background-color: $brand-primary;
                 color: white;
-                text-decoration: underline;
+
                 &:after {
                   display: block !important;
                 }
@@ -67,6 +67,8 @@
             position: relative;
             &:focus {
               @extend %outline;
+              background-color: $brand-primary;
+              color: white;
             }
             &:after {
               border-color: transparent transparent transparent $brand-primary;

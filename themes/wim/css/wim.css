@@ -17,8 +17,12 @@
 }
 
 body {
-  background-color: #d0d0d0;
+  background-color: #F0F0F0;
   font-family: "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+#skip-link a {
+  color: black;
 }
 
 .main-wrapper {
@@ -3066,12 +3070,12 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
 }
 
 .form-text {
-  border: 1px solid #777777;
+  border: 1px solid #ddd;
   box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .form-textarea {
-  border: 1px solid #777777;
+  border: 1px solid #ddd;
   box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -3112,6 +3116,8 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
 .breadcrumb {
   background: white;
   margin: -15px 0 0;
+  color: #666;
+  font-size: 11px;
 }
 
 .breadcrumb .active {
@@ -3153,12 +3159,12 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
 .nav-tabs > li > a:hover {
   color: white;
   border-color: #0080a8 #0080a8 #ddd;
-  background-color: #0080a8;
+  background-color: #00465c;
 }
 
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
   color: white;
-  background-color: #0080a8;
+  background-color: #00465c;
   border: 1px solid #ddd;
   border-bottom-color: transparent;
   cursor: default;
@@ -3175,6 +3181,10 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   margin-bottom: 10px;
   font-size: 130%;
   margin-top: 0;
+}
+
+.block .block-title a {
+  color: #222222;
 }
 
 .block .view {
@@ -3470,12 +3480,20 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   padding: 0;
   background: none;
   border-top: none;
-  color: #fe229b;
 }
 
 .footer .block h3:first-of-type,
 .footer .block .block-title:first-of-type {
   margin-top: 0;
+}
+
+.footer .block a {
+  color: #00465c;
+  text-decoration: underline;
+}
+
+.footer .block a:hover {
+  text-decoration: none;
 }
 
 .footer .menu {
@@ -3491,6 +3509,7 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
 .footer .menu li a {
   padding: 0;
   display: inline;
+  color: #0080a8;
 }
 
 .footer .menu li a:before {
@@ -3554,12 +3573,16 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
 }
 
 .navbar-default .navbar-nav > li > a {
+  font-size: 16px;
+  font-family: "Roboto Slab", Georgia, "Times New Roman", Times, serif;
   color: white;
-  text-decoration: none;
 }
 
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus,
+.navbar-default .navbar-nav > .active-trail > a,
+.navbar-default .navbar-nav > .active-trail > a:hover,
+.navbar-default .navbar-nav > .active-trail > a:focus,
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
@@ -3610,12 +3633,22 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
 
 .block-search .input-group {
   display: block;
+  padding: 5px;
+  border-radius: 4px;
+  background-color: #ddd;
+}
+
+.block-search .input-group:after {
+  content: '';
+  clear: both;
+  display: block;
 }
 
 .block-search .input-group .form-text {
   width: 75%;
   float: left;
   box-sizing: border-box;
+  border: none;
 }
 
 .block-search .input-group .input-group-btn {
@@ -3625,6 +3658,8 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
 
 .block-search .input-group .input-group-btn .btn {
   width: 100%;
+  line-height: 1.6;
+  border: 0;
 }
 
 .block-search .form-group {
@@ -4149,6 +4184,34 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   margin-right: 3px;
 }
 
+div[class*=region-sidebar] section[id*=main-menu-submenu] .block-title {
+  margin-bottom: 0;
+}
+
+div[class*=region-sidebar] div[class*=main-menu-submenu] ul > li {
+  background-color: #eeeeee;
+  border-top: 1px solid #fff;
+  margin-bottom: 0;
+}
+
+div[class*=region-sidebar] div[class*=main-menu-submenu] ul > li a:before {
+  margin-right: 3px;
+}
+
+div[class*=region-sidebar] div[class*=main-menu-submenu] ul > li ul > li {
+  background-color: #f4f4f4;
+}
+
+div[class*=region-sidebar] div[class*=main-menu-submenu] ul > li ul > li a {
+  padding-left: 30px;
+}
+
+div[class*=region-sidebar] div[class*=main-menu-submenu] ul a.active,
+div[class*=region-sidebar] div[class*=main-menu-submenu] ul a.active-trail {
+  color: #000 !important;
+  font-weight: 700;
+}
+
 .main-container .menu-top-tasks .menu-wrapper {
   border: 1px solid #ddd;
   position: relative;
@@ -4188,6 +4251,11 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   text-decoration: none;
   display: block;
   position: relative;
+}
+
+.main-container .menu-top-tasks .menu-wrapper .menu .dropdown .dropdown-toggle:focus {
+  background-color: #0080a8;
+  color: white;
 }
 
 .main-container .menu-top-tasks .menu-wrapper .menu .dropdown .dropdown-toggle:after {
@@ -4492,6 +4560,7 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
     width: 140px;
   }
   .node-teaser .teaser-image .field-type-image{
+    margin-top: 0;
     margin-bottom: 0;
   }
   .node-teaser.node-agenda .fields-wrapper{
@@ -4539,7 +4608,11 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
     margin: 0;
   }
   .navbar-default .navbar-collapse{
-    border-top: 4px solid #eeeeee;
+    border-top: 4px solid #ddd;
+  }
+  .navbar-default .navbar-nav > li > a{
+    font-size: 14px;
+    padding: 12px 10px;
   }
   .navbar-default .navbar-nav > li:hover .dropdown-menu{
     display: block;
@@ -4573,7 +4646,6 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   .main-container .menu-top-tasks .menu-wrapper .menu .dropdown:hover .dropdown-toggle{
     background-color: #0080a8;
     color: white;
-    text-decoration: underline;
   }
   .main-container .menu-top-tasks .menu-wrapper .menu .dropdown:hover .dropdown-toggle:after{
     display: block !important;
@@ -4623,6 +4695,9 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   }
   .navbar-default .navbar-nav > li > a:hover,
   .navbar-default .navbar-nav > li > a:focus,
+  .navbar-default .navbar-nav > .active-trail > a,
+  .navbar-default .navbar-nav > .active-trail > a:hover,
+  .navbar-default .navbar-nav > .active-trail > a:focus,
   .navbar-default .navbar-nav > .active > a,
   .navbar-default .navbar-nav > .active > a:hover,
   .navbar-default .navbar-nav > .active > a:focus{
@@ -4637,6 +4712,10 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   }
   .navbar.container, body.in-maintenance .navbar#page{
     max-width: 1170px;
+  }
+  .navbar-default .navbar-nav > li > a{
+    font-size: 16px;
+    padding: 15px 10px;
   }
   .slick-slider .slick-arrow{
     top: 20px;

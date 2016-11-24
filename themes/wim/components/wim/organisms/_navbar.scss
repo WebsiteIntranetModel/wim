@@ -64,28 +64,40 @@
   margin-top: -16px;
   background: $brand-primary;
   @include MQ($screen-sm) {
-    border-top: 4px solid $gray-lighter;
+    border-top: 4px solid $nav-tabs-border-color;
   }
 }
 
 .navbar-default .navbar-nav > li > a {
+  font-size: 16px;
+  font-family: $font-family-serif;
   color: white;
-  text-decoration: none;
+
+  @include MQ($screen-sm) {
+    font-size: 14px;
+    padding: 12px 10px;
+  }
+  @include MQ($screen-lg) {
+    font-size: 16px;
+    padding: 15px 10px;
+  }
 }
 
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus,
+.navbar-default .navbar-nav > .active-trail > a,
+.navbar-default .navbar-nav > .active-trail > a:hover,
+.navbar-default .navbar-nav > .active-trail > a:focus,
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
   color: white;
-  background: $link-hover-color;
+  background: $nav-tabs-active-link-hover-bg;
 
   @include MQ($screen-md) {
-    border-top: 4px solid #ddd;
+    border-top: 4px solid $nav-tabs-active-link-hover-border-color;
     margin-top: -4px;
   }
-
 }
 
 .navbar-default .navbar-nav > li {

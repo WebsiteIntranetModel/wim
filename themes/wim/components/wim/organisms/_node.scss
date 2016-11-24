@@ -69,6 +69,7 @@
     }
     .field-type-image {
       @include MQ($screen-xs) {
+        margin-top: 0;
         margin-bottom: 0;
       }
       img {

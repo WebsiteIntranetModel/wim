@@ -1,0 +1,30 @@
+div[class*=region-sidebar] {
+  section[id*=main-menu-submenu] {
+    .block-title {
+      margin-bottom: 0;
+    }
+  }
+  div[class*=main-menu-submenu] {
+    ul > li {
+      background-color: $gray-lighter;
+      border-top: 1px solid #fff;
+      margin-bottom: 0;
+      a {
+        &:before {
+          margin-right: 3px;
+        }
+      }
+      ul > li {
+        background-color: lighten($gray-base, 95.5%);
+        a {
+          padding-left: 30px;
+        }
+      }
+    }
+    ul a.active,
+    ul a.active-trail {
+      color: #000 !important;
+      font-weight: 700;
+    }
+  }
+}

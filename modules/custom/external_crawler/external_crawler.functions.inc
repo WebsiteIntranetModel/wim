@@ -245,3 +245,24 @@ function _external_crawler_update_site_date(stdClass $site) {
   $site->last_crawl = time();
   external_crawler_save_site(array(), $site);
 }
+
+/**
+ * Clear text from specific characters.
+ */
+function _external_crawler_clear_body($body) {
+  $body = strip_tags($body);
+  $body = preg_replace("/\r|\n/", " ", $body);
+  $special_characters = array(
+    ']>',
+    '[',
+    '<!--',
+    '-->',
+    '<!',
+    ']&gt;',
+    '  ',
+  );
+
+  $body = str_replace($special_characters, ' ', $body);
+
+  return $body;
+}
