@@ -73,7 +73,7 @@ projects[xmlsitemap] = 2.3
 
 ; Themes
 projects[adminimal_theme] = 1.24
-projects[bootstrap] = 3.6
+projects[bootstrap] = 3.8
 
 ; Patches
 ; Features
