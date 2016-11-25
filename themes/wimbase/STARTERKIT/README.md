@@ -60,10 +60,10 @@ $ npm install
 ```sh
 $ gulp import
 ```
-8. Create and edit file _variables.scss for your YOURTHEME
+8. Edit file _variables.scss for your YOURTHEME
 ```sh
 & cd components/
-$ create _variables.scss
+$ open _variables.scss (change value of variables if you need )
 ```
 9. Run gulp watch task that will compile your css
 ```sh
