@@ -27,29 +27,8 @@ We set up the current theme architecture to provide maximal flexibility and sust
 ### IMPORTANT! Make sure WIM stays updatable
 It is important to not change the scss files (except for some) provided in the wim sub theme itself. These files can be updated in future releases and start conflicting with the work you’ve done.
 
-### Approach 1: Change some color and font settings
-Use the wim default theme and make some small changes before recompiling the styles. Follow these steps to make wim align with your brand design:
 
-1. Navigate to the root of the wim theme
-```sh
-$ cd profiles/wim/themes/wim/
-```
-2. Install packages
-```sh
-$ npm install
-```
-5. Run gulp watch task that will compile your css
-```sh
-$ gulp
-```
-7. Change variables in _theme.scss
-```sh
-$ open components/_theme.scss
-```
-
-**Notes:** New WIM releases will come with a newly compiled CSS file. You need to recompile the CSS with gulp after merging the latest code, so your custom variables are implemented again.
-
-### Approach 2: Create a custom theme with the WIM starterkit
+### Approach: Create a custom theme with the WIM starterkit
 Use the starterkit provided in the wimbase theme to create a highly customized sub theme.
 
 1. Navigate to the root of the wim theme
@@ -58,11 +37,11 @@ $ cd profiles/wim/themes/wimbase/
 ```
 2. Copy and rename the starterkit to the themes folder of your installation
 ```sh
-$ cp -R STARTERKIT ../../../../sites/all/themes/YOURTHEME
+$ cp -R STARTERKIT ../../../../sites/all/themes/custom/YOURTHEME
 ```
 3. navigate to your theme and rename .info file
 ```sh
-$ cd ../../../../sites/all/themes/YOURTHEME
+$ cd ../../../../sites/all/themes/custom/YOURTHEME
 $ mv STARTERKIT.info.txt YOURTHEME.info
 ```
 4. Rename value in template.php
@@ -72,6 +51,23 @@ open template.php (change the STARTERKIT value)
 5. Enable YOURTHEME and set as default
 ```
 Go to /admin/appearance/ and set YOURTHEME as your default theme
+```
+6. Install packages
+```sh
+$ npm install
+```
+7. Run gulp import task that will import sass and fonts files from profile WIM theme
+```sh
+$ gulp import
+```
+8. Edit file _variables.scss for your YOURTHEME
+```sh
+& cd components/
+$ open _variables.scss (change value of variables if you need )
+```
+9. Run gulp watch task that will compile your css
+```sh
+$ gulp
 ```
 
 **Notes:** We advice to follow the atomic design principles while expanding your scss base. For more information visit: http://bradfrost.com/blog/post/atomic-web-design/
