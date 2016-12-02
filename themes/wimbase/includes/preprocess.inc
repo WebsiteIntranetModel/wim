@@ -276,7 +276,7 @@ function wimbase_preprocess_search_result(&$variables) {
 /**
  * Implements hook_preprocess_views_exposed_form().
  */
-function wimbase_news_preprocess_views_exposed_form(&$vars) {
+function wimbase_preprocess_views_exposed_form(&$vars) {
   $form = $vars['form'];
 
   // Fix date views issue with same ids for multiple elements
@@ -293,9 +293,9 @@ function wimbase_news_preprocess_views_exposed_form(&$vars) {
         $prefix = $value['#prefix'];
       }
       else {
-        $adjusted_prefix = preg_replace('/date-value-value-wrapper/', "date-value-value-wrapper-{$counter}", $value['#prefix']);
-        $adjusted_prefix = preg_replace('/date-value-value-inside-wrapper/', "date-value-value-inside-wrapper-{$counter}", $adjusted_prefix);
-        $vars['form'][$filter['value']]['value']['#prefix'] = $adjusted_prefix;
+        $adjusted_widget = preg_replace('/date-value-value-wrapper/', "date-value-value-wrapper-{$counter}", $vars['widgets'][$key]->widget);
+        $adjusted_widget = preg_replace('/date-value-value-inside-wrapper/', "date-value-value-inside-wrapper-{$counter}", $adjusted_widget);
+        $vars['widgets'][$key]->widget = $adjusted_widget;
 
         $counter++;
       }
