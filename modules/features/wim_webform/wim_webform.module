@@ -5,3 +5,27 @@
  */
 
 include_once 'wim_webform.features.inc';
+
+/*
+ * Implements hook_form_FORM_ID_alter()
+ */
+function wim_webform_form_webform_client_form_alter(&$form, $form_state) {
+
+  $form_sets = array(
+    'radios',
+    'checkboxes',
+    'date'
+  );
+
+  // Wrap elements in fieldsets for accessibility.
+  foreach ($form['submitted'] as &$element) {
+    if (is_array($element) && in_array($element['#type'], $form_sets)) {
+
+      $element['#prefix'] = '<fieldset class="webform-container">';
+      $element['#prefix'] .= '<legend class="webform-container-legend">' . $element['#title'] . '</legend>';
+      $element['#suffix'] = '</fieldset>';
+
+      unset($element['#title']);
+    }
+  }
+}
