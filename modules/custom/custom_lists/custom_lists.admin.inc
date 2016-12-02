@@ -604,6 +604,7 @@ function _custom_lists_get_terms() {
 /**
  * Helper function to filter out view modes from the list
  * @param array $view_modes view modes, as returned from entity_get_info()
+ * @return array Filtered list of view modes
  */
 function _custom_lists_filter_view_modes($view_modes) {
 
