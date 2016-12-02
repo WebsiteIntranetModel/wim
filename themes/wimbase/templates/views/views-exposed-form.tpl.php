@@ -31,9 +31,15 @@
     <?php foreach ($widgets as $id => $widget): ?>
       <div id="<?php print $widget->id; ?>-wrapper" class="views-exposed-widget views-widget-<?php print $id; ?>">
         <?php if (!empty($widget->label)): ?>
-          <p class="widget-label">
-            <?php print $widget->label; ?>
-          </p>
+        	<?php if (!empty($widget->remove_label)): ?>
+            <p class="widget-label">
+              <?php print $widget->label; ?>
+            </p>
+          <?php else: ?>
+            <label for="<?php print $widget->id; ?>">
+              <?php print $widget->label; ?>
+            </label>
+          <?php endif; ?>
         <?php endif; ?>
         <?php if (!empty($widget->operator)): ?>
           <div class="views-operator">
