@@ -236,7 +236,7 @@ function custom_lists_list_form($form, &$form_state, $list_key = NULL) {
   $modes = array('titles' => t('Titles as link'));
   $entity_info = entity_get_info('node');
 
-  // Filter out view modes like rss and search result
+  // Filter out view modes like rss and search result.
   $view_modes = _custom_lists_filter_view_modes($entity_info['view modes']);
   foreach ($view_modes as $view_mode => $data) {
     $modes[$view_mode] = $data['label'];
@@ -602,13 +602,16 @@ function _custom_lists_get_terms() {
 }
 
 /**
- * Helper function to filter out view modes from the list
- * @param array $view_modes view modes, as returned from entity_get_info()
+ * Helper function to filter out view modes from the list.
+ *
+ * @param array $view_modes
+ *   view modes, as returned from entity_get_info()
+ *
  * @return array Filtered list of view modes
  */
 function _custom_lists_filter_view_modes($view_modes) {
 
-  // Define view modes to remove from the list rather then the ones to keep
+  // Define view modes to remove from the list rather then the ones to keep.
   $filter_list = array(
     'rss',
     'search_index',
@@ -617,7 +620,7 @@ function _custom_lists_filter_view_modes($view_modes) {
     'felix',
     'token',
     'short',
-    'introduction'
+    'introduction',
   );
 
   foreach ($view_modes as $key => $view_mode) {
