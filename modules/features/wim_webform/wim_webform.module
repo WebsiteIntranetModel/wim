@@ -4,9 +4,10 @@
  * @file
  * Code for the WIM Webform feature.
  */
+
 include_once 'wim_webform.features.inc';
 
-/*
+/**
  * Implements hook_form_FORM_ID_alter()
  */
 function wim_webform_form_webform_client_form_alter(&$form, $form_state) {
@@ -14,13 +15,13 @@ function wim_webform_form_webform_client_form_alter(&$form, $form_state) {
   $form_sets = array(
     'radios',
     'checkboxes',
-    'date'
+    'date',
   );
 
   foreach ($form['submitted'] as &$element) {
     if (is_array($element) && in_array($element['#type'], $form_sets) && $element['#title_display'] !== 'none') {
 
-      // Check if element is required and add * to fieldset later
+      // Check if element is required and add * to fieldset later.
       $required = '';
       if ($element['#required'] == 1) {
         $required = [
@@ -46,7 +47,7 @@ function wim_webform_form_webform_client_form_alter(&$form, $form_state) {
     elseif ($element['#title_display'] == 'none') {
 
       // Wrapping in fieldsets shoudn't happen if component doesn't have a title,
-      // but incorrect labels should still be removed
+      // but incorrect labels should still be removed.
       unset($element['#title']);
     }
   }
