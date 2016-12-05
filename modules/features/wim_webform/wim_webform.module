@@ -24,7 +24,7 @@ function wim_webform_form_webform_client_form_alter(&$form, $form_state) {
       // Check if element is required and add * to fieldset later.
       $required = '';
       if ($element['#required'] == 1) {
-        $required = [
+        $required = array(
           '#theme' => 'html_tag',
           '#tag' => 'span',
           '#value' => '*',
@@ -32,7 +32,7 @@ function wim_webform_form_webform_client_form_alter(&$form, $form_state) {
             'class' => 'form-required',
             'title' => t('This field is required.'),
           ),
-        ];
+        );
 
         $required = '&nbsp' . drupal_render($required);
       }
