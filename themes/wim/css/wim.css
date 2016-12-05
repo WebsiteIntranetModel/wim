@@ -1,11 +1,4 @@
 @charset "UTF-8";
-/*
-* Modify variables used in the wim sub theme here. The value set in this file will be used when compiling the scss.
-* Uncomment a variable of you likings and change the value. Make sure to recompile the CSS!
-*
-* It is also possible to @import new font faces here. Just import the various source files and set the font-family
-* variables according to the font family name.
-*/
 .dropdown-menu > li > a:active,
 .dropdown-menu > li > a:focus, .navbar-default .navbar-nav > .open > a,
 .navbar-default .navbar-nav > .open > a:hover,
@@ -3111,6 +3104,15 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
 
 .webform-progressbar-outer {
   margin: 1em -1px 3em;
+}
+
+.webform-container-legend {
+  display: inline-block;
+  font-weight: bold;
+  margin: 3px 0 5px;
+  max-width: 100%;
+  border: none;
+  font-size: inherit;
 }
 
 .breadcrumb {
