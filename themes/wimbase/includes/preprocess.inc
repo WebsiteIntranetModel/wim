@@ -279,14 +279,14 @@ function wimbase_preprocess_search_result(&$variables) {
 function wimbase_preprocess_views_exposed_form(&$vars) {
   $form = $vars['form'];
 
-  // Fix date views issue with same ids for multiple elements
+  // Fix date views issue with same ids for multiple elements.
   $prefix = '';
   $counter = 1;
   foreach ($form['#info'] as $key => $filter) {
     if (!empty($form[$filter['value']]['value']) && $form[$filter['value']]['value']['#type'] == 'date_popup') {
       $value = $form[$filter['value']]['value'];
 
-      // Add new widget property so we can know which labels to replace
+      // Add new widget property so we can know which labels to replace.
       $vars['widgets'][$key]->remove_label = TRUE;
 
       if ($value['#prefix'] != $prefix) {
