@@ -132,6 +132,14 @@ projects[felix][patch][2811151] = https://www.drupal.org/files/issues/felix-inva
 ; https://www.drupal.org/node/2413111
 projects[webform_encrypt][patch][2413111] = https://www.drupal.org/files/issues/webform_encrypt-Undefined-index-value-2413111-%235-7.x-1.1.patch
 
+; Linkit
+; Allow Linkit support for any eligible element type
+; https://www.drupal.org/node/2651404
+projects[linkit][patch][2651404] = https://www.drupal.org/files/issues/linkit-add-to-any-element-2651404-3.patch
+; Support for default drupal menu system
+; https://www.drupal.org/node/2514928
+projects[linkit][patch][2514928] = https://www.drupal.org/files/issues/linkit-menu-links-2514928-9.patch
+
 ; Custom
 ; a11ychecker_custom
 libraries[a11ychecker][download][type] = "get"
