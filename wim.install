@@ -518,7 +518,7 @@ function _wim_place_felix_blocks() {
       ),
       'custom_block' => array(
         'info' => 'Address',
-        'body' => '<h3>Post</h3><ul><li>Postbus 10101</li><li>5500 GA Veldhoven</li></ul><h3>E-mail</h3><ul><li>gemeente@gemeente.nl</li></ul><h3>Telefonisch contact</h3><ul><li>14 040 (algemeen)</li></ul><h3>Bezoekadres</h3><ul><li>Meiveld 1</li><li>5501 KA Veldhoven</li></ul>',
+        'body' => '<h2 class="element-invisible">Address</h2><h3>Post</h3><ul><li>Postbus 10101</li><li>5500 GA Veldhoven</li></ul><h3>E-mail</h3><ul><li>gemeente@gemeente.nl</li></ul><h3>Telefonisch contact</h3><ul><li>14 040 (algemeen)</li></ul><h3>Bezoekadres</h3><ul><li>Meiveld 1</li><li>5501 KA Veldhoven</li></ul>',
         'format' => 'full_html',
       ),
     ),
