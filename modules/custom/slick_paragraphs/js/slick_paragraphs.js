@@ -22,7 +22,7 @@
           }
         );
 
-        // Add pause button to slider, if it contains more than 2 slides.
+        // Add pause button to slider, if it contains more than 1 slide.
         if (sliderOptions.pause && $('.slick-track>.field-item', $slider).length > 1) {
 
           if ($slider.length > 1) {
