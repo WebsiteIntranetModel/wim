@@ -140,13 +140,13 @@ function wim_update_7005(&$sandbox) {
 function wim_update_7006(&$sandbox) {
 
   $front_metatags = (object) array(
-        'cid' => NULL,
-        'instance' => 'global:frontpage',
-        'config' => array(
-          'title' => array('value' => '[site:name]'),
-          'canonical' => array('value' => '[site:url]'),
-          'shortlink' => array('value' => '[site:url]'),
-        ),
+    'cid' => NULL,
+    'instance' => 'global:frontpage',
+    'config' => array(
+      'title' => array('value' => '[site:name]'),
+      'canonical' => array('value' => '[site:url]'),
+      'shortlink' => array('value' => '[site:url]'),
+    ),
   );
 
   metatag_config_save($front_metatags);
