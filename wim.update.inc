@@ -81,7 +81,6 @@ function wim_update_7002(&$sandbox) {
     $role = user_role_load_by_name('content editor');
     user_role_grant_permissions($role->rid, array('create files'));
   }
-
 }
 
 /**
@@ -131,5 +130,29 @@ function wim_update_7005(&$sandbox) {
 
   if (isset($themes[$theme_name]) && $themes[$theme_name]->status == 0) {
     theme_enable(array($theme_name));
+  }
+}
+
+/**
+ * Override all node alias patterns to use Hansel paths.
+ */
+function wim_update_7007(&$sandbox) {
+  $types = node_type_get_types();
+
+  $default_mapping = array(
+    'agenda' => '[node:hansel-path]',
+    'faq' => '[node:hansel-path]',
+    'news' => '[node:hansel-path]',
+    'page' => '[node:hansel-path]',
+    'person' => '[node:hansel-path]',
+    'product' => '[node:hansel-path]',
+    'subject_page' => '[node:hansel-path]',
+    'webform' => '[node:hansel-path]',
+  );
+
+  foreach ($types as $type) {
+    if (!empty($default_mapping[$type->type])) {
+      variable_set('pathauto_node_' . $type->type . '_pattern', $default_mapping[$type->type]);
+    }
   }
 }
