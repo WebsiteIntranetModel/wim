@@ -1,11 +1,4 @@
 @charset "UTF-8";
-/*
-* Modify variables used in the wim sub theme here. The value set in this file will be used when compiling the scss.
-* Uncomment a variable of you likings and change the value. Make sure to recompile the CSS!
-*
-* It is also possible to @import new font faces here. Just import the various source files and set the font-family
-* variables according to the font family name.
-*/
 .dropdown-menu > li > a:active,
 .dropdown-menu > li > a:focus, .navbar-default .navbar-nav > .open > a,
 .navbar-default .navbar-nav > .open > a:hover,
@@ -3443,8 +3436,8 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   border-radius: 0;
 }
 
-#accordion .panel-heading h4,
-.views-bootstrap-accordion-plugin-style .panel-heading h4 {
+#accordion .panel-heading h3,
+.views-bootstrap-accordion-plugin-style .panel-heading h3 {
   text-decoration: none;
   font-size: 15px;
 }
@@ -4343,13 +4336,16 @@ div[class*=region-sidebar] div[class*=main-menu-submenu] ul a.active-trail {
   width: auto;
 }
 
+.social-links .field-label,
 .social-links h3 {
   padding: 10px;
   border-top: 1px solid #eeeeee;
   background: #eeeeee;
   margin-bottom: 10px;
   font-size: 100%;
+  line-height: 1.3;
   font-weight: normal;
+  margin-top: 20px;
 }
 
 .social-links ul.social {
