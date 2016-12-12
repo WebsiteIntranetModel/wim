@@ -1,6 +1,7 @@
 .form-control {
   color: $gray-dark;
 }
+
 .form-text {
   border: 1px solid $nav-tabs-border-color;
   box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.1);
@@ -61,6 +62,19 @@
   }
 }
 
+.widget-label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
 .webform-progressbar-outer {
   margin: 1em -1px 3em;
+}
+.webform-container-legend {
+  display: inline-block;
+  font-weight: bold;
+  margin: 3px 0 5px;
+  max-width: 100%;
+  border: none;
+  font-size: inherit;
 }

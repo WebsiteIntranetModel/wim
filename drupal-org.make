@@ -137,6 +137,14 @@ projects[webform_encrypt][patch][2413111] = https://www.drupal.org/files/issues/
 ; https://www.drupal.org/node/2399645
 projects[hansel][patch][2399645] = https://www.drupal.org/files/issues/hansel-broken-token-generation-2399645-1.patch
 
+; Linkit
+; Allow Linkit support for any eligible element type
+; https://www.drupal.org/node/2651404
+projects[linkit][patch][2651404] = https://www.drupal.org/files/issues/linkit-add-to-any-element-2651404-3.patch
+; Support for default drupal menu system
+; https://www.drupal.org/node/2514928
+projects[linkit][patch][2514928] = https://www.drupal.org/files/issues/linkit-menu-links-2514928-9.patch
+
 ; Custom
 ; a11ychecker_custom
 libraries[a11ychecker][download][type] = "get"
