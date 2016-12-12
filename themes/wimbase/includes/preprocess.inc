@@ -274,6 +274,24 @@ function wimbase_preprocess_search_result(&$variables) {
 }
 
 /**
+ * Implements template_preprocess_bootstrap_tabs().
+ */
+function wimbase_preprocess_bootstrap_fieldgroup_nav(&$variables) {
+  $variables['wrapper_classes'] .= ' tabnav';
+
+  // Add aria-attributes and roles to tabs.
+  if (!empty($variables['panes']) && !empty($variables['navs'])) {
+    foreach ($variables['navs'] as $key => &$nav) {
+      $aria_control = 'aria-controls="' . $variables['panes'][$key]['id'] . '"';
+      $nav['content'] = str_replace('<a ', '<a ' . $aria_control . ' role="tab"', $nav['content']);
+    }
+
+    $variables['nav_role'] = 'tablist';
+    $variables['pane_role'] = 'tabpanel';
+  }
+}
+
+/**
  * Implements hook_preprocess_views_exposed_form().
  */
 function wimbase_preprocess_views_exposed_form(&$vars) {
