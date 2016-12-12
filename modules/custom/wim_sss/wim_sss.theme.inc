@@ -77,7 +77,7 @@ function theme_wim_sss_links($variables) {
 
   $content = array();
 
-  $content['#prefix'] = '<div class="social-links">';
+  $content['#prefix'] = '<div class="social-links" role="navigation">';
   $content['#suffix'] = '</div>';
 
   $def = _default_networks($node);
@@ -89,12 +89,27 @@ function theme_wim_sss_links($variables) {
     $content['networks'][$name] = '<a href="' . $href . '" title="' . $value['title'] . '" class="' . $value['class'] . '" rel="nofollow" target="_blank"><span>' . $value['title'] . '</span></a>';
   }
 
+  // Add title separately instead of using item_list to ensure accessibility.
+  $content['title'] = [
+    '#theme' => 'html_tag',
+    '#tag' => 'div',
+    '#weight' => 0,
+    '#value' => t('Share'),
+    '#attributes' => array(
+      'class' => array('field-label'),
+      'id' => 'social-links-label',
+    ),
+  ];
+
   $content['networks'] = array(
     '#type' => 'markup',
+    '#weight' => 1,
     '#markup' => theme('item_list', array(
       'items' => $content['networks'],
-      'attributes' => array('class' => array('social')),
-      'title' => t('Share'),
+      'attributes' => array(
+        'class' => array('social'),
+        'aria-labelledby' => 'social-links-label',
+      ),
       'type' => 'ul',
     )),
   );
