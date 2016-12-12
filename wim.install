@@ -29,7 +29,8 @@ function wim_install() {
   _wim_install_language();
   // Install password policy.
   _wim_password_policy_install();
-
+  // Set metatags for Front Page.
+  _wim_set_front_metatags();
   // Add 404 page.
   $page_404_nid = _wim_create_page('404');
   variable_set('site_404', 'node/' . $page_404_nid);
@@ -1058,4 +1059,21 @@ function _wim_permissions($role) {
   }
 
   return $permissions[$role];
+}
+
+/**
+ * Sets front metatags.
+ */
+function _wim_set_front_metatags() {
+  $front_metatags = (object) array(
+    'cid' => NULL,
+    'instance' => 'global:frontpage',
+    'config' => array(
+      'title' => array('value' => '[site:name]'),
+      'canonical' => array('value' => '[site:url]'),
+      'shortlink' => array('value' => '[site:url]'),
+    ),
+  );
+
+  metatag_config_save($front_metatags);
 }
