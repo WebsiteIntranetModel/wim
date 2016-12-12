@@ -290,3 +290,33 @@ function wimbase_preprocess_bootstrap_fieldgroup_nav(&$variables) {
     $variables['pane_role'] = 'tabpanel';
   }
 }
+
+/**
+ * Implements hook_preprocess_views_exposed_form().
+ */
+function wimbase_preprocess_views_exposed_form(&$vars) {
+  $form = $vars['form'];
+
+  // Fix date views issue with same ids for multiple elements.
+  $prefix = '';
+  $counter = 1;
+  foreach ($form['#info'] as $key => $filter) {
+    if (!empty($form[$filter['value']]['value']) && $form[$filter['value']]['value']['#type'] == 'date_popup') {
+      $value = $form[$filter['value']]['value'];
+
+      // Add new widget property so we can know which labels to replace.
+      $vars['widgets'][$key]->remove_label = TRUE;
+
+      if ($value['#prefix'] != $prefix) {
+        $prefix = $value['#prefix'];
+      }
+      else {
+        $adjusted_widget = preg_replace('/date-value-value-wrapper/', "date-value-value-wrapper-{$counter}", $vars['widgets'][$key]->widget);
+        $adjusted_widget = preg_replace('/date-value-value-inside-wrapper/', "date-value-value-inside-wrapper-{$counter}", $adjusted_widget);
+        $vars['widgets'][$key]->widget = $adjusted_widget;
+
+        $counter++;
+      }
+    }
+  }
+}
