@@ -3,7 +3,6 @@ description = Keeps Agenda feature
 core = 7.x
 package = WIM
 version = 7.x-1.0
-dependencies[] = content_reminder
 dependencies[] = ctools
 dependencies[] = date
 dependencies[] = email
