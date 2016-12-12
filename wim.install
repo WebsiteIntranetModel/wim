@@ -718,14 +718,14 @@ function _wim_default_pathauto() {
   $types = node_type_get_types();
 
   $default_mapping = array(
-    'agenda' => 'agenda/[node:title]',
-    'faq' => 'faq/[node:title]',
-    'news' => 'news/[node:title]',
-    'page' => '[node:title]',
-    'person' => 'person/[node:title]',
-    'product' => 'product/[node:title]',
-    'subject_page' => '[node:title]',
-    'webform' => 'webform/[node:title]',
+    'agenda' => '[node:hansel-path]',
+    'faq' => '[node:hansel-path]',
+    'news' => '[node:hansel-path]',
+    'page' => '[node:hansel-path]',
+    'person' => '[node:hansel-path]',
+    'product' => '[node:hansel-path]',
+    'subject_page' => '[node:hansel-path]',
+    'webform' => '[node:hansel-path]',
   );
 
   foreach ($types as $type) {

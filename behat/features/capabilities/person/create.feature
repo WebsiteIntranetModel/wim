@@ -36,7 +36,7 @@ Feature: Create person
     And I should see "Phone"
     And I should see "Secret place"
     And I should see "Share"
-    Then the url should match "/person/bruce-wayne"
+    Then the url should match "/bruce-wayne"
 
     Given I am an anonymous user
     And I visit "node/add/person"

@@ -132,6 +132,11 @@ projects[felix][patch][2811151] = https://www.drupal.org/files/issues/felix-inva
 ; https://www.drupal.org/node/2413111
 projects[webform_encrypt][patch][2413111] = https://www.drupal.org/files/issues/webform_encrypt-Undefined-index-value-2413111-%235-7.x-1.1.patch
 
+; Hansel breadcrumbs
+; Token replacement (pathauto patterns) completely broken
+; https://www.drupal.org/node/2399645
+projects[hansel][patch][2399645] = https://www.drupal.org/files/issues/hansel-broken-token-generation-2399645-1.patch
+
 ; Linkit
 ; Allow Linkit support for any eligible element type
 ; https://www.drupal.org/node/2651404
