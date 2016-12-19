@@ -288,5 +288,6 @@ function wimbase_preprocess_bootstrap_fieldgroup_nav(&$variables) {
 
     $variables['nav_role'] = 'tablist';
     $variables['pane_role'] = 'tabpanel';
+    drupal_add_library('system', 'ui');
   }
 }
