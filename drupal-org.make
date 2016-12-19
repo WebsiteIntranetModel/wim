@@ -68,7 +68,7 @@ projects[webform] = 4.14
 projects[webform_clear] = 2.0
 projects[webform_encrypt] = 1.1
 projects[weight] = 3.1
-projects[wysiwyg] = 2.2
+projects[wysiwyg] = 2.x-dev
 projects[xmlsitemap] = 2.3
 
 ; Themes
