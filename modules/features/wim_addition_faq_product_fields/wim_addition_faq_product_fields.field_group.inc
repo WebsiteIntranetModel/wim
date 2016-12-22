@@ -55,10 +55,10 @@ function wim_addition_faq_product_fields_field_group_info() {
       2 => 'field_product_contact',
       3 => 'field_product_costs',
       4 => 'field_product_objection',
-      5 => 'field_product_period',
-      6 => 'field_product_procedure',
-      7 => 'field_product_request',
-      8 => 'field_product_particulars',
+      5 => 'field_product_particulars',
+      6 => 'field_product_period',
+      7 => 'field_product_procedure',
+      8 => 'field_product_request',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
@@ -89,6 +89,7 @@ function wim_addition_faq_product_fields_field_group_info() {
       1 => 'field_product_more_information',
       2 => 'field_product_related_laws',
       3 => 'field_product_request_online',
+      4 => 'field_sc_audience',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
@@ -171,8 +172,8 @@ function wim_addition_faq_product_fields_field_group_info() {
     'weight' => '19',
     'children' => array(
       0 => 'field_product_forms',
-      1 => 'field_product_request',
-      2 => 'field_product_particulars',
+      1 => 'field_product_particulars',
+      2 => 'field_product_request',
     ),
     'format_type' => 'bootstrap_fieldgroup_nav_item',
     'format_settings' => array(
@@ -300,7 +301,7 @@ function wim_addition_faq_product_fields_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Tabs',
-    'weight' => '2',
+    'weight' => '1',
     'children' => array(
       0 => 'group_product_tab1',
       1 => 'group_product_tab2',
