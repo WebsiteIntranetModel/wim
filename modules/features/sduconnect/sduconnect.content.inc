@@ -293,7 +293,7 @@ function sduconnect_set_pdc_content(DOMXPath $xpath, &$node, $private = FALSE) {
       'value' => $category,
     );
   }
-  // $node->field_sc_audience = array(LANGUAGE_NONE => $items); // @codingStandardsIgnoreLine
+  $node->field_sc_audience = array(LANGUAGE_NONE => $items); // @codingStandardsIgnoreLine
 
   // Start- and end date.
   $start = sduconnect_nodelist_to_string($xpath->query('//m:page/m:product/m:subsidies_startdate'));
