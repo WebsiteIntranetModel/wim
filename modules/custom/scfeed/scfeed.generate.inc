@@ -102,7 +102,7 @@ function scfeed_generate_item($node) {
   $element = $dom->createElement('productID', $node->nid);
   $overheidproduct->appendChild($element);
 
-  $element = $dom->createElement('onlineAanvragen' , 'nee');
+  $element = $dom->createElement('onlineAanvragen', 'nee');
   $overheidproduct->appendChild($element);
 
   $xml = $dom->saveXML($product);
