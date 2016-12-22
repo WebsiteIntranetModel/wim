@@ -13,10 +13,10 @@
 function _wim_block_management_get_columns_options() {
   $options = array(
     WIM_BLOCK_MANAGEMENT_BOOTSTRAP_FULL_WIDTH => t('Full-width'),
-    '8' => t('2/3 of page'),
-    '6' => t('1/2 of page'),
-    '4' => t('1/3 of page'),
-    '3' => t('1/4 of page'),
+    '8' => t('2/3 of region'),
+    '6' => t('1/2 of region'),
+    '4' => t('1/3 of region'),
+    '3' => t('1/4 of region'),
   );
 
   // Allow alter options.
