@@ -52,7 +52,7 @@ function sduconnect_set_pdc_content(DOMXPath $xpath, &$node, $private = FALSE) {
   }
 
   // Body.
-  $body = '';
+  $body = sduconnect_nodelist_to_string($xpath->query('//m:page/m:product/m:description'));
   // Let op.
   $field = $xpath->query('//m:page/m:product/m:notice');
   if ($field->length) {
@@ -61,7 +61,6 @@ function sduconnect_set_pdc_content(DOMXPath $xpath, &$node, $private = FALSE) {
       $body = '<div class="let-op"><strong>Let op:</strong> ' . $field->item(0)->nodeValue . '</div>';
     }
   }
-  $body .= sduconnect_nodelist_to_string($xpath->query('//m:page/m:product/m:description'));
 
   $node->body = array(
     LANGUAGE_NONE => array(
