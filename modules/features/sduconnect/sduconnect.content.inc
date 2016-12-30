@@ -58,7 +58,7 @@ function sduconnect_set_pdc_content(DOMXPath $xpath, &$node, $private = FALSE) {
   if ($field->length) {
     $value = $field->item(0)->nodeValue;
     if (preg_match('/[a-z]/si', strip_tags($value))) {
-      $body = '<div class="let-op"><strong>Let op:</strong> ' . $field->item(0)->nodeValue . '</div>';
+      $body .= '<div class="let-op"><strong>Let op:</strong> ' . $field->item(0)->nodeValue . '</div>';
     }
   }
 
