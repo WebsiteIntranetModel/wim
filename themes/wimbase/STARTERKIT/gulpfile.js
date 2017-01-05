@@ -121,3 +121,21 @@ gulp.task('default', ['watch:css']);
 gulp.task('watch:css', ['styles'], function () {
   return gulp.watch(options.theme.components + '**/*.scss', ['styles']);
 });
+
+// ===================================================
+// Import tasks
+// ===================================================
+
+gulp.task('import-scss', function() {
+  return gulp.src('../../../../../profiles/wim/themes/wim/components/wim/**/*.scss')
+    .pipe(gulp.dest('components/wim/'));
+});
+
+gulp.task('import-fonts', function() {
+  return gulp.src('../../../../../profiles/wim/themes/wim/fonts/*.*')
+    .pipe(gulp.dest('fonts/'));
+});
+// ===================================================
+// Run this one time when you install/update the project so you have all files in the theme folder
+// ===================================================
+gulp.task('import', ['import-scss', 'import-fonts']);

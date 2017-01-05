@@ -1,7 +1,7 @@
 name = WIM STARTERKIT
 description = Uses the WIM theme for theme logic and default templates. Use STARTERKIT to create your own sub theme.
 core = 7.x
-base theme = wim
+base theme = wimbase
 
 
 ; ========================================

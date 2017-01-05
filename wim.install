@@ -29,7 +29,8 @@ function wim_install() {
   _wim_install_language();
   // Install password policy.
   _wim_password_policy_install();
-
+  // Set metatags for Front Page.
+  _wim_set_front_metatags();
   // Add 404 page.
   $page_404_nid = _wim_create_page('404');
   variable_set('site_404', 'node/' . $page_404_nid);
@@ -518,7 +519,7 @@ function _wim_place_felix_blocks() {
       ),
       'custom_block' => array(
         'info' => 'Address',
-        'body' => '<h3>Post</h3><ul><li>Postbus 10101</li><li>5500 GA Veldhoven</li></ul><h3>E-mail</h3><ul><li>gemeente@gemeente.nl</li></ul><h3>Telefonisch contact</h3><ul><li>14 040 (algemeen)</li></ul><h3>Bezoekadres</h3><ul><li>Meiveld 1</li><li>5501 KA Veldhoven</li></ul>',
+        'body' => '<h2 class="element-invisible">Address</h2><h3>Post</h3><ul><li>Postbus 10101</li><li>5500 GA Veldhoven</li></ul><h3>E-mail</h3><ul><li>gemeente@gemeente.nl</li></ul><h3>Telefonisch contact</h3><ul><li>14 040 (algemeen)</li></ul><h3>Bezoekadres</h3><ul><li>Meiveld 1</li><li>5501 KA Veldhoven</li></ul>',
         'format' => 'full_html',
       ),
     ),
@@ -717,14 +718,14 @@ function _wim_default_pathauto() {
   $types = node_type_get_types();
 
   $default_mapping = array(
-    'agenda' => 'agenda/[node:title]',
-    'faq' => 'faq/[node:title]',
-    'news' => 'news/[node:title]',
-    'page' => '[node:title]',
-    'person' => 'person/[node:title]',
-    'product' => 'product/[node:title]',
-    'subject_page' => '[node:title]',
-    'webform' => 'webform/[node:title]',
+    'agenda' => '[node:hansel-path]',
+    'faq' => '[node:hansel-path]',
+    'news' => '[node:hansel-path]',
+    'page' => '[node:hansel-path]',
+    'person' => '[node:hansel-path]',
+    'product' => '[node:hansel-path]',
+    'subject_page' => '[node:hansel-path]',
+    'webform' => '[node:hansel-path]',
   );
 
   foreach ($types as $type) {
@@ -1058,4 +1059,21 @@ function _wim_permissions($role) {
   }
 
   return $permissions[$role];
+}
+
+/**
+ * Sets front metatags.
+ */
+function _wim_set_front_metatags() {
+  $front_metatags = (object) array(
+    'cid' => NULL,
+    'instance' => 'global:frontpage',
+    'config' => array(
+      'title' => array('value' => '[site:name]'),
+      'canonical' => array('value' => '[site:url]'),
+      'shortlink' => array('value' => '[site:url]'),
+    ),
+  );
+
+  metatag_config_save($front_metatags);
 }

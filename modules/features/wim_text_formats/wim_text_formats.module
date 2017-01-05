@@ -209,3 +209,20 @@ function _wim_wysiwyg_default_profiles() {
 
   return $profiles;
 }
+
+/**
+ * Add linkit for redirect items.
+ */
+function wim_text_formats_form_redirect_edit_form_alter(&$form, &$form_state) {
+  $form['source']['#linkit'] = array(
+    'profile' => 'menus',
+    'enabled' => 1,
+    'button_text' => 'Search',
+  );
+
+  $form['redirect']['#linkit'] = array(
+    'profile' => 'menus',
+    'enabled' => 1,
+    'button_text' => 'Search',
+  );
+}

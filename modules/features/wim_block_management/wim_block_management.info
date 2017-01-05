@@ -37,6 +37,7 @@ features[field_instance][] = bean-editorial-field_image
 features[field_instance][] = bean-editorial-field_link
 features[views_view][] = admin_bean_block
 features_exclude[dependencies][paragraphs] = paragraphs
+features_exclude[dependencies][media] = media
 features_exclude[field_instance][paragraphs_item-slider_item-field_body] = paragraphs_item-slider_item-field_body
 features_exclude[field_instance][paragraphs_item-slider_item-field_image] = paragraphs_item-slider_item-field_image
 features_exclude[field_instance][paragraphs_item-slider_item-field_link] = paragraphs_item-slider_item-field_link

@@ -22,4 +22,4 @@ Feature: Create form on site
     And I click "E-mails"
     And I click "Form settings"
     And I click "View"
-    Then the url should match "/webform/test-webform"
+    Then the url should match "/test-webform"

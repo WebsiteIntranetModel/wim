@@ -21,7 +21,7 @@ projects[chosen] = 2.0
 projects[ctools] = 1.11
 projects[date] = 2.9
 projects[date_facets] = 1.0
-projects[elysia_cron] = 2.3
+projects[elysia_cron] = 2.4
 projects[email] = 1.3
 projects[encrypt] = 2.3
 projects[entity] = 1.8
@@ -38,15 +38,15 @@ projects[i18n] = 1.14
 projects[jquery_update] = 2.7
 projects[location] = 3.7
 projects[logging_alerts] = 2.2
-projects[magic] = 2.2
-projects[media] = 2.0-beta2
+projects[magic] = 2.3
+projects[media] = 2.0-beta14
 projects[menu_block] = 2.7
 projects[menu_icons] = 3.0-beta4
-projects[metatag] = 1.17
+projects[metatag] = 1.18
 projects[migrate] = 2.8
 projects[module_filter] = 2.0
 projects[nodequeue] = 2.1
-projects[l10n_update] = 2.0
+projects[l10n_update] = 2.1
 projects[link] = 1.4
 projects[libraries] = 2.3
 projects[linkit] = 3.5
@@ -73,7 +73,7 @@ projects[xmlsitemap] = 2.3
 
 ; Themes
 projects[adminimal_theme] = 1.24
-projects[bootstrap] = 3.8
+projects[bootstrap] = 3.10
 
 ; Patches
 ; Features
@@ -131,6 +131,19 @@ projects[felix][patch][2811151] = https://www.drupal.org/files/issues/felix-inva
 ; Fix Undefined index, value in webform_encrypt_webform_submission_presave()
 ; https://www.drupal.org/node/2413111
 projects[webform_encrypt][patch][2413111] = https://www.drupal.org/files/issues/webform_encrypt-Undefined-index-value-2413111-%235-7.x-1.1.patch
+
+; Hansel breadcrumbs
+; Token replacement (pathauto patterns) completely broken
+; https://www.drupal.org/node/2399645
+projects[hansel][patch][2399645] = https://www.drupal.org/files/issues/hansel-broken-token-generation-2399645-1.patch
+
+; Linkit
+; Allow Linkit support for any eligible element type
+; https://www.drupal.org/node/2651404
+projects[linkit][patch][2651404] = https://www.drupal.org/files/issues/linkit-add-to-any-element-2651404-3.patch
+; Support for default drupal menu system
+; https://www.drupal.org/node/2514928
+projects[linkit][patch][2514928] = https://www.drupal.org/files/issues/linkit-menu-links-2514928-9.patch
 
 ; Custom
 ; a11ychecker_custom, cannot be included until https://www.drupal.org/node/2570883 is resolved.

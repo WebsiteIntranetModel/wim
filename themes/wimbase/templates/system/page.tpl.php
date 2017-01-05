@@ -86,7 +86,9 @@
             <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
           </a>
         <?php endif; ?>
-
+        <?php if ($is_front): ?>
+          <h1 class="element-invisible"><?php print t('Home'); ?></h1>
+        <?php endif; ?>
         <?php if (!empty($site_name)): ?>
           <a class="name navbar-brand" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>"><?php print $site_name; ?></a>
         <?php endif; ?>

@@ -1,7 +1,54 @@
 <?php
+
 /**
  * @file
  * Code for the WIM Webform feature.
  */
 
 include_once 'wim_webform.features.inc';
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function wim_webform_form_webform_client_form_alter(&$form, $form_state) {
+
+  $form_sets = array(
+    'radios',
+    'checkboxes',
+    'date',
+  );
+
+  foreach ($form['submitted'] as &$element) {
+    if (is_array($element) && in_array($element['#type'], $form_sets) && $element['#title_display'] !== 'none') {
+
+      // Check if element is required and add * to fieldset later.
+      $required = '';
+      if ($element['#required'] == 1) {
+        $required = array(
+          '#theme' => 'html_tag',
+          '#tag' => 'span',
+          '#value' => '*',
+          '#attributes' => array(
+            'class' => 'form-required',
+            'title' => t('This field is required.'),
+          ),
+        );
+
+        $required = '&nbsp' . drupal_render($required);
+      }
+
+      // Wrap elements in fieldsets for accessibility.
+      $element['#prefix'] = '<fieldset class="webform-container">';
+      $element['#prefix'] .= '<legend class="webform-container-legend">' . $element['#title'] . $required . '</legend>';
+      $element['#suffix'] = '</fieldset>';
+
+      unset($element['#title']);
+    }
+    elseif ($element['#title_display'] == 'none') {
+
+      // Wrapping in fieldsets shoudn't happen if component doesn't have a
+      // title, but incorrect labels should still be removed.
+      unset($element['#title']);
+    }
+  }
+}
