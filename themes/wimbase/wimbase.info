@@ -14,3 +14,5 @@ stylesheets[all][] = css/wimbase.css
 ; ========================================
 
 scripts[] = js/bootstrap.min.js
+scripts[] = js/wim.js
+scripts[] = js/accessibility-tabs.js

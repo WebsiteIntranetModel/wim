@@ -41,8 +41,7 @@ multipliers[mobile][] = 2x
 ; Scripts
 ; ========================================
 
-scripts[] = js/wim.js
-scripts[] = js/accessibility-tabs.js
+
 
 ; ========================================
 ; Settings
