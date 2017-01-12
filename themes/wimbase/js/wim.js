@@ -66,7 +66,7 @@
   Drupal.behaviors.noLink = {
     attach: function (context, settings) {
       var $noLinkItems = $('a.nolink');
-      $noLinkItems.once('nolink').click(function () {
+      $noLinkItems.once('nolink').click(function (event) {
         event.preventDefault();
       });
     }
