@@ -450,6 +450,63 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-product-field_product_locations'.
+  $field_instances['node-product-field_product_locations'] = array(
+    'bundle' => 'product',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'abovec',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 6,
+      ),
+      'introduction' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_product_locations',
+    'label' => 'Locations',
+    'required' => 0,
+    'settings' => array(
+      'linkit' => array(
+        'button_text' => 'Search',
+        'enable' => 0,
+        'profile' => '',
+      ),
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 5,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 47,
+    ),
+  );
+
   // Exported field_instance: 'node-product-field_product_more_information'.
   $field_instances['node-product-field_product_more_information'] = array(
     'bundle' => 'product',
@@ -1039,6 +1096,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
   t('Contact');
   t('Costs');
   t('Forms');
+  t('Locations');
   t('More information');
   t('Objection');
   t('Particulars');
