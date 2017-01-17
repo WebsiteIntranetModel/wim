@@ -221,7 +221,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'file_generic',
-      'weight' => 47,
+      'weight' => 48,
     ),
   );
 
@@ -813,7 +813,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 6,
+        'weight' => 7,
       ),
       'introduction' => array(
         'label' => 'above',
