@@ -184,6 +184,12 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'type' => 'file_default',
         'weight' => 6,
       ),
+      'introduction' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'search_result' => array(
         'label' => 'above',
         'settings' => array(),
@@ -233,6 +239,12 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 7,
       ),
+      'introduction' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'search_result' => array(
         'label' => 'above',
         'settings' => array(),
@@ -278,6 +290,12 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 15,
+      ),
+      'introduction' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -325,6 +343,12 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 5,
       ),
+      'introduction' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'search_result' => array(
         'label' => 'above',
         'settings' => array(),
@@ -370,6 +394,12 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'settings' => array(),
         'type' => 'link_default',
         'weight' => 5,
+      ),
+      'introduction' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -434,6 +464,12 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'type' => 'link_default',
         'weight' => 5,
       ),
+      'introduction' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'search_result' => array(
         'label' => 'above',
         'settings' => array(),
@@ -497,6 +533,12 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 13,
       ),
+      'introduction' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'search_result' => array(
         'label' => 'above',
         'settings' => array(),
@@ -542,6 +584,12 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 4,
+      ),
+      'introduction' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -594,6 +642,12 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 12,
       ),
+      'introduction' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'search_result' => array(
         'label' => 'above',
         'settings' => array(),
@@ -640,6 +694,12 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 3,
       ),
+      'introduction' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'search_result' => array(
         'label' => 'above',
         'settings' => array(),
@@ -685,6 +745,12 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'settings' => array(),
         'type' => 'link_default',
         'weight' => 6,
+      ),
+      'introduction' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -749,6 +815,12 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 6,
       ),
+      'introduction' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'search_result' => array(
         'label' => 'above',
         'settings' => array(),
@@ -794,6 +866,12 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'settings' => array(),
         'type' => 'link_default',
         'weight' => 5,
+      ),
+      'introduction' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -860,6 +938,12 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'type' => 'entityreference_label',
         'weight' => 3,
       ),
+      'introduction' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'search_result' => array(
         'label' => 'above',
         'settings' => array(),
@@ -908,6 +992,12 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         ),
         'type' => 'entityreference_label',
         'weight' => 4,
+      ),
+      'introduction' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'search_result' => array(
         'label' => 'above',
