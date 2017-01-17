@@ -144,6 +144,16 @@ function _wim_set_up_roles_and_permissions() {
     }
   }
 
+  // Get all the users roles and set variable to assign these for webmasters.
+  $roles = user_roles();
+  $role_assign = array();
+  foreach ($roles as $key => $value) {
+    if ($value !== "anonymous user" && $value !== "authenticated user") {
+      $role_assign[] = $key;
+    }
+  }
+  variable_set('roleassign_roles', $role_assign);
+
   // Authenticated role.
   user_role_grant_permissions(DRUPAL_AUTHENTICATED_RID, _wim_permissions('authenticated'));
   // Remove change own e-mail permission.
@@ -860,6 +870,8 @@ function _wim_permissions($role) {
       'administer taxonomy',
       // User.
       'administer users',
+      // Role assign.
+      'assign roles',
     ),
     // Content manager.
     'content manager' => array(

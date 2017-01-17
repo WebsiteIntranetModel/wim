@@ -174,3 +174,37 @@ function wim_update_7007(&$sandbox) {
     }
   }
 }
+
+/**
+ * Give webmasters the ability to assign roles.
+ */
+function wim_update_7011(&$sandbox) {
+  // Enable the module.
+  if (!module_exists('roleassign')) {
+    module_enable(array('roleassign'));
+  }
+
+  // Get webmaster role.
+  $rid = ($role = user_role_load_by_name('webmaster')) ? $role->rid : NULL;
+
+  if (!empty($rid)) {
+    // Assign the assign roles permission.
+    user_role_grant_permissions($rid, array('assign roles'));
+
+    // Get all the users roles and set variable to assign these for webmasters.
+    $roles = user_roles();
+    $role_assign = array();
+    foreach ($roles as $key => $value) {
+      if ($value !== "anonymous user" && $value !== "authenticated user") {
+        $role_assign[] = $key;
+      }
+    }
+    variable_set('roleassign_roles', $role_assign);
+
+    return "Role assign added to webmaster";
+  }
+  else {
+    return "Could not find role";
+  }
+}
+
