@@ -178,7 +178,7 @@ function wim_update_7007(&$sandbox) {
 /**
  * Give webmasters the ability to assign roles.
  */
-function wim_update_7011(&$sandbox) {
+function wim_update_7008(&$sandbox) {
   // Enable the module.
   if (!module_exists('roleassign')) {
     module_enable(array('roleassign'));
