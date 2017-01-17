@@ -621,7 +621,6 @@ function _custom_lists_filter_view_modes($view_modes) {
     'felix',
     'token',
     'short',
-    'introduction',
   );
 
   foreach ($view_modes as $key => $view_mode) {
