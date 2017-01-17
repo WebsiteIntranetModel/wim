@@ -1066,7 +1066,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_sc_audience',
-    'label' => 'Doelgroep Samenwerkende Catalogi',
+    'label' => 'Target audience co-operating catalog',
     'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
@@ -1086,7 +1086,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
   t('Conditions');
   t('Contact');
   t('Costs');
-  t('Doelgroep Samenwerkende Catalogi');
+  t('Target audience co-operating catalog');
   t('Forms');
   t('More information');
   t('Objection');
