@@ -207,4 +207,3 @@ function wim_update_7011(&$sandbox) {
     return "Could not find role";
   }
 }
-
