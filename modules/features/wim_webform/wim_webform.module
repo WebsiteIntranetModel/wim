@@ -44,7 +44,7 @@ function wim_webform_form_webform_client_form_alter(&$form, $form_state) {
 
       unset($element['#title']);
     }
-    elseif ($element['#title_display'] == 'none') {
+    elseif (isset($element['#title_display']) && $element['#title_display'] === 'none') {
 
       // Wrapping in fieldsets shoudn't happen if component doesn't have a
       // title, but incorrect labels should still be removed.

@@ -25,13 +25,11 @@
         // Add pause button to slider, if it contains more than 1 slide.
         if (sliderOptions.pause && $('.slick-track>.field-item', $slider).length > 1) {
 
-          if ($slider.length > 1) {
             $slider.each(function (i, element) {
               if ($(element).find('.slick-slide').length > 1) {
                 $('.slick-list', $(element)).once('slick-pause').append(Drupal.theme('slickPause'));
               }
             });
-          }
 
           $('.slick-pause', $slider).on('click', function () {
             var $pauseBtn = $(this);

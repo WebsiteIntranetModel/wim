@@ -93,21 +93,27 @@ function custom_lists_block_info() {
  */
 function custom_lists_block_view($delta = '') {
   $list = custom_lists_get($delta);
+
+  // If no list there is nothing to render.
+  if (empty($list)) {
+    return FALSE;
+  }
+
   $block = array();
   $block['subject'] = _custom_lists_build_title($list);
   $block['content'] = array();
 
-  if ($list['type'] == 'content') {
+  if ($list['type'] === 'content') {
     $rendered_nodes = custom_lists_render_nodes($list['block-view-mode'], $list['block-items'], $list);
     $block['content']['items'] = $rendered_nodes ? $rendered_nodes : array();
   }
   else {
-    if ($list['type'] == 'menu') {
+    if ($list['type'] === 'menu') {
       $items = array();
       $tree = _custom_lists_get_menu_tree($list);
 
       foreach ($tree as $link) {
-        if ($link['link']['router_path'] == 'node/%') {
+        if ($link['link']['router_path'] === 'node/%') {
           $parts = explode('/', $link['link']['link_path']);
           if ($node = node_load($parts[1])) {
             $items[] = l($node->title, 'node/' . $node->nid);
@@ -132,7 +138,7 @@ function custom_lists_block_view($delta = '') {
     $more_link_uri = custom_lists_get_more_uri($list);
     if ($more_link_uri) {
       $block['content']['more-link'] = array(
-        '#markup' => '<div class="more-link">' . l(t('More @display_title', array('@display_title' => $list['display_title'])), $more_link_uri) . '</div>',
+        '#markup' => '<div class="more-link">' . l(t('More'), $more_link_uri) . '</div>',
       );
     }
   }
@@ -148,17 +154,18 @@ function custom_lists_block_view($delta = '') {
  * @see custom_lists_module_implements_alter()
  */
 function custom_lists_felix_block_view(&$block) {
-  if ($block->module == 'custom_lists') {
+  if ($block->module === 'custom_lists') {
     // Link Felix Block Manager block title the same way
     // as non-overridden Custom Lists block title.
     if (isset($block->data['subject']) && $block->data['subject'] != '<none>') {
-      $list = custom_lists_get($block->delta);
-      if (empty($block->data['subject'])) {
-        $block->data['subject'] = _custom_lists_build_title($list);
-      }
-      $more_link_uri = custom_lists_get_more_uri($list);
-      if ($more_link_uri) {
-        $block->subject = l($block->data['subject'], $more_link_uri, array('html' => TRUE));
+      if ($list = custom_lists_get($block->delta)) {
+        if (empty($block->data['subject'])) {
+          $block->data['subject'] = _custom_lists_build_title($list);
+        }
+        $more_link_uri = custom_lists_get_more_uri($list);
+        if ($more_link_uri) {
+          $block->subject = l($block->data['subject'], $more_link_uri, array('html' => TRUE));
+        }
       }
     }
   }
@@ -168,7 +175,7 @@ function custom_lists_felix_block_view(&$block) {
  * Implements hook_module_implements_alter().
  */
 function custom_lists_module_implements_alter(&$implementations, $hook) {
-  if ($hook == 'felix_block_view') {
+  if ($hook === 'felix_block_view') {
     // Our implementation must run after the felix implementation.
     $group = $implementations['custom_lists'];
     unset($implementations['custom_lists']);
@@ -206,11 +213,11 @@ function custom_lists_page() {
     '#markup' => check_markup($found_list['intro-text'], 'filtered_html'),
   );
 
-  if ($found_list['type'] == 'content') {
+  if ($found_list['type'] === 'content') {
     $output += custom_lists_page_content($found_list);
   }
   else {
-    if ($found_list['type'] == 'menu') {
+    if ($found_list['type'] === 'menu') {
       $output += custom_lists_page_menu($found_list);
     }
   }
@@ -234,13 +241,13 @@ function custom_lists_page_content($list) {
  * HTML rendered nodes.
  */
 function custom_lists_render_nodes($view_mode, $items, $list, $page = FALSE) {
-  $nodes = custom_lists_content_nodes($list, $items, $view_mode != 'titles');
+  $nodes = custom_lists_content_nodes($list, $items, $view_mode !== 'titles');
 
   if (!$nodes) {
     return array();
   }
 
-  if ($view_mode == 'titles' || empty($view_mode)) {
+  if ($view_mode === 'titles' || empty($view_mode)) {
     $items = array();
     foreach ($nodes as $node) {
       $items[] = l($node->title, 'node/' . $node->nid);
@@ -291,10 +298,10 @@ function custom_lists_content_nodes($list, $items, $full_load = TRUE) {
     ->limit($items);
 
   // Conditions.
-  if ($list['node-type'] != '_any' && !empty($list['node-type'])) {
+  if ($list['node-type'] !== '_any' && !empty($list['node-type'])) {
     $query->condition('n.type', $list['node-type']);
   }
-  if ($list['node-queues'] != '_any' && !empty($list['node-queues'])) {
+  if ($list['node-queues'] !== '_any' && !empty($list['node-queues'])) {
     $query->join('nodequeue_nodes', 'q', 'q.nid = n.nid');
     $query->condition('q.qid', $list['node-queues']);
   }
@@ -315,11 +322,11 @@ function custom_lists_content_nodes($list, $items, $full_load = TRUE) {
 
   // Sorting.
   $parts = explode('_', $list['sort']);
-  if (!empty($list['node-queues']) && $list['node-queues'] != '_any' && $list['node-queues'] && $parts[0] == 'queue') {
+  if (!empty($list['node-queues']) && $list['node-queues'] !== '_any' && $list['node-queues'] && $parts[0] === 'queue') {
     $query->orderBy('q.position', $parts[1]);
   }
   else {
-    if ($parts[0] == 'agenda') {
+    if ($parts[0] === 'agenda') {
       $tables = $query->getTables();
       if (!isset($tables['fd'])) {
         $query->join('field_data_field_agenda_date', 'fd', 'fd.entity_id = n.nid');
@@ -351,7 +358,7 @@ function custom_lists_page_menu($list) {
 
   $rows = array();
   foreach ($tree as $link) {
-    if ($link['link']['router_path'] == 'node/%') {
+    if ($link['link']['router_path'] === 'node/%') {
       $parts = explode('/', $link['link']['link_path']);
       if ($node = node_load($parts[1])) {
         $rows[] = node_view($node, 'teaser');
@@ -496,38 +503,30 @@ function custom_lists_delete($list_key) {
 function custom_lists_hansel_get_parent($path) {
   if (preg_match('/^node\\/([0-9]+)/', $path, $match) && ($node = node_load($match[1]))) {
     $lists = custom_lists_get();
-    $referer_url = $_SERVER['HTTP_REFERER'];
-    $referer_path = NULL;
-    if ($parsed_url = parse_url($referer_url)) {
-      $referer_path = $parsed_url['path'];
-      $referer_path = str_replace('/', '', $referer_path);
-    }
+
     foreach ($lists as $list) {
       $contains_node = FALSE;
-      $list_path = str_replace('/', '', $list['path']);
-      if ($list_path === $referer_path && $list['type'] === 'content' && $list['provide-page'] && ($list['node-type'] == $node->type || $list['node-type'] === '_any')) {
+      if ($list['type'] === 'content' && $list['provide-page'] && ($list['node-type'] == $node->type || $list['node-type'] === '_any')) {
         $contains_node = TRUE;
       }
+
       if ($contains_node && !empty($list['taxonomy'])) {
         $tags = field_get_items('node', $node, 'field_tags');
-        $contains_node = FALSE;
+
         if (is_array($tags)) {
           foreach ($tags as $item) {
-            if ($item['tid'] == $list['taxonomy']) {
-              $contains_node = TRUE;
+            if (in_array($item['tid'], $list['taxonomy'], TRUE)) {
+              return array(
+                'path' => $list['path'],
+                'title' => $list['display_title'],
+              );
             }
           }
         }
       }
-      if ($contains_node) {
-        $title = $list['display_title'];
-        return array(
-          'path' => $list['path'],
-          'title' => $title,
-        );
-      }
     }
   }
+
   return FALSE;
 }
 

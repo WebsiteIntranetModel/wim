@@ -12,5 +12,5 @@
  *    Key is a bootstrap col class and value is a label on the form.
  */
 function hook_wim_block_management_columns_options_alter(&$options) {
-  $options['new_option'] = t('1/6 of page');
+  $options['new_option'] = t('1/6 of region');
 }
