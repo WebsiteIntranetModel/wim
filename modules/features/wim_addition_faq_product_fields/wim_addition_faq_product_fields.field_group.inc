@@ -59,10 +59,7 @@ function wim_addition_faq_product_fields_field_group_info() {
       6 => 'field_product_period',
       7 => 'field_product_procedure',
       8 => 'field_product_request',
-<<<<<<< HEAD
-=======
       9 => 'field_product_locations',
->>>>>>> master
     ),
     'format_type' => 'tab',
     'format_settings' => array(
