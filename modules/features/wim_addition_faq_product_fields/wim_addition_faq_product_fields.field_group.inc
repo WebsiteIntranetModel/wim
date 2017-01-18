@@ -90,6 +90,7 @@ function wim_addition_faq_product_fields_field_group_info() {
       1 => 'field_product_more_information',
       2 => 'field_product_related_laws',
       3 => 'field_product_request_online',
+      4 => 'field_sc_audience',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
@@ -327,7 +328,7 @@ function wim_addition_faq_product_fields_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Tabs',
-    'weight' => '2',
+    'weight' => '1',
     'children' => array(
       0 => 'group_product_tab8',
       1 => 'group_product_tab1',
