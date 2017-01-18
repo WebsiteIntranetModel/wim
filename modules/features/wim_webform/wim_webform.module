@@ -16,6 +16,8 @@ function wim_webform_form_webform_client_form_alter(&$form, $form_state) {
     'radios',
     'checkboxes',
     'date',
+    'webform_time',
+    'webform_grid',
   );
 
   foreach ($form['submitted'] as &$element) {
