@@ -215,6 +215,7 @@ function sduconnect_set_pdc_content(DOMXPath $xpath, &$node, $private = FALSE) {
 
   // Helper array to map xml tags to fields in node.
   $mapping = array(
+    '//m:page/m:product/m:uitvoerende_instanties' => 'field_product_locations',
     '//m:page/m:product/m:contact' => 'field_product_contact',
     '//m:page/m:product/m:appeal' => 'field_product_objection',
     '//m:page/m:product/m:costs' => 'field_product_costs',

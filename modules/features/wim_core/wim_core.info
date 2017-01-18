@@ -20,6 +20,7 @@ dependencies[] = menu
 dependencies[] = menu_icons
 dependencies[] = password_policy
 dependencies[] = picture
+dependencies[] = roleassign
 dependencies[] = scheduler
 dependencies[] = special_menu_items
 dependencies[] = strongarm

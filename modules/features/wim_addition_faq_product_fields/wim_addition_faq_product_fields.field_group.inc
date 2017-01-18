@@ -59,6 +59,10 @@ function wim_addition_faq_product_fields_field_group_info() {
       6 => 'field_product_period',
       7 => 'field_product_procedure',
       8 => 'field_product_request',
+<<<<<<< HEAD
+=======
+      9 => 'field_product_locations',
+>>>>>>> master
     ),
     'format_type' => 'tab',
     'format_settings' => array(
@@ -143,7 +147,7 @@ function wim_addition_faq_product_fields_field_group_info() {
   $field_group->parent_name = 'group_product_tabs';
   $field_group->data = array(
     'label' => 'Conditions',
-    'weight' => '18',
+    'weight' => '19',
     'children' => array(
       0 => 'field_product_conditions',
     ),
@@ -169,7 +173,7 @@ function wim_addition_faq_product_fields_field_group_info() {
   $field_group->parent_name = 'group_product_tabs';
   $field_group->data = array(
     'label' => 'Particulars',
-    'weight' => '19',
+    'weight' => '20',
     'children' => array(
       0 => 'field_product_forms',
       1 => 'field_product_particulars',
@@ -197,7 +201,7 @@ function wim_addition_faq_product_fields_field_group_info() {
   $field_group->parent_name = 'group_product_tabs';
   $field_group->data = array(
     'label' => 'Period',
-    'weight' => '20',
+    'weight' => '21',
     'children' => array(
       0 => 'field_product_period',
     ),
@@ -223,7 +227,7 @@ function wim_addition_faq_product_fields_field_group_info() {
   $field_group->parent_name = 'group_product_tabs';
   $field_group->data = array(
     'label' => 'Objection',
-    'weight' => '21',
+    'weight' => '22',
     'children' => array(
       0 => 'field_product_objection',
     ),
@@ -249,7 +253,7 @@ function wim_addition_faq_product_fields_field_group_info() {
   $field_group->parent_name = 'group_product_tabs';
   $field_group->data = array(
     'label' => 'Costs',
-    'weight' => '22',
+    'weight' => '23',
     'children' => array(
       0 => 'field_product_costs',
     ),
@@ -293,6 +297,32 @@ function wim_addition_faq_product_fields_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_product_tab8|node|product|default';
+  $field_group->group_name = 'group_product_tab8';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'product';
+  $field_group->mode = 'default';
+  $field_group->parent_name = 'group_product_tabs';
+  $field_group->data = array(
+    'label' => 'Locations',
+    'weight' => '18',
+    'children' => array(
+      0 => 'field_product_locations',
+    ),
+    'format_type' => 'bootstrap_fieldgroup_nav_item',
+    'format_settings' => array(
+      'formatter' => '',
+      'instance_settings' => array(
+        'classes' => '',
+        'required_fields' => 1,
+      ),
+    ),
+  );
+  $field_groups['group_product_tab8|node|product|default'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_product_tabs|node|product|default';
   $field_group->group_name = 'group_product_tabs';
   $field_group->entity_type = 'node';
@@ -303,13 +333,14 @@ function wim_addition_faq_product_fields_field_group_info() {
     'label' => 'Tabs',
     'weight' => '1',
     'children' => array(
-      0 => 'group_product_tab1',
-      1 => 'group_product_tab2',
-      2 => 'group_product_tab3',
-      3 => 'group_product_tab4',
-      4 => 'group_product_tab5',
-      5 => 'group_product_tab6',
-      6 => 'group_product_tab7',
+      0 => 'group_product_tab8',
+      1 => 'group_product_tab1',
+      2 => 'group_product_tab2',
+      3 => 'group_product_tab3',
+      4 => 'group_product_tab4',
+      5 => 'group_product_tab5',
+      6 => 'group_product_tab6',
+      7 => 'group_product_tab7',
     ),
     'format_type' => 'bootstrap_fieldgroup_nav',
     'format_settings' => array(
@@ -389,6 +420,7 @@ function wim_addition_faq_product_fields_field_group_info() {
   t('Contact');
   t('Costs');
   t('Description');
+  t('Locations');
   t('Objection');
   t('PDC information');
   t('Particulars');
