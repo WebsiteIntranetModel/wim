@@ -185,9 +185,10 @@ function wim_update_7008(&$sandbox) {
   }
 
   // Get webmaster role.
-  $rid = ($role = user_role_load_by_name('webmaster')) ? $role->rid : NULL;
+  if ($role = user_role_load_by_name('webmaster')) {
+    // Get role id.
+    $rid = $role->rid;
 
-  if (!empty($rid)) {
     // Assign the assign roles permission.
     user_role_grant_permissions($rid, array('assign roles'));
 
