@@ -80,7 +80,12 @@
  */
 ?>
 <article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
-  <?php if ($product_link): ?>
+  <?php if (!$page && !empty($title) && $view_mode === "introduction"): ?>
+    <h2<?php print $title_attributes; ?>>
+      <a href="<?php print $node_url; ?>"><?php print $title; ?></a>
+    </h2>
+  <?php endif;
+  if ($product_link): ?>
     <?php print $product_link; ?>
   <?php endif; ?>
   <?php
