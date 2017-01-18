@@ -80,7 +80,11 @@
  */
 ?>
 <article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
-  <?php
+  <?php if (!$page && !empty($title) && $view_mode === "introduction"): ?>
+    <h2<?php print $title_attributes; ?>>
+      <a href="<?php print $node_url; ?>"><?php print $title; ?></a>
+    </h2>
+  <?php endif;
   if (!empty($content['field_publication_date'])): ?>
     <div class="submitted">
       <?php print render($content['field_publication_date']); ?>
