@@ -195,7 +195,7 @@ function wim_update_7008(&$sandbox) {
     $roles = user_roles();
     $role_assign = array();
     foreach ($roles as $key => $value) {
-      if ($value !== "anonymous user" && $value !== "authenticated user") {
+      if ($value !== 'anonymous user' && $value !== 'authenticated user') {
         $role_assign[] = $key;
       }
     }
