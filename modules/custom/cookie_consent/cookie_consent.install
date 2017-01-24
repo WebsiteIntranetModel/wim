@@ -77,3 +77,13 @@ function cookie_consent_uninstall() {
     ->condition('name', db_like('cookie_consent_') . '%', 'LIKE')
     ->execute();
 }
+
+/**
+ * Convert link variable to path.
+ */
+function cookie_consent_update_7000(&$sandbox) {
+  $cookie_consent_link = variable_get('cookie_consent_link', FALSE);
+  if ($cookie_consent_link && preg_match('/\[nid:(\d+)\]/', $cookie_consent_link, $matches) && count($matches) > 1 && is_numeric($matches[1])) {
+    variable_set('cookie_consent_link', url('node/' . $matches[1]));
+  }
+}
