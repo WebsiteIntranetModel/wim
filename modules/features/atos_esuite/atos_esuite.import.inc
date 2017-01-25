@@ -328,7 +328,12 @@ function atos_esuite_map_node_product(stdClass $node, DOMDocument $documentDOM, 
   // Description.
   $description = $xpath->query('/result/beschrijving')->item(0)->nodeValue;
   $body = $description;
-  $summary = truncate_utf8($description, 250);
+  if ($node->body[LANGUAGE_NONE][0]['summary']) {
+    $summary = $node->body[LANGUAGE_NONE][0]['summary'];
+  }
+  else {
+    $summary = truncate_utf8($description, 250);
+  }
 
   // Helper array to map xml tags to fields in node.
   $mapping = array(
