@@ -109,6 +109,8 @@ function _external_crawler_index_page($url, stdClass $site) {
   // Load required libaries.
   external_crawler_load_vendor();
 
+  // Prepare URL.
+  $url = _external_crawler_prepare_url($url);
   // Define a pagekey for use in the db.
   $pagekey = _external_crawler_generate_pagekey($site, $url);
   $pagedata = _external_crawler_get_pagedata($pagekey, array(
@@ -256,4 +258,14 @@ function _external_crawler_index_page_document($site, $result, &$document, &$pag
   if (isset($text)) {
     $document['body'] .= $text;
   }
+}
+
+/**
+ * Prepare URL for request.
+ */
+function _external_crawler_prepare_url($url) {
+  $url = trim($url);
+  $url = str_replace(' ', '%20', $url);
+
+  return $url;
 }

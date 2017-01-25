@@ -105,6 +105,7 @@ function _xml_crawler_durp_get_pages(DOMDocument $dom) {
           foreach ($sub_pages as $sub_page_url) {
             // Build url based on base url and subpage url.
             $crawle_page_url = $base_url . $sub_page_url;
+            $crawle_page_url = _external_crawler_prepare_url($crawle_page_url);
             if (valid_url($crawle_page_url)) {
               $pages[] = $crawle_page_url;
             }
@@ -133,6 +134,7 @@ function _xml_crawler_gvop_get_pages(DOMDocument $dom) {
   foreach ($dom->getElementsByTagName('gzd') as $record) {
     // Using xpath to find child element.
     $page_url = $xpath->query('.//dcterms:identifier', $record)->item(0)->nodeValue;
+    $page_url = _external_crawler_prepare_url($page_url);
     if (valid_url($page_url)) {
       $pages[] = $page_url;
     }
@@ -155,6 +157,7 @@ function _xml_crawler_cvdr_get_pages(DOMDocument $dom) {
 
   foreach ($dom->getElementsByTagName('gzd') as $record) {
     $page_url = $record->getElementsByTagName('publicatieurl_xhtml')->item(0)->nodeValue;
+    $page_url = _external_crawler_prepare_url($page_url);
     if (valid_url($page_url)) {
       $pages[] = $page_url;
     }
