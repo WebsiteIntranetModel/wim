@@ -328,7 +328,7 @@ function atos_esuite_map_node_product(stdClass $node, DOMDocument $documentDOM, 
   // Description.
   $description = $xpath->query('/result/beschrijving')->item(0)->nodeValue;
   $body = $description;
-  if ($node->body[LANGUAGE_NONE][0]['summary']) {
+  if (isset($node->body[LANGUAGE_NONE][0]['summary']) && $node->body[LANGUAGE_NONE][0]['summary']) {
     $summary = $node->body[LANGUAGE_NONE][0]['summary'];
   }
   else {
