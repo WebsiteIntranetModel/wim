@@ -19,7 +19,7 @@
       home: 36,
       tab: 9
     };
-    
+
     var $tablist = $('.tabnav ul', context);
 
     // Do nothing if there are no tabs.
@@ -85,7 +85,6 @@
 
       if (i !== 0) {
         $link.attr('aria-selected', 'false');
-        $link.attr('tabindex', '-1');
       } else {
         $link.attr('aria-selected', 'true');
         $link.attr('tabindex', '0');
@@ -99,7 +98,7 @@
    * @param {Boolean} click Determines if click is needed.
    */
   Drupal.wcagTabs.switchTabs = function ($newTab, click) {
-    $newTab.siblings().find('a').attr('tabindex', '-1').attr('aria-selected', 'false');
+    $newTab.siblings().find('a').attr('aria-selected', 'false');
 
     var $newTabLink = $newTab.find('a');
 
