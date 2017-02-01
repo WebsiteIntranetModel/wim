@@ -3669,6 +3669,10 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   border: 0;
 }
 
+.block-search .input-group .input-group-btn .btn:-moz-focusring {
+  outline: 2px dotted;
+}
+
 .block-search .form-group {
   margin: 0;
 }
@@ -3694,6 +3698,10 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   width: 90px;
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
+}
+
+.search-form .btn-primary:-moz-focusring {
+  outline: 2px dotted;
 }
 
 .search-results {

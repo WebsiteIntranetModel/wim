@@ -41,6 +41,9 @@
         line-height: 1.6;
         border: 0;
       }
+      .btn:-moz-focusring {
+        outline: 2px dotted;
+      }
     }
   }
   .form-group {
@@ -69,6 +72,9 @@
     width: 90px;
     border-bottom-left-radius: 0;
     border-top-left-radius: 0;
+  }
+  .btn-primary:-moz-focusring {
+    outline: 2px dotted;
   }
 }
 
