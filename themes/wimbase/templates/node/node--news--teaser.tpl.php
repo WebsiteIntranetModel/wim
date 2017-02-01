@@ -80,7 +80,7 @@
  * @ingroup templates
  */
 ?>
-<article class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
+<article aria-labelledby="node-<?php print $id?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
   <?php if (!empty($content['field_image'])): ?>
     <div class="teaser-image">
       <?php print render($content['field_image']); ?>
@@ -88,7 +88,7 @@
   <?php endif; ?>
   <div class="teaser-body">
     <?php if (!$page && !empty($title)): ?>
-      <h2<?php print $title_attributes; ?>>
+      <h2<?php print $title_attributes; ?> id="node-<?php print $id?>">
         <a href="<?php print $node_url; ?>"><?php print $title; ?></a>
       </h2>
     <?php endif;
