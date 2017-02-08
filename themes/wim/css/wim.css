@@ -3142,6 +3142,10 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   border-color: #00465c;
 }
 
+.btn:-moz-focusring {
+  outline: 2px dotted;
+}
+
 .nav-tabs {
   border-bottom: 1px solid #ddd;
   margin-top: 10px;
