@@ -25,14 +25,6 @@ function cookie_consent_menu() {
     'type' => MENU_CALLBACK,
   );
 
-  $items['cookie-consent/autocomplete/node'] = array(
-    'title' => 'AJAX Autocomplete Node',
-    'access arguments' => array('administer cookie_consent'),
-    'page callback' => '_cookie_consent_autocomplete_node',
-    'file' => 'cookie_consent.admin.inc',
-    'type' => MENU_CALLBACK,
-  );
-
   return $items;
 }
 
@@ -88,10 +80,10 @@ function _cookie_consent_attach(&$page) {
   }
 
   $link = array();
-  $cookie_consent_link = variable_get('cookie_consent_link', FALSE);
-  if ($cookie_consent_link && preg_match('/\[nid:(\d+)\]/', $cookie_consent_link, $matches) && count($matches) > 1 && is_numeric($matches[1])) {
+  $cookie_consent_link = variable_get('cookie_consent_link', '');
+  if ($cookie_consent_link) {
     $link = array(
-      'url' => url('node/' . $matches[1]),
+      'url' => url($cookie_consent_link),
       'title' => check_plain(variable_get('cookie_consent_link_title', t('More information'))),
     );
   }

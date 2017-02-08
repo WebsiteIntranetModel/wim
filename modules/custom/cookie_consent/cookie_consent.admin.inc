@@ -16,9 +16,8 @@ function cookie_consent_admin_form() {
 
   $form['cookie_consent_link'] = array(
     '#type' => 'textfield',
-    '#autocomplete_path' => 'cookie-consent/autocomplete/node',
-    '#title' => t('More information Node Link'),
-    '#description' => t("Appends ':link_title' (linking to the selected node) to the bottom of the Cookie Consent banner and privacy tabs. Leave empty to omit this behaviour.", array(
+    '#title' => t('More information Link'),
+    '#description' => t("Appends ':link_title' to the bottom of the Cookie Consent banner and privacy tabs. Provide full or internal url like node/[nid]o or alias. Leave empty to omit this behaviour.", array(
       ':link_title' => $cookie_consent_link_title,
     )),
     '#default_value' => variable_get('cookie_consent_link', ''),
@@ -133,28 +132,4 @@ function cookie_consent_admin_form() {
   }
 
   return system_settings_form($form);
-}
-
-/**
- * AJAX Callback for /cookie_consent/autocomplete/node/%.
- *
- * @param string $string
- *    Title.
- */
-function _cookie_consent_autocomplete_node($string) {
-  $matches = db_select('node', 'n')
-    ->fields('n', array('nid', 'title'))
-    ->condition('n.title', '%' . db_like($string) . '%', 'LIKE')
-    ->condition('n.status', 1)
-    ->execute()
-    ->fetchAll();
-
-  $build = array();
-  foreach ($matches as $match) {
-    $title = check_plain($match->title);
-    $value = sprintf('%s [nid:%s]', $title, $match->nid);
-    $build[$value] = $title;
-  }
-
-  drupal_json_output($build);
 }

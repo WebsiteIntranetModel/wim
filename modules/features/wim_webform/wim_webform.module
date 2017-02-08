@@ -11,6 +11,7 @@ include_once 'wim_webform.features.inc';
  * Implements hook_form_FORM_ID_alter().
  */
 function wim_webform_form_webform_client_form_alter(&$form, $form_state) {
+  $form['#attributes'] = array('novalidate' => 'novalidate');
 
   $form_sets = array(
     'radios',
@@ -26,17 +27,7 @@ function wim_webform_form_webform_client_form_alter(&$form, $form_state) {
       // Check if element is required and add * to fieldset later.
       $required = '';
       if ($element['#required'] == 1) {
-        $required = array(
-          '#theme' => 'html_tag',
-          '#tag' => 'span',
-          '#value' => '*',
-          '#attributes' => array(
-            'class' => 'form-required',
-            'title' => t('This field is required.'),
-          ),
-        );
-
-        $required = '&nbsp' . drupal_render($required);
+        $required = '&nbsp' . $required = '&nbsp' . theme('form_required_marker');
       }
 
       // Wrap elements in fieldsets for accessibility.
