@@ -72,4 +72,12 @@
     }
   };
 
+  // Global behaviour to set checkbox href links to tabindex -1.
+  // Since this is handled by input checkbox.
+  Drupal.behaviors.checkboxTabindex = {
+    attach: function (context, settings) {
+      $("a.facetapi-checkbox").attr("tabindex","-1");
+    }
+  };
+
 })(jQuery);

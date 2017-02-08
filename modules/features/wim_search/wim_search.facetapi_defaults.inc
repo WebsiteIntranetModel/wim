@@ -73,7 +73,7 @@ function wim_search_facetapi_default_facet_settings() {
   $facet->enabled = TRUE;
   $facet->settings = array(
     'weight' => 0,
-    'widget' => 'facetapi_links',
+    'widget' => 'facetapi_checkbox_links',
     'filters' => array(),
     'active_sorts' => array(
       'display' => 'display',
@@ -181,7 +181,7 @@ function wim_search_facetapi_default_facet_settings() {
   $facet->enabled = TRUE;
   $facet->settings = array(
     'weight' => 0,
-    'widget' => 'date_range',
+    'widget' => 'date_range_checkboxes',
     'filters' => array(),
     'active_sorts' => array(
       'active' => 0,
