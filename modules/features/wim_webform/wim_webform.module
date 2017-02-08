@@ -11,6 +11,7 @@ include_once 'wim_webform.features.inc';
  * Implements hook_form_FORM_ID_alter().
  */
 function wim_webform_form_webform_client_form_alter(&$form, $form_state) {
+  $form['#attributes'] = array('novalidate' => 'novalidate');
 
   $form_sets = array(
     'radios',
