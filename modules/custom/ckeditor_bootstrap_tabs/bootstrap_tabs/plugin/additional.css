@@ -71,3 +71,11 @@
 .tab-content > .active {
     display: block;
 }
+
+.tab-content table,
+.tab-content table td {
+    border: 1px solid #999
+}
+.tab-content table th {
+    border: 1px solid #999
+}
