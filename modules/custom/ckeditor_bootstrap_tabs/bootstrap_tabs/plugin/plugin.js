@@ -106,6 +106,12 @@
       if (editor.contextMenu) {
         var icon = iconToUse();
         editor.addMenuGroup('tabGroup');
+        editor.addMenuItem('tabSetActive', {
+          label: Drupal.t('Set tab active'),
+          icon: this.path + 'icons/' + icon,
+          command: 'tabActive',
+          group: 'tabGroup'
+        });
         editor.addMenuItem('tabBeforeItem', {
           label: Drupal.t('Add tab before'),
           icon: this.path + 'icons/' + icon,
@@ -135,6 +141,7 @@
         editor.contextMenu.addListener(function (element) {
           if (element.getAscendant('a', true)) {
             return {
+              tabSetActive: CKEDITOR.TRISTATE_OFF,
               tabBeforeItem: CKEDITOR.TRISTATE_OFF,
               tabAfterItem: CKEDITOR.TRISTATE_OFF,
               titleText: CKEDITOR.TRISTATE_OFF,
@@ -156,8 +163,32 @@
             if (id.substring(0, 1) == '#') {
               id = id.substring(1);
             }
+
+            // If this tab is active we need to re-set it.
+            if (element.getAscendant('li').hasClass('active')) {
+              editor.document.find('ul.nav > li').getItem(0).addClass('active');
+              editor.document.find('.tab-pane').getItem(0).addClass('active');
+            }
             element.getAscendant('li').remove();
             editor.document.getById(id).remove();
+          }
+        }
+      });
+
+      editor.addCommand('tabActive', {
+        exec: function (editor) {
+          var element = editor.getSelection().getStartElement();
+          var id = element.getAttribute('href');
+          if (element.hasAscendant('li') && id) {
+            if (id.substring(0, 1) == '#') {
+              id = id.substring(1);
+            }
+            // Remove previous active.
+            element.getAscendant('ul').find('li.active').getItem(0).removeClass('active');
+            editor.document.find('.tab-pane.active').getItem(0).removeClass('active');
+            // Add active classes for selected.
+            element.getAscendant('li').addClass('active');
+            editor.document.getById(id).addClass('active');
           }
         }
       });
