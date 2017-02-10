@@ -754,6 +754,8 @@ function _wim_permissions($role) {
       'access administration menu',
       'access administration pages',
       'access content overview',
+      'administer url aliases',
+      'create url aliases',
       'access user profiles',
       'access taxonomy pages',
       'administer blocks',
@@ -878,6 +880,8 @@ function _wim_permissions($role) {
       // System.
       'access administration menu',
       'access administration pages',
+      'administer url aliases',
+      'create url aliases',
       'access content overview',
       'access user profiles',
       'access taxonomy pages',
@@ -988,6 +992,7 @@ function _wim_permissions($role) {
     'content editor' => array(
       // System.
       'use text format filtered_html',
+      'create url aliases',
       'use text format full_html',
       'view the administration theme',
       'view own unpublished content',

@@ -208,3 +208,19 @@ function wim_update_7008(&$sandbox) {
     return "Could not find role";
   }
 }
+
+/**
+ * Add permissions for URL aliases to Webmaster, Content Manager and Content Editor.
+ */
+function wim_update_7009(&$sandbox) {
+  $permissions = array(
+    'webmaster' => array('create url aliases', 'administer url aliases'),
+    'content manager' => array('create url aliases', 'administer url aliases'),
+    'content editor' => array('create url aliases'),
+  );
+
+  foreach ($permissions as $role_name => $permission) {
+    $role = user_role_load_by_name($role_name);
+    user_role_grant_permissions($role->rid, $permission);
+  }
+}
