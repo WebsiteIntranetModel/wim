@@ -86,7 +86,7 @@ function wim_text_formats_default_linkit_profiles() {
       'result_description' => '',
     ),
     'insert_plugin' => array(
-      'url_method' => '2',
+      'url_method' => '3',
     ),
     'attribute_plugins' => array(
       'alt' => array(
