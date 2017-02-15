@@ -19,7 +19,8 @@
  */
 function sduconnect_set_pdc_content(DOMXPath $xpath, &$node, $private = FALSE) {
   $formats = filter_formats();
-  $default_format = variable_get('sduconnect_default_format', reset($formats));
+  $first_format = reset($formats);
+  $default_format = variable_get('sduconnect_default_format', $first_format->format);
 
   $xpath->registerNameSpace('m', 'http://www.sduconnect.nl/Productoverzicht');
   $xpath->registerNameSpace('dcterms', 'http://purl.org/dc/terms/');
@@ -66,7 +67,7 @@ function sduconnect_set_pdc_content(DOMXPath $xpath, &$node, $private = FALSE) {
     LANGUAGE_NONE => array(
       array(
         'value' => $body,
-        'format' => $default_format->format,
+        'format' => $default_format,
       ),
     ),
   );
@@ -237,7 +238,7 @@ function sduconnect_set_pdc_content(DOMXPath $xpath, &$node, $private = FALSE) {
         LANGUAGE_NONE => array(
           array(
             'value' => $field,
-            'format' => $default_format->format,
+            'format' => $default_format,
           ),
         ),
       );
@@ -262,7 +263,7 @@ function sduconnect_set_pdc_content(DOMXPath $xpath, &$node, $private = FALSE) {
       LANGUAGE_NONE => array(
         array(
           'value' => theme('links', array('links' => $items)),
-          'format' => $default_format->format,
+          'format' => $default_format,
         ),
       ),
     );
@@ -368,7 +369,8 @@ function sduconnect_set_pdc_content(DOMXPath $xpath, &$node, $private = FALSE) {
  */
 function sduconnect_set_vac_content($xpath, &$node, $private = FALSE) {
   $formats = filter_formats();
-  $default_format = reset($formats);
+  $first_format = reset($formats);
+  $default_format = variable_get('sduconnect_default_format', $first_format->format);
 
   $xpath->registerNameSpace('vac', 'http://standaarden.overheid.nl/vac/');
   $xpath->registerNameSpace('dcterms', 'http://purl.org/dc/terms/');
@@ -391,7 +393,7 @@ function sduconnect_set_vac_content($xpath, &$node, $private = FALSE) {
     LANGUAGE_NONE => array(
       array(
         'value' => $body,
-        'format' => $default_format->format,
+        'format' => $default_format,
       ),
     ),
   );
@@ -417,7 +419,7 @@ function sduconnect_set_vac_content($xpath, &$node, $private = FALSE) {
   if (preg_match('/[a-z0-9]/si', strip_tags($value))) {
     $items[] = array(
       'value' => $value,
-      'format' => $default_format->format,
+      'format' => $default_format,
     );
     $node->field_faq_additional_information = array(LANGUAGE_NONE => $items);
   }
