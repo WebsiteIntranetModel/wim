@@ -19,7 +19,7 @@
  */
 function sduconnect_set_pdc_content(DOMXPath $xpath, &$node, $private = FALSE) {
   $formats = filter_formats();
-  $default_format = reset($formats);
+  $default_format = variable_get('sduconnect_default_format', reset($formats));
 
   $xpath->registerNameSpace('m', 'http://www.sduconnect.nl/Productoverzicht');
   $xpath->registerNameSpace('dcterms', 'http://purl.org/dc/terms/');

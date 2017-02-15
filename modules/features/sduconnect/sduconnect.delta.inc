@@ -61,7 +61,8 @@ function sduconnect_delta_import($collection) {
     $output->added = count($ids->added);
     $output->changed = count($ids->changed);
     $output->removed = count($ids->removed);
-  } catch (Exception $e) {
+  }
+  catch (Exception $e) {
     $log = t('Got code %code from %url', array(
       '%code' => $e->getCode(),
       '%url' => $e->getMessage(),
