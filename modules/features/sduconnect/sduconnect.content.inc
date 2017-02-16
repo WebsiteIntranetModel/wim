@@ -163,7 +163,9 @@ function sduconnect_set_pdc_content(DOMXPath $xpath, &$node, $private = FALSE) {
   // Here we set mapped fields.
   foreach ($mapping as $query => $field_name) {
     $field = sduconnect_nodelist_to_string($xpath->query($query));
-    if (strlen($field) > 0) {
+    if (!empty($field)) {
+      // Gives opportunity alter content before save.
+      drupal_alter('sduconnect_prepare_content', $field, $field_name);
       $node->$field_name = array(
         LANGUAGE_NONE => array(
           array(
