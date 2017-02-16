@@ -10,9 +10,6 @@
  *
  * Alter field content before save in node. Clear something or change.
  *
- * @param string $field
- *   Content of field.
- * @param string $field_name
  *   Name of field that is going to be save.
  */
 function hook_sduconnect_prepare_content_alter(&$field, $field_name) {
