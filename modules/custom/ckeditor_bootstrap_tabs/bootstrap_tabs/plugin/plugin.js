@@ -139,7 +139,7 @@
         });
 
         editor.contextMenu.addListener(function (element) {
-          if (element.getAscendant('a', true)) {
+          if (element.is('a') && element.getAttribute('data-toggle') === 'tab') {
             return {
               tabSetActive: CKEDITOR.TRISTATE_OFF,
               tabBeforeItem: CKEDITOR.TRISTATE_OFF,
