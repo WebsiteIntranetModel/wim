@@ -12,7 +12,6 @@
  * - $progressbar_bar: TRUE if the bar should be displayed.
  * - $progressbar_pagebreak_labels: TRUE if the page break labels shoud be
  *   displayed.
-
  * - $page_num: The current page number.
  * - $page_count: The total number of pages in this form.
  * - $page_labels: The labels for the pages. This typically includes a label for
