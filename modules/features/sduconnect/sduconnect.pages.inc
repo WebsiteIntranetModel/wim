@@ -117,7 +117,7 @@ function sduconnect_log_page() {
       }
     }
     $row = array(
-      format_date($log->date, 'short'),
+      format_date($log->date, 'custom', 'd-m-Y H:i:s'),
       $types[$log->type],
       $log->title,
       array(

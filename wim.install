@@ -451,6 +451,7 @@ function _wim_password_policy_default_profile() {
       'digit' => '1',
       'history' => '6',
       'length' => '8',
+      'punctuation' => '1',
       'uppercase' => '1',
     ),
     'expiration' => 60,
@@ -752,6 +753,8 @@ function _wim_permissions($role) {
     'webmaster' => array(
       // System.
       'access administration menu',
+      'administer url aliases',
+      'create url aliases',
       'access administration pages',
       'access content overview',
       'administer url aliases',
@@ -879,6 +882,8 @@ function _wim_permissions($role) {
     'content manager' => array(
       // System.
       'access administration menu',
+      'create url aliases',
+      'administer url aliases',
       'access administration pages',
       'administer url aliases',
       'create url aliases',

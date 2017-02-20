@@ -19,7 +19,8 @@
  */
 function sduconnect_set_pdc_content(DOMXPath $xpath, &$node, $private = FALSE) {
   $formats = filter_formats();
-  $default_format = reset($formats);
+  $first_format = reset($formats);
+  $default_format = variable_get('sduconnect_default_format', $first_format->format);
 
   $xpath->registerNameSpace('m', 'http://www.sduconnect.nl/Productoverzicht');
   $xpath->registerNameSpace('dcterms', 'http://purl.org/dc/terms/');
@@ -53,20 +54,12 @@ function sduconnect_set_pdc_content(DOMXPath $xpath, &$node, $private = FALSE) {
 
   // Body.
   $body = sduconnect_nodelist_to_string($xpath->query('//m:page/m:product/m:description'));
-  // Let op.
-  $field = $xpath->query('//m:page/m:product/m:notice');
-  if ($field->length) {
-    $value = $field->item(0)->nodeValue;
-    if (preg_match('/[a-z]/si', strip_tags($value))) {
-      $body .= '<div class="let-op"><strong>Let op:</strong> ' . $field->item(0)->nodeValue . '</div>';
-    }
-  }
 
   $node->body = array(
     LANGUAGE_NONE => array(
       array(
         'value' => $body,
-        'format' => $default_format->format,
+        'format' => $default_format,
       ),
     ),
   );
@@ -96,68 +89,6 @@ function sduconnect_set_pdc_content(DOMXPath $xpath, &$node, $private = FALSE) {
     unset($node->field_related_faq);
     $node->field_related_faq = array();
   }
-
-  $default_content_labels = array(
-    'Let op' => '<strong>Let op:</strong> ',
-    'Omschrijving' => '',
-    'Gerelateerde producten' => '<h3>Gerelateerde producten</h3>',
-    'Vraag en antwoord' => '<h3>Vraag en antwoord</h3>',
-    'Meer informatie' => '<h3>Meer informatie</h3>',
-    'Gerelateerde wetten / regelgeving' => '<h3>Gerelateerde wetten / regelgeving</h3>',
-    'Voorwaarden' => '',
-    'Aanpak' => '',
-    'Formulieren' => '<h3>Formulieren</h3>',
-    'Online aanvragen' => '<h3>Online aanvragen</h3>',
-    'Termijn' => '',
-    'Bezwaar en beroep' => '',
-    'Kosten' => '',
-    'Contact' => '',
-    'Locatie' => '<h3>Locatie</h3>',
-    'Indien periode' => '',
-    'Beschikbaar budget' => '',
-    'Maximale bijdrage' => '',
-  );
-  $content_labels = variable_get('sduconnect_content_labels', $default_content_labels);
-
-  $default_content_structure = array(
-    'before_tabs' => array(),
-    '<h2>**Beschrijving</h2>' => array(
-      'Let op',
-      'Omschrijving',
-      'Gerelateerde producten',
-      'Vraag en antwoord',
-      'Meer informatie',
-      'Gerelateerde wetten / regelgeving',
-    ),
-    '<h2>**Voorwaarden</h2>' => array(
-      'Voorwaarden',
-    ),
-    '<h2>**Aanpak</h2>' => array(
-      'Aanpak',
-      'Formulieren',
-      'Online aanvragen',
-    ),
-    '<h2>**Termijn</h2>' => array(
-      'Termijn',
-    ),
-    '<h2>**Bezwaar en beroep</h2>' => array(
-      'Bezwaar en beroep',
-    ),
-    '<h2>**Kosten</h2>' => array(
-      'Kosten',
-    ),
-    '<h2>**Contact</h2>' => array(
-      'Contact',
-      'Locatie',
-      'Indien periode',
-      'Beschikbaar budget',
-      'Maximale bijdrage',
-    ),
-    'after_tabs' => array(),
-  );
-  $content_structure = variable_get('sduconnect_content_structure', $default_content_structure);
-
-  $body_parts = array();
 
   // More info.
   $names = sduconnect_nodelist_to_array($xpath->query('//m:page/m:product/m:product_links/m:product_link/m:product_link_name'));
@@ -215,13 +146,14 @@ function sduconnect_set_pdc_content(DOMXPath $xpath, &$node, $private = FALSE) {
 
   // Helper array to map xml tags to fields in node.
   $mapping = array(
-    '//m:page/m:product/m:uitvoerende_instanties' => 'field_product_locations',
+    '//m:page/m:product/m:uitvoerende_instanties/m:instantie/m:opmerkingen' => 'field_product_locations',
     '//m:page/m:product/m:contact' => 'field_product_contact',
     '//m:page/m:product/m:appeal' => 'field_product_objection',
     '//m:page/m:product/m:costs' => 'field_product_costs',
     '//m:page/m:product/m:procedure' => 'field_product_procedure',
     '//m:page/m:product/m:period' => 'field_product_period',
     '//m:page/m:product/m:conditions' => 'field_product_conditions',
+    '//m:page/m:product/m:notice' => 'field_product_attention',
     // @codingStandardsIgnoreStart
     // '//m:page/m:product/m:subsidies' => 'field_product_subsidies',
     // '//m:page/m:product/m:subsidies_budget' => 'field_product_subsidies_budget',
@@ -232,12 +164,14 @@ function sduconnect_set_pdc_content(DOMXPath $xpath, &$node, $private = FALSE) {
   // Here we set mapped fields.
   foreach ($mapping as $query => $field_name) {
     $field = sduconnect_nodelist_to_string($xpath->query($query));
-    if (strlen($field) > 0) {
+    if (!empty($field)) {
+      // Gives opportunity alter content before save.
+      drupal_alter('sduconnect_prepare_content', $field, $field_name);
       $node->$field_name = array(
         LANGUAGE_NONE => array(
           array(
             'value' => $field,
-            'format' => $default_format->format,
+            'format' => $default_format,
           ),
         ),
       );
@@ -262,7 +196,7 @@ function sduconnect_set_pdc_content(DOMXPath $xpath, &$node, $private = FALSE) {
       LANGUAGE_NONE => array(
         array(
           'value' => theme('links', array('links' => $items)),
-          'format' => $default_format->format,
+          'format' => $default_format,
         ),
       ),
     );
@@ -324,36 +258,8 @@ function sduconnect_set_pdc_content(DOMXPath $xpath, &$node, $private = FALSE) {
     'timezone_db' => 'UTC',
     'date_type' => 'datetime',
   );
-  $node->field_publication_date = array(LANGUAGE_NONE => $date);
 
-  // @codingStandardsIgnoreStart
-  /*
-  // Group body_parts into tabs. @todo remove this after tabs will be solved.
-  $tabs = array();
-  foreach ($content_structure as $tab_title => $parts) {
-    $tabs[$tab_title] = '';
-    foreach($parts as $part_name) {
-      if (isset($body_parts[$part_name])) {
-        $tabs[$tab_title] .= $body_parts[$part_name];
-      }
-    }
-  }
-  // Merge tab content in body.
-  $before_tabs = $tabs['before_tabs']; unset($tabs['before_tabs']);
-  $after_tabs = $tabs['after_tabs']; unset($tabs['after_tabs']);
-  $body = '';
-  foreach ($tabs as $title => $content) {
-    if (preg_match('/[a-z0-9]/si', strip_tags($content))) {
-      $body .= $title . $content;
-    }
-  }
-  $body = $before_tabs . $body . $after_tabs;
-  $node->body = array(LANGUAGE_NONE => array(array(
-    'value' => $body,
-    'format' => 'filtered_html',
-  )));
-  */
-  // @codingStandardsIgnoreEnd
+  $node->field_publication_date = array(LANGUAGE_NONE => $date);
 }
 
 /**
@@ -368,7 +274,8 @@ function sduconnect_set_pdc_content(DOMXPath $xpath, &$node, $private = FALSE) {
  */
 function sduconnect_set_vac_content($xpath, &$node, $private = FALSE) {
   $formats = filter_formats();
-  $default_format = reset($formats);
+  $first_format = reset($formats);
+  $default_format = variable_get('sduconnect_default_format', $first_format->format);
 
   $xpath->registerNameSpace('vac', 'http://standaarden.overheid.nl/vac/');
   $xpath->registerNameSpace('dcterms', 'http://purl.org/dc/terms/');
@@ -391,7 +298,7 @@ function sduconnect_set_vac_content($xpath, &$node, $private = FALSE) {
     LANGUAGE_NONE => array(
       array(
         'value' => $body,
-        'format' => $default_format->format,
+        'format' => $default_format,
       ),
     ),
   );
@@ -417,7 +324,7 @@ function sduconnect_set_vac_content($xpath, &$node, $private = FALSE) {
   if (preg_match('/[a-z0-9]/si', strip_tags($value))) {
     $items[] = array(
       'value' => $value,
-      'format' => $default_format->format,
+      'format' => $default_format,
     );
     $node->field_faq_additional_information = array(LANGUAGE_NONE => $items);
   }

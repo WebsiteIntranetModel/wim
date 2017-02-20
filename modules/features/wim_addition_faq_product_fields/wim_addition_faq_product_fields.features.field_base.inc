@@ -39,6 +39,25 @@ function wim_addition_faq_product_fields_field_default_field_bases() {
     'type' => 'link_field',
   );
 
+  // Exported field_base: 'field_product_attention'.
+  $field_bases['field_product_attention'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_product_attention',
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(),
+    'translatable' => 0,
+    'type' => 'text_long',
+  );
+
   // Exported field_base: 'field_product_conditions'.
   $field_bases['field_product_conditions'] = array(
     'active' => 1,
