@@ -20,6 +20,7 @@
 
 .webform-progressbar {
   .progress-bar {
+    margin-top: 10px;
     transition: width 2s;
     width: 0;
     @for $i from 1 through 10 {

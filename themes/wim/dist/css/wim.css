@@ -3077,6 +3077,7 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
 }
 
 .webform-progressbar .progress-bar {
+  margin-top: 10px;
   -webkit-transition: width 2s;
   transition: width 2s;
   width: 0;
