@@ -47,7 +47,7 @@
     <div class="webform-progressbar-number">
       <?php print t('Step @start of @end', array('@start' => $page_num, '@end' => $page_count)); ?>
       <?php if ($progressbar_percent): ?>
-        <span class="webform-progressbar-number">(<?php print t('Completed @num%', array('@num' => number_format($percent, 0)));?></span>
+        <span class="webform-progressbar-number">(<?php print t('Completed @num%', array('@num' => number_format($percent, 0)));?>)</span>
       <?php endif; ?>
     </div>
   <?php endif; ?>
