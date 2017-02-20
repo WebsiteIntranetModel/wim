@@ -412,3 +412,88 @@ function wimbase_facetapi_link_active($variables) {
   $variables['options']['html'] = TRUE;
   return theme_link($variables);
 }
+
+/**
+ * Returns HTML for an image with an appropriate icon for the given file.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - file: A file object for which to make an icon.
+ *   - icon_directory: (optional) A path to a directory of icons to be used for
+ *     files. Defaults to the value of the "file_icon_directory" variable.
+ *   - alt: (optional) The alternative text to represent the icon in text-based
+ *     browsers. Defaults to an empty string.
+ *
+ * @ingroup themeable
+ */
+function wimbase_file_icon($variables) {
+  $file = $variables['file'];
+  $alt = $variables['alt'];
+  $icon_directory = $variables['icon_directory'];
+
+  $icon_url = file_icon_url($file, $icon_directory);
+  return '<img class="file-icon" alt="' . check_plain($alt) . '" src="' . $icon_url . '" />';
+}
+
+/**
+ * Returns HTML for a link to a file.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - file: A file object to which the link will be created.
+ *   - icon_directory: (optional) A path to a directory of icons to be used for
+ *     files. Defaults to the value of the "file_icon_directory" variable.
+ *
+ * @ingroup themeable
+ */
+function wimbase_file_link($variables) {
+  $file = $variables['file'];
+  $icon_directory = $variables['icon_directory'];
+
+  $url = file_create_url($file->uri);
+
+  // Human-readable names, for use as text-alternatives to icons.
+  $mime_name = array(
+    'application/msword' => t('Microsoft Office document'),
+    'application/vnd.ms-excel' => t('Office spreadsheet'),
+    'application/vnd.ms-powerpoint' => t('Office presentation'),
+    'application/pdf' => t('PDF'),
+    'video/quicktime' => t('Movie'),
+    'audio/mpeg' => t('Audio'),
+    'audio/wav' => t('Audio'),
+    'image/jpeg' => t('Image'),
+    'image/png' => t('Image'),
+    'image/gif' => t('Image'),
+    'application/zip' => t('Package'),
+    'text/html' => t('HTML'),
+    'text/plain' => t('Plain text'),
+    'application/octet-stream' => t('Binary Data'),
+  );
+
+  $mimetype = file_get_mimetype($file->uri);
+
+  $icon = theme('file_icon', array(
+    'file' => $file,
+    'icon_directory' => $icon_directory,
+    'alt' => !empty($mime_name[$mimetype]) ? $mime_name[$mimetype] : t('File'),
+  ));
+
+  // Set options as per anchor format described at
+  // http://microformats.org/wiki/file-format-examples
+  $options = array(
+    'attributes' => array(
+      'type' => $file->filemime . '; length=' . $file->filesize,
+    ),
+  );
+
+  // Use the description as the link text if available.
+  if (empty($file->description)) {
+    $link_text = $file->filename;
+  }
+  else {
+    $link_text = $file->description;
+    $options['attributes']['title'] = check_plain($file->filename);
+  }
+
+  return '<span class="file">' . $icon . ' ' . l($link_text, $url, $options) . '</span>';
+}
