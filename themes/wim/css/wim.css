@@ -3122,6 +3122,14 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   width: 100%;
 }
 
+.webform-progressbar .progress-bar.completed_33 {
+  width: 33%;
+}
+
+.webform-progressbar .progress-bar.completed_66 {
+  width: 66%;
+}
+
 .webform-client-form .form-managed-file .form-file {
   vertical-align: top;
   margin-bottom: 10px;
