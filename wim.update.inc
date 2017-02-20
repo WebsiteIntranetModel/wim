@@ -210,9 +210,25 @@ function wim_update_7008(&$sandbox) {
 }
 
 /**
+ * Add permissions for URL aliases to roles.
+ */
+function wim_update_7009(&$sandbox) {
+  $permissions = array(
+    'webmaster' => array('create url aliases', 'administer url aliases'),
+    'content manager' => array('create url aliases', 'administer url aliases'),
+    'content editor' => array('create url aliases'),
+  );
+
+  foreach ($permissions as $role_name => $permission) {
+    $role = user_role_load_by_name($role_name);
+    user_role_grant_permissions($role->rid, $permission);
+  }
+}
+
+/**
  * Update WIM 2.0 default password policy to use punctuation in password.
  */
-function wim_update_7009() {
+function wim_update_7010() {
   $policy = password_policy_policy_load(1);
   $policy['policy']['punctuation'] = '1';
   db_update('password_policy')->fields(array(
