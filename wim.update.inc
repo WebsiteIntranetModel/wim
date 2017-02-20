@@ -208,3 +208,19 @@ function wim_update_7008(&$sandbox) {
     return "Could not find role";
   }
 }
+
+/**
+ * Update WIM 2.0 default password policy to use punctuation in password.
+ */
+function wim_update_7009() {
+  $policy = password_policy_policy_load(1);
+  $policy['policy']['punctuation'] = '1';
+  db_update('password_policy')->fields(array(
+    'name' => $policy['name'],
+    'description' => $policy['description'],
+    'enabled' => $policy['enabled'],
+    'policy' => serialize($policy['policy']),
+    'expiration' => $policy['expiration'],
+    'warning' => $policy['warning'],
+  ))->condition('pid', 1)->execute();
+}
