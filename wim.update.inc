@@ -210,7 +210,7 @@ function wim_update_7008(&$sandbox) {
 }
 
 /**
- * Add permissions for URL aliases to Webmaster, Content Manager and Content Editor.
+ * Add permissions for URL aliases to roles.
  */
 function wim_update_7009(&$sandbox) {
   $permissions = array(
