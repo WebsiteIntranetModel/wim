@@ -2944,7 +2944,7 @@ body.in-maintenance #page {
   content: "";
 }
 
-.sr-only {
+.sr-only, .social-links ul.social li a span {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -4399,11 +4399,6 @@ div[class*=region-sidebar] div[class*=main-menu-submenu] ul a.active-trail {
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-.social-links ul.social li a span {
-  display: none;
-  text-indent: -9999px;
 }
 
 .social-links ul.social li:not(:first-child) {
