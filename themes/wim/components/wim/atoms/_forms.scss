@@ -18,6 +18,18 @@
   }
 }
 
+.webform-progressbar {
+  .progress-bar {
+    transition: width 2s;
+    width: 0;
+    @for $i from 1 through 10 {
+      &.completed_#{$i}0 {
+        width: $i * 10%;
+      }
+    }
+  }
+}
+
 .webform-client-form {
   .form-managed-file {
     .form-file {
@@ -70,6 +82,7 @@
 .webform-progressbar-outer {
   margin: 1em -1px 3em;
 }
+
 .webform-container-legend {
   display: inline-block;
   font-weight: bold;
