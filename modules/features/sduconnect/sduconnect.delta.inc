@@ -35,6 +35,22 @@ function sduconnect_delta_import($collection) {
     // Removed items.
     if ($ids->removed) {
       $to_remove = sduconnect_load_nids($ids->removed);
+      $not_found = '';
+      foreach ($to_remove as $nid) {
+        if ($title = sduconnect_load_title_by_nid($nid)) {
+          $log = t('Processed item !id: %title', array(
+            '!id' => $nid,
+            '%title' => $title,
+          ));
+        }
+        else {
+          $log = t('Item %id is listed as removed, but was not found in Drupal.', array(
+            '%id' => $nid,
+          ));
+          $not_found = '_not_found';
+        }
+        _sdu_log('removed' . $not_found, $collection, $log, $nid);
+      }
       node_delete_multiple($to_remove);
     }
 
@@ -121,4 +137,21 @@ function sduconnect_load_nids(array $ids) {
     ->fetchCol();
 
   return $nids;
+}
+
+/**
+ * Helper function to load title by nid.
+ *
+ * @param string $nid
+ *    Node id.
+ *
+ * @return string|FALSE
+ *    Title.
+ */
+function sduconnect_load_title_by_nid($nid) {
+  return db_select('node', 'n')
+    ->fields('n', array('title'))
+    ->condition('n.nid', $nid)
+    ->execute()
+    ->fetchField();
 }
