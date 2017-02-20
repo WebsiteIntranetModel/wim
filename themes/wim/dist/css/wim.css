@@ -3555,6 +3555,11 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.navbar-toggle:focus {
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+
 .navbar-default .navbar-toggle:hover,
 .navbar-default .navbar-toggle:focus {
   background-color: #0082ab;
