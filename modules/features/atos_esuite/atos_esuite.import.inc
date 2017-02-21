@@ -332,7 +332,7 @@ function atos_esuite_map_node_product(stdClass $node, DOMDocument $documentDOM, 
     $summary = $node->body[LANGUAGE_NONE][0]['summary'];
   }
   else {
-    $summary = truncate_utf8($description, 250);
+    $summary = truncate_utf8(strip_tags($description, '<p>'), 250, TRUE);
   }
 
   // Helper array to map xml tags to fields in node.
