@@ -80,6 +80,12 @@ a {
   }
 }
 
+p {
+  a {
+    text-decoration: underline;
+  }
+}
+
 a.back-link {
   display: inline-block;
 }
