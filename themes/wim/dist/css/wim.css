@@ -3080,6 +3080,64 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   margin: 5px 0;
 }
 
+.webform-progressbar {
+  margin-top: 10px;
+}
+
+.webform-progressbar .progress-bar {
+  -webkit-transition: width 2s;
+  transition: width 2s;
+  width: 0;
+}
+
+.webform-progressbar .progress-bar.completed_10 {
+  width: 10%;
+}
+
+.webform-progressbar .progress-bar.completed_20 {
+  width: 20%;
+}
+
+.webform-progressbar .progress-bar.completed_30 {
+  width: 30%;
+}
+
+.webform-progressbar .progress-bar.completed_40 {
+  width: 40%;
+}
+
+.webform-progressbar .progress-bar.completed_50 {
+  width: 50%;
+}
+
+.webform-progressbar .progress-bar.completed_60 {
+  width: 60%;
+}
+
+.webform-progressbar .progress-bar.completed_70 {
+  width: 70%;
+}
+
+.webform-progressbar .progress-bar.completed_80 {
+  width: 80%;
+}
+
+.webform-progressbar .progress-bar.completed_90 {
+  width: 90%;
+}
+
+.webform-progressbar .progress-bar.completed_100 {
+  width: 100%;
+}
+
+.webform-progressbar .progress-bar.completed_33 {
+  width: 33%;
+}
+
+.webform-progressbar .progress-bar.completed_66 {
+  width: 66%;
+}
+
 .webform-client-form .form-managed-file .form-file {
   vertical-align: top;
   margin-bottom: 10px;
