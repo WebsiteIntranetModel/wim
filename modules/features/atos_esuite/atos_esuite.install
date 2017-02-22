@@ -70,6 +70,7 @@ function atos_esuite_schema() {
 function atos_esuite_uninstall() {
   variable_del('atos_esuite_url');
   variable_del('atos_esuite_chunk_size');
+  variable_del('atos_default_format');
 }
 
 /**
