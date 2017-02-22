@@ -1,0 +1,6 @@
+name = WIM Apachesolr Media
+description = Implementation Apachsolr Media feature.
+package = WIM
+core = 7.x
+
+dependencies[] = apachesolr_attachments
