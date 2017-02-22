@@ -34,14 +34,13 @@ function wim_webform_form_webform_client_form_alter(&$form, $form_state) {
       $element['#prefix'] = '<fieldset class="webform-container">';
       $element['#prefix'] .= '<legend class="webform-container-legend">' . $element['#title'] . $required . '</legend>';
       $element['#suffix'] = '</fieldset>';
-
-      unset($element['#title']);
+      $element['#title_display'] = 'invisible';
     }
     elseif (isset($element['#title_display']) && $element['#title_display'] === 'none') {
 
       // Wrapping in fieldsets shoudn't happen if component doesn't have a
       // title, but incorrect labels should still be removed.
-      unset($element['#title']);
+      $element['#title_display'] = 'invisible';
     }
   }
 }

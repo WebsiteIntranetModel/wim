@@ -269,3 +269,37 @@ function wim_core_cronapi($op, $job = NULL) {
 
   return $items;
 }
+
+/**
+ * Implements hook_theme_registry_alter().
+ */
+function wim_core_theme_registry_alter(&$theme_registry) {
+  // Add our accessibility preprocess to several theme functions.
+  $field_types = array(
+    'textfield',
+    'password',
+    'file',
+    'textarea',
+    'checkbox',
+    'radio',
+    'select',
+    'searchfield',
+    'webform_number',
+    'webform_email',
+  );
+  drupal_alter('accessible_forms_field_types', $field_types);
+  foreach ($field_types as $hook) {
+    $theme_registry[$hook]['preprocess functions'][] = 'wim_core_preprocess_form_fields';
+  }
+
+}
+
+/**
+ * Pre-process function to add accessibility attributes to form elements.
+ */
+function wim_core_preprocess_form_fields(&$variables) {
+  if (isset($variables['element']['#parents']) && form_get_error($variables['element']) !== NULL && !empty($variables['element']['#validated'])) {
+    $variables['element']['#attributes']['aria-invalid'] = 'true';
+    $variables['element']['#attributes']['aria-describedBy'] = md5(form_get_error($variables['element']));
+  }
+}
