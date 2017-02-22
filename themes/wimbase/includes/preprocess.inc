@@ -263,14 +263,20 @@ function wimbase_preprocess_search_result(&$variables) {
     ),
   ));
 
-  if (isset($result['node']) && $node = node_load($result['node']->entity_id)) {
-    $content_types_labels = array(
-      'page' => t('General information'),
-    );
-    $variables['node_content'] = node_view($node, 'search_result');
-    // Add content type label.
-    $variables['content_type'] = isset($content_types_labels[$node->type]) ? $content_types_labels[$node->type] : ucfirst($node->type);
+  if ($result['entity_type'] === 'node') {
+    if (isset($result['node']) && $node = node_load($result['node']->entity_id)) {
+      $content_types_labels = array(
+        'page' => t('General information'),
+      );
+      $variables['node_content'] = node_view($node, 'search_result');
+      // Add content type label.
+      $variables['content_type'] = isset($content_types_labels[$node->type]) ? $content_types_labels[$node->type] : ucfirst($node->type);
+    }
   }
+  elseif ($result['entity_type'] === 'file') {
+    $variables['content_type'] = t('Document');
+  }
+
 }
 
 /**

@@ -353,9 +353,9 @@ function wimbase_breadcrumb($variables) {
     // Provide a navigational heading to give context for breadcrumb links to
     // screen-reader users. Make the heading invisible with .element-invisible.
     $title = '<p id="breadcrums-nav-title" class="element-invisible">'
-        . t('You are here') . '</p>';
+      . t('You are here') . '</p>';
     $output = '<nav class="breadcrumb" aria-labelledby="breadcrums-nav-title" role="navigation">'
-        . $title . implode(' / ', $breadcrumb) . '</nav>';
+      . $title . implode(' / ', $breadcrumb) . '</nav>';
     return $output;
   }
 }
@@ -496,4 +496,13 @@ function wimbase_file_link($variables) {
   }
 
   return '<span class="file">' . $icon . ' ' . l($link_text, $url, $options) . '</span>';
+}
+
+/**
+ * Returns HTML for files search results.
+ */
+function wimbase_apachesolr_search_snippets__file($vars) {
+  $snippets = $vars['flattened_snippets'];
+
+  return implode(' ... ', $snippets);
 }
