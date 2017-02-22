@@ -65,7 +65,7 @@ projects[userprotect] = 1.2
 projects[variable] = 2.5
 projects[views] = 3.14
 projects[views_bootstrap] = 3.1
-projects[views_bulk_operations] = 3.3
+projects[views_bulk_operations] = 3.4
 projects[webform] = 4.14
 projects[webform_clear] = 2.0
 projects[webform_encrypt] = 1.1
@@ -113,11 +113,6 @@ projects[bean][patch][1911234_6] = https://www.drupal.org/files/issues/select-fr
 ; Add plural format to views_handler_area_result
 ; https://www.drupal.org/node/1793500#comment-10875360
 projects[views][patch][1793500_13] = https://www.drupal.org/files/issues/views-area-results-plural-1793500-13.patch
-
-; Views bulk operations
-; Fix "Select all" checkbox works only once
-; https://www.drupal.org/node/2608360#comment-11620927
-projects[views_bulk_operations][patch][2608360_14] = https://www.drupal.org/files/issues/2608360-14.patch
 
 ; Facet API
 ; Fix "Show fewer" link for Facet API filters
