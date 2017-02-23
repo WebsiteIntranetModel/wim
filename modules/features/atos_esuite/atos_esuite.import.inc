@@ -324,6 +324,7 @@ function atos_esuite_map_node_product(stdClass $node, DOMDocument $documentDOM, 
   // Prevent wrong format.
   $formats = filter_formats();
   $default_format = reset($formats);
+  $format = variable_get('atos_default_format', $default_format->format);
 
   // Description.
   $description = $xpath->query('/result/beschrijving')->item(0)->nodeValue;
@@ -355,7 +356,7 @@ function atos_esuite_map_node_product(stdClass $node, DOMDocument $documentDOM, 
         LANGUAGE_NONE => array(
           array(
             'value' => $$tag,
-            'format' => $default_format->format,
+            'format' => $format,
           ),
         ),
       );
@@ -396,7 +397,7 @@ function atos_esuite_map_node_product(stdClass $node, DOMDocument $documentDOM, 
       array(
         'value' => $body,
         'summary' => $summary,
-        'format' => $default_format->format,
+        'format' => $format,
       ),
     ),
   );
@@ -461,6 +462,7 @@ function atos_esuite_map_node_faq(stdClass $node, DOMDocument $documentDOM, DOMX
 
   $formats = filter_formats();
   $default_format = reset($formats);
+  $format = variable_get('atos_default_format', $default_format->format);
 
   // Additional information. Actually not used.
   $more_info = trim($xpath->query('/result/meer_info')->item(0)->nodeValue);
@@ -469,7 +471,7 @@ function atos_esuite_map_node_faq(stdClass $node, DOMDocument $documentDOM, DOMX
       LANGUAGE_NONE => array(
         array(
           'value' => $more_info,
-          'format' => $default_format->format,
+          'format' => $format,
         ),
       ),
     );
@@ -480,7 +482,7 @@ function atos_esuite_map_node_faq(stdClass $node, DOMDocument $documentDOM, DOMX
     LANGUAGE_NONE => array(
       array(
         'value' => $xpath->query('/result/antwoord')->item(0)->nodeValue,
-        'format' => $default_format->format,
+        'format' => $format,
       ),
     ),
   );
