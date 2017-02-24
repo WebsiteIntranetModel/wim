@@ -11,4 +11,5 @@ function wim_apachesolr_media_install() {
   variable_set('apachesolr_attachments_tika_path', '/var/lib/tika');
   variable_set('apachesolr_attachments_tika_jar', 'tika-app-1.14.jar');
   variable_set('apachesolr_attachments_filesize_limit', '52428800');
+  variable_set('apachesolr_attachments_extract_using', 'tika');
 }
