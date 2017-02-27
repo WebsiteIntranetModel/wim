@@ -58,3 +58,10 @@ function wim_search_update_7002(&$sandbox) {
     }
   }
 }
+
+/**
+ * Enable Apachesolr Media.
+ */
+function wim_search_update_7003(&$sandbox) {
+  module_enable(array('apachesolr_attachments', 'wim_apachesolr_media'));
+}
