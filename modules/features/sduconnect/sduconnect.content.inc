@@ -55,11 +55,17 @@ function sduconnect_set_pdc_content(DOMXPath $xpath, &$node, $private = FALSE) {
   // Body.
   $body = sduconnect_nodelist_to_string($xpath->query('//m:page/m:product/m:description'));
 
+  $summary = '';
+  if (isset($node->body[LANGUAGE_NONE][0]['summary']) && $node->body[LANGUAGE_NONE][0]['summary']) {
+    $summary = $node->body[LANGUAGE_NONE][0]['summary'];
+  }
+
   $node->body = array(
     LANGUAGE_NONE => array(
       array(
         'value' => $body,
         'format' => $default_format,
+        'summary' => $summary,
       ),
     ),
   );
@@ -294,11 +300,17 @@ function sduconnect_set_vac_content($xpath, &$node, $private = FALSE) {
     $body .= sduconnect_nodelist_to_string($xpath->query('//vac:vacs/vac:vac/vac:body/vac:kanaal/vac:onderwaterantwoord/vac:onderwaterantwoordProductVeld'));
   }
 
+  $summary = '';
+  if (isset($node->body[LANGUAGE_NONE][0]['summary']) && $node->body[LANGUAGE_NONE][0]['summary']) {
+    $summary = $node->body[LANGUAGE_NONE][0]['summary'];
+  }
+
   $node->body = array(
     LANGUAGE_NONE => array(
       array(
         'value' => $body,
         'format' => $default_format,
+        'summary' => $summary,
       ),
     ),
   );
