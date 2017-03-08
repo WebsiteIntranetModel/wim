@@ -81,29 +81,29 @@
  */
 ?>
 <article aria-labelledby="node-<?php print $id?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
-  <?php if (!empty($content['field_image'])): ?>
+    <div class="teaser-body">
+      <?php if (!$page && !empty($title)): ?>
+          <h2<?php print $title_attributes; ?> id="node-<?php print $id?>">
+              <a href="<?php print $node_url; ?>"><?php print $title; ?></a>
+          </h2>
+      <?php endif;
+      hide($content['field_publication_date']);
+      if (!empty($content['field_publication_date'])): ?>
+          <div class="submitted">
+            <?php print render($content['field_publication_date']); ?>
+          </div>
+      <?php endif;
+      // Hide comments, tags, and links now so that we can render them later.
+      hide($content['comments']);
+      hide($content['links']);
+      hide($content['field_image']);
+      hide($content['field_tags']);
+      print render($content);
+      ?>
+    </div>
+    <?php if (!empty($content['field_image'])): ?>
     <div class="teaser-image">
       <?php print render($content['field_image']); ?>
     </div>
-  <?php endif; ?>
-  <div class="teaser-body">
-    <?php if (!$page && !empty($title)): ?>
-      <h2<?php print $title_attributes; ?> id="node-<?php print $id?>">
-        <a href="<?php print $node_url; ?>"><?php print $title; ?></a>
-      </h2>
-    <?php endif;
-    hide($content['field_publication_date']);
-    if (!empty($content['field_publication_date'])): ?>
-      <div class="submitted">
-        <?php print render($content['field_publication_date']); ?>
-      </div>
-    <?php endif;
-    // Hide comments, tags, and links now so that we can render them later.
-    hide($content['comments']);
-    hide($content['links']);
-    hide($content['field_image']);
-    hide($content['field_tags']);
-    print render($content);
-    ?>
-  </div>
+    <?php endif; ?>
 </article>
