@@ -45,6 +45,7 @@ dependencies[] = media_wysiwyg
 dependencies[] = menu_block
 dependencies[] = metatag
 dependencies[] = module_filter
+dependencies[] = node_export
 dependencies[] = l10n_update
 dependencies[] = link
 dependencies[] = linkit
@@ -59,6 +60,7 @@ dependencies[] = userprotect
 dependencies[] = variable
 dependencies[] = views
 dependencies[] = views_bulk_operations
+dependencies[] = views_data_export
 dependencies[] = wysiwyg
 dependencies[] = xmlsitemap
 
