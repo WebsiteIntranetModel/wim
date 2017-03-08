@@ -79,7 +79,13 @@
   }
   &.node-agenda {
     position: relative;
+    display: flex;
+    flex-direction: row-reverse;
+    .teaser-body {
+      flex-grow: 1;
+    }
     .fields-wrapper {
+      flex-shrink: 0;
       min-width: 60px;
       min-height: 60px;
       float: left;
@@ -109,6 +115,19 @@
           font-weight: normal;
         }
       }
+    }
+  }
+  &.node-news {
+    display: flex;
+    flex-direction: column-reverse;
+    @include MQ($screen-xs) {
+      flex-direction: row-reverse;
+    }
+    .teaser-body {
+      flex-grow: 1;
+    }
+    .teaser-image {
+      flex-shrink: 0;
     }
   }
   &.node-teaser-short {
