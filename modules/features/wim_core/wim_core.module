@@ -246,6 +246,15 @@ function wim_core_form_alter(&$form, &$form_state, $form_id) {
     if (!user_access('change own role') && isset($form['account']['roles'])) {
       $form['account']['roles']['#options'] = array_diff($form['account']['roles']['#options'], array('administrator'));
     }
+
+    if ($user->uid !== '1') {
+      $rid = user_role_load_by_name('webmaster');
+      if (!user_has_role($rid->rid)) {
+        $form['locale']['#access'] = FALSE;
+        $form['timezone']['#access'] = FALSE;
+        $form['redirect']['#access'] = FALSE;
+      }
+    }
   }
 
   // Only Administrator can change roles info and remove.
