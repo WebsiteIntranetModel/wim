@@ -129,6 +129,11 @@ projects[felix][patch][2811151] = https://www.drupal.org/files/issues/felix-inva
 ; https://www.drupal.org/node/2413111
 projects[webform_encrypt][patch][2413111] = https://www.drupal.org/files/issues/webform_encrypt-Undefined-index-value-2413111-%235-7.x-1.1.patch
 
+; Webform Clear
+; Fix Undefined index is_new for Webform Clear
+; https://www.drupal.org/node/2471671
+projects[webform_clear][patch][2471671] = https://www.drupal.org/files/issues/2471671-test-withpatch.patch
+
 ; Hansel breadcrumbs
 ; Token replacement (pathauto patterns) completely broken
 ; https://www.drupal.org/node/2399645
