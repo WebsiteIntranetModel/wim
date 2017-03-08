@@ -148,12 +148,6 @@
       <?php endif; ?>
 
       <div class="row">
-        <?php if (!empty($page['sidebar_first'])): ?>
-          <aside class="col-sm-3" role="complementary">
-            <?php print render($page['sidebar_first']); ?>
-          </aside>  <!-- /#sidebar-first -->
-        <?php endif; ?>
-
         <section<?php print $content_column_class; ?>>
           <a id="main-content"></a>
           <?php print render($title_prefix); ?>
@@ -173,6 +167,12 @@
           <?php endif; ?>
           <?php print render($page['content']); ?>
         </section>
+
+        <?php if (!empty($page['sidebar_first'])): ?>
+          <aside <?php print $sidebar_first_column_class; ?> role="complementary">
+            <?php print render($page['sidebar_first']); ?>
+          </aside>  <!-- /#sidebar-first -->
+        <?php endif; ?>
 
         <?php if (!empty($page['sidebar_second'])): ?>
           <aside class="col-sm-3" role="complementary">

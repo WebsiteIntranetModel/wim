@@ -244,6 +244,20 @@ function wimbase_preprocess_page(&$variables) {
   if (module_exists('readspeaker')) {
     $variables['readspeaker'] = readspeaker_build_player();
   }
+
+  // Set bootstrap classes.
+  if (!empty($variables['page']['sidebar_first']) && !empty($variables['page']['sidebar_second'])) {
+    _wimbase_culc_content_cols($variables, 3, 3);
+  }
+  elseif (!empty($variables['page']['sidebar_first']) && empty($variables['page']['sidebar_second'])) {
+    _wimbase_culc_content_cols($variables, 3, 0);
+  }
+  elseif (empty($variables['page']['sidebar_first']) && !empty($variables['page']['sidebar_second'])) {
+    _wimbase_culc_content_cols($variables, 0, 3);
+  }
+  else {
+    _wimbase_culc_content_cols($variables, 3);
+  }
 }
 
 /**
@@ -326,4 +340,35 @@ function wimbase_preprocess_views_exposed_form(&$vars) {
       }
     }
   }
+}
+
+/**
+ * Calculate bootstrap classes for content and sidebars.
+ *
+ * @param array $variables
+ *    - Page variables.
+ * @param int $primary_cols
+ *    - Primary sidebar cols number.
+ * @param int $secondary_cols
+ *    - Secondary sidebar cols number.
+ * @param int $offset_primary
+ *    - Offset number for content.
+ */
+function _wimbase_culc_content_cols(&$variables, $primary_cols = 0, $secondary_cols = 0, $offset_primary = 0) {
+  $content_cols = 12 - $primary_cols - $secondary_cols;
+  $variables['sidebar_first_classes'][] = 'col-sm-' . $primary_cols;
+  $variables['content_column_classes'][] = 'col-sm-' . $content_cols;
+  // Offset sidebar first.
+  if ($offset_primary) {
+    $variables['content_column_classes'][] = 'col-sm-offset-' . $offset_primary;
+  }
+
+  // Fix accessibility for primary region.
+  if ($primary_cols && $content_cols !== 12) {
+    $variables['content_column_classes'][] = 'col-md-push-' . $primary_cols;
+    $variables['sidebar_first_classes'][] = 'col-md-pull-' . $content_cols;
+  }
+
+  $variables['content_column_class'] = ' class="' . implode(' ', $variables['content_column_classes']) . '"';
+  $variables['sidebar_first_column_class'] = ' class="' . implode(' ', $variables['sidebar_first_classes']) . '"';
 }
