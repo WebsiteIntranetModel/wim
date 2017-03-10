@@ -261,7 +261,8 @@ function wim_update_7011(&$sandbox) {
       if ($value !== 'anonymous user' && $value !== 'authenticated user') {
         if ($value == 'administrator') {
           $role_assign[$key] = 0;
-        } else {
+        }
+        else {
           $role_assign[$key] = $key;
         }
       }
