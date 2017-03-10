@@ -240,3 +240,24 @@ function wim_update_7010() {
     'warning' => $policy['warning'],
   ))->condition('pid', 1)->execute();
 }
+
+/**
+ * Add permissions for module: Revisioning.
+ */
+function wim_update_7011(&$sandbox) {
+  // Enable the module.
+  if (!module_exists('revisioning')) {
+    module_enable(array('revisioning'));
+  }
+
+  $permissions = array(
+    'webmaster' => array('view revision status messages', 'edit revisions', 'publish revisions', 'unpublish current revision'),
+    'content manager' => array('view revision status messages', 'edit revisions', 'publish revisions', 'unpublish current revision'),
+    'content editor' => array('view revision status messages', 'edit revisions', 'publish revisions', 'unpublish current revision'),
+  );
+
+  foreach ($permissions as $role_name => $permission) {
+    $role = user_role_load_by_name($role_name);
+    user_role_grant_permissions($role->rid, $permission);
+  }
+}

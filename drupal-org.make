@@ -56,6 +56,7 @@ projects[password_policy] = 1.12
 projects[pathauto] = 1.3
 projects[picture] = 2.13
 projects[redirect] = 1.0-rc3
+projects[revisioning] = 1.9
 projects[roleassign] = 1.1
 projects[scheduler] = 1.5
 projects[strongarm] = 2.0
