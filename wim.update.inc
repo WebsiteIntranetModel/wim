@@ -261,3 +261,24 @@ function wim_update_7011(&$sandbox) {
     user_role_grant_permissions($role->rid, $permission);
   }
 }
+
+/**
+ * Add permissions for module: Diff.
+ */
+function wim_update_7012(&$sandbox) {
+  // Enable the module.
+  if (!module_exists('diff')) {
+    module_enable(array('diff'));
+  }
+
+  $permissions = array(
+    'webmaster' => array('diff view changes'),
+    'content manager' => array('diff view changes'),
+    'content editor' => array('diff view changes'),
+  );
+
+  foreach ($permissions as $role_name => $permission) {
+    $role = user_role_load_by_name($role_name);
+    user_role_grant_permissions($role->rid, $permission);
+  }
+}

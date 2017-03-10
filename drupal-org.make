@@ -22,6 +22,7 @@ projects[chosen] = 2.0
 projects[ctools] = 1.11
 projects[date] = 2.9
 projects[date_facets] = 1.0
+projects[diff] = 3.3
 projects[elysia_cron] = 2.4
 projects[email] = 1.3
 projects[encrypt] = 2.3

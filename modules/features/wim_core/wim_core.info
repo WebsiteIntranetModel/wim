@@ -7,6 +7,7 @@ dependencies[] = autologout
 dependencies[] = breakpoints
 dependencies[] = ctools
 dependencies[] = date
+dependencies[] = diff
 dependencies[] = elysia_cron
 dependencies[] = email
 dependencies[] = features
