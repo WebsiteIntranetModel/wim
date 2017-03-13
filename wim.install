@@ -148,8 +148,13 @@ function _wim_set_up_roles_and_permissions() {
   $roles = user_roles();
   $role_assign = array();
   foreach ($roles as $key => $value) {
-    if ($value !== "anonymous user" && $value !== "authenticated user") {
-      $role_assign[] = $key;
+    if ($value !== 'anonymous user' && $value !== 'authenticated user') {
+      if ($value == 'administrator') {
+        $role_assign[$key] = 0;
+      }
+      else {
+        $role_assign[$key] = $key;
+      }
     }
   }
   variable_set('roleassign_roles', $role_assign);
