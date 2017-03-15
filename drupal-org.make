@@ -45,6 +45,7 @@ projects[menu_block] = 2.7
 projects[menu_icons] = 3.0-beta4
 projects[metatag] = 1.21
 projects[migrate] = 2.8
+projects[mimemail] = 1.0-beta4
 projects[module_filter] = 2.0
 projects[nodequeue] = 2.1
 projects[l10n_update] = 2.1

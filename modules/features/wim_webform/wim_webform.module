@@ -44,3 +44,32 @@ function wim_webform_form_webform_client_form_alter(&$form, $form_state) {
     }
   }
 }
+
+function wim_webform_mail_alter(&$message) {
+  // Alter the message of webforms to add attachment.
+  if ($message['key'] == 'submission' && $message['module'] = 'webform') {
+    // Check if sending attachments is enabled for the form.
+    if (
+      !empty($message['params']) &&
+      !empty($message['params']['node']->field_send_attachments_with_emai) &&
+      $message['params']['node']->field_send_attachments_with_emai[LANGUAGE_NONE]['0']['value'] == '1'
+    ) {
+      // Loop through all the webform components.
+      foreach ($message['params']['node']->webform['components'] as $component) {
+        // Get all the webform components with fieldtype file.
+        if (
+          $component['type'] == 'file' &&
+          isset($message['params']['submission']->data[$component['cid']])
+        ) {
+          // Load the file.
+          $file = file_load($message['params']['submission']->data[$component['cid']][0]);
+
+          // Attach the file to the email.
+          $message['params']['attachments'][] = array(
+            'filepath' => $file->uri,
+          );
+        }
+      }
+    }
+  }
+}
