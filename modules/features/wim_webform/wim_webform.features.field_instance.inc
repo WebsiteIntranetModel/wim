@@ -136,7 +136,7 @@ function wim_webform_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('Attach the uploaded files to the email? ');
+  t('Attach the uploaded files to the email?');
   t('Body');
   t('Send attachments with email');
   t('Tags');

@@ -70,6 +70,9 @@ function wim_webform_form_alter(&$form, $form_state) {
   }
 }
 
+/**
+ * Implements hook_mail_alter().
+ */
 function wim_webform_mail_alter(&$message) {
   // Alter the message of webforms to add attachment.
   if ($message['key'] == 'submission' && $message['module'] = 'webform') {
