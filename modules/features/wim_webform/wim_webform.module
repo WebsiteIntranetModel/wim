@@ -52,7 +52,7 @@ function wim_webform_form_alter(&$form, $form_state) {
   // Alter the file upload component of webforms.
   if ($form['#form_id'] == 'webform_component_edit_form' && $form['type']['#value'] == 'file') {
     global $user;
-    
+
     // Set default file to private.
     // Only webmasters & administrators can change this.
     if (
@@ -63,6 +63,9 @@ function wim_webform_form_alter(&$form, $form_state) {
       $form['extra']['scheme']['#default_value'] = 'private';
       $form['extra']['scheme']['#disabled'] = TRUE;
       $form['extra']['scheme']['#type'] = 'hidden';
+    }
+    elseif (!empty(variable_get('file_private_path'))) {
+      $form['extra']['scheme']['#default_value'] = 'private';
     }
   }
 }
