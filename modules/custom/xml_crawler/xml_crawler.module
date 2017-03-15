@@ -19,17 +19,41 @@ function xml_crawler_external_crawler_save_site_alter(&$site, $fields) {
 }
 
 /**
+ * Implements hook_wimbase_result_source_site_alter().
+ */
+function xml_crawler_wimbase_result_source_site_alter($result_link, &$variables) {
+
+  $fields = $variables['result']['fields'];
+
+  if ($fields['entity_type'] === 'external_crawler' && !empty($fields['entity_id'])) {
+    if (_xml_crawler_get_xml_type($fields['entity_id']) === 'cvdr') {
+      // Alter source url.
+      $parsed_url = parse_url($result_link);
+      $source_url = $parsed_url['scheme'] . '://' . $parsed_url['host'];
+      $variables['source'] = l($source_url, $result_link, array(
+        'absolute' => TRUE,
+        'attributes' => array(
+          'class' => array('source'),
+        ),
+      ));
+    }
+  }
+}
+
+/**
  * Implements hook_form_BASE_FORM_ID_alter().
  */
 function xml_crawler_form_alter(&$form, &$form_state, $form_id) {
   // Add checkbox for XML marker.
   if ($form_id === 'external_crawler_site_edit_form' || $form_id === 'external_crawler_site_add_form') {
+    $date_token = '[current-date:custom:d-m-Y]';
+
     $form['name']['#weight'] = -10;
     $form['url']['#weight'] = -9;
     $form['is_xml'] = array(
       '#type' => 'checkbox',
       '#title' => t('Is XML'),
-      '#description' => t('This site contain XML page.'),
+      '#description' => t("This site contain XML page. Note, to use a current date just need to replace a static date with following token: \"<b>$date_token</b>\" in the URL field. For example: https://example.nl/sru/Search?version=1.2&uitwerkingtredingDatum < $date_token and the date will be formatted like: !current_date", array('!current_date' => token_replace($date_token))),
       '#weight' => -8,
       '#default_value' => isset($form_state['site']->is_xml) ? $form_state['site']->is_xml : 0,
     );
