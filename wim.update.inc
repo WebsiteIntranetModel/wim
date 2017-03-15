@@ -275,3 +275,28 @@ function wim_update_7011(&$sandbox) {
     return "Could not find role";
   }
 }
+
+/**
+ * Set the linkit default profile to alias path.
+ */
+function wim_update_7012(&$sandbox) {
+  // Get the serialized data from linkit.
+  $data = db_select('linkit_profiles', 'l')
+    ->fields('l', array('data'))
+    ->condition('l.name', 'default')
+    ->execute()
+    ->fetchField();
+
+  // Change the data.
+  $data = unserialize($data);
+  $data['insert_plugin']['url_method'] = '3';
+  $data = serialize($data);
+
+  // Update the database with data.
+  $data = db_update('linkit_profiles')
+    ->fields(array(
+      'data' => $data,
+    ))
+    ->condition('name', 'default', '=')
+    ->execute();
+}
