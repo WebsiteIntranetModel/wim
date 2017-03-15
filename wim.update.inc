@@ -242,6 +242,7 @@ function wim_update_7010() {
 }
 
 /**
+<<<<<<< HEAD
  * Add permissions for module: Revisioning.
  */
 function wim_update_7011(&$sandbox) {
@@ -274,6 +275,41 @@ function wim_update_7011(&$sandbox) {
   foreach ($permissions as $role_name => $permission) {
     $role = user_role_load_by_name($role_name);
     user_role_grant_permissions($role->rid, $permission);
+  }
+}
+
+/**
+ * Assign roles fix & exclude administrator as assignable role.
+ */
+function wim_update_7011(&$sandbox) {
+  // Get webmaster role.
+  if ($role = user_role_load_by_name('webmaster')) {
+    // Get role id.
+    $rid = $role->rid;
+
+    // Assign the assign roles permission.
+    user_role_grant_permissions($rid, array('assign roles'));
+
+    // Get all the users roles and set variable to assign these for webmasters.
+    $roles = user_roles();
+
+    $role_assign = array();
+    foreach ($roles as $key => $value) {
+      if ($value !== 'anonymous user' && $value !== 'authenticated user') {
+        if ($value == 'administrator') {
+          $role_assign[$key] = 0;
+        }
+        else {
+          $role_assign[$key] = $key;
+        }
+      }
+    }
+    variable_set('roleassign_roles', $role_assign);
+
+    return "Role assign added to webmaster";
+  }
+  else {
+    return "Could not find role";
   }
 }
 
