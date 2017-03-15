@@ -69,7 +69,7 @@ function wimbase_preprocess_region(&$variables) {
         if ($block->new_row) {
           $row_id++;
           $rows[$row_id][] = $variables['elements'][$element_id]['#children'];
-          $total_col = 0;
+          $total_col = $block->bootstrap_layout;
         }
         else {
           $total_col += $block->bootstrap_layout;
