@@ -332,4 +332,3 @@ function wim_update_7013(&$sandbox) {
     user_role_grant_permissions($role->rid, $permission);
   }
 }
-
