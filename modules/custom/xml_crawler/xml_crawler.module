@@ -53,7 +53,7 @@ function xml_crawler_form_alter(&$form, &$form_state, $form_id) {
     $form['is_xml'] = array(
       '#type' => 'checkbox',
       '#title' => t('Is XML'),
-      '#description' => t("This site contain XML page. Note, to use a current date just need to replace a static date with following token: \"<b>$date_token</b>\" in the URL field. For example: https://example.nl/sru/Search?version=1.2&uitwerkingtredingDatum < $date_token and the date will be formatted like: !current_date", array('!current_date' => token_replace($date_token))),
+      '#description' => t('This site contain XML page. Note, to use a current date just need to replace a static date with following token: <b>!date_token</b> in the URL field. For example: https://example.nl/sru/Search?version=1.2&uitwerkingtredingDatum < !date_token and the date will be formatted like: !current_date.', array('!date_token' => $date_token, '!current_date' => token_replace($date_token))),
       '#weight' => -8,
       '#default_value' => isset($form_state['site']->is_xml) ? $form_state['site']->is_xml : 0,
     );
