@@ -40,6 +40,7 @@ projects[jquery_update] = 2.7
 projects[location] = 3.7
 projects[logging_alerts] = 2.2
 projects[magic] = 2.3
+projects[mailsystem] = 2.34
 projects[media] = 2.0-rc5
 projects[menu_block] = 2.7
 projects[menu_icons] = 3.0-beta4
