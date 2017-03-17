@@ -123,6 +123,9 @@ projects[facetapi][patch][2327997_3] = https://www.drupal.org/files/issues/facet
 ; Fix notice from Felix module
 ; https://www.drupal.org/node/2811151
 projects[felix][patch][2811151] = https://www.drupal.org/files/issues/felix-invalid-foreach-2811151-1.patch
+; Fix Felix views configs
+; https://www.drupal.org/node/2861052
+projects[felix][patch][2861052] = https://www.drupal.org/files/issues/felix-views-configs-2861052-1.patch
 
 ; Webform
 ; Fix Undefined index, value in webform_encrypt_webform_submission_presave()
