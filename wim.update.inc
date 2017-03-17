@@ -275,3 +275,60 @@ function wim_update_7011(&$sandbox) {
     return "Could not find role";
   }
 }
+
+/**
+ * Add permissions for module: Revisioning.
+ */
+function wim_update_7012(&$sandbox) {
+  // Enable the module.
+  if (!module_exists('revisioning')) {
+    module_enable(array('revisioning'));
+  }
+
+  $permissions = array(
+    'webmaster' => array(
+      'view revision status messages',
+      'edit revisions',
+      'publish revisions',
+      'unpublish current revision',
+    ),
+    'content manager' => array(
+      'view revision status messages',
+      'edit revisions',
+      'publish revisions',
+      'unpublish current revision',
+    ),
+    'content editor' => array(
+      'view revision status messages',
+      'edit revisions',
+      'publish revisions',
+      'unpublish current revision',
+    ),
+  );
+
+  foreach ($permissions as $role_name => $permission) {
+    $role = user_role_load_by_name($role_name);
+    user_role_grant_permissions($role->rid, $permission);
+  }
+}
+
+/**
+ * Add permissions for module: Diff.
+ */
+function wim_update_7013(&$sandbox) {
+  // Enable the module.
+  if (!module_exists('diff')) {
+    module_enable(array('diff'));
+  }
+
+  $permissions = array(
+    'webmaster' => array('diff view changes'),
+    'content manager' => array('diff view changes'),
+    'content editor' => array('diff view changes'),
+  );
+
+  foreach ($permissions as $role_name => $permission) {
+    $role = user_role_load_by_name($role_name);
+    user_role_grant_permissions($role->rid, $permission);
+  }
+}

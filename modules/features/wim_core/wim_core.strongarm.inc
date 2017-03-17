@@ -62,6 +62,41 @@ function wim_core_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'revisioning_edit_callback';
+  $strongarm->value = '0';
+  $export['revisioning_edit_callback'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'revisioning_in_views_show_unpublished_content_terms';
+  $strongarm->value = 1;
+  $export['revisioning_in_views_show_unpublished_content_terms'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'revisioning_publication_shortcuts';
+  $strongarm->value = 1;
+  $export['revisioning_publication_shortcuts'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'revisioning_show_taxonomy_terms';
+  $strongarm->value = 1;
+  $export['revisioning_show_taxonomy_terms'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'revisioning_view_callback';
+  $strongarm->value = '0';
+  $export['revisioning_view_callback'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'views_defaults';
   $strongarm->value = array(
     'admin_views_node' => TRUE,

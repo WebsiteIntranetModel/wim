@@ -142,7 +142,7 @@ function wim_core_views_default_views() {
   );
   /* Field: Bulk operations: Content */
   $handler->display->display_options['fields']['views_bulk_operations']['id'] = 'views_bulk_operations';
-  $handler->display->display_options['fields']['views_bulk_operations']['table'] = 'node';
+  $handler->display->display_options['fields']['views_bulk_operations']['table'] = 'views_entity_node';
   $handler->display->display_options['fields']['views_bulk_operations']['field'] = 'views_bulk_operations';
   $handler->display->display_options['fields']['views_bulk_operations']['label'] = '';
   $handler->display->display_options['fields']['views_bulk_operations']['element_label_colon'] = FALSE;
@@ -357,6 +357,23 @@ function wim_core_views_default_views() {
     'field_data_field_publication_date.field_publication_date_value' => 'field_data_field_publication_date.field_publication_date_value',
     'node.changed' => 'node.changed',
   );
+  /* Filter criterion: Content: State */
+  $handler->display->display_options['filters']['state']['id'] = 'state';
+  $handler->display->display_options['filters']['state']['table'] = 'node';
+  $handler->display->display_options['filters']['state']['field'] = 'state';
+  $handler->display->display_options['filters']['state']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['state']['expose']['operator_id'] = 'state_op';
+  $handler->display->display_options['filters']['state']['expose']['label'] = 'State';
+  $handler->display->display_options['filters']['state']['expose']['operator'] = 'state_op';
+  $handler->display->display_options['filters']['state']['expose']['identifier'] = 'state';
+  $handler->display->display_options['filters']['state']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+    6 => 0,
+  );
 
   /* Display: System */
   $handler = $view->new_display('system', 'System', 'system_1');
@@ -401,6 +418,7 @@ function wim_core_views_default_views() {
     t('All words'),
     t('Tag'),
     t('Promoted'),
+    t('State'),
     t('System'),
   );
   $export['administration_content'] = $view;
@@ -531,7 +549,7 @@ function wim_core_views_default_views() {
   $handler->display->display_options['relationships']['file_to_node']['field'] = 'file_to_node';
   /* Field: Bulk operations: File */
   $handler->display->display_options['fields']['views_bulk_operations']['id'] = 'views_bulk_operations';
-  $handler->display->display_options['fields']['views_bulk_operations']['table'] = 'file_managed';
+  $handler->display->display_options['fields']['views_bulk_operations']['table'] = 'views_entity_file';
   $handler->display->display_options['fields']['views_bulk_operations']['field'] = 'views_bulk_operations';
   $handler->display->display_options['fields']['views_bulk_operations']['label'] = 'Actions';
   $handler->display->display_options['fields']['views_bulk_operations']['element_label_colon'] = FALSE;
@@ -747,7 +765,8 @@ function wim_core_views_default_views() {
     t('‹ previous'),
     t('next ›'),
     t('last »'),
-    t('@total item(s) found'),
+    t('@total item found'),
+    t('@total items found'),
     t('No content available.'),
     t('User who uploaded'),
     t('Content'),
