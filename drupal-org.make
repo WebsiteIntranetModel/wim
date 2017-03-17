@@ -42,7 +42,7 @@ projects[location] = 3.7
 projects[logging_alerts] = 2.2
 projects[magic] = 2.3
 projects[mailsystem] = 2.34
-projects[media] = 2.0-rc5
+projects[media] = 2.0-rc12
 projects[menu_block] = 2.7
 projects[menu_icons] = 3.0-beta4
 projects[metatag] = 1.21
@@ -79,7 +79,7 @@ projects[xmlsitemap] = 2.3
 
 ; Themes
 projects[adminimal_theme] = 1.24
-projects[bootstrap] = 3.10
+projects[bootstrap] = 3.12
 
 ; Patches
 ; Features
