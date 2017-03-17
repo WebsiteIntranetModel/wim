@@ -1,0 +1,20 @@
+<?php
+/**
+ * @file
+ * Code for the WIM Export feature.
+ */
+
+include_once 'wim_export.features.inc';
+
+/**
+ * Implements hook_menu().
+ */
+function wim_export_menu() {
+  $items['admin/content/export'] = array(
+    'title' => 'Export content',
+    'access arguments' => array('administer content types'),
+    'type' => MENU_LOCAL_ACTION,
+  );
+
+  return $items;
+}
