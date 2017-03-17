@@ -67,7 +67,6 @@ projects[variable] = 2.5
 projects[views] = 3.14
 projects[views_bootstrap] = 3.1
 projects[views_bulk_operations] = 3.4
-projects[views_data_export] = 3.1
 projects[webform] = 4.14
 projects[webform_clear] = 2.0
 projects[webform_encrypt] = 1.1
