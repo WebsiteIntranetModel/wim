@@ -64,6 +64,7 @@ projects[special_menu_items] = 2.0
 projects[token] = 1.7
 projects[userprotect] = 1.2
 projects[variable] = 2.5
+projects[uuid] = 1.0-beta2
 projects[views] = 3.14
 projects[views_bootstrap] = 3.1
 projects[views_bulk_operations] = 3.4
