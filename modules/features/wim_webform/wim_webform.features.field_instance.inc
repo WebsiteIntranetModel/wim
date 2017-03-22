@@ -57,44 +57,6 @@ function wim_webform_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-webform-field_send_attachments_with_emai'.
-  $field_instances['node-webform-field_send_attachments_with_emai'] = array(
-    'bundle' => 'webform',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => 'Attach the uploaded files to the email? ',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 2,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_send_attachments_with_emai',
-    'label' => 'Send attachments with email',
-    'required' => 0,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(
-        'display_label' => 1,
-      ),
-      'type' => 'options_onoff',
-      'weight' => 43,
-    ),
-  );
-
   // Exported field_instance: 'node-webform-field_tags'.
   $field_instances['node-webform-field_tags'] = array(
     'bundle' => 'webform',
@@ -136,9 +98,7 @@ function wim_webform_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('Attach the uploaded files to the email?');
   t('Body');
-  t('Send attachments with email');
   t('Tags');
 
   return $field_instances;
