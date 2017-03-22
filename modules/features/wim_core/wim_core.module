@@ -296,6 +296,7 @@ function wim_core_theme_registry_alter(&$theme_registry) {
     'webform_number',
     'webform_email',
   );
+
   drupal_alter('accessible_forms_field_types', $field_types);
   foreach ($field_types as $hook) {
     $theme_registry[$hook]['preprocess functions'][] = 'wim_core_preprocess_form_fields';
@@ -388,7 +389,12 @@ function wim_core_file_link($variables) {
   }
   else {
     $link_text = $file->description;
-    $options['attributes']['title'] = check_plain($file->filename);
+  }
+
+  if (!empty($file->field_title_tag)) {
+    $options['attributes']['title'] = $file->field_title_tag[LANGUAGE_NONE][0]['safe_value'];
+  } else {
+    $options['attributes']['title'] = $link_text;
   }
 
   return '<span class="file">' . $icon . ' ' . l($link_text, $url, $options) . '</span>';
