@@ -93,6 +93,10 @@ projects[features][patch][2143765_7] = https://www.drupal.org/files/issues/featu
 ; https://www.drupal.org/node/2324973
 projects[features][patch][2324973_19] = https://www.drupal.org/files/issues/undefined-property-status-2324973-19.patch
 
+; Apachesolr exclude node
+; Fix for undefined property when publishing a revision.
+projects[apachesolr_exclude_node][patch][2862892] = https://www.drupal.org/files/issues/apachesolr_exclude_node_d7-2862892.patch
+
 ; Ctools
 ; Fixing css for dropdown buttons
 projects[ctools][patch][1966072_4] = https://www.drupal.org/files/ctools-ops-dropbutton-css-1966072-4.patch
