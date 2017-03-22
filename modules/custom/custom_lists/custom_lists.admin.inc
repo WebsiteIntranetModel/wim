@@ -249,12 +249,12 @@ function custom_lists_list_form($form, &$form_state, $list_key = NULL) {
     '#type' => 'select',
     '#title' => t('Menu Parent'),
     '#options' => $options,
-    '#attributes' => array('class' => array('menu-title-select')),
     '#default_value' => !empty($list['menu-item']) ? $list['menu-item'] : '',
     '#attributes' => array(
       'class' => array(
         'type-setting',
         'type-setting-menu',
+        'menu-title-select',
       ),
     ),
   );
@@ -394,6 +394,18 @@ function custom_lists_list_form($form, &$form_state, $list_key = NULL) {
     ),
   );
 
+  $form['metainfo'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Metadata info'),
+    '#tree' => FALSE,
+  );
+
+  $form['metainfo']['meta_description'] = array(
+    '#type' => 'textarea',
+    '#title' => t('Metadata description'),
+    '#default_value' => !empty($list['meta-description']) ? $list['meta-description'] : '',
+  );
+
   $form['actions'] = array(
     '#type' => 'actions',
   );
@@ -476,6 +488,7 @@ function custom_lists_list_form_submit($form, &$form_state) {
     'page-view-mode' => $form_state['values']['page-view-mode'],
     'menu-item' => $form_state['values']['menu-item'],
     'intro-text' => $form_state['values']['intro-text']['value'],
+    'meta-description' => $form_state['values']['meta_description'],
   );
 
   $list_key = md5(serialize($list));
