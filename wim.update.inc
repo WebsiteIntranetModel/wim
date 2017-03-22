@@ -332,3 +332,12 @@ function wim_update_7013(&$sandbox) {
     user_role_grant_permissions($role->rid, $permission);
   }
 }
+
+/**
+ * Enable set send attachment per emailadress.
+ */
+function wim_update_7014(&$sandbox) {
+  if (module_exists('mimemail')) {
+    variable_set('webform_email_html_capable', TRUE);
+  }
+}
