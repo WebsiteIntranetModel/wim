@@ -341,3 +341,13 @@ function wim_update_7014(&$sandbox) {
     variable_set('webform_email_html_capable', TRUE);
   }
 }
+
+/**
+ * Set metatag settings.
+ */
+function wim_update_7015() {
+  if (module_exists('metatag')) {
+    variable_set('metatag_enable_user__user', FALSE);
+    variable_set('metatag_enable_user', FALSE);
+  }
+}
