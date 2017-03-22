@@ -31,6 +31,8 @@ function wim_install() {
   _wim_password_policy_install();
   // Set metatags for Front Page.
   _wim_set_front_metatags();
+  // Enable attachments for Webform.
+  _wim_set_webform_attachments();
   // Add 404 page.
   $page_404_nid = _wim_create_page('404');
   variable_set('site_404', 'node/' . $page_404_nid);
@@ -1142,4 +1144,13 @@ function _wim_set_front_metatags() {
   );
 
   metatag_config_save($front_metatags);
+}
+
+/**
+ * Enable attachments for webform.
+ */
+function _wim_set_webform_attachments() {
+  if (module_exists('mimemail')) {
+    variable_set('webform_email_html_capable', TRUE);
+  }
 }
