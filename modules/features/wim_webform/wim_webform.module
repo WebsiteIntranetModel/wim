@@ -11,7 +11,7 @@ include_once 'wim_webform.features.inc';
  * Implements hook_form_FORM_ID_alter().
  */
 function wim_webform_form_webform_client_form_alter(&$form, $form_state) {
-  $form['#attributes'] = array('novalidate' => 'novalidate');
+  $form['#attributes']['novalidate'] = 'novalidate';
 
   $form_sets = array(
     'radios',
@@ -34,14 +34,38 @@ function wim_webform_form_webform_client_form_alter(&$form, $form_state) {
       $element['#prefix'] = '<fieldset class="webform-container">';
       $element['#prefix'] .= '<legend class="webform-container-legend">' . $element['#title'] . $required . '</legend>';
       $element['#suffix'] = '</fieldset>';
-
-      unset($element['#title']);
+      $element['#title_display'] = 'invisible';
     }
     elseif (isset($element['#title_display']) && $element['#title_display'] === 'none') {
 
       // Wrapping in fieldsets shoudn't happen if component doesn't have a
       // title, but incorrect labels should still be removed.
-      unset($element['#title']);
+      $element['#title_display'] = 'invisible';
+    }
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function wim_webform_form_alter(&$form, $form_state) {
+  // Alter the file upload component of webforms.
+  if ($form['#form_id'] == 'webform_component_edit_form' && $form['type']['#value'] == 'file') {
+    global $user;
+
+    // Set default file to private.
+    // Only webmasters & administrators can change this.
+    if (
+      !in_array('administrator', $user->roles) &&
+      !in_array('webmaster', $user->roles) &&
+      !empty(variable_get('file_private_path'))
+    ) {
+      $form['extra']['scheme']['#default_value'] = 'private';
+      $form['extra']['scheme']['#disabled'] = TRUE;
+      $form['extra']['scheme']['#type'] = 'hidden';
+    }
+    elseif (!empty(variable_get('file_private_path'))) {
+      $form['extra']['scheme']['#default_value'] = 'private';
     }
   }
 }

@@ -33,7 +33,7 @@ function wim_seo_metatag_export_default() {
   // Exported Metatag config instance: user.
   $config['user'] = array(
     'instance' => 'user',
-    'disabled' => FALSE,
+    'disabled' => TRUE,
     'config' => array(
       'title' => array(
         'value' => '[user:name] | [site:name]',

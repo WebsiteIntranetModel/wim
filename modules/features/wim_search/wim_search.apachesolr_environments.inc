@@ -105,6 +105,9 @@ function wim_search_apachesolr_environments() {
       4 => 'person',
       5 => 'product',
     ),
+    'file' => array(
+      0 => 'document',
+    ),
   );
   $export['solr'] = $environment;
 

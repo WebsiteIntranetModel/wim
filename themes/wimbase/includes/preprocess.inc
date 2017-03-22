@@ -69,7 +69,7 @@ function wimbase_preprocess_region(&$variables) {
         if ($block->new_row) {
           $row_id++;
           $rows[$row_id][] = $variables['elements'][$element_id]['#children'];
-          $total_col = 0;
+          $total_col = $block->bootstrap_layout;
         }
         else {
           $total_col += $block->bootstrap_layout;
@@ -244,6 +244,20 @@ function wimbase_preprocess_page(&$variables) {
   if (module_exists('readspeaker')) {
     $variables['readspeaker'] = readspeaker_build_player();
   }
+
+  // Set bootstrap classes.
+  if (!empty($variables['page']['sidebar_first']) && !empty($variables['page']['sidebar_second'])) {
+    _wimbase_culc_content_cols($variables, 3, 3);
+  }
+  elseif (!empty($variables['page']['sidebar_first']) && empty($variables['page']['sidebar_second'])) {
+    _wimbase_culc_content_cols($variables, 3, 0);
+  }
+  elseif (empty($variables['page']['sidebar_first']) && !empty($variables['page']['sidebar_second'])) {
+    _wimbase_culc_content_cols($variables, 0, 3);
+  }
+  else {
+    _wimbase_culc_content_cols($variables, 3);
+  }
 }
 
 /**
@@ -253,7 +267,29 @@ function wimbase_preprocess_search_result(&$variables) {
   $result = $variables['result'];
 
   // Add source url.
-  $result_link = $result['link'];
+  wimbase_result_source_site($result['link'], $variables);
+
+  if ($result['entity_type'] === 'node') {
+    if (isset($result['node']) && $node = node_load($result['node']->entity_id)) {
+      $content_types_labels = array(
+        'page' => t('General information'),
+      );
+      $variables['node_content'] = node_view($node, 'search_result');
+      // Add content type label.
+      $variables['content_type'] = isset($content_types_labels[$node->type]) ? $content_types_labels[$node->type] : ucfirst($node->type);
+    }
+  }
+  elseif ($result['entity_type'] === 'file') {
+    $variables['content_type'] = t('Document');
+  }
+
+}
+
+/**
+ * Build a result source link.
+ */
+function wimbase_result_source_site($result_link, &$variables) {
+  // Add source url.
   $parsed_url = parse_url($result_link);
   $source_url = $parsed_url['scheme'] . '://' . $parsed_url['host'];
   $variables['source'] = l($source_url, $source_url, array(
@@ -263,14 +299,8 @@ function wimbase_preprocess_search_result(&$variables) {
     ),
   ));
 
-  if (isset($result['node']) && $node = node_load($result['node']->entity_id)) {
-    $content_types_labels = array(
-      'page' => t('General information'),
-    );
-    $variables['node_content'] = node_view($node, 'search_result');
-    // Add content type label.
-    $variables['content_type'] = isset($content_types_labels[$node->type]) ? $content_types_labels[$node->type] : ucfirst($node->type);
-  }
+  // Gives opportunity alter result source link.
+  drupal_alter('wimbase_result_source_site', $result_link, $variables);
 }
 
 /**
@@ -320,4 +350,35 @@ function wimbase_preprocess_views_exposed_form(&$vars) {
       }
     }
   }
+}
+
+/**
+ * Calculate bootstrap classes for content and sidebars.
+ *
+ * @param array $variables
+ *    - Page variables.
+ * @param int $primary_cols
+ *    - Primary sidebar cols number.
+ * @param int $secondary_cols
+ *    - Secondary sidebar cols number.
+ * @param int $offset_primary
+ *    - Offset number for content.
+ */
+function _wimbase_culc_content_cols(&$variables, $primary_cols = 0, $secondary_cols = 0, $offset_primary = 0) {
+  $content_cols = 12 - $primary_cols - $secondary_cols;
+  $variables['sidebar_first_classes'][] = 'col-sm-' . $primary_cols;
+  $variables['content_column_classes'][] = 'col-sm-' . $content_cols;
+  // Offset sidebar first.
+  if ($offset_primary) {
+    $variables['content_column_classes'][] = 'col-sm-offset-' . $offset_primary;
+  }
+
+  // Fix accessibility for primary region.
+  if ($primary_cols && $content_cols !== 12) {
+    $variables['content_column_classes'][] = 'col-md-push-' . $primary_cols;
+    $variables['sidebar_first_classes'][] = 'col-md-pull-' . $content_cols;
+  }
+
+  $variables['content_column_class'] = ' class="' . implode(' ', $variables['content_column_classes']) . '"';
+  $variables['sidebar_first_column_class'] = ' class="' . implode(' ', $variables['sidebar_first_classes']) . '"';
 }

@@ -57,6 +57,9 @@ function wim_webform_strongarm() {
       'short' => array(
         'custom_settings' => FALSE,
       ),
+      'introduction' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
@@ -68,6 +71,15 @@ function wim_webform_strongarm() {
         ),
         'redirect' => array(
           'weight' => '2',
+        ),
+        'metatags' => array(
+          'weight' => '40',
+        ),
+        'path' => array(
+          'weight' => '30',
+        ),
+        'xmlsitemap' => array(
+          'weight' => '30',
         ),
       ),
       'display' => array(

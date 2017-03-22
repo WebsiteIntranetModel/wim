@@ -190,12 +190,6 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
-      'introduction' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
       'search_result' => array(
         'label' => 'above',
         'settings' => array(),
@@ -227,7 +221,63 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'file_generic',
-      'weight' => 48,
+      'weight' => 51,
+    ),
+  );
+
+  // Exported field_instance: 'node-product-field_product_attention'.
+  $field_instances['node-product-field_product_attention'] = array(
+    'bundle' => 'product',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'This field will be used for Let op field that comes from SDU connect import. It can be placed before or after body.',
+    'display' => array(
+      'default' => array(
+        'label' => 'abovec',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 5,
+      ),
+      'introduction' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_product_attention',
+    'label' => 'Attention',
+    'required' => 0,
+    'settings' => array(
+      'linkit' => array(
+        'button_text' => 'Search',
+        'enable' => 0,
+        'profile' => '',
+      ),
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 3,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 41,
     ),
   );
 
@@ -279,7 +329,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 46,
+      'weight' => 49,
     ),
   );
 
@@ -331,7 +381,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 40,
+      'weight' => 43,
     ),
   );
 
@@ -383,7 +433,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'rows' => 20,
       ),
       'type' => 'text_textarea',
-      'weight' => 42,
+      'weight' => 45,
     ),
   );
 
@@ -509,7 +559,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 47,
+      'weight' => 50,
     ),
   );
 
@@ -630,7 +680,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 41,
+      'weight' => 44,
     ),
   );
 
@@ -687,7 +737,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 43,
+      'weight' => 46,
     ),
   );
 
@@ -739,7 +789,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 45,
+      'weight' => 48,
     ),
   );
 
@@ -756,12 +806,6 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 2,
-      ),
-      'introduction' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
       ),
       'introduction' => array(
         'label' => 'above',
@@ -797,7 +841,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 44,
+      'weight' => 47,
     ),
   );
 
@@ -890,12 +934,6 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
-      'introduction' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
       'search_result' => array(
         'label' => 'above',
         'settings' => array(),
@@ -924,7 +962,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 39,
+      'weight' => 42,
     ),
   );
 
@@ -941,12 +979,6 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'settings' => array(),
         'type' => 'link_default',
         'weight' => 3,
-      ),
-      'introduction' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
       ),
       'introduction' => array(
         'label' => 'above',
@@ -1124,7 +1156,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 5,
+        'weight' => 9,
       ),
       'introduction' => array(
         'label' => 'above',
@@ -1164,10 +1196,10 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Attachment');
+  t('Attention');
   t('Conditions');
   t('Contact');
   t('Costs');
-  t('Target audience co-operating catalog');
   t('Forms');
   t('Locations');
   t('More information');
@@ -1180,6 +1212,8 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
   t('Related laws');
   t('Request');
   t('Request online');
+  t('Target audience co-operating catalog');
+  t('This field will be used for Let op field that comes from SDU connect import. It can be placed before or after body.');
 
   return $field_instances;
 }
