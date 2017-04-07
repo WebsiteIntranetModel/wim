@@ -31,6 +31,8 @@ function wim_install() {
   _wim_password_policy_install();
   // Set metatags for Front Page.
   _wim_set_front_metatags();
+  // Set metatags settings.
+  _wim_set_metatag_settings();
   // Enable attachments for Webform.
   _wim_set_webform_attachments();
   // Add 404 page.
@@ -1144,6 +1146,16 @@ function _wim_set_front_metatags() {
   );
 
   metatag_config_save($front_metatags);
+}
+
+/**
+ * Set metatag settings.
+ */
+function _wim_set_metatag_settings() {
+  if (module_exists('metatag')) {
+    variable_set('metatag_enable_user__user', FALSE);
+    variable_set('metatag_enable_user', FALSE);
+  }
 }
 
 /**
