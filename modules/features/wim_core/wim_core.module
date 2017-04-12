@@ -391,7 +391,7 @@ function wim_core_file_link($variables) {
     $link_text = $file->description;
   }
 
-  if (!empty($file->field_title_tag)) {
+  if (isset($file->field_title_tag) && !empty($file->field_title_tag)) {
     $options['attributes']['title'] = $file->field_title_tag[LANGUAGE_NONE][0]['safe_value'];
   } else {
     $options['attributes']['title'] = $link_text;
