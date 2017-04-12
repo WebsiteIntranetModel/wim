@@ -69,7 +69,7 @@ function wimbase_preprocess_region(&$variables) {
         if ($block->new_row) {
           $row_id++;
           $rows[$row_id][] = $variables['elements'][$element_id]['#children'];
-          $total_col = 0;
+          $total_col = $block->bootstrap_layout;
         }
         else {
           $total_col += $block->bootstrap_layout;
@@ -267,15 +267,7 @@ function wimbase_preprocess_search_result(&$variables) {
   $result = $variables['result'];
 
   // Add source url.
-  $result_link = $result['link'];
-  $parsed_url = parse_url($result_link);
-  $source_url = $parsed_url['scheme'] . '://' . $parsed_url['host'];
-  $variables['source'] = l($source_url, $source_url, array(
-    'absolute' => TRUE,
-    'attributes' => array(
-      'class' => array('source'),
-    ),
-  ));
+  wimbase_result_source_site($result['link'], $variables);
 
   if ($result['entity_type'] === 'node') {
     if (isset($result['node']) && $node = node_load($result['node']->entity_id)) {
@@ -291,6 +283,24 @@ function wimbase_preprocess_search_result(&$variables) {
     $variables['content_type'] = t('Document');
   }
 
+}
+
+/**
+ * Build a result source link.
+ */
+function wimbase_result_source_site($result_link, &$variables) {
+  // Add source url.
+  $parsed_url = parse_url($result_link);
+  $source_url = $parsed_url['scheme'] . '://' . $parsed_url['host'];
+  $variables['source'] = l($source_url, $source_url, array(
+    'absolute' => TRUE,
+    'attributes' => array(
+      'class' => array('source'),
+    ),
+  ));
+
+  // Gives opportunity alter result source link.
+  drupal_alter('wimbase_result_source_site', $result_link, $variables);
 }
 
 /**

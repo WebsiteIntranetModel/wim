@@ -31,7 +31,11 @@ function _xml_crawler_get_xml_types($type = NULL) {
  */
 function _xml_crawler_crawle_xml(stdClass $site) {
   $pages = array();
-  $response = drupal_http_request($site->url);
+
+  // Replace tokens.
+  $url = token_replace($site->url);
+
+  $response = drupal_http_request($url);
   if ($response->code === '200') {
     $dom = new DOMDocument();
     $dom->loadXML($response->data);
@@ -177,4 +181,25 @@ function _xml_crawler_is_page_url($url) {
   }
 
   return $is_page_url;
+}
+
+/**
+ * Return xml site type.
+ */
+function _xml_crawler_get_xml_type($entity_id) {
+  $cid = 'xml_crawler_site_type:' . $entity_id;
+
+  $data = &drupal_static(__FUNCTION__);
+  if (!isset($data)) {
+    if ($cache = cache_get($cid)) {
+      $data = $cache->data;
+    }
+    else {
+      $site = _external_crawler_fetch_sites($entity_id);
+      $data = isset($site->xml_type) ? $site->xml_type : NULL;
+
+      cache_set($cid, $data);
+    }
+  }
+  return $data;
 }

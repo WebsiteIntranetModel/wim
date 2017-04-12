@@ -22,6 +22,7 @@ projects[chosen] = 2.0
 projects[ctools] = 1.11
 projects[date] = 2.9
 projects[date_facets] = 1.0
+projects[diff] = 3.3
 projects[elysia_cron] = 2.4
 projects[email] = 1.3
 projects[encrypt] = 2.3
@@ -40,11 +41,13 @@ projects[jquery_update] = 2.7
 projects[location] = 3.7
 projects[logging_alerts] = 2.2
 projects[magic] = 2.3
-projects[media] = 2.0-rc5
+projects[mailsystem] = 2.34
+projects[media] = 2.0-rc12
 projects[menu_block] = 2.7
 projects[menu_icons] = 3.0-beta4
 projects[metatag] = 1.21
 projects[migrate] = 2.8
+projects[mimemail] = 1.0-beta4
 projects[module_filter] = 2.0
 projects[nodequeue] = 2.1
 projects[l10n_update] = 2.1
@@ -56,6 +59,7 @@ projects[password_policy] = 1.12
 projects[pathauto] = 1.3
 projects[picture] = 2.13
 projects[redirect] = 1.0-rc3
+projects[revisioning] = 1.9
 projects[roleassign] = 1.1
 projects[scheduler] = 1.5
 projects[strongarm] = 2.0
@@ -75,7 +79,7 @@ projects[xmlsitemap] = 2.3
 
 ; Themes
 projects[adminimal_theme] = 1.24
-projects[bootstrap] = 3.10
+projects[bootstrap] = 3.12
 
 ; Patches
 ; Features
@@ -86,6 +90,10 @@ projects[features][patch][2143765_7] = https://www.drupal.org/files/issues/featu
 ; Fixing Notice: Undefined property: stdClass::$status in features_export_form
 ; https://www.drupal.org/node/2324973
 projects[features][patch][2324973_19] = https://www.drupal.org/files/issues/undefined-property-status-2324973-19.patch
+
+; Apachesolr exclude node
+; Fix for undefined property when publishing a revision.
+projects[apachesolr_exclude_node][patch][2862892] = https://www.drupal.org/files/issues/apachesolr_exclude_node_d7-2862892.patch
 
 ; Ctools
 ; Fixing css for dropdown buttons
@@ -123,6 +131,9 @@ projects[facetapi][patch][2327997_3] = https://www.drupal.org/files/issues/facet
 ; Fix notice from Felix module
 ; https://www.drupal.org/node/2811151
 projects[felix][patch][2811151] = https://www.drupal.org/files/issues/felix-invalid-foreach-2811151-1.patch
+; Fix Felix views configs
+; https://www.drupal.org/node/2861052
+projects[felix][patch][2861052] = https://www.drupal.org/files/issues/felix-views-configs-2861052-1.patch
 
 ; Webform
 ; Fix Undefined index, value in webform_encrypt_webform_submission_presave()

@@ -240,3 +240,114 @@ function wim_update_7010() {
     'warning' => $policy['warning'],
   ))->condition('pid', 1)->execute();
 }
+
+/**
+ * Assign roles fix & exclude administrator as assignable role.
+ */
+function wim_update_7011(&$sandbox) {
+  // Get webmaster role.
+  if ($role = user_role_load_by_name('webmaster')) {
+    // Get role id.
+    $rid = $role->rid;
+
+    // Assign the assign roles permission.
+    user_role_grant_permissions($rid, array('assign roles'));
+
+    // Get all the users roles and set variable to assign these for webmasters.
+    $roles = user_roles();
+
+    $role_assign = array();
+    foreach ($roles as $key => $value) {
+      if ($value !== 'anonymous user' && $value !== 'authenticated user') {
+        if ($value == 'administrator') {
+          $role_assign[$key] = 0;
+        }
+        else {
+          $role_assign[$key] = $key;
+        }
+      }
+    }
+    variable_set('roleassign_roles', $role_assign);
+
+    return "Role assign added to webmaster";
+  }
+  else {
+    return "Could not find role";
+  }
+}
+
+/**
+ * Add permissions for module: Revisioning.
+ */
+function wim_update_7012(&$sandbox) {
+  // Enable the module.
+  if (!module_exists('revisioning')) {
+    module_enable(array('revisioning'));
+  }
+
+  $permissions = array(
+    'webmaster' => array(
+      'view revision status messages',
+      'edit revisions',
+      'publish revisions',
+      'unpublish current revision',
+    ),
+    'content manager' => array(
+      'view revision status messages',
+      'edit revisions',
+      'publish revisions',
+      'unpublish current revision',
+    ),
+    'content editor' => array(
+      'view revision status messages',
+      'edit revisions',
+      'publish revisions',
+      'unpublish current revision',
+    ),
+  );
+
+  foreach ($permissions as $role_name => $permission) {
+    $role = user_role_load_by_name($role_name);
+    user_role_grant_permissions($role->rid, $permission);
+  }
+}
+
+/**
+ * Add permissions for module: Diff.
+ */
+function wim_update_7013(&$sandbox) {
+  // Enable the module.
+  if (!module_exists('diff')) {
+    module_enable(array('diff'));
+  }
+
+  $permissions = array(
+    'webmaster' => array('diff view changes'),
+    'content manager' => array('diff view changes'),
+    'content editor' => array('diff view changes'),
+  );
+
+  foreach ($permissions as $role_name => $permission) {
+    $role = user_role_load_by_name($role_name);
+    user_role_grant_permissions($role->rid, $permission);
+  }
+}
+
+/**
+ * Enable set send attachment per emailadress.
+ */
+function wim_update_7014(&$sandbox) {
+  if (module_exists('mimemail')) {
+    variable_set('webform_email_html_capable', TRUE);
+  }
+}
+
+/**
+ * Set metatag settings.
+ */
+function wim_update_7015() {
+  if (module_exists('metatag')) {
+    variable_set('metatag_enable_user__user', FALSE);
+    variable_set('metatag_enable_user', FALSE);
+  }
+}

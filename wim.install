@@ -31,6 +31,10 @@ function wim_install() {
   _wim_password_policy_install();
   // Set metatags for Front Page.
   _wim_set_front_metatags();
+  // Set metatags settings.
+  _wim_set_metatag_settings();
+  // Enable attachments for Webform.
+  _wim_set_webform_attachments();
   // Add 404 page.
   $page_404_nid = _wim_create_page('404');
   variable_set('site_404', 'node/' . $page_404_nid);
@@ -148,8 +152,13 @@ function _wim_set_up_roles_and_permissions() {
   $roles = user_roles();
   $role_assign = array();
   foreach ($roles as $key => $value) {
-    if ($value !== "anonymous user" && $value !== "authenticated user") {
-      $role_assign[] = $key;
+    if ($value !== 'anonymous user' && $value !== 'authenticated user') {
+      if ($value == 'administrator') {
+        $role_assign[$key] = 0;
+      }
+      else {
+        $role_assign[$key] = $key;
+      }
     }
   }
   variable_set('roleassign_roles', $role_assign);
@@ -161,6 +170,45 @@ function _wim_set_up_roles_and_permissions() {
 
   // Anonymous.
   user_role_grant_permissions(DRUPAL_ANONYMOUS_RID, _wim_permissions('anonymous'));
+
+  // Revisioning permissions.
+  $permissions = array(
+    'webmaster' => array(
+      'view revision status messages',
+      'edit revisions',
+      'publish revisions',
+      'unpublish current revision',
+    ),
+    'content manager' => array(
+      'view revision status messages',
+      'edit revisions',
+      'publish revisions',
+      'unpublish current revision',
+    ),
+    'content editor' => array(
+      'view revision status messages',
+      'edit revisions',
+      'publish revisions',
+      'unpublish current revision',
+    ),
+  );
+
+  foreach ($permissions as $role_name => $permission) {
+    $role = user_role_load_by_name($role_name);
+    user_role_grant_permissions($role->rid, $permission);
+  }
+
+  // Diff permissions.
+  $permissions = array(
+    'webmaster' => array('diff view changes'),
+    'content manager' => array('diff view changes'),
+    'content editor' => array('diff view changes'),
+  );
+
+  foreach ($permissions as $role_name => $permission) {
+    $role = user_role_load_by_name($role_name);
+    user_role_grant_permissions($role->rid, $permission);
+  }
 }
 
 /**
@@ -1098,4 +1146,23 @@ function _wim_set_front_metatags() {
   );
 
   metatag_config_save($front_metatags);
+}
+
+/**
+ * Set metatag settings.
+ */
+function _wim_set_metatag_settings() {
+  if (module_exists('metatag')) {
+    variable_set('metatag_enable_user__user', FALSE);
+    variable_set('metatag_enable_user', FALSE);
+  }
+}
+
+/**
+ * Enable attachments for webform.
+ */
+function _wim_set_webform_attachments() {
+  if (module_exists('mimemail')) {
+    variable_set('webform_email_html_capable', TRUE);
+  }
 }

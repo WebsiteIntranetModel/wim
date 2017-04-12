@@ -1,0 +1,17 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for WIM SEO.
+ */
+
+/**
+ * Disable metatag for users.
+ */
+function wim_seo_update_7000(&$sandbox) {
+
+  if ($user_metatags = metatag_config_load('user')) {
+    $user_metatags->disabled = TRUE;
+    ctools_export_crud_disable('metatag_config', $user_metatags);
+  }
+}

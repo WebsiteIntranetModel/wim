@@ -558,9 +558,12 @@ function custom_lists_get_more_uri($list) {
  * When a icon is uploaded, the icon will be added to the title.
  *
  * @param array $list
- *    List data.
+ *   List data.
+ *
+ * @return string
+ *   Title.
  */
-function _custom_lists_build_title($list) {
+function _custom_lists_build_title(array $list) {
   if (isset($list['block-icon-fid']) && $list['block-icon-fid'] != 0) {
     // Icon uploaded, use it in the title.
     $icon = file_load($list['block-icon-fid']);
@@ -597,4 +600,28 @@ function custom_lists_get_current($page_url = NULL) {
   }
 
   return $current_list;
+}
+
+/**
+ * Implements hook_page_build().
+ */
+function custom_lists_page_build(&$page) {
+  // Get all list.
+  $list = custom_lists_get_current(current_path());
+
+  if ($list) {
+    // Add metadescription for custom lists.
+    if (isset($list['meta-description']) && !empty($list['meta-description'])) {
+      $page['content']['metatags']['custom:list']['description']['#attached']['drupal_add_html_head'][] = array(
+        array(
+          '#theme' => 'metatag',
+          '#tag' => 'meta',
+          '#id' => 'metatag_description',
+          '#name' => 'description',
+          '#value' => $list['meta-description'],
+        ),
+        'metatag_description',
+      );
+    }
+  }
 }
