@@ -72,7 +72,7 @@ projects[views_bootstrap] = 3.1
 projects[views_bulk_operations] = 3.4
 projects[webform] = 4.14
 projects[webform_clear] = 2.0
-projects[webform_encrypt] = 1.1
+projects[webform_encrypt] = 1.2
 projects[weight] = 3.1
 projects[wysiwyg] = 2.x-dev
 projects[xmlsitemap] = 2.3
@@ -134,11 +134,6 @@ projects[felix][patch][2811151] = https://www.drupal.org/files/issues/felix-inva
 ; Fix Felix views configs
 ; https://www.drupal.org/node/2861052
 projects[felix][patch][2861052] = https://www.drupal.org/files/issues/felix-views-configs-2861052-1.patch
-
-; Webform
-; Fix Undefined index, value in webform_encrypt_webform_submission_presave()
-; https://www.drupal.org/node/2413111
-projects[webform_encrypt][patch][2413111] = https://www.drupal.org/files/issues/webform_encrypt-Undefined-index-value-2413111-%235-7.x-1.1.patch
 
 ; Webform Clear
 ; Fix Undefined index is_new for Webform Clear
