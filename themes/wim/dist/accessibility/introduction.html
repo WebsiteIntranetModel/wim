@@ -6,49 +6,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
     <title>Introduction - WIM</title>
-    <link rel="apple-touch-icon" sizes="57x57" href="images/favicon/apple-touch-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="images/favicon/apple-touch-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="images/favicon/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="images/favicon/apple-touch-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="images/favicon/apple-touch-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="images/favicon/apple-touch-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="images/favicon/apple-touch-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="images/favicon/apple-touch-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon-180x180.png">
-    <link rel="icon" type="image/png" href="images/favicon/favicon-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="images/favicon/android-chrome-192x192.png" sizes="192x192">
-    <link rel="icon" type="image/png" href="images/favicon/favicon-96x96.png" sizes="96x96">
-    <link rel="icon" type="image/png" href="images/favicon/favicon-16x16.png" sizes="16x16">
-    <link rel="manifest" href="images/favicon/manifest.json">
-    <link rel="mask-icon" href="images/favicon/safari-pinned-tab.svg" color="#29abe2">
-    <meta name="msapplication-TileColor" content="#29abe2">
-    <meta name="msapplication-TileImage" content="images/favicon/mstile-144x144.png">
-    <meta name="theme-color" content="#ffffff">
     <base href="../">
-    <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet" media="screen">
-    <link href="/sites/all/themes/contrib/bootstrap/css/3.3.5/overrides.min.css" type="text/css" rel="stylesheet" media="screen">
-    <link href="css/project.css" type="text/css" rel="stylesheet" media="screen">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" type="text/css" rel="stylesheet" media="screen">
+    <link href="css/wim.css" type="text/css" rel="stylesheet" media="screen">
   </head>
   <body class="styleguide">
-    <div class="region region-page-top"><span>Region top</span></div>
+    <div class="meta-wrapper container container-nopadding">
+      <div class="region region-meta-left">
+        <section id="block-menu-menu-meta-menu" class="block block-menu col-md-12 clearfix">
+          <ul class="menu nav">
+            <li class="first last leaf active"><a href="/" class="active">Home</a></li>
+          </ul>
+        </section>
+      </div>
+    </div>
     <div class="main-wrapper container">
       <header id="header" class="navbar container navbar-default">
         <div class="navbar-header"><a href="index.html" title="Home" class="logo navbar-btn pull-left"><img src="../logo.png" alt="Home"></a>
           <div class="region region-header"></div>
-          <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+          <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle"> Menu</button>
         </div>
         <div class="navbar-collapse collapse">
           <nav role="navigation">
             <ul class="menu nav navbar-nav">
               <li class="leaf"><a href="starterkit.html">Themer's Starterkit</a></li>
-              <li class="first expanded dropdown"><a href="#" title="" data-target="#" data-toggle="dropdown" class="dropdown-toggle">Styleguide<span class="caret"></span></a>
+              <li class="first parent-dropdown"><a href="#" title="" data-target="#" data-toggle="dropdown" class="dropdown-toggle">Styleguide</a>
                 <ul class="dropdown-menu">
                   <li class="first leaf"><a href="styleguide/atoms.html">Atoms</a></li>
                   <li class="leaf"><a href="styleguide/molecules.html">Molecules</a></li>
                   <li class="last leaf"><a href="styleguide/organisms.html">Organisms</a></li>
                 </ul>
               </li>
-              <li class="leaf"><a href="#" title="" data-target="#" data-toggle="dropdown" class="dropdown-toggle">Accessibility<span class="caret"></span></a>
+              <li class="leaf parent-dropdown"><a href="#" title="" data-target="#" data-toggle="dropdown" class="dropdown-toggle">Accessibility</a>
                 <ul class="dropdown-menu">
                   <li class="first leaf"><a href="accessibility/introduction.html">Introduction</a></li>
                   <li class="leaf"><a href="accessibility/tooling.html">Tooling</a></li>
@@ -66,7 +55,7 @@
           <aside role="complementary" class="col-sm-3">
             <div class="region region-sidebar-first">
               <section id="block-system-management" class="block block-system block-menu clearfix">
-                <h2 class="block-title">Accessibility</h2>
+                <h1 class="block-title">Accessibility</h1>
                 <ul class="menu nav">
                   <li><a href="accessibility/introduction.html">Introduction</a></li>
                   <li><a href="accessibility/tooling.html">Tooling</a></li>
@@ -80,7 +69,19 @@
             <div class="region region-content">
               <section id="block-system-main" class="block block-system clearfix">
                 <h1>Introduction</h1>
-                <p>Lorem ipsum dolor sit amet.</p>
+                <hr>
+                <h3>What is Web Accessibility</h3>
+                <p><strong>Web accessibility means that people with disabilities can use the Web. More specifically, Web accessibility means that people with disabilities can perceive, understand, navigate, and interact with the Web, and that they can contribute to the Web. Web accessibility also benefits others, including older people with changing abilities due to aging.</strong></p>
+                <p>Web accessibility encompasses all disabilities that affect access to the Web, including visual, auditory, physical, speech, cognitive, and neurological disabilities. The document "How People with Disabilities Use the Web" describes how different disabilities affect Web use and includes scenarios of people with disabilities using the Web.</p>
+                <p>Millions of people have disabilities that affect their use of the Web. Currently most Web sites and Web software have accessibility barriers that make it difficult or impossible for many people with disabilities to use the Web. As more accessible Web sites and software become available, people with disabilities are able to use and contribute to the Web more effectively.</p>
+                <p>Web accessibility also benefits people without disabilities. For example, a key principle of Web accessibility is designing Web sites and software that are flexible to meet different user needs, preferences, and situations. This flexibility also benefits people without disabilities in certain situations, such as people using a slow Internet connection, people with "temporary disabilities" such as a broken arm, and people with changing abilities due to aging. The document "Developing a Web Accessibility Business Case for Your Organization" describes many different benefits of Web accessibility, including benefits for organizations.</p>
+                <hr>
+                <h3>Why Web Accessibility is Important</h3>
+                <p> <strong>The Web is an increasingly important resource in many aspects of life: education, employment, government, commerce, health care, recreation, and more. It is essential that the Web be accessible in order to provide equal access and equal opportunity to people with disabilities. An accessible Web can also help people with disabilities more actively participate in society.</strong></p>
+                <p>The Web offers the possibility of unprecedented access to information and interaction for many people with disabilities. That is, the accessibility barriers to print, audio, and visual media can be much more easily overcome through Web technologies.</p>
+                <p>The document "Social Factors in Developing a Web Accessibility Business Case for Your Organization" discusses how the Web impacts the lives of people with disabilities, the overlap with digital divide issues, and Web accessibility as an aspect of corporate social responsibility.</p>
+                <p>Another important consideration for organizations is that Web accessibility is required by laws and policies in some cases. WAI Web Accessibility Policy Resources links to resources for addressing legal and policy factors within organizations, including a list of relevant laws and policies around the world.</p>
+                <hr>
               </section>
             </div>
           </section>

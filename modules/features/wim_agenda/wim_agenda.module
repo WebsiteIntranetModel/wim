@@ -1,0 +1,20 @@
+<?php
+/**
+ * @file
+ * Code for the WIM Agenda feature.
+ */
+
+include_once 'wim_agenda.features.inc';
+
+/**
+ * Implements hook_views_pre_build().
+ */
+function wim_agenda_views_pre_build(&$view) {
+  if ($view->name === 'agenda') {
+    if ($view->current_display === 'upcoming_agenda' && isset($view->footer['area_text_custom']) && user_access('create agenda content')) {
+      // Add link to add new agenda content.
+      $agenda_add_link = l(t('Add event'), '/node/add/agenda', array('attributes' => array('class' => array('content-add-button'))));
+      $view->footer['area_text_custom']->options['content'] = str_replace('<![CONTENT_IS_REPLACED_IN_CODE]!>', $agenda_add_link, $view->footer['area_text_custom']->options['content']);
+    }
+  }
+}

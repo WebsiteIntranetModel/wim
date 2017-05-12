@@ -1,0 +1,89 @@
+<?php
+/**
+ * @file
+ * Install file.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function cookie_consent_install() {
+  $role = user_role_load_by_name('webmaster');
+  if ($role) {
+    user_role_grant_permissions($role->rid, array('administer cookie_consent'));
+  }
+}
+
+/**
+ * Implements hook_schema().
+ */
+function cookie_consent_schema() {
+  $schema['cookie_consent'] = array(
+    'description' => st('Stores who consented on cookies.'),
+    'fields' => array(
+      'ccid' => array(
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'uid' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => FALSE,
+      ),
+      'ip' => array(
+        'type' => 'varchar',
+        'length' => 20,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'created' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'changed' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'type' => array(
+        'type' => 'varchar',
+        'length' => 50,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'value' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+    ),
+    'primary key' => array('ccid'),
+  );
+
+  return $schema;
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function cookie_consent_uninstall() {
+  // Remove all variables used by the module.
+  db_delete('variable')
+    ->condition('name', db_like('cookie_consent_') . '%', 'LIKE')
+    ->execute();
+}
+
+/**
+ * Convert link variable to path.
+ */
+function cookie_consent_update_7000(&$sandbox) {
+  $cookie_consent_link = variable_get('cookie_consent_link', FALSE);
+  if ($cookie_consent_link && preg_match('/\[nid:(\d+)\]/', $cookie_consent_link, $matches) && count($matches) > 1 && is_numeric($matches[1])) {
+    variable_set('cookie_consent_link', url('node/' . $matches[1]));
+  }
+}

@@ -1,0 +1,17 @@
+name = WIM Fixtures
+description = Demo content for WIM
+core = 7.x
+package = WIM
+version = 7.x-1.0
+
+
+dependencies[] = migrate
+
+files[] = wim_fixtures.migrate.inc
+files[] = includes/users.migrate.inc
+files[] = includes/term.migrate.inc
+files[] = includes/nodes.migrate.inc
+files[] = includes/file.migrate.inc
+files[] = includes/block_custom.migrate.inc
+files[] = includes/menus.migrate.inc
+files[] = includes/editorial.migrate.inc

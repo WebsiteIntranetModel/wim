@@ -1,0 +1,11 @@
+name = WIM RSS
+description = Contain feeds block and aggregation settings.
+core = 7.x
+package = WIM
+version = 7.x-1.0
+dependencies[] = aggregator
+dependencies[] = ctools
+dependencies[] = features
+dependencies[] = views
+features[features_api][] = api:2
+project path = profiles/wim/modules/features

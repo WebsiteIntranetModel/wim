@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "link_title": "Facebook",
+    "link_path": "https://www.facebook.com"
+  },
+  {
+    "id": 2,
+    "link_title": "Twitter",
+    "link_path": "https://twitter.com"
+  },
+  {
+    "id": 3,
+    "link_title": "Linkedin",
+    "link_path": "https://www.linkedin.com"
+  }
+]

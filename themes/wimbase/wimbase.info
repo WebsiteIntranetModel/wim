@@ -1,0 +1,18 @@
+name = WIM base theme
+description = Uses the Bootstrap Framework SCSS source files and must be compiled wit gulp (not for beginners).
+core = 7.x
+base theme = bootstrap
+
+; ========================================
+; Stylesheets
+; ========================================
+
+stylesheets[all][] = css/wimbase.css
+
+; ========================================
+; Scripts
+; ========================================
+
+scripts[] = js/bootstrap.min.js
+scripts[] = js/wim.js
+scripts[] = js/accessibility-tabs.js

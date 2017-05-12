@@ -1,0 +1,9 @@
+name = WIM Content Reminder
+description = A module that sends out reminders to editors when content is outdated.
+core = 7.x
+package = WIM
+
+dependencies[] = email
+dependencies[] = field_group
+
+configure = admin/config/content/reminder

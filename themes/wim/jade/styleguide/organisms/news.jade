@@ -1,0 +1,191 @@
+- var base = "../../"
+- var pagetype = "styleguide"
+- var section = "organisms"
+- var page = "News"
+doctype html
+html(lang="en")
+ head
+  include ../../layout/_head.jade
+ body(class='#{pagetype}')
+  .meta-wrapper.container.container-nopadding
+   include ../../layout/_top.jade
+  .main-wrapper.container
+   include ../../layout/_navbar.jade
+   #page-banner(role='banner')
+   // Create region for banner and render it here. We moved header to the navbar header section.
+   include ../../layout/_main.jade
+    block content
+     p The News overview page is used for the display of News items in the site.
+     h3 Demo:
+     section#block-system-main.block.block-system.clearfix
+      .view.view-news.view-id-news.view-display-id-news_overview.view-dom-id-a006026be607bbf7a157ff3200909353
+       .view-filters
+        form#views-exposed-form-news-news-overview.ctools-auto-submit-full-form.ctools-auto-submit-processed(action='/news', method='get', accept-charset='UTF-8')
+         div
+          .views-exposed-form
+           .views-exposed-widgets.clearfix
+            #edit-field-publication-date-value-wrapper.views-exposed-widget.views-widget-filter-field_publication_date_value
+             label(for='edit-field-publication-date-value')
+              | From
+             .views-widget
+              #edit-field-publication-date-value-value-wrapper
+               #edit-field-publication-date-value-value-inside-wrapper
+                .container-inline-date
+                 .form-item.form-item-field-publication-date-value-value.form-type-date-popup.form-group
+                  #edit-field-publication-date-value-value.date-padding.clearfix
+                   .form-item.form-item-field-publication-date-value-value-date.form-type-textfield.form-group
+                    input#edit-field-publication-date-value-value-datepicker-popup-0.form-control.form-text.ctools-auto-submit-processed(type='text', name='field_publication_date_value[value][date]', value='', size='20', maxlength='30')
+            #edit-field-publication-date-value-1-wrapper.views-exposed-widget.views-widget-filter-field_publication_date_value_1
+             label(for='edit-field-publication-date-value-1')
+              | To
+             .views-widget
+              #edit-field-publication-date-value-value-wrapper
+               #edit-field-publication-date-value-value-inside-wrapper
+                .container-inline-date
+                 .form-item.form-item-field-publication-date-value-1-value.form-type-date-popup.form-group
+                  #edit-field-publication-date-value-1-value.date-padding.clearfix
+                   .form-item.form-item-field-publication-date-value-1-value-date.form-type-textfield.form-group
+                    input#edit-field-publication-date-value-1-value-datepicker-popup-0.form-control.form-text.ctools-auto-submit-processed(type='text', name='field_publication_date_value_1[value][date]', value='', size='20', maxlength='30')
+            #edit-field-news-category-tid-wrapper.views-exposed-widget.views-widget-filter-field_news_category_tid
+             label(for='edit-field-news-category-tid')
+              | Category
+             .views-widget
+              .form-item.form-item-field-news-category-tid.form-type-select.form-group
+               select#edit-field-news-category-tid.form-control.form-select(name='field_news_category_tid')
+                option(value='All', selected='selected') - Any -
+                option(value='11') Advertising
+                option(value='12') Arts and culture
+                option(value='13') Banking
+                option(value='10') Construction
+                option(value='9') Education
+            .views-exposed-widget.views-submit-button
+             button#edit-submit-news.ctools-use-ajax.ctools-auto-submit-click.js-hide.btn.btn-info.form-submit(type='submit', name='', value='Apply') Apply
+            .views-exposed-widget.views-reset-button
+             button#edit-reset.btn.btn-default.form-submit(type='submit', name='op', value='Clear') Clear
+       .view-content
+        div
+         article#node-24.node.node-news.node-teaser.clearfix
+          .teaser-image
+           .field.field-name-field-image.field-type-image.field-label-hidden
+            .field-items
+             .field-item.even
+              a(href='/node/24')
+               img.img-responsive(src='http://wim.dev/sites/default/files/styles/teaser/public/fixtures/algemeen_1.jpg?itok=evR2jlvM', width='150', height='150', alt='')
+          .teaser-body
+           h2
+            a(href='/node/24') Lorem ipsum dolor sit 5
+           .submitted
+            .field.field-name-field-publication-date.field-type-datetime.field-label-hidden
+             .field-items
+              .field-item.even
+               span.date-display-single 15 November 2016
+           .field.field-name-body.field-type-text-with-summary.field-label-hidden
+            .field-items
+             .field-item.even
+              p Pretium ut lacinia in, elementum id enim. Vestibulum ante ipsum primis in
+        div
+         article#node-21.node.node-news.node-teaser.clearfix
+          .teaser-image
+           .field.field-name-field-image.field-type-image.field-label-hidden
+            .field-items
+             .field-item.even
+              a(href='/node/21')
+               img.img-responsive(src='images/teaser-image.jpg', width='150', height='150', alt='')
+          .teaser-body
+           h2
+            a(href='/node/21') Financiële ondersteuning voor huur pand Voedselbank
+           .submitted
+            .field.field-name-field-publication-date.field-type-datetime.field-label-hidden
+             .field-items
+              .field-item.even
+               span.date-display-single 05 June 2016
+           .field.field-name-body.field-type-text-with-summary.field-label-hidden
+            .field-items
+             .field-item.even
+              p
+               | <p>De Voedselbank is momenteel tijdelijk gehuisvest aan de Westerlaan. In verband met &nbsp;met renovatieplannen is de huur per 1 februari 2017 opgezegd.
+        div
+         article#node-23.node.node-news.node-teaser.clearfix
+          .teaser-image
+           .field.field-name-field-image.field-type-image.field-label-hidden
+            .field-items
+             .field-item.even
+              a(href='/node/23')
+               img.img-responsive(src='images/teaser-image.jpg', width='150', height='150', alt='')
+          .teaser-body
+           h2
+            a(href='/node/23') Lorem ipsum dolor sit 4
+           .submitted
+            .field.field-name-field-publication-date.field-type-datetime.field-label-hidden
+             .field-items
+              .field-item.even
+               span.date-display-single 05 June 2016
+           .field.field-name-body.field-type-text-with-summary.field-label-hidden
+            .field-items
+             .field-item.even
+              p Elementum id enim. Vestibulum ante ipsum primis in
+        div
+         article#node-20.node.node-news.node-teaser.clearfix
+          .teaser-image
+           .field.field-name-field-image.field-type-image.field-label-hidden
+            .field-items
+             .field-item.even
+              a(href='/node/20')
+               img.img-responsive(src='images/teaser-image.jpg', width='150', height='150', alt='')
+          .teaser-body
+           h2
+            a(href='/node/20') GoalGorilla is de nieuwe huisleverancier van WIM
+           .submitted
+            .field.field-name-field-publication-date.field-type-datetime.field-label-hidden
+             .field-items
+              .field-item.even
+               span.date-display-single 12 May 2016
+           .field.field-name-body.field-type-text-with-summary.field-label-hidden
+            .field-items
+             .field-item.even
+              p Het Website en Intranet Model (WIM) is een vrij herbruikbare website en
+        div
+         article#node-22.node.node-news.node-teaser.clearfix
+          .teaser-image
+           .field.field-name-field-image.field-type-image.field-label-hidden
+            .field-items
+             .field-item.even
+              a(href='/node/22')
+               img.img-responsive(src='images/teaser-image.jpg', width='150', height='150', alt='')
+          .teaser-body
+           h2
+            a(href='/node/22') Lorem ipsum dolor sit 3
+           .submitted
+            .field.field-name-field-publication-date.field-type-datetime.field-label-hidden
+             .field-items
+              .field-item.even
+               span.date-display-single 09 March 2016
+           .field.field-name-body.field-type-text-with-summary.field-label-hidden
+            .field-items
+             .field-item.even
+              p
+               | Het college van burgemeester en wethouders ondersteunt de Voedselbank kunnen bedruipen.
+        div
+         article#node-25.node.node-news.node-teaser.clearfix
+          .teaser-image
+           .field.field-name-field-image.field-type-image.field-label-hidden
+            .field-items
+             .field-item.even
+              a(href='/node/25')
+               img.img-responsive(src='images/teaser-image.jpg', width='150', height='150', alt='')
+          .teaser-body
+           h2
+            a(href='/node/25') Lorem ipsum dolor sit 6
+           .submitted
+            .field.field-name-field-publication-date.field-type-datetime.field-label-hidden
+             .field-items
+              .field-item.even
+               span.date-display-single 25 January 2016
+           .field.field-name-body.field-type-text-with-summary.field-label-hidden
+            .field-items
+             .field-item.even
+              p
+               | Quisque velit nisi, pretium ut lacinia in, elementum id enim. Vestibulum ante quam vel,
+  link(href='/sites/all/modules/contrib/views/css/views.css', type='text/css', rel='stylesheet', media='screen')
+
+  include ../../layout/_scripts.jade

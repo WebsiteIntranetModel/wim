@@ -1,0 +1,57 @@
+<?php
+/**
+ * @file
+ * Drupal needs this blank file.
+ */
+
+/**
+ * Update node alias on menu updates to make it consistent with breadcrums.
+ */
+function wim_breadcrumb_menu_link_update($link) {
+  $original = !empty($link['original_item']['link_path']) ? $link['original_item']['link_path'] : '';
+
+  // No need to do anything here if path is unchanged.
+  if ($original == $link['link_path']) {
+    return;
+  }
+
+  _wim_breadcrumb_update_node_alias($link);
+}
+
+/**
+ * Update node alias on addition of menu link.
+ */
+function wim_breadcrumb_menu_link_insert($link) {
+  _wim_breadcrumb_update_node_alias($link);
+}
+
+/**
+ * Revert node alias if menu link is deleted.
+ */
+function wim_breadcrumb_menu_link_delete($link) {
+  _wim_breadcrumb_update_node_alias($link);
+}
+
+/**
+ * Helper function to update node alias on menu changes.
+ */
+function _wim_breadcrumb_update_node_alias($link) {
+
+  // Verify that this is a node path.
+  if ($link['router_path'] !== 'node/%') {
+    return;
+  }
+
+  $components = explode("/", $link['link_path']);
+
+  if (is_numeric($components[1])) {
+    // Temporarily set pathauto update action to "Delete", otherwise new alias
+    // won't be generated. Restore existing setting afterwards.
+    $old_update_action = variable_get('pathauto_update_action', 0);
+    variable_set('pathauto_update_action', 2);
+    $node = node_load($components[1]);
+    node_save($node);
+
+    variable_set('pathauto_update_action', $old_update_action);
+  }
+}

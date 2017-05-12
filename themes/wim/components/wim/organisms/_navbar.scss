@@ -1,0 +1,172 @@
+.navbar.container {
+  @include MQ($screen-sm) {
+    max-width: $container-md;
+  }
+  @include MQ($screen-md) {
+    max-width: $container-lg;
+  }
+  @include MQ($screen-lg) {
+    max-width: $container-lg;
+  }
+}
+
+.navbar-toggle {
+  margin-top: 10px;
+  margin-right: 5px;
+  float: none;
+  display: display;
+  width: 100%;
+  border: none;
+  background-color: $brand-primary;
+  border-radius: 0;
+  margin-bottom: 0;
+  color: #ffffff;
+  text-align: left;
+  padding: 10px 15px;
+  @extend .fa-navicon;
+  &:before {
+    @include fa-icon;
+  }
+}
+
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+  background-color: lighten($brand-primary, 0.5);
+}
+
+.container.navbar-default {
+  border: 0;
+  background-color: white;
+  margin: 0 auto;
+}
+
+.container > .navbar-collapse {
+  clear: both;
+
+  @include MQ($screen-sm) {
+    margin-left: -15px;
+    margin-right: -15px;
+  }
+}
+
+.container > .navbar-header {
+  padding: 15px 0;
+}
+
+.navbar-nav {
+  margin: 0 -15px;
+  @include MQ($screen-sm) {
+    margin: 0;
+  }
+}
+
+.navbar-default .navbar-collapse {
+  margin-top: -16px;
+  background: $brand-primary;
+  @include MQ($screen-sm) {
+    border-top: 4px solid $nav-tabs-border-color;
+  }
+}
+
+.navbar-default .navbar-nav > li > a {
+  font-size: 16px;
+  font-family: $font-family-serif;
+  color: white;
+
+  @include MQ($screen-sm) {
+    font-size: 14px;
+    padding: 12px 10px;
+  }
+  @include MQ($screen-lg) {
+    font-size: 16px;
+    padding: 15px 10px;
+  }
+}
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus,
+.navbar-default .navbar-nav > .active-trail > a,
+.navbar-default .navbar-nav > .active-trail > a:hover,
+.navbar-default .navbar-nav > .active-trail > a:focus,
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  color: white;
+  background: $nav-tabs-active-link-hover-bg;
+
+  @include MQ($screen-md) {
+    border-top: 4px solid $nav-tabs-active-link-hover-border-color;
+    margin-top: -4px;
+  }
+}
+
+.navbar-default .navbar-nav > li {
+  &:first-child {
+    @extend .fa-angle-right;
+    &:before {
+      @include fa-icon;
+      position: absolute;
+      left: -10000px;
+    }
+  }
+  &:hover > a {
+    background: $link-hover-color;
+    color: white;
+  }
+  &:hover {
+    .dropdown-menu {
+      @include MQ($screen-sm) {
+        display: block;
+      }
+    }
+  }
+  &.parent-dropdown {
+    & > a {
+      position: relative;
+      @extend .fa-chevron-down;
+      &:before {
+        display: none;
+      }
+      @media (max-width: $screen-sm - 1) {
+        &:before {
+          @include fa-icon;
+          position: absolute;
+          right: 10px;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+      }
+    }
+    &.expanded {
+      & > a {
+        @extend .fa-chevron-up;
+      }
+      .dropdown-menu {
+        display: block;
+      }
+    }
+  }
+}
+
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+  color: white;
+  background: $link-hover-color;
+  @extend %outline;
+}
+
+@media (max-width: $screen-sm - 1) {
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    line-height: 1.42857;
+    color: white;
+    padding: 10px 20px;
+  }
+  .dropdown-menu > li > a:active,
+  .dropdown-menu > li > a:focus,
+  .navbar-default .navbar-nav > .open > a,
+  .navbar-default .navbar-nav > .open > a:hover,
+  .navbar-default .navbar-nav > .open > a:focus {
+    outline: none;
+  }
+}

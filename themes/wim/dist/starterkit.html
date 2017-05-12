@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <title>Starterkit - WIM</title>
+    <base href="./">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" type="text/css" rel="stylesheet" media="screen">
+    <link href="css/wim.css" type="text/css" rel="stylesheet" media="screen">
+  </head>
+  <body class="styleguide">
+    <div class="meta-wrapper container container-nopadding">
+      <div class="region region-meta-left">
+        <section id="block-menu-menu-meta-menu" class="block block-menu col-md-12 clearfix">
+          <ul class="menu nav">
+            <li class="first last leaf active"><a href="/" class="active">Home</a></li>
+          </ul>
+        </section>
+      </div>
+    </div>
+    <div class="main-wrapper container">
+      <header id="header" class="navbar container navbar-default">
+        <div class="navbar-header"><a href="index.html" title="Home" class="logo navbar-btn pull-left"><img src="../logo.png" alt="Home"></a>
+          <div class="region region-header"></div>
+          <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle"> Menu</button>
+        </div>
+        <div class="navbar-collapse collapse">
+          <nav role="navigation">
+            <ul class="menu nav navbar-nav">
+              <li class="leaf"><a href="starterkit.html">Themer's Starterkit</a></li>
+              <li class="first parent-dropdown"><a href="#" title="" data-target="#" data-toggle="dropdown" class="dropdown-toggle">Styleguide</a>
+                <ul class="dropdown-menu">
+                  <li class="first leaf"><a href="styleguide/atoms.html">Atoms</a></li>
+                  <li class="leaf"><a href="styleguide/molecules.html">Molecules</a></li>
+                  <li class="last leaf"><a href="styleguide/organisms.html">Organisms</a></li>
+                </ul>
+              </li>
+              <li class="leaf parent-dropdown"><a href="#" title="" data-target="#" data-toggle="dropdown" class="dropdown-toggle">Accessibility</a>
+                <ul class="dropdown-menu">
+                  <li class="first leaf"><a href="accessibility/introduction.html">Introduction</a></li>
+                  <li class="leaf"><a href="accessibility/tooling.html">Tooling</a></li>
+                  <li class="last leaf"><a href="accessibility/guidelines.html">Guidelines</a></li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+      <div id="page-banner" role="banner"></div>
+      <!-- Create region for banner and render it here. We moved header to the navbar header section.-->
+      <div role="main" class="main-container container">
+        <div class="row">
+          <!-- /#sidebar-first-->
+          <section class="col-sm-12"><a id="main-content"></a>
+            <div class="region region-content">
+              <section id="block-system-main" class="block block-system clearfix">
+                <h1>Starterkit</h1>
+                <h2><a id="WIM_theming_guidelines_0"></a>WIM theming guidelines</h2>
+                <p>We set up the current theme architecture to provide maximal flexibility and sustainability for future theme developers. We use Bootstrap to provide an accessible and robust front-end, but we only compile the Bootstrap css that we actually need in the wimbase theme. You can choose to make use of our default WIM theme or pick one of the  approaches that fits your needs. Read the guidelines carefully to make sure you gain all the advantages of future distribution updates.</p>
+                <h3><a id="Prerequisites_4"></a>Prerequisites</h3>
+                <ul>
+                  <li>Basic knowledge of using the command line</li>
+                  <li>Node and Node Package Manager installed</li>
+                  <li>Have an understanding of what taskrunners do</li>
+                  <li>Have an understanding of the atomic design pattern</li>
+                </ul>
+                <h3><a id="Theme_architecture_10"></a>Theme architecture</h3>
+                <ol>
+                  <li><strong>core</strong></li>
+                </ol>
+                <ul>
+                  <li>Contains the default Drupal templates</li>
+                </ul>
+                <ol start="2">
+                  <li><strong>bootstrap</strong></li>
+                </ol>
+                <ul>
+                  <li>Contains the default Bootstrap templates</li>
+                  <li>Implements Bootstrap logic</li>
+                </ul>
+                <ol start="3">
+                  <li><strong>wimbase</strong></li>
+                </ol>
+                <ul>
+                  <li>Overrides both core and Bootstrap templates</li>
+                  <li>Contains WIM theme logic</li>
+                  <li>Contains necessary Bootstrap styles</li>
+                  <li>Contains a sub theme STARTERKIT</li>
+                </ul>
+                <ol start="4">
+                  <li><strong>wim (enabled and default, but optional)</strong></li>
+                </ol>
+                <ul>
+                  <li>Contains WIM default styles</li>
+                  <li>Contains gulp taskrunner</li>
+                  <li>Contains styleguide</li>
+                </ul>
+                <h3><a id="IMPORTANT_Make_sure_WIM_stays_updatable_26"></a>IMPORTANT! Make sure WIM stays updatable</h3>
+                <p>It is important to not change the scss files (except for some) provided in the wim sub theme itself. These files can be updated in future releases and start conflicting with the work you’ve done.</p>
+                <h3><a id="Approach_1_Change_some_color_and_font_settings_29"></a>Approach 1: Change some color and font settings</h3>
+                <p>Use the wim default theme and make some small changes before recompiling the styles. Follow these steps to make wim align with your brand design:</p>
+                <ol>
+                  <li>Navigate to the root of the wim theme</li>
+                </ol>
+                <pre>$ cd profiles/wim/themes/wim/</pre>
+                <ol start="2">
+                  <li>Install packages</li>
+                </ol>
+                <pre>$ npm install</pre>
+                <ol start="3">
+                  <li>Run gulp watch task that will compile your css</li>
+                </ol>
+                <pre>$ gulp</pre>
+                <ol start="4">
+                  <li>Change variables in _theme.scss</li>
+                </ol>
+                <pre>$ open components/_theme.scss</pre>
+                <p><strong>Notes:</strong> New WIM releases will come with a newly compiled CSS file. You need to recompile the CSS with gulp after merging the latest code, so your custom variables are implemented again.</p>
+                <h3><a id="Approach_2_Create_a_custom_theme_with_the_WIM_starterkit_51"></a>Approach 2: Create a custom theme with the WIM starterkit</h3>
+                <p>Use the starterkit provided in the wimbase theme to create a highly customized sub theme.</p>
+                <ol>
+                  <li>Navigate to the root of the wim theme</li>
+                </ol>
+                <pre>$ cd profiles/wim/themes/wimbase/</pre>
+                <ol start="2">
+                  <li>Copy and rename the starterkit to the themes folder of your installation</li>
+                </ol>
+                <pre>$ cp -R STARTERKIT ../../../../sites/all/themes/YOURTHEME</pre>
+                <ol start="3">
+                  <li>navigate to your theme and rename .info file</li>
+                </ol>
+                <pre>$ cd ../../../../sites/all/themes/YOURTHEME
+$ mv STARTERKIT.info.txt YOURTHEME.info</pre>
+                <ol start="4">
+                  <li>Rename value in template.php</li>
+                </ol>
+                <pre>open template.php (change the STARTERKIT value)</pre>
+                <ol start="5">
+                  <li>Enable YOURTHEME and set as default</li>
+                </ol>
+                <pre>Go to /admin/appearance/ and set YOURTHEME as your default theme</pre>
+                <p><strong>Notes:</strong> We advice to follow the atomic design principles while expanding your scss base. For more information visit: <a href="http://bradfrost.com/blog/post/atomic-web-design/">http://bradfrost.com/blog/post/atomic-web-design/</a></p>
+              </section>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/prism.js">
+      <script>
+        // Escape code
+        // ============================================================
+        
+        var $lang_markup       = document.querySelectorAll('pre code.language-markup')
+            $lang_js           = document.querySelectorAll('script.atomic-js'),
+            $lang_jscode       = document.querySelectorAll('pre code.language-javascript')
+            lang_markupsnippet = [],
+            lang_jsnippet      = [];
+        
+        
+        // Markup
+        // order matters!
+        // ============================================================
+        
+        for(var i = 0, l = $lang_markup.length; i < l; i++) {
+          lang_markupsnippet.push(
+            $lang_markup[i].innerHTML.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+          );
+          $lang_markup[i].innerHTML = lang_markupsnippet[i];
+        }
+        
+        
+        // JavaScript
+        // order matters!
+        // ============================================================
+        for(var i = 0, l = $lang_jscode.length; i < l; i++) {
+          lang_jsnippet.push(
+            $lang_jscode[i].innerHTML.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+          );
+        }
+        
+        for(var i = 0, l = $lang_js.length; i < l; i++) {
+          $lang_js[i].innerHTML = lang_jsnippet[i];
+        }
+      </script>
+    </script>
+  </body>
+</html>

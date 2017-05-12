@@ -6,50 +6,39 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
     <title>Form elements - WIM</title>
-    <link rel="apple-touch-icon" sizes="57x57" href="images/favicon/apple-touch-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="images/favicon/apple-touch-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="images/favicon/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="images/favicon/apple-touch-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="images/favicon/apple-touch-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="images/favicon/apple-touch-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="images/favicon/apple-touch-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="images/favicon/apple-touch-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon-180x180.png">
-    <link rel="icon" type="image/png" href="images/favicon/favicon-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="images/favicon/android-chrome-192x192.png" sizes="192x192">
-    <link rel="icon" type="image/png" href="images/favicon/favicon-96x96.png" sizes="96x96">
-    <link rel="icon" type="image/png" href="images/favicon/favicon-16x16.png" sizes="16x16">
-    <link rel="manifest" href="images/favicon/manifest.json">
-    <link rel="mask-icon" href="images/favicon/safari-pinned-tab.svg" color="#29abe2">
-    <meta name="msapplication-TileColor" content="#29abe2">
-    <meta name="msapplication-TileImage" content="images/favicon/mstile-144x144.png">
-    <meta name="theme-color" content="#ffffff">
     <base href="../../">
-    <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet" media="screen">
-    <link href="/sites/all/themes/contrib/bootstrap/css/3.3.5/overrides.min.css" type="text/css" rel="stylesheet" media="screen">
-    <link href="css/project.css" type="text/css" rel="stylesheet" media="screen">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" type="text/css" rel="stylesheet" media="screen">
+    <link href="css/wim.css" type="text/css" rel="stylesheet" media="screen">
     <link href="css/prism.css" type="text/css" rel="stylesheet" media="screen">
   </head>
   <body class="styleguide">
-    <div class="region region-page-top"><span>Region top</span></div>
+    <div class="meta-wrapper container container-nopadding">
+      <div class="region region-meta-left">
+        <section id="block-menu-menu-meta-menu" class="block block-menu col-md-12 clearfix">
+          <ul class="menu nav">
+            <li class="first last leaf active"><a href="/" class="active">Home</a></li>
+          </ul>
+        </section>
+      </div>
+    </div>
     <div class="main-wrapper container">
       <header id="header" class="navbar container navbar-default">
-        <div class="navbar-header"><a href="index.html" title="Home" class="logo navbar-btn pull-left"><img src="../../logo.png" alt="Home"></a>
+        <div class="navbar-header"><a href="index.html" title="Home" class="logo navbar-btn pull-left"><img src="../logo.png" alt="Home"></a>
           <div class="region region-header"></div>
-          <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+          <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle"> Menu</button>
         </div>
         <div class="navbar-collapse collapse">
           <nav role="navigation">
             <ul class="menu nav navbar-nav">
               <li class="leaf"><a href="starterkit.html">Themer's Starterkit</a></li>
-              <li class="first expanded dropdown"><a href="#" title="" data-target="#" data-toggle="dropdown" class="dropdown-toggle">Styleguide<span class="caret"></span></a>
+              <li class="first parent-dropdown"><a href="#" title="" data-target="#" data-toggle="dropdown" class="dropdown-toggle">Styleguide</a>
                 <ul class="dropdown-menu">
                   <li class="first leaf"><a href="styleguide/atoms.html">Atoms</a></li>
                   <li class="leaf"><a href="styleguide/molecules.html">Molecules</a></li>
                   <li class="last leaf"><a href="styleguide/organisms.html">Organisms</a></li>
                 </ul>
               </li>
-              <li class="leaf"><a href="#" title="" data-target="#" data-toggle="dropdown" class="dropdown-toggle">Accessibility<span class="caret"></span></a>
+              <li class="leaf parent-dropdown"><a href="#" title="" data-target="#" data-toggle="dropdown" class="dropdown-toggle">Accessibility</a>
                 <ul class="dropdown-menu">
                   <li class="first leaf"><a href="accessibility/introduction.html">Introduction</a></li>
                   <li class="leaf"><a href="accessibility/tooling.html">Tooling</a></li>
@@ -67,16 +56,15 @@
           <aside role="complementary" class="col-sm-3">
             <div class="region region-sidebar-first">
               <section id="block-system-management" class="block block-system block-menu clearfix">
-                <h2 class="block-title">Atoms</h2>
+                <h1 class="block-title">Atoms</h1>
                 <ul class="menu nav">
                   <li><a href="styleguide/atoms/colors.html">Colors</a></li>
                   <li><a href="styleguide/atoms/typography.html">Typography</a></li>
                   <li><a href="styleguide/atoms/icons.html">Icons</a></li>
                   <li><a href="styleguide/atoms/buttons.html">Buttons</a></li>
                   <li><a href="styleguide/atoms/form-elements.html">Form elements</a></li>
-                  <li><a href="styleguide/atoms/labels.html">Labels</a></li>
                   <li><a href="styleguide/atoms/messages.html">Messages</a></li>
-                  <li><a href="styleguide/atoms/tables.html">Tables</a></li>
+                  <li><a href="styleguide/atoms/tabs.html">Tabs</a></li>
                   <li><a href="#">...</a></li>
                 </ul>
               </section>
@@ -91,14 +79,14 @@
                 <p><p>Input fields allow user input. The border should light up simply and clearly indicating which field the user is currently editing. You must have put a <code>.form-control</code> class on each input.</p>
                 </p>
                 <h3>Demo: </h3>
-                <input type="text" class="form-text">
+                <input type="text" class="form-text form-control">
                 <h3>Code:     </h3>
                 <pre class="language-html"><code class="language-html">Code</code></pre>
                 <h2>Textarea</h2>
                 <p><p>Textareas allow larger expandable user input. The border should light up simply and clearly indicating which field the user is currently editing. You must have a <code>.form-control</code> class on the textarea element.</p>
                 </p>
                 <h3>Demo: </h3>
-                <textarea class="form-textarea"></textarea>
+                <textarea class="form-textarea form-control"></textarea>
                 <h3>Code: </h3>
                 <pre class="language-html"><code class="language-html"> 
 Code</code></pre>
@@ -106,7 +94,7 @@ Code</code></pre>
                 <p><p>Select allows user input through specified options. Make sure you add the class <code>.form-control</code> to the select element.</p>
                 </p>
                 <h3>Demo: </h3>
-                <select class="form-select">
+                <select class="form-select form-control">
                   <option>Option 1</option>
                   <option>Option 2</option>
                   <option>Option 3</option>
@@ -119,16 +107,19 @@ Code</code></pre>
                 <h3>Demo: </h3>
                 <div class="form-group">
                   <div class="radio">
-                    <input id="option1" type="radio" name="group1" class="form-radio">
-                    <label for="option1">Option 1</label>
+                    <label for="option1">
+                      <input id="option1" type="radio" name="group1" class="form-radio">Option 1
+                    </label>
                   </div>
                   <div class="radio">
-                    <input id="option2" type="radio" name="group1" class="form-radio">
-                    <label for="option2">Option 2</label>
+                    <label for="option2">
+                      <input id="option2" type="radio" name="group1" class="form-radio">Option 2
+                    </label>
                   </div>
                   <div class="radio">
-                    <input id="option3" type="radio" name="group1" class="form-radio">
-                    <label for="option3">Option 3</label>
+                    <label for="option3">
+                      <input id="option3" type="radio" name="group1" class="form-radio">Option 3
+                    </label>
                   </div>
                 </div>
                 <h3>Code: </h3>

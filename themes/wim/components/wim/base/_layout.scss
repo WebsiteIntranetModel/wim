@@ -1,0 +1,80 @@
+body {
+  background-color: $body-bg;
+  font-family: $font-family-sans-serif;
+}
+
+#skip-link a {
+  color: black;
+}
+
+.main-wrapper {
+  padding: 0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  margin-top: 10px;
+  border-radius: 3px;
+}
+
+.navbar-header {
+  padding: 15px 15px 15px 0;
+  @include MQ($screen-sm) {
+    width: 100%;
+    padding: 15px 0;
+  }
+}
+
+.region-header {
+  padding: 0 15px 0 5px;
+  @include MQ($screen-sm) {
+    float: right;
+    padding: 0;
+  }
+}
+
+.main-container {
+  background-color: white;
+  border-radius: 3px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  .region-help {
+    .block-system {
+      width: auto;
+      float: none;
+      margin: 0;
+      padding: 0;
+    }
+  }
+}
+
+.container-nopadding {
+  padding: 0 !important;
+}
+
+// For detecting site width
+body:after {
+  content: "smartphone";
+  display: none;
+}
+
+@include MQ($screen-sm) {
+  body:after {
+    content: "tablet";
+  }
+}
+
+@include MQ($screen-md) {
+  body:after {
+    content: "desktop";
+  }
+}
+
+body.in-maintenance {
+  #page {
+    @extend .container;
+    background-color: #fff;
+    border-radius: 3px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    margin-bottom: 20px;
+    margin-top: 10px;
+    padding: 20px;
+  }
+}

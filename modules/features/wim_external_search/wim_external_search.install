@@ -1,0 +1,91 @@
+<?php
+/**
+ * @file
+ * Install file.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function wim_external_search_install() {
+  module_load_include('inc', 'facetapi', 'facetapi.block');
+
+  $string = facetapi_build_delta('apachesolr@solr', 'block', 'external_source');
+  $delta = facetapi_hash_delta($string);
+
+  $facet_source = array(
+    'region_name' => 'sidebar-first-search',
+    'path' => NULL,
+    'module' => 'facetapi',
+    'delta' => $delta,
+    'detail_path' => NULL,
+    'data' => array(
+      'subject' => st('Filter by External Source'),
+      'config' => array(
+        'bootstrap_layout' => 12,
+        'new_row' => 0,
+      ),
+    ),
+  );
+
+  $region = _felix_region_by_name('sidebar-first-search');
+
+  if (!$region || !$delta) {
+    return FALSE;
+  }
+
+  $hash = _felix_get_hash($region, $facet_source['path']);
+
+  $block = new stdClass();
+  $block->region = $region->name;
+  $block->weight = _felix_new_block_weight($region->name);
+  $block->hash = $hash->hash;
+  $block->module = $facet_source['module'];
+  $block->delta = $facet_source['delta'];
+  $block->detail_path = $facet_source['detail_path'];
+  $block->data = $facet_source['data'];
+  $block->hash_parts = $hash->parts;
+  $block->exclude = serialize(array());
+
+  $block->data = serialize($block->data);
+  $block->hash_parts = serialize($block->hash_parts);
+
+  drupal_write_record('felix_block', $block);
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function wim_external_search_uninstall() {
+  $string = facetapi_build_delta('apachesolr@solr', 'block', 'external_source');
+  $map = facetapi_get_delta_map();
+  $delta = array_search($string, $map);
+
+  db_delete('felix_block')
+    ->condition('module', 'bean')
+    ->condition('delta', $delta)
+    ->execute();
+}
+
+/**
+ * Change filter block title.
+ */
+function wim_external_search_update_7000() {
+  $string = facetapi_build_delta('apachesolr@solr', 'block', 'external_source');
+  $map = facetapi_get_delta_map();
+  $delta = array_search($string, $map);
+
+  $block = db_select('felix_block', 'cb')
+    ->fields('cb')
+    ->condition('cb.delta', $delta)
+    ->execute()
+    ->fetchObject();
+
+  if ($block) {
+    $block->data = unserialize($block->data);
+    $block->data['subject'] = t('Filter by External Source');
+    $block->data = serialize($block->data);
+    drupal_write_record('felix_block', $block, array('fbid'));
+  }
+
+}

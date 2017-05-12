@@ -1,0 +1,45 @@
+- var base = "../../"
+- var pagetype = "styleguide"
+- var section = "organisms"
+- var page = "FAQ"
+doctype html
+html(lang="en")
+ head
+  include ../../layout/_head.jade
+ body(class='#{pagetype}')
+  .meta-wrapper.container.container-nopadding
+   include ../../layout/_top.jade
+  .main-wrapper.container
+   include ../../layout/_navbar.jade
+   #page-banner(role='banner')
+   // Create region for banner and render it here. We moved header to the navbar header section.
+   include ../../layout/_main.jade
+    block content
+     p The FAQ overview page is used for the display of FAQ items in the site.
+     h3 Demo:
+
+     #accordion.panel-group(aria-multiselectable='true', role='tablist')
+      .panel.panel-default
+       #headingOne.panel-heading(role='tab')
+        h4.panel-title
+         a.collapsed(aria-controls='collapseOne', aria-expanded='false', href='#collapseOne', data-parent='#accordion', data-toggle='collapse', role='button')  Collapsible Group Item #1
+       #collapseOne.panel-collapse.collapse(aria-labelledby='headingOne', role='tabpanel', aria-expanded='false', style='height: 0px;')
+        .panel-body
+         | Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      .panel.panel-default
+       #headingTwo.panel-heading(role='tab')
+        h4.panel-title
+         a.collapsed(aria-controls='collapseTwo', aria-expanded='false', href='#collapseTwo', data-parent='#accordion', data-toggle='collapse', role='button')  Collapsible Group Item #2
+       #collapseTwo.panel-collapse.collapse(aria-labelledby='headingTwo', role='tabpanel', aria-expanded='false', style='height: 0px;')
+        .panel-body
+         | Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      .panel.panel-default
+       #headingThree.panel-heading(role='tab')
+        h4.panel-title
+         a.collapsed(aria-controls='collapseThree', aria-expanded='false', href='#collapseThree', data-parent='#accordion', data-toggle='collapse', role='button')  Collapsible Group Item #3
+       #collapseThree.panel-collapse.collapse(aria-labelledby='headingThree', role='tabpanel', aria-expanded='false', style='height: 0px;')
+        .panel-body
+         | Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+
+
+  include ../../layout/_scripts.jade

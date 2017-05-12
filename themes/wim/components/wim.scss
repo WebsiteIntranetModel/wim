@@ -1,0 +1,45 @@
+@charset "UTF-8";
+
+// Base assets, typography and layout
+@import 'wim/base/variables';
+@import "wim/base/mixins";
+@import 'wim/base/layout';
+@import 'wim/base/fonts';
+
+// Atoms
+@import 'wim/atoms/fontawesome/font-awesome';
+@import 'wim/atoms/type';
+@import 'wim/atoms/forms';
+@import 'wim/atoms/breadcrumb';
+@import 'wim/atoms/readspeaker';
+@import 'wim/atoms/buttons';
+
+// Molecules
+@import 'wim/molecules/navs';
+@import 'wim/molecules/block';
+@import 'wim/molecules/menu';
+@import 'wim/molecules/dropdowns';
+@import 'wim/molecules/vertical-tabs';
+@import 'wim/molecules/accordion';
+
+// Organisms
+@import 'wim/organisms/footer';
+@import 'wim/organisms/navbar';
+@import 'wim/organisms/search';
+@import 'wim/organisms/meta';
+@import 'wim/organisms/node';
+@import 'wim/organisms/slider';
+@import 'wim/organisms/cc-notification';
+
+// Templates
+@import 'wim/templates/block--sidebar-submenu';
+@import 'wim/templates/block--menu-top-tasks';
+@import 'wim/templates/block--social-links';
+@import 'wim/templates/block--menu-social-media';
+@import 'wim/templates/node--agenda';
+@import 'wim/templates/node--product';
+@import 'wim/templates/view--news';
+@import 'wim/templates/view--faq';
+
+// Overrides
+@import 'wim/base/overrides';

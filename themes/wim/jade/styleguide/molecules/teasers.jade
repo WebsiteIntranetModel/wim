@@ -1,0 +1,81 @@
+- var base = "../../"
+- var pagetype = "styleguide"
+- var section = "molecules"
+- var page = "Teasers"
+doctype html
+html(lang="en")
+ head
+  include ../../layout/_head.jade
+ body(class='#{pagetype}')
+  .meta-wrapper.container.container-nopadding
+   include ../../layout/_top.jade
+  .main-wrapper.container
+   include ../../layout/_navbar.jade
+   #page-banner(role='banner')
+   // Create region for banner and render it here. We moved header to the navbar header section.
+   include ../../layout/_main.jade
+    block content
+     p The teasers component is used for the display of short information about pages in the site.
+     h3 Demo:
+     .node.node-teaser.clearfix
+      .teaser-image
+       .field-type-image
+        a(href='#')
+         img(class='picture tilt-effect', width='140', height='140', src='images/teaser-image.jpg')/
+      .teaser-body
+       h3
+        a(href='#')
+         | Illum Minim Nutus
+       .submitted
+        | 05/10/2015
+       .field.field-name-body
+        | Abluo aliquip autem et inhibeo iusto ludus os paratus ut. Appellatio duis singularis tincidunt vindico. Aptent commodo commoveo eu genitus iriure nobis.
+       a(href='#')
+        | Read more
+     .node.node-teaser.clearfix
+      .teaser-body
+       h3
+        a(href='#')
+         | Diam Pala Tamen Ulciscor
+       .submitted
+        | 02/14/2014
+       .field.field-name-body
+        | At blandit cui obruo quadrum sed tego venio. Aliquam diam mauris metuo pneum premo te ulciscor. Abdo erat genitus ludus metuo quibus singularis utinam velit.
+       a(href='#')
+        | Read more
+
+     h2 Agenda Teasers
+     p The Agenda teasers component is used for the display of short information about pages in the site.
+     h3 Demo:
+     .node.node-teaser.node-agenda.clearfix
+      .fields-wrapper
+       span.date-display-single
+        span.day 06
+        span.month Jul
+       .teaser-image
+        .field-type-image
+         a(href='#')
+          img(class='picture tilt-effect', width='140', height='140', src='images/teaser-image.jpg')/
+      .teaser-body
+       h3
+        a(href='#')
+         | Illum Minim Nutus
+       .field.field-name-body
+        | Abluo aliquip autem et inhibeo iusto ludus os paratus ut. Appellatio duis singularis tincidunt vindico. Aptent commodo commoveo eu genitus iriure nobis.
+       a(href='#')
+        | Read more
+     .node.node-teaser.node-agenda.clearfix
+      .fields-wrapper
+       span.date-display-single
+        span.day 06
+        span.month Jul
+      .teaser-body
+       h3
+        a(href='#')
+         | Illum Minim Nutus
+       .field.field-name-body
+        | Abluo aliquip autem et inhibeo iusto ludus os paratus ut. Appellatio duis singularis tincidunt vindico. Aptent commodo commoveo eu genitus iriure nobis.
+       a(href='#')
+        | Read more
+
+  include ../../layout/_scripts.jade

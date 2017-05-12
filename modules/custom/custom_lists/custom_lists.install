@@ -1,0 +1,55 @@
+<?php
+/**
+ * @file
+ * Install file.
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function custom_lists_schema() {
+  $schema = array();
+
+  $schema['custom_lists'] = array(
+    'fields' => array(
+      'lid' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ),
+      'title' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ),
+      'data' => array(
+        'type' => 'blob',
+        'not null' => TRUE,
+        'serialize' => TRUE,
+        'serialized default' => 'a:0:{}',
+      ),
+      'created' => array(
+        'type' => 'int',
+        'not null' => TRUE,
+        'size' => 'normal',
+        'default' => 0,
+      ),
+      'changed' => array(
+        'type' => 'int',
+        'not null' => TRUE,
+        'size' => 'normal',
+        'default' => 0,
+      ),
+    ),
+    'primary key' => array('lid'),
+  );
+
+  return $schema;
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function custom_lists_uninstall() {
+  variable_del('custom_lists_exclude_menus');
+}

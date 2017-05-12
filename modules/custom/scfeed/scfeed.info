@@ -1,0 +1,6 @@
+name = SC Feed
+description = Provide XML feed for "Samenwerkende Catalogi"
+core = 7.x
+package = WIM
+version = 7.x-1.0
+configure = admin/config/services/scfeed

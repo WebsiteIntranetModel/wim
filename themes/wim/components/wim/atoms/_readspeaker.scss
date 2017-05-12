@@ -1,0 +1,12 @@
+.rsbtn {
+  @include MQ($screen-sm) {
+    float: right;
+    margin-top: -11px;
+    margin-bottom: 4px;
+  }
+}
+/* DocReader
+---------------------*/
+.docreader {
+  margin-left: 5px;
+}

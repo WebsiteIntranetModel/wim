@@ -1,0 +1,119 @@
+- var base = "./"
+- var pagetype = "styleguide"
+- var page = "Starterkit"
+doctype html
+html(lang="en")
+ head
+  include ./layout/_head.jade
+ body(class='#{pagetype}')
+  .meta-wrapper.container.container-nopadding
+   include ./layout/_top.jade
+  .main-wrapper.container
+   include ./layout/_navbar.jade
+   #page-banner(role='banner')
+   // Create region for banner and render it here. We moved header to the navbar header section.
+   include ./layout/_main.jade
+    block content
+      h2
+       a#WIM_theming_guidelines_0
+       | WIM theming guidelines
+      p
+       | We set up the current theme architecture to provide maximal flexibility and sustainability for future theme developers. We use Bootstrap to provide an accessible and robust front-end, but we only compile the Bootstrap css that we actually need in the wimbase theme. You can choose to make use of our default WIM theme or pick one of the  approaches that fits your needs. Read the guidelines carefully to make sure you gain all the advantages of future distribution updates.
+      h3
+       a#Prerequisites_4
+       | Prerequisites
+      ul
+       li Basic knowledge of using the command line
+       li Node and Node Package Manager installed
+       li Have an understanding of what taskrunners do
+       li Have an understanding of the atomic design pattern
+      h3
+       a#Theme_architecture_10
+       | Theme architecture
+      ol
+       li
+         strong core
+      ul
+       li Contains the default Drupal templates
+      ol(start='2')
+       li
+         strong bootstrap
+      ul
+       li Contains the default Bootstrap templates
+       li Implements Bootstrap logic
+      ol(start='3')
+       li
+         strong wimbase
+      ul
+       li Overrides both core and Bootstrap templates
+       li Contains WIM theme logic
+       li Contains necessary Bootstrap styles
+       li Contains a sub theme STARTERKIT
+      ol(start='4')
+       li
+         strong wim (enabled and default, but optional)
+      ul
+       li Contains WIM default styles
+       li Contains gulp taskrunner
+       li Contains styleguide
+      h3
+       a#IMPORTANT_Make_sure_WIM_stays_updatable_26
+       | IMPORTANT! Make sure WIM stays updatable
+      p
+       | It is important to not change the scss files (except for some) provided in the wim sub theme itself. These files can be updated in future releases and start conflicting with the work you’ve done.
+      h3
+       a#Approach_1_Change_some_color_and_font_settings_29
+       | Approach 1: Change some color and font settings
+      p
+       | Use the wim default theme and make some small changes before recompiling the styles. Follow these steps to make wim align with your brand design:
+      ol
+       li Navigate to the root of the wim theme
+      pre.
+        $ cd profiles/wim/themes/wim/
+      ol(start='2')
+       li Install packages
+      pre.
+        $ npm install
+      ol(start='3')
+       li Run gulp watch task that will compile your css
+      pre.
+        $ gulp
+      ol(start='4')
+       li Change variables in _theme.scss
+      pre.
+        $ open components/_theme.scss
+      p
+       strong Notes:
+       |  New WIM releases will come with a newly compiled CSS file. You need to recompile the CSS with gulp after merging the latest code, so your custom variables are implemented again.
+      h3
+       a#Approach_2_Create_a_custom_theme_with_the_WIM_starterkit_51
+       | Approach 2: Create a custom theme with the WIM starterkit
+      p
+       | Use the starterkit provided in the wimbase theme to create a highly customized sub theme.
+      ol
+       li Navigate to the root of the wim theme
+      pre.
+        $ cd profiles/wim/themes/wimbase/
+      ol(start='2')
+       li Copy and rename the starterkit to the themes folder of your installation
+      pre.
+        $ cp -R STARTERKIT ../../../../sites/all/themes/YOURTHEME
+      ol(start='3')
+       li navigate to your theme and rename .info file
+      pre.
+        $ cd ../../../../sites/all/themes/YOURTHEME
+        $ mv STARTERKIT.info.txt YOURTHEME.info
+      ol(start='4')
+       li Rename value in template.php
+      pre.
+        open template.php (change the STARTERKIT value)
+      ol(start='5')
+       li Enable YOURTHEME and set as default
+      pre.
+        Go to /admin/appearance/ and set YOURTHEME as your default theme
+      p
+       strong Notes:
+       |  We advice to follow the atomic design principles while expanding your scss base. For more information visit: 
+       a(href='http://bradfrost.com/blog/post/atomic-web-design/') http://bradfrost.com/blog/post/atomic-web-design/
+
+  include ./layout/_scripts.jade

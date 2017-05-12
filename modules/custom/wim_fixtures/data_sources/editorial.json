@@ -1,0 +1,24 @@
+[
+  {
+    "id": 1,
+    "label": "Editorial Test label 1",
+    "title": "Editorial Test title 1",
+    "field_body": "Editorial body content 1",
+    "field_link": "<front>",
+    "field_image": "/drupal-icon.png",
+    "meta_title": "",
+    "meta_keywords": "",
+    "meta_description": ""
+  },
+  {
+    "id": 2,
+    "label": "Editorial Test label 2",
+    "title": "Editorial Test title 2",
+    "field_body": "Editorial body content 2",
+    "field_link": "",
+    "field_image": "",
+    "meta_title": "",
+    "meta_keywords": "",
+    "meta_description": ""
+  }
+]

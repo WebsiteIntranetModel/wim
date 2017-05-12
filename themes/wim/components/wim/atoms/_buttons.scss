@@ -1,0 +1,8 @@
+.btn-primary {
+  background-color: $link-color;
+  border-color: $link-hover-color;
+}
+
+.btn:-moz-focusring {
+  outline: 2px dotted;
+}

@@ -1,0 +1,12 @@
+name = Atos Esuite
+description = VAC & PDC Import from Atos eSuite
+core = 7.x
+package = WIM
+version = 7.x-1.0
+dependencies[] = ctools
+dependencies[] = features
+dependencies[] = wim_addition_faq_product_fields
+configure = admin/config/content/atos-esuite
+features[ctools][] = field_group:field_group:1
+features[features_api][] = api:2
+project path = profiles/wim/modules/features

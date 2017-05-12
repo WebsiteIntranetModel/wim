@@ -1,0 +1,47 @@
+default:
+  autoload:
+    '': /var/www/html/profiles/wim/behat/features/bootstrap
+  suites:
+    default:
+      parameters:
+        test_users:
+          admin:
+            username: 'admin'
+            password: 'admin'
+            mail: 'info+admin@example.com'
+      paths:
+        features: '/var/www/html/profiles/wim/behat/features'
+        bootstrap: '/var/www/html/profiles/wim/behat/features/bootstrap'
+      contexts:
+        - FeatureContext
+        - Drupal\DrupalExtension\Context\DrupalContext
+        - Drupal\DrupalExtension\Context\MinkContext
+        - Drupal\DrupalExtension\Context\MessageContext
+        - Drupal\DrupalExtension\Context\DrushContext
+  extensions:
+      Behat\MinkExtension:
+        default_session: 'selenium2'
+        base_url: 'http://web/'
+        files_path: '/var/www/html/profiles/wim/behat/fixtures'
+        goutte: ~
+        selenium2:
+          wd_host: 'http://selenium:4444/wd/hub/'
+          browser: 'firefox'
+      Drupal\DrupalExtension:
+        api_driver: 'drupal'
+        drupal:
+          drupal_root: '/var/www/html'
+        selectors:
+          message_selector: '.alert'
+          error_message_selector: '.alert.alert-danger'
+          success_message_selector: '.alert.alert-success'
+        region_map:
+          'Meta': '.region-meta'
+          'Header': '#header'
+          'Content': '.region-content'
+          'Content Bottom': '.region-content-bottom'
+          'Main content': '.main-container'
+          'Sidebar first': '.region-sidebar-first'
+          'Sidebar second': '.region-sidebar-second'
+          'Highlighted': '.region-highlighted'
+          'Footer': '.region-footer'

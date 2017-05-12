@@ -1,0 +1,71 @@
+<?php
+/**
+ * @file
+ * Install file.
+ */
+
+/**
+ * Implements hook_uninstall().
+ */
+function content_reminder_uninstall() {
+  // Remove all variables used by the module.
+  db_delete('variable')
+    ->condition('name', db_like('content_reminder_') . '%', 'LIKE')
+    ->execute();
+
+  $node_types = node_type_get_types();
+  foreach ($node_types as $node_type) {
+    if ($instance = field_info_instance('node', 'field_reminder_email', $node_type->type)) {
+      drupal_set_message('Deleted field instance for ' . $node_type->type);
+      field_delete_instance($instance);
+    }
+    if ($group = field_group_load_field_group('group_reminder', 'node', $node_type->type, 'form')) {
+      drupal_set_message('Deleted group ' . $group->identifier . ' for ' . $node_type->type);
+      ctools_include('export');
+      field_group_group_export_delete($group, FALSE);
+    }
+  }
+}
+
+/**
+ * Implements hook_install().
+ */
+function content_reminder_install() {
+  // Create field base for content_reminder.
+  foreach (_content_reminder_field_base() as $field) {
+    if (field_info_field('field_reminder_email') === NULL) {
+      field_create_field($field);
+    }
+  }
+
+  $types = node_type_get_types();
+  drupal_set_message('Number of active content types' . count($types));
+
+  foreach ($types as $type) {
+    field_create_instance(_content_reminder_instance($type->type));
+    drupal_set_message('Created field instance for ' . $type->type);
+    ctools_include('export');
+    ctools_export_crud_enable('field_group', "group_reminder|node|$type->type|form");
+  }
+}
+
+/**
+ * Helper function to get field base.
+ */
+function _content_reminder_field_base() {
+  $field_bases['field_reminder_email'] = array(
+    'active' => 1,
+    'cardinality' => -1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_reminder_email',
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'email',
+    'settings' => array(),
+    'translatable' => 0,
+    'type' => 'email',
+  );
+
+  return $field_bases;
+}

@@ -1,0 +1,12 @@
+.form-group.error .help-block,
+.form-group.error .help-inline,
+.form-group.has-error .help-block,
+.form-group.has-error .help-inline {
+  color: $gray-dark;
+}
+
+.submitted {
+  color: lighten(black, 46%);
+  font-style: normal;
+  margin: 1em 0px;
+}

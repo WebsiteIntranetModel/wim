@@ -1,0 +1,67 @@
+<?php
+/**
+ * @file
+ * Install file for updates.
+ */
+
+/**
+ * Revert the WIM Search feature: Facetapi component.
+ */
+function wim_search_update_7001(&$sandbox) {
+  features_revert(array('wim_search' => array('facetapi_defaults')));
+}
+
+/**
+ * Add facets filters on the search page.
+ */
+function wim_search_update_7002(&$sandbox) {
+  if (module_exists('wim_block_management')) {
+    module_load_include('inc', 'facetapi', 'facetapi.block');
+
+    $map = facetapi_get_delta_map();
+    // Filter by type.
+    $string = facetapi_build_delta('apachesolr@solr', 'block', 'bundle');
+    $felix_blocks['search_filter_types'] = array(
+      'region_name' => 'sidebar-first-search',
+      'path' => NULL,
+      'module' => 'facetapi',
+      'delta' => array_search($string, $map),
+      'detail_path' => NULL,
+      'data' => array(
+        'subject' => st('Filter by type'),
+        'config' => array(
+          'bootstrap_layout' => 12,
+          'new_row' => 0,
+        ),
+      ),
+    );
+
+    // Filter by date.
+    $string = facetapi_build_delta('apachesolr@solr', 'block', 'created');
+    $felix_blocks['search_filter_created'] = array(
+      'region_name' => 'sidebar-first-search',
+      'path' => NULL,
+      'module' => 'facetapi',
+      'delta' => array_search($string, $map),
+      'detail_path' => NULL,
+      'data' => array(
+        'subject' => st('Filter by date'),
+        'config' => array(
+          'bootstrap_layout' => 12,
+          'new_row' => 0,
+        ),
+      ),
+    );
+
+    foreach ($felix_blocks as $felix_block) {
+      _wim_block_management_add_felix_block($felix_block['region_name'], $felix_block['path'], $felix_block['module'], $felix_block['delta'], $felix_block['detail_path'], $felix_block['data']);
+    }
+  }
+}
+
+/**
+ * Enable Apachesolr Media.
+ */
+function wim_search_update_7003(&$sandbox) {
+  module_enable(array('apachesolr_attachments', 'wim_apachesolr_media'));
+}

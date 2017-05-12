@@ -1,0 +1,19 @@
+<?php
+/**
+ * @file
+ * Uninstall functions for wim_sss module.
+ */
+
+/**
+ * Implements hook_uninstall().
+ */
+function wim_sss_uninstall() {
+
+  // Delete variables from database.
+  db_delete('variable')
+    ->condition('name', db_like('wim_sss_') . '%', 'LIKE')
+    ->execute();
+
+  // Flush bootstrap variables cache.
+  cache_clear_all('variables', 'cache_bootstrap');
+}

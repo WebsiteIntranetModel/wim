@@ -1,0 +1,330 @@
+<?php
+/**
+ * @file
+ * Module file.
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function cookie_consent_menu() {
+  $items['admin/config/user-interface/cookie-consent'] = array(
+    'title' => 'Cookie Consent Settings',
+    'description' => 'Configure Cookie Consent',
+    'access arguments' => array('administer cookie_consent'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('cookie_consent_admin_form'),
+    'file' => 'cookie_consent.admin.inc',
+    'type' => MENU_NORMAL_ITEM,
+  );
+
+  $items['cookie-consent/add'] = array(
+    'title' => 'Add a Cookie Consent record',
+    'access arguments' => array('access content'),
+    'page callback' => 'cookie_consent_add',
+    'type' => MENU_CALLBACK,
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_permission().
+ */
+function cookie_consent_permission() {
+  return array(
+    'administer cookie_consent' => array(
+      'title' => t('Administer Cookie Consent'),
+      'description' => t('Perform administration tasks for the Cookie Consent module'),
+    ),
+  );
+}
+
+/**
+ * Custom function to attache additional js for cookie.
+ */
+function _cookie_consent_attach(&$page) {
+  global $base_root, $user, $_cookie_consent;
+
+  $paths = path_get_admin_paths();
+  $current_path = current_path();
+
+  $domain = TRUE;
+  if (module_exists('domain')) {
+    $domains = variable_get('cookie_consent_domains', array());
+    $current_domain = domain_get_domain();
+
+    if (is_array($domains) && isset($domains[$current_domain['domain_id']])) {
+      $domain = FALSE;
+    }
+  }
+
+  $excluded_paths = variable_get('cookie_consent_pages', '');
+  $excluded_paths .= PHP_EOL . $paths['admin'];
+
+  if (path_is_admin($current_path) || drupal_match_path($current_path, $excluded_paths) || !array_intersect(array_keys($user->roles), variable_get('cookie_consent_roles', array())) || !$domain) {
+    // Cookie consent is configured to not show for this role.
+    // Or we're dealing with an admin page.
+    // Or the current domain is excluded.
+    $_cookie_consent = FALSE;
+    return;
+  }
+
+  $_cookie_consent = TRUE;
+  $categories = _cookie_consent_get_categories();
+  $patterns = _cookie_consent_get_patterns();
+  foreach ($categories as $key => $category) {
+    if (!array_key_exists($key, $patterns)) {
+      unset($categories[$key]);
+    }
+  }
+
+  $link = array();
+  $cookie_consent_link = variable_get('cookie_consent_link', '');
+  if ($cookie_consent_link) {
+    $link = array(
+      'url' => url($cookie_consent_link),
+      'title' => check_plain(variable_get('cookie_consent_link_title', t('More information'))),
+    );
+  }
+
+  // We cannot use Drupal.settings, because the cookie compliance
+  // script must kick in before the Druapl.settings object is added to the page.
+  $options = array(
+    'style' => variable_get('cookie_consent_style', 'monochrome'),
+    'ip' => ip_address(),
+    'cookies' => $categories,
+    'serveraddr' => $base_root,
+    'bannerPosition' => variable_get('cookie_consent_banner_position', 'top'),
+    'privacy' => variable_get('cookie_consent_privacy', 0),
+    'tagPosition' => variable_get('cookie_consent_tag_position', 'vertical-right'),
+    'refreshOnConsent' => variable_get('cookie_consent_refresh_on_consent', 0),
+    'link' => $link,
+  );
+
+  // Attach the necessary files.
+  $path = drupal_get_path('module', 'cookie_consent');
+  $page['page_bottom']['cookie_consent']['#attached']['css'] = array(
+    $path . '/css/cc_style.css' => array('every_page' => TRUE),
+  );
+  $page['page_bottom']['cookie_consent']['#attached']['js'] = array(
+    $path . '/js/plugin.js' => array('every_page' => TRUE),
+    $path . '/js/cookie_consent.js' => array('every_page' => TRUE),
+    array('data' => 'var ccOptions = ' . drupal_json_encode($options) . ';', 'type' => 'inline'),
+  );
+}
+
+/**
+ * Implements hook_cookie_consent_categories().
+ *
+ * You can implement your this hook in your
+ * own module to add additional categories.
+ */
+function cookie_consent_cookie_consent_categories() {
+  $cookies['necessary'] = array(
+    'title' => t('Strictly necessary'),
+    'description' => t('Some cookies on this website are strictly necessary and cannot be disabled.'),
+    'weight' => -10,
+  );
+  $cookies['social'] = array(
+    'title' => t('Social Media'),
+    'description' => t('Facebook, Twitter and other social websites need to know who you are to work properly.'),
+  );
+  $cookies['advertising'] = array(
+    'title' => t('Advertising'),
+    'description' => t('Adverts will be chosen for you automatically based on your past behaviour and interests.'),
+  );
+  $cookies['analytics'] = array(
+    'title' => t('Analytics'),
+    'description' => t('We anonymously measure your use of this website to improve your experience.'),
+  );
+
+  return $cookies;
+}
+
+/**
+ * Helper function.
+ *
+ * AJAX page callback to add a consent to the database
+ * or to update an existing record.
+ */
+function cookie_consent_add() {
+  global $user;
+
+  if (!isset($_GET['type']) or !isset($_GET['value']) or !isset($_GET['ip'])) {
+    return drupal_access_denied();
+  }
+
+  $cookies = _cookie_consent_get_categories();
+  $type = check_plain($_GET['type']);
+
+  // Check if we have this type defined.
+  if (!isset($cookies[str_replace('cc_', '', $type)])) {
+    return drupal_access_denied();
+  }
+
+  $record = (object) array(
+    'ip' => check_plain($_GET['ip']),
+    'type' => $type,
+    'value' => check_plain($_GET['value']),
+    'changed' => time(),
+  );
+
+  if ($user->uid) {
+    $record->uid = (int) $user->uid;
+    $field = 'uid';
+    $value = $user->uid;
+  }
+  else {
+    $record->uid = NULL;
+    $field = 'ip';
+    $value = $record->ip;
+  }
+
+  $exists = db_select('cookie_consent', 'cc')
+    ->fields('cc', array(
+      'ccid',
+      'created',
+    ))
+    ->condition('type', $record->type)
+    ->condition($field, $value)
+    ->execute()
+    ->fetch();
+
+  $primary_key = NULL;
+
+  if ($exists) {
+    $record->ccid = $exists->ccid;
+    $record->created = $exists->created;
+    $primary_key = 'ccid';
+  }
+  else {
+    $record->created = time();
+  }
+
+  drupal_write_record('cookie_consent', $record, $primary_key);
+  drupal_json_output($record);
+  exit;
+}
+
+/**
+ * Implements hook_process_html_tag().
+ *
+ * Does the magic of converting the right script files
+ * (added as a regex on the admin page) to to text/plain and adding
+ * the necessary class for cookie consent to selectively
+ * enable or disable pieces of javascript.
+ */
+function cookie_consent_process_html_tag(&$vars) {
+  global $_cookie_consent;
+  if ($_cookie_consent and isset($vars['element']['#tag']) and $vars['element']['#tag'] === 'script') {
+    foreach (_cookie_consent_get_patterns() as $category => $patterns) {
+      foreach ($patterns as $pattern) {
+        if ($pattern === 'dontmatch') {
+          continue;
+        }
+        $pattern = '#' . preg_quote($pattern) . '#';
+
+        $subject = !empty($vars['element']['#attributes']['src']) ? $vars['element']['#attributes']['src'] : '';
+        if (!empty($vars['element']['#value'])) {
+          $subject .= ' ' . $vars['element']['#value'];
+        }
+
+        if (preg_match($pattern, $subject)) {
+          $vars['element']['#attributes']['type'] = 'text/plain';
+          $vars['element']['#attributes']['class'] = array('cc-onconsent-' . $category);
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_page_alter().
+ */
+function cookie_consent_page_alter(&$page) {
+  global $_cookie_consent;
+  _cookie_consent_attach($page);
+  if ($_cookie_consent and variable_get('cookie_consent_filter_iframe', FALSE)) {
+    $page['#post_render'][] = 'cookie_consent_alter_iframe';
+  }
+}
+
+/**
+ * Helper function.
+ *
+ * This function strips out all <iframe> tags matching the regexes,
+ * and replaces them with a variant that will only be loaded
+ * when consent has been given.
+ */
+function cookie_consent_alter_iframe($html, $page) {
+  if (preg_match_all('/<iframe.+?<\/iframe>/si', $html, $matches)) {
+    $iframe_count = 0;
+
+    foreach ($matches[0] as $iframe) {
+      foreach (_cookie_consent_get_patterns() as $category => $patterns) {
+        foreach ($patterns as $pattern) {
+          if (preg_match('#' . preg_quote($pattern) . '#', $iframe)) {
+            $iframe_count++;
+
+            $jquery = 'jQuery("#iframe-' . $iframe_count . '").html("' . addslashes($iframe) . '")';
+            $script = '<script type="text/plain" class="cc-onconsent-' . $category . '">' . $jquery . '</script><span id="iframe-' . $iframe_count . '"></span>';
+
+            $html = str_replace($iframe, $script, $html);
+          }
+        }
+      }
+    }
+  }
+
+  return $html;
+}
+
+/**
+ * API function to retrieve all categories.
+ */
+function _cookie_consent_get_categories($reset = FALSE) {
+  $categories = &drupal_static(__FUNCTION__);
+
+  if (!isset($categories) or $reset) {
+    // Get all categories.
+    $categories = module_invoke_all('cookie_consent_categories');
+
+    // Let modules get a chance to alter the categories.
+    foreach (module_implements('cookie_consent_categories_alter') as $module) {
+      $function = $module . '_cookie_consent_categories_alter';
+      $function($categories);
+    }
+
+    uasort($categories, 'drupal_sort_weight');
+  }
+
+  return $categories;
+}
+
+/**
+ * API function to retrieve current patterns.
+ */
+function _cookie_consent_get_patterns() {
+  $build = &drupal_static(__FUNCTION__);
+
+  if (!isset($build)) {
+    $build = array();
+
+    foreach (_cookie_consent_get_categories() as $category => $info) {
+      if (isset($info['default']) && $info['default'] === TRUE && !isset($_COOKIE['cc_' . $category])) {
+        $build[$category] = array('dontmatch');
+        continue;
+      }
+
+      $multiline_string = variable_get('cookie_consent_' . $category, NULL);
+      if ($multiline_string === NULL || empty($multiline_string)) {
+        continue;
+      }
+
+      $build[$category] = array_map('trim', explode("\n", $multiline_string));
+    }
+  }
+
+  return $build;
+}

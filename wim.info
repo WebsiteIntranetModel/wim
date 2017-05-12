@@ -1,7 +1,86 @@
 name = Website Intranet Model
 distribution_name = Website Intranet Model
 description = Installation profile for the WIM distribution.
-exclusive = TRUE
 core = 7.x
 
 files[] = wim.test
+
+; Core
+dependencies[] = block
+dependencies[] = contextual
+dependencies[] = image
+dependencies[] = list
+dependencies[] = locale
+dependencies[] = menu
+dependencies[] = options
+dependencies[] = taxonomy
+dependencies[] = search
+
+; Contrib
+dependencies[] = admin_menu
+dependencies[] = admin_views
+dependencies[] = adminimal_admin_menu
+dependencies[] = autologout
+dependencies[] = breakpoints
+dependencies[] = colectomy
+dependencies[] = ctools
+dependencies[] = chosen
+dependencies[] = date_views
+dependencies[] = elysia_cron
+dependencies[] = email
+dependencies[] = encrypt
+dependencies[] = entity
+dependencies[] = entityreference
+dependencies[] = features
+dependencies[] = field_group
+dependencies[] = file_entity
+dependencies[] = flood_control
+dependencies[] = honeypot
+dependencies[] = i18n
+dependencies[] = i18n_field
+dependencies[] = jquery_update
+dependencies[] = magic
+dependencies[] = media
+dependencies[] = media_wysiwyg
+dependencies[] = menu_block
+dependencies[] = metatag
+dependencies[] = module_filter
+dependencies[] = l10n_update
+dependencies[] = link
+dependencies[] = linkit
+dependencies[] = password_policy
+dependencies[] = pathauto
+dependencies[] = picture
+dependencies[] = redirect
+dependencies[] = scheduler
+dependencies[] = strongarm
+dependencies[] = token
+dependencies[] = userprotect
+dependencies[] = variable
+dependencies[] = views
+dependencies[] = views_bulk_operations
+dependencies[] = wysiwyg
+dependencies[] = xmlsitemap
+
+; Features
+dependencies[] = wim_agenda
+dependencies[] = wim_block_management
+dependencies[] = wim_breadcrumb
+dependencies[] = wim_core
+dependencies[] = wim_faq
+dependencies[] = wim_news
+dependencies[] = wim_page
+dependencies[] = wim_person
+dependencies[] = wim_product
+dependencies[] = wim_seo
+dependencies[] = wim_search
+dependencies[] = wim_subject
+dependencies[] = wim_text_formats
+dependencies[] = wim_webform
+
+; Custom
+dependencies[] = ckeditor_customtags
+dependencies[] = ckeditor_bootstrap_tabs
+dependencies[] = content_reminder
+dependencies[] = custom_lists
+dependencies[] = wim_sss

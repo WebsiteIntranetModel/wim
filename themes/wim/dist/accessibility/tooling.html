@@ -6,49 +6,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
     <title>Tooling - WIM</title>
-    <link rel="apple-touch-icon" sizes="57x57" href="images/favicon/apple-touch-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="images/favicon/apple-touch-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="images/favicon/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="images/favicon/apple-touch-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="images/favicon/apple-touch-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="images/favicon/apple-touch-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="images/favicon/apple-touch-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="images/favicon/apple-touch-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon-180x180.png">
-    <link rel="icon" type="image/png" href="images/favicon/favicon-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="images/favicon/android-chrome-192x192.png" sizes="192x192">
-    <link rel="icon" type="image/png" href="images/favicon/favicon-96x96.png" sizes="96x96">
-    <link rel="icon" type="image/png" href="images/favicon/favicon-16x16.png" sizes="16x16">
-    <link rel="manifest" href="images/favicon/manifest.json">
-    <link rel="mask-icon" href="images/favicon/safari-pinned-tab.svg" color="#29abe2">
-    <meta name="msapplication-TileColor" content="#29abe2">
-    <meta name="msapplication-TileImage" content="images/favicon/mstile-144x144.png">
-    <meta name="theme-color" content="#ffffff">
     <base href="../">
-    <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet" media="screen">
-    <link href="/sites/all/themes/contrib/bootstrap/css/3.3.5/overrides.min.css" type="text/css" rel="stylesheet" media="screen">
-    <link href="css/project.css" type="text/css" rel="stylesheet" media="screen">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" type="text/css" rel="stylesheet" media="screen">
+    <link href="css/wim.css" type="text/css" rel="stylesheet" media="screen">
   </head>
   <body class="styleguide">
-    <div class="region region-page-top"><span>Region top</span></div>
+    <div class="meta-wrapper container container-nopadding">
+      <div class="region region-meta-left">
+        <section id="block-menu-menu-meta-menu" class="block block-menu col-md-12 clearfix">
+          <ul class="menu nav">
+            <li class="first last leaf active"><a href="/" class="active">Home</a></li>
+          </ul>
+        </section>
+      </div>
+    </div>
     <div class="main-wrapper container">
       <header id="header" class="navbar container navbar-default">
         <div class="navbar-header"><a href="index.html" title="Home" class="logo navbar-btn pull-left"><img src="../logo.png" alt="Home"></a>
           <div class="region region-header"></div>
-          <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+          <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle"> Menu</button>
         </div>
         <div class="navbar-collapse collapse">
           <nav role="navigation">
             <ul class="menu nav navbar-nav">
               <li class="leaf"><a href="starterkit.html">Themer's Starterkit</a></li>
-              <li class="first expanded dropdown"><a href="#" title="" data-target="#" data-toggle="dropdown" class="dropdown-toggle">Styleguide<span class="caret"></span></a>
+              <li class="first parent-dropdown"><a href="#" title="" data-target="#" data-toggle="dropdown" class="dropdown-toggle">Styleguide</a>
                 <ul class="dropdown-menu">
                   <li class="first leaf"><a href="styleguide/atoms.html">Atoms</a></li>
                   <li class="leaf"><a href="styleguide/molecules.html">Molecules</a></li>
                   <li class="last leaf"><a href="styleguide/organisms.html">Organisms</a></li>
                 </ul>
               </li>
-              <li class="leaf"><a href="#" title="" data-target="#" data-toggle="dropdown" class="dropdown-toggle">Accessibility<span class="caret"></span></a>
+              <li class="leaf parent-dropdown"><a href="#" title="" data-target="#" data-toggle="dropdown" class="dropdown-toggle">Accessibility</a>
                 <ul class="dropdown-menu">
                   <li class="first leaf"><a href="accessibility/introduction.html">Introduction</a></li>
                   <li class="leaf"><a href="accessibility/tooling.html">Tooling</a></li>
@@ -66,7 +55,7 @@
           <aside role="complementary" class="col-sm-3">
             <div class="region region-sidebar-first">
               <section id="block-system-management" class="block block-system block-menu clearfix">
-                <h2 class="block-title">Accessibility</h2>
+                <h1 class="block-title">Accessibility</h1>
                 <ul class="menu nav">
                   <li><a href="accessibility/introduction.html">Introduction</a></li>
                   <li><a href="accessibility/tooling.html">Tooling</a></li>
@@ -80,7 +69,25 @@
             <div class="region region-content">
               <section id="block-system-main" class="block block-system clearfix">
                 <h1>Tooling</h1>
-                <p>Lorem ipsum dolor sit amet.</p>
+                <p><img src="http://squizlabs.github.io/HTML_CodeSniffer/images/bookmarklet-feature.png" alt="Preview of HTML Code Sniffer"></p>
+                <h3>HTML Code Sniffer</h3>
+                <p>HTML_CodeSniffer is a client-side script that checks HTML source code and detects violations of a defined coding standard. </p>
+                <p>If you want to beat SiteImprove to not get any negative reports back on your work, start using this tool before you commit your code to the project.</p>
+                <ol>
+                  <li>Add the bookmarklet</li>
+                  <li>Click the bookmarklet while viewing the page you want to test</li>
+                  <li>Configure the tool for "WCAG 2.0 Level AA"</li>
+                  <li>See what goes wrong and correct it with the suggested solution</li>
+                </ol>
+                <p><a href="http://squizlabs.github.io/HTML_CodeSniffer/" target="_blank">Install the bookmarklet here</a></p>
+                <hr>
+                <p><img style="max-width: 550px; width: 100%;" src="http://www.lancaster.ac.uk/media/lancaster-university/content-assets/images/web-toolkit/siteimprove/siteimprove-landing.png" alt=""></p>
+                <h3>SiteImprove</h3>
+                <p>The SiteImprove tool reviews our nighly_build on a daily basis. The nightly build is accessible via this URL:</p>
+                <p> <a href="http://nightly_build.wimci.goalgorilla.com/" target="_blank">http://nightly_build.wimci.goalgorilla.com/</a></p>
+                <P> <strong>Make sure your IP is whitelisted! Otherwise you can not access the URL above.</strong></P>
+                <p>The nightly build will provide the latest version of our master branch and this will be reviewed every day by the software. An accessibility report for all pages will be created and send to the team</p>
+                <p>We will investigate the issues and put them in Jira if they need to be corrected. </p>
               </section>
             </div>
           </section>

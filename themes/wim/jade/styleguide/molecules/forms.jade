@@ -1,0 +1,37 @@
+- var base = "../../"
+- var pagetype = "styleguide"
+- var section = "molecules"
+- var page = "Forms"
+doctype html
+html(lang="en")
+ head
+  include ../../layout/_head.jade
+ body(class='#{pagetype}')
+  .meta-wrapper.container.container-nopadding
+   include ../../layout/_top.jade
+  .main-wrapper.container
+   include ../../layout/_navbar.jade
+   #page-banner(role='banner')
+   // Create region for banner and render it here. We moved header to the navbar header section.
+   include ../../layout/_main.jade
+    block content
+     p Individual form controls automatically receive some global styling. All textual 'input', 'textarea', and 'select' elements with '.form-control' are set to width: 100%; by default. Wrap labels and controls in '.form-group' for optimum spacing.
+     h3 Demo:
+     form
+      .form-group
+       label(for='exampleInputEmail1') Email address
+       input#exampleInputEmail1.form-control(type='email', placeholder='Email')
+      .form-group
+       label(for='exampleInputPassword1') Password
+       input#exampleInputPassword1.form-control(type='password', placeholder='Password')
+      .form-group
+       label(for='exampleInputFile') File input
+       input#exampleInputFile(type='file')
+       p.help-block Example block-level help text here.
+      .checkbox
+       label
+        input(type='checkbox')
+        |  Check me out
+      button.btn.btn-default(type='submit') Submit
+
+  include ../../layout/_scripts.jade

@@ -4,3 +4,1165 @@
  * @file
  * Install, update and uninstall functions for the WIM distribution.
  */
+
+require_once 'wim.update.inc';
+
+/**
+ * Implements hook_install().
+ *
+ * Perform actions to set up the site for this profile.
+ *
+ * @see system_install()
+ */
+function wim_install() {
+  // Set admin and default themes.
+  _wim_set_up_theme();
+  // Set roles and permissions.
+  _wim_set_up_roles_and_permissions();
+  // Set date formats.
+  _wim_set_date_formats();
+  // Set blocks.
+  _wim_set_blocks();
+  // Add menu items.
+  _wim_import_menu_items();
+  // Install Dutch language.
+  _wim_install_language();
+  // Install password policy.
+  _wim_password_policy_install();
+  // Set metatags for Front Page.
+  _wim_set_front_metatags();
+  // Set metatags settings.
+  _wim_set_metatag_settings();
+  // Enable attachments for Webform.
+  _wim_set_webform_attachments();
+  // Add 404 page.
+  $page_404_nid = _wim_create_page('404');
+  variable_set('site_404', 'node/' . $page_404_nid);
+
+  // Add 403 page.
+  $page_403_nid = _wim_create_page('403');
+  variable_set('site_403', 'node/' . $page_403_nid);
+
+  // Add homepage.
+  $homepage_nid = _wim_create_page('homepage');
+  variable_set('site_frontpage', 'node/' . $homepage_nid);
+
+  // Add blocks to Felix regions.
+  _wim_place_felix_blocks();
+
+  // Turn off user registration.
+  variable_set('user_register', 0);
+
+  // Flood control config.
+  variable_set('user_failed_login_ip_limit', 10);
+  variable_set('user_failed_login_user_limit', 5);
+
+  // Default protected fields per role.
+  _wim_user_protect_roles();
+
+  // Set content types with social share links.
+  _wim_default_sss();
+
+  // Pathauto configuration.
+  _wim_default_pathauto();
+
+  // Change media render.
+  variable_set('media_wysiwyg_default_render', 'field_attach');
+
+  if (module_exists('chosen')) {
+    variable_set('chosen_jquery_selector', 'select.chosen-enable');
+    variable_set('chosen_include', 0);
+  }
+}
+
+/**
+ * Set the default theme.
+ */
+function _wim_set_up_theme() {
+  $admin_theme = 'adminimal';
+  $default_theme = 'wim';
+  $base_theme = 'wimbase';
+
+  theme_enable(array($default_theme, $admin_theme, $base_theme));
+  variable_set('theme_default', $default_theme);
+  variable_set('admin_theme', $admin_theme);
+  variable_set('node_admin_theme', '1');
+}
+
+/**
+ * Creates user roles and assign them permissions.
+ */
+function _wim_set_up_roles_and_permissions() {
+  // Base role weight: 0 and 1 is occupied by built-in roles.
+  $weight = 2;
+
+  // Create a default role for site administrators,
+  // with all available permissions assigned.
+  $admin_role = new stdClass();
+  $admin_role->name = st('administrator');
+  $admin_role->weight = $weight++;
+  user_role_save($admin_role);
+
+  if (isset($admin_role->rid) && $admin_role->rid) {
+    // Set this as the administrator role.
+    variable_set('user_admin_role', $admin_role->rid);
+
+    // Assign user 1 the "administrator" role.
+    db_insert('users_roles')
+      ->fields(array('uid' => 1, 'rid' => $admin_role->rid))
+      ->execute();
+
+    user_role_grant_permissions($admin_role->rid, array_keys(module_invoke_all('permission')));
+  }
+
+  // Autologout config for administrator.
+  variable_set('autologout_role_logout', 1);
+  variable_set('autologout_role_' . $admin_role->rid, 1);
+  variable_set('autologout_role_' . $admin_role->rid . '_timeout', 900);
+
+  // List of custom roles for WIM.
+  $custom_roles = array(
+    'webmaster',
+    'content manager',
+    'content editor',
+  );
+
+  foreach ($custom_roles as $role_name) {
+    // Create roles.
+    $role = new stdClass();
+    $role->name = st($role_name);
+    $role->weight = $weight++;
+    user_role_save($role);
+
+    // Set autologout.
+    $timeout = 14400;
+    if ($role_name === 'webmaster') {
+      $timeout = 3600;
+    }
+    variable_set('autologout_role_' . $role->rid, 1);
+    variable_set('autologout_role_' . $role->rid . '_timeout', $timeout);
+
+    // Set permissions.
+    if (isset($role->rid) && $role->rid) {
+      user_role_grant_permissions($role->rid, _wim_permissions($role_name));
+    }
+  }
+
+  // Get all the users roles and set variable to assign these for webmasters.
+  $roles = user_roles();
+  $role_assign = array();
+  foreach ($roles as $key => $value) {
+    if ($value !== 'anonymous user' && $value !== 'authenticated user') {
+      if ($value == 'administrator') {
+        $role_assign[$key] = 0;
+      }
+      else {
+        $role_assign[$key] = $key;
+      }
+    }
+  }
+  variable_set('roleassign_roles', $role_assign);
+
+  // Authenticated role.
+  user_role_grant_permissions(DRUPAL_AUTHENTICATED_RID, _wim_permissions('authenticated'));
+  // Remove change own e-mail permission.
+  user_role_revoke_permissions(DRUPAL_AUTHENTICATED_RID, array('change own e-mail'));
+
+  // Anonymous.
+  user_role_grant_permissions(DRUPAL_ANONYMOUS_RID, _wim_permissions('anonymous'));
+
+  // Revisioning permissions.
+  $permissions = array(
+    'webmaster' => array(
+      'view revision status messages',
+      'edit revisions',
+      'publish revisions',
+      'unpublish current revision',
+    ),
+    'content manager' => array(
+      'view revision status messages',
+      'edit revisions',
+      'publish revisions',
+      'unpublish current revision',
+    ),
+    'content editor' => array(
+      'view revision status messages',
+      'edit revisions',
+      'publish revisions',
+      'unpublish current revision',
+    ),
+  );
+
+  foreach ($permissions as $role_name => $permission) {
+    $role = user_role_load_by_name($role_name);
+    user_role_grant_permissions($role->rid, $permission);
+  }
+
+  // Diff permissions.
+  $permissions = array(
+    'webmaster' => array('diff view changes'),
+    'content manager' => array('diff view changes'),
+    'content editor' => array('diff view changes'),
+  );
+
+  foreach ($permissions as $role_name => $permission) {
+    $role = user_role_load_by_name($role_name);
+    user_role_grant_permissions($role->rid, $permission);
+  }
+}
+
+/**
+ * Set date formats.
+ */
+function _wim_set_date_formats() {
+  $types = array(
+    'single_day' => array(
+      'title' => 'Single day',
+      'locked' => 0,
+      'is_new' => 1,
+      'type' => 'single_day',
+      'date_format' => 'd M',
+    ),
+  );
+  $date_formats = array(
+    'long' => array(
+      'format' => 'd F Y - H:i',
+      'type' => 'long',
+      'locked' => 0,
+      'is_new' => 1,
+    ),
+    'medium' => array(
+      'format' => 'd F Y',
+      'type' => 'medium',
+      'locked' => 0,
+      'is_new' => 1,
+    ),
+    'short' => array(
+      'format' => 'd-m-Y',
+      'type' => 'short',
+      'locked' => 0,
+      'is_new' => 1,
+    ),
+    'single_day' => array(
+      'format' => 'd M',
+      'type' => 'single_day',
+      'locked' => 0,
+      'is_new' => 1,
+    ),
+  );
+
+  // Create new format types.
+  foreach ($types as $format_type) {
+    system_date_format_type_save($format_type);
+    variable_set('date_format_' . $format_type['type'], $format_type['date_format']);
+  }
+
+  // Update date types with new date formats.
+  foreach ($date_formats as $date_format) {
+    system_date_format_save($date_format);
+    variable_set('date_format_' . $date_format['type'], $date_format['format']);
+  }
+}
+
+/**
+ * Set default blocks.
+ */
+function _wim_set_blocks() {
+  $default_theme = variable_get('theme_default', 'wim');
+  $blocks = array(
+    // Menus.
+    array(
+      'module' => 'menu',
+      'delta' => 'menu-meta-menu',
+      'theme' => $default_theme,
+      'status' => BLOCK_CUSTOM_ENABLED,
+      'weight' => 0,
+      'region' => 'meta',
+      'pages' => '',
+      'visibility' => 0,
+      'title' => '<none>',
+      'cache' => DRUPAL_NO_CACHE,
+    ),
+    // Search.
+    array(
+      'module' => 'search',
+      'delta' => 'form',
+      'theme' => $default_theme,
+      'status' => BLOCK_CUSTOM_ENABLED,
+      'weight' => 0,
+      'region' => 'header',
+      'pages' => '',
+      'visibility' => 0,
+      'title' => '<none>',
+      'cache' => DRUPAL_NO_CACHE,
+    ),
+  );
+
+  $query = db_insert('block')->fields(array(
+    'module',
+    'delta',
+    'theme',
+    'status',
+    'weight',
+    'region',
+    'pages',
+    'visibility',
+    'title',
+    'cache',
+  ));
+
+  foreach ($blocks as $block) {
+    $query->values($block);
+  }
+  $query->execute();
+
+}
+
+/**
+ * Import menu items.
+ */
+function _wim_import_menu_items() {
+  // List of menus with items.
+  $menus = array(
+    // Meta menu links.
+    'menu-meta-menu' => array(
+      array(
+        'link_title' => st('Home'),
+        'link_path' => '<front>',
+        'menu_name' => 'menu-meta-menu',
+        'weight' => 0,
+        'expanded' => 0,
+      ),
+      array(
+        'link_title' => st('FAQ'),
+        'link_path' => 'faq',
+        'menu_name' => 'menu-meta-menu',
+        'weight' => 1,
+        'expanded' => 0,
+        'customized' => 1,
+      ),
+    ),
+    'main-menu' => array(
+      array(
+        'link_title' => st('Home'),
+        'link_path' => '<front>',
+        'menu_name' => 'main-menu',
+        'weight' => 0,
+        'expanded' => 0,
+      ),
+      array(
+        'link_title' => st('Actual'),
+        'link_path' => 'news',
+        'menu_name' => 'main-menu',
+        'weight' => 1,
+        'expanded' => 1,
+        'customized' => 1,
+        'children' => array(
+          array(
+            'link_title' => st('News'),
+            'link_path' => 'news',
+            'menu_name' => 'main-menu',
+            'weight' => 1,
+            'expanded' => 0,
+            'depth' => 2,
+            'customized' => 1,
+          ),
+          array(
+            'link_title' => st('Agenda'),
+            'link_path' => 'agenda',
+            'menu_name' => 'main-menu',
+            'weight' => 1,
+            'expanded' => 0,
+            'depth' => 2,
+            'customized' => 1,
+          ),
+        ),
+      ),
+    ),
+  );
+
+  foreach ($menus as $menu_name => $items) {
+    foreach ($items as $item) {
+      $plid = menu_link_save($item);
+
+      // If item has children add them.
+      if (isset($item['children']) && $plid) {
+        foreach ($item['children'] as $child_item) {
+          $child_item['plid'] = $plid;
+          menu_link_save($child_item);
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Create a node entity.
+ *
+ * @param string $page_type
+ *    Page type, could by like 404, 403 etc.
+ *
+ * @return int node id
+ *    Created node id.
+ */
+function _wim_create_page($page_type, $bundle = 'page', $language = LANGUAGE_NONE) {
+  $node = new stdClass();
+  $node->type = $bundle;
+  $node->language = $language;
+  node_object_prepare($node);
+
+  // 403 page.
+  if ($page_type === '404') {
+    $node->title = 'Not Found (404)';
+    $node->body[$language][0]['value'] = 'Page not found.';
+    $node->apachesolr_exclude_node_enabled = 1;
+  }
+
+  // 403 page.
+  if ($page_type === '403') {
+    $node->title = 'No access (403)';
+    $node->body[$language][0]['value'] = 'No access.';
+    $node->apachesolr_exclude_node_enabled = 1;
+  }
+
+  if ($page_type === 'homepage') {
+    $node->title = 'Home page';
+    $node->apachesolr_exclude_node_enabled = 1;
+  }
+
+  $node = node_submit($node);
+  node_save($node);
+
+  if (module_exists('xmlsitemap')) {
+    // Exclude this nodes from sitemap.xml.
+    $link = xmlsitemap_node_create_link($node);
+    $link['status'] = 0;
+    $link['status_override'] = 1;
+    xmlsitemap_link_save($link, array($link['type'] => $node));
+  }
+
+  return isset($node->nid) ? $node->nid : '';
+}
+
+/**
+ * Enables Dutch language and language negotiation based on URL.
+ */
+function _wim_install_language() {
+  include_once DRUPAL_ROOT . '/includes/language.inc';
+  // Add Dutch language.
+  locale_add_language('nl');
+}
+
+/**
+ * Helper function to install default password policies.
+ *
+ * @throws \Exception
+ * @throws \InvalidMergeQueryException
+ */
+function _wim_password_policy_install() {
+
+  foreach (_wim_password_policy_default_profile() as $profile) {
+    $pid = db_insert('password_policy')->fields(array(
+      'name' => $profile['name'],
+      'description' => $profile['description'],
+      'enabled' => $profile['enabled'],
+      'policy' => serialize($profile['policy']),
+      'expiration' => $profile['expiration'],
+      'warning' => $profile['warning'],
+    ))->execute();
+
+    // Insert roles.
+    foreach ($profile['roles'] as $rid) {
+      db_insert('password_policy_role')->fields(array(
+        'pid' => $pid,
+        'rid' => $rid,
+      ))->execute();
+    }
+  }
+  wysiwyg_profile_cache_clear();
+}
+
+/**
+ * Helper function holding default password policies.
+ */
+function _wim_password_policy_default_profile() {
+  $profiles = array();
+
+  $cm = user_role_load_by_name('content manager');
+  // Exported profile: default.
+  $profiles['default'] = array(
+    'name' => 'default',
+    'description' => t('WIM 2.0 default password policy'),
+    'enabled' => TRUE,
+    'policy' => array(
+      'character_types' => '1',
+      'digit' => '1',
+      'history' => '6',
+      'length' => '8',
+      'punctuation' => '1',
+      'uppercase' => '1',
+    ),
+    'expiration' => 60,
+    'warning' => 59,
+    'roles' => array(
+      DRUPAL_AUTHENTICATED_RID,
+      $cm->rid,
+    ),
+  );
+
+  return $profiles;
+}
+
+/**
+ * Create custom block.
+ */
+function _wim_create_custom_block($block) {
+  // Create custom blocks.
+  $block_delta = db_insert('block_custom')
+    ->fields(array(
+      'body' => $block['body'],
+      'info' => $block['info'],
+      'format' => $block['format'],
+    ))
+    ->execute();
+
+  return $block_delta;
+}
+
+/**
+ * Create felix blocks and place them in regions.
+ */
+function _wim_place_felix_blocks() {
+  $felix_blocks = array(
+    'top_tasks' => array(
+      'region_name' => 'highlighted',
+      'path' => variable_get('site_frontpage'),
+      'module' => 'menu',
+      'delta' => 'menu-top-tasks',
+      'detail_path' => NULL,
+      'data' => array(
+        'subject' => '<none>',
+        'config' => array(
+          'bootstrap_layout' => 8,
+          'new_row' => 0,
+        ),
+      ),
+    ),
+    'latest_news' => array(
+      'region_name' => 'highlighted',
+      'path' => variable_get('site_frontpage'),
+      'module' => 'views',
+      'delta' => 'news-latest_news',
+      'detail_path' => NULL,
+      'data' => array(
+        'subject' => '',
+        'config' => array(
+          'bootstrap_layout' => 4,
+          'new_row' => 0,
+        ),
+      ),
+    ),
+    // Custom blocks.
+    'address' => array(
+      'region_name' => 'footer',
+      'path' => NULL,
+      'module' => 'block',
+      'delta' => NULL,
+      'detail_path' => NULL,
+      'data' => array(
+        'subject' => '<none>',
+        'config' => array(
+          'bootstrap_layout' => 4,
+          'new_row' => 0,
+        ),
+      ),
+      'custom_block' => array(
+        'info' => 'Address',
+        'body' => '<h2 class="element-invisible">Address</h2><h3>Post</h3><ul><li>Postbus 10101</li><li>5500 GA Veldhoven</li></ul><h3>E-mail</h3><ul><li>gemeente@gemeente.nl</li></ul><h3>Telefonisch contact</h3><ul><li>14 040 (algemeen)</li></ul><h3>Bezoekadres</h3><ul><li>Meiveld 1</li><li>5501 KA Veldhoven</li></ul>',
+        'format' => 'full_html',
+      ),
+    ),
+    'copyright' => array(
+      'region_name' => 'footer',
+      'path' => NULL,
+      'module' => 'block',
+      'delta' => NULL,
+      'detail_path' => NULL,
+      'data' => array(
+        'subject' => '<none>',
+        'config' => array(
+          'bootstrap_layout' => 4,
+          'new_row' => 0,
+        ),
+      ),
+      'custom_block' => array(
+        'info' => 'Copyright',
+        'body' => 'Copyright © 2016. All rights reserved.',
+        'format' => 'plain_text',
+      ),
+    ),
+    'social_media' => array(
+      'region_name' => 'footer',
+      'path' => NULL,
+      'module' => 'menu',
+      'delta' => 'menu-social-media',
+      'detail_path' => NULL,
+      'data' => array(
+        'subject' => st('Follow us'),
+        'config' => array(
+          'bootstrap_layout' => 4,
+          'new_row' => 0,
+        ),
+      ),
+    ),
+  );
+
+  // Add Facetapi blocks if enabled.
+  if (module_exists('facetapi')) {
+    module_load_include('inc', 'facetapi', 'facetapi.block');
+    $map = facetapi_get_delta_map();
+    // Filter by type.
+    $string = facetapi_build_delta('apachesolr@solr', 'block', 'bundle');
+    $felix_blocks['search_filter_types'] = array(
+      'region_name' => 'sidebar-first-search',
+      'path' => NULL,
+      'module' => 'facetapi',
+      'delta' => array_search($string, $map),
+      'detail_path' => NULL,
+      'data' => array(
+        'subject' => st('Filter by type'),
+        'config' => array(
+          'bootstrap_layout' => 12,
+          'new_row' => 0,
+        ),
+      ),
+    );
+
+    // Filter by date.
+    $string = facetapi_build_delta('apachesolr@solr', 'block', 'created');
+    $felix_blocks['search_filter_created'] = array(
+      'region_name' => 'sidebar-first-search',
+      'path' => NULL,
+      'module' => 'facetapi',
+      'delta' => array_search($string, $map),
+      'detail_path' => NULL,
+      'data' => array(
+        'subject' => st('Filter by date'),
+        'config' => array(
+          'bootstrap_layout' => 12,
+          'new_row' => 0,
+        ),
+      ),
+    );
+  }
+
+  foreach ($felix_blocks as $felix_block) {
+    // Create custom block.
+    if (isset($felix_block['custom_block']) && $felix_block['custom_block']) {
+      $custom_block_delta = _wim_create_custom_block($felix_block['custom_block']);
+      _wim_add_felix_block($felix_block['region_name'], $felix_block['path'], $felix_block['module'], $custom_block_delta, $felix_block['detail_path'], $felix_block['data']);
+
+    }
+    else {
+      _wim_add_felix_block($felix_block['region_name'], $felix_block['path'], $felix_block['module'], $felix_block['delta'], $felix_block['detail_path'], $felix_block['data']);
+    }
+  }
+}
+
+/**
+ * Create felix block and place it in the region.
+ *
+ * @see _felix_add_block
+ */
+function _wim_add_felix_block($region_name, $path, $module, $delta, $detail_path = NULL, $data = array()) {
+  if (module_exists('felix')) {
+    if (!$region = _felix_region_by_name($region_name)) {
+      return FALSE;
+    }
+
+    if ($module === 'node' && is_numeric($delta) && module_exists('translation')) {
+      // Add the source translation.
+      $tnid = db_select('node', 'n')
+        ->fields('n', array('tnid'))
+        ->condition('n.nid', $delta)
+        ->execute()
+        ->fetchField();
+      $delta = $tnid ? $tnid : $delta;
+      $detail_path = "node/$delta";
+    }
+
+    $hash = _felix_get_hash($region, $path);
+
+    $block = new stdClass();
+    $block->region = $region->name;
+    $block->weight = _felix_new_block_weight($region->name);
+    $block->hash = $hash->hash;
+    $block->module = $module;
+    $block->delta = $delta;
+    $block->detail_path = $detail_path;
+    $block->data = $data;
+    $block->hash_parts = $hash->parts;
+    $block->exclude = serialize(array());
+
+    foreach (module_implements('felix_block_insert') as $module) {
+      $hook = "{$module}_felix_block_insert";
+      $hook($block, $path);
+    }
+
+    $block->data = serialize($block->data);
+    $block->hash_parts = serialize($block->hash_parts);
+
+    drupal_write_record('felix_block', $block);
+  }
+
+  return TRUE;
+}
+
+/**
+ * Default settings for userprotect per protected role.
+ *
+ * @see userprotect_protected_roles
+ */
+function _wim_user_protect_roles() {
+  $settings = array();
+  // Grab all roles but the anonymous role, and grab the current default
+  // settings.
+  $roles = user_roles(TRUE);
+
+  $protections = array_keys(userprotect_user_protection_defaults());
+  foreach ($roles as $rid => $role) {
+    foreach ($protections as $protection) {
+      $value = 0;
+      if ($role === 'administrator') {
+        // Don't protect admin role.
+        $value = 0;
+      }
+      elseif ($protection === 'up_name' || $protection === 'up_mail') {
+        // Protect login and email for all other role.
+        $value = 1;
+      }
+      $settings[$rid][$protection] = $value;
+    }
+  }
+
+  variable_set('userprotect_role_protections', $settings);
+}
+
+/**
+ * Default settings for social share links for content types.
+ */
+function _wim_default_sss() {
+  $types = array(
+    'agenda',
+    'faq',
+    'news',
+    'page',
+    'person',
+    'product',
+  );
+
+  foreach ($types as $type) {
+    variable_set('wim_sss_node_enabled_' . $type, 1);
+  }
+}
+
+/**
+ * Default settings for pathauto.
+ */
+function _wim_default_pathauto() {
+  variable_set('pathauto_ignore_words', '');
+  variable_set('pathauto_update_action', 0);
+  variable_set('pathauto_reduce_ascii', 1);
+  variable_set('pathauto_node_pattern', '[node:content-type]/[node:title]');
+  $types = node_type_get_types();
+
+  $default_mapping = array(
+    'agenda' => '[node:hansel-path]',
+    'faq' => '[node:hansel-path]',
+    'news' => '[node:hansel-path]',
+    'page' => '[node:hansel-path]',
+    'person' => '[node:hansel-path]',
+    'product' => '[node:hansel-path]',
+    'subject_page' => '[node:hansel-path]',
+    'webform' => '[node:hansel-path]',
+  );
+
+  foreach ($types as $type) {
+    variable_set('pathauto_node_' . $type->type . '_pattern', $default_mapping[$type->type]);
+  }
+}
+
+/**
+ * Gets role permissions.
+ */
+function _wim_permissions($role) {
+  $permissions = array(
+    // Webmaster.
+    'webmaster' => array(
+      // System.
+      'access administration menu',
+      'administer url aliases',
+      'create url aliases',
+      'access administration pages',
+      'access content overview',
+      'administer url aliases',
+      'create url aliases',
+      'access user profiles',
+      'access taxonomy pages',
+      'administer blocks',
+      'administer menu',
+      'administer taxonomy',
+      'administer redirects',
+      'administer content reminder',
+      'administer xmlsitemap',
+      'manage felix blocks',
+      'access contextual links',
+      'administer custom lists',
+      'manipulate queues',
+      'view the administration theme',
+      'revert revisions',
+      'delete revisions',
+      'view revisions',
+      'use text format filtered_html',
+      'use text format full_html',
+      'administer autologout',
+      'edit meta tags',
+      'manipulate all queues',
+      'unblock expired accounts',
+      'force password change',
+      'submit latitude/longitude',
+      'access site in maintenance mode',
+      'exclude nodes from apache solr',
+      // Node access.
+      'bypass node access',
+      'view own unpublished content',
+      'publishing options tab',
+      'schedule publishing of nodes',
+      // News.
+      'create news content',
+      'delete any news content',
+      'delete own news content',
+      'edit any news content',
+      'edit own news content',
+      // Page.
+      'create page content',
+      'delete any page content',
+      'delete own page content',
+      'edit any page content',
+      'edit own page content',
+      // Person.
+      'create person content',
+      'delete any person content',
+      'delete own person content',
+      'edit any person content',
+      'edit own person content',
+      // Subject.
+      'create subject_page content',
+      'delete any subject_page content',
+      'delete own subject_page content',
+      'edit any subject_page content',
+      'edit own subject_page content',
+      // Product.
+      'create product content',
+      'delete any product content',
+      'delete own product content',
+      'edit any product content',
+      'edit own product content',
+      // FAQ.
+      'create faq content',
+      'delete any faq content',
+      'delete own faq content',
+      'edit any faq content',
+      'edit own faq content',
+      // Agenda.
+      'create agenda content',
+      'delete any agenda content',
+      'delete own agenda content',
+      'edit any agenda content',
+      'edit own agenda content',
+      // Bean.
+      'view bean page',
+      'access bean overview',
+      'administer beans',
+      'edit bean view mode',
+      'administer bean settings',
+      'view bean revisions',
+      'create any editorial bean',
+      'edit any editorial bean',
+      'delete any editorial bean',
+      // Webform.
+      'access all webform results',
+      'edit all webform submissions',
+      'edit webform components',
+      'access all webform results',
+      'edit all webform submissions',
+      'edit webform components',
+      'create webform content',
+      'delete any webform content',
+      'edit any webform content',
+      'set webform_clear times',
+      // Files.
+      'create files',
+      'use media wysiwyg',
+      'access media browser',
+      'bypass file access',
+      'administer files',
+      'edit any audio files',
+      'edit any image files',
+      'edit any video files',
+      'edit any document files',
+      'delete any audio files',
+      'delete any image files',
+      'delete any video files',
+      'delete any document files',
+      'download any audio files',
+      'download any image files',
+      'download any video files',
+      'download any document files',
+      // Taxonomy.
+      'administer taxonomy',
+      // User.
+      'administer users',
+      // Role assign.
+      'assign roles',
+    ),
+    // Content manager.
+    'content manager' => array(
+      // System.
+      'access administration menu',
+      'create url aliases',
+      'administer url aliases',
+      'access administration pages',
+      'administer url aliases',
+      'create url aliases',
+      'access content overview',
+      'access user profiles',
+      'access taxonomy pages',
+      'administer menu',
+      'administer taxonomy',
+      'administer redirects',
+      'administer content reminder',
+      'manage felix blocks',
+      'access contextual links',
+      'administer custom lists',
+      'manipulate queues',
+      'view the administration theme',
+      'revert revisions',
+      'view revisions',
+      'delete revisions',
+      'use text format filtered_html',
+      'use text format full_html',
+      'view own unpublished content',
+      'edit meta tags',
+      'manipulate all queues',
+      'exclude nodes from apache solr',
+      // Node access.
+      'publishing options tab',
+      'schedule publishing of nodes',
+      // News.
+      'create news content',
+      'delete any news content',
+      'delete own news content',
+      'edit any news content',
+      'edit own news content',
+      // Page.
+      'create page content',
+      'delete any page content',
+      'delete own page content',
+      'edit any page content',
+      'edit own page content',
+      // Person.
+      'create person content',
+      'delete any person content',
+      'delete own person content',
+      'edit any person content',
+      'edit own person content',
+      // Product.
+      'create product content',
+      'delete any product content',
+      'delete own product content',
+      'edit any product content',
+      'edit own product content',
+      // FAQ.
+      'create faq content',
+      'delete any faq content',
+      'delete own faq content',
+      'edit any faq content',
+      'edit own faq content',
+      // Subject.
+      'create subject_page content',
+      'delete any subject_page content',
+      'delete own subject_page content',
+      'edit any subject_page content',
+      'edit own subject_page content',
+      // Agenda.
+      'create agenda content',
+      'delete any agenda content',
+      'delete own agenda content',
+      'edit any agenda content',
+      'edit own agenda content',
+      // Bean.
+      'view bean page',
+      'access bean overview',
+      'edit bean view mode',
+      'view bean revisions',
+      'create any editorial bean',
+      'edit any editorial bean',
+      'delete any editorial bean',
+      // Webform.
+      'access all webform results',
+      'edit all webform submissions',
+      'edit webform components',
+      'create webform content',
+      'delete any webform content',
+      'delete own webform content',
+      'edit any webform content',
+      'edit own webform content',
+      'set webform_clear times',
+      // Files.
+      'create files',
+      'use media wysiwyg',
+      'access media browser',
+      'administer files',
+      'edit any audio files',
+      'edit any image files',
+      'edit any video files',
+      'edit any document files',
+      'delete any audio files',
+      'delete any image files',
+      'delete any video files',
+      'delete any document files',
+      'download any audio files',
+      'download any image files',
+      'download any video files',
+      'download any document files',
+      // Taxonomy.
+      'administer taxonomy',
+      // User.
+      'administer users',
+    ),
+    // Content editor.
+    'content editor' => array(
+      // System.
+      'use text format filtered_html',
+      'create url aliases',
+      'use text format full_html',
+      'view the administration theme',
+      'view own unpublished content',
+      'access administration menu',
+      'access administration pages',
+      'access content overview',
+      'access user profiles',
+      'access contextual links',
+      'access taxonomy pages',
+      'view revisions',
+      'revert revisions',
+      'administer redirects',
+      // Node access.
+      'publishing options tab',
+      'schedule publishing of nodes',
+      // News.
+      'create news content',
+      'edit own news content',
+      // Page.
+      'create page content',
+      'edit own page content',
+      // Person.
+      'create person content',
+      'edit own person content',
+      // Product.
+      'create product content',
+      'edit own product content',
+      // FAQ.
+      'create faq content',
+      'edit own faq content',
+      // Agenda.
+      'create agenda content',
+      'edit own agenda content',
+      // Blocks.
+      'view bean page',
+      'view bean revisions',
+      'create any editorial bean',
+      'edit any editorial bean',
+      'manage felix blocks',
+      // Files.
+      'create files',
+      'use media wysiwyg',
+      'access media browser',
+      'edit any audio files',
+      'edit any image files',
+      'edit any video files',
+      'edit any document files',
+      'delete own audio files',
+      'delete own image files',
+      'delete own video files',
+      'delete own document files',
+      'download any audio files',
+      'download any image files',
+      'download any video files',
+      'download any document files',
+    ),
+    'authenticated' => array(
+      'access content',
+      'view any editorial bean',
+      'search content',
+      'search content',
+    ),
+    'anonymous' => array(
+      'access content',
+      'view any editorial bean',
+      'search content',
+      'search content',
+    ),
+  );
+
+  // Add permissions for taxonomies.
+  foreach (taxonomy_get_vocabularies() as $vocabulary) {
+    $permissions['webmaster'][] = "delete terms in $vocabulary->vid";
+    $permissions['webmaster'][] = "edit terms in $vocabulary->vid";
+
+    $permissions['content manager'][] = "delete terms in $vocabulary->vid";
+    $permissions['content manager'][] = "edit terms in $vocabulary->vid";
+
+    $permissions['content editor'][] = "delete terms in $vocabulary->vid";
+    $permissions['content editor'][] = "edit terms in $vocabulary->vid";
+  }
+
+  return $permissions[$role];
+}
+
+/**
+ * Sets front metatags.
+ */
+function _wim_set_front_metatags() {
+  $front_metatags = (object) array(
+    'cid' => NULL,
+    'instance' => 'global:frontpage',
+    'config' => array(
+      'title' => array('value' => '[site:name]'),
+      'canonical' => array('value' => '[site:url]'),
+      'shortlink' => array('value' => '[site:url]'),
+    ),
+  );
+
+  metatag_config_save($front_metatags);
+}
+
+/**
+ * Set metatag settings.
+ */
+function _wim_set_metatag_settings() {
+  if (module_exists('metatag')) {
+    variable_set('metatag_enable_user__user', FALSE);
+    variable_set('metatag_enable_user', FALSE);
+  }
+}
+
+/**
+ * Enable attachments for webform.
+ */
+function _wim_set_webform_attachments() {
+  if (module_exists('mimemail')) {
+    variable_set('webform_email_html_capable', TRUE);
+  }
+}

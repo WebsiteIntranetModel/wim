@@ -1,0 +1,51 @@
+.footer {
+  border: 0;
+  padding: 20px 15px;
+  @include MQ($screen-lg) {
+    padding: 20px 0;
+  }
+  .region-footer-second,
+  .region-footer-third,
+  .region-footer-first {
+    @extend .col-sm-4 !optional;
+  }
+  .block {
+    margin-bottom: 20px;
+    h3,
+    .block-title {
+      padding: 0;
+      background: none;
+      border-top: none;
+      &:first-of-type {
+        margin-top: 0;
+      }
+    }
+
+    a {
+      color: #00465c;
+      text-decoration: underline;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+  .menu {
+    padding-left: 2.8em;
+    li {
+      list-style: disc;
+      display: list-item;
+      line-height: 1.6em;
+      a {
+        padding: 0;
+        display: inline;
+        color: $brand-primary;
+        &:before {
+          display: none;
+        }
+        &:hover {
+          background: none;
+        }
+      }
+    }
+  }
+}

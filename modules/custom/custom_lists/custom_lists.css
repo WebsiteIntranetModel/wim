@@ -1,0 +1,11 @@
+.form-item-menu-item {
+  display: none;
+}
+
+fieldset .form-type-textfield, fieldset .form-type-select {
+  float: left;
+  margin-right: 10px;
+}
+.text-format-wrapper {
+  clear: both;
+}

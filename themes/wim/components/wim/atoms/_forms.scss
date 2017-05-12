@@ -1,0 +1,100 @@
+.form-control {
+  color: $gray-dark;
+}
+
+.form-text {
+  border: 1px solid $nav-tabs-border-color;
+  box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.form-textarea {
+  border: 1px solid $nav-tabs-border-color;
+  box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.form-item {
+  .description {
+    margin: 5px 0;
+  }
+}
+
+.webform-progressbar {
+  margin-top: 10px;
+  .progress-bar {
+    transition: width 2s;
+    width: 0;
+    @for $i from 1 through 10 {
+      &.completed_#{$i}0 {
+        width: $i * 10%;
+      }
+    }
+    &.completed_33 {
+      width: 33%;
+    }
+    &.completed_66 {
+      width: 66%;
+    }
+  }
+}
+
+.webform-client-form {
+  .form-managed-file {
+    .form-file {
+      vertical-align: top;
+      margin-bottom: 10px;
+      @include MQ($screen-sm) {
+        margin-bottom: 0;
+        margin-right: 5px;
+        display: inline-block;
+        width: auto;
+      }
+    }
+  }
+  .form-group {
+    margin-bottom: 15px;
+  }
+  .webform-container-inline {
+    div.form-item {
+      display: block;
+      @include MQ($screen-sm) {
+        display: inline-block;
+        margin-bottom: 0;
+        padding-right: 5px;
+      }
+    }
+  }
+  .webform-component-number {
+    label {
+      display: block;
+    }
+    .form-control {
+      width: auto;
+      display: inline-block;
+    }
+  }
+  .webform-component-time {
+    .form-item {
+      &:last-child {
+        padding-left: 5px;
+      }
+    }
+  }
+}
+
+.widget-label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.webform-progressbar-outer {
+  margin: 1em -1px 3em;
+}
+
+.webform-container-legend {
+  display: inline-block;
+  font-weight: bold;
+  margin: 3px 0 5px;
+  max-width: 100%;
+  border: none;
+  font-size: inherit;
+}

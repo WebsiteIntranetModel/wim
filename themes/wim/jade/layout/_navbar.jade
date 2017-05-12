@@ -1,22 +1,18 @@
 header#header.navbar.container.navbar-default
   .navbar-header
     a.logo.navbar-btn.pull-left(href='index.html', title='Home')
-      img(src='#{base}logo.png', alt='Home')
+      img(src='../logo.png', alt='Home')
     .region.region-header
     button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
-      span.sr-only Toggle navigation
-      span.icon-bar
-      span.icon-bar
-      span.icon-bar
+      |  Menu
   .navbar-collapse.collapse
     nav(role='navigation')
       ul.menu.nav.navbar-nav
         li.leaf
           a(href='starterkit.html') Themer's Starterkit
-        li.first.expanded.dropdown
+        li.first.parent-dropdown
           a.dropdown-toggle(href='#', title='', data-target='#', data-toggle='dropdown')
             | Styleguide
-            span.caret
           ul.dropdown-menu
             li.first.leaf
               a(href='styleguide/atoms.html') Atoms
@@ -24,10 +20,9 @@ header#header.navbar.container.navbar-default
               a(href='styleguide/molecules.html') Molecules
             li.last.leaf
               a(href='styleguide/organisms.html') Organisms
-        li.leaf
+        li.leaf.parent-dropdown
           a.dropdown-toggle(href='#', title='', data-target='#', data-toggle='dropdown')
             | Accessibility
-            span.caret
           ul.dropdown-menu
             li.first.leaf
               a(href='accessibility/introduction.html') Introduction

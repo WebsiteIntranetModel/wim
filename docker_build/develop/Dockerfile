@@ -32,3 +32,11 @@ RUN sed -i '1 a xdebug.remote_enable=1' /usr/local/etc/php/conf.d/docker-php-ext
 # https://github.com/boot2docker/boot2docker/issues/581#issuecomment-114804894
 RUN usermod -u 1000 www-data
 RUN usermod -G staff www-data
+
+# Instal JAVA
+RUN apt-get update && apt-get install -y default-jdk
+
+# Download Tike jar
+RUN mkdir -p /var/lib/tika && \
+  cd /var/lib/tika && \
+  curl -O http://apache.claz.org/tika/tika-app-1.14.jar

@@ -1,0 +1,186 @@
+<?php
+
+/**
+ * @file
+ * Install and related hooks for external_crawler.
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function external_crawler_schema() {
+  $schema = array();
+
+  $schema['external_crawler_site'] = array(
+    'fields' => array(
+      'site_id' => array(
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'name' => array(
+        'type' => 'varchar',
+        'length' => 64,
+        'not null' => TRUE,
+      ),
+      'url' => array(
+        'type' => 'varchar',
+        'length' => 600,
+        'not null' => TRUE,
+      ),
+      'check_interval' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'max_depth' => array(
+        'type' => 'int',
+        'size' => 'tiny',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'max_run' => array(
+        'type' => 'int',
+        'size' => 'tiny',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'content_include' => array(
+        'type' => 'text',
+        'not null' => FALSE,
+      ),
+      'content_exclude' => array(
+        'type' => 'text',
+        'not null' => FALSE,
+      ),
+      'last_crawl' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => FALSE,
+        'default' => 0,
+      ),
+      'url_exclude' => array(
+        'type' => 'text',
+        'not null' => FALSE,
+      ),
+    ),
+    'indexes' => array(
+      'site_id' => array('site_id'),
+    ),
+    'primary key' => array('site_id'),
+    'index keys' => array(
+      'idx_name_url' => array('name', 'url'),
+    ),
+    'foreign keys' => array(
+      'external_crawler_page' => array(
+        'table' => 'external_crawler_page',
+        'columns' => array('site_id' => 'site_id'),
+      ),
+    ),
+  );
+
+  $schema['external_crawler_page'] = array(
+    'fields' => array(
+      'pagekey' => array(
+        'type' => 'varchar',
+        'length' => 200,
+        'not null' => TRUE,
+      ),
+      'site_id' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'url' => array(
+        'type' => 'varchar',
+        'length' => 600,
+        'not null' => TRUE,
+      ),
+      'title' => array(
+        'type' => 'varchar',
+        'length' => 2500,
+        'not null' => FALSE,
+      ),
+      'date' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => FALSE,
+      ),
+      'depth' => array(
+        'type' => 'int',
+        'size' => 'tiny',
+        'unsigned' => TRUE,
+        'not null' => FALSE,
+      ),
+    ),
+    'indexes' => array(
+      'pagekey' => array('pagekey'),
+    ),
+    'primary key' => array('pagekey'),
+    'index keys' => array(
+      'idx_site' => array('site_id'),
+    ),
+  );
+
+  return $schema;
+}
+
+/**
+ * Set permissions.
+ */
+function external_crawler_install() {
+  $role = user_role_load_by_name('webmaster');
+  user_role_grant_permissions($role->rid, array('administer external crawler'));
+}
+
+/**
+ * Add last crawl date field.
+ */
+function external_crawler_update_7000() {
+  $schema = drupal_get_schema('external_crawler_site');
+  db_add_field('external_crawler_site', 'last_crawl', $schema['fields']['last_crawl']);
+}
+
+/**
+ * Update fields length.
+ */
+function external_crawler_update_7001() {
+  // Increase page URL length.
+  db_change_field('external_crawler_page', 'url', 'url', array(
+    'type' => 'varchar',
+    'length' => 600,
+    'not null' => TRUE,
+  ));
+
+  // Increase page title length.
+  db_change_field('external_crawler_page', 'title', 'title', array(
+    'type' => 'varchar',
+    'length' => 2500,
+    'not null' => FALSE,
+  ));
+
+  // Increase page pagekey length.
+  db_change_field('external_crawler_page', 'pagekey', 'pagekey', array(
+    'type' => 'varchar',
+    'length' => 200,
+    'not null' => TRUE,
+  ));
+
+  // Increase site URL length.
+  db_change_field('external_crawler_site', 'url', 'url', array(
+    'type' => 'varchar',
+    'length' => 600,
+    'not null' => TRUE,
+  ));
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function external_crawler_uninstall() {
+  module_load_include('inc', 'apachesolr', 'apachesolr.index');
+
+  // Delete from index our pages.
+  $env_id = apachesolr_default_environment();
+  apachesolr_index_delete_index($env_id, 'external_crawler');
+}
