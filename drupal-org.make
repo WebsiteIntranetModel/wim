@@ -86,6 +86,10 @@ projects[bootstrap] = 3.12
 ; Fixing bug when Features module can't include file containing exported taxonomy vocabulary because it hasn't included file integrating Features with Taxonomy yet.
 ; https://www.drupal.org/node/2143765#comment-10088780
 projects[features][patch][2143765_7] = https://www.drupal.org/files/issues/features-hook_modules_enabled_include_file_issue-2143765-7.patch
+; Felix
+; https://www.drupal.org/node/2861052
+; Bean blocks don`t show the body property when added to an Felix region. Full felix form is stored in the DB
+projects[felix][patch][2861052-1] = https://www.drupal.org/files/issues/felix-views-configs-2861052-1.patch
 
 ; Fixing Notice: Undefined property: stdClass::$status in features_export_form
 ; https://www.drupal.org/node/2324973
