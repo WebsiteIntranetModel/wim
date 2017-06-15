@@ -95,6 +95,9 @@ function external_crawler_menu_local_tasks_alter(&$data, $router_item, $root_pat
   }
 }
 
+/**
+ * Implements hook_form_alter().
+ */
 function external_crawler_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'facetapi_facet_display_form' && $form['#facetapi']['facet']['name'] == 'external_source') {
     $form['workflow']['exclude_' . $form['#facetapi']['facet']['name'] . '_from_search'] = array(
@@ -263,6 +266,15 @@ function external_crawler_source_map(array $values) {
 }
 
 /**
+ * Add a submit handler/function to the form.
+ */
+function _external_crawler_form_submit($form, &$form_state) {
+  if (isset($form['workflow']['exclude_' . $form['#facetapi']['facet']['name'] . '_from_search']['#value'])) {
+    variable_set('exclude_' . $form['#facetapi']['facet']['name'] . '_from_search', $form['workflow']['exclude_' . $form['#facetapi']['facet']['name'] . '_from_search']['#value']);
+  }
+}
+
+/**
  * Alter external source facet build.
  */
 function external_crawler_source_alter(array &$build, $adapter, $facet) {
@@ -271,15 +283,5 @@ function external_crawler_source_alter(array &$build, $adapter, $facet) {
     if (!_external_crawler_fetch_sites($build_id)) {
       unset($build[$build_id]);
     }
-  }
-}
-
-/**
- * Add a submit handler/function to the form.
- * Save the value if should be excluded from search.
- */
-function _external_crawler_form_submit($form, &$form_state) {
-  if (isset($form['workflow']['exclude_' . $form['#facetapi']['facet']['name'] . '_from_search']['#value'])) {
-    variable_set('exclude_' . $form['#facetapi']['facet']['name'] . '_from_search', $form['workflow']['exclude_' . $form['#facetapi']['facet']['name'] . '_from_search']['#value']);
   }
 }
