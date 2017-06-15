@@ -44,7 +44,6 @@ function wim_search_form_alter(&$form, &$form_state, $form_id) {
 
 /**
  * Add a submit handler/function to the form.
- * Save the value if should be excluded from search.
  */
 function _search_highlighting_form_submit($form, &$form_state) {
   if (isset($form['highlight']['keyword_highlighting_search']['#value'])) {
