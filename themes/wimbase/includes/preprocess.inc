@@ -285,7 +285,8 @@ function wimbase_preprocess_search_result(&$variables) {
   }
   elseif ($result['entity_type'] === 'file') {
     $variables['content_type'] = t('Document');
-  } else {
+  }
+  else {
     // Turn on keyword highlighting.
     if ($keyword_highlight == 1) {
       if (isset($variables['node_content']['body'][0]['#markup'])) {
@@ -299,10 +300,6 @@ function wimbase_preprocess_search_result(&$variables) {
         if ($search_string = arg(2)) {
           $variables['snippet'] = _wimbase_highlight_words($variables['snippet'], $search_string);
         }
-      }
-
-      if (isset($variables['content_type'])) {
-        $variables['content_type'] = t($variables['content_type']);
       }
     }
   }
