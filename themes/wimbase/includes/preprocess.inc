@@ -268,13 +268,17 @@ function wimbase_preprocess_search_result(&$variables) {
 
   // Add source url.
   wimbase_result_source_site($result['link'], $variables);
+  $keyword_highlight = variable_get('keyword_highlighting_search', 0);
 
   if ($result['entity_type'] === 'node') {
     if (isset($result['node']) && $node = node_load($result['node']->entity_id)) {
       $content_types_labels = array(
         'page' => t('General information'),
       );
-      $variables['node_content'] = node_view($node, 'search_result');
+      // Don't show keywords if disabled.
+      if ($keyword_highlight == 0) {
+        $variables['node_content'] = node_view($node, 'search_result');
+      }
       // Add content type label.
       $variables['content_type'] = isset($content_types_labels[$node->type]) ? $content_types_labels[$node->type] : ucfirst($node->type);
     }
@@ -282,7 +286,37 @@ function wimbase_preprocess_search_result(&$variables) {
   elseif ($result['entity_type'] === 'file') {
     $variables['content_type'] = t('Document');
   }
+  else {
+    // Turn on keyword highlighting.
+    if ($keyword_highlight == 1) {
+      if (isset($variables['node_content']['body'][0]['#markup'])) {
+        $variables['node_content']['body'][0]['#markup'] = strip_tags($variables['node_content']['body'][0]['#markup']);
+        if ($search_string = arg(2)) {
+          $variables['node_content']['body'][0]['#markup'] = _wimbase_highlight_words($variables['node_content']['body'][0]['#markup'], $search_string);
+        }
+      }
+      elseif ($variables['snippet']) {
+        $variables['snippet'] = strip_tags($variables['snippet']);
+        if ($search_string = arg(2)) {
+          $variables['snippet'] = _wimbase_highlight_words($variables['snippet'], $search_string);
+        }
+      }
+    }
+  }
+}
 
+/**
+ * Highlight words.
+ */
+function _wimbase_highlight_words($string, $words) {
+  $words = check_plain(urldecode($words));
+  $string = strip_tags($string);
+  preg_match_all('~\w+~', $words, $m);
+  if (!$m) {
+    return $string;
+  }
+  $re = '~\\b(' . implode('|', $m[0]) . ')\\b~';
+  return preg_replace($re, '<strong>$0</strong>', $string);
 }
 
 /**
