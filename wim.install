@@ -919,6 +919,7 @@ function _wim_permissions($role) {
       'download any image files',
       'download any video files',
       'download any document files',
+      'send arbitrary files',
       // Taxonomy.
       'administer taxonomy',
       // User.
@@ -1036,6 +1037,7 @@ function _wim_permissions($role) {
       'download any image files',
       'download any video files',
       'download any document files',
+      'send arbitrary files',
       // Taxonomy.
       'administer taxonomy',
       // User.
@@ -1101,18 +1103,21 @@ function _wim_permissions($role) {
       'download any image files',
       'download any video files',
       'download any document files',
+      'send arbitrary files',
     ),
     'authenticated' => array(
       'access content',
       'view any editorial bean',
       'search content',
       'search content',
+      'send arbitrary files',
     ),
     'anonymous' => array(
       'access content',
       'view any editorial bean',
       'search content',
       'search content',
+      'send arbitrary files',
     ),
   );
 
