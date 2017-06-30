@@ -275,10 +275,25 @@ function wimbase_preprocess_search_result(&$variables) {
       $content_types_labels = array(
         'page' => t('General information'),
       );
-      // Don't show keywords if disabled.
-      if ($keyword_highlight == 0) {
-        $variables['node_content'] = node_view($node, 'search_result');
+
+      $variables['node_content'] = node_view($node, 'search_result');
+
+      // Keyword highlighting for node.
+      if ($keyword_highlight == 1) {
+        if (isset($variables['node_content']['body'][0]['#markup'])) {
+          $variables['node_content']['body'][0]['#markup'] = strip_tags($variables['node_content']['body'][0]['#markup']);
+          if ($search_string = arg(2)) {
+            $variables['node_content']['body'][0]['#markup'] = _wimbase_highlight_words($variables['node_content']['body'][0]['#markup'], $search_string);
+          }
+        }
+        elseif ($variables['snippet']) {
+          $variables['snippet'] = strip_tags($variables['snippet']);
+          if ($search_string = arg(2)) {
+            $variables['snippet'] = _wimbase_highlight_words($variables['snippet'], $search_string);
+          }
+        }
       }
+
       // Add content type label.
       $variables['content_type'] = isset($content_types_labels[$node->type]) ? $content_types_labels[$node->type] : ucfirst($node->type);
     }
@@ -287,7 +302,7 @@ function wimbase_preprocess_search_result(&$variables) {
     $variables['content_type'] = t('Document');
   }
   else {
-    // Turn on keyword highlighting.
+    // Keyword highlighting for non node.
     if ($keyword_highlight == 1) {
       if (isset($variables['node_content']['body'][0]['#markup'])) {
         $variables['node_content']['body'][0]['#markup'] = strip_tags($variables['node_content']['body'][0]['#markup']);
