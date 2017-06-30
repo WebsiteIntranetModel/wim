@@ -26,9 +26,9 @@ Feature: Create News
     And I switch to the iframe "mediaBrowser"
     And I attach the file "/fixtures/files/pdf-file.pdf" to "Upload a new file"
     And I press "Next"
+    Then I press "Save"
     When I switch back from an iframe
     And I wait for 1 seconds
-
     And I click "Browse"
     Then I wait for AJAX to finish
     And I wait for 2 seconds

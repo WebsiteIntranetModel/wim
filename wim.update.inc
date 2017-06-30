@@ -351,3 +351,22 @@ function wim_update_7015() {
     variable_set('metatag_enable_user', FALSE);
   }
 }
+
+/**
+ * Set permission for webform send arbitrary files.
+ */
+function wim_update_7016() {
+  $permissions = array(
+    'administrator' => array('send arbitrary files'),
+    'webmaster' => array('send arbitrary files'),
+    'content manager' => array('send arbitrary files'),
+    'content editor' => array('send arbitrary files'),
+    'authenticated user' => array('send arbitrary files'),
+    'anonymous user' => array('send arbitrary files'),
+  );
+
+  foreach ($permissions as $role_name => $permission) {
+    $role = user_role_load_by_name($role_name);
+    user_role_grant_permissions($role->rid, $permission);
+  }
+}
