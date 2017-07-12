@@ -2944,7 +2944,7 @@ body.in-maintenance #page {
   content: "";
 }
 
-.sr-only, .social-links ul.social li a span {
+.sr-only, .social-links ul.social li a span, .menu-social-media ul.menu li a span {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -3085,7 +3085,6 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
 }
 
 .webform-progressbar .progress-bar {
-  -webkit-transition: width 2s;
   transition: width 2s;
   width: 0;
 }
@@ -4523,11 +4522,6 @@ div[class*=region-sidebar] div[class*=main-menu-submenu] ul a.active-trail {
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-.menu-social-media ul.menu li a span {
-  display: none;
-  text-indent: -9999px;
 }
 
 .menu-social-media ul.menu li:not(:first-child) {
