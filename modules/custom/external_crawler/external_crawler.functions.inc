@@ -46,7 +46,14 @@ function external_crawler_load_vendor() {
 function _external_crawler_generate_pagekey($site, $url) {
   $parsed_url = parse_url($url);
   $parsed_url['path'] = isset($parsed_url['path']) ? $parsed_url['path'] : '';
-  return 'crawler/' . $site->name . '/' . md5($parsed_url['host'] . str_replace('/', '', $parsed_url['path']));
+  // Include subqueries if checked.
+  if (isset($site->subquery) && $site->subquery == "1") {
+    $parsed_url['query'] = isset($parsed_url['query']) ? $parsed_url['query'] : '';
+    $hash = 'crawler/' . $site->name . '/' . md5($parsed_url['host'] . str_replace('/', '', $parsed_url['path']) . $parsed_url['query']);
+  } else {
+    $hash = 'crawler/' . $site->name . '/' . md5($parsed_url['host'] . str_replace('/', '', $parsed_url['path']));
+  }
+  return $hash;
 }
 
 /**
@@ -179,17 +186,16 @@ function external_crawler_save_site($fields = array(), $site = NULL) {
   if (!$site) {
     $site = new stdClass();
     $site->site_id = isset($fields['site_id']) ? $fields['site_id'] : NULL;
-
     $site->name = check_plain($fields['name']);
     $site->url = $fields['url'];
     $site->check_interval = $fields['check_interval'];
+    $site->subquery = $fields['subquery'];
     $site->max_depth = $fields['max_depth'];
     $site->max_run = $fields['max_run'];
     $site->url_exclude = check_plain($fields['url_exclude']);
     $site->content_exclude = check_plain($fields['content_exclude']);
     $site->content_include = check_plain($fields['content_include']);
   }
-
   // Gives opportunity alter site data before save.
   drupal_alter('external_crawler_save_site', $site, $fields);
 

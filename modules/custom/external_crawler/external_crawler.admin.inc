@@ -68,6 +68,13 @@ function external_crawler_site_add_form() {
     '#description' => t('Site start page URL. Crawler will start index from this page.'),
   );
 
+  $form['subquery'] = array(
+    '#type' =>'checkbox',
+    '#title'=>t('Include subquery'),
+    '#default_value' =>FALSE,
+    '#description' => t('Do you want to include subqueries in the crawler?'),
+  );
+
   $form['max_depth'] = array(
     '#type' => 'select',
     '#title' => t('Depth'),
@@ -179,6 +186,13 @@ function external_crawler_site_edit_form($form, &$form_state) {
       '#required' => TRUE,
       '#description' => t('Site start page URL. Crawler will start index from this page.'),
       '#default_value' => $site->url,
+    );
+
+    $form['subquery'] = array(
+      '#type' =>'checkbox',
+      '#title'=>t('Include subquery'),
+      '#default_value' => (isset($site->subquery) ? $site->subquery : false),
+      '#description' => t('Do you want to include subqueries in the crawler?'),
     );
 
     $form['max_depth'] = array(
