@@ -94,6 +94,19 @@ function scfeed_generate_item($node) {
     $element->appendChild($dom->createCDATASection($teaser));
     $owmsmantel->appendChild($element);
   }
+  else{
+    // Set a default value to pass a feed validator.
+    $owmsmantel = $dom->createElement('owmsmantel');
+    $meta->appendChild($owmsmantel);
+
+    $element = $dom->createElementNS($ns_dcterms, 'dcterms:audience', 'Niet beschikbaar');
+    $element->setAttribute('scheme', 'overheid:Doelgroep');
+    $owmsmantel->appendChild($element);
+
+    $element = $dom->createElementNS($ns_dcterms, 'dcterms:abstract');
+    $element->appendChild($dom->createCDATASection('Niet beschikbaar'));
+    $owmsmantel->appendChild($element);
+  }
 
   // Create scmeta.
   $overheidproduct = $dom->createElement('scmeta');
