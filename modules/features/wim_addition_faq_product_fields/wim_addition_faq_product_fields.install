@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * @file
+ * Install file.
+ */
+
+/**
+ * Revert 'WIM Addition FAQ & Product fields' feature.
+ */
+function wim_addition_faq_product_fields_update_7000() {
+  features_revert(array('wim_addition_faq_product_fields'));
+}

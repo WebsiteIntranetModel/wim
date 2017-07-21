@@ -445,6 +445,8 @@ function wim_addition_faq_product_fields_field_default_field_bases() {
       'allowed_values' => array(
         'particulier' => 'particulier',
         'ondernemer' => 'ondernemer',
+        'BURGER' => 'BURGER',
+        'BEDRIJF' => 'BEDRIJF',
       ),
       'allowed_values_function' => '',
     ),

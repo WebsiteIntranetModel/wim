@@ -381,6 +381,12 @@ function atos_esuite_map_node_product(stdClass $node, DOMDocument $documentDOM, 
     $node->field_related_product[LANGUAGE_NONE][] = array('target_id' => 'product-' . trim($item->nodeValue));
   }
 
+  // Target audience co-operating catalog.
+  $node->field_sc_audience = array(LANGUAGE_NONE => array());
+  foreach ($xpath->query('/result/doelgroepen/doelgroep') as $item) {
+    $node->field_sc_audience[LANGUAGE_NONE][] = array('value' => trim($item->nodeValue));
+  }
+
   // Publication date.
   $pub_date = $xpath->query('/result/created')->item(0)->nodeValue;
   $date[] = array(
