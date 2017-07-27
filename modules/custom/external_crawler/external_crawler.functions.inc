@@ -47,7 +47,7 @@ function _external_crawler_generate_pagekey($site, $url) {
   $parsed_url = parse_url($url);
   $parsed_url['path'] = isset($parsed_url['path']) ? $parsed_url['path'] : '';
   // Include subqueries if checked.
-  if (isset($site->subquery) && $site->subquery == "1") {
+  if (isset($site->subquery) && $site->subquery === '1') {
     $parsed_url['query'] = isset($parsed_url['query']) ? $parsed_url['query'] : '';
     $hash = 'crawler/' . $site->name . '/' . md5($parsed_url['host'] . str_replace('/', '', $parsed_url['path']) . $parsed_url['query']);
   }
