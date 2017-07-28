@@ -72,41 +72,55 @@ function scfeed_generate_item($node) {
   $element->appendChild($dom->createCDATASection($generate_body));
   $body->appendChild($element);
 
-  if (!empty($node->field_sc_audience)) {
-    // When providing "owmsmantel", it MUST have both an audience
-    // and an abstract. Although the "owmsmantel" element is optional.
-    // Only provide it when we have an audience.
-    $owmsmantel = $dom->createElement('owmsmantel');
-    $meta->appendChild($owmsmantel);
+  // Create owmsmantel.
+  $owmsmantel = $dom->createElement('owmsmantel');
+  $meta->appendChild($owmsmantel);
 
+  // Set the value of owmsmantel audience.
+  if (!empty($node->field_sc_audience)) {
     foreach ($node->field_sc_audience[LANGUAGE_NONE] as $item) {
       $element = $dom->createElementNS($ns_dcterms, 'dcterms:audience', $item['value']);
       $element->setAttribute('scheme', 'overheid:Doelgroep');
       $owmsmantel->appendChild($element);
     }
-
-    $teaser = text_summary($generate_body, 'full_html', 200);
-    $teaser = preg_replace('/\\<(p|li|table|h)/si', ' <\\1', $teaser);
-    $teaser = trim(strip_tags($teaser));
-    // Remove "Beschrijving ", which comes from the first inline tab.
-    $teaser = preg_replace('/^Beschrijving /s', '', $teaser);
-    $element = $dom->createElementNS($ns_dcterms, 'dcterms:abstract');
-    $element->appendChild($dom->createCDATASection($teaser));
-    $owmsmantel->appendChild($element);
   }
   else {
-    // Set a default value to pass a feed validator.
-    $owmsmantel = $dom->createElement('owmsmantel');
-    $meta->appendChild($owmsmantel);
-
-    $element = $dom->createElementNS($ns_dcterms, 'dcterms:audience', 'Niet beschikbaar');
-    $element->setAttribute('scheme', 'overheid:Doelgroep');
-    $owmsmantel->appendChild($element);
-
-    $element = $dom->createElementNS($ns_dcterms, 'dcterms:abstract');
-    $element->appendChild($dom->createCDATASection('Niet beschikbaar'));
-    $owmsmantel->appendChild($element);
+    // If empty don't generate the record.
+    return;
   }
+
+  // Get tags for owmsmantel subject.
+  if (!empty($node->field_tags[LANGUAGE_NONE])) {
+    $tags = $node->field_tags[LANGUAGE_NONE];
+    $tags_end = end($tags);
+    $subject = '';
+    foreach ($tags as $item) {
+      $term = taxonomy_term_load($item['tid']);
+      if( $item['tid'] == $tags_end['tid'] ) {
+        $subject .= $term->name;
+      }
+      else {
+        $subject .= $term->name . ', ';
+      }
+    }
+  } else {
+    $subject = $node->title;
+  }
+
+  // Set the value of owmsmantel subject.
+  $element = $dom->createElementNS($ns_dcterms, 'dcterms:subject');
+  $element->appendChild($dom->createCDATASection($subject));
+  $owmsmantel->appendChild($element);
+
+  // Set the value of owmsmantel abstract.
+  $teaser = text_summary($generate_body, 'full_html', 200);
+  $teaser = preg_replace('/\\<(p|li|table|h)/si', ' <\\1', $teaser);
+  $teaser = trim(strip_tags($teaser));
+  // Remove "Beschrijving ", which comes from the first inline tab.
+  $teaser = preg_replace('/^Beschrijving /s', '', $teaser);
+  $element = $dom->createElementNS($ns_dcterms, 'dcterms:abstract');
+  $element->appendChild($dom->createCDATASection($teaser));
+  $owmsmantel->appendChild($element);
 
   // Create scmeta.
   $overheidproduct = $dom->createElement('scmeta');
