@@ -94,7 +94,7 @@ function scfeed_generate_item($node) {
     $element->appendChild($dom->createCDATASection($teaser));
     $owmsmantel->appendChild($element);
   }
-  else{
+  else {
     // Set a default value to pass a feed validator.
     $owmsmantel = $dom->createElement('owmsmantel');
     $meta->appendChild($owmsmantel);
