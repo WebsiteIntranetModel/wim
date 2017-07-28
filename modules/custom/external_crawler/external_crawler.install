@@ -33,6 +33,11 @@ function external_crawler_schema() {
         'unsigned' => TRUE,
         'not null' => TRUE,
       ),
+      'subquery' => array(
+        'type' => 'varchar',
+        'length' => 64,
+        'not null' => FALSE,
+      ),
       'max_depth' => array(
         'type' => 'int',
         'size' => 'tiny',
@@ -172,6 +177,14 @@ function external_crawler_update_7001() {
     'length' => 600,
     'not null' => TRUE,
   ));
+}
+
+/**
+ * Add field for including subqueries.
+ */
+function external_crawler_update_7002() {
+  $schema = drupal_get_schema('external_crawler_site');
+  db_add_field('external_crawler_site', 'subquery', $schema['fields']['subquery']);
 }
 
 /**
