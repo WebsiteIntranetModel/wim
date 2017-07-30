@@ -384,7 +384,18 @@ function atos_esuite_map_node_product(stdClass $node, DOMDocument $documentDOM, 
   // Target audience co-operating catalog.
   $node->field_sc_audience = array(LANGUAGE_NONE => array());
   foreach ($xpath->query('/result/doelgroepen/doelgroep') as $item) {
-    $node->field_sc_audience[LANGUAGE_NONE][] = array('value' => trim($item->nodeValue));
+    $audience = trim($item->nodeValue);
+
+    switch ($audience) {
+      case "BEDRIJF":
+        $audience = "ondernemer";
+        break;
+      case "BURGER":
+        $audience = "particulier";
+        break;
+    }
+
+    $node->field_sc_audience[LANGUAGE_NONE][] = array('value' => $audience);
   }
 
   // Publication date.
