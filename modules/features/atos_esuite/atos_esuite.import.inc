@@ -390,6 +390,7 @@ function atos_esuite_map_node_product(stdClass $node, DOMDocument $documentDOM, 
       case "BEDRIJF":
         $audience = "ondernemer";
         break;
+
       case "BURGER":
         $audience = "particulier";
         break;

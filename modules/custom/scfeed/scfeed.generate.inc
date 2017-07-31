@@ -96,14 +96,15 @@ function scfeed_generate_item($node) {
     $subject = '';
     foreach ($tags as $item) {
       $term = taxonomy_term_load($item['tid']);
-      if( $item['tid'] == $tags_end['tid'] ) {
+      if ($item['tid'] == $tags_end['tid']) {
         $subject .= $term->name;
       }
       else {
         $subject .= $term->name . ', ';
       }
     }
-  } else {
+  }
+  else {
     $subject = $node->title;
   }
 
