@@ -10,7 +10,7 @@ projects[admin_views] = 1.6
 projects[adminimal_admin_menu] = 1.7
 projects[apachesolr] = 1.8
 projects[apachesolr_exclude_node] = 1.4
-projects[apachesolr_attachments] = 1.4
+projects[apachesolr_attachments] = 1.x-dev
 projects[autologout] = 4.4
 projects[bean] = 1.11
 projects[breakpoints] = 1.4
@@ -174,3 +174,4 @@ libraries[chosen][download][url] = https://github.com/harvesthq/chosen/releases/
 
 ; Apachesolr attachments
 projects[apachesolr_attachments][patch][2677866] = https://www.drupal.org/files/issues/mysql-56-compatibility-2677866-12.patch
+projects[apachesolr_attachments][patch][1908484] = https://www.drupal.org/files/issues/apachesolr-attachments-index-unattached-files-1908484-13.patch
