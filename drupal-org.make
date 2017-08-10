@@ -58,7 +58,6 @@ projects[paragraphs] = 1.0-rc5
 projects[password_policy] = 1.12
 projects[pathauto] = 1.3
 projects[picture] = 2.13
-projects[redirect] = 1.0-rc3
 projects[revisioning] = 1.9
 projects[roleassign] = 1.1
 projects[scheduler] = 1.5
@@ -76,6 +75,12 @@ projects[webform_encrypt] = 1.2
 projects[weight] = 3.1
 projects[wysiwyg] = 2.x-dev
 projects[xmlsitemap] = 2.3
+
+; Get a specific commit of redirect so patch below will always apply
+projects[redirect][version] = 1.x-dev
+projects[redirect][download][type] = "git"
+projects[redirect][download][url] = "http://git.drupal.org/project/redirect.git"
+projects[redirect][download][revision] = "add3c695f613fbeec23b7259e59936f60a6b6da6"
 
 ; Themes
 projects[adminimal_theme] = 1.24
@@ -152,6 +157,11 @@ projects[linkit][patch][2651404] = https://www.drupal.org/files/issues/linkit-ad
 ; Support for default drupal menu system
 ; https://www.drupal.org/node/2514928
 projects[linkit][patch][2514928] = https://www.drupal.org/files/issues/linkit-menu-links-2514928-9.patch
+
+; Redirect
+; Provide redirect to alias from internal path functionality from globalredirect
+; https://www.drupal.org/node/905914
+projects[redirect][patch][905914] = https://www.drupal.org/files/issues/redirect-merge_global_redirect-905914-246-d7.patch
 
 ; Custom
 ; a11ychecker_custom
