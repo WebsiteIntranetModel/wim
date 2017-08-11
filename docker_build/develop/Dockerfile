@@ -39,4 +39,4 @@ RUN apt-get update && apt-get install -y default-jdk
 # Download Tike jar
 RUN mkdir -p /var/lib/tika && \
   cd /var/lib/tika && \
-  curl -O http://apache.claz.org/tika/tika-app-1.14.jar
+  curl -O http://apache.claz.org/tika/tika-app-1.16.jar
