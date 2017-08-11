@@ -63,6 +63,7 @@ projects[roleassign] = 1.1
 projects[scheduler] = 1.5
 projects[strongarm] = 2.0
 projects[special_menu_items] = 2.0
+projects[smart_trim] = 1.5
 projects[token] = 1.7
 projects[userprotect] = 1.2
 projects[variable] = 2.5
