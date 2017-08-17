@@ -153,13 +153,6 @@ projects[linkit][patch][2651404] = https://www.drupal.org/files/issues/linkit-ad
 ; https://www.drupal.org/node/2514928
 projects[linkit][patch][2514928] = https://www.drupal.org/files/issues/linkit-menu-links-2514928-9.patch
 
-; Custom
-; a11ychecker_custom, cannot be included until https://www.drupal.org/node/2570883 is resolved.
-;libraries[a11ychecker][download][type] = "get"
-;libraries[a11ychecker][download][url] = "http://a11ychecker.download.cksource.com/custom/a11ychecker_custom.zip"
-;libraries[a11ychecker][destination] = "libraries"
-;libraries[a11ychecker][subdir] = "ckeditor_plugins"
-
 ; CKEditor 4.5.11
 ;libraries[ckeditor][download][type] = get
 ;libraries[ckeditor][download][url] = http://ckeditor.com/builder/download/4aa56d967057f1cfe925bceb9b98049d
