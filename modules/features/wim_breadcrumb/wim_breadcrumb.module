@@ -55,3 +55,23 @@ function _wim_breadcrumb_update_node_alias($link) {
     variable_set('pathauto_update_action', $old_update_action);
   }
 }
+
+/**
+ * Implements hook_hansel_get_parent().
+ */
+function hansel_hansel_get_parent($path) {
+  if (preg_match('/^node\\/([0-9]+)$/si', $path, $match)) {
+
+    // Try to get parent by nodetype settings.
+    $nodetypes = variable_get('hansel_nodetypes', array());
+
+    // Override an output to provide translated title.
+    if (($node = node_load($match[1])) && isset($nodetypes[$node->type])) {
+      return array(
+        'path' => $nodetypes[$node->type]['path'],
+        'title' => t($nodetypes[$node->type]['title']),
+      );
+    }
+  }
+  return FALSE;
+}
