@@ -17,4 +17,6 @@ features[filter][] = full_html
 features[filter][] = plain_text
 features[linkit_profiles][] = default
 features[linkit_profiles][] = menus
+features[wysiwyg][] = filtered_html
+features[wysiwyg][] = full_html
 project path = profiles/wim/modules/features

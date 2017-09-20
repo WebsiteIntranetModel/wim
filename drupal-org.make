@@ -32,7 +32,7 @@ projects[facetapi] = 1.5
 projects[features] = 2.10
 projects[felix] = 1.0-beta9
 projects[field_group] = 1.5
-projects[file_entity] = 2.0-beta3
+projects[file_entity] = 2.4
 projects[flood_control] = 1.0
 projects[hansel] = 1.6
 projects[honeypot] = 1.22
@@ -42,7 +42,7 @@ projects[location] = 3.7
 projects[logging_alerts] = 2.2
 projects[magic] = 2.3
 projects[mailsystem] = 2.34
-projects[media] = 2.1
+projects[media] = 2.9
 projects[menu_block] = 2.7
 projects[menu_icons] = 3.0-beta4
 projects[metatag] = 1.21
@@ -58,12 +58,12 @@ projects[paragraphs] = 1.0-rc5
 projects[password_policy] = 1.12
 projects[pathauto] = 1.3
 projects[picture] = 2.13
-projects[redirect] = 1.0-rc3
 projects[revisioning] = 1.9
 projects[roleassign] = 1.1
 projects[scheduler] = 1.5
 projects[strongarm] = 2.0
 projects[special_menu_items] = 2.0
+projects[smart_trim] = 1.5
 projects[token] = 1.7
 projects[userprotect] = 1.2
 projects[variable] = 2.5
@@ -76,6 +76,12 @@ projects[webform_encrypt] = 1.2
 projects[weight] = 3.1
 projects[wysiwyg] = 2.x-dev
 projects[xmlsitemap] = 2.3
+
+; Get a specific commit of redirect so patch below will always apply
+projects[redirect][version] = 1.x-dev
+projects[redirect][download][type] = "git"
+projects[redirect][download][url] = "http://git.drupal.org/project/redirect.git"
+projects[redirect][download][revision] = "add3c695f613fbeec23b7259e59936f60a6b6da6"
 
 ; Themes
 projects[adminimal_theme] = 1.24
@@ -153,9 +159,10 @@ projects[linkit][patch][2651404] = https://www.drupal.org/files/issues/linkit-ad
 ; https://www.drupal.org/node/2514928
 projects[linkit][patch][2514928] = https://www.drupal.org/files/issues/linkit-menu-links-2514928-9.patch
 
-; CKEditor 4.5.11
-;libraries[ckeditor][download][type] = get
-;libraries[ckeditor][download][url] = http://ckeditor.com/builder/download/4aa56d967057f1cfe925bceb9b98049d
+; Redirect
+; Provide redirect to alias from internal path functionality from globalredirect
+; https://www.drupal.org/node/905914
+projects[redirect][patch][905914] = https://www.drupal.org/files/issues/redirect-merge_global_redirect-905914-246-d7.patch
 
 ; Slick
 libraries[slick][download][type] = get

@@ -19,8 +19,7 @@
           @extend .fa-twitter-square;
         }
         span {
-          display: none;
-          text-indent: -9999px;
+          @extend .sr-only;
         }
       }
       &:not(:first-child) {

@@ -503,7 +503,7 @@ function _wim_password_policy_default_profile() {
       'uppercase' => '1',
     ),
     'expiration' => 60,
-    'warning' => 59,
+    'warning' => 14,
     'roles' => array(
       DRUPAL_AUTHENTICATED_RID,
       $cm->rid,

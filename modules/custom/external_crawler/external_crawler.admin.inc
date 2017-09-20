@@ -68,6 +68,13 @@ function external_crawler_site_add_form() {
     '#description' => t('Site start page URL. Crawler will start index from this page.'),
   );
 
+  $form['subquery'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Include subquery'),
+    '#default_value' => FALSE,
+    '#description' => t('Do you want to include subqueries in the crawler?'),
+  );
+
   $form['max_depth'] = array(
     '#type' => 'select',
     '#title' => t('Depth'),
@@ -76,6 +83,7 @@ function external_crawler_site_add_form() {
     '#default_value' => 1,
     '#description' => t('Depth of pages which crawler should index. If 1 is selected then only one page will be indexed(from URL set above).'),
   );
+
   $form['check_interval'] = array(
     '#type' => 'select',
     '#title' => t('Interval'),
@@ -99,6 +107,7 @@ function external_crawler_site_add_form() {
     '#default_value' => 1,
     '#description' => t('Amount of pages which should be fetched and processed by 1 cron job.'),
   );
+
   $form['url_exclude'] = array(
     '#type' => 'textarea',
     '#title' => t('Excluded paths'),
@@ -173,12 +182,20 @@ function external_crawler_site_edit_form($form, &$form_state) {
       '#description' => t('Site name'),
       '#default_value' => $site->name,
     );
+
     $form['url'] = array(
       '#type' => 'textarea',
       '#title' => t('URL'),
       '#required' => TRUE,
       '#description' => t('Site start page URL. Crawler will start index from this page.'),
       '#default_value' => $site->url,
+    );
+
+    $form['subquery'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Include subquery'),
+      '#default_value' => (isset($site->subquery) ? $site->subquery : FALSE),
+      '#description' => t('Do you want to include subqueries in the crawler?'),
     );
 
     $form['max_depth'] = array(
@@ -213,6 +230,7 @@ function external_crawler_site_edit_form($form, &$form_state) {
       '#default_value' => $site->max_run,
       '#description' => t('Amount of pages which should be fetched and processed by 1 cron job.'),
     );
+
     $form['url_exclude'] = array(
       '#type' => 'textarea',
       '#title' => t('Excluded paths'),
@@ -246,6 +264,7 @@ function external_crawler_site_edit_form($form, &$form_state) {
       '#value' => t('Delete'),
       '#submit' => array('external_crawler_site_edit_form_delete'),
     );
+
     $form['cancel'] = array(
       '#markup' => l(t('Cancel'), 'admin/config/search/external_crawler', array('attributes' => array('id' => 'edit-cancel'))),
     );

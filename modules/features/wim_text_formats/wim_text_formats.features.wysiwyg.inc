@@ -1,47 +1,13 @@
 <?php
 /**
  * @file
- * Code for the WIM Text formats feature.
+ * wim_text_formats.features.wysiwyg.inc
  */
-
-include_once 'wim_text_formats.features.inc';
 
 /**
- * Implements hook_ctools_plugin_directory().
+ * Implements hook_wysiwyg_default_profiles().
  */
-function wim_text_formats_ctools_plugin_directory($module, $plugin) {
-  if ($module === 'ctools' && !empty($plugin)) {
-    return 'plugins/' . $plugin;
-  }
-  if ($module === 'linkit' && !empty($plugin)) {
-    return 'plugins/' . $plugin;
-  }
-}
-
-/**
- * Helper function to install wysiwyg profiles.
- *
- * @throws \Exception
- * @throws \InvalidMergeQueryException
- */
-function _wim_wysiwyg_profile_install() {
-
-  foreach (_wim_wysiwyg_default_profiles() as $profile) {
-    db_merge('wysiwyg')
-      ->key(array('format' => $profile['format']))
-      ->fields(array(
-        'editor' => $profile['editor'],
-        'settings' => serialize($profile['settings']),
-      ))
-      ->execute();
-  }
-  wysiwyg_profile_cache_clear();
-}
-
-/**
- * Helper function holding default profiles.
- */
-function _wim_wysiwyg_default_profiles() {
+function wim_text_formats_wysiwyg_default_profiles() {
   $profiles = array();
 
   // Exported profile: filtered_html.
@@ -49,12 +15,6 @@ function _wim_wysiwyg_default_profiles() {
     'format' => 'filtered_html',
     'editor' => 'ckeditor',
     'settings' => array(
-      'default' => 1,
-      'user_choose' => 0,
-      'show_toggle' => 1,
-      'add_to_summaries' => 1,
-      'theme' => '',
-      'language' => 'en',
       'buttons' => array(
         'default' => array(
           'Bold' => 1,
@@ -71,12 +31,12 @@ function _wim_wysiwyg_default_profiles() {
           'PasteFromWord' => 1,
           'RemoveFormat' => 1,
           'SpecialChar' => 1,
-          'Maximize' => 1,
           'Format' => 1,
           'Table' => 1,
           'Find' => 1,
           'Replace' => 1,
           'Iframe' => 1,
+          'Maximize' => 1,
         ),
         'ckeditor_abbrbutton' => array(
           'ckeditor_abbrbutton' => 1,
@@ -109,6 +69,8 @@ function _wim_wysiwyg_default_profiles() {
           'media' => 1,
         ),
       ),
+      'theme' => '',
+      'language' => 'en',
       'toolbarLocation' => 'top',
       'resize_enabled' => 1,
       'default_toolbar_grouping' => 0,
@@ -116,12 +78,22 @@ function _wim_wysiwyg_default_profiles() {
       'acf_mode' => 0,
       'acf_allowed_content' => '',
       'css_setting' => 'none',
+      'css_theme' => 'adminimal',
       'css_path' => '',
       'stylesSet' => '',
       'block_formats' => 'p,address,pre,h2,h3,h4,h5,h6,div',
-      'advanced__active_tab' => 'edit-basic',
       'forcePasteAsPlainText' => 0,
+      'pasteFromWordPromptCleanup' => 0,
+      'pasteFromWordRemoveFontStyles' => 0,
     ),
+    'preferences' => array(
+      'default' => 1,
+      'user_choose' => 0,
+      'show_toggle' => 1,
+      'add_to_summaries' => 1,
+      'version' => '4.6.2.20af917',
+    ),
+    'name' => 'formatfiltered_html',
   );
 
   // Exported profile: full_html.
@@ -129,12 +101,6 @@ function _wim_wysiwyg_default_profiles() {
     'format' => 'full_html',
     'editor' => 'ckeditor',
     'settings' => array(
-      'default' => 1,
-      'user_choose' => 0,
-      'show_toggle' => 1,
-      'add_to_summaries' => 1,
-      'theme' => '',
-      'language' => 'en',
       'buttons' => array(
         'default' => array(
           'Bold' => 1,
@@ -151,12 +117,12 @@ function _wim_wysiwyg_default_profiles() {
           'PasteFromWord' => 1,
           'RemoveFormat' => 1,
           'SpecialChar' => 1,
-          'Maximize' => 1,
           'Format' => 1,
           'Table' => 1,
           'Find' => 1,
           'Replace' => 1,
           'Iframe' => 1,
+          'Maximize' => 1,
         ),
         'bootstrap_tabs' => array(
           'addTab' => 1,
@@ -192,6 +158,8 @@ function _wim_wysiwyg_default_profiles() {
           'media' => 1,
         ),
       ),
+      'theme' => '',
+      'language' => 'en',
       'toolbarLocation' => 'top',
       'resize_enabled' => 1,
       'default_toolbar_grouping' => 0,
@@ -199,30 +167,23 @@ function _wim_wysiwyg_default_profiles() {
       'acf_mode' => 0,
       'acf_allowed_content' => '',
       'css_setting' => 'none',
+      'css_theme' => 'adminimal',
       'css_path' => '',
       'stylesSet' => '',
       'block_formats' => 'p,address,pre,h2,h3,h4,h5,h6,div',
-      'advanced__active_tab' => 'edit-basic',
       'forcePasteAsPlainText' => 0,
+      'pasteFromWordPromptCleanup' => 0,
+      'pasteFromWordRemoveFontStyles' => 0,
     ),
+    'preferences' => array(
+      'default' => 1,
+      'user_choose' => 0,
+      'show_toggle' => 1,
+      'add_to_summaries' => 1,
+      'version' => '4.6.2.20af917',
+    ),
+    'name' => 'formatfull_html',
   );
 
   return $profiles;
-}
-
-/**
- * Add linkit for redirect items.
- */
-function wim_text_formats_form_redirect_edit_form_alter(&$form, &$form_state) {
-  $form['source']['#linkit'] = array(
-    'profile' => 'menus',
-    'enabled' => 1,
-    'button_text' => 'Search',
-  );
-
-  $form['redirect']['#linkit'] = array(
-    'profile' => 'menus',
-    'enabled' => 1,
-    'button_text' => 'Search',
-  );
 }
