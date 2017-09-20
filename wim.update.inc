@@ -370,3 +370,12 @@ function wim_update_7016() {
     user_role_grant_permissions($role->rid, $permission);
   }
 }
+
+/**
+ * Update WIM 2.0 default password policy to update warning.
+ */
+function wim_update_7017() {
+  db_update('password_policy')->fields(array(
+    'warning' => '14',
+  ))->condition('pid', 1)->execute();
+}
