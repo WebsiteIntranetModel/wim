@@ -360,6 +360,9 @@ function atos_esuite_map_node_product(stdClass $node, DOMDocument $documentDOM, 
         ),
       );
     }
+    else {
+      $node->$filed_name = array();
+    }
   }
 
   // Tags.
