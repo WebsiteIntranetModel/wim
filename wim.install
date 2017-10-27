@@ -1190,3 +1190,4 @@ function _wim_enable_modules() {
   variable_set('hsts_max_age', 31536000);
   variable_set('hsts_subdomains', 1);
 }
+
