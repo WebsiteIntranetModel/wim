@@ -155,7 +155,7 @@ projects[hansel][patch][2399645] = https://www.drupal.org/files/issues/hansel-br
 ; Link
 ; URL validation rejects existing valid content after upgrade to 7.x-1.4
 ; https://www.drupal.org/node/2666912
-projects[linkit][patch][2666912] = https://www.drupal.org/files/issues/revert-url-validation-2666912.patch
+projects[link][patch][2666912] = https://www.drupal.org/files/issues/revert-url-validation-2666912.patch
 
 ; Linkit
 ; Allow Linkit support for any eligible element type
