@@ -36,6 +36,7 @@ projects[file_entity] = 2.4
 projects[flood_control] = 1.0
 projects[hansel] = 1.6
 projects[honeypot] = 1.22
+projects[hsts] = 1.2
 projects[i18n] = 1.15
 projects[jquery_update] = 2.7
 projects[location] = 3.7
