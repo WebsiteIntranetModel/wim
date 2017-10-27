@@ -138,7 +138,7 @@ function custom_lists_block_view($delta = '') {
     $more_link_uri = custom_lists_get_more_uri($list);
     if ($more_link_uri) {
       $block['content']['more-link'] = array(
-        '#markup' => '<div class="more-link">' . l(t('More @display_title', array('@display_title' => $list['display_title'])), $more_link_uri) . '</div>',
+        '#markup' => '<div class="more-link">' . l(t('More @display_title', array('@display_title' => $list['display_title'])), $more_link_uri, array('html' => TRUE)) . '</div>',
       );
     }
   }
