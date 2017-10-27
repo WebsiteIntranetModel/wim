@@ -35,6 +35,8 @@ function wim_install() {
   _wim_set_metatag_settings();
   // Enable attachments for Webform.
   _wim_set_webform_attachments();
+  // Enable modules.
+  _wim_enable_modules();
   // Add 404 page.
   $page_404_nid = _wim_create_page('404');
   variable_set('site_404', 'node/' . $page_404_nid);
@@ -1170,4 +1172,21 @@ function _wim_set_webform_attachments() {
   if (module_exists('mimemail')) {
     variable_set('webform_email_html_capable', TRUE);
   }
+}
+
+/**
+ * Enable modules during install without dependent on other modules.
+ */
+function _wim_enable_modules() {
+  $modules = array(
+    'hsts'
+  );
+
+  // Enable modules.
+  module_enable($modules);
+
+  // Configure HSTS.
+  variable_set('hsts_enabled', 1);
+  variable_set('hsts_max_age', 31536000);
+  variable_set('hsts_subdomains', 1);
 }

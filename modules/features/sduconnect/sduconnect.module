@@ -199,6 +199,7 @@ function sduconnect_node_delete($node) {
       db_delete('sduconnect_item')->condition('nid', $node->nid)->execute();
       db_update('sduconnect_collection')
         ->expression('items', 'items - 1')
+        ->condition('items', 0, '>')
         ->condition('cid', $cid)
         ->execute();
     }
