@@ -379,3 +379,16 @@ function wim_update_7017() {
     'warning' => '14',
   ))->condition('pid', 1)->execute();
 }
+
+/**
+ * Enable hsts module and set configuration.
+ */
+function wim_update_7018() {
+  // Enable HSTS.
+  module_enable(array('hsts'));
+
+  // Configure HSTS.
+  variable_set('hsts_enabled', 1);
+  variable_set('hsts_max_age', 31536000);
+  variable_set('hsts_subdomains', 1);
+}
