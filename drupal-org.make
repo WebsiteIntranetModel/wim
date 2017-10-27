@@ -27,7 +27,7 @@ projects[elysia_cron] = 2.4
 projects[email] = 1.3
 projects[encrypt] = 2.3
 projects[entity] = 1.8
-projects[entityreference] = 1.2
+projects[entityreference] = 1.5
 projects[facetapi] = 1.5
 projects[features] = 2.10
 projects[felix] = 1.0-beta9
@@ -68,7 +68,7 @@ projects[smart_trim] = 1.5
 projects[token] = 1.7
 projects[userprotect] = 1.2
 projects[variable] = 2.5
-projects[views] = 3.14
+projects[views] = 3.17
 projects[views_bootstrap] = 3.1
 projects[views_bulk_operations] = 3.4
 projects[webform] = 4.14
@@ -113,7 +113,7 @@ projects[location][patch][1997658_6] = https://www.drupal.org/files/issues/locat
 
 ; Fixing bug with the location Google maps link
 ; https://www.drupal.org/node/2781227
-projects[location][patch][2781227_1] = https://www.drupal.org/files/issues/location-google-maps-link-2781227-1.patch
+projects[location][patch][2781227_4] = https://www.drupal.org/files/issues/location-google-maps-link-2781227-2.patch
 
 ; Bean
 ; Add migration support for Bean
@@ -151,6 +151,11 @@ projects[webform_clear][patch][2471671] = https://www.drupal.org/files/issues/24
 ; Token replacement (pathauto patterns) completely broken
 ; https://www.drupal.org/node/2399645
 projects[hansel][patch][2399645] = https://www.drupal.org/files/issues/hansel-broken-token-generation-2399645-1.patch
+
+; Link
+; URL validation rejects existing valid content after upgrade to 7.x-1.4
+; https://www.drupal.org/node/2666912
+projects[linkit][patch][2666912] = https://www.drupal.org/files/issues/revert-url-validation-2666912.patch
 
 ; Linkit
 ; Allow Linkit support for any eligible element type
