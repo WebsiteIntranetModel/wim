@@ -392,3 +392,21 @@ function wim_update_7018() {
   variable_set('hsts_max_age', 31536000);
   variable_set('hsts_subdomains', 1);
 }
+
+/**
+ * Enable login_destination module and create a common rule.
+ */
+function wim_update_7019() {
+  // Enable login destination module.
+  module_enable(array('login_destination'));
+
+  // Create a common rule.
+  db_insert('login_destination')
+    ->fields(array(
+      'destination' => '<front>',
+      'enabled' => 1,
+      'triggers' => 'a:0:{}',
+      'roles' => 'a:0:{}',
+      'pages' => ''
+    ))->execute();
+}
