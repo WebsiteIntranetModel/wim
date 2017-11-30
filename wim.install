@@ -1179,7 +1179,8 @@ function _wim_set_webform_attachments() {
  */
 function _wim_enable_modules() {
   $modules = array(
-    'hsts'
+    'hsts',
+    'media_bulk_upload'
   );
 
   // Enable modules.

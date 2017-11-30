@@ -392,3 +392,11 @@ function wim_update_7018() {
   variable_set('hsts_max_age', 31536000);
   variable_set('hsts_subdomains', 1);
 }
+
+/**
+ * Enable media_bulk_upload module.
+ */
+function wim_update_7020() {
+  // Enable media_bulk_upload.
+  module_enable(array('media_bulk_upload'));
+}
