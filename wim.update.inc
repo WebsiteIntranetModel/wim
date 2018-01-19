@@ -410,3 +410,11 @@ function wim_update_7019() {
       'pages' => ''
     ))->execute();
 }
+
+/**
+ * Enable media_bulk_upload module.
+ */
+function wim_update_7020() {
+  // Enable media_bulk_upload.
+  module_enable(array('media_bulk_upload'));
+}

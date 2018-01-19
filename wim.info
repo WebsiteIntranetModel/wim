@@ -42,6 +42,7 @@ dependencies[] = jquery_update
 dependencies[] = magic
 dependencies[] = media
 dependencies[] = media_wysiwyg
+dependencies[] = media_bulk_upload
 dependencies[] = menu_block
 dependencies[] = metatag
 dependencies[] = module_filter
