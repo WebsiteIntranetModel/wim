@@ -222,6 +222,8 @@ function custom_lists_list_form($form, &$form_state, $list_key = NULL) {
       'queue_desc' => t('Nodequeue: descending'),
       'agenda_asc' => t('Agenda date: ascending'),
       'agenda_desc' => t('Agenda date: descending'),
+      'weight_desc' => t('Weight: descending'),
+      'weight_asc' => t('Weight: ascending'),
     ),
     '#default_value' => !empty($list['sort']) ? $list['sort'] : '',
     '#attributes' => array(
