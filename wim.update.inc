@@ -418,3 +418,17 @@ function wim_update_7020() {
   // Enable media_bulk_upload.
   module_enable(array('media_bulk_upload'));
 }
+
+/**
+ * Add media_bulk_upload menu link.
+ */
+function wim_update_7021() {
+  $item = array(
+    'link_title' => t('Import files'),
+    'link_path' => 'file/add',
+    'menu_name' => 'management',
+    'plid' => 22,
+    'weight' => -50,
+  );
+  menu_link_save($item);
+}
