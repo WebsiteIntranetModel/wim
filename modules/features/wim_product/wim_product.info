@@ -26,6 +26,7 @@ features[field_instance][] = node-product-field_lead_paragraph
 features[field_instance][] = node-product-field_promoted
 features[field_instance][] = node-product-field_publication_date
 features[field_instance][] = node-product-field_tags
+features[field_instance][] = node-product-field_weight
 features[metatag][] = node:product
 features[node][] = product
 features[variable][] = apachesolr_exclude_node_enable_product
