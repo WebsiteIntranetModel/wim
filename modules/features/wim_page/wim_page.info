@@ -27,6 +27,7 @@ features[field_instance][] = node-page-field_lead_paragraph
 features[field_instance][] = node-page-field_promoted
 features[field_instance][] = node-page-field_publication_date
 features[field_instance][] = node-page-field_tags
+features[field_instance][] = node-page-field_weight
 features[metatag][] = node:page
 features[node][] = page
 features[variable][] = apachesolr_exclude_node_enable_page
