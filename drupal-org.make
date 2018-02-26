@@ -41,6 +41,7 @@ projects[i18n] = 1.15
 projects[jquery_update] = 2.7
 projects[location] = 3.7
 projects[logging_alerts] = 2.2
+projects[login_destination] = 1.4
 projects[magic] = 2.3
 projects[mailsystem] = 2.34
 projects[media] = 2.9
@@ -50,6 +51,7 @@ projects[metatag] = 1.21
 projects[migrate] = 2.8
 projects[mimemail] = 1.0-beta4
 projects[module_filter] = 2.0
+projects[multiform] = 1.4
 projects[nodequeue] = 2.1
 projects[l10n_update] = 2.1
 projects[link] = 1.4
@@ -59,6 +61,7 @@ projects[paragraphs] = 1.0-rc5
 projects[password_policy] = 1.12
 projects[pathauto] = 1.3
 projects[picture] = 2.13
+projects[plupload] = 1.7
 projects[revisioning] = 1.9
 projects[roleassign] = 1.1
 projects[scheduler] = 1.5
@@ -177,6 +180,10 @@ libraries[slick][download][url] = https://github.com/kenwheeler/slick/archive/ma
 ; Chosen
 libraries[chosen][download][type] = get
 libraries[chosen][download][url] = https://github.com/harvesthq/chosen/releases/download/v1.6.2/chosen_v1.6.2.zip
+
+; Plupload
+libraries[plupload][download][type] = get
+libraries[plupload][download][url] = https://github.com/moxiecode/plupload/archive/v1.5.8.zip
 
 ; Apachesolr attachments
 projects[apachesolr_attachments][patch][2677866] = https://www.drupal.org/files/issues/mysql-56-compatibility-2677866-12.patch
