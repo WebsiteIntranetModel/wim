@@ -11,7 +11,7 @@ services:
       - mailcatcher
       - solr
     environment:
-      - VIRTUAL_HOST=wim.dev
+      - VIRTUAL_HOST=wim.local
       - DRUPAL_SETTINGS=development
     ports:
       - "80"
@@ -31,7 +31,7 @@ services:
   mailcatcher:
     image: schickling/mailcatcher
     environment:
-      - VIRTUAL_HOST=mailcatcher.wim.dev
+      - VIRTUAL_HOST=mailcatcher.wim.local
       - VIRTUAL_PORT=1080
     ports:
       - "1080"

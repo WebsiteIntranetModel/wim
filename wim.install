@@ -68,6 +68,9 @@ function wim_install() {
   // Pathauto configuration.
   _wim_default_pathauto();
 
+  // login destination configuration.
+  _wim_set_default_login_destination();
+
   // Change media render.
   variable_set('media_wysiwyg_default_render', 'field_attach');
 
@@ -1179,7 +1182,9 @@ function _wim_set_webform_attachments() {
  */
 function _wim_enable_modules() {
   $modules = array(
-    'hsts'
+    'hsts',
+    'login_destination',
+    'media_bulk_upload'
   );
 
   // Enable modules.
@@ -1189,4 +1194,19 @@ function _wim_enable_modules() {
   variable_set('hsts_enabled', 1);
   variable_set('hsts_max_age', 31536000);
   variable_set('hsts_subdomains', 1);
+}
+
+/**
+ * Default settings for login_destination.
+ */
+function _wim_set_default_login_destination() {
+  // Create a common rule.
+  db_insert('login_destination')
+    ->fields(array(
+      'destination' => '<front>',
+      'enabled' => 1,
+      'triggers' => 'a:0:{}',
+      'roles' => 'a:0:{}',
+      'pages' => ''
+    ))->execute();
 }

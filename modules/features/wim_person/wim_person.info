@@ -24,6 +24,7 @@ features[field_instance][] = node-person-field_person_address
 features[field_instance][] = node-person-field_person_phone
 features[field_instance][] = node-person-field_person_roles
 features[field_instance][] = node-person-field_tags
+features[field_instance][] = node-person-field_weight
 features[node][] = person
 features[variable][] = field_bundle_settings_node__person
 features[variable][] = language_content_type_person

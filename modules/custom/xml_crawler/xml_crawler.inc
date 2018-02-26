@@ -34,6 +34,7 @@ function _xml_crawler_crawle_xml(stdClass $site) {
 
   // Replace tokens.
   $url = token_replace($site->url);
+  $url = str_replace(' ', '%20', $url);
 
   $response = drupal_http_request($url);
   if ($response->code === '200') {
