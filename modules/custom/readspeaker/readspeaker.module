@@ -101,7 +101,7 @@ function readspeaker_block_view($delta = '') {
  */
 function readspeaker_build_player() {
   $customerid = variable_get('readspeaker_customerid', NULL);
-  $current_path = current_path();
+  $current_path = check_url(current_path());
   $module_path = drupal_get_path('module', 'readspeaker');
   $library_path = $module_path . '/libraries/readspeaker/ReadSpeaker.js?pids=embhl';
   $data = array(
