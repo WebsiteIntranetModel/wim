@@ -258,8 +258,16 @@ rspkr.HL = function () {
         c.preload = "auto";
         c.volume = parseFloat((rspkr.st.get("hlvol") || 100) / 100);
         rspkr.devt("onVolumeAdjusted", window);
-        rspkr.PlayerAPI.playerRef.play();
-        rspkr.PlayerAPI.playerRef.pause();
+
+        var playPromise = rspkr.PlayerAPI.playerRef.play();
+        try {
+          playPromise.then(function () {
+            rspkr.PlayerAPI.playerRef.pause();
+          });
+        } catch (e) {
+          console.log(e.message);
+        }
+
         c.addEventListener("canplay", function () {
           rspkr.hl.html5.Events.onCanPlay()
         }, !1);
