@@ -260,13 +260,13 @@ rspkr.HL = function () {
         rspkr.devt("onVolumeAdjusted", window);
 
         var playPromise = rspkr.PlayerAPI.playerRef.play();
-        try {
-          playPromise.then(function () {
-            rspkr.PlayerAPI.playerRef.pause();
-          });
-        } catch (e) {
-          console.log(e.message);
-        }
+
+        playPromise.then(function (result) {
+          rspkr.PlayerAPI.playerRef.pause();
+        })
+        .catch (function(e) {
+          console.warn(e.message);
+        });
 
         c.addEventListener("canplay", function () {
           rspkr.hl.html5.Events.onCanPlay()
