@@ -9,3 +9,4 @@ projects[drupal][version] = 7.58
 ; Ignore front end vendor folders to improve directory search performance
 ; https://www.drupal.org/node/2329453#comment-10637754
 projects[drupal][patch][2329453_111] = https://www.drupal.org/files/issues/ignore_front_end_vendor-2329453-111.patch
+
