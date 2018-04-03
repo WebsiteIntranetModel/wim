@@ -13,3 +13,7 @@ projects[drupal][patch][2329453_111] = https://www.drupal.org/files/issues/ignor
 ; Newer Chrome versions and IE11/Edge cannot drag and drop anymore on desktop after 7.51 update when jQuery is updated to 1.7-1.11.0
 ; https://www.drupal.org/node/2821441#comment-11787576
 projects[drupal][patch][2821441_30] = https://www.drupal.org/files/issues/pointereventfix-2821441-30.patch
+
+; Keep a simple URL structure of file names
+; https://www.drupal.org/project/drupal/issues/2954293#comment-12533368
+projects[drupal][patch][2954293_6] = https://www.drupal.org/files/issues/2018-03-19/2954293-6.patch
