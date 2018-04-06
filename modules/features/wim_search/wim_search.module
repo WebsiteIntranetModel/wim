@@ -50,3 +50,26 @@ function _search_highlighting_form_submit($form, &$form_state) {
     variable_set('keyword_highlighting_search', $form['highlight']['keyword_highlighting_search']['#value']);
   }
 }
+
+/**
+ * Implements hook_apachesolr_query_alter().
+ *
+ * Alter the query to build exact match result.
+ *
+ * @param DrupalSolrQueryInterface $query
+ *
+ */
+function wim_search_apachesolr_query_alter(DrupalSolrQueryInterface $query) {
+  $q = $query->getParam('q');
+  if (!empty($q) && str_word_count($q) > 1) {
+    $keywords = [];
+
+    foreach (explode(' ', $q) as $keyword) {
+      if (!empty($keyword)) {
+        $keywords[] = $keyword;
+      }
+    }
+
+    $query->addParam('q', implode(' AND ', $keywords));
+  }
+}
