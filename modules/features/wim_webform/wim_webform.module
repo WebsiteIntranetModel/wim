@@ -68,4 +68,8 @@ function wim_webform_form_alter(&$form, $form_state) {
       $form['extra']['scheme']['#default_value'] = 'private';
     }
   }
+  // Enable "Send e-mail as HTML" option by default.
+  if ($form['#form_id'] === 'webform_email_edit_form') {
+    $form['template']['html']['#default_value'] = TRUE;
+  }
 }

@@ -1,0 +1,14 @@
+<?php
+/**
+ * @file
+ * Install file.
+ */
+
+/**
+ * Enable "Send e-mail as HTML" option for each exiting webform.
+ */
+function wim_webform_update_7000(&$sandbox) {
+  db_update('webform_emails')
+    ->fields(array('html' => 1))
+    ->execute();
+}
