@@ -5,7 +5,7 @@
  */
 
 /**
- * Enable "Send e-mail as HTML" option for each exiting webform.
+ * Enable "Send e-mail as HTML" option for each existing webform.
  */
 function wim_webform_update_7000(&$sandbox) {
   db_update('webform_emails')
