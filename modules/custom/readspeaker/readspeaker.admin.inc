@@ -10,6 +10,17 @@
 function readspeaker_settings_form() {
   $form = array();
 
+  $form['readspeaker_version'] = array(
+    '#type' => 'radios',
+    '#title' => t('Which version should be used'),
+    '#default_value' => variable_get('readspeaker_version', 0),
+    '#options' => array(
+      t('Old [ Standalone library ]'),
+      t('New [ Webreader ]'),
+    ),
+    '#required' => TRUE,
+  );
+
   $form['readspeaker_customerid'] = array(
     '#type' => 'textfield',
     '#title' => t('Customer ID'),
