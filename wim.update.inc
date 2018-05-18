@@ -432,3 +432,18 @@ function wim_update_7021() {
   );
   menu_link_save($item);
 }
+
+/**
+ * Hide a weight field for default view mode of all existing content types.
+ */
+function wim_update_7022() {
+  // Revert features.
+  features_revert(array(
+    'wim_agenda',
+    'wim_page',
+    'wim_news',
+    'wim_person',
+    'wim_product',
+    'wim_subject',
+  ));
+}
