@@ -50,6 +50,9 @@ function wim_agenda_strongarm() {
       'token' => array(
         'custom_settings' => FALSE,
       ),
+      'introduction' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
