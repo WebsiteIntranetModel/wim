@@ -510,7 +510,7 @@ var cc =
       '</div>' +
       '</div>';
 
-    jQuery('body').prepend(data);
+    jQuery('#skip-link').after(data);
     if (cc.settings.hideallsitesbutton) {
       jQuery('#cc-approve-button-allsites').hide();
     }
@@ -772,7 +772,7 @@ var cc =
 
     jQuery('script.cc-onconsent-inline-' + cookieType + '[type="text/plain"]').first().each(function () {
       cc.uniqelemid++;
-      if (jQuery(this).parents('body').size() > 0) {
+      if (jQuery(this).parents('#skip-link').size() > 0) {
         jQuery(this).after('<div id="cc-consentarea-' + cc.uniqelemid + '" class="' + cookieType + '"></div>');
         document.write = function (g) {
           jQuery('#cc-consentarea-' + cc.uniqelemid).append(g);
@@ -932,7 +932,7 @@ var cc =
   showminiconsent: function () {
     if (jQuery('#cc-tag').length == 0) {
       data = '<div id="cc-tag" class="cc-tag-' + cc.settings.tagPosition + '"><a class="cc-link" href="#" id="cc-tag-button" title="' + cc.strings.privacySettings + '"><span>' + cc.strings.privacySettings + '</span></a></div>';
-      jQuery('body').prepend(data);
+      jQuery('#skip-link').after(data);
       jQuery('#cc-tag').addClass(cc.settings.style);
       if (!cc.settings.hideprivacysettingstab) {
         jQuery('#cc-tag').addClass("cc-show");
@@ -970,7 +970,7 @@ var cc =
       cc.fetchprefs();
     }
     jQuery(document).bind('keyup', cc.onkeyup);
-    jQuery('body').prepend('<div id="cc-modal-overlay"></div>');
+    jQuery('#skip-link').after('<div id="cc-modal-overlay"></div>');
     jQuery(this).blur();
     if (cc.ismobile) {
       cc.setupformobile();
@@ -992,7 +992,7 @@ var cc =
       '<div class="cc-clear"></div>' +
       '</div>' +
       '</div>';
-    jQuery('body').prepend(data);
+    jQuery('#skip-link').after(data);
     if (cc.settings.disableallsites) {
       jQuery('#cc-modal-global').toggleClass("cc-hide");
     }
@@ -1238,7 +1238,7 @@ var cc =
       '</div>' +
       '</div>' +
       '</div>';
-    jQuery('body').prepend(data);
+    jQuery('#skip-link').after(data);
     cc.reloadsettingsmodal();
     jQuery('#cc-settingsmodal').addClass(cc.settings.style).click(cc.closemodals);
     jQuery('#cc-settingsmodal-wrapper').click(function () {

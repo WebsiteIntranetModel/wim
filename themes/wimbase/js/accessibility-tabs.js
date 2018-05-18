@@ -17,7 +17,8 @@
       down: 40,
       end: 35,
       home: 36,
-      tab: 9
+      tab: 9,
+      space: 32
     };
 
     var $tablist = $('.tabnav ul', context);
@@ -161,12 +162,12 @@
         if (e.shiftKey) {
           return true;
         }
-
-        // Move to next tab on Tab key if the current has no focusable elements.
+        return false;
+      case $keys.space:
         var paneId = '#' + $tab.find('a').attr('aria-controls');
 
-        if ($(paneId).find(':focusable').length === 0 && ($tabs.index($tab) !== $tabs.length - 1)) {
-          self.nextTab($tab, $tabs);
+        if ($(paneId).find(':focusable').length === 0) {
+          self.currentTab($tab);
           e.stopPropagation();
           e.preventDefault();
         }
@@ -201,22 +202,17 @@
         if (e.shiftKey) {
           return true;
         }
-
-        // Move to next tab when pressing Tab while the last focusable element
-        // is focused, instead of moving outside of tabs.
-        if ($tabs.index($currentTab) !== $tabs.length - 1) {
-
-          var paneId = '#' + $currentTab.find('a').attr('aria-controls');
-          var $lastFocusable = $(paneId).find(':focusable').last();
-
-          if ($lastFocusable.length > 0 && $lastFocusable.get(0) === e.target) {
-            self.nextTab($currentTab, $tabs);
-            e.stopPropagation();
-            e.preventDefault();
-          }
-        }
         return false;
     }
+  };
+
+  /**
+   * Helper function to choose a current tab.
+   * @param {Object} $tab Current tab.
+   */
+  Drupal.wcagTabs.currentTab = function ($tab) {
+    var self = this;
+    self.switchTabs($tab);
   };
 
   /**

@@ -53,6 +53,9 @@ function readspeaker_theme($existing, $type, $theme, $path) {
     'readspeaker' => array(
       'variables' => array(
         'customer_id' => NULL,
+        'read_id' => NULL,
+        'version_name' => NULL,
+        'version_url' => NULL,
         'lang' => NULL,
         'url' => NULL,
         'title' => NULL,
@@ -101,20 +104,36 @@ function readspeaker_block_view($delta = '') {
  */
 function readspeaker_build_player() {
   $customerid = variable_get('readspeaker_customerid', NULL);
-  $current_path = current_path();
+  $regioncode = 'eu';
+  $read_id = variable_get('readspeaker_readid', 'page-content');
+  $version = variable_get('readspeaker_version', 0);
+  $current_path = check_url(current_path());
   $module_path = drupal_get_path('module', 'readspeaker');
-  $library_path = $module_path . '/libraries/readspeaker/ReadSpeaker.js?pids=embhl';
+  if ($version == 0) {
+    $version_name = 'localreader';
+    $version_url = '//app.readspeaker.com/cgi-bin/rsent?customerid=';
+    $library_path = $module_path . '/libraries/readspeaker/ReadSpeaker.js?pids=embhl';
+  } else {
+    $version_name = 'webreader';
+    $version_url = '//app-' . $regioncode . '.readspeaker.com/cgi-bin/rsent?customerid=';
+    $library_path = '//f1-' . $regioncode . '.readspeaker.com/script/' . $customerid . '/webReader/webReader.js?pids=wr';
+  }
+
   $data = array(
     '#type' => 'markup',
     '#markup' => '<script type="text/javascript" src="/' . $library_path . '"></script>',
   );
+
   drupal_add_html_head($data, 'readspeaker');
 
   $player = array(
     '#theme' => 'readspeaker',
+    '#version_name' => $version_name,
     '#customer_id' => $customerid,
     '#lang' => variable_get('readspeaker_language', 'nl_nl'),
     '#url' => url($current_path, array('absolute' => TRUE)),
+    '#version_url' => $version_url,
+    '#read_id' => $read_id,
     '#title' => variable_get('readspeaker_title', t('Listen to this page using ReadSpeaker')),
     '#button' => variable_get('readspeaker_button_text', t('Listen')),
   );

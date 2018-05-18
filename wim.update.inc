@@ -379,3 +379,56 @@ function wim_update_7017() {
     'warning' => '14',
   ))->condition('pid', 1)->execute();
 }
+
+/**
+ * Enable hsts module and set configuration.
+ */
+function wim_update_7018() {
+  // Enable HSTS.
+  module_enable(array('hsts'));
+
+  // Configure HSTS.
+  variable_set('hsts_enabled', 1);
+  variable_set('hsts_max_age', 31536000);
+  variable_set('hsts_subdomains', 1);
+}
+
+/**
+ * Enable login_destination module and create a common rule.
+ */
+function wim_update_7019() {
+  // Enable login destination module.
+  module_enable(array('login_destination'));
+
+  // Create a common rule.
+  db_insert('login_destination')
+    ->fields(array(
+      'destination' => '<front>',
+      'enabled' => 1,
+      'triggers' => 'a:0:{}',
+      'roles' => 'a:0:{}',
+      'pages' => ''
+    ))->execute();
+}
+
+/**
+ * Enable media_bulk_upload module.
+ */
+function wim_update_7020() {
+  // Enable media_bulk_upload.
+  module_enable(array('media_bulk_upload'));
+}
+
+/**
+ * Add media_bulk_upload menu link.
+ */
+function wim_update_7021() {
+  $item = array(
+    'link_title' => t('Import files'),
+    'link_path' => 'file/add',
+    'menu_name' => 'management',
+    'plid' => 22,
+    'weight' => -50,
+  );
+  menu_link_save($item);
+}

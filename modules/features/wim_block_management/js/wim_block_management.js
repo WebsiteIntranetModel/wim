@@ -29,7 +29,17 @@
         } else {
           state = '';
         }
-        markup += '<div class="tab tab-' + key + ' ' + state + '"><ul>' + $(this).html() + '</ul></div>';
+
+        $.each($(this).find('li'), function (key, value) {
+          $(this).attr('data-filter-name', $(this).text().toLowerCase() );
+          $(this).attr('data-filter-item', '');
+        });
+
+        markup += '<div class="tab tab-' + key + ' ' + state + '">';
+        markup += getFilter(key).html();
+        markup += '<ul>' + $(this).html() + '</ul>';
+        markup += '</div>';
+
         // Remove the original.
         $(this).remove();
       });
@@ -48,6 +58,32 @@
         $(this).addClass('active');
       });
 
+      $.each(blocks, function (key, value) {
+        $('[data-search-' + key + ']').on('keyup', function () {
+          var searchVal = $(this).val();
+          var filterItems = $('.tab-' + key + ' [data-filter-item]');
+
+          if (searchVal != '') {
+            filterItems.addClass('hidden');
+            $('.tab-' + key + ' [data-filter-item][data-filter-name*="' + searchVal.toLowerCase() + '"]').removeClass('hidden');
+          } else {
+            filterItems.removeClass('hidden');
+          }
+        });
+      });
+
+      function getFilter(key){
+        var label = $('<label>').attr({ for: 'edit-title'}).text(Drupal.t('Filter by: Title'));
+        var filter = $('<div>').attr({ class: 'container views-exposed-form'}).append(label);
+        var input = $('<input>').attr({
+          type: 'text',
+          name: 'Title',
+          class: 'form-text'
+        });
+
+        input.attr('data-search-' + key, '');
+        return filter.append(input);
+      }
     }
   }
 })(jQuery);

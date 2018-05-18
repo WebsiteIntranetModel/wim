@@ -138,7 +138,7 @@ function custom_lists_block_view($delta = '') {
     $more_link_uri = custom_lists_get_more_uri($list);
     if ($more_link_uri) {
       $block['content']['more-link'] = array(
-        '#markup' => '<div class="more-link">' . l(t('More @display_title', array('@display_title' => $list['display_title'])), $more_link_uri) . '</div>',
+        '#markup' => '<div class="more-link">' . l(t('More @display_title', array('@display_title' => $list['display_title'])), $more_link_uri, array('html' => TRUE)) . '</div>',
       );
     }
   }
@@ -332,6 +332,10 @@ function custom_lists_content_nodes($list, $items, $full_load = TRUE) {
         $query->join('field_data_field_agenda_date', 'fd', 'fd.entity_id = n.nid');
       }
       $query->orderBy('fd.field_agenda_date_value', $parts[1]);
+    }
+    elseif ($parts[0] === 'weight'){
+      $query->join('field_data_field_weight', 'fw', 'fw.entity_id = n.nid');
+      $query->orderBy('fw.field_weight_value', $parts[1]);
     }
     elseif ($parts[0] !== 'queue') {
       $query->orderBy('n.' . $parts[0], $parts[1]);

@@ -268,7 +268,6 @@ function atos_esuite_map_node($documentXML, $force = FALSE) {
         ->key(array('identifier' => $id))
         ->fields(array('changed' => REQUEST_TIME))
         ->execute();
-      return FALSE;
     }
 
     // Are we updating or inserting.
@@ -360,6 +359,9 @@ function atos_esuite_map_node_product(stdClass $node, DOMDocument $documentDOM, 
           ),
         ),
       );
+    }
+    else {
+      $node->$filed_name = array();
     }
   }
 

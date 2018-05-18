@@ -11,7 +11,7 @@ projects[adminimal_admin_menu] = 1.7
 projects[apachesolr] = 1.8
 projects[apachesolr_exclude_node] = 1.4
 projects[apachesolr_attachments] = 1.x-dev
-projects[autologout] = 4.4
+projects[autologout] = 4.5
 projects[bean] = 1.11
 projects[breakpoints] = 1.4
 projects[bootstrap_fieldgroup] = 1.2
@@ -26,20 +26,22 @@ projects[diff] = 3.3
 projects[elysia_cron] = 2.4
 projects[email] = 1.3
 projects[encrypt] = 2.3
-projects[entity] = 1.8
-projects[entityreference] = 1.2
+projects[entity] = 1.9
+projects[entityreference] = 1.5
 projects[facetapi] = 1.5
 projects[features] = 2.10
 projects[felix] = 1.0-beta9
 projects[field_group] = 1.5
-projects[file_entity] = 2.0-beta3
+projects[file_entity] = 2.4
 projects[flood_control] = 1.0
 projects[hansel] = 1.6
 projects[honeypot] = 1.22
+projects[hsts] = 1.2
 projects[i18n] = 1.15
 projects[jquery_update] = 2.7
 projects[location] = 3.7
 projects[logging_alerts] = 2.2
+projects[login_destination] = 1.4
 projects[magic] = 2.3
 projects[mailsystem] = 2.34
 projects[media] = 2.9
@@ -49,6 +51,7 @@ projects[metatag] = 1.21
 projects[migrate] = 2.8
 projects[mimemail] = 1.0-beta4
 projects[module_filter] = 2.0
+projects[multiform] = 1.4
 projects[nodequeue] = 2.1
 projects[l10n_update] = 2.1
 projects[link] = 1.4
@@ -58,16 +61,17 @@ projects[paragraphs] = 1.0-rc5
 projects[password_policy] = 1.12
 projects[pathauto] = 1.3
 projects[picture] = 2.13
-projects[redirect] = 1.0-rc3
+projects[plupload] = 1.7
 projects[revisioning] = 1.9
 projects[roleassign] = 1.1
 projects[scheduler] = 1.5
 projects[strongarm] = 2.0
 projects[special_menu_items] = 2.0
+projects[smart_trim] = 1.5
 projects[token] = 1.7
 projects[userprotect] = 1.2
 projects[variable] = 2.5
-projects[views] = 3.14
+projects[views] = 3.17
 projects[views_bootstrap] = 3.1
 projects[views_bulk_operations] = 3.4
 projects[webform] = 4.14
@@ -76,6 +80,12 @@ projects[webform_encrypt] = 1.2
 projects[weight] = 3.1
 projects[wysiwyg] = 2.x-dev
 projects[xmlsitemap] = 2.3
+
+; Get a specific commit of redirect so patch below will always apply
+projects[redirect][version] = 1.x-dev
+projects[redirect][download][type] = "git"
+projects[redirect][download][url] = "http://git.drupal.org/project/redirect.git"
+projects[redirect][download][revision] = "add3c695f613fbeec23b7259e59936f60a6b6da6"
 
 ; Themes
 projects[adminimal_theme] = 1.24
@@ -106,7 +116,7 @@ projects[location][patch][1997658_6] = https://www.drupal.org/files/issues/locat
 
 ; Fixing bug with the location Google maps link
 ; https://www.drupal.org/node/2781227
-projects[location][patch][2781227_1] = https://www.drupal.org/files/issues/location-google-maps-link-2781227-1.patch
+projects[location][patch][2781227_4] = https://www.drupal.org/files/issues/location-google-maps-link-2781227-2.patch
 
 ; Bean
 ; Add migration support for Bean
@@ -145,6 +155,11 @@ projects[webform_clear][patch][2471671] = https://www.drupal.org/files/issues/24
 ; https://www.drupal.org/node/2399645
 projects[hansel][patch][2399645] = https://www.drupal.org/files/issues/hansel-broken-token-generation-2399645-1.patch
 
+; Link
+; URL validation rejects existing valid content after upgrade to 7.x-1.4
+; https://www.drupal.org/node/2666912
+projects[link][patch][2666912] = https://www.drupal.org/files/issues/revert-url-validation-2666912.patch
+
 ; Linkit
 ; Allow Linkit support for any eligible element type
 ; https://www.drupal.org/node/2651404
@@ -153,16 +168,10 @@ projects[linkit][patch][2651404] = https://www.drupal.org/files/issues/linkit-ad
 ; https://www.drupal.org/node/2514928
 projects[linkit][patch][2514928] = https://www.drupal.org/files/issues/linkit-menu-links-2514928-9.patch
 
-; Custom
-; a11ychecker_custom
-libraries[a11ychecker][download][type] = "get"
-libraries[a11ychecker][download][url] = "http://a11ychecker.download.cksource.com/custom/a11ychecker_custom.zip"
-libraries[a11ychecker][destination] = "libraries"
-libraries[a11ychecker][subdir] = "ckeditor_plugins"
-
-; CKEditor 4.5.11
-libraries[ckeditor][download][type] = get
-libraries[ckeditor][download][url] = http://ckeditor.com/builder/download/4aa56d967057f1cfe925bceb9b98049d
+; Redirect
+; Provide redirect to alias from internal path functionality from globalredirect
+; https://www.drupal.org/node/905914
+projects[redirect][patch][905914] = https://www.drupal.org/files/issues/redirect-merge_global_redirect-905914-246-d7.patch
 
 ; Slick
 libraries[slick][download][type] = get
@@ -171,6 +180,10 @@ libraries[slick][download][url] = https://github.com/kenwheeler/slick/archive/ma
 ; Chosen
 libraries[chosen][download][type] = get
 libraries[chosen][download][url] = https://github.com/harvesthq/chosen/releases/download/v1.6.2/chosen_v1.6.2.zip
+
+; Plupload
+libraries[plupload][download][type] = get
+libraries[plupload][download][url] = https://github.com/moxiecode/plupload/archive/v1.5.8.zip
 
 ; Apachesolr attachments
 projects[apachesolr_attachments][patch][2677866] = https://www.drupal.org/files/issues/mysql-56-compatibility-2677866-12.patch
