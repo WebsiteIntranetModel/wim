@@ -175,7 +175,7 @@ projects[redirect][patch][905914] = https://www.drupal.org/files/issues/redirect
 
 ; Slick
 libraries[slick][download][type] = get
-libraries[slick][download][url] = https://github.com/kenwheeler/slick/archive/master.zip
+libraries[slick][download][url] = https://github.com/kenwheeler/slick/archive/1.8.0.zip
 
 ; Chosen
 libraries[chosen][download][type] = get
