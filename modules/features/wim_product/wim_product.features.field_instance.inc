@@ -79,7 +79,7 @@ function wim_product_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 1,
+        'weight' => 6,
       ),
       'introduction' => array(
         'label' => 'hidden',
@@ -169,7 +169,7 @@ function wim_product_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 6,
+        'weight' => 12,
       ),
       'introduction' => array(
         'label' => 'hidden',
@@ -230,7 +230,7 @@ function wim_product_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 5,
+        'weight' => 9,
       ),
       'introduction' => array(
         'label' => 'above',
@@ -279,7 +279,7 @@ function wim_product_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 3,
+        'weight' => 7,
       ),
       'introduction' => array(
         'label' => 'hidden',
@@ -347,7 +347,7 @@ function wim_product_field_default_field_instances() {
         'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 4,
+        'weight' => 8,
       ),
       'introduction' => array(
         'label' => 'inline',
@@ -400,10 +400,9 @@ function wim_product_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => NULL,
         'settings' => array(),
-        'type' => 'number_integer',
-        'weight' => 16,
+        'type' => 'hidden',
+        'weight' => 5,
       ),
       'introduction' => array(
         'label' => 'above',
