@@ -121,6 +121,27 @@ function wim_news_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'scheduler_allow_date_only';
+  $strongarm->value = 1;
+  $export['scheduler_allow_date_only'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'scheduler_date_format';
+  $strongarm->value = 'd/m/Y H:i:s';
+  $export['scheduler_date_format'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'scheduler_default_time';
+  $strongarm->value = '01:00:00';
+  $export['scheduler_default_time'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'scheduler_publish_enable_news';
   $strongarm->value = 1;
   $export['scheduler_publish_enable_news'] = $strongarm;
