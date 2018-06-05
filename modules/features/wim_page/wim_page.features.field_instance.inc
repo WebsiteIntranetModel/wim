@@ -79,7 +79,7 @@ function wim_page_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 3,
+        'weight' => 4,
       ),
       'introduction' => array(
         'label' => 'hidden',
@@ -230,7 +230,7 @@ function wim_page_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 4,
+        'weight' => 5,
       ),
       'introduction' => array(
         'label' => 'above',
@@ -279,7 +279,7 @@ function wim_page_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 2,
+        'weight' => 3,
       ),
       'introduction' => array(
         'label' => 'hidden',
@@ -347,7 +347,7 @@ function wim_page_field_default_field_instances() {
         'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 1,
+        'weight' => 2,
       ),
       'introduction' => array(
         'label' => 'inline',
@@ -400,10 +400,9 @@ function wim_page_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => NULL,
         'settings' => array(),
-        'type' => 'number_integer',
-        'weight' => 8,
+        'type' => 'hidden',
+        'weight' => 1,
       ),
       'introduction' => array(
         'label' => 'above',
