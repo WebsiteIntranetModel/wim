@@ -3,3 +3,110 @@
  * @file
  * Drupal needs this blank file.
  */
+
+function wim_seo_element_info_alter(&$type) {
+  if (isset($type['plupload']['#value_callback'])) {
+    // Override a validate callback for plupload form element to keep a simple
+    // URL structure of file names.
+    $type['plupload']['#value_callback'] = '_wim_seo_plupload_element_value';
+  }
+}
+
+/**
+ * Validate callback for plupload form element.
+ */
+function _wim_seo_plupload_element_value(&$element, $input = FALSE, $form_state = NULL) {
+  $id = $element['#id'];
+  // If a unique identifier added with '--', we need to exclude it
+  if (preg_match('/(.*)(--[0-9]+)$/', $id, $reg)) {
+    $id = $reg[1];
+  }
+  $files = array();
+  foreach ($form_state['input'] as $key => $value) {
+    if (preg_match('/' . $id . '_([0-9]+)_(.*)/', $key, $reg)) {
+      $i = $reg[1];
+      $key = $reg[2];
+
+      // Only add the keys we expect.
+      if (!in_array($key, array('tmpname', 'name', 'status'))) {
+        continue;
+      }
+
+      // Munge the submitted file names for security.
+      //
+      // Similar munging is normally done by file_save_upload(), but submit
+      // handlers for forms containing plupload elements can't use
+      // file_save_upload(), for reasons discussed in plupload_test_submit().
+      // So we have to do this for them.
+      //
+      // Note that we do the munging here in the value callback function
+      // (rather than during form validation or elsewhere) because we want to
+      // actually modify the submitted values rather than reject them outright;
+      // file names that require munging can be innocent and do not necessarily
+      // indicate an attempted exploit. Actual validation of the file names is
+      // performed later, in plupload_element_validate().
+      if (in_array($key, array('tmpname', 'name'))) {
+        // Find the whitelist of extensions to use when munging. If there are
+        // none, we'll be adding default ones in plupload_element_process(), so
+        // use those here.
+        if (isset($element['#upload_validators']['file_validate_extensions'][0])) {
+          $extensions = $element['#upload_validators']['file_validate_extensions'][0];
+        }
+        else {
+          $validators = _plupload_default_upload_validators();
+          $extensions = $validators['file_validate_extensions'][0];
+        }
+
+        if ($key === 'name') {
+          $value = str_replace([' ', '_'], '-', $value);
+        }
+
+        $value = file_munge_filename($value, $extensions, FALSE);
+        // To prevent directory traversal issues, make sure the file name does
+        // not contain any directory components in it. (This more properly
+        // belongs in the form validation step, but it's simpler to do here so
+        // that we don't have to deal with the temporary file names during form
+        // validation and can just focus on the final file name.)
+        //
+        // This step is necessary since this module allows a large amount of
+        // flexibility in where its files are placed (for example, they could
+        // be intended for public://subdirectory rather than public://, and we
+        // don't want an attacker to be able to get them back into the top
+        // level of public:// in that case).
+        $value = rtrim(drupal_basename($value), '.');
+
+
+        // Based on the same feture from file_save_upload().
+        if (!variable_get('allow_insecure_uploads', 0) && preg_match('/\.(php|pl|py|cgi|asp|js)(\.|$)/i', $value) && (substr($value, -4) != '.txt')) {
+          $value .= '.txt';
+
+          // The .txt extension may not be in the allowed list of extensions.
+          // We have to add it here or else the file upload will fail.
+          if (!empty($extensions)) {
+            $element['#upload_validators']['file_validate_extensions'][0] .= ' txt';
+            drupal_set_message(t('For security reasons, your upload has been renamed to %filename.', array('%filename' => $value)));
+          }
+        }
+      }
+
+      // The temporary file name has to be processed further so it matches what
+      // was used when the file was written; see plupload_handle_uploads().
+      if ($key == 'tmpname') {
+        $value = _plupload_fix_temporary_filename($value);
+        // We also define an extra key 'tmppath' which is useful so that submit
+        // handlers do not need to know which directory plupload stored the
+        // temporary files in before trying to copy them.
+        $files[$i]['tmppath'] = variable_get('plupload_temporary_uri', 'temporary://') . $value;
+      }
+      elseif ($key == 'name') {
+        if (module_exists('transliteration') && variable_get('transliteration_file_uploads', TRUE)) {
+          $value = transliteration_clean_filename($value);
+        }
+      }
+
+      // Store the final value in the array we will return.
+      $files[$i][$key] = $value;
+    }
+  }
+  return $files;
+}
