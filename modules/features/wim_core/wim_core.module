@@ -263,6 +263,11 @@ function wim_core_form_alter(&$form, &$form_state, $form_id) {
       drupal_goto('admin/people/permissions/roles');
     }
   }
+
+  // Hide a "Path to the icon" field, it always has the same structure.
+  if ($form_id == 'menu_edit_item') {
+    hide($form['icon']['icon_path']);
+  }
 }
 
 /**

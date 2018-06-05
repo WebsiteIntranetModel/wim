@@ -181,9 +181,5 @@ libraries[slick][download][url] = https://github.com/kenwheeler/slick/archive/1.
 libraries[chosen][download][type] = get
 libraries[chosen][download][url] = https://github.com/harvesthq/chosen/releases/download/v1.6.2/chosen_v1.6.2.zip
 
-; Plupload
-libraries[plupload][download][type] = get
-libraries[plupload][download][url] = https://github.com/moxiecode/plupload/archive/v1.5.8.zip
-
 ; Apachesolr attachments
 projects[apachesolr_attachments][patch][2677866] = https://www.drupal.org/files/issues/mysql-56-compatibility-2677866-12.patch
