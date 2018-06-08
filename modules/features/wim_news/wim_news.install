@@ -15,7 +15,7 @@ function wim_news_install() {
  * Place exposed filter as filex block at the top of content on the news page.
  */
 function wim_news_update_7001(&$sandbox) {
-  features_revert(array('wim_news'));
+  features_revert_module('wim_news');
   _place_exposed_filter_filex_block();
 }
 
