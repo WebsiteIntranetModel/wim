@@ -31,6 +31,11 @@ function wim_block_management_form_felix_attributes_form_alter(&$form, &$form_st
     '#default_value' => isset($config['new_row']) ? $config['new_row'] : FALSE,
     '#description' => t('Check this to show block in a new row, otherwise it will respect other blocks in region and try to move them in the same row based on bootstrap layout selected above.'),
   );
+  $form['row_weight'] = array(
+    '#type' => 'weight',
+    '#title' => t('Row weight'),
+    '#default_value' => isset($config['row_weight']) ? $config['row_weight'] : 0,
+  );
 
   if ($felix_block->module === 'bean') {
     $bean = bean_load_delta($felix_block->delta);
@@ -71,6 +76,7 @@ function wim_block_management_felix_block_config_save($block, $values) {
     'bootstrap_layout',
     'new_row',
     'bean_view_mode',
+    'row_weight',
   );
 
   foreach ($felix_custom_configs as $config) {
