@@ -104,10 +104,12 @@ function readspeaker_build_player() {
   $current_path = check_url(current_path());
   $module_path = drupal_get_path('module', 'readspeaker');
   $library_path = $module_path . '/libraries/readspeaker/ReadSpeaker.js?pids=embhl';
+
   $data = array(
     '#type' => 'markup',
     '#markup' => '<script type="text/javascript" src="/' . $library_path . '"></script>',
   );
+
   drupal_add_html_head($data, 'readspeaker');
 
   $player = array(

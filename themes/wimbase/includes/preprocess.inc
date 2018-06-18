@@ -70,6 +70,12 @@ function wimbase_preprocess_region(&$variables) {
           $row_id++;
           $rows[$row_id][] = $variables['elements'][$element_id]['#children'];
           $total_col = $block->bootstrap_layout;
+
+          // Override a position of block in the list if is set a weight row.
+          if(isset($block->row_weight)){
+            unset($rows[$row_id]);
+            $rows[$block->row_weight][] = $variables['elements'][$element_id]['#children'];
+          }
         }
         else {
           $total_col += $block->bootstrap_layout;
@@ -88,6 +94,8 @@ function wimbase_preprocess_region(&$variables) {
       }
 
     }
+
+    ksort($rows);
 
     foreach ($rows as $row) {
       $output .= '<div class="row">' . implode("", $row) . '</div>';
@@ -140,6 +148,7 @@ function wimbase_preprocess_block(&$variables) {
     }
     // If new row config exist then use it otherwise move it in a new row.
     $block->new_row = isset($config['new_row']) ? $config['new_row'] : TRUE;
+    $block->row_weight = isset($config['row_weight']) ? $config['row_weight'] : 0;
 
     if ($block->module === 'bean' && $bean) {
       if (isset($config['bean_view_mode']) && $config['bean_view_mode']) {
