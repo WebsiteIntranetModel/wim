@@ -451,20 +451,10 @@ function wim_update_7022() {
 /**
  * Enable node_clone module and set omitted content types.
  */
-function wim_update_7027() {
+function wim_update_7023() {
   // Enable node_clone module.
   module_enable(array('node_clone'), FALSE);
 
-  // Set omitted content types.
-  variable_set('clone_omitted', array(
-    'agenda' => 'agenda',
-    'page' => 'page',
-    'book' => 'book',
-    'faq' => 'faq',
-    'news' => 'news',
-    'person' => 'person',
-    'product' => 'product',
-    'subject_page' => 'subject_page',
-    'webform' => 0,
-  ));
+  // Configure node_clone.
+  _wim_set_default_node_clone_options();
 }
