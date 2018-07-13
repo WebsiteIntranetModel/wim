@@ -1184,7 +1184,8 @@ function _wim_enable_modules() {
   $modules = array(
     'hsts',
     'login_destination',
-    'media_bulk_upload'
+    'media_bulk_upload',
+    'node_clone',
   );
 
   // Enable modules.
@@ -1194,6 +1195,19 @@ function _wim_enable_modules() {
   variable_set('hsts_enabled', 1);
   variable_set('hsts_max_age', 31536000);
   variable_set('hsts_subdomains', 1);
+
+  // Configure node_clone.
+  variable_set('clone_omitted', array(
+    'agenda' => 'agenda',
+    'page' => 'page',
+    'book' => 'book',
+    'faq' => 'faq',
+    'news' => 'news',
+    'person' => 'person',
+    'product' => 'product',
+    'subject_page' => 'subject_page',
+    'webform' => 0,
+  ));
 }
 
 /**

@@ -53,6 +53,7 @@ projects[mimemail][version] = 1.0-beta4
 projects[module_filter][version] = 2.0
 projects[multiform][version] = 1.4
 projects[nodequeue][version] = 2.1
+projects[node_clone][version] = 1.0
 projects[l10n_update][version] = 2.1
 projects[link][version] = 1.4
 projects[libraries][version] = 2.3
