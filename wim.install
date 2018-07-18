@@ -1188,7 +1188,7 @@ function _wim_enable_modules() {
     'hsts',
     'login_destination',
     'media_bulk_upload',
-    'node_clone',
+    'clone',
   );
 
   // Enable modules.
@@ -1216,7 +1216,7 @@ function _wim_set_default_login_destination() {
 }
 
 /**
- * Default settings for node_clone module.
+ * Default settings for node clone module.
  */
 function _wim_set_default_node_clone_options() {
   // Set omitted content types.

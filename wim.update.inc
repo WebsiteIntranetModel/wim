@@ -449,11 +449,11 @@ function wim_update_7022() {
 }
 
 /**
- * Enable node_clone module and set omitted content types.
+ * Enable node clone module and set omitted content types.
  */
 function wim_update_7023() {
   // Enable node_clone module.
-  module_enable(array('node_clone'), FALSE);
+  module_enable(array('clone'), FALSE);
 
   // Configure node_clone.
   _wim_set_default_node_clone_options();
