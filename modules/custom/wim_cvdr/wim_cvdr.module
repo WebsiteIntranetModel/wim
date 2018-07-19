@@ -67,17 +67,17 @@ function wim_cvdr_block_view($delta = '') {
 
       foreach ($items as $item) {
         $list_items[] = l($item['title'], $item['url'],
-            array('attributes' => array('target' => '_blank')));
+          array('attributes' => array('target' => '_blank')));
       }
 
       $block['content'] = theme('item_list', array(
-        'items' => $list_items,
-        'title' => '',
-        'type' => 'ul',
-        'attributes' => array(
-          'class' => array('cvdr-wim', drupal_html_class($subject)),
-        ),
-      )
+          'items' => $list_items,
+          'title' => '',
+          'type' => 'ul',
+          'attributes' => array(
+            'class' => array('cvdr-wim', drupal_html_class($subject)),
+          ),
+        )
       );
     }
   }
@@ -89,10 +89,10 @@ function wim_cvdr_block_view($delta = '') {
     ),
   ), 'setting');
   drupal_add_js(
-      drupal_get_path('module', 'wim_cvdr') . '/wim_cvdr.js', array(
-        'type' => 'file',
-        'scope' => 'footer',
-      )
+    drupal_get_path('module', 'wim_cvdr') . '/wim_cvdr.js', array(
+      'type' => 'file',
+      'scope' => 'footer',
+    )
   );
 
   return $block;
@@ -168,9 +168,9 @@ function _wim_cvdr_read_xml() {
   if ($xml_response->code !== '200' || strpos($xml_response->headers['content-type'], 'text/xml') === FALSE) {
     // Log error and quit.
     watchdog('WIM CVDR',
-        'Could not retrieve XML. Debug: !array',
-        array('!array' => print_r($xml_response, TRUE)),
-        WATCHDOG_ERROR);
+      'Could not retrieve XML. Debug: !array',
+      array('!array' => print_r($xml_response, TRUE)),
+      WATCHDOG_ERROR);
     return FALSE;
   }
 
@@ -199,7 +199,8 @@ function _wim_cvdr_process_xml($xml) {
     $url = $item->getElementsByTagName('publicatieurl_xhtml')->item(0);
     $subject = $xpath->query('.//overheidrg:onderwerp', $item)->item(0);
     $title = $xpath->query('.//dcterms:title', $item)->item(0);
-    $date = $xpath->query('.//overheidrg:uitwerkingtredingDatum', $item)->item(0);
+    $date = $xpath->query('.//overheidrg:uitwerkingtredingDatum', $item)
+      ->item(0);
 
     // Only proceed if everything is available.
     if (isset($url, $subject, $title, $date)) {
