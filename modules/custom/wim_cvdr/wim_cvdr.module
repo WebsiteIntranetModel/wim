@@ -1,0 +1,235 @@
+<?php
+/**
+ * @file
+ * WIM CVDR main module file.
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function wim_cvdr_menu() {
+  $items = array();
+
+  $items['admin/config/services/cvdr'] = array(
+    'title' => 'WIM CVDR',
+    'description' => 'Configuration for connecting with CVDR.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('_wim_cvdr_admin_page'),
+    'access arguments' => array('administer blocks'),
+    'type' => MENU_NORMAL_ITEM,
+    'file' => 'wim_cvdr.admin.inc',
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function wim_cvdr_block_info() {
+  $blocks = array();
+  $subjects = _wim_cvdr_retrieve_subjects();
+
+  // Create a seperate block for each subject.
+  foreach ($subjects as $subject) {
+    // Create nice machine name based on subject name.
+    $machine_name = str_replace('-', '_', drupal_html_class($subject));
+    $blocks[md5('wim_cvdr_' . $machine_name)] = array(
+      'info' => t('CVDR: !subject', array('!subject' => $subject)),
+      'cache' => DRUPAL_CACHE_GLOBAL,
+    );
+  }
+
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function wim_cvdr_block_view($delta = '') {
+  $block = array();
+
+  $subjects = _wim_cvdr_retrieve_subjects();
+  foreach ($subjects as $subject) {
+    // Create nice machine name based on subject name.
+    $machine_name = str_replace('-', '_', drupal_html_class($subject));
+
+    // Check if block is current subject.
+    if ($delta === md5('wim_cvdr_' . $machine_name)) {
+      // Render subject block.
+      $block['subject'] = $subject;
+
+      // Build the links to the CVDR items.
+      $items = _wim_cvdr_retrieve_items($subject);
+
+      // Sort the items alphabetically.
+      sort($items);
+
+      foreach ($items as $item) {
+        $list_items[] = l($item['title'], $item['url'],
+            array('attributes' => array('target' => '_blank')));
+      }
+
+      $block['content'] = theme('item_list', array(
+        'items' => $list_items,
+        'title' => '',
+        'type' => 'ul',
+        'attributes' => array(
+          'class' => array('cvdr-wim', drupal_html_class($subject)),
+        ),
+      )
+      );
+    }
+  }
+
+  // Add JS.
+  drupal_add_js(array(
+    'wim_cvdr' => array(
+      'maxItems' => variable_get('wim_cvdr_max_visible', 5) - 1,
+    ),
+  ), 'setting');
+  drupal_add_js(
+      drupal_get_path('module', 'wim_cvdr') . '/wim_cvdr.js', array(
+        'type' => 'file',
+        'scope' => 'footer',
+      )
+  );
+
+  return $block;
+}
+
+/**
+ * Retrieve the subjects available from the webservice.
+ *
+ * @return array
+ *   containing the subjects.
+ */
+function _wim_cvdr_retrieve_subjects() {
+  $items = array();
+
+  // Use caching to improve performance.
+  if ($cached = cache_get('wim_cvdr_items')) {
+    $items = $cached->data;
+  }
+  else {
+    $xml = _wim_cvdr_read_xml();
+    if ($xml) {
+      $items = _wim_cvdr_process_xml($xml);
+    }
+  }
+
+  return array_keys($items);
+}
+
+/**
+ * Retrieve all items from the webservice.
+ *
+ * @param string $key
+ *   Indicating which block to render.
+ *
+ * @return array
+ *   Containing all items.
+ */
+function _wim_cvdr_retrieve_items($key = '') {
+  $items = array();
+
+  // Use caching to improve performance.
+  if ($cached = cache_get('wim_cvdr_items')) {
+    $items = $cached->data;
+  }
+  else {
+    $xml = _wim_cvdr_read_xml();
+    if ($xml) {
+      $items = _wim_cvdr_process_xml($xml);
+    }
+  }
+
+  // Return specific items if requested.
+  if (!empty($key) && array_key_exists($key, $items)) {
+    return $items[$key];
+  }
+  elseif (!empty($key) && !array_key_exists($key, $items)) {
+    return t('Block could not be rendered.');
+  }
+
+  // Return all items.
+  return $items;
+}
+
+/**
+ * Request the XML from the webservice.
+ */
+function _wim_cvdr_read_xml() {
+  $xml_url = variable_get('wim_cvdr_url');
+
+  // Request the XML from the webservice.
+  $xml_response = drupal_http_request($xml_url, array('timeout' => 10));
+
+  if ($xml_response->code !== '200' || strpos($xml_response->headers['content-type'], 'text/xml') === FALSE) {
+    // Log error and quit.
+    watchdog('WIM CVDR',
+        'Could not retrieve XML. Debug: !array',
+        array('!array' => print_r($xml_response, TRUE)),
+        WATCHDOG_ERROR);
+    return FALSE;
+  }
+
+  // Return the XML data.
+  return $xml_response->data;
+}
+
+/**
+ * Process the XML by creating an array keyed on subject.
+ *
+ * @param string $xml
+ *   The xml in string format.
+ *
+ * @return array
+ *   With items keyed on subject and sorted.
+ */
+function _wim_cvdr_process_xml($xml) {
+  $xml_dom = new DOMDocument();
+  $xml_dom->loadXML($xml);
+  $items = array();
+
+  // Loop through the items in the XML.
+  foreach ($xml_dom->getElementsByTagName('gzd') as $item) {
+    // Retrieve the needed data by using xpath queries.
+    $xpath = new DOMXpath($xml_dom);
+    $url = $item->getElementsByTagName('publicatieurl_xhtml')->item(0);
+    $subject = $xpath->query('.//overheidrg:onderwerp', $item)->item(0);
+    $title = $xpath->query('.//dcterms:title', $item)->item(0);
+    $date = $xpath->query('.//overheidrg:uitwerkingtredingDatum', $item)->item(0);
+
+    // Only proceed if everything is available.
+    if (isset($url, $subject, $title, $date)) {
+      $url = $url->nodeValue;
+      $subject = ucfirst($subject->nodeValue);
+      $title = $title->nodeValue;
+      $date = $date->nodeValue;
+
+      // Check if no expire date is set or expire date is in the future.
+      if (empty($date) || strtotime($date) > REQUEST_TIME) {
+        // Fallback when no subject is set for this item.
+        if (empty($subject)) {
+          $subject = t('Other');
+        }
+
+        // Save the item keyed by its subject.
+        $items[$subject][] = array(
+          'title' => $title,
+          'url' => $url,
+        );
+      }
+    }
+  }
+
+  // Sort items on key (subject) alphabetically.
+  ksort($items);
+
+  // Save the cached results to improve performance.
+  $expire = REQUEST_TIME + (variable_get('wim_cvdr_cache_time', 60) * 60);
+  cache_set('wim_cvdr_items', $items, 'cache', $expire);
+
+  return $items;
+}
