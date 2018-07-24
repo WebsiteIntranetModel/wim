@@ -74,6 +74,9 @@ function wim_install() {
   // seckit configuration.
   _wim_set_default_seckit();
 
+  // Configure node_clone.
+  _wim_set_default_node_clone_options();
+
   // Change media render.
   variable_set('media_wysiwyg_default_render', 'field_attach');
 
@@ -1187,7 +1190,8 @@ function _wim_enable_modules() {
   $modules = array(
     'seckit',
     'login_destination',
-    'media_bulk_upload'
+    'media_bulk_upload',
+    'clone',
   );
 
   // Enable modules.
@@ -1207,6 +1211,24 @@ function _wim_set_default_login_destination() {
       'roles' => 'a:0:{}',
       'pages' => ''
     ))->execute();
+}
+
+/**
+ * Default settings for node clone module.
+ */
+function _wim_set_default_node_clone_options() {
+  // Set omitted content types.
+  variable_set('clone_omitted', array(
+    'agenda' => 'agenda',
+    'page' => 'page',
+    'book' => 'book',
+    'faq' => 'faq',
+    'news' => 'news',
+    'person' => 'person',
+    'product' => 'product',
+    'subject_page' => 'subject_page',
+    'webform' => 0,
+  ));
 }
 
 /**
