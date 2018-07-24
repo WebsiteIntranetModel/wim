@@ -441,4 +441,7 @@ function wim_update_7022() {
 function wim_update_7023() {
   module_enable(array('seckit'));
   module_disable(array('hsts'));
+
+  // Set configuration for seckit.
+  _wim_set_default_seckit();
 }
