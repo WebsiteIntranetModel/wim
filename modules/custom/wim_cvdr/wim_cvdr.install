@@ -1,0 +1,38 @@
+<?php
+/**
+ * @file
+ * Instalation file.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function wim_cvdr_install() {
+  if (module_exists('felix')) {
+    // Enable a selections of WIM CVDR blocks in the Felix options.
+    $block = new stdClass();
+    $block->block_set = 'default';
+    $block->module = 'wim_cvdr';
+    $block->delta = '*';
+    drupal_write_record('felix_block_set_block', $block);
+  }
+}
+
+/**
+ * Implements hook_install().
+ */
+function wim_cvdr_uninstall() {
+  $variables = array(
+    'url',
+    'cache_time',
+    'max_visible'
+  );
+
+  foreach ($variables as $variable) {
+    variable_del('wim_cvdr_' . $variable);
+  }
+
+  db_delete('felix_block_set_block')
+    ->condition('module', 'wim_cvdr')
+    ->execute();
+}
