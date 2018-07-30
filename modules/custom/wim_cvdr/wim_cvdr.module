@@ -71,14 +71,13 @@ function wim_cvdr_block_view($delta = '') {
       }
 
       $block['content'] = theme('item_list', array(
-          'items' => $list_items,
-          'title' => '',
-          'type' => 'ul',
-          'attributes' => array(
-            'class' => array('cvdr-wim', drupal_html_class($subject)),
-          ),
-        )
-      );
+        'items' => $list_items,
+        'title' => '',
+        'type' => 'ul',
+        'attributes' => array(
+          'class' => array('cvdr-wim', drupal_html_class($subject)),
+        ),
+      ));
     }
   }
 

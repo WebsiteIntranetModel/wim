@@ -25,7 +25,7 @@ function wim_cvdr_uninstall() {
   $variables = array(
     'url',
     'cache_time',
-    'max_visible'
+    'max_visible',
   );
 
   foreach ($variables as $variable) {
