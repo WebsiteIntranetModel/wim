@@ -33,8 +33,12 @@ RUN sed -i '1 a xdebug.remote_enable=1' /usr/local/etc/php/conf.d/docker-php-ext
 RUN usermod -u 1000 www-data
 RUN usermod -G staff www-data
 
-# Instal JAVA
-RUN apt-get update && apt-get install -y default-jdk
+# Work around a Debian bug that prevents the Java installation
+# https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=863199
+RUN mkdir -p /usr/share/man/man1
+
+# Install JAVA
+RUN apt-get update && apt-get install -y default-jre
 
 # Download Tike jar
 RUN mkdir -p /var/lib/tika && \

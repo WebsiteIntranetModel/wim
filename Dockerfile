@@ -1,15 +1,15 @@
-FROM php:5.6-apache
+FROM php:7.1-apache
 MAINTAINER devel@goalgorilla.com
 
 RUN a2enmod rewrite
 
 # install the PHP extensions we need
 RUN apt-get update && apt-get install -y \
-  libpng12-dev \
+  libpng-dev \
   libjpeg-dev \
   libpq-dev \
   libmcrypt-dev \
-  php-pclzip \
+  zip unzip \
   mysql-client \
   git \
   ssmtp \
