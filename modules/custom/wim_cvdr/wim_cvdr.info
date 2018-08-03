@@ -1,4 +1,4 @@
 name = WIM CVDR
-description = Generate CVDR lists based on 'eigen onderwerp' field.
+description = Generate CVDR (Centrale Voorziening Decentrale Regelgeving) lists based on 'eigen onderwerp' field.
 core = 7.x
 package = WIM

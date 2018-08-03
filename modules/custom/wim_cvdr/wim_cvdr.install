@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * Instalation file.
+ * Installation file.
  */
 
 /**
@@ -22,11 +22,11 @@ function wim_cvdr_install() {
  * Implements hook_install().
  */
 function wim_cvdr_uninstall() {
-  $variables = array(
+  $variables = [
     'url',
     'cache_time',
     'max_visible',
-  );
+  ];
 
   foreach ($variables as $variable) {
     variable_del('wim_cvdr_' . $variable);
