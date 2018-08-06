@@ -199,9 +199,8 @@ function _wim_cvdr_process_xml($xml) {
   $items = [];
   libxml_use_internal_errors(TRUE);
   $xml_dom = new DOMDocument();
-  $xml_dom->loadXML($xml);
 
-  if ($xml === FALSE) {
+  if ($xml_dom->loadXML($xml) === FALSE) {
     // Log error and quit.
     watchdog('WIM CVDR',
       'XML is malformed and couldn\'t be properly loaded/parsed. Errors: !message',
