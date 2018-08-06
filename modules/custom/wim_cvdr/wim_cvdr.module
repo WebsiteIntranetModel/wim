@@ -154,6 +154,10 @@ function _wim_cvdr_retrieve_elements() {
     $xml = _wim_cvdr_read_xml();
     if ($xml) {
       $items = _wim_cvdr_process_xml($xml);
+
+      // Save the cached results to improve performance.
+      $expire = REQUEST_TIME + (variable_get('wim_cvdr_cache_time', 60) * 60);
+      cache_set('wim_cvdr_items', $items, 'cache', $expire);
     }
   }
 
@@ -243,10 +247,6 @@ function _wim_cvdr_process_xml($xml) {
 
   // Sort items on key (subject) alphabetically.
   ksort($items);
-
-  // Save the cached results to improve performance.
-  $expire = REQUEST_TIME + (variable_get('wim_cvdr_cache_time', 60) * 60);
-  cache_set('wim_cvdr_items', $items, 'cache', $expire);
 
   return $items;
 }
