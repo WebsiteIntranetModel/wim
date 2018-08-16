@@ -12,4 +12,14 @@ function wim_apachesolr_media_install() {
   variable_set('apachesolr_attachments_tika_jar', 'tika-app-1.14.jar');
   variable_set('apachesolr_attachments_filesize_limit', '52428800');
   variable_set('apachesolr_attachments_extract_using', 'tika');
+  // Note, this option provides by patch of apachesolr_attachments module:
+  // @see: https://www.drupal.org/files/issues/apachesolr-attachments-index-unattached-files-1908484-13.patch.
+  variable_set('apachesolr_attachments_entity_bundle_indexing_document', 'seperate');
+}
+
+/**
+ * Enable indexing of Document file bundle as separate entity.
+ */
+function wim_apachesolr_media_update_7001() {
+  variable_set('apachesolr_attachments_entity_bundle_indexing_document', 'seperate');
 }
