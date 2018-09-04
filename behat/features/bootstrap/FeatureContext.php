@@ -197,7 +197,10 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
    */
   protected static function revertMigration($machine_name) {
     $migration = Migration::getInstance($machine_name);
-    $migration->processRollback(array('force' => TRUE));
+
+    if ($migration) {
+      $migration->processRollback(array('force' => TRUE));
+    }
   }
 
   /**
