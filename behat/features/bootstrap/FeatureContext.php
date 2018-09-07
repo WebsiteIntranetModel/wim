@@ -82,6 +82,13 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
   }
 
   /**
+   * @BeforeScenario
+   */
+  public function resizeWindow() {
+    $this->getSession()->resizeWindow(1280, 2024, 'current');
+  }
+
+  /**
    * This will be run when Behat testing suite is ended.
    *
    * @AfterSuite
