@@ -477,7 +477,7 @@ function _wim_password_policy_install() {
       'name' => $profile['name'],
       'description' => $profile['description'],
       'enabled' => $profile['enabled'],
-      'constraints' => serialize($profile['constraints']),
+      //'constraints' => serialize($profile['constraints']),
       'expiration' => $profile['expiration'],
       'warning' => $profile['warning'],
     ))->execute();
