@@ -394,7 +394,7 @@ function wim_update_7019() {
       'enabled' => 1,
       'triggers' => 'a:0:{}',
       'roles' => 'a:0:{}',
-      'pages' => ''
+      'pages' => '',
     ))->execute();
 }
 

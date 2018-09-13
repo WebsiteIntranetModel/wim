@@ -68,10 +68,10 @@ function wim_install() {
   // Pathauto configuration.
   _wim_default_pathauto();
 
-  // login destination configuration.
+  // Login destination configuration.
   _wim_set_default_login_destination();
 
-  // seckit configuration.
+  // Seckit configuration.
   _wim_set_default_seckit();
 
   // Configure node_clone.
@@ -1209,7 +1209,7 @@ function _wim_set_default_login_destination() {
       'enabled' => 1,
       'triggers' => 'a:0:{}',
       'roles' => 'a:0:{}',
-      'pages' => ''
+      'pages' => '',
     ))->execute();
 }
 
