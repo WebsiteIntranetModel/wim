@@ -182,6 +182,10 @@ libraries[slick][download][url] = https://github.com/kenwheeler/slick/archive/1.
 libraries[chosen][download][type] = get
 libraries[chosen][download][url] = https://github.com/harvesthq/chosen/releases/download/v1.6.2/chosen_v1.6.2.zip
 
+; CKEditor 4.8.0
+libraries[ckeditor][download][type] = get
+libraries[ckeditor][download][url] = http://ckeditor.com/builder/download/8154cb92a7e50d052d3a5f7d70590f0a
+
 ; Apachesolr attachments
 projects[apachesolr_attachments][patch][2677866] = https://www.drupal.org/files/issues/mysql-56-compatibility-2677866-12.patch
 projects[apachesolr_attachments][patch][1908484] = https://www.drupal.org/files/issues/apachesolr-attachments-index-unattached-files-1908484-13.patch
