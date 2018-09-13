@@ -12,15 +12,17 @@ function wim_news_install() {
 }
 
 /**
- * Place exposed filter as filex block at the top of content on the news page.
+ * Place exposed filter as filex block at the top of content on the News page.
  */
 function wim_news_update_7001(&$sandbox) {
   features_revert_module('wim_news');
   _place_exposed_filter_filex_block();
 }
 
+/**
+ * Helper function to set exposed filter filex block.
+ */
 function _place_exposed_filter_filex_block() {
-  $region = _felix_region_by_name('content');
   $data = array(
     'subject' => '',
     'config' =>
@@ -31,48 +33,5 @@ function _place_exposed_filter_filex_block() {
       ),
   );
 
-  _wim_news_felix_add_block($region, 'news', 'views', '-exp-news-news_overview', NULL, $data);
-}
-
-
-function _wim_news_felix_add_block($region, $path, $module, $delta, $detail_path = NULL, $data = array()) {
-  if ($module == 'node' && is_numeric($delta) && module_exists('translation')) {
-    // Add the source translation.
-    $tnid = db_select('node', 'n')
-      ->fields('n', array('tnid'))
-      ->condition('n.nid', $delta)
-      ->execute()
-      ->fetchField();
-    $delta = $tnid ? $tnid : $delta;
-    $detail_path = "node/$delta";
-  }
-
-  $hash = _felix_get_hash($region, $path);
-
-  $block = new stdClass();
-  $block->region = $region->name;
-  $block->weight = _felix_new_block_weight($region->name);
-  $block->hash = $hash->hash;
-  $block->module = $module;
-  $block->delta = $delta;
-  $block->detail_path = $detail_path;
-  $block->data = $data;
-  $block->hash_parts = $hash->parts;
-  $block->exclude = serialize(array());
-
-  foreach (module_implements('felix_block_insert') as $module) {
-    $hook = "{$module}_felix_block_insert";
-    $hook($block, $path);
-  }
-
-  $block->data = serialize($block->data);
-  $block->hash_parts = serialize($block->hash_parts);
-
-  drupal_write_record('felix_block', $block);
-  drupal_set_message(t('Succesfully added a new block to the region %region.', array('%region' => $region->title)));
-
-  // Expire external caches.
-  if (function_exists('expire_cache_derivative')) {
-    expire_cache_derivative(array($path));
-  }
+  _wim_add_felix_block('content', 'news', 'views', '-exp-news-news_overview', NULL, $data);
 }
