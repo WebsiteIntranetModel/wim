@@ -4,7 +4,7 @@ group: deprecated-2017Q2
 language: php
 
 php:
-  - 5.6
+  - 7.1
 
 env:
   DOCKER_COMPOSE_VERSION: 1.6.2
