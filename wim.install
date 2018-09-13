@@ -477,7 +477,7 @@ function _wim_password_policy_install() {
       'name' => $profile['name'],
       'description' => $profile['description'],
       'enabled' => $profile['enabled'],
-      //'constraints' => serialize($profile['constraints']),
+      'policy' => serialize($profile['policy']),
       'expiration' => $profile['expiration'],
       'warning' => $profile['warning'],
     ))->execute();
@@ -505,7 +505,7 @@ function _wim_password_policy_default_profile() {
     'name' => 'default',
     'description' => t('WIM 2.0 default password policy'),
     'enabled' => TRUE,
-    'constraints' => array(
+    'policy' => array(
       'character_types' => '1',
       'digit' => '1',
       'history' => '6',
