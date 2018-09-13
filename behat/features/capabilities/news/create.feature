@@ -21,6 +21,7 @@ Feature: Create News
     And I fill in the following:
       | Date | 30/06/2016 |
       | Time | 02:22:00   |
+# @todo: Commented a the part of scenario (where we have attaching files) until we get behat method which support drag & drop files.
 #    Then I click "2" nth "Browse"
 #    And I wait for 2 seconds
 #    And I switch to the iframe "mediaBrowser"
