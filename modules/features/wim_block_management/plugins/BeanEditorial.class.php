@@ -2,7 +2,10 @@
 
 /**
  * @file
- * BeanEditorial.class.php Plugin Class
+ * BeanEditorial.class.php Plugin Class.
  */
 
+/**
+ * Define Class BeanEditorial.
+ */
 class BeanEditorial extends BeanPlugin {}
