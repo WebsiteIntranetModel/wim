@@ -82,6 +82,8 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
   }
 
   /**
+   * Set the dimensions of the window.
+   *
    * @BeforeScenario
    */
   public function resizeWindow() {
