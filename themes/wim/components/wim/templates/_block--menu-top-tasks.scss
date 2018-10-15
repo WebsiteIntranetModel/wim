@@ -42,6 +42,11 @@
               }
             }
           }
+          &:first-child  {
+            .dropdown-menu {
+              display: block;
+            }
+          }
           &:hover {
             @include MQ($screen-sm) {
               .dropdown-toggle {

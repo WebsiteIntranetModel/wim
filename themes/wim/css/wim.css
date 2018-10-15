@@ -4351,7 +4351,8 @@ div[class*=region-sidebar] div[class*=main-menu-submenu] ul a.active-trail {
   margin-bottom: 0;
 }
 
-.main-container .menu-top-tasks .menu-wrapper .menu .dropdown.open .dropdown-menu, .main-container .menu-top-tasks .menu-wrapper .menu .dropdown.open-default .dropdown-menu {
+.main-container .menu-top-tasks .menu-wrapper .menu .dropdown.open .dropdown-menu, .main-container .menu-top-tasks .menu-wrapper .menu .dropdown.open-default .dropdown-menu,
+.main-container .menu-top-tasks .menu-wrapper .menu .dropdown:first-child .dropdown-menu {
   display: block;
 }
 
