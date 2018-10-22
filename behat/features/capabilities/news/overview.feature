@@ -42,17 +42,17 @@ Feature: News overview
     And I should see "Category"
 
     # Test date filters
-    When I fill in "edit-field-publication-date-value-value-datepicker-popup-0" with "01 June 2016"
+    When I fill in "edit-field-publication-date-value-value-datepicker-popup-1" with "01 June 2016"
     Then I should see "05 June 2016"
     And I should not see "12 May 2016"
     When I press the "Clear" button
     Then I should see "12 May 2016"
-    When I fill in "edit-field-publication-date-value-1-value-datepicker-popup-0" with "12 May 2016"
+    When I fill in "edit-field-publication-date-value-1-value-datepicker-popup-1" with "12 May 2016"
     Then I should see "12 May 2016"
     And I should not see "01 June 2016"
     And I press the "Clear" button
-    When I fill in "edit-field-publication-date-value-value-datepicker-popup-0" with "12 May 2016"
-    And I fill in "edit-field-publication-date-value-1-value-datepicker-popup-0" with "04 July 2016"
+    When I fill in "edit-field-publication-date-value-value-datepicker-popup-1" with "12 May 2016"
+    And I fill in "edit-field-publication-date-value-1-value-datepicker-popup-1" with "04 July 2016"
     Then I should see "05 June 2016"
     And I should not see "28 April 2016"
 

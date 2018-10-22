@@ -4,6 +4,9 @@
  * Drupal needs this blank file.
  */
 
+/**
+ * Implements hook_element_info_alter().
+ */
 function wim_seo_element_info_alter(&$type) {
   if (isset($type['plupload']['#value_callback'])) {
     // Override a validate callback for plupload form element to keep a simple
@@ -17,7 +20,7 @@ function wim_seo_element_info_alter(&$type) {
  */
 function _wim_seo_plupload_element_value(&$element, $input = FALSE, $form_state = NULL) {
   $id = $element['#id'];
-  // If a unique identifier added with '--', we need to exclude it
+  // If a unique identifier added with '--', we need to exclude it.
   if (preg_match('/(.*)(--[0-9]+)$/', $id, $reg)) {
     $id = $reg[1];
   }
@@ -74,7 +77,6 @@ function _wim_seo_plupload_element_value(&$element, $input = FALSE, $form_state 
         // don't want an attacker to be able to get them back into the top
         // level of public:// in that case).
         $value = rtrim(drupal_basename($value), '.');
-
 
         // Based on the same feture from file_save_upload().
         if (!variable_get('allow_insecure_uploads', 0) && preg_match('/\.(php|pl|py|cgi|asp|js)(\.|$)/i', $value) && (substr($value, -4) != '.txt')) {
