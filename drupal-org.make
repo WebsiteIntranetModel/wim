@@ -184,7 +184,7 @@ libraries[chosen][download][url] = https://github.com/harvesthq/chosen/releases/
 
 ; CKEditor 4.8.0
 libraries[ckeditor][download][type] = get
-libraries[ckeditor][download][url] = http://ckeditor.com/builder/download/8154cb92a7e50d052d3a5f7d70590f0a
+libraries[ckeditor][download][url] = https://download.cksource.com/CKEditor/CKEditor/CKEditor%204.8.0/ckeditor_4.8.0_full.zip
 
 ; Apachesolr attachments
 projects[apachesolr_attachments][patch][2677866] = https://www.drupal.org/files/issues/mysql-56-compatibility-2677866-12.patch
