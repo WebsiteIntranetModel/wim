@@ -68,10 +68,10 @@ function wim_install() {
   // Pathauto configuration.
   _wim_default_pathauto();
 
-  // login destination configuration.
+  // Login destination configuration.
   _wim_set_default_login_destination();
 
-  // seckit configuration.
+  // Seckit configuration.
   _wim_set_default_seckit();
 
   // Configure node_clone.
@@ -477,7 +477,7 @@ function _wim_password_policy_install() {
       'name' => $profile['name'],
       'description' => $profile['description'],
       'enabled' => $profile['enabled'],
-      'constraints' => serialize($profile['constraints']),
+      'policy' => serialize($profile['policy']),
       'expiration' => $profile['expiration'],
       'warning' => $profile['warning'],
     ))->execute();
@@ -505,7 +505,7 @@ function _wim_password_policy_default_profile() {
     'name' => 'default',
     'description' => t('WIM 2.0 default password policy'),
     'enabled' => TRUE,
-    'constraints' => array(
+    'policy' => array(
       'character_types' => '1',
       'digit' => '1',
       'history' => '6',
@@ -1209,7 +1209,7 @@ function _wim_set_default_login_destination() {
       'enabled' => 1,
       'triggers' => 'a:0:{}',
       'roles' => 'a:0:{}',
-      'pages' => ''
+      'pages' => '',
     ))->execute();
 }
 

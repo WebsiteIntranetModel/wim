@@ -28,9 +28,15 @@ default:
           wd_host: 'http://selenium:4444/wd/hub/'
           browser: 'firefox'
       Drupal\DrupalExtension:
+        blackbox: ~
         api_driver: 'drupal'
         drupal:
           drupal_root: '/var/www/html'
+        text:
+          log_out: "Log out"
+          log_in: "Log in"
+          password_field: "Password"
+          username_field: "Username"
         selectors:
           message_selector: '.alert'
           error_message_selector: '.alert.alert-danger'

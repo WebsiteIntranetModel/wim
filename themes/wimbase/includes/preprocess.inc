@@ -72,7 +72,7 @@ function wimbase_preprocess_region(&$variables) {
           $total_col = $block->bootstrap_layout;
 
           // Override a position of block in the list if is set a weight row.
-          if(isset($block->row_weight)){
+          if (isset($block->row_weight)) {
             unset($rows[$row_id]);
             $rows[$block->row_weight][] = $variables['elements'][$element_id]['#children'];
           }

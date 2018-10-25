@@ -91,7 +91,7 @@ function wim_text_formats_wysiwyg_default_profiles() {
       'user_choose' => 0,
       'show_toggle' => 1,
       'add_to_summaries' => 1,
-      'version' => '4.6.2.20af917',
+      'version' => '4.10.1.59246e9',
     ),
     'name' => 'formatfiltered_html',
   );
@@ -180,7 +180,7 @@ function wim_text_formats_wysiwyg_default_profiles() {
       'user_choose' => 0,
       'show_toggle' => 1,
       'add_to_summaries' => 1,
-      'version' => '4.6.2.20af917',
+      'version' => '4.10.1.59246e9',
     ),
     'name' => 'formatfull_html',
   );

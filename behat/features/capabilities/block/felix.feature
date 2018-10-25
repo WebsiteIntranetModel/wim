@@ -1,4 +1,4 @@
-@api @block @felix @stability @CM
+@api @block @felix @stability @CM @fixes
 Feature: Add blocks via Felix
   Benefit: In order to add blocks to regions
   Role: As a CM
@@ -37,6 +37,7 @@ Feature: Add blocks via Felix
     And I should see "Felix test block" in the "Sidebar first"
     When I mouseover the ".region-sidebar-first .block-block h2" element
     Then I click the ".region-sidebar-first .block-block a.contextual-links-trigger" element
+    Then I wait for "5" seconds
     And I click the ".region-sidebar-first .block-block .contextual-links-wrapper li.remove" element
     And I press the "Remove" button
     And I should not see "Felix test block" in the "Sidebar first"

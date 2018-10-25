@@ -82,6 +82,15 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
   }
 
   /**
+   * Set the dimensions of the window.
+   *
+   * @BeforeScenario
+   */
+  public function resizeWindow() {
+    $this->getSession()->resizeWindow(1280, 2024, 'current');
+  }
+
+  /**
    * This will be run when Behat testing suite is ended.
    *
    * @AfterSuite
@@ -197,7 +206,10 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
    */
   protected static function revertMigration($machine_name) {
     $migration = Migration::getInstance($machine_name);
-    $migration->processRollback(array('force' => TRUE));
+
+    if ($migration) {
+      $migration->processRollback(array('force' => TRUE));
+    }
   }
 
   /**
