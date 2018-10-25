@@ -89,7 +89,7 @@ function _cookie_consent_attach(&$page) {
   }
 
   // We cannot use Drupal.settings, because the cookie compliance
-  // script must kick in before the Druapl.settings object is added to the page.
+  // script must kick in before the Drupal.settings object is added to the page.
   $options = array(
     'style' => variable_get('cookie_consent_style', 'monochrome'),
     'ip' => ip_address(),
@@ -151,22 +151,30 @@ function cookie_consent_cookie_consent_categories() {
 function cookie_consent_add() {
   global $user;
 
-  if (!isset($_GET['type']) or !isset($_GET['value']) or !isset($_GET['ip'])) {
+  if (!isset($_GET['type']) || !isset($_GET['value'])) {
     return drupal_access_denied();
   }
 
+  // Format value and determine the allowed values.
+  $value = intval(check_plain($_GET['value']));
+  $allowed_values = [
+    0,
+    1,
+  ];
+
+  // Format the type value and fetch the allowed types.
   $cookies = _cookie_consent_get_categories();
   $type = check_plain($_GET['type']);
 
-  // Check if we have this type defined.
-  if (!isset($cookies[str_replace('cc_', '', $type)])) {
+  // Validate the client values.
+  if (!in_array($value, $allowed_values) || !isset($cookies[str_replace('cc_', '', $type)])) {
     return drupal_access_denied();
   }
 
   $record = (object) array(
-    'ip' => check_plain($_GET['ip']),
+    'ip' => ip_address(),
     'type' => $type,
-    'value' => check_plain($_GET['value']),
+    'value' => $value,
     'changed' => time(),
   );
 
