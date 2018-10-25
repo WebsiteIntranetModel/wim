@@ -48,7 +48,7 @@ projects[menu_block][version] = 2.7
 projects[menu_icons][version] = 3.0-beta4
 projects[metatag][version] = 1.21
 projects[migrate][version] = 2.11
-projects[mimemail][version] = 1.0-beta4
+projects[mimemail][version] = 1.1
 projects[module_filter][version] = 2.0
 projects[multiform][version] = 1.4
 projects[nodequeue][version] = 2.1
@@ -80,7 +80,7 @@ projects[webform_clear][version] = 2.0
 projects[webform_encrypt][version] = 1.2
 projects[weight][version] = 3.1
 projects[wysiwyg][version] = 2.x-dev
-projects[xmlsitemap][version] = 2.3
+projects[xmlsitemap][version] = 2.4
 
 ; Get a specific commit of redirect so patch below will always apply
 projects[redirect][version] = 1.x-dev
