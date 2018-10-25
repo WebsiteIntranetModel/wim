@@ -218,12 +218,33 @@ function _wim_cvdr_process_xml($xml) {
     $url = $item->getElementsByTagName('publicatieurl_xhtml')->item(0);
     $subject = $xpath->query('.//overheidrg:onderwerp', $item)->item(0);
     $title = $xpath->query('.//dcterms:title', $item)->item(0);
+    $alternative = $xpath->query('.//dcterms:alternative', $item)->item(0);
     $date = $xpath->query('.//overheidrg:uitwerkingtredingDatum', $item)
       ->item(0);
+
+    // Use the official title if this is available.
+    if (!empty($alternative->nodeValue)) {
+      $title = $alternative;
+    }
 
     // Only proceed if everything is available.
     if (isset($url, $subject, $title, $date)) {
       $url = $url->nodeValue;
+
+      // Check and see if the url is available on https.
+      $desiredScheme = "https";
+      $parsedRedirectUri = parse_url($url);
+      if($parsedRedirectUri['scheme'] !== $desiredScheme) {
+        $parsedUrl= substr_replace($url, $desiredScheme, 0, strlen( $parsedRedirectUri['scheme'] ));
+        $stream = stream_context_create (array("ssl" => array("capture_peer_cert" => true)));
+        $read = fopen($parsedUrl, "rb", false, $stream);
+        $cont = stream_context_get_params($read);
+        $var = ($cont["options"]["ssl"]["peer_certificate"]);
+        if(!is_null($var)){
+          $url = $parsedUrl;
+        }
+      }
+
       $subject = ucfirst($subject->nodeValue);
       $title = $title->nodeValue;
       $date = $date->nodeValue;
