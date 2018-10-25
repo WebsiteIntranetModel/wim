@@ -53,6 +53,7 @@ Feature: Edit accounts
       | Username | test |
       | Password | test |
     And I press "Log in"
+    When I go to "/user"
     When I click "Edit"
     Then I should see "Password"
     Then I should see "Confirm password"

@@ -157,3 +157,28 @@ function wim_block_management_form_alter(&$form, &$form_state, $form_id) {
     $form['redirect']['#access'] = FALSE;
   }
 }
+
+/**
+ * Implements hook_bean_types_api_info().
+ */
+function wim_block_management_bean_types_api_info() {
+  return array('api' => 4);
+}
+
+/**
+ * Implements hook_bean_types().
+ */
+function wim_block_management_bean_types() {
+  $plugins = array();
+  $plugin_path = drupal_get_path('module', 'wim_block_management') . '/plugins';
+  $plugins['editorial'] = array(
+    'label' => t('Editorial'),
+    'handler' => array(
+      'class' => 'BeanEditorial',
+      'parent' => 'bean',
+    ),
+    'path' => $plugin_path,
+    'file' => 'BeanEditorial.class.php',
+  );
+  return $plugins;
+}

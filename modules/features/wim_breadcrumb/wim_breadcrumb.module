@@ -67,9 +67,11 @@ function hansel_hansel_get_parent($path) {
 
     // Override an output to provide translated title.
     if (($node = node_load($match[1])) && isset($nodetypes[$node->type])) {
+
+      // @todo: need replace a title to use as translation variable(use like i18n_string() or etc.).
       return array(
         'path' => $nodetypes[$node->type]['path'],
-        'title' => t($nodetypes[$node->type]['title']),
+        'title' => $nodetypes[$node->type]['title'],
       );
     }
   }

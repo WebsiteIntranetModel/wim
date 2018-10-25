@@ -47,7 +47,7 @@ projects[media][version] = 2.19
 projects[menu_block][version] = 2.7
 projects[menu_icons][version] = 3.0-beta4
 projects[metatag][version] = 1.21
-projects[migrate][version] = 2.8
+projects[migrate][version] = 2.11
 projects[mimemail][version] = 1.1
 projects[module_filter][version] = 2.0
 projects[multiform][version] = 1.4
@@ -58,7 +58,7 @@ projects[link][version] = 1.4
 projects[libraries][version] = 2.3
 projects[linkit][version] = 3.5
 projects[paragraphs][version] = 1.0-rc5
-projects[password_policy][version] = 1.12
+projects[password_policy][version] = 1.15
 projects[pathauto][version] = 1.3
 projects[picture][version] = 2.13
 projects[plupload][version] = 1.7
@@ -181,6 +181,10 @@ libraries[slick][download][url] = https://github.com/kenwheeler/slick/archive/1.
 ; Chosen
 libraries[chosen][download][type] = get
 libraries[chosen][download][url] = https://github.com/harvesthq/chosen/releases/download/v1.6.2/chosen_v1.6.2.zip
+
+; CKEditor 4.8.0
+libraries[ckeditor][download][type] = get
+libraries[ckeditor][download][url] = http://ckeditor.com/builder/download/8154cb92a7e50d052d3a5f7d70590f0a
 
 ; Apachesolr attachments
 projects[apachesolr_attachments][patch][2677866] = https://www.drupal.org/files/issues/mysql-56-compatibility-2677866-12.patch
