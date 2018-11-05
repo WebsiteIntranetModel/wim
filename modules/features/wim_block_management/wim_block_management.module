@@ -10,6 +10,34 @@ include_once 'wim_block_management.functions.inc';
 define('WIM_BLOCK_MANAGEMENT_BOOTSTRAP_FULL_WIDTH', 12);
 
 /**
+ * Implements hook_menu().
+ */
+function wim_block_management_menu() {
+  $items = [];
+
+  $items['admin/content/block/usage'] = [
+    'title' => 'Block Usage',
+    'description' => 'Displays a list of Blocks and where they are used.',
+    'page callback' => 'block_usage_page',
+    'access arguments' => ['administer blocks'],
+    'file' => 'includes/block_usage.page.inc',
+  ];
+
+  $items['admin/config/content/block/usage/settings'] = [
+    'title' => 'Block Usage Settings',
+    'description' => 'Displays a list of Blocks (blockreferences) and where they are used.',
+    'weight' => 1,
+    'page callback' => 'drupal_get_form',
+    'page arguments' => ['block_usage_settings'],
+    'access arguments' => ['administer blocks'],
+    'file' => 'includes/block_usage.forms.inc',
+    'type' => MENU_LOCAL_TASK | MENU_NORMAL_ITEM,
+  ];
+
+  return $items;
+}
+
+/**
  * Implements hook_form_BASE_FORM_ID_alter().
  */
 function wim_block_management_form_felix_attributes_form_alter(&$form, &$form_state) {
@@ -17,25 +45,25 @@ function wim_block_management_form_felix_attributes_form_alter(&$form, &$form_st
   $form['#felix_block_config'] = TRUE;
 
   $felix_block = $form['#felix_block'];
-  $config = isset($felix_block->data['config']) ? $felix_block->data['config'] : array();
+  $config = isset($felix_block->data['config']) ? $felix_block->data['config'] : [];
 
-  $form['bootstrap_layout'] = array(
+  $form['bootstrap_layout'] = [
     '#title' => t('Bootstrap layout'),
     '#type' => 'select',
     '#options' => _wim_block_management_get_columns_options(),
     '#default_value' => isset($config['bootstrap_layout']) ? $config['bootstrap_layout'] : 12,
-  );
-  $form['new_row'] = array(
+  ];
+  $form['new_row'] = [
     '#title' => t('New row'),
     '#type' => 'checkbox',
     '#default_value' => isset($config['new_row']) ? $config['new_row'] : FALSE,
     '#description' => t('Check this to show block in a new row, otherwise it will respect other blocks in region and try to move them in the same row based on bootstrap layout selected above.'),
-  );
-  $form['row_weight'] = array(
+  ];
+  $form['row_weight'] = [
     '#type' => 'weight',
     '#title' => t('Row weight'),
     '#default_value' => isset($config['row_weight']) ? $config['row_weight'] : 0,
-  );
+  ];
 
   if ($felix_block->module === 'bean') {
     $bean = bean_load_delta($felix_block->delta);
@@ -56,13 +84,13 @@ function wim_block_management_form_felix_attributes_form_alter(&$form, &$form_st
     // If no custom view modes selected, add default.
     $view_modes['default'] = t('Default');
 
-    $form['bean_view_mode'] = array(
+    $form['bean_view_mode'] = [
       '#title' => t('View mode'),
       '#type' => 'select',
       '#options' => $view_modes,
       '#default_value' => isset($config['bean_view_mode']) ? $config['bean_view_mode'] : $bean->view_mode,
       '#description' => t('Select view mode for this block.'),
-    );
+    ];
   }
 
 }
@@ -71,13 +99,13 @@ function wim_block_management_form_felix_attributes_form_alter(&$form, &$form_st
  * Implements hook_block_config_save().
  */
 function wim_block_management_felix_block_config_save($block, $values) {
-  $configs = array();
-  $felix_custom_configs = array(
+  $configs = [];
+  $felix_custom_configs = [
     'bootstrap_layout',
     'new_row',
     'bean_view_mode',
     'row_weight',
-  );
+  ];
 
   foreach ($felix_custom_configs as $config) {
     if (isset($values[$config])) {
@@ -92,14 +120,14 @@ function wim_block_management_felix_block_config_save($block, $values) {
  * Implements hook_entity_info_alter().
  */
 function wim_block_management_entity_info_alter(&$entity_info) {
-  $entity_info['node']['view modes']['felix'] = array(
+  $entity_info['node']['view modes']['felix'] = [
     'label' => t('Felix'),
     'custom settings' => FALSE,
-  );
-  $entity_info['bean']['view modes']['link_title'] = array(
+  ];
+  $entity_info['bean']['view modes']['link_title'] = [
     'label' => t('Title with link'),
     'custom settings' => TRUE,
-  );
+  ];
 }
 
 /**
@@ -139,12 +167,12 @@ function wim_block_management_form_felix_remove_form_alter(&$form, &$form_state,
   if (isset($form['#felix_block'], $form['#felix_region'], $form['info'])) {
     $block = $form['#felix_block'];
     $region = $form['#felix_region'];
-    $form['info'] = array(
+    $form['info'] = [
       '#markup' => '<p>' . t('Are you sure you want to delete the block %subject from %region?', array(
         '%subject' => strip_tags($block->subject),
         '%region' => $region->title,
       )) . '</p>',
-    );
+    ];
   }
 }
 
@@ -153,7 +181,7 @@ function wim_block_management_form_felix_remove_form_alter(&$form, &$form_state,
  */
 function wim_block_management_form_alter(&$form, &$form_state, $form_id) {
   // Hide redirect field.
-  if (in_array($form_id, array('bean_form', 'user_profile_form'), TRUE)) {
+  if (in_array($form_id, ['bean_form', 'user_profile_form'], TRUE)) {
     $form['redirect']['#access'] = FALSE;
   }
 }
@@ -162,23 +190,38 @@ function wim_block_management_form_alter(&$form, &$form_state, $form_id) {
  * Implements hook_bean_types_api_info().
  */
 function wim_block_management_bean_types_api_info() {
-  return array('api' => 4);
+  return ['api' => 4];
 }
 
 /**
  * Implements hook_bean_types().
  */
 function wim_block_management_bean_types() {
-  $plugins = array();
+  $plugins = [];
   $plugin_path = drupal_get_path('module', 'wim_block_management') . '/plugins';
-  $plugins['editorial'] = array(
+  $plugins['editorial'] = [
     'label' => t('Editorial'),
-    'handler' => array(
+    'handler' => [
       'class' => 'BeanEditorial',
       'parent' => 'bean',
-    ),
+    ],
     'path' => $plugin_path,
     'file' => 'BeanEditorial.class.php',
-  );
+  ];
   return $plugins;
+}
+
+/**
+ * Get modules which has implemented hook_block_info.
+ *
+ * @return array
+ *   Option list of usage block modules.
+ */
+function get_modules_usage_blocks() {
+  $options = [];
+  foreach (module_implements('block_info') as $module) {
+    $options[$module] = $module;
+  }
+
+  return $options;
 }
