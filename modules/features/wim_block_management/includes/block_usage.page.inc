@@ -56,10 +56,27 @@ function block_usage_page() {
       continue;
     }
 
-    // Get felix usage paths.
+    // Get usage links list.
     $links = [];
-    foreach (_get_felix_blocks_by_delta($block['delta']) as $usage_link) {
-      $links[] = l($usage_link, $usage_link);
+
+    // Check if the block is published.
+    if ($block['status']) {
+      $links = _get_usage_published_blocks($block);
+    }
+
+    // Check if the block usage in felix.
+    $links += _get_usage_felix_blocks($block);
+
+    // Skip duplicates.
+    $links = array_unique($links);
+
+    // Apply used filter.
+    if (!empty($filters['status'])) {
+      if (($filters['status'] == 2 && empty($links)) ||
+        ($filters['status'] == 3 && !empty($links))
+      ) {
+        continue;
+      }
     }
 
     $rows[] = [
@@ -113,7 +130,7 @@ function _get_all_blocks($theme = 'wim') {
  *   Block delta.
  *
  * @return array
- *   Paths of page where that block usage.
+ *   Array of felix blocks objects.
  */
 function _get_felix_blocks_by_delta($delta) {
 
@@ -122,17 +139,61 @@ function _get_felix_blocks_by_delta($delta) {
       'hash_parts',
     ])
     ->condition('cb.delta', $delta)
-    ->execute();
+    ->execute()->fetchAll();
 
-  $paths = [];
-  if (!empty($results)) {
-    foreach ($results as $result) {
-      $el = unserialize($result->hash_parts);
-      if (!empty($el['path'])) {
-        $paths[] = $el['path'];
-      }
+  return $results;
+}
+
+/**
+ * Get usage felix block links.
+ *
+ * @param array $block
+ *   Block data.
+ *
+ * @return array
+ *   Paths of pages where that block usage in felix.
+ */
+function _get_usage_felix_blocks($block) {
+
+  $links = [];
+
+  foreach (_get_felix_blocks_by_delta($block['delta']) as $felix_block) {
+    $hash_parts = unserialize($felix_block->hash_parts);
+
+    if (!empty($hash_parts)) {
+      $links[] = l($hash_parts['path'], $hash_parts['path']);
+    }
+    else {
+      $links[] = t('All pages');
     }
   }
 
-  return $paths;
+  return $links;
+}
+
+/**
+ * Get usage block links, which was just published in some region.
+ *
+ * @param array $block
+ *   Block data.
+ *
+ * @return array
+ *   Paths of pages where that block usage/publish.
+ */
+function _get_usage_published_blocks($block) {
+
+  $links = [];
+
+  // Check if there is any visibility rules.
+  if ($block['visibility'] && $block['pages']) {
+    // Check allowed pages list.
+    foreach (explode("\r\n", $block['pages']) as $page) {
+      $links[] = l($page, $page);
+    }
+  }
+  else {
+    $links[] = t('All pages');
+  }
+
+  return $links;
 }

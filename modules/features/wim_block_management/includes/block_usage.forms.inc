@@ -75,6 +75,19 @@ function block_usage_filters() {
     '#options' => $options,
     '#default_value' => empty($filters['type']) ? '' : explode(',', $filters['type']),
   ];
+  $form['block_usage_filter']['block_usage_status'] = [
+    '#type' => 'radios',
+    '#prefix' => '<div style="margin-right:10px; position:relative; float:left;">',
+    '#suffix' => '</div>',
+    '#title' => t('Usage status'),
+    '#title_display' => 'before',
+    '#options' => [
+      1 => t('All'),
+      2 => t('Used'),
+      3 => t('Not used'),
+    ],
+    '#default_value' => !empty($filters['status']) ? $filters['status'] : '',
+  ];
   $form['block_usage_filter']['block_usage_filter_title'] = [
     '#type' => 'textfield',
     '#title' => t('Title'),
@@ -129,6 +142,7 @@ function block_usage_filters_submit(&$form, &$form_state) {
     'type' => implode(',', $form_state['values']['block_usage_filter_type']),
     'title' => $form_state['values']['block_usage_filter_title'],
     'delta' => $form_state['values']['block_usage_filter_delta'],
+    'status' => $form_state['values']['block_usage_status'],
   ];
 
   switch (strtolower($form_state['values']['op'])) {
