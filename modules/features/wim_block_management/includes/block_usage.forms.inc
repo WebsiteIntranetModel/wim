@@ -86,7 +86,7 @@ function block_usage_filters() {
       2 => t('Used'),
       3 => t('Not used'),
     ],
-    '#default_value' => !empty($filters['status']) ? $filters['status'] : '',
+    '#default_value' => !empty($filters['status']) ? $filters['status'] : 1,
   ];
   $form['block_usage_filter']['block_usage_filter_title'] = [
     '#type' => 'textfield',
