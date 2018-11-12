@@ -16,7 +16,7 @@ function block_usage_settings() {
 
   $form['block_usage_results'] = [
     '#type' => 'fieldset',
-    '#title' => t('Results per page'),
+    '#title' => t('Block usage settings'),
     '#weight' => 0,
     '#collapsible' => FALSE,
   ];
@@ -25,24 +25,13 @@ function block_usage_settings() {
     '#title' => t('Results per page'),
     '#description' => t('How many results display per page on the block usage page'),
     '#type' => 'select',
-    '#options' => [
-      '5' => 5,
-      '10' => 10,
-      '15' => 15,
-      '20' => 20,
-      '25' => 25,
-      '30' => 30,
-      '35' => 35,
-      '40' => 40,
-      '45' => 45,
-      '50' => 50,
-    ],
+    '#options' => drupal_map_assoc(range(5, 50, 5)),
     '#default_value' => variable_get('block_usage_results_per_page', 30),
   ];
 
   $form['block_usage_results']['block_usage_results_type'] = [
-    '#title' => t('Results per page'),
-    '#description' => t('How many results display per page on the block usage page'),
+    '#title' => t('Usage block modules'),
+    '#description' => t('Select modules which blocks should be displayed in the common usage list'),
     '#type' => 'select',
     '#multiple' => TRUE,
     '#options' => get_modules_usage_blocks(),
