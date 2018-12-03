@@ -132,9 +132,11 @@ function wimbase_preprocess_block(&$variables) {
     if (isset($bean->field_link) && $bean->field_link) {
       $variables['title_url'] = $bean->field_link[LANGUAGE_NONE][0]['url'];
     }
-
     if ($bean_view_mode === 'default' && isset($bean->field_image) && $bean->field_image) {
       $variables['classes_array'][] = $has_image_class;
+    }
+    if (isset($bean->field_aria_label) && !empty($bean->field_aria_label[LANGUAGE_NONE][0]['value'])) {
+      $variables['aria_label'] = $bean->field_aria_label[LANGUAGE_NONE][0]['value'];
     }
   }
 
