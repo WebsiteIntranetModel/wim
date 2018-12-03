@@ -71,6 +71,9 @@ function wim_product_strongarm() {
         'path' => array(
           'weight' => '8',
         ),
+        'xmlsitemap' => array(
+          'weight' => '30',
+        ),
       ),
       'display' => array(),
     ),
