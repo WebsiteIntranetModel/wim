@@ -10,6 +10,25 @@
 function wim_product_field_default_field_bases() {
   $field_bases = array();
 
+  // Exported field_base: 'field_product_avg'.
+  $field_bases['field_product_avg'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_product_avg',
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(),
+    'translatable' => 0,
+    'type' => 'text_long',
+  );
+
   // Exported field_base: 'field_related_faq'.
   $field_bases['field_related_faq'] = array(
     'active' => 1,
