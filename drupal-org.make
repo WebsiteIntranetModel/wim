@@ -58,7 +58,7 @@ projects[link][version] = 1.4
 projects[libraries][version] = 2.3
 projects[linkit][version] = 3.5
 projects[paragraphs][version] = 1.0-rc5
-projects[password_policy][version] = 1.15
+projects[password_policy][version] = 1.16
 projects[pathauto][version] = 1.3
 projects[picture][version] = 2.13
 projects[plupload][version] = 1.7
@@ -90,7 +90,7 @@ projects[redirect][download][revision] = "add3c695f613fbeec23b7259e59936f60a6b6d
 
 ; Themes
 projects[adminimal_theme] = 1.24
-projects[bootstrap] = 3.12
+projects[bootstrap] = 3.16
 
 ; Patches
 ; Features

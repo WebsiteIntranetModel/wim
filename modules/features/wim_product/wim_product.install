@@ -7,6 +7,7 @@
 /**
  * Add a new 'Uniform Product Names List (UPL)' field link - product content
  * type.
+ * Add a new 'AVG' text-area field - product content type.
  */
 function wim_product_update_7001(&$sandbox) {
   features_revert_module('wim_product');

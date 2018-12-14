@@ -1,0 +1,12 @@
+<?php
+/**
+ * @file
+ * Install file for updates.
+ */
+
+/**
+ * Add aria-label field for editorial bean block type.
+ */
+function wim_block_management_update_7001(&$sandbox) {
+  features_revert_module('wim_block_management');
+}

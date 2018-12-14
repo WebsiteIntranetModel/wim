@@ -10,6 +10,50 @@
 function wim_block_management_field_default_field_instances() {
   $field_instances = array();
 
+  // Exported field_instance: 'bean-editorial-field_aria_label'.
+  $field_instances['bean-editorial-field_aria_label'] = array(
+    'bundle' => 'editorial',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 4,
+      ),
+      'link_title' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'bean',
+    'field_name' => 'field_aria_label',
+    'label' => 'Aria label',
+    'required' => 0,
+    'settings' => array(
+      'linkit' => array(
+        'button_text' => 'Search',
+        'enable' => 0,
+        'profile' => '',
+      ),
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 1,
+    ),
+  );
+
   // Exported field_instance: 'bean-editorial-field_body'.
   $field_instances['bean-editorial-field_body'] = array(
     'bundle' => 'editorial',
@@ -46,7 +90,7 @@ function wim_block_management_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 3,
+      'weight' => 4,
     ),
   );
 
@@ -64,7 +108,7 @@ function wim_block_management_field_default_field_instances() {
           'image_style' => 'pictogram',
         ),
         'type' => 'image',
-        'weight' => 0,
+        'weight' => 1,
       ),
       'link_title' => array(
         'label' => 'above',
@@ -103,7 +147,7 @@ function wim_block_management_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'media_generic',
-      'weight' => 2,
+      'weight' => 3,
     ),
   );
 
@@ -159,12 +203,13 @@ function wim_block_management_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 4,
+      'weight' => 5,
     ),
   );
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('Aria label');
   t('Body');
   t('Image');
   t('Link');

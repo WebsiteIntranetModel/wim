@@ -114,6 +114,23 @@ function sduconnect_set_pdc_content(DOMXPath $xpath, &$node, $private = FALSE) {
     $node->field_product_more_information = array();
   }
 
+  // AVG.
+  $field_product_avg = sduconnect_nodelist_to_string($xpath->query('//m:page/m:product/m:avg'));
+
+  if (!empty($field_product_avg)) {
+    $node->field_product_avg = [
+      LANGUAGE_NONE => [
+        [
+          'value' => $field_product_avg,
+          'format' => $default_format,
+        ],
+      ],
+    ];
+  }
+  else {
+    $node->field_product_avg = [];
+  }
+
   // Related laws.
   $names = sduconnect_nodelist_to_array($xpath->query('//m:page/m:product/m:law_rules/m:law_rule/m:law_rule_name'));
   $urls = sduconnect_nodelist_to_array($xpath->query('//m:page/m:product/m:law_rules/m:law_rule/m:url'));
