@@ -90,7 +90,7 @@ projects[redirect][download][revision] = "add3c695f613fbeec23b7259e59936f60a6b6d
 
 ; Themes
 projects[adminimal_theme] = 1.24
-projects[bootstrap] = 3.16
+projects[bootstrap] = 3.22
 
 ; Patches
 ; Features
