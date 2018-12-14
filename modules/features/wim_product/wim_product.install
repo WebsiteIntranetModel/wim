@@ -1,0 +1,12 @@
+<?php
+/**
+ * @file
+ * Install file.
+ */
+
+/**
+ * Add a new 'AVG' text-area field - product content type.
+ */
+function wim_product_update_7001(&$sandbox) {
+  features_revert_module('wim_product');
+}
