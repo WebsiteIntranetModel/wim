@@ -79,7 +79,7 @@ function wim_product_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 6,
+        'weight' => 8,
       ),
       'introduction' => array(
         'label' => 'hidden',
@@ -169,7 +169,7 @@ function wim_product_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 12,
+        'weight' => 14,
       ),
       'introduction' => array(
         'label' => 'hidden',
@@ -272,6 +272,79 @@ function wim_product_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-product-field_product_upl'.
+  $field_instances['node-product-field_product_upl'] = array(
+    'bundle' => 'product',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 5,
+      ),
+      'introduction' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_product_upl',
+    'label' => 'Uniforme Productnamen Lijst (UPL)',
+    'required' => 0,
+    'settings' => array(
+      'absolute_url' => 1,
+      'attributes' => array(
+        'class' => '',
+        'configurable_class' => 0,
+        'configurable_title' => 0,
+        'rel' => '',
+        'target' => 'default',
+        'title' => '',
+      ),
+      'display' => array(
+        'url_cutoff' => 80,
+      ),
+      'enable_tokens' => 1,
+      'linkit' => array(
+        'button_text' => 'Zoeken',
+        'enable' => 0,
+        'profile' => '',
+      ),
+      'rel_remove' => 'default',
+      'title' => 'optional',
+      'title_label_use_field_label' => 0,
+      'title_maxlength' => 128,
+      'title_value' => '',
+      'url' => 0,
+      'user_register_form' => FALSE,
+      'validate_url' => 1,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'link',
+      'settings' => array(),
+      'type' => 'link_field',
+      'weight' => 54,
+    ),
+  );
+
   // Exported field_instance: 'node-product-field_promoted'.
   $field_instances['node-product-field_promoted'] = array(
     'bundle' => 'product',
@@ -287,7 +360,7 @@ function wim_product_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 9,
+        'weight' => 12,
       ),
       'introduction' => array(
         'label' => 'above',
@@ -336,7 +409,7 @@ function wim_product_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 7,
+        'weight' => 10,
       ),
       'introduction' => array(
         'label' => 'hidden',
@@ -404,7 +477,7 @@ function wim_product_field_default_field_instances() {
         'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 8,
+        'weight' => 11,
       ),
       'introduction' => array(
         'label' => 'inline',
@@ -459,7 +532,7 @@ function wim_product_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 5,
+        'weight' => 6,
       ),
       'introduction' => array(
         'label' => 'above',
@@ -509,6 +582,7 @@ function wim_product_field_default_field_instances() {
   t('Promoted');
   t('Publication date');
   t('Tags');
+  t('Uniforme Productnamen Lijst (UPL)');
   t('Weight');
   t('You can use this field to display a custom publication date instead of the default creation date of the content item.');
 

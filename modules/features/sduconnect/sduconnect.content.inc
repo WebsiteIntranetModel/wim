@@ -149,6 +149,25 @@ function sduconnect_set_pdc_content(DOMXPath $xpath, &$node, $private = FALSE) {
     $node->field_product_related_laws = array();
   }
 
+  // Uniform Product Names List (UPL).
+  $sub_expression = '//m:page/m:product/overheidproduct:scproduct/overheidproduct:meta/overheidproduct:scmeta/overheidproduct:';
+  $url = sduconnect_nodelist_to_string($xpath->query($sub_expression . 'uniformeProductnaam/@resourceIdentifier'));
+  $name = sduconnect_nodelist_to_string($xpath->query($sub_expression . 'uniformeProductnaam'));
+
+  if ($url || $name) {
+    $node->field_product_upl = [
+      LANGUAGE_NONE => [
+        [
+          'url' => $url,
+          'title' => $name,
+        ],
+      ],
+    ];
+  }
+  else {
+    $node->field_product_upl = [];
+  }
+
   // Forms.
   $names = sduconnect_nodelist_to_array($xpath->query('//m:page/m:product/m:formulieren_extern/m:formulier/m:label'));
   $urls = sduconnect_nodelist_to_array($xpath->query('//m:page/m:product/m:formulieren_extern/m:formulier/m:href'));

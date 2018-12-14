@@ -133,6 +133,14 @@ function scfeed_generate_item($node) {
   $element = $dom->createElement('onlineAanvragen', 'nee');
   $overheidproduct->appendChild($element);
 
+  if (isset($node->field_product_upl) && !empty($node->field_product_upl[LANGUAGE_NONE][0])) {
+    $field_product_upl = $node->field_product_upl[LANGUAGE_NONE][0];
+
+    $element = $dom->createElement('uniformeProductnaam', $field_product_upl['title']);
+    $element->setAttribute('resourceIdentifier', $field_product_upl['url']);
+    $overheidproduct->appendChild($element);
+  }
+
   $xml = $dom->saveXML($product);
   db_merge('scfeed_item')
     ->key(array('nid'), array($node->nid))
