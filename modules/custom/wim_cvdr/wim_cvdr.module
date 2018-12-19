@@ -171,7 +171,7 @@ function _wim_cvdr_read_xml() {
   $xml_url = variable_get('wim_cvdr_url');
 
   // Request the XML from the webservice.
-  $xml_response = drupal_http_request($xml_url, ['timeout' => 10]);
+  $xml_response = drupal_http_request($xml_url, ['timeout' => 6]);
 
   if ($xml_response->code !== '200' || strpos($xml_response->headers['content-type'], 'text/xml') === FALSE) {
     // Log error and quit.
