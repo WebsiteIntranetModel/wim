@@ -104,6 +104,7 @@ function wim_search_apachesolr_environments() {
       3 => 'page',
       4 => 'person',
       5 => 'product',
+      6 => 'webform',
     ),
     'file' => array(
       0 => 'document',

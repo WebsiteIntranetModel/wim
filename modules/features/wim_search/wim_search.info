@@ -23,6 +23,7 @@ features[facetapi][] = apachesolr@solr::created
 features[facetapi][] = apachesolr@solr:block:bundle
 features[facetapi][] = apachesolr@solr:block:created
 features[features_api][] = api:2
+features[variable][] = apachesolr_attachments_entity_bundle_indexing_document
 features[variable][] = search_active_modules
 features[variable][] = search_default_module
 project path = profiles/wim/modules/features
