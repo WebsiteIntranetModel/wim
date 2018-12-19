@@ -92,7 +92,7 @@ function scfeed_node_insert($node) {
  * Implements hook_node_update().
  */
 function scfeed_node_update($node) {
-  if ($node->type === 'scfeed.pages.inc') {
+  if ($node->type === 'product') {
     $queue = DrupalQueue::get('scfeed');
     $queue->createItem($node->nid);
   }
@@ -102,7 +102,7 @@ function scfeed_node_update($node) {
  * Implements hook_node_delete().
  */
 function scfeed_node_delete($node) {
-  if ($node->type === 'scfeed.pages.inc') {
+  if ($node->type === 'product') {
     db_delete('scfeed_item')->condition('nid', $node->nid)->execute();
   }
 }
