@@ -19,7 +19,7 @@ function wim_block_management_menu() {
     'title' => 'Block Usage',
     'description' => 'Displays a list of Blocks and where they are used.',
     'page callback' => 'block_usage_page',
-    'access arguments' => ['administer blocks'],
+    'access arguments' => ['access bean overview'],
     'file' => 'includes/block_usage.page.inc',
   ];
 
