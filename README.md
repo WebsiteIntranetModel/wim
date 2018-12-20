@@ -1,6 +1,6 @@
 # Website Intranet Model #
 
-[![Build Status](https://travis-ci.org/WebsiteIntranetModel/wim.svg?branch=master)](https://travis-ci.org/WebsiteIntranetModel/wim)
+[![Build Status](https://travis-ci.org/WebsiteIntranetModel/wim.svg?branch=7.x-2.x)](https://travis-ci.org/WebsiteIntranetModel/wim)
 
 Check [wimgemeenten.nl](http://www.wimgemeenten.nl) for more information. Please note that this website is in Dutch.
 
