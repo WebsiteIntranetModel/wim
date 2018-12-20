@@ -84,8 +84,10 @@ function scfeed_process_queue_item($nid) {
  * Implements hook_node_insert().
  */
 function scfeed_node_insert($node) {
-  $queue = DrupalQueue::get('scfeed');
-  $queue->createItem($node->nid);
+  if ($node->type === 'product') {
+    $queue = DrupalQueue::get('scfeed');
+    $queue->createItem($node->nid);
+  }
 }
 
 /**

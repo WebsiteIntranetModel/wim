@@ -234,13 +234,13 @@ function _wim_cvdr_process_xml($xml) {
       // Check and see if the url is available on https.
       $desiredScheme = "https";
       $parsedRedirectUri = parse_url($url);
-      if($parsedRedirectUri['scheme'] !== $desiredScheme) {
-        $parsedUrl= substr_replace($url, $desiredScheme, 0, strlen( $parsedRedirectUri['scheme'] ));
-        $stream = stream_context_create (array("ssl" => array("capture_peer_cert" => true)));
-        $read = fopen($parsedUrl, "rb", false, $stream);
+      if ($parsedRedirectUri['scheme'] !== $desiredScheme) {
+        $parsedUrl = substr_replace($url, $desiredScheme, 0, strlen($parsedRedirectUri['scheme']));
+        $stream = stream_context_create(array("ssl" => array("capture_peer_cert" => TRUE)));
+        $read = fopen($parsedUrl, "rb", FALSE, $stream);
         $cont = stream_context_get_params($read);
         $var = ($cont["options"]["ssl"]["peer_certificate"]);
-        if(!is_null($var)){
+        if (!is_null($var)) {
           $url = $parsedUrl;
         }
       }

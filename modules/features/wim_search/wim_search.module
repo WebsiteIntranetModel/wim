@@ -56,9 +56,6 @@ function _search_highlighting_form_submit($form, &$form_state) {
  *
  * Configure the query to treat words as joined by "AND" instead of the default
  * "OR".
- *
- * @param DrupalSolrQueryInterface $query
- *
  */
 function wim_search_apachesolr_query_alter(DrupalSolrQueryInterface $query) {
   // Setting mm (Minimum Should Match) to 100% treats the query as "AND".
