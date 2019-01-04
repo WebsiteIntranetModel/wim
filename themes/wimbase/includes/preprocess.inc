@@ -307,6 +307,22 @@ function wimbase_preprocess_search_result(&$variables) {
 
       // Add content type label.
       $variables['content_type'] = isset($content_types_labels[$node->type]) ? $content_types_labels[$node->type] : ucfirst($node->type);
+
+      if ($result['bundle'] === 'linked_keywords') {
+        $referenced_content = $node->field_referenced_content[LANGUAGE_NONE][0];
+
+        // Override an output of linked_keywords data and replace with link of
+        // linked content in the search result.
+        $variables['url'] = $referenced_content['url'];
+        $variables['title'] = $referenced_content['title'];
+
+        // Remove label of enity bundle in result output.
+        unset($variables['content_type']);
+
+        // Set empty string to hide a body and prevent of rendering in the
+        // default mode. @see: search-result.tpl.php.
+        $variables['node_content'] = '';
+      }
     }
   }
   elseif ($result['entity_type'] === 'file') {
