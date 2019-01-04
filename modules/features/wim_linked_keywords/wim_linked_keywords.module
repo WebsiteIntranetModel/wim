@@ -1,0 +1,65 @@
+<?php
+/**
+ * @file
+ * Code for the Linked Keywords feature.
+ */
+
+include_once 'wim_linked_keywords.features.inc';
+
+/**
+ * Implements hook_facetapi_facet_info_alter().
+ */
+function wim_linked_keywords_facetapi_facet_info_alter(array &$facet_info, array $searcher_info) {
+  if (isset($facet_info['bundle'])) {
+    $facet_info['bundle']['alter callbacks'][] = 'wim_linked_keywords_facetapi_map_bundle';
+  }
+}
+
+/**
+ * Cleanup Linked Keywords from facet block on the search page.
+ */
+function wim_linked_keywords_facetapi_map_bundle(&$build, $adapter, array $facet) {
+  unset($build['linked_keywords']);
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function wim_linked_keywords_form_linked_keywords_node_form_alter(&$form, &$form_state, $form_id) {
+
+  // Clean up a linked_keywords add/edit form page and hide unused fields.
+  $hidden_fields = [
+    'title',
+    'revision_information',
+    'redirect',
+    'path',
+    'xmlsitemap',
+  ];
+
+  foreach ($hidden_fields as $hidden_field) {
+    $form[$hidden_field]['#access'] = FALSE;
+  }
+
+  $form['#submit'][] = 'wim_linked_keywords_form_alter_node_submit';
+  $form['#after_build'][] = 'wim_linked_keywords_form_alter_node_after_build';
+}
+
+/**
+ * Clear out xmlsitemap section for linked_keywords.
+ */
+function wim_linked_keywords_form_alter_node_after_build($form, &$form_state) {
+  if (!empty($form['xmlsitemap'])) {
+    $form['xmlsitemap']['#access'] = FALSE;
+  }
+  return $form;
+}
+
+/**
+ * Form submit handler for linked_keywords form.
+ */
+function wim_linked_keywords_form_alter_node_submit($form, &$form_state) {
+  $values = &$form_state['values'];
+
+  // Copy and set link title as node title.
+  $values['title'] = $values['field_referenced_content'][LANGUAGE_NONE][0]['title'];
+}
