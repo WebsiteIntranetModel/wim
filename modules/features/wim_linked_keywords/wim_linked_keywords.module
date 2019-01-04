@@ -30,6 +30,7 @@ function wim_linked_keywords_form_linked_keywords_node_form_alter(&$form, &$form
   // Clean up a linked_keywords add/edit form page and hide unused fields.
   $hidden_fields = [
     'title',
+    'field_reminder_email',
     'revision_information',
     'redirect',
     'path',
@@ -37,7 +38,9 @@ function wim_linked_keywords_form_linked_keywords_node_form_alter(&$form, &$form
   ];
 
   foreach ($hidden_fields as $hidden_field) {
-    $form[$hidden_field]['#access'] = FALSE;
+    if (isset($form[$hidden_field])) {
+      $form[$hidden_field]['#access'] = FALSE;
+    }
   }
 
   $form['#submit'][] = 'wim_linked_keywords_form_alter_node_submit';

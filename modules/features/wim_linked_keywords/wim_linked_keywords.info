@@ -19,6 +19,7 @@ features[variable][] = field_bundle_settings_node__linked_keywords
 features[variable][] = language_content_type_linked_keywords
 features[variable][] = menu_options_linked_keywords
 features[variable][] = menu_parent_linked_keywords
+features[variable][] = metatag_enable_node__linked_keywords
 features[variable][] = node_options_linked_keywords
 features[variable][] = node_preview_linked_keywords
 features[variable][] = node_submitted_linked_keywords
