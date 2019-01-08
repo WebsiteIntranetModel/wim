@@ -456,3 +456,14 @@ function wim_update_7024() {
   // Configure node_clone.
   _wim_set_default_node_clone_options();
 }
+
+/**
+ * Enable mass contact module and set default settings.
+ */
+function wim_update_7025() {
+  // Enable mass_contact module.
+  module_enable(['mass_contact_category_override'], FALSE);
+
+  // Configure mass_contact module.
+  _wim_set_default_mass_contact_settings();
+}

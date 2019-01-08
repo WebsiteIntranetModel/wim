@@ -43,6 +43,7 @@ projects[logging_alerts][version] = 2.2
 projects[login_destination][version] = 1.4
 projects[magic][version] = 2.3
 projects[mailsystem][version] = 2.34
+projects[mass_contact][version] = 1.1
 projects[media][version] = 2.19
 projects[menu_block][version] = 2.7
 projects[menu_icons][version] = 3.0-beta4
