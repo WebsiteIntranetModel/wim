@@ -43,7 +43,7 @@ projects[logging_alerts][version] = 2.2
 projects[login_destination][version] = 1.4
 projects[magic][version] = 2.3
 projects[mailsystem][version] = 2.34
-projects[mass_contact][version] = 1.1
+projects[mass_contact][version] = 1.x-dev
 projects[media][version] = 2.19
 projects[menu_block][version] = 2.7
 projects[menu_icons][version] = 3.0-beta4
@@ -190,3 +190,6 @@ libraries[ckeditor][download][url] = https://download.cksource.com/CKEditor/CKEd
 ; Apachesolr attachments
 projects[apachesolr_attachments][patch][2677866] = https://www.drupal.org/files/issues/mysql-56-compatibility-2677866-12.patch
 projects[apachesolr_attachments][patch][1908484] = https://www.drupal.org/files/issues/apachesolr-attachments-index-unattached-files-1908484-13.patch
+
+; Mass Contact
+projects[mass_contact][patch][787168] = https://www.drupal.org/files/issues/2019-01-10/787168-8.patch

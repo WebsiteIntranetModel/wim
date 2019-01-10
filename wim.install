@@ -1309,6 +1309,22 @@ function _wim_set_default_seckit() {
  * Default settings for mass_contact module.
  */
 function _wim_set_default_mass_contact_settings() {
+
+  // Create category.
+  $record = [
+    'category' => t('Every active/inactive account'),
+    'recipients' => serialize([
+      'mass_contact_taxonomy' => [],
+      'mass_contact_role' => [
+        0 => 2,
+      ],
+    ]),
+    'user_status' => serialize([1, 0]),
+    'reply' => '',
+  ];
+
+  drupal_write_record('mass_contact', $record);
+
   variable_set('mass_contact_category_override', 0);
   variable_set('mass_contact_message_prefix', '');
 }
