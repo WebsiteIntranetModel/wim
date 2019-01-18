@@ -115,56 +115,24 @@ function sduconnect_set_pdc_content(DOMXPath $xpath, &$node, $private = FALSE) {
   }
 
   // Product address field.
-  $uitvoerende_instanties_query_path = '//m:page/m:product/m:uitvoerende_instanties/m:instantie/m:';
-  $uitvoerende_instanties_fields = [
-    'land',
-    'naam',
-    'b_straat',
-    'b_nummer',
-    'b_pcode',
-    'b_stad',
-    'p_straat',
-    'p_nummer',
-    'p_postcode',
-    'p_po_box',
-    'p_woonplaats',
-    'telefoon',
-    'fax',
-    'email',
-    'url',
-    'url_naam',
-    'opmerkingen',
-    'afdeling/m:hoofd_afdeling',
-    'afdeling/m:afdeling_naam',
-    'afdeling/m:persoon/m:functie',
-    'afdeling/m:persoon/m:naam',
-    'afdeling/m:persoon/m:telefoonnummer',
-    'afdeling/m:persoon/m:email',
-    'afdeling/m:persoon/m:opmerking',
+  $pds_addresses_data = [];
+
+  $sub_query_paths = [
+    'indieningsadressen',
+    'uitvoerende_instanties',
   ];
 
-  $field_product_addresses = [];
-  foreach ($uitvoerende_instanties_fields as $uitvoerende_instanties_field) {
-    if ($field_product_address = sduconnect_nodelist_to_string($xpath->query($uitvoerende_instanties_query_path . $uitvoerende_instanties_field))) {
-      $field_product_addresses[$uitvoerende_instanties_field] = $field_product_address;
+  foreach ($sub_query_paths as $sub_query_path) {
+    if ($pds_address_data = sduconnect_get_address_pdc_data($xpath, "//m:page/m:product/m:{$sub_query_path}/m:instantie/m:")) {
+      $pds_addresses_data[] = $pds_address_data;
     }
   }
 
-  if (!empty($field_product_addresses)) {
-
-    //Set fields formatting and save a right order of items.
-    if (!empty($field_product_addresses['naam'])) {
-      $field_product_addresses['naam'] = '<strong>' . $field_product_addresses['naam'] . '</strong>';
-    }
-    if (!empty($field_product_addresses['url']) && !empty($field_product_addresses['url_naam'])) {
-      $field_product_addresses['url'] = l($field_product_addresses['url_naam'], $field_product_addresses['ulr']);
-      unset($field_product_addresses['url_naam']);
-    }
-
+  if (!empty($pds_addresses_data)) {
     $node->field_product_address = [
       LANGUAGE_NONE => [
         [
-          'value' => implode('<br />', $field_product_addresses),
+          'value' => implode('<br />', $pds_addresses_data),
           'format' => $default_format,
         ],
       ],
@@ -369,6 +337,69 @@ function sduconnect_set_pdc_content(DOMXPath $xpath, &$node, $private = FALSE) {
   );
 
   $node->field_publication_date = array(LANGUAGE_NONE => $date);
+}
+
+/**
+ * Populate node object with VAC content.
+ *
+ * @param object $xpath
+ *   Xpath object.
+ * @param string $query_path
+ *   Query path.
+ * @return string
+ *   Trimmed string value.
+ */
+function sduconnect_get_address_pdc_data($xpath, $query_path) {
+  $fields = [
+    'land',
+    'naam',
+    'b_straat',
+    'b_nummer',
+    'b_pcode',
+    'b_stad',
+    'p_straat',
+    'p_nummer',
+    'p_postcode',
+    'p_po_box',
+    'p_woonplaats',
+    'telefoon',
+    'fax',
+    'email',
+    'url',
+    'url_naam',
+    'opmerkingen',
+    'afdeling/m:hoofd_afdeling',
+    'afdeling/m:afdeling_naam',
+    'afdeling/m:persoon/m:functie',
+    'afdeling/m:persoon/m:naam',
+    'afdeling/m:persoon/m:telefoonnummer',
+    'afdeling/m:persoon/m:email',
+    'afdeling/m:persoon/m:opmerking',
+  ];
+
+  $addresses = [];
+  foreach ($fields as $field) {
+    if ($address_data = sduconnect_nodelist_to_string($xpath->query($query_path . $field))) {
+      $addresses[$field] = $address_data;
+    }
+  }
+
+  if (!empty($addresses)) {
+
+    //Set fields formatting and save a right order of items.
+    if (!empty($addresses['naam'])) {
+      $addresses['naam'] = '<strong>' . $addresses['naam'] . '</strong>';
+    }
+    if (!empty($addresses['url']) && !empty($addresses['url_naam'])) {
+      $addresses['url'] = l($addresses['url_naam'], $addresses['url']);
+      unset($addresses['url_naam']);
+    }
+
+    // Prepare and convert data as separate string for textarea field.
+    $addresses = trim(implode('<br />', $addresses));
+  }
+
+  return $addresses;
 }
 
 /**
