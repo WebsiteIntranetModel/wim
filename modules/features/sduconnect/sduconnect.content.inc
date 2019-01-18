@@ -114,6 +114,73 @@ function sduconnect_set_pdc_content(DOMXPath $xpath, &$node, $private = FALSE) {
     $node->field_product_more_information = array();
   }
 
+  // Product address field.
+  $uitvoerende_instanties_query_path = '//m:page/m:product/m:uitvoerende_instanties/m:instantie/m:';
+  $uitvoerende_instanties_fields = [
+    'land',
+    'naam',
+    'b_straat',
+    'b_nummer',
+    'b_pcode',
+    'b_stad',
+    'p_straat',
+    'p_nummer',
+    'p_postcode',
+    'p_po_box',
+    'p_woonplaats',
+    'telefoon',
+    'fax',
+    'email',
+    'url',
+    'url_naam',
+    'opmerkingen',
+    'afdeling/m:hoofd_afdeling',
+    'afdeling/m:afdeling_naam',
+    'afdeling/m:persoon/m:functie',
+    'afdeling/m:persoon/m:naam',
+    'afdeling/m:persoon/m:telefoonnummer',
+    'afdeling/m:persoon/m:email',
+    'afdeling/m:persoon/m:opmerking',
+  ];
+
+  $field_product_addresses = [];
+  foreach ($uitvoerende_instanties_fields as $uitvoerende_instanties_field) {
+    if ($field_product_address = sduconnect_nodelist_to_string($xpath->query($uitvoerende_instanties_query_path . $uitvoerende_instanties_field))) {
+      $field_product_addresses[$uitvoerende_instanties_field] = $field_product_address;
+    }
+  }
+
+  if (!empty($field_product_addresses)) {
+
+    //Set fields formatting and save a right order of items.
+    if (!empty($field_product_addresses['naam'])) {
+      $field_product_addresses['naam'] = '<strong>' . $field_product_addresses['naam'] . '</strong>';
+    }
+    if (!empty($field_product_addresses['url']) && !empty($field_product_addresses['url_naam'])) {
+      $field_product_addresses['url'] = l($field_product_addresses['url_naam'], $field_product_addresses['ulr']);
+      unset($field_product_addresses['url_naam']);
+    }
+
+    $node->field_product_address = [
+      LANGUAGE_NONE => [
+        [
+          'value' => implode('<br />', $field_product_addresses),
+          'format' => $default_format,
+        ],
+      ],
+    ];
+  }
+  else {
+    $node->field_product_address = [
+      LANGUAGE_NONE => [
+        [
+          'value' => 'empty!',
+          'format' => $default_format,
+        ],
+      ],
+    ];
+  }
+
   // AVG.
   $field_product_avg = sduconnect_nodelist_to_string($xpath->query('//m:page/m:product/m:avg'));
 
