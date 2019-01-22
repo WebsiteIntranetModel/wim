@@ -112,7 +112,7 @@ function block_usage_filters() {
   $form['block_usage_filter']['actions']['apply'] = [
     '#type' => 'submit',
     '#value' => t('Apply'),
-    '#name' => 'apply_filter'
+    '#name' => 'apply_filter',
   ];
 
   $form['block_usage_filter']['actions']['reset'] = [
@@ -138,7 +138,6 @@ function block_usage_filters() {
 function block_usage_filters_submit(&$form, &$form_state) {
   // Get the query string parameters minus the drupal url and filter param.
   $params = drupal_get_query_parameters($_GET, ['q', 'filter']);
-
 
   // Add the filters to the query string.
   $filters = [
