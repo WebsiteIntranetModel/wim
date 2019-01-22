@@ -462,7 +462,7 @@ function wim_update_7024() {
  */
 function wim_update_7025() {
   // Enable mass_contact module.
-  module_enable(['mass_contact_category_override'], FALSE);
+  module_enable(['mass_contact'], FALSE);
 
   // Configure mass_contact module.
   _wim_set_default_mass_contact_settings();
