@@ -118,8 +118,8 @@ function sduconnect_set_pdc_content(DOMXPath $xpath, &$node, $private = FALSE) {
   $pds_addresses_data = [];
 
   $sub_query_paths = [
-    'indieningsadressen',
     'uitvoerende_instanties',
+    'indieningsadressen',
   ];
 
   foreach ($sub_query_paths as $sub_query_path) {
@@ -340,12 +340,13 @@ function sduconnect_set_pdc_content(DOMXPath $xpath, &$node, $private = FALSE) {
 }
 
 /**
- * Populate node object with VAC content.
+ * Populate node object with PDC content.
  *
  * @param object $xpath
  *   Xpath object.
  * @param string $query_path
  *   Query path.
+ *
  * @return string
  *   Trimmed string value.
  */
@@ -386,7 +387,7 @@ function sduconnect_get_address_pdc_data($xpath, $query_path) {
 
   if (!empty($addresses)) {
 
-    //Set fields formatting and save a right order of items.
+    // Set fields formatting and save a right order of items.
     if (!empty($addresses['naam'])) {
       $addresses['naam'] = '<strong>' . $addresses['naam'] . '</strong>';
     }
@@ -448,6 +449,36 @@ function sduconnect_set_vac_content($xpath, &$node, $private = FALSE) {
       ),
     ),
   );
+
+  // Address.
+  if ($vac_data = sduconnect_nodelist_get_tree($xpath->query('//vac:vacs/vac:vac/vac:body/vac:kanaal/vac:antwoord/vac:antwoordAdres/vac:instantie'))) {
+    $address = [];
+    foreach ($vac_data as &$item) {
+      // Set fields formatting and save a right order of items.
+      if (!empty($item['vac:naam'])) {
+        $item['vac:naam'] = '<strong>' . $item['vac:naam'] . '</strong>';
+      }
+      if (!empty($item['vac:url']) && !empty($item['vac:url_naam'])) {
+        $item['vac:ur'] = l($item['vac:url_naam'], $item['vac:url']);
+        unset($item['vac:url_naam']);
+      }
+
+      // Prepare and convert data as separate string for textarea field.
+      $address[] = trim(implode('<br />', $item));
+    }
+
+    $node->field_faq_address = [
+      LANGUAGE_NONE => [
+        [
+          'value' => implode('<br />', $address),
+          'format' => $default_format,
+        ],
+      ],
+    ];
+  }
+  else {
+    $node->field_faq_address = [];
+  }
 
   // Created.
   $created = sduconnect_nodelist_to_string($xpath->query('//vac:vacs/vac:vac/vac:meta/vac:owmsmantel/dcterms:available/start'));
@@ -552,6 +583,36 @@ function sduconnect_nodelist_to_array($node_list) {
     $output[] = $node->nodeValue;
   }
   return $output;
+}
+
+/**
+ * Populate array with VAC content.
+ *
+ * @param object $node_list
+ *   List of nodes.
+ *
+ * @return array
+ *   Tree of elements:[
+ *     parent_id[
+ *       key => value,
+ *     ]
+ *   ]
+ */
+function sduconnect_nodelist_get_tree($node_list) {
+  $tree = [];
+  foreach ($node_list as $node) {
+    $childNodes = $node->childNodes;
+    if (!empty($childNodes)) {
+      $id = $node->getAttribute('id');
+      foreach ($childNodes as $item) {
+        if (!empty($item->nodeValue)) {
+          $tree[$id][$item->nodeName] = $item->nodeValue;
+        }
+      }
+    }
+  }
+
+  return $tree;
 }
 
 /**
