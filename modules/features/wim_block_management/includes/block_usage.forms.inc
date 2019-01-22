@@ -112,11 +112,13 @@ function block_usage_filters() {
   $form['block_usage_filter']['actions']['apply'] = [
     '#type' => 'submit',
     '#value' => t('Apply'),
+    '#name' => 'apply_filter',
   ];
 
   $form['block_usage_filter']['actions']['reset'] = [
     '#type' => 'submit',
     '#value' => t('Reset'),
+    '#name' => 'reset_filter',
   ];
 
   return $form;
@@ -145,18 +147,16 @@ function block_usage_filters_submit(&$form, &$form_state) {
     'status' => $form_state['values']['block_usage_status'],
   ];
 
-  switch (strtolower($form_state['values']['op'])) {
-    case 'apply':
-      foreach ($filters as $filter_name => $filter_value) {
-        if (!empty($filter_value)) {
-          $params[$filter_name] = $filter_value;
-        }
+  if ($form_state['values']['apply_filter']) {
+    foreach ($filters as $filter_name => $filter_value) {
+      if (!empty($filter_value)) {
+        $params[$filter_name] = $filter_value;
       }
-      break;
+    }
+  }
 
-    case 'reset':
-      $params = [];
-      break;
+  if ($form_state['values']['reset_filter']) {
+    $params = [];
   }
 
   // Redirect back to block usage view with added filter query string param.
