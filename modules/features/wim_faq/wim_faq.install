@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * @file
+ * Install file.
+ */
+
+/**
+ * Add "Address" field FAQ CT.
+ */
+function wim_faq_update_7001(&$sandbox) {
+  features_revert_module('wim_faq');
+}
