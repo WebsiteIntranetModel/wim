@@ -139,14 +139,7 @@ function sduconnect_set_pdc_content(DOMXPath $xpath, &$node, $private = FALSE) {
     ];
   }
   else {
-    $node->field_product_address = [
-      LANGUAGE_NONE => [
-        [
-          'value' => 'empty!',
-          'format' => $default_format,
-        ],
-      ],
-    ];
+    $node->field_product_address = [];
   }
 
   // AVG.
