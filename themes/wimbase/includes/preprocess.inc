@@ -322,6 +322,8 @@ function wimbase_preprocess_search_result(&$variables) {
         // Set empty string to hide a body and prevent of rendering in the
         // default mode. @see: search-result.tpl.php.
         $variables['node_content'] = '';
+
+        $variables['classes_array'][] = 'promoted';
       }
     }
   }
@@ -344,6 +346,16 @@ function wimbase_preprocess_search_result(&$variables) {
         }
       }
     }
+  }
+}
+
+/**
+ * Template preprocess for apachesolr search results.
+ */
+function wimbase_preprocess_search_results(&$variables) {
+  // Display additional label for promoted elements in the search results.
+  if (isset($variables['results'][0]['bundle']) && $variables['results'][0]['bundle'] === 'linked_keywords') {
+    $variables['promoted'] = TRUE;
   }
 }
 
