@@ -374,6 +374,14 @@ function wim_core_views_default_views() {
     5 => 0,
     6 => 0,
   );
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type_1']['id'] = 'type_1';
+  $handler->display->display_options['filters']['type_1']['table'] = 'node';
+  $handler->display->display_options['filters']['type_1']['field'] = 'type';
+  $handler->display->display_options['filters']['type_1']['operator'] = 'not in';
+  $handler->display->display_options['filters']['type_1']['value'] = array(
+    'linked_keywords' => 'linked_keywords',
+  );
 
   /* Display: System */
   $handler = $view->new_display('system', 'System', 'system_1');

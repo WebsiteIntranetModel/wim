@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * @file
+ * Install file.
+ */
+
+/**
+ * Exclude "Linked keywords" CT from list on the common content page.
+ */
+function wim_core_update_7001(&$sandbox) {
+  features_revert_module('wim_core');
+}
