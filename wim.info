@@ -2,6 +2,8 @@ name = Website Intranet Model
 distribution_name = Website Intranet Model
 description = Installation profile for the WIM distribution.
 core = 7.x
+version = '7.x-2.33'
+project = 'wim'
 
 files[] = wim.test
 
