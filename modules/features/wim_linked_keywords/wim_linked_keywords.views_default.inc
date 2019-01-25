@@ -84,16 +84,47 @@ function wim_linked_keywords_views_default_views() {
   $handler->display->display_options['fields']['views_bulk_operations']['id'] = 'views_bulk_operations';
   $handler->display->display_options['fields']['views_bulk_operations']['table'] = 'views_entity_node';
   $handler->display->display_options['fields']['views_bulk_operations']['field'] = 'views_bulk_operations';
+  $handler->display->display_options['fields']['views_bulk_operations']['label'] = '';
+  $handler->display->display_options['fields']['views_bulk_operations']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['display_type'] = '0';
   $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['enable_select_all_pages'] = 1;
   $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['row_clickable'] = 1;
   $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['force_single'] = 0;
   $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['entity_load_capacity'] = '10';
+  $handler->display->display_options['fields']['views_bulk_operations']['vbo_operations'] = array(
+    'action::views_bulk_operations_delete_item' => array(
+      'selected' => 1,
+      'postpone_processing' => 0,
+      'skip_confirmation' => 0,
+      'skip_permission_check' => 0,
+      'override_label' => 1,
+      'label' => 'Delete',
+      'settings' => array(
+        'log' => 0,
+      ),
+    ),
+    'action::node_publish_action' => array(
+      'selected' => 1,
+      'postpone_processing' => 0,
+      'skip_confirmation' => 1,
+      'skip_permission_check' => 0,
+      'override_label' => 1,
+      'label' => 'Publish',
+    ),
+    'action::node_unpublish_action' => array(
+      'selected' => 1,
+      'postpone_processing' => 0,
+      'skip_confirmation' => 1,
+      'skip_permission_check' => 0,
+      'override_label' => 1,
+      'label' => 'Unpublish',
+    ),
+  );
   /* Field: Content: Referenced Content */
   $handler->display->display_options['fields']['field_referenced_content_1']['id'] = 'field_referenced_content_1';
   $handler->display->display_options['fields']['field_referenced_content_1']['table'] = 'field_data_field_referenced_content';
   $handler->display->display_options['fields']['field_referenced_content_1']['field'] = 'field_referenced_content';
-  $handler->display->display_options['fields']['field_referenced_content_1']['label'] = 'Title';
+  $handler->display->display_options['fields']['field_referenced_content_1']['label'] = 'Linked Keyword';
   $handler->display->display_options['fields']['field_referenced_content_1']['click_sort_column'] = 'url';
   $handler->display->display_options['fields']['field_referenced_content_1']['type'] = 'link_title_plain';
   /* Field: Content: Referenced Content */
@@ -103,6 +134,11 @@ function wim_linked_keywords_views_default_views() {
   $handler->display->display_options['fields']['field_referenced_content']['label'] = 'Linked Content';
   $handler->display->display_options['fields']['field_referenced_content']['click_sort_column'] = 'url';
   $handler->display->display_options['fields']['field_referenced_content']['type'] = 'link_url';
+  /* Field: Content: Published */
+  $handler->display->display_options['fields']['status']['id'] = 'status';
+  $handler->display->display_options['fields']['status']['table'] = 'node';
+  $handler->display->display_options['fields']['status']['field'] = 'status';
+  $handler->display->display_options['fields']['status']['not'] = 0;
   /* Field: Content: Edit link */
   $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
   $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
@@ -191,13 +227,16 @@ function wim_linked_keywords_views_default_views() {
     t('@total item found'),
     t('@total items found'),
     t('No content available.'),
-    t('Content'),
     t('- Choose an operation -'),
-    t('Title'),
+    t('Delete'),
+    t('Publish'),
+    t('Unpublish'),
+    t('Linked Keyword'),
     t('Linked Content'),
+    t('Published'),
     t('Actions'),
     t('view'),
-    t('Published'),
+    t('Title'),
     t('System'),
   );
   $export['administration_linked_keywords'] = $view;
