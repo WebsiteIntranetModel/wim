@@ -83,3 +83,14 @@ function wim_linked_keywords_menu_local_tasks_alter(&$data, $router_item, $root_
     }
   }
 }
+
+/**
+ * Alter the apachesolr.module "advanced settings" form.
+ */
+function wim_linked_keywords_form_apachesolr_settings_alter(&$form, $form_state) {
+  $form['advanced']['wim_linked_keywords_promoted'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Display additional label for promoted elements in the search results'),
+    '#default_value' => variable_get('wim_linked_keywords_promoted'),
+  ];
+}

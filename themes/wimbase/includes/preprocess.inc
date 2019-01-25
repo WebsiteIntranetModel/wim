@@ -354,8 +354,10 @@ function wimbase_preprocess_search_result(&$variables) {
  */
 function wimbase_preprocess_search_results(&$variables) {
   // Display additional label for promoted elements in the search results.
-  if (isset($variables['results'][0]['bundle']) && $variables['results'][0]['bundle'] === 'linked_keywords') {
-    $variables['promoted'] = TRUE;
+  if (variable_get('wim_linked_keywords_promoted')) {
+    if (isset($variables['results'][0]['bundle']) && $variables['results'][0]['bundle'] === 'linked_keywords') {
+      $variables['promoted'] = TRUE;
+    }
   }
 }
 
