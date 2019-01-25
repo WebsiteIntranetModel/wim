@@ -1192,6 +1192,7 @@ function _wim_enable_modules() {
     'login_destination',
     'media_bulk_upload',
     'clone',
+    'webform_autofill_attribute',
   );
 
   // Enable modules.
