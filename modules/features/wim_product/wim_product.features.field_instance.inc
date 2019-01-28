@@ -215,63 +215,6 @@ function wim_product_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-product-field_product_address'.
-  $field_instances['node-product-field_product_address'] = array(
-    'bundle' => 'product',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'abovec',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 6,
-      ),
-      'introduction' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'search_result' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_product_address',
-    'label' => 'Address',
-    'required' => 0,
-    'settings' => array(
-      'linkit' => array(
-        'button_text' => 'Search',
-        'enable' => 0,
-        'profile' => '',
-      ),
-      'text_processing' => 1,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'rows' => 5,
-      ),
-      'type' => 'text_textarea',
-      'weight' => 14,
-    ),
-  );
-
   // Exported field_instance: 'node-product-field_product_avg'.
   $field_instances['node-product-field_product_avg'] = array(
     'bundle' => 'product',
@@ -632,7 +575,6 @@ function wim_product_field_default_field_instances() {
   // Translatables
   // Included for use with string extractors like potx.
   t('AVG');
-  t('Address');
   t('Body');
   t('Check if You want to stick this node on top of lists');
   t('Image');

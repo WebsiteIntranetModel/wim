@@ -11,10 +11,3 @@
 function wim_product_update_7001(&$sandbox) {
   features_revert_module('wim_product');
 }
-
-/**
- * Add "Address" field Product CT.
- */
-function wim_product_update_7002(&$sandbox) {
-  features_revert_module('wim_product');
-}
