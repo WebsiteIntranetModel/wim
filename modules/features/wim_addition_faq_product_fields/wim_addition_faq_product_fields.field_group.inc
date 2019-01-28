@@ -24,6 +24,7 @@ function wim_addition_faq_product_fields_field_group_info() {
     'weight' => '9',
     'children' => array(
       0 => 'field_faq_more_information',
+      1 => 'field_faq_address',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
