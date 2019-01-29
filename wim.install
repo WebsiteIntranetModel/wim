@@ -1327,4 +1327,26 @@ function _wim_set_default_mass_contact_settings() {
 
   variable_set('mass_contact_category_override', 0);
   variable_set('mass_contact_message_prefix', '');
+  variable_set('mass_contact_nodecc_d', '');
+
+  // Get mlid of 'admin/content' menu link.
+  $plid = db_select('menu_links', 'ml')
+    ->condition('ml.link_path', 'admin/content')
+    ->fields('ml', ['mlid'])
+    ->execute()
+    ->fetchField();
+
+  // Create a new menu link for mass contact form in the content section.
+  $menu_item = [
+    'link_title' => st('Mass Contact'),
+    'link_path' => 'mass_contact',
+    'menu_name' => 'management',
+    'plid' => $plid,
+  ];
+
+  menu_link_save($menu_item);
+
+  // Set permissions & allow webmaster to send messages with the Mass Contact.
+  $role = user_role_load_by_name('webmaster');
+  user_role_grant_permissions($role->rid, ['mass contact send messages']);
 }
