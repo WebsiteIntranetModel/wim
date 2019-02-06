@@ -121,7 +121,7 @@ function wim_faq_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 4,
+        'weight' => 8,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -148,7 +148,7 @@ function wim_faq_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => 3,
+      'weight' => 4,
     ),
   );
 
@@ -167,7 +167,7 @@ function wim_faq_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 5,
+        'weight' => 9,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -196,7 +196,7 @@ function wim_faq_field_default_field_instances() {
         'display_label' => 1,
       ),
       'type' => 'options_onoff',
-      'weight' => 4,
+      'weight' => 5,
     ),
   );
 
@@ -211,7 +211,7 @@ function wim_faq_field_default_field_instances() {
         'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 2,
+        'weight' => 6,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -241,7 +241,7 @@ function wim_faq_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 5,
+      'weight' => 6,
     ),
   );
 
@@ -260,7 +260,7 @@ function wim_faq_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 3,
+        'weight' => 7,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -290,7 +290,7 @@ function wim_faq_field_default_field_instances() {
         'range' => 20,
       ),
       'type' => 'weight_selector',
-      'weight' => 7,
+      'weight' => 8,
     ),
   );
 

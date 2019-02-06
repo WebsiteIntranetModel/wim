@@ -10,6 +10,57 @@
 function wim_addition_faq_product_fields_field_default_field_instances() {
   $field_instances = array();
 
+  // Exported field_instance: 'node-faq-field_faq_address'.
+  $field_instances['node-faq-field_faq_address'] = array(
+    'bundle' => 'faq',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 0,
+      ),
+      'search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_faq_address',
+    'label' => 'Address',
+    'required' => 0,
+    'settings' => array(
+      'linkit' => array(
+        'button_text' => 'Search',
+        'enable' => 0,
+        'profile' => '',
+      ),
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 5,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 13,
+    ),
+  );
+
   // Exported field_instance: 'node-faq-field_faq_more_information'.
   $field_instances['node-faq-field_faq_more_information'] = array(
     'bundle' => 'faq',
@@ -22,7 +73,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_default',
-        'weight' => 9,
+        'weight' => 5,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -87,7 +138,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
           'link' => 1,
         ),
         'type' => 'entityreference_label',
-        'weight' => 7,
+        'weight' => 3,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -136,7 +187,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
           'link' => 1,
         ),
         'type' => 'entityreference_label',
-        'weight' => 8,
+        'weight' => 4,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -222,6 +273,63 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
       ),
       'type' => 'file_generic',
       'weight' => 51,
+    ),
+  );
+
+  // Exported field_instance: 'node-product-field_product_address'.
+  $field_instances['node-product-field_product_address'] = array(
+    'bundle' => 'product',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'abovec',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 6,
+      ),
+      'introduction' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_product_address',
+    'label' => 'Address',
+    'required' => 0,
+    'settings' => array(
+      'linkit' => array(
+        'button_text' => 'Search',
+        'enable' => 0,
+        'profile' => '',
+      ),
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 5,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 14,
     ),
   );
 
@@ -857,7 +965,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_default',
-        'weight' => 6,
+        'weight' => 7,
       ),
       'introduction' => array(
         'label' => 'above',
@@ -1189,12 +1297,13 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_buttons',
-      'weight' => 14,
+      'weight' => 15,
     ),
   );
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('Address');
   t('Attachment');
   t('Attention');
   t('Conditions');
