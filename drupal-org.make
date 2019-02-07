@@ -77,6 +77,7 @@ projects[views][version] = 3.17
 projects[views_bootstrap][version] = 3.1
 projects[views_bulk_operations][version] = 3.4
 projects[webform][version] = 4.16
+projects[webform_autofill_attribute][version] = 1.2
 projects[webform_clear][version] = 2.0
 projects[webform_encrypt][version] = 1.2
 projects[weight][version] = 3.1
