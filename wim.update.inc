@@ -456,3 +456,14 @@ function wim_update_7024() {
   // Configure node_clone.
   _wim_set_default_node_clone_options();
 }
+
+/**
+ * Enable wim_linked_keywords and revert wim_search features.
+ */
+function wim_update_7025() {
+  // Enable linked keywords feature.
+  module_enable(array('wim_linked_keywords'), FALSE);
+
+  // Setup linked keywords functionality in the search.
+  features_revert_module('wim_search');
+}
