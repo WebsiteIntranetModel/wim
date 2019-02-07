@@ -1,0 +1,96 @@
+<?php
+/**
+ * @file
+ * Code for the Linked Keywords feature.
+ */
+
+include_once 'wim_linked_keywords.features.inc';
+
+/**
+ * Implements hook_facetapi_facet_info_alter().
+ */
+function wim_linked_keywords_facetapi_facet_info_alter(array &$facet_info, array $searcher_info) {
+  if (isset($facet_info['bundle'])) {
+    $facet_info['bundle']['alter callbacks'][] = 'wim_linked_keywords_facetapi_map_bundle';
+  }
+}
+
+/**
+ * Cleanup Linked Keywords from facet block on the search page.
+ */
+function wim_linked_keywords_facetapi_map_bundle(&$build, $adapter, array $facet) {
+  unset($build['linked_keywords']);
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function wim_linked_keywords_form_linked_keywords_node_form_alter(&$form, &$form_state, $form_id) {
+
+  // Clean up a linked_keywords add/edit form page and hide unused fields.
+  $hidden_fields = [
+    'title',
+    'field_reminder_email',
+    'revision_information',
+    'redirect',
+    'path',
+    'xmlsitemap',
+  ];
+
+  foreach ($hidden_fields as $hidden_field) {
+    if (isset($form[$hidden_field])) {
+      $form[$hidden_field]['#access'] = FALSE;
+    }
+  }
+
+  $form['#submit'][] = 'wim_linked_keywords_form_alter_node_submit';
+  $form['#after_build'][] = 'wim_linked_keywords_form_alter_node_after_build';
+}
+
+/**
+ * Clear out xmlsitemap section for linked_keywords.
+ */
+function wim_linked_keywords_form_alter_node_after_build($form, &$form_state) {
+  if (!empty($form['xmlsitemap'])) {
+    $form['xmlsitemap']['#access'] = FALSE;
+  }
+  return $form;
+}
+
+/**
+ * Form submit handler for linked_keywords form.
+ */
+function wim_linked_keywords_form_alter_node_submit($form, &$form_state) {
+  $values = &$form_state['values'];
+
+  // Copy and set link title as node title.
+  $values['title'] = $values['field_referenced_content'][LANGUAGE_NONE][0]['title'];
+}
+
+/**
+ * Implements hook_menu_local_tasks_alter().
+ */
+function wim_linked_keywords_menu_local_tasks_alter(&$data, $router_item, $root_path) {
+  // Add action link to 'node/add/linked-keywords' on
+  // 'admin/content/linked-keywords' page.
+  if ($root_path == 'admin/content/linked-keywords') {
+    $item = menu_get_item('node/add/linked-keywords');
+    if ($item['access']) {
+      $data['actions']['output'][] = [
+        '#theme' => 'menu_local_action',
+        '#link' => $item,
+      ];
+    }
+  }
+}
+
+/**
+ * Alter the apachesolr.module "advanced settings" form.
+ */
+function wim_linked_keywords_form_apachesolr_settings_alter(&$form, $form_state) {
+  $form['advanced']['wim_linked_keywords_promoted'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Display additional label for promoted elements in the search results'),
+    '#default_value' => variable_get('wim_linked_keywords_promoted'),
+  ];
+}

@@ -463,3 +463,14 @@ function wim_update_7024() {
 function wim_update_7025() {
   module_enable(array('webform_autofill_attribute'));
 }
+
+/**
+ * Enable wim_linked_keywords and revert wim_search features.
+ */
+function wim_update_7026() {
+  // Enable linked keywords feature.
+  module_enable(array('wim_linked_keywords'), FALSE);
+
+  // Setup linked keywords functionality in the search.
+  features_revert_module('wim_search');
+}
