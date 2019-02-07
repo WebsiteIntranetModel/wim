@@ -77,6 +77,9 @@ function wim_install() {
   // Configure node_clone.
   _wim_set_default_node_clone_options();
 
+  // Configure mass_contact module.
+  _wim_set_default_mass_contact_settings();
+
   // Change media render.
   variable_set('media_wysiwyg_default_render', 'field_attach');
 
@@ -1301,4 +1304,50 @@ function _wim_set_default_seckit() {
   }
 
   _system_update_bootstrap_status();
+}
+
+/**
+ * Default settings for mass_contact module.
+ */
+function _wim_set_default_mass_contact_settings() {
+
+  // Create category.
+  $record = [
+    'category' => t('Every active/inactive account'),
+    'recipients' => serialize([
+      'mass_contact_taxonomy' => [],
+      'mass_contact_role' => [
+        0 => 2,
+      ],
+    ]),
+    'user_status' => serialize([1, 0]),
+    'reply' => '',
+  ];
+
+  drupal_write_record('mass_contact', $record);
+
+  variable_set('mass_contact_category_override', 0);
+  variable_set('mass_contact_message_prefix', '');
+  variable_set('mass_contact_nodecc_d', '');
+
+  // Get mlid of 'admin/content' menu link.
+  $plid = db_select('menu_links', 'ml')
+    ->condition('ml.link_path', 'admin/content')
+    ->fields('ml', ['mlid'])
+    ->execute()
+    ->fetchField();
+
+  // Create a new menu link for mass contact form in the content section.
+  $menu_item = [
+    'link_title' => st('Mass Contact'),
+    'link_path' => 'mass_contact',
+    'menu_name' => 'management',
+    'plid' => $plid,
+  ];
+
+  menu_link_save($menu_item);
+
+  // Set permissions & allow webmaster to send messages with the Mass Contact.
+  $role = user_role_load_by_name('webmaster');
+  user_role_grant_permissions($role->rid, ['mass contact send messages']);
 }

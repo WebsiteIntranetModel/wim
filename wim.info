@@ -43,6 +43,7 @@ dependencies[] = magic
 dependencies[] = media
 dependencies[] = media_wysiwyg
 dependencies[] = media_bulk_upload
+dependencies[] = mass_contact
 dependencies[] = menu_block
 dependencies[] = metatag
 dependencies[] = module_filter

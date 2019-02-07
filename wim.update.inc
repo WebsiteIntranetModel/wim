@@ -474,3 +474,14 @@ function wim_update_7026() {
   // Setup linked keywords functionality in the search.
   features_revert_module('wim_search');
 }
+
+/**
+ * Enable mass contact module and set default settings.
+ */
+function wim_update_7027() {
+  // Enable mass_contact module.
+  module_enable(['mass_contact'], FALSE);
+
+  // Configure mass_contact module.
+  _wim_set_default_mass_contact_settings();
+}

@@ -36,6 +36,16 @@ function wim_core_permission() {
 }
 
 /**
+ * Implements hook_admin_paths().
+ */
+function wim_core_admin_paths() {
+  $paths = array(
+    'mass_contact' => TRUE,
+  );
+  return $paths;
+}
+
+/**
  * Implements hook_menu_alter().
  */
 function wim_core_menu_alter(&$items) {
@@ -268,6 +278,37 @@ function wim_core_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'menu_edit_item') {
     hide($form['icon']['icon_path']);
   }
+
+  if ($form_id === 'mass_contact_mail_page') {
+    // Hide options list on the mass contact form.
+    hide($form['tasklist']);
+
+    $form['#submit'][] = 'mass_contact_redirect_submit';
+  }
+
+  if ($form_id === 'mass_contact_admin_settings_misc') {
+    // Add redirect field.
+    $form['mass_contact_redirect'] = [
+      '#type' => 'textfield',
+      '#title' => t('Redirect to'),
+      '#default_value' => variable_get('mass_contact_redirect'),
+      '#description' => t('Redirect to custom page after submit'),
+    ];
+  }
+}
+
+/**
+ * Processes the Mass Contact mail form.
+ *
+ * @param array $form
+ *   An associative array containing the structure of the form.
+ * @param array $form_state
+ *   A keyed array containing the current state of the form.
+ */
+function mass_contact_redirect_submit(array $form, array &$form_state) {
+  // Override a redirect and set value from configs.
+  $redirect = variable_get('mass_contact_redirect') ?: current_path();
+  $form_state['redirect'] = $redirect;
 }
 
 /**
