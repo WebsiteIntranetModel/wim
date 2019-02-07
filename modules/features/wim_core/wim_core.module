@@ -51,6 +51,7 @@ function wim_core_admin_paths() {
 function wim_core_menu_alter(&$items) {
   $items['taxonomy/term/%taxonomy_term']['access arguments'] = array('access taxonomy pages');
   $items['taxonomy/term/%taxonomy_term/feed']['access arguments'] = array('access taxonomy pages');
+  $items['admin/reports/status']['access arguments'] = array('access site reports');
 }
 
 /**

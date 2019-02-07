@@ -458,6 +458,7 @@ function wim_update_7024() {
 }
 
 /**
+<<<<<<< HEAD
  * Enable the webform_autofill_attribute for WCAG2.1.
  */
 function wim_update_7025() {
@@ -484,4 +485,12 @@ function wim_update_7027() {
 
   // Configure mass_contact module.
   _wim_set_default_mass_contact_settings();
+}
+
+/**
+ * Give webmaster the permission to view site reports.
+ */
+function wim_update_7028(&$sandbox) {
+  $role = user_role_load_by_name('webmaster');
+  user_role_grant_permissions($role->rid, array('access site reports'));
 }
