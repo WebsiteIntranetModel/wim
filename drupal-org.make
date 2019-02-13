@@ -193,5 +193,5 @@ libraries[ckeditor][download][url] = https://download.cksource.com/CKEditor/CKEd
 projects[apachesolr_attachments][patch][2677866] = https://www.drupal.org/files/issues/mysql-56-compatibility-2677866-12.patch
 projects[apachesolr_attachments][patch][1908484] = https://www.drupal.org/files/issues/apachesolr-attachments-index-unattached-files-1908484-13.patch
 
-; Mass Contact
-projects[mass_contact][patch][787168] = https://www.drupal.org/files/issues/2019-01-10/787168-8.patch
+; Mass Contact - Add possibility to send mail to blocked users
+projects[mass_contact][patch][787168] = patches/787168-9.patch
