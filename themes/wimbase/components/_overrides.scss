@@ -472,6 +472,19 @@ ul.pagination li > a.progress-disabled {
   float: left;
 }
 
+.pagination {
+  > .disabled {
+    > span,
+    > span:hover,
+    > span:focus,
+    > a,
+    > a:hover,
+    > a:focus {
+      color: $pagination-disabled-color;
+    }
+  }
+}
+
 .form-autocomplete {
   .glyphicon {
     color: #777;
