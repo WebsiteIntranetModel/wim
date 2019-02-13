@@ -309,15 +309,21 @@ function wimbase_preprocess_search_result(&$variables) {
       $variables['content_type'] = isset($content_types_labels[$node->type]) ? $content_types_labels[$node->type] : ucfirst($node->type);
 
       if ($result['bundle'] === 'linked_keywords') {
+        global $base_url;
         $referenced_content = $node->field_referenced_content[LANGUAGE_NONE][0];
+
+        // Get the node where we are referring to.
+        $referenced_node = explode($base_url . '/' , $referenced_content['url']);
+        $referenced_node = explode('node/', drupal_get_normal_path($referenced_node[1]));
+        $referenced_node = node_load($referenced_node[1]);
 
         // Override an output of linked_keywords data and replace with link of
         // linked content in the search result.
         $variables['url'] = $referenced_content['url'];
-        $variables['title'] = $referenced_content['title'];
+        $variables['title'] = $referenced_node->title;
 
-        // Remove label of enity bundle in result output.
-        unset($variables['content_type']);
+        // Set label of entity bundle in result output.
+        $variables['content_type'] = t('Promoted');
 
         // Set empty string to hide a body and prevent of rendering in the
         // default mode. @see: search-result.tpl.php.

@@ -23,6 +23,16 @@ function wim_linked_keywords_facetapi_map_bundle(&$build, $adapter, array $facet
 }
 
 /**
+ * Implements hook_form_alter().
+ */
+function wim_linked_keywords_form_alter(&$form, &$form_state, $form_id) {
+  // Remove linked keyword from content overview as a filter type.
+  if ($form['#id'] === 'views-exposed-form-administration-content-system-1' && $form['#form_id'] === 'views_exposed_form' && isset($form['type']['#options']['linked_keywords'])) {
+    unset($form['type']['#options']['linked_keywords']);
+  }
+}
+
+/**
  * Implements hook_form_FORM_ID_alter().
  */
 function wim_linked_keywords_form_linked_keywords_node_form_alter(&$form, &$form_state, $form_id) {
@@ -73,8 +83,9 @@ function wim_linked_keywords_form_alter_node_submit($form, &$form_state) {
 function wim_linked_keywords_menu_local_tasks_alter(&$data, $router_item, $root_path) {
   // Add action link to 'node/add/linked-keywords' on
   // 'admin/content/linked-keywords' page.
-  if ($root_path == 'admin/content/linked-keywords') {
+  if ($root_path === 'admin/content/linked-keywords') {
     $item = menu_get_item('node/add/linked-keywords');
+    $item['title'] = t('Add ' . $item['title']);
     if ($item['access']) {
       $data['actions']['output'][] = [
         '#theme' => 'menu_local_action',
