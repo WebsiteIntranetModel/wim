@@ -85,7 +85,8 @@ function wim_linked_keywords_menu_local_tasks_alter(&$data, $router_item, $root_
   // 'admin/content/linked-keywords' page.
   if ($root_path === 'admin/content/linked-keywords') {
     $item = menu_get_item('node/add/linked-keywords');
-    $item['title'] = t('Add ' . $item['title']);
+    $item['title'] = t('Add @item', ['@item' => $item['title']]);
+
     if ($item['access']) {
       $data['actions']['output'][] = [
         '#theme' => 'menu_local_action',

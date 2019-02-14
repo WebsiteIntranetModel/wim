@@ -317,7 +317,7 @@ function wimbase_preprocess_search_result(&$variables) {
         $referenced_content = $node->field_referenced_content[LANGUAGE_NONE][0];
 
         // Get the node where we are referring to.
-        $referenced_node = explode($base_url . '/' , $referenced_content['url']);
+        $referenced_node = explode($base_url . '/', $referenced_content['url']);
         $referenced_node = explode('node/', drupal_get_normal_path($referenced_node[1]));
         $referenced_node = node_load($referenced_node[1]);
 

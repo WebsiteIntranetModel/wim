@@ -940,7 +940,7 @@ function _wim_permissions($role) {
       'administer users',
       // Role assign.
       'assign roles',
-      // Site reports
+      // Site reports.
       'access site reports',
     ),
     // Content manager.
