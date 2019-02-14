@@ -194,4 +194,4 @@ projects[apachesolr_attachments][patch][2677866] = https://www.drupal.org/files/
 projects[apachesolr_attachments][patch][1908484] = https://www.drupal.org/files/issues/apachesolr-attachments-index-unattached-files-1908484-13.patch
 
 ; Mass Contact - Add possibility to send mail to blocked users
-projects[mass_contact][patch][787168] = patches/787168-9.patch
+projects[mass_contact][patch][787168] = https://www.drupal.org/files/issues/2019-02-14/787168-9.patch
