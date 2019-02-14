@@ -135,6 +135,10 @@ function wimbase_preprocess_block(&$variables) {
     if ($bean_view_mode === 'default' && isset($bean->field_image) && $bean->field_image) {
       $variables['classes_array'][] = $has_image_class;
     }
+
+    // Set empty aria-label
+    // so log will not create notices about not being defined.
+    $variables['aria_label'] = '';
     if (isset($bean->field_aria_label) && !empty($bean->field_aria_label[LANGUAGE_NONE][0]['value'])) {
       $variables['aria_label'] = $bean->field_aria_label[LANGUAGE_NONE][0]['value'];
     }
