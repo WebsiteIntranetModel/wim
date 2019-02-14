@@ -471,6 +471,40 @@ function wim_update_7026() {
   // Enable linked keywords feature.
   module_enable(array('wim_linked_keywords'), FALSE);
 
+  // Set permissions.
+  $permissions = array(
+    'administrator' => array(
+      'create linked_keywords content',
+      'edit own linked_keywords content',
+      'edit any linked_keywords content',
+      'delete own linked_keywords content',
+      'delete any linked_keywords content',
+    ),
+    'webmaster' => array(
+      'create linked_keywords content',
+      'edit own linked_keywords content',
+      'edit any linked_keywords content',
+      'delete own linked_keywords content',
+      'delete any linked_keywords content',
+    ),
+    'content manager' => array(
+      'create linked_keywords content',
+      'edit own linked_keywords content',
+      'edit any linked_keywords content',
+      'delete own linked_keywords content',
+      'delete any linked_keywords content',
+    ),
+    'content editor' => array(
+      'create linked_keywords content',
+      'edit own linked_keywords content',
+    ),
+  );
+
+  foreach ($permissions as $role_name => $permission) {
+    $role = user_role_load_by_name($role_name);
+    user_role_grant_permissions($role->rid, $permission);
+  }
+
   // Setup linked keywords functionality in the search.
   features_revert_module('wim_search');
 }

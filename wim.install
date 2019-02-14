@@ -942,6 +942,12 @@ function _wim_permissions($role) {
       'assign roles',
       // Site reports.
       'access site reports',
+      // Linked keywords.
+      'create linked_keywords content',
+      'edit own linked_keywords content',
+      'edit any linked_keywords content',
+      'delete own linked_keywords content',
+      'delete any linked_keywords content',
     ),
     // Content manager.
     'content manager' => array(
@@ -1058,6 +1064,12 @@ function _wim_permissions($role) {
       'administer taxonomy',
       // User.
       'administer users',
+      // Linked keywords.
+      'create linked_keywords content',
+      'edit own linked_keywords content',
+      'edit any linked_keywords content',
+      'delete own linked_keywords content',
+      'delete any linked_keywords content',
     ),
     // Content editor.
     'content editor' => array(
@@ -1120,6 +1132,9 @@ function _wim_permissions($role) {
       'download any video files',
       'download any document files',
       'send arbitrary files',
+      // Linked keywords,
+      'create linked_keywords content',
+      'edit own linked_keywords content',
     ),
     'authenticated' => array(
       'access content',
