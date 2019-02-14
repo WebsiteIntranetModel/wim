@@ -1132,7 +1132,7 @@ function _wim_permissions($role) {
       'download any video files',
       'download any document files',
       'send arbitrary files',
-      // Linked keywords,
+      // Linked keywords.
       'create linked_keywords content',
       'edit own linked_keywords content',
     ),
