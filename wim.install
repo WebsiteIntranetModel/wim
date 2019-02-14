@@ -1322,7 +1322,10 @@ function _wim_set_default_mass_contact_settings() {
         0 => 2,
       ],
     ]),
-    'user_status' => serialize([1, 0]),
+    'user_status' => serialize([
+      'active' => 'active',
+      'blocked' => 'blocked',
+    ]),
     'reply' => '',
   ];
 
@@ -1351,5 +1354,15 @@ function _wim_set_default_mass_contact_settings() {
 
   // Set permissions & allow webmaster to send messages with the Mass Contact.
   $role = user_role_load_by_name('webmaster');
-  user_role_grant_permissions($role->rid, ['mass contact send messages']);
+  $permissions = [
+    'mass contact send messages',
+    'mass contact override text format',
+    'mass contact archive messages',
+    'mass contact include attachments',
+    'mass contact change default sender information',
+    'mass contact override archiving',
+    'mass contact override bcc',
+    'mass contact administer',
+  ];
+  user_role_grant_permissions($role->rid, $permissions);
 }

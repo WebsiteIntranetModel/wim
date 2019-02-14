@@ -458,7 +458,6 @@ function wim_update_7024() {
 }
 
 /**
-<<<<<<< HEAD
  * Enable the webform_autofill_attribute for WCAG2.1.
  */
 function wim_update_7025() {

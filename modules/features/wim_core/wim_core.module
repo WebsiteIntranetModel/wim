@@ -296,6 +296,11 @@ function wim_core_form_alter(&$form, &$form_state, $form_id) {
       '#description' => t('Redirect to custom page after submit'),
     ];
   }
+
+  // Remove mass contact from content overview as a filter type.
+  if ($form['#id'] === 'views-exposed-form-administration-content-system-1' && $form['#form_id'] === 'views_exposed_form' && isset($form['type']['#options']['mass_contact'])) {
+    unset($form['type']['#options']['mass_contact']);
+  }
 }
 
 /**
