@@ -56,7 +56,7 @@ projects[multiform][version] = 1.4
 projects[nodequeue][version] = 2.1
 projects[node_clone][version] = 1.0
 projects[l10n_update][version] = 2.1
-projects[link][version] = 1.4
+projects[link][version] = 1.6
 projects[libraries][version] = 2.3
 projects[linkit][version] = 3.5
 projects[paragraphs][version] = 1.0-rc5
@@ -162,7 +162,7 @@ projects[hansel][patch][2399645] = https://www.drupal.org/files/issues/hansel-br
 ; Link
 ; URL validation rejects existing valid content after upgrade to 7.x-1.4
 ; https://www.drupal.org/node/2666912
-projects[link][patch][2666912] = https://www.drupal.org/files/issues/revert-url-validation-2666912.patch
+projects[link][patch][2666912] = https://www.drupal.org/files/issues/2019-01-24/link-revert_url_validation-2666912-7.x-1.5.patch
 
 ; Linkit
 ; Allow Linkit support for any eligible element type
