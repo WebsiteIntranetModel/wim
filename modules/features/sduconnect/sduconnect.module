@@ -7,6 +7,7 @@
 
 define('SDUCONNECT_FAQ', 'vac');
 define('SDUCONNECT_PRODUCT', 'pdc');
+define('SDUCONNECT_VERSION', '3.0');
 
 /**
  * Implements hook_ctools_plugin_directory().
