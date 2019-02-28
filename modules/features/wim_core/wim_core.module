@@ -218,8 +218,7 @@ function wim_core_form_alter(&$form, &$form_state, $form_id) {
 
   // Move fields to the settings tab.
   if (isset($form['#node_edit_form']) && $form['#node_edit_form']) {
-    // Hide sticky option.
-    $form['options']['sticky']['#access'] = FALSE;
+    $form['options']['sticky']['#description'] = t('Check if You want to stick this node on top of search result.');
 
     // Move fields to the Publishing options tab.
     foreach (array('field_publication_date', 'field_promoted') as $field_name) {
