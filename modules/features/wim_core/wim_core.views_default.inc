@@ -555,6 +555,10 @@ function wim_core_views_default_views() {
   $handler->display->display_options['relationships']['file_to_node']['id'] = 'file_to_node';
   $handler->display->display_options['relationships']['file_to_node']['table'] = 'file_usage';
   $handler->display->display_options['relationships']['file_to_node']['field'] = 'file_to_node';
+  /* Relationship: File: Block using Image */
+  $handler->display->display_options['relationships']['reverse_field_image_bean']['id'] = 'reverse_field_image_bean';
+  $handler->display->display_options['relationships']['reverse_field_image_bean']['table'] = 'file_managed';
+  $handler->display->display_options['relationships']['reverse_field_image_bean']['field'] = 'reverse_field_image_bean';
   /* Field: Bulk operations: File */
   $handler->display->display_options['fields']['views_bulk_operations']['id'] = 'views_bulk_operations';
   $handler->display->display_options['fields']['views_bulk_operations']['table'] = 'views_entity_file';
@@ -611,6 +615,21 @@ function wim_core_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['max_length'] = '50';
   $handler->display->display_options['fields']['title']['alter']['trim'] = TRUE;
   $handler->display->display_options['fields']['title']['alter']['html'] = TRUE;
+  /* Field: Block: Label */
+  $handler->display->display_options['fields']['label']['id'] = 'label';
+  $handler->display->display_options['fields']['label']['table'] = 'bean';
+  $handler->display->display_options['fields']['label']['field'] = 'label';
+  $handler->display->display_options['fields']['label']['relationship'] = 'reverse_field_image_bean';
+  $handler->display->display_options['fields']['label']['exclude'] = TRUE;
+  /* Field: Block: URL */
+  $handler->display->display_options['fields']['url']['id'] = 'url';
+  $handler->display->display_options['fields']['url']['table'] = 'views_entity_bean';
+  $handler->display->display_options['fields']['url']['field'] = 'url';
+  $handler->display->display_options['fields']['url']['relationship'] = 'reverse_field_image_bean';
+  $handler->display->display_options['fields']['url']['label'] = 'Shown on block';
+  $handler->display->display_options['fields']['url']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['url']['alter']['text'] = '[label]';
+  $handler->display->display_options['fields']['url']['link_to_entity'] = 0;
   /* Field: User: Name */
   $handler->display->display_options['fields']['name']['id'] = 'name';
   $handler->display->display_options['fields']['name']['table'] = 'users';
@@ -778,6 +797,7 @@ function wim_core_views_default_views() {
     t('No content available.'),
     t('User who uploaded'),
     t('Content'),
+    t('field_image'),
     t('Actions'),
     t('- Choose an operation -'),
     t('Mime type'),
@@ -786,6 +806,9 @@ function wim_core_views_default_views() {
     t('Size'),
     t('Upload date'),
     t('Shown on node'),
+    t('Label'),
+    t('Shown on block'),
+    t('[label]'),
     t('User'),
     t('Edit'),
     t('Name'),

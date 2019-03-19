@@ -11,3 +11,10 @@
 function wim_core_update_7001(&$sandbox) {
   features_revert_module('wim_core');
 }
+
+/**
+ * Add "Shown in block" column on "Administration Media" views.
+ */
+function wim_core_update_7002(&$sandbox) {
+  features_revert_module('wim_core');
+}
