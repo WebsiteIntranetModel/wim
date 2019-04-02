@@ -1195,7 +1195,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 55,
+      'weight' => 40,
     ),
   );
 

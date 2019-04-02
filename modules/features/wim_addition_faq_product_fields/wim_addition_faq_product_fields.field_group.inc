@@ -62,6 +62,7 @@ function wim_addition_faq_product_fields_field_group_info() {
       8 => 'field_product_period',
       9 => 'field_product_procedure',
       10 => 'field_product_request',
+      11 => 'field_product_sdu_introduction',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
