@@ -161,8 +161,9 @@ function sduconnect_page_xml($node) {
   }
   $collection = sduconnect_collection_load($item->cid);
   $account_id = variable_get('sduconnect_account', '');
-  $version = $collection->type === 'pdc' ? '1.2' : '1.1';
-  $url = "https://rest.sduconnect.nl/single/{$collection->type}/$version/account/$account_id/collectie/{$collection->external_id}/item/{$item->external_id}.xml";
+  $url = sprintf("https://rest.sduconnect.nl/single/%s/%s/account/%d/collectie/%d/item/%d.xml",
+    $collection->type, SDUCONNECT_VERSION, $account_id, $collection->external_id, $item->external_id);
+
   $data = drupal_http_request($url);
   if ($data->code != 200) {
     return MENU_NOT_FOUND;

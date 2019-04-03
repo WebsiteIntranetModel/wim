@@ -196,6 +196,23 @@ function sduconnect_set_pdc_content(DOMXPath $xpath, &$node, $private = FALSE) {
     $node->field_product_upl = [];
   }
 
+  // SDU introduction.
+  $sdu_introduction = sduconnect_nodelist_to_string($xpath->query('//m:page/m:product/m:introduction'));
+
+  if (!empty($sdu_introduction)) {
+    $node->field_product_sdu_introduction = [
+      LANGUAGE_NONE => [
+        [
+          'value' => $sdu_introduction,
+          'format' => $default_format,
+        ],
+      ],
+    ];
+  }
+  else {
+    $node->field_product_sdu_introduction = [];
+  }
+
   // Forms.
   $names = sduconnect_nodelist_to_array($xpath->query('//m:page/m:product/m:formulieren_extern/m:formulier/m:label'));
   $urls = sduconnect_nodelist_to_array($xpath->query('//m:page/m:product/m:formulieren_extern/m:formulier/m:href'));

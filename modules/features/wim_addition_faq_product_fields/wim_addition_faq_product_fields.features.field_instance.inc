@@ -1143,6 +1143,62 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-product-field_product_sdu_introduction'.
+  $field_instances['node-product-field_product_sdu_introduction'] = array(
+    'bundle' => 'product',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 6,
+      ),
+      'introduction' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_product_sdu_introduction',
+    'label' => 'SDU introduction',
+    'required' => 0,
+    'settings' => array(
+      'linkit' => array(
+        'button_text' => 'Search',
+        'enable' => 0,
+        'profile' => '',
+      ),
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 5,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 40,
+    ),
+  );
+
   // Exported field_instance: 'node-product-field_related_faq'.
   $field_instances['node-product-field_related_faq'] = array(
     'bundle' => 'product',
@@ -1321,6 +1377,7 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
   t('Related laws');
   t('Request');
   t('Request online');
+  t('SDU introduction');
   t('Target audience co-operating catalog');
   t('This field will be used for Let op field that comes from SDU connect import. It can be placed before or after body.');
 

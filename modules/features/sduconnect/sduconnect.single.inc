@@ -86,7 +86,9 @@ function sduconnect_single_import($collection, $id, $type) {
  */
 function sduconnect_single_download($collection_type, $collection_id, $id) {
   $account_id = variable_get('sduconnect_account', '');
-  $url = "https://rest.sduconnect.nl/single/$collection_type/2.0/account/$account_id/collectie/$collection_id/item/$id.xml";
+  $url = sprintf("https://rest.sduconnect.nl/single/%s/%s/account/%d/collectie/%d/item/%d.xml",
+    $collection_type, SDUCONNECT_VERSION, $account_id, $collection_id, $id);
+
   $data = drupal_http_request($url);
   if ($data->code != 200) {
     throw new Exception($url, (int) $data->code);

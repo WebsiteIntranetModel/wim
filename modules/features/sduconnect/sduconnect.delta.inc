@@ -89,13 +89,14 @@ function sduconnect_delta_import($collection) {
  */
 function sduconnect_delta_download($collection_type, $collection_id, $from_date) {
   $account_id = variable_get('sduconnect_account', '');
-  $version = '1.1';
   if ($from_date < REQUEST_TIME - (86400 * 30)) {
-    $url = "https://rest.sduconnect.nl/delta/$collection_type/$version/account/$account_id/collectie/$collection_id.xml";
+    $url = sprintf("https://rest.sduconnect.nl/delta/%s/%s/account/%d/collectie/%d.xml",
+      $collection_type, SDUCONNECT_VERSION, $account_id, $collection_id);
   }
   else {
     $date = date('Ymd\\THis', $from_date);
-    $url = "https://rest.sduconnect.nl/delta/$collection_type/$version/account/$account_id/collectie/$collection_id/startdatetime/$date.xml";
+    $url = sprintf("https://rest.sduconnect.nl/delta/%s/%s/account/%d/collectie/%d/startdatetime/%s.xml",
+      $collection_type, SDUCONNECT_VERSION, $account_id, $collection_id, $date);
   }
   // The callback to get changed items can be slow. Use a timeout of 5 minutes.
   $options = array(

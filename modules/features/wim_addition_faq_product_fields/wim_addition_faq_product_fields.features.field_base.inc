@@ -383,6 +383,25 @@ function wim_addition_faq_product_fields_field_default_field_bases() {
     'type' => 'link_field',
   );
 
+  // Exported field_base: 'field_product_sdu_introduction'.
+  $field_bases['field_product_sdu_introduction'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_product_sdu_introduction',
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(),
+    'translatable' => 0,
+    'type' => 'text_long',
+  );
+
   // Exported field_base: 'field_related_faq'.
   $field_bases['field_related_faq'] = array(
     'active' => 1,
