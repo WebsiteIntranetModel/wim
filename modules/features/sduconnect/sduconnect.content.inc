@@ -520,6 +520,10 @@ function sduconnect_set_vac_content($xpath, &$node, $private = FALSE) {
   if ($items) {
     $node->field_faq_more_information = array(LANGUAGE_NONE => $items);
   }
+  elseif (empty($items) && !empty($node->field_faq_more_information)) {
+    unset($node->field_faq_more_information);
+    $node->field_faq_more_information = array();
+  }
 
   // Related Product items.
   $items = sduconnect_nodelist_to_array($xpath->query('//vac:vacs/vac:vac/vac:body/vac:verwijzingProduct/@resourceIdentifier'));
