@@ -107,12 +107,12 @@ function wim_search_apachesolr_environments() {
     'node' => array(
       0 => 'agenda',
       1 => 'faq',
-      2 => 'linked_keywords',
-      3 => 'news',
-      4 => 'page',
-      5 => 'person',
-      6 => 'product',
-      7 => 'webform',
+      2 => 'news',
+      3 => 'page',
+      4 => 'person',
+      5 => 'product',
+      6 => 'webform',
+      7 => 'linked_keywords',
     ),
     'file' => array(
       0 => 'document',
