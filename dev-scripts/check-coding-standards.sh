@@ -8,4 +8,4 @@ fi
 
 # Run PHP Code Sniffer.
 echo "Running PHP Code Sniffer."
-phpcs $REPORT --standard=Drupal --extensions=php,module,inc,install,test,profile,theme --ignore=*/vendor/* /var/www/html/profiles/wim
+phpcs $REPORT --standard=Drupal,Generic --sniffs=Generic.Arrays.DisallowLongArraySyntax --extensions=php,module,inc,install,test,profile,theme --ignore=*/vendor/* /var/www/html/profiles/wim
