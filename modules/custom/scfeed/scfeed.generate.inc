@@ -137,6 +137,7 @@ function scfeed_generate_item($node) {
     $field_product_upl = $node->field_product_upl[LANGUAGE_NONE][0];
 
     $element = $dom->createElement('uniformeProductnaam', $field_product_upl['title']);
+    $element->setAttribute('scheme', 'overheid:UniformeProductnaam');
     $element->setAttribute('resourceIdentifier', $field_product_upl['url']);
     $overheidproduct->appendChild($element);
   }
