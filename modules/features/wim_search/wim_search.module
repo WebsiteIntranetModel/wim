@@ -43,9 +43,6 @@ function wim_search_form_alter(&$form, &$form_state, $form_id) {
   if (in_array($form_id, ['search_block_form', 'apachesolr_search_custom_page_search_form'])) {
     array_unshift($form['#submit'], '_search_block_form_submit');
   }
-//  if ($form_id === 'apachesolr_search_custom_page_search_form') {
-//    array_unshift($form['#submit'], '_apachesolr_search_custom_page_search_form_submit');
-//  }
 }
 
 /**
