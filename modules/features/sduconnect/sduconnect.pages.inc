@@ -161,7 +161,7 @@ function sduconnect_page_xml($node) {
   }
   $collection = sduconnect_collection_load($item->cid);
   $account_id = variable_get('sduconnect_account', '');
-  $url = sprintf("https://rest.sduconnect.nl/single/%s/%s/account/%d/collectie/%d/item/%d.xml",
+  $url = sprintf("https://rest.sduconnect.nl/single/%s/%s/account/%d/collectie/%d/item/%s.xml",
     $collection->type, SDUCONNECT_VERSION, $account_id, $collection->external_id, $item->external_id);
 
   $data = drupal_http_request($url);
