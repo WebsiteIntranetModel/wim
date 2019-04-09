@@ -40,6 +40,12 @@ function wim_search_form_alter(&$form, &$form_state, $form_id) {
     );
     $form['#submit'][] = '_search_highlighting_form_submit';
   }
+  if ($form_id === 'search_block_form') {
+    array_unshift($form['#submit'], '_search_block_form_submit');
+  }
+  if ($form_id === 'apachesolr_search_custom_page_search_form') {
+    array_unshift($form['#submit'], '_apachesolr_search_custom_page_search_form_submit');
+  }
 }
 
 /**
@@ -76,4 +82,20 @@ function wim_search_preprocess_html(&$vars) {
       variable_get('site_name'),
     ));
   }
+}
+
+/**
+ * Add a submit handler/function to the form.
+ */
+function _search_block_form_submit($form, &$form_state) {
+  $safe = filter_xss($form_state['values']['search_block_form']);
+  $form_state['values']['search_block_form'] = $safe;
+}
+
+/**
+ * Add a submit handler/function to the form.
+ */
+function _apachesolr_search_custom_page_search_form_submit($form, &$form_state) {
+  $safe = filter_xss($form_state['values']['keys']);
+  $form_state['values']['keys'] = $safe;
 }
