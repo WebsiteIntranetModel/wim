@@ -450,6 +450,7 @@ function wim_core_views_default_views() {
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['pure_distinct'] = TRUE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['exposed_form']['options']['reset_button'] = TRUE;
   $handler->display->display_options['pager']['type'] = 'full';
@@ -615,21 +616,38 @@ function wim_core_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['max_length'] = '50';
   $handler->display->display_options['fields']['title']['alter']['trim'] = TRUE;
   $handler->display->display_options['fields']['title']['alter']['html'] = TRUE;
+  /* Field: File Usage: Entity ID */
+  $handler->display->display_options['fields']['id']['id'] = 'id';
+  $handler->display->display_options['fields']['id']['table'] = 'file_usage';
+  $handler->display->display_options['fields']['id']['field'] = 'id';
+  $handler->display->display_options['fields']['id']['label'] = '';
+  $handler->display->display_options['fields']['id']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['id']['element_label_colon'] = FALSE;
+  /* Field: File Usage: Entity type */
+  $handler->display->display_options['fields']['type_1']['id'] = 'type_1';
+  $handler->display->display_options['fields']['type_1']['table'] = 'file_usage';
+  $handler->display->display_options['fields']['type_1']['field'] = 'type';
+  $handler->display->display_options['fields']['type_1']['label'] = '';
+  $handler->display->display_options['fields']['type_1']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['type_1']['alter']['path'] = '[type_1]/[id]';
+  $handler->display->display_options['fields']['type_1']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['type_1']['element_default_classes'] = FALSE;
   /* Field: Block: Label */
   $handler->display->display_options['fields']['label']['id'] = 'label';
   $handler->display->display_options['fields']['label']['table'] = 'bean';
   $handler->display->display_options['fields']['label']['field'] = 'label';
   $handler->display->display_options['fields']['label']['relationship'] = 'reverse_field_image_bean';
   $handler->display->display_options['fields']['label']['exclude'] = TRUE;
-  /* Field: Block: URL */
-  $handler->display->display_options['fields']['url']['id'] = 'url';
-  $handler->display->display_options['fields']['url']['table'] = 'views_entity_bean';
-  $handler->display->display_options['fields']['url']['field'] = 'url';
-  $handler->display->display_options['fields']['url']['relationship'] = 'reverse_field_image_bean';
-  $handler->display->display_options['fields']['url']['label'] = 'Shown on block';
-  $handler->display->display_options['fields']['url']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['url']['alter']['text'] = '[label]';
-  $handler->display->display_options['fields']['url']['link_to_entity'] = 0;
+  /* Field: Block: Block Delta */
+  $handler->display->display_options['fields']['delta']['id'] = 'delta';
+  $handler->display->display_options['fields']['delta']['table'] = 'bean';
+  $handler->display->display_options['fields']['delta']['field'] = 'delta';
+  $handler->display->display_options['fields']['delta']['relationship'] = 'reverse_field_image_bean';
+  $handler->display->display_options['fields']['delta']['label'] = 'Shown on block';
+  $handler->display->display_options['fields']['delta']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['delta']['alter']['text'] = '[label]';
+  $handler->display->display_options['fields']['delta']['alter']['make_link'] = TRUE;
+  $handler->display->display_options['fields']['delta']['alter']['path'] = 'block/[delta]';
   /* Field: User: Name */
   $handler->display->display_options['fields']['name']['id'] = 'name';
   $handler->display->display_options['fields']['name']['table'] = 'users';
@@ -806,6 +824,8 @@ function wim_core_views_default_views() {
     t('Size'),
     t('Upload date'),
     t('Shown on node'),
+    t('.'),
+    t(','),
     t('Label'),
     t('Shown on block'),
     t('[label]'),
