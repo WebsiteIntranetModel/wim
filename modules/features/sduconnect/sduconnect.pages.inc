@@ -160,7 +160,7 @@ function sduconnect_page_xml($node) {
     return MENU_NOT_FOUND;
   }
   $collection = sduconnect_collection_load($item->cid);
-  $sduconnect_version = $collection->type === 'vac' ? SDUCONNECT_VERSION_2 : SDUCONNECT_VERSION_3;
+  $sduconnect_version = sduconnect_get_version($collection->type);
   $account_id = variable_get('sduconnect_account', '');
   $url = sprintf("https://rest.sduconnect.nl/single/%s/%s/account/%d/collectie/%d/item/%s.xml",
     $collection->type, $sduconnect_version, $account_id, $collection->external_id, $item->external_id);

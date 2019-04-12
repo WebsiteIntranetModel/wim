@@ -350,3 +350,16 @@ function _sdu_log($type, $collection, $message, $nid) {
     ))->execute();
   }
 }
+
+/**
+ * Helper function to get identifier by node id from sduconnect table.
+ *
+ * @param string $collection_type
+ *    Collection type.
+ *
+ * @return string
+ *    Connection version.
+ */
+function sduconnect_get_version($collection_type) {
+  return $collection_type === 'vac' ? SDUCONNECT_VERSION_2 : SDUCONNECT_VERSION_3;
+}
