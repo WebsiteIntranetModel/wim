@@ -352,7 +352,7 @@ function _sdu_log($type, $collection, $message, $nid) {
 }
 
 /**
- * Helper function to get identifier by node id from sduconnect table.
+ * Helper function to get sduconnect version by collection type.
  *
  * @param string $collection_type
  *    Collection type.
