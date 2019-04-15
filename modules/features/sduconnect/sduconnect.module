@@ -7,7 +7,8 @@
 
 define('SDUCONNECT_FAQ', 'vac');
 define('SDUCONNECT_PRODUCT', 'pdc');
-define('SDUCONNECT_VERSION', '3.0');
+define('SDUCONNECT_VERSION_2', '2.0');
+define('SDUCONNECT_VERSION_3', '3.0');
 
 /**
  * Implements hook_ctools_plugin_directory().
@@ -348,4 +349,17 @@ function _sdu_log($type, $collection, $message, $nid) {
       'nid' => $nid,
     ))->execute();
   }
+}
+
+/**
+ * Helper function to get sduconnect version by collection type.
+ *
+ * @param string $collection_type
+ *    Collection type.
+ *
+ * @return string
+ *    Connection version.
+ */
+function sduconnect_get_version($collection_type) {
+  return $collection_type === 'vac' ? SDUCONNECT_VERSION_2 : SDUCONNECT_VERSION_3;
 }
