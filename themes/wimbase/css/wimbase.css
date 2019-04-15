@@ -6021,6 +6021,23 @@ body.navbar-tray-open.navbar-vertical.navbar-fixed {
   width: 24rem;
 }
 
+.block-facetapi ul:not(.contextual-links) li input[type="checkbox"] {
+  opacity: 0;
+  position: absolute;
+}
+
+.block-facetapi ul:not(.contextual-links) li input[type="checkbox"]:focus + a {
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-color: -webkit-focus-ring-color;
+  outline-style: auto;
+  outline-width: 5px;
+  outline-offset: -2px;
+}
+
+.block-facetapi ul:not(.contextual-links) a {
+  display: inline-block !important;
+}
+
 @media (min-width: 768px){
   .lead{
     font-size: 21px;
