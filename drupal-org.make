@@ -195,3 +195,6 @@ projects[apachesolr_attachments][patch][1908484] = https://www.drupal.org/files/
 
 ; Mass Contact - Add possibility to send mail to blocked users
 projects[mass_contact][patch][787168] = https://www.drupal.org/files/issues/2019-02-14/787168-9.patch
+
+; Bootstrap - Add labels to search form output for accessibility
+projects[bootstrap][patch][2540856] = https://www.drupal.org/files/issues/label_accessibility_label_missing_from_search_block-2540856-6.patch
