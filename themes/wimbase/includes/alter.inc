@@ -22,3 +22,14 @@ function wimbase_form_views_exposed_form_alter(&$form, &$form_state) {
 function wimbase_date_popup_process_alter(&$element, &$form_state, $context) {
   unset($element['date']['#description'], $element['time']['#description']);
 }
+
+/**
+ * Implements hook_form_alter().
+ */
+function wimbase_form_alter(&$form, &$form_state, $form_id) {
+  // Set default label on search form for accessibility
+  if ($form_id === 'search_block_form') {
+    $form['search_block_form']['#title'] = t('Search'); // Change the text on the label element
+    $form['search_block_form']['#title_display'] = 'invisible'; // Toggle label visibility
+  }
+}
