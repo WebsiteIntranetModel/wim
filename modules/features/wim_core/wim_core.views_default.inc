@@ -336,6 +336,25 @@ function wim_core_views_default_views() {
     3 => 0,
     4 => 0,
   );
+  /* Filter criterion: Content: Sticky */
+  $handler->display->display_options['filters']['sticky']['id'] = 'sticky';
+  $handler->display->display_options['filters']['sticky']['table'] = 'node';
+  $handler->display->display_options['filters']['sticky']['field'] = 'sticky';
+  $handler->display->display_options['filters']['sticky']['value'] = 'All';
+  $handler->display->display_options['filters']['sticky']['group'] = 1;
+  $handler->display->display_options['filters']['sticky']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['sticky']['expose']['operator_id'] = '';
+  $handler->display->display_options['filters']['sticky']['expose']['label'] = 'Sticky';
+  $handler->display->display_options['filters']['sticky']['expose']['operator'] = 'sticky_op';
+  $handler->display->display_options['filters']['sticky']['expose']['identifier'] = 'sticky';
+  $handler->display->display_options['filters']['sticky']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+    6 => 0,
+  );
   /* Filter criterion: Date: Date (node) */
   $handler->display->display_options['filters']['date_filter']['id'] = 'date_filter';
   $handler->display->display_options['filters']['date_filter']['table'] = 'node';
@@ -426,6 +445,7 @@ function wim_core_views_default_views() {
     t('All words'),
     t('Tag'),
     t('Promoted'),
+    t('Sticky'),
     t('State'),
     t('System'),
   );
