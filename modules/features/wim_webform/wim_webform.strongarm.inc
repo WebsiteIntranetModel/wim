@@ -13,6 +13,19 @@ function wim_webform_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'antibot_form_ids';
+  $strongarm->value = 'comment_node_*
+user_login
+user_login_block
+user_pass
+user_register_form
+contact_site_form
+webform_client_form_*';
+  $export['antibot_form_ids'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'apachesolr_exclude_node_enable_webform';
   $strongarm->value = 0;
   $export['apachesolr_exclude_node_enable_webform'] = $strongarm;
@@ -93,13 +106,6 @@ function wim_webform_strongarm() {
     ),
   );
   $export['field_bundle_settings_node__webform'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'honeypot_form_webforms';
-  $strongarm->value = 1;
-  $export['honeypot_form_webforms'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
