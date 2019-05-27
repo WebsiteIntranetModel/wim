@@ -75,6 +75,7 @@ projects[token][version] = 1.7
 projects[userprotect][version] = 1.2
 projects[variable][version] = 2.5
 projects[views][version] = 3.21
+projects[views_aggregator][version] = 1.4
 projects[views_bootstrap][version] = 3.1
 projects[views_bulk_operations][version] = 3.4
 projects[webform][version] = 4.16

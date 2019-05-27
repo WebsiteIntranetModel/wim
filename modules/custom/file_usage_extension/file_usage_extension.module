@@ -1,0 +1,170 @@
+<?php
+
+/**
+ * Implements hook_webform_component_update().
+ */
+function file_usage_extension_webform_component_update($component) {
+  _file_usage_extension_add_file_usage($component);
+}
+
+/**
+ * Implements hook_webform_component_insert().
+ */
+function file_usage_extension_webform_component_insert($component) {
+  _file_usage_extension_add_file_usage($component);
+}
+
+/**
+ * Implements hook_webform_component_delete().
+ */
+function file_usage_extension_webform_component_delete($component) {
+  _file_usage_extension_delete_file_usage($component);
+}
+
+/**
+ * Implements hook_entity_insert().
+ */
+function file_usage_extension_entity_insert($entity, $type) {
+  _file_usage_extension_add_file_usage_from_fields($entity, $type);
+}
+
+/**
+ * Implements hook_entity_update().
+ */
+function file_usage_extension_entity_update($entity, $type) {
+  _file_usage_extension_add_file_usage_from_fields($entity, $type);
+}
+
+/**
+ * Record that a component use file.
+ *
+ * @param $component
+ *  Webform component
+ */
+function _file_usage_extension_add_file_usage($component) {
+  $component_old = webform_menu_component_load($component['cid'], $component['nid'], $component['type']);
+  _file_usage_extension_delete_file_usage($component_old);
+
+  if (!empty($component['value'])) {
+    $file_references = _file_usage_extension_get_used_files($component['value']);
+    foreach ($file_references as $file_reference) {
+      if (!empty($file_reference['fid'])) {
+        $file = file_load($file_reference['fid']);
+        file_usage_add($file, 'media', 'node', $component['nid']);
+      }
+    }
+  }
+}
+
+/**
+ * Delete record of used file in component.
+ *
+ * @param $component
+ *  Webform component
+ */
+function _file_usage_extension_delete_file_usage($component) {
+  if (!empty($component['value'])) {
+    $file_references = _file_usage_extension_get_used_files($component['value']);
+    foreach ($file_references as $file_reference) {
+      if (!empty($file_reference['fid'])) {
+        $file = file_load($file_reference['fid']);
+        file_usage_delete($file, 'media', 'node', $component['nid']);
+      }
+    }
+  }
+}
+
+/**
+ * Parse value and get files in.
+ *
+ * @param $value
+ *  Value of webform component
+ *
+ * @return array
+ */
+function _file_usage_extension_get_used_files($value) {
+  $file_references = [];
+  preg_match_all(MEDIA_WYSIWYG_TOKEN_REGEX, $value, $matches);
+  foreach ($matches[0] as $tag) {
+    $tag = str_replace(['[[', ']]'], '', $tag);
+    $tag_info = drupal_json_decode($tag);
+    if (isset($tag_info['fid']) && $tag_info['type'] == 'media') {
+      $file_references[] = $tag_info;
+    }
+  }
+
+  preg_match_all(MEDIA_WYSIWYG_TOKEN_REGEX, $value, $matches_alt);
+  foreach ($matches_alt[0] as $tag) {
+    $tag = urldecode($tag);
+    $tag_info = drupal_json_decode($tag);
+    if (isset($tag_info['fid']) && $tag_info['type'] == 'media') {
+      $file_references[] = $tag_info;
+    }
+  }
+
+  $file_references = array_merge($file_references, _file_usage_extension_get_used_files_by_href($value));
+
+  return $file_references;
+}
+
+/**
+ * Parse and get files by href in content.
+ *
+ * @param $value
+ *  Value of editable field
+ *
+ * @return array
+ */
+function _file_usage_extension_get_used_files_by_href($value) {
+  $file_references = [];
+  preg_match_all('~<a(.*?)href="([^"]+)"(.*?)>~', $value, $matches_href);
+  foreach ($matches_href[2] as $href) {
+    $parse_url = urldecode(parse_url($href, PHP_URL_PATH));
+    $public_path = file_stream_wrapper_get_instance_by_uri('public://')->getDirectoryPath();
+    $file_uri = str_replace('/' . $public_path . '/', 'public://', $parse_url);
+    $files = file_load_multiple([], ['uri' => $file_uri]);
+    if ($files) {
+      foreach ($files as $fid => $file) {
+        $file_references[] = [
+          'fid' => $fid,
+        ];
+      }
+    }
+  }
+
+  return $file_references;
+}
+
+/**
+ * Remove old files from usage and add new.
+ */
+function _file_usage_extension_add_file_usage_from_fields($entity, $entity_type) {
+  if (isset($entity->original)) {
+    foreach (media_wysiwyg_filter_fields_with_text_filtering($entity_type, $entity->original) as $field_name) {
+      if ($field_items = field_get_items($entity_type, $entity->original, $field_name)) {
+        foreach ($field_items as $field_item) {
+          if (!empty($field_item['value'])) {
+            $used_files = _file_usage_extension_get_used_files($field_item['value']);
+            foreach ($used_files as $file_reference) {
+              $file = file_load($file_reference['fid']);
+              file_usage_delete($file, 'media', $entity_type, $entity->nid);
+            }
+          }
+        }
+      }
+    }
+  }
+  foreach (media_wysiwyg_filter_fields_with_text_filtering($entity_type, $entity) as $field_name) {
+    if ($field_items = field_get_items($entity_type, $entity, $field_name)) {
+      foreach ($field_items as $field_item) {
+        if (!empty($field_item['value'])) {
+          $used_files = _file_usage_extension_get_used_files($field_item['value']);
+          foreach ($used_files as $file_reference){
+            $file = file_load($file_reference['fid']);
+            file_usage_add($file, 'media', $entity_type, $entity->nid);
+          }
+        }
+      }
+    }
+  }
+}

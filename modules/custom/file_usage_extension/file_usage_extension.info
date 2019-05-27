@@ -1,0 +1,5 @@
+name = File Usage
+description = Provide extension functionality for file usage
+core = 7.x
+package = WIM
+version = 7.x-1.0
