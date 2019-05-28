@@ -331,7 +331,7 @@ function wimbase_preprocess_search_result(&$variables) {
 
         // Set empty string to hide a body and prevent of rendering in the
         // default mode. @see: search-result.tpl.php.
-        $variables['node_content'] = '';
+        $variables['node_content'] = node_view($referenced_node, 'search');
 
         $variables['classes_array'][] = 'promoted';
       }
