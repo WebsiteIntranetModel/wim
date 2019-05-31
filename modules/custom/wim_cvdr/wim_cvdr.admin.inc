@@ -25,6 +25,17 @@ function _wim_cvdr_admin_page() {
     '#default_value' => variable_get('wim_cvdr_url', ''),
   ];
 
+  // Modify subject source
+  $form['wim_cvdr_subject_source'] = [
+    '#type' => 'radios',
+    '#title' => t('Source of subject'),
+    '#options' => [
+      'overheidrg:onderwerp' => t('Onderwerp'),
+      'dcterms:subject' => t('Beleidsonderwerp'),
+    ],
+    '#default_value' => variable_get('wim_cvdr_subject_source', 'overheidrg:onderwerp'),
+  ];
+
   // Allow to modify the cache time.
   $form['wim_cvdr_cache_time'] = [
     '#type' => 'select',
