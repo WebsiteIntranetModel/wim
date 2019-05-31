@@ -33,7 +33,7 @@ function _wim_cvdr_admin_page() {
       'overheidrg:onderwerp' => t('Onderwerp'),
       'dcterms:subject' => t('Beleidsonderwerp'),
     ],
-    '#default_value' => variable_get('wim_cvdr_subject_source', 'overheidrg:onderwerp'),
+    '#default_value' => variable_get('wim_cvdr_subject_source', ''),
   ];
 
   // Allow to modify the cache time.

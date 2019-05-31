@@ -196,7 +196,8 @@ function _wim_cvdr_read_xml() {
  *   With items keyed on subject and sorted.
  */
 function _wim_cvdr_process_xml($xml) {
-  $subject_source = variable_get('wim_cvdr_subject_source');
+  $subject_source = !empty(variable_get('wim_cvdr_subject_source')) ?
+    variable_get('wim_cvdr_subject_source') : 'overheidrg:onderwerp';
   $items = [];
   libxml_use_internal_errors(TRUE);
   $xml_dom = new DOMDocument();
