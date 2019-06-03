@@ -29,6 +29,7 @@ dependencies[] = strongarm
 dependencies[] = taxonomy
 dependencies[] = text
 dependencies[] = views
+dependencies[] = views_aggregator
 dependencies[] = views_ui
 dependencies[] = xmlsitemap
 dependencies[] = xmlsitemap_menu
