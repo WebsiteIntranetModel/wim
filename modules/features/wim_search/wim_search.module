@@ -82,6 +82,21 @@ function wim_search_preprocess_html(&$vars) {
 }
 
 /**
+ * Implements hook_preprocess_HOOK().
+ */
+function wim_search_preprocess_search_results(&$variables) {
+  $variables['has_promoted'] = FALSE;
+  foreach ($variables['results'] as $result) {
+    if (isset($result['bundle']) && $result['bundle'] == 'linked_keywords') {
+      $variables['has_promoted'] = TRUE;
+      break;
+    }
+  }
+
+  $variables['promoted_title'] = variable_get('wim_linked_keywords_promoted_title');
+}
+
+/**
  * Add a submit handler/function to the form.
  */
 function _search_form_submit($form, &$form_state) {
@@ -107,7 +122,8 @@ function wim_search_apachesolr_process_results(array &$results, DrupalSolrQueryI
       // Get the node where we are referring to.
       $referenced_content = $node->field_referenced_content[LANGUAGE_NONE][0];
       $referenced_node = explode($base_url . '/', $referenced_content['url']);
-      $referenced_node = explode('node/', drupal_get_normal_path($referenced_node[1]));
+      $node_url = count($referenced_node) > 1 ? $referenced_node[1] : $referenced_node[0];
+      $referenced_node = explode('node/', drupal_get_normal_path($node_url));
 
       // Set nid for exclude
       $items_to_exclude[] = $referenced_node[1];

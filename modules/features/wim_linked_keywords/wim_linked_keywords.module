@@ -105,4 +105,9 @@ function wim_linked_keywords_form_apachesolr_settings_alter(&$form, $form_state)
     '#title' => t('Display additional label for promoted elements in the search results'),
     '#default_value' => variable_get('wim_linked_keywords_promoted'),
   ];
+  $form['advanced']['wim_linked_keywords_promoted_title'] = [
+    '#type' => 'textfield',
+    '#title' => t('Title above promoted in search results'),
+    '#default_value' => variable_get('wim_linked_keywords_promoted_title', ''),
+  ];
 }
