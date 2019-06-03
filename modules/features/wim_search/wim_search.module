@@ -92,3 +92,34 @@ function _search_form_submit($form, &$form_state) {
   $safe = filter_xss($form_state['values'][$value_key]);
   $form_state['values'][$value_key] = $safe;
 }
+
+/**
+ * Implements hook_apachesolr_process_results().
+ */
+function wim_search_apachesolr_process_results(array &$results, DrupalSolrQueryInterface $query) {
+  $items_to_exclude = [];
+
+  foreach ($results as $result) {
+    if (isset($result['bundle']) && $result['bundle'] == 'linked_keywords') {
+      global $base_url;
+      $node = node_load($result['fields']['entity_id']);
+
+      // Get the node where we are referring to.
+      $referenced_content = $node->field_referenced_content[LANGUAGE_NONE][0];
+      $referenced_node = explode($base_url . '/', $referenced_content['url']);
+      $referenced_node = explode('node/', drupal_get_normal_path($referenced_node[1]));
+
+      // Set nid for exclude
+      $items_to_exclude[] = $referenced_node[1];
+    }
+  }
+
+  // Exclude from search result
+  if (!empty($items_to_exclude)) {
+    foreach ($results as $result_id => $result) {
+      if(in_array($result['fields']['entity_id'], $items_to_exclude)){
+        unset($results[$result_id]);
+      }
+    }
+  }
+}
