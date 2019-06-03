@@ -12,6 +12,7 @@ dependencies[] = elysia_cron
 dependencies[] = email
 dependencies[] = features
 dependencies[] = file
+dependencies[] = file_usage_extension
 dependencies[] = image
 dependencies[] = link
 dependencies[] = list

@@ -139,21 +139,9 @@ function _file_usage_extension_get_used_files_by_href($value) {
  * Remove old files from usage and add new.
  */
 function _file_usage_extension_add_file_usage_from_fields($entity, $entity_type) {
-  if (isset($entity->original)) {
-    foreach (media_wysiwyg_filter_fields_with_text_filtering($entity_type, $entity->original) as $field_name) {
-      if ($field_items = field_get_items($entity_type, $entity->original, $field_name)) {
-        foreach ($field_items as $field_item) {
-          if (!empty($field_item['value'])) {
-            $used_files = _file_usage_extension_get_used_files($field_item['value']);
-            foreach ($used_files as $file_reference) {
-              $file = file_load($file_reference['fid']);
-              file_usage_delete($file, 'media', $entity_type, $entity->nid);
-            }
-          }
-        }
-      }
-    }
-  }
+  // Delete previous file usage for this entity
+  __file_usage_extension_delete_previous_file_usage($entity->nid);
+
   foreach (media_wysiwyg_filter_fields_with_text_filtering($entity_type, $entity) as $field_name) {
     if ($field_items = field_get_items($entity_type, $entity, $field_name)) {
       foreach ($field_items as $field_item) {
@@ -166,5 +154,19 @@ function _file_usage_extension_add_file_usage_from_fields($entity, $entity_type)
         }
       }
     }
+  }
+}
+
+/**
+ * Remove default and previous file usage.
+ *
+ * @param $id
+ *  Entity ID.
+ */
+function __file_usage_extension_delete_previous_file_usage($id) {
+  if (db_table_exists('file_usage')) {
+    db_delete('file_usage')
+      ->condition('id', $id)
+      ->execute();
   }
 }
