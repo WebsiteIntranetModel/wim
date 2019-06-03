@@ -204,6 +204,8 @@ function _wim_cvdr_read_xml() {
  *   With items keyed on subject and sorted.
  */
 function _wim_cvdr_process_xml($xml, $xml_id) {
+  $subject_source = !empty(variable_get('wim_cvdr_subject_source')) ?
+    variable_get('wim_cvdr_subject_source') : 'overheidrg:onderwerp';
   $items = [];
   libxml_use_internal_errors(TRUE);
   $xml_dom = new DOMDocument();
@@ -224,7 +226,7 @@ function _wim_cvdr_process_xml($xml, $xml_id) {
     // Retrieve the needed data by using xpath queries.
     $xpath = new DOMXpath($xml_dom);
     $url = $item->getElementsByTagName('publicatieurl_xhtml')->item(0);
-    $subject = $xpath->query('.//overheidrg:onderwerp', $item)->item(0);
+    $subject = $xpath->query('.//' . $subject_source, $item)->item(0);
     $title = $xpath->query('.//dcterms:title', $item)->item(0);
     $alternative = $xpath->query('.//dcterms:alternative', $item)->item(0);
     $date = $xpath->query('.//overheidrg:uitwerkingtredingDatum', $item)
