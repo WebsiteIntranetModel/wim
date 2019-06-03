@@ -12,3 +12,11 @@ function wim_webform_update_7000(&$sandbox) {
     ->fields(array('html' => 1))
     ->execute();
 }
+
+/**
+ * Use antibot instead honeypot.
+ */
+function wim_webform_update_7001(&$sandbox) {
+  module_enable(array('antibot'));
+  features_revert_module('wim_webform');
+}

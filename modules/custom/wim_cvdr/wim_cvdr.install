@@ -24,6 +24,7 @@ function wim_cvdr_install() {
 function wim_cvdr_uninstall() {
   $variables = [
     'url',
+    'url_second',
     'cache_time',
     'max_visible',
   ];
