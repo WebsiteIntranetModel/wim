@@ -388,10 +388,47 @@ function sduconnect_get_address_pdc_data($xpath, $query_path) {
     'afdeling/m:persoon/m:opmerking',
   ];
 
+  $bezoek_adres = '<strong>' . t('Bezoekadres') . ':</strong><br />';
+  $bezoek_line_one = '';
+  $bezoek_line_two = '';
+  $post_adres = '<strong>' . t('Postadres') . ':</strong><br />';
+  $post_line_one = '';
+  $post_line_two = '';
+  $post_line_three = '';
+
   $addresses = [];
   foreach ($fields as $field) {
     if ($address_data = sduconnect_nodelist_to_string($xpath->query($query_path . $field))) {
-      $addresses[$field] = $address_data;
+      if (in_array($field, ['b_straat', 'b_nummer', 'b_pcode', 'b_stad'])) {
+        $addresses['bezoekadres'] = $bezoek_adres;
+        if (in_array($field, ['b_straat', 'b_nummer'])) {
+          $bezoek_line_one = trim($bezoek_line_one . ' ' . $address_data);
+        }
+        if (in_array($field, ['b_pcode', 'b_stad'])) {
+          $bezoek_line_two = trim($bezoek_line_two . ' ' . $address_data);
+        }
+      }
+      elseif (in_array($field, [
+        'p_straat',
+        'p_nummer',
+        'p_postcode',
+        'p_po_box',
+        'p_woonplaats',
+      ])) {
+        $addresses['postadres'] = $post_adres;
+        if (in_array($field, ['p_straat', 'p_nummer'])) {
+          $post_line_one = trim($post_line_one . ' ' . $address_data);
+        }
+        if (in_array($field, ['p_po_box'])) {
+          $post_line_two = trim($post_line_two . ' ' . $address_data);
+        }
+        if (in_array($field, ['p_postcode', 'p_woonplaats'])) {
+          $post_line_three = trim($post_line_three . ' ' . $address_data);
+        }
+      }
+      else {
+        $addresses[$field] = $address_data;
+      }
     }
   }
 
@@ -404,6 +441,35 @@ function sduconnect_get_address_pdc_data($xpath, $query_path) {
     if (!empty($addresses['url']) && !empty($addresses['url_naam'])) {
       $addresses['url'] = l($addresses['url_naam'], $addresses['url']);
       unset($addresses['url_naam']);
+    }
+    if (!empty($addresses['bezoekadres'])) {
+      if ($bezoek_line_one) {
+        $addresses['bezoekadres'] = $addresses['bezoekadres'] . $bezoek_line_one . '<br />';
+      }
+      if ($bezoek_line_two) {
+        $addresses['bezoekadres'] = $addresses['bezoekadres'] . $bezoek_line_two;
+      }
+      $addresses['bezoekadres'] = '<p>' . $addresses['bezoekadres'] . '</p>';
+    }
+    if (!empty($addresses['postadres'])) {
+      if ($post_line_one) {
+        $addresses['postadres'] = $addresses['postadres'] . $post_line_one . '<br />';
+      }
+      if ($post_line_two) {
+        $addresses['postadres'] = $addresses['postadres'] . $post_line_two . '<br />';
+      }
+      if ($post_line_three) {
+        $addresses['postadres'] = $addresses['postadres'] . $post_line_three;
+      }
+    }
+    if (!empty($addresses['telefoon'])) {
+      $addresses['telefoon'] = 'Tel: ' . $addresses['telefoon'];
+    }
+    if (!empty($addresses['fax'])) {
+      $addresses['fax'] = 'Fax: ' . $addresses['fax'];
+    }
+    if (!empty($addresses['email'])) {
+      $addresses['email'] = l($addresses['email'], 'mailto:' . $addresses['email']);
     }
 
     // Prepare and convert data as separate string for textarea field.
