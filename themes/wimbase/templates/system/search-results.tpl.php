@@ -24,6 +24,9 @@
 ?>
 <?php if ($search_results): ?>
   <h2><?php print t('Search results');?></h2>
+  <?php if ($has_promoted && !empty($promoted_title)): ?>
+    <h3><?php print t($promoted_title); ?></h3>
+  <?php endif; ?>
   <ol class="search-results <?php print $module; ?>-results">
     <?php if (isset($promoted)): ?>
       <span><?php print t('Recommended by municipality');?></span>
