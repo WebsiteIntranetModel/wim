@@ -19,11 +19,20 @@ function _wim_cvdr_admin_page() {
     '#type' => 'textfield',
     '#maxlength' => 600,
     '#size' => 200,
-    '#title' => t('CVDR XML URL Verordeningen'),
+    '#title' => t('CVDR XML URL Verordeningen (URL-0)'),
     '#description' => t('The full URL to the webservice which outputs an XML file.'),
     '#required' => TRUE,
     '#default_value' => variable_get('wim_cvdr_url', ''),
   ];
+
+  $form['wim_cvdr_url_second'] = array(
+    '#type' => 'textfield',
+    '#maxlength' => 600,
+    '#size' => 200,
+    '#title' => t('CVDR XML URL Beleidsregels (URL-1)'),
+    '#description' => t('The full URL to the webservice which outputs an XML file.'),
+    '#default_value' => variable_get('wim_cvdr_url_second', ''),
+  );
 
   // Modify subject source
   $form['wim_cvdr_subject_source'] = [
@@ -35,15 +44,6 @@ function _wim_cvdr_admin_page() {
     ],
     '#default_value' => variable_get('wim_cvdr_subject_source', ''),
   ];
-
-  $form['wim_cvdr_url_second'] = array(
-    '#type' => 'textfield',
-    '#maxlength' => 600,
-    '#size' => 200,
-    '#title' => t('CVDR XML URL Beleidsregels'),
-    '#description' => t('The full URL to the webservice which outputs an XML file.'),
-    '#default_value' => variable_get('wim_cvdr_url_second', ''),
-  );
 
   // Allow to modify the cache time.
   $form['wim_cvdr_cache_time'] = [
