@@ -57,7 +57,7 @@ function wim_cvdr_block_view($delta = '') {
     // Check if block is current subject.
     if ($delta === md5('wim_cvdr_' . $machine_name)) {
       // Render subject block.
-      $block['subject'] = $subject;
+      $block['subject'] = trim(str_replace(['(URL-0)', '(URL-1)'],'', $subject));
 
       // Build the links to the CVDR items.
       $items = _wim_cvdr_retrieve_items($subject);
