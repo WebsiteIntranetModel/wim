@@ -233,7 +233,7 @@ function sduconnect_set_pdc_content(DOMXPath $xpath, &$node, $private = FALSE) {
 
   // Helper array to map xml tags to fields in node.
   $mapping = array(
-    '//m:page/m:product/m:uitvoerende_instanties/m:instantie/m:opmerkingen' => 'field_product_locations',
+    '//m:page/m:product/m:uitvoerende_instanties/m:instantie' => 'field_product_locations',
     '//m:page/m:product/m:contact' => 'field_product_contact',
     '//m:page/m:product/m:appeal' => 'field_product_objection',
     '//m:page/m:product/m:costs' => 'field_product_costs',
@@ -362,7 +362,7 @@ function sduconnect_set_pdc_content(DOMXPath $xpath, &$node, $private = FALSE) {
  */
 function sduconnect_get_address_pdc_data($xpath, $query_path) {
   $fields = [
-    'land',
+//    'land',
     'naam',
     'b_straat',
     'b_nummer',
@@ -378,7 +378,7 @@ function sduconnect_get_address_pdc_data($xpath, $query_path) {
     'email',
     'url',
     'url_naam',
-    'opmerkingen',
+//    'opmerkingen',
     'afdeling/m:hoofd_afdeling',
     'afdeling/m:afdeling_naam',
     'afdeling/m:persoon/m:functie',
@@ -538,6 +538,99 @@ function sduconnect_set_vac_content($xpath, &$node, $private = FALSE) {
         $item['vac:ur'] = l($item['vac:url_naam'], $item['vac:url']);
         unset($item['vac:url_naam']);
       }
+      if (!empty($item['vac:opmerkingen'])) {
+        unset($item['vac:opmerkingen']);
+      }
+      if (!empty($item['vac:land'])) {
+        unset($item['vac:land']);
+      }
+      if (!empty($item['vac:telefoon'])) {
+        $item['vac:telefoon'] = 'Tel: ' . $item['vac:telefoon'];
+      }
+      if (!empty($item['vac:fax'])) {
+        $item['vac:fax'] = 'Fax: ' . $item['vac:fax'];
+      }
+      if (!empty($item['vac:email'])) {
+        $item['vac:email'] = l($item['vac:email'], 'mailto:' . $item['vac:email']);
+      }
+      if (!empty($item['vac:b_straat']) || !empty($item['vac:b_nummer']) || !empty($item['vac:b_pcode']) || !empty($item['vac:b_stad'])) {
+        $bezoekadres = '<strong>' . t('Bezoekadres') . ':</strong><br />';
+        if (!empty($item['vac:b_straat']) && !empty($item['vac:b_nummer'])) {
+          $line_one = $item['vac:b_straat'] . ' ' . $item['vac:b_nummer'];
+          unset($item['vac:b_nummer']);
+        }
+        elseif (!empty($item['vac:b_straat'])) {
+          $line_one = $item['vac:b_straat'];
+          unset($item['vac:b_straat']);
+        }
+        elseif (!empty($item['vac:b_nummer'])) {
+          $line_one = $item['vac:b_nummer'];
+          unset($item['vac:b_nummer']);
+        }
+        if (!empty($item['vac:b_pcode']) && !empty($item['vac:b_stad'])) {
+          $line_two = $item['vac:b_pcode'] . ' ' . $item['vac:b_stad'];
+          unset($item['vac:b_stad']);
+        }
+        elseif (!empty($item['vac:b_pcode'])) {
+          $line_two = $item['vac:b_pcode'];
+          unset($item['vac:b_pcode']);
+        }
+        elseif (!empty($item['vac:b_stad'])) {
+          $line_two = $item['vac:b_stad'];
+          unset($item['vac:b_stad']);
+        }
+        if (!empty($item['vac:b_straat'])) {
+          $item['vac:b_straat'] = '<p>' . $bezoekadres . $line_one . '<br />' . $line_two . '</p>';
+          unset($item['vac:b_pcode']);
+        } else {
+          $item['vac:b_pcode'] = '<p>' .$bezoekadres . $line_one . '<br />' . $line_two. '</p>';
+        }
+      }
+
+      if (!empty($item['vac:p_straat']) || !empty($item['vac:p_nummer']) || !empty($item['vac:p_postcode']) || !empty($item['vac:p_po_box']) || !empty($item['vac:p_woonplaats'])) {
+        $postadres = '<strong>' . t('Postadres') . ':</strong><br />';
+        if (!empty($item['vac:p_straat']) && !empty($item['vac:p_nummer'])) {
+          $line_one = $item['vac:p_straat'] . ' ' . $item['vac:p_nummer'];
+          unset($item['vac:p_nummer']);
+        }
+        elseif (!empty($item['vac:p_straat'])) {
+          $line_one = $item['vac:p_straat'];
+          unset($item['vac:b_straat']);
+        }
+        elseif (!empty($item['vac:p_nummer'])) {
+          $line_one = $item['vac:p_nummer'];
+          unset($item['vac:p_nummer']);
+        }
+        if (!empty($item['vac:p_po_box'])) {
+          $line_two = $item['vac:p_po_box'];
+        }
+        if (!empty($item['vac:p_postcode']) && !empty($item['vac:p_woonplaats'])) {
+          $line_three = $item['vac:p_postcode'] . ' ' . $item['vac:p_woonplaats'];
+          unset($item['vac:p_woonplaats']);
+        }
+        elseif (!empty($item['vac:p_postcode'])) {
+          $line_three = $item['vac:p_postcode'];
+          unset($item['vac:p_postcode']);
+        }
+        elseif (!empty($item['vac:p_woonplaats'])) {
+          $line_three = $item['vac:p_woonplaats'];
+          unset($item['vac:p_woonplaats']);
+        }
+        if (!empty($item['vac:p_straat'])) {
+          $item['vac:p_straat'] = $postadres . $line_one . '<br />' . $line_two . '<br />' . $line_three;
+          unset($item['vac:b_pcode']);
+          unset($item['vac:p_po_box']);
+          unset($item['vac:p_woonplaats']);
+        }
+        elseif(!empty($item['vac:p_po_box'])) {
+          $item['vac:p_po_box'] = $postadres . $line_one . '<br />' . $line_two . '<br />' . $line_three;
+          unset($item['vac:p_woonplaats']);
+        }
+        else{
+          $item['vac:p_woonplaats'] = $postadres . $line_one . '<br />' . $line_two . '<br />' . $line_three;
+        }
+      }
+
 
       // Prepare and convert data as separate string for textarea field.
       $address[] = trim(implode('<br />', $item));
