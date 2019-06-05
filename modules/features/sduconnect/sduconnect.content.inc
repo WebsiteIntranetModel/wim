@@ -233,7 +233,7 @@ function sduconnect_set_pdc_content(DOMXPath $xpath, &$node, $private = FALSE) {
 
   // Helper array to map xml tags to fields in node.
   $mapping = array(
-    '//m:page/m:product/m:uitvoerende_instanties/m:instantie' => 'field_product_locations',
+//    '//m:page/m:product/m:uitvoerende_instanties/m:instantie/m:opmerkingen' => 'field_product_locations',
     '//m:page/m:product/m:contact' => 'field_product_contact',
     '//m:page/m:product/m:appeal' => 'field_product_objection',
     '//m:page/m:product/m:costs' => 'field_product_costs',
@@ -535,7 +535,7 @@ function sduconnect_set_vac_content($xpath, &$node, $private = FALSE) {
         $item['vac:naam'] = '<strong>' . $item['vac:naam'] . '</strong>';
       }
       if (!empty($item['vac:url']) && !empty($item['vac:url_naam'])) {
-        $item['vac:ur'] = l($item['vac:url_naam'], $item['vac:url']);
+        $item['vac:url'] = l($item['vac:url_naam'], $item['vac:url']);
         unset($item['vac:url_naam']);
       }
       if (!empty($item['vac:opmerkingen'])) {
