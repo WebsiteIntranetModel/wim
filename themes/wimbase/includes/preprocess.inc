@@ -327,7 +327,9 @@ function wimbase_preprocess_search_result(&$variables) {
         $variables['title'] = $referenced_node->title;
 
         // Set label of entity bundle in result output.
-        $variables['content_type'] = t('Promoted');
+        $variables['content_type'] = (variable_get('wim_linked_keywords_promoted') &&!empty(variable_get('wim_linked_keywords_promoted_title'))) ?
+          t(variable_get('wim_linked_keywords_promoted_title')) :
+          t('Promoted');
 
         // Set empty string to hide a body and prevent of rendering in the
         // default mode. @see: search-result.tpl.php.
