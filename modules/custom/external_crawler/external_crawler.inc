@@ -148,10 +148,8 @@ function _external_crawler_index_page($url, stdClass $site) {
     if ($content_type_mime == 'text/html') {
       _external_crawler_index_page_html($site, $result, $document, $pagedata, $url);
     }
-    else {
-      if (module_exists('apachesolr_attachments') && (apachesolr_attachments_allowed_mime($content_type_mime) || apachesolr_attachments_allowed_mime($ext_mime))) {
-        _external_crawler_index_page_document($site, $result, $document, $pagedata, $url);
-      }
+    else if (module_exists('apachesolr_attachments') && (apachesolr_attachments_allowed_mime($content_type_mime) || apachesolr_attachments_allowed_mime($ext_mime)) && variable_get('apachesolr_attachments_entity_bundle_indexing_document', 'none') !== 'none') {
+      _external_crawler_index_page_document($site, $result, $document, $pagedata, $url);
     }
 
     if (empty($document['title'])) {
