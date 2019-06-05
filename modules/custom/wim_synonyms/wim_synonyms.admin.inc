@@ -49,6 +49,7 @@ function wim_synonyms_admin_list_form($form, &$form_state) {
   $form['new-synonym']['keyword'] = array(
     '#type' => 'textfield',
     '#title' => t('Keyword'),
+    '#description' => t("Comma-separated")
   );
   $form['new-synonym']['synonyms'] = array(
     '#type' => 'textfield',
@@ -120,12 +121,12 @@ function wim_synonyms_add_synonym_validate($form, $form_state) {
  * Submit handler for adding synonyms.
  */
 function wim_synonyms_add_synonym_submit($form, $form_state) {
-  $new_keyword = $form_state['values']['new-synonym']['keyword'];
+  $new_keywords = $form_state['values']['new-synonym']['keyword'];
   $new_synonyms = $form_state['values']['new-synonym']['synonyms'];
   drupal_set_message(
     t('Added @keyword with synonyms @synonyms',
       array(
-        '@keyword' => $new_keyword,
+        '@keyword' => $new_keywords,
         '@synonyms' => $new_synonyms,
       )
     )
@@ -133,7 +134,7 @@ function wim_synonyms_add_synonym_submit($form, $form_state) {
 
   db_insert('wim_synonyms')
     ->fields(array(
-      'keyword' => $new_keyword,
+      'keyword' => $new_keywords,
       'synonyms' => $new_synonyms,
     ))
     ->execute();
@@ -154,17 +155,23 @@ function wim_synonyms_add_synonym_submit($form, $form_state) {
 
   $synonymCollection = new \SolrRestApiClient\Api\Client\Domain\Synonym\SynonymCollection();
 
-  $synonym = new \SolrRestApiClient\Api\Client\Domain\Synonym\Synonym();
-  $synonym->setMainWord($new_keyword);
+  $new_keywords = explode(',',$new_keywords);
 
-  $new_synonyms = explode(',',$new_synonyms);
+  // Add the new keywords
+  foreach ($new_keywords as $new_keyword) {
+    $synonym = new \SolrRestApiClient\Api\Client\Domain\Synonym\Synonym();
 
-  foreach ($new_synonyms as $new_synonym) {
-    $synonym->addWordsWithSameMeaning($new_synonym);
+    $synonym->setMainWord($new_keyword);
+    $new_synonyms_list = explode(',', $new_synonyms);
+
+    foreach ($new_synonyms_list as $new_synonym) {
+      $synonym->addWordsWithSameMeaning($new_synonym);
+    }
+
+    $synonymCollection->add($synonym);
+
+    $repository->addAll($synonymCollection, 'mytag');
   }
-
-  $synonymCollection->add($synonym);
-  $repository->addAll($synonymCollection,'mytag');
 }
 
 /**
@@ -232,8 +239,14 @@ function wim_synonyms_admin_list_delete_form_submit($form, &$form_state) {
   // Add the new synonyms.
   $factory = new \SolrRestApiClient\Common\Factory();
   $repository = $factory->getSynonymRepository($environment['host'], $environment['port'], $environment['path'] . '/');
-  $repository->deleteByMainWord($form_state['values']['keyword'], 'mytag');
 
+  $delete_keywords = explode(',', $form_state['values']['keyword']);
+
+  // Add the new keywords
+  foreach ($delete_keywords as $delete_keyword) {
+    $repository->deleteByMainWord($delete_keyword, 'mytag');
+  }
+  
   drupal_set_message(t('The keyword %keyword has been removed.', array('%keyword' => $form_state['values']['keyword'])));
 
   $form_state['redirect'] = array(
