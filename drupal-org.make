@@ -39,7 +39,7 @@ projects[file_entity][version] = 2.4
 projects[flood_control][version] = 1.0
 projects[hansel][version] = 1.6
 projects[i18n][version] = 1.15
-projects[jquery_update][version] = 3.0
+projects[jquery_update][version] = 3.0-alpha5
 projects[location][version] = 3.7
 projects[logging_alerts][version] = 2.2
 projects[login_destination][version] = 1.4
@@ -197,7 +197,7 @@ projects[apachesolr_attachments][patch][2677866] = https://www.drupal.org/files/
 projects[apachesolr_attachments][patch][1908484] = https://www.drupal.org/files/issues/apachesolr-attachments-index-unattached-files-1908484-13.patch
 
 ; Mass Contact - Add possibility to send mail to blocked users
-projects[mass_contact][patch][787168] = https://www.drupal.org/files/issues/2019-02-14/787168-9.patch
+projects[mass_contact][patch][787168] = https://www.drupal.org/files/issues/2019-06-06/787168-13.patch
 
 ; Bootstrap - Add labels to search form output for accessibility
 projects[bootstrap][patch][2540856] = https://www.drupal.org/files/issues/label_accessibility_label_missing_from_search_block-2540856-6.patch
