@@ -1,0 +1,5 @@
+name = WIM Synonyms
+description = Allow users to define solr synonyms.
+package = WIM
+version = 1.0
+core = 7.x

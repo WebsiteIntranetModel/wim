@@ -1,0 +1,19 @@
+{
+	"responseHeader": {
+		"status": 0,
+		"QTime": 209
+	},
+	"managedResources": [
+		{
+			"resourceId": "/schema/analysis/stopwords/italien",
+			"class": "org.apache.solr.rest.schema.analysis.ManagedWordSetResource",
+			"numObservers": "1"
+		},
+		{
+			"resourceId": "/schema/analysis/synonyms/italien",
+			"class": "org.apache.solr.rest.schema.analysis.ManagedSynonymFilterFactory$SynonymManager",
+			"numObservers": "1"
+		}
+	]
+
+}

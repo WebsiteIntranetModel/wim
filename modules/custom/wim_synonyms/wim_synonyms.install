@@ -1,0 +1,44 @@
+<?php
+
+/**
+ * Implements hook_schema().
+ */
+function wim_synonyms_schema() {
+  $schema = array();
+
+  $schema['wim_synonyms'] = array(
+    'description' => 'Table which saves synonyms for solr.',
+    'fields' => array(
+      'keyword' => array(
+        'description' => 'The keyword.',
+        'type' => 'varchar',
+        'length' => '255',
+        'not null' => TRUE,
+      ),
+      'synonyms' => array(
+        'description' => 'The synonyms of the keyword.',
+        'type' => 'varchar',
+        'length' => '255',
+        'not null' => TRUE,
+      ),
+    ),
+    'primary key' => array('keyword'),
+  );
+
+  return $schema;
+}
+
+/**
+ * Set permissions.
+ */
+function wim_synonyms_install() {
+  $role = user_role_load_by_name('webmaster');
+  user_role_grant_permissions($role->rid, array('administer solr synonyms'));
+}
+
+/**
+ * Implementation of hook_uninstall().
+ */
+function wim_synonyms_uninstall() {
+  drupal_uninstall_schema('wim_synonyms');
+}

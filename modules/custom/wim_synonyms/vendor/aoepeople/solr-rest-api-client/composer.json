@@ -1,0 +1,35 @@
+{
+	"name": "aoepeople/solr-rest-api-client",
+	"description": "PHP Client for the solr rest api",
+	"homepage": "http://www.searchperience.com/",
+	"license": "MIT",
+	"require": {
+		"guzzle/guzzle": "v3.8.1",
+		"php": ">=5.3.3"
+	},
+	"require-dev": {
+		"guzzle/plugin-mock": "*",
+		"guzzle/plugin-log": "*",
+		"phing/phing": "*",
+		"phpunit/phpunit": "3.7.*",
+		"squizlabs/php_codesniffer": "*"
+	},
+	"autoload": {
+		"psr-0": {
+			"SolrRestApiClient\\Tests": "tests/",
+			"SolrRestApiClient": "src/"
+		}
+	},
+	"minimum-stability": "stable",
+	"authors": [
+		{
+			"name": "Timo Schmidt",
+			"email": "timo.schmidt@aoe.com"
+		},
+		{
+			"name": "AOE media",
+			"email": "dev@aoe.com",
+			"homepage": "http://www.aoe.com/"
+		}
+	]
+}

@@ -15,6 +15,7 @@ services:
       - DRUPAL_SETTINGS=development
     ports:
       - "80"
+    network_mode: "bridge"
     container_name: wim_web
 
   db:
@@ -26,6 +27,7 @@ services:
       - db_data:/var/lib/mysql
     ports:
       - "3308:3306"
+    network_mode: "bridge"
     container_name: wim_db
 
   mailcatcher:
@@ -35,6 +37,7 @@ services:
       - VIRTUAL_PORT=1080
     ports:
       - "1080"
+    network_mode: "bridge"
     container_name: wim_mailcatcher
 
   selenium:
@@ -51,24 +54,45 @@ services:
     links:
       - web
 
-  proxy:
-    image: jwilder/nginx-proxy
-    ports:
-      - "80:80"
-    container_name: wim_proxy
-    volumes:
-      - /var/run/docker.sock:/tmp/docker.sock:ro
+#  proxy:
+#    image: jwilder/nginx-proxy
+#    ports:
+#      - "80:80"
+#    container_name: wim_proxy
+#    volumes:
+#      - /var/run/docker.sock:/tmp/docker.sock:ro
+
+#  solr:
+#    image: mxr576/apachesolr-5.x-drupal-docker
+#    hostname: solr
+#    container_name: wim_solr
+#    restart: always
+#    environment:
+#      - SOLR_SOLR_MEM_SIZE=512m
+#      - PARTIAL_SEARCH_ENABLED=false
+#    ports:
+#      - "8983"
 
   solr:
-    image: mxr576/apachesolr-5.x-drupal-docker
+    image: solr:6.6
     hostname: solr
-    container_name: wim_solr
-    restart: always
+    volumes:
+      - wim_solr_data:/opt/solr/server/solr/mycores
+      - ./dev-scripts/solr-conf/6.x/:/solr-conf/conf
     environment:
       - SOLR_SOLR_MEM_SIZE=512m
       - PARTIAL_SEARCH_ENABLED=false
+      - VIRTUAL_HOST=solr.wim.local
+      - VIRTUAL_PORT=8983
     ports:
       - "8983"
+    entrypoint:
+      - solr-precreate
+      - drupal
+      - /solr-conf
+    network_mode: "bridge"
+    container_name: wim_solr
 
 volumes:
   db_data:
+  wim_solr_data:

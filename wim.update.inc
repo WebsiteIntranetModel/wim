@@ -527,3 +527,12 @@ function wim_update_7028(&$sandbox) {
   $role = user_role_load_by_name('webmaster');
   user_role_grant_permissions($role->rid, array('access site reports'));
 }
+
+/**
+ * Give webmaster the permission to change search options.
+ * Synonyms will also fall under this.
+ */
+function wim_update_7029(&$sandbox) {
+  $role = user_role_load_by_name('webmaster');
+  user_role_grant_permissions($role->rid, array('administer search'));
+}
