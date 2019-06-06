@@ -31,14 +31,6 @@ function _default_networks(stdClass $node) {
       'title' => t('Share this on Facebook'),
       'class' => 'fa-facebook-square',
     ),
-    'google' => array(
-      'url' => 'https://plus.google.com/share',
-      'query' => array(
-        'url' => $url,
-      ),
-      'title' => t('Share this on Google+'),
-      'class' => 'fa-google-plus-square',
-    ),
     'linkedin' => array(
       'url' => 'http://www.linkedin.com/shareArticle',
       'query' => array(
