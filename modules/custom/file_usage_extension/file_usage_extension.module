@@ -36,6 +36,27 @@ function file_usage_extension_entity_update($entity, $type) {
 }
 
 /**
+ * Implements hook_field_attach_delete_revision().
+ */
+function file_usage_extension_field_attach_delete_revision($entity_type, $entity) {
+  list($entity_id) = entity_extract_ids($entity_type, $entity);
+  $files = _file_usage_extension_entity_field_count_files($entity_type, $entity);
+  foreach ($files as $fid => $count) {
+    if ($file = file_load($fid)) {
+      file_usage_delete($file, 'file_usage_extension', $entity_type, $entity_id, $count);
+    }
+  }
+}
+
+/**
+ * Implements hook_entity_delete().
+ */
+function file_usage_extension_entity_delete($entity, $type) {
+  list($entity_id) = entity_extract_ids($type, $entity);
+  _file_usage_extension_delete_file_usage_db($entity_id);
+}
+
+/**
  * Record that a component use file.
  *
  * @param $component
@@ -50,7 +71,7 @@ function _file_usage_extension_add_file_usage($component) {
     foreach ($file_references as $file_reference) {
       if (!empty($file_reference['fid'])) {
         $file = file_load($file_reference['fid']);
-        file_usage_add($file, 'media', 'node', $component['nid']);
+        file_usage_add($file, 'file_usage_extension', 'node', $component['nid']);
       }
     }
   }
@@ -68,7 +89,7 @@ function _file_usage_extension_delete_file_usage($component) {
     foreach ($file_references as $file_reference) {
       if (!empty($file_reference['fid'])) {
         $file = file_load($file_reference['fid']);
-        file_usage_delete($file, 'media', 'node', $component['nid']);
+        file_usage_delete($file, 'file_usage_extension', 'node', $component['nid']);
       }
     }
   }
@@ -139,37 +160,93 @@ function _file_usage_extension_get_used_files_by_href($value) {
  * Remove old files from usage and add new.
  */
 function _file_usage_extension_add_file_usage_from_fields($entity, $entity_type) {
-  if (isset($entity->nid) || isset($entity->bid)) {
-    $entity_id = isset($entity->nid) ? $entity->nid : $entity->bid;
-    // Delete previous file usage for this entity
-    _file_usage_extension_delete_previous_file_usage($entity_id);
+  $entity_files = _file_usage_extension_entity_field_count_files($entity_type, $entity);
 
-    foreach (media_wysiwyg_filter_fields_with_text_filtering($entity_type, $entity) as $field_name) {
-      if ($field_items = field_get_items($entity_type, $entity, $field_name)) {
-        foreach ($field_items as $field_item) {
-          if (!empty($field_item['value'])) {
-            $used_files = _file_usage_extension_get_used_files($field_item['value']);
-            foreach ($used_files as $file_reference) {
-              $file = file_load($file_reference['fid']);
-              file_usage_add($file, 'media', $entity_type, $entity_id);
-            }
-          }
-        }
+  list($entity_id, $entity_vid, $entity_bundle) = entity_extract_ids($entity_type, $entity);
+
+  if (empty($entity->revision) && empty($entity->old_vid) && empty($entity->is_new) && !empty($entity->original)) {
+    $old_files = _file_usage_extension_entity_field_count_files($entity_type, $entity->original);
+
+    foreach ($old_files as $fid => $old_file_count) {
+      if (empty($entity_files[$fid])) {
+        $entity_files[$fid] = 0;
       }
+      if ($old_file_count > $entity_files[$fid]) {
+        $deprecate = $old_file_count - $entity_files[$fid];
+        $file = file_load($fid);
+        if ($file) {
+          file_usage_delete($file, 'file_usage_extension', $entity_type, $entity_id, $deprecate);
+        }
+        unset($entity_files[$fid]);
+      }
+      elseif ($entity_files[$fid] == $old_file_count) {
+        unset($entity_files[$fid]);
+      }
+      else {
+        $entity_files[$fid] = $entity_files[$fid] - $old_file_count;
+      }
+    }
+  }
+
+  foreach ($entity_files as $fid => $entity_count) {
+    if ($file = file_load($fid)) {
+      file_usage_add($file, 'file_usage_extension', $entity_type, $entity_id, $entity_count);
     }
   }
 }
 
 /**
- * Remove default and previous file usage.
+ * Remove all linked file usage.
  *
  * @param $id
  *  Entity ID.
  */
-function _file_usage_extension_delete_previous_file_usage($id) {
+function _file_usage_extension_delete_file_usage_db($id) {
   if (db_table_exists('file_usage')) {
     db_delete('file_usage')
       ->condition('id', $id)
+      ->condition('type', 'file_usage_extension')
       ->execute();
   }
+}
+
+/**
+ * Utility function to get the file count in this entity
+ *
+ * @param string or int or object... $entity
+ * @param string or int or object... $entity_type
+ *
+ * @return array
+ */
+function _file_usage_extension_entity_field_count_files($entity_type, $entity) {
+  $entity_files = [];
+  foreach (_file_usage_extension_filter_parse_from_fields($entity_type, $entity) as $file_reference) {
+    if (empty($entity_files[$file_reference['fid']])) {
+      $entity_files[$file_reference['fid']] = 1;
+    }
+    else {
+      $entity_files[$file_reference['fid']]++;
+    }
+  }
+  return $entity_files;
+}
+
+/**
+ * Parse file references from an entity's text fields and return them as an
+ * array.
+ */
+function _file_usage_extension_filter_parse_from_fields($entity_type, $entity) {
+  $file_references = [];
+
+  foreach (media_wysiwyg_filter_fields_with_text_filtering($entity_type, $entity) as $field_name) {
+    if ($field_items = field_get_items($entity_type, $entity, $field_name)) {
+      foreach ($field_items as $field_item) {
+        if (!empty($field_item['value'])) {
+          $file_references = array_merge($file_references, _file_usage_extension_get_used_files_by_href($field_item['value']));
+        }
+      }
+    }
+  }
+
+  return $file_references;
 }
