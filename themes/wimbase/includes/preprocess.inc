@@ -247,7 +247,7 @@ function wimbase_preprocess_page(&$variables) {
 
   // All FAQ pages should has title FAQ.
   if (is_array($menu_item) && $menu_item['path'] === 'faq/%') {
-    $variables['title'] = t('FAQ');
+    drupal_set_title(t('FAQ @category', ['@category' => drupal_get_title()]));
   }
 
   // Set title for search page.
