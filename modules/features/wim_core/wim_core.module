@@ -265,6 +265,11 @@ function wim_core_form_alter(&$form, &$form_state, $form_id) {
         $form['redirect']['#access'] = FALSE;
       }
     }
+
+    if (isset($form['account']['roleassign_roles'])) {
+      $assigned_roles = (isset($user->roles) ? $user->roles : array());
+      $form['account']['roleassign_roles']['#default_value'] = array_keys($assigned_roles);
+    }
   }
 
   // Only Administrator can change roles info and remove.
