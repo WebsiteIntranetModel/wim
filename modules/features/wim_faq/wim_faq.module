@@ -17,3 +17,97 @@ function wim_faq_views_pre_render($view) {
     }
   }
 }
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function wim_faq_form_felix_attributes_form_alter(&$form, &$form_state, $form_id) {
+  $felix_block = $form['#felix_block'];
+  $felix_block_config = $felix_block->data['config'];
+  if ($felix_block->delta === 'faq-faq_overview_block') {
+    $faq_vocabulary = taxonomy_vocabulary_machine_name_load('faq_categories');
+    $faq_terms = taxonomy_get_tree($faq_vocabulary->vid);
+    $faq_categories = [];
+    foreach ($faq_terms as $faq_term) {
+      $faq_categories[$faq_term->tid] = $faq_term->name;
+    }
+    if (!empty($faq_categories)) {
+      $form['faq_category'] = [
+        '#type' => 'select',
+        '#title' => t('FAQ category'),
+        '#options' => $faq_categories,
+        '#default_value' => $felix_block_config['faq_category'],
+        '#required' => TRUE,
+      ];
+    }
+  }
+}
+
+/**
+ * Implements hook_felix_block_config_save().
+ */
+function wim_faq_felix_block_config_save($block, $values) {
+  $configs = [];
+
+  if (isset($values['faq_category'])) {
+    $configs['faq_category'] = $values['faq_category'];
+  }
+
+  return $configs;
+}
+
+/**
+ * Implements hook_felix_block_view().
+ */
+function wim_faq_felix_block_view(&$block) {
+  if ($block->module == 'views' && $block->delta == 'faq-faq_overview_block') {
+    // Takeover block rendering. There is a special $block->render_module
+    // property for this. Altering the $block->module property will cause bugs.
+    $block->render_module = 'wim_faq';
+  }
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function wim_faq_block_view($delta = '', $config = array()) {
+  if (strlen($delta) == 32) {
+    $hashes = variable_get('views_block_hashes', array());
+    if (!empty($hashes[$delta])) {
+      $delta = $hashes[$delta];
+    }
+  }
+
+  $explode = explode('-', $delta);
+  if (count($explode) != 2) {
+    return views_block_view($delta, $config);
+  }
+
+  list($view, $display) = $explode;
+
+  if ($display == 'faq_overview_block') {
+    $view = views_get_view($view);
+    if (!$view) {
+      return NULL;
+    }
+
+    $args[] = $config['faq_category'];
+
+    if ($view->access($display)) {
+      $output = $view->execute_display($display, $args);
+      if (empty($output['subject'])) {
+        $output['subject'] = t('FAQ @category', ['@category' => $view->build_info['substitutions']['%1']]);
+      }
+      views_add_block_contextual_links($output, $view, $display);
+      $view->destroy();
+      return $output;
+    }
+  }
+
+  $view->destroy();
+
+  return NULL;
+
+
+  $t='';
+}
