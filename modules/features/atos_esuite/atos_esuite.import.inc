@@ -8,23 +8,23 @@
  * Start batch.
  */
 function atos_esuite_import_batch_start() {
-  $batch = array(
-    'operations' => array(),
+  $batch = [
+    'operations' => [],
     'finished' => 'atos_esuite_import_batch_finished',
     'title' => t('Atos eSuite import'),
     'init_message' => t('Preparing import..'),
     'progress_message' => t('Importing...'),
     'error_message' => t('Batch has encountered an error.'),
     'file' => drupal_get_path('module', 'atos_esuite') . '/atos_esuite.import.inc',
-  );
-  $batch['operations'][] = array(
+  ];
+  $batch['operations'][] = [
     'atos_esuite_import_batch_worker',
-    array(ATOS_ESUITE_FAQ),
-  );
-  $batch['operations'][] = array(
+    [ATOS_ESUITE_FAQ],
+  ];
+  $batch['operations'][] = [
     'atos_esuite_import_batch_worker',
-    array(ATOS_ESUITE_PRODUCT),
-  );
+    [ATOS_ESUITE_PRODUCT],
+  ];
   batch_set($batch);
 
   if (function_exists('drush_backend_batch_process')) {
@@ -53,13 +53,13 @@ function atos_esuite_import_batch_worker($type, &$context) {
   }
 
   $url = variable_get('atos_esuite_url', '');
-  $query = array(
+  $query = [
     'rows' => variable_get('atos_esuite_chunk_size', 100),
     'page' => $context['sandbox']['page'],
     'type' => $type,
-  );
+  ];
 
-  $url = url($url, array('external' => TRUE, 'query' => $query));
+  $url = url($url, ['external' => TRUE, 'query' => $query]);
   if ($result = _atos_esuite_process_feed($url)) {
     list($done, $errors, $total) = $result;
     $context['sandbox']['done'] += $done;
@@ -72,22 +72,22 @@ function atos_esuite_import_batch_worker($type, &$context) {
     $context['sandbox']['errors']++;
   }
 
-  $context['message'] = t('Imported @count items.', array(
+  $context['message'] = t('Imported @count items.', [
     '@count' => $context['sandbox']['done'],
-  ));
+  ]);
 
   $context['finished'] = $context['sandbox']['last'] >= $context['sandbox']['max'];
   if ($context['finished']) {
-    $mapping = array(
+    $mapping = [
       ATOS_ESUITE_PRODUCT => 'product',
       ATOS_ESUITE_FAQ => 'faq',
-    );
+    ];
     if ($context['sandbox']['done'] > 0) {
       drupal_set_message(format_plural($context['sandbox']['done'], '1 ' . $mapping[$type] . ' node imported successfully. ', '@count ' . $mapping[$type] . ' nodes imported.'));
       _atos_esuite_delete_nodes($context['sandbox']['starttime'], $type);
     }
     else {
-      drupal_set_message(t('0 !type node imported.', array('!type' => $mapping[$type])), 'status');
+      drupal_set_message(t('0 !type node imported.', ['!type' => $mapping[$type]]), 'status');
     }
     if ($context['sandbox']['errors'] > 0) {
       drupal_set_message(t('There was some errors during import. Please check logs.'), 'error');
@@ -106,11 +106,11 @@ function atos_esuite_import_batch_worker($type, &$context) {
  *    Type of node.
  */
 function _atos_esuite_delete_nodes($start_time, $type) {
-  $deleted = array();
-  $mapping = array(
+  $deleted = [];
+  $mapping = [
     ATOS_ESUITE_PRODUCT => 'product',
     ATOS_ESUITE_FAQ => 'faq',
-  );
+  ];
   // We need to add deduct time from start time,
   // because every time when batch processing a bunch it takes new REQUEST_TIME.
   // We add 5 minute, hope is enough :).
@@ -119,12 +119,12 @@ function _atos_esuite_delete_nodes($start_time, $type) {
   if (lock_acquire('atos_esuite_delete')) {
     // There was a count before, .
     $deleted = db_select('atos_esuite', 'a')
-      ->fields('a', array(
+      ->fields('a', [
         'identifier',
         'nid',
-      ))
+      ])
       ->condition('a.changed', $start_time, '<')
-      ->condition('a.type', array($mapping[$type]), 'IN')
+      ->condition('a.type', [$mapping[$type]], 'IN')
       ->execute()
       ->fetchAllKeyed();
 
@@ -132,18 +132,18 @@ function _atos_esuite_delete_nodes($start_time, $type) {
       // We will mark all items, that we suspect to
       // be removed from feed as unpublished.
       db_update('node')
-        ->fields(array('status' => '0'))
+        ->fields(['status' => '0'])
         ->condition('nid', array_values($deleted), 'IN')
         ->execute();
       db_update('node_revision')
-        ->fields(array('status' => '0'))
+        ->fields(['status' => '0'])
         ->condition('nid', array_values($deleted), 'IN')
         ->execute();
 
       // If a broken feed gets restored,
       // nodes should be automatically published again.
       db_update('atos_esuite')
-        ->fields(array('hash' => ''))
+        ->fields(['hash' => ''])
         ->condition('identifier', array_keys($deleted), 'IN')
         ->execute();
     }
@@ -186,7 +186,7 @@ function _atos_esuite_process_feed($url) {
     $total_items = (int) $results->{'total-items'};
   }
   else {
-    watchdog('atos esuite import', 'There is something strange with the feed. Check :url', array(':url' => $url));
+    watchdog('atos esuite import', 'There is something strange with the feed. Check :url', [':url' => $url]);
   }
 
   if (isset($results->result)) {
@@ -201,13 +201,13 @@ function _atos_esuite_process_feed($url) {
     }
   }
 
-  watchdog('atos esuite batch report', 'Total items: :total. Errors: :errors. Imported: :imported.', array(
+  watchdog('atos esuite batch report', 'Total items: :total. Errors: :errors. Imported: :imported.', [
     ':total' => $total_items,
     ':errors' => $errors,
     ':imported' => $imported,
-  ));
+  ]);
 
-  return array($imported, $errors, $total_items);
+  return [$imported, $errors, $total_items];
 }
 
 /**
@@ -254,19 +254,19 @@ function atos_esuite_map_node($documentXML, $force = FALSE) {
     }
 
     // Get the current version from the database.
-    $current = db_select('atos_esuite', 'a')->fields('a', array(
+    $current = db_select('atos_esuite', 'a')->fields('a', [
       'identifier',
       'type',
       'hash',
       'nid',
-    ))->condition('identifier', $id)->execute()->fetchAssoc();
+    ])->condition('identifier', $id)->execute()->fetchAssoc();
 
     // Is this an actual update.
     if (!$force && $current && $xml_hash == $current['hash']) {
       // Update the changed date, so we know that this item still exists.
       db_merge('atos_esuite')
-        ->key(array('identifier' => $id))
-        ->fields(array('changed' => REQUEST_TIME))
+        ->key(['identifier' => $id])
+        ->fields(['changed' => REQUEST_TIME])
         ->execute();
     }
 
@@ -292,13 +292,13 @@ function atos_esuite_map_node($documentXML, $force = FALSE) {
 
     // Add to the atos_esuite table for hash checking and identifying.
     if ($node->nid) {
-      db_merge('atos_esuite')->key(array('identifier' => $id))->fields(array(
+      db_merge('atos_esuite')->key(['identifier' => $id])->fields([
         'hash' => $xml_hash,
         'type' => $type,
         'nid' => $node->nid,
         'xml' => $documentXML,
         'changed' => REQUEST_TIME,
-      ))->execute();
+      ])->execute();
     }
 
     return $id;
@@ -336,7 +336,7 @@ function atos_esuite_map_node_product(stdClass $node, DOMDocument $documentDOM, 
   }
 
   // Helper array to map xml tags to fields in node.
-  $mapping = array(
+  $mapping = [
     'aanvraag' => 'field_product_procedure',
     'contact' => 'field_product_contact',
     'bezwaar' => 'field_product_objection',
@@ -345,46 +345,46 @@ function atos_esuite_map_node_product(stdClass $node, DOMDocument $documentDOM, 
     'termijn' => 'field_product_period',
     'voorwaarden' => 'field_product_conditions',
 
-  );
+  ];
 
   // Here we set mapped fields.
   foreach ($mapping as $tag => $filed_name) {
     $$tag = trim($xpath->query('/result/' . $tag)->item(0)->nodeValue);
     if (strlen($$tag) > 0) {
-      $node->$filed_name = array(
-        LANGUAGE_NONE => array(
-          array(
+      $node->$filed_name = [
+        LANGUAGE_NONE => [
+          [
             'value' => $$tag,
             'format' => $format,
-          ),
-        ),
-      );
+          ],
+        ],
+      ];
     }
     else {
-      $node->$filed_name = array();
+      $node->$filed_name = [];
     }
   }
 
   // Tags.
-  $node->field_tags = array(LANGUAGE_NONE => array());
+  $node->field_tags = [LANGUAGE_NONE => []];
   foreach ($xpath->query('/result/keywords/keyword') as $item) {
-    $node->field_tags[LANGUAGE_NONE][] = array('tid' => atos_esuite_get_term_tid($item->nodeValue));
+    $node->field_tags[LANGUAGE_NONE][] = ['tid' => atos_esuite_get_term_tid($item->nodeValue)];
   }
 
   // Related FAQ items.
-  $node->field_related_faq = array(LANGUAGE_NONE => array());
+  $node->field_related_faq = [LANGUAGE_NONE => []];
   foreach ($xpath->query('/result/relatedvac/id') as $item) {
-    $node->field_related_faq[LANGUAGE_NONE][] = array('target_id' => 'faq-' . trim($item->nodeValue));
+    $node->field_related_faq[LANGUAGE_NONE][] = ['target_id' => 'faq-' . trim($item->nodeValue)];
   }
 
   // Related Products.
-  $node->field_related_product = array(LANGUAGE_NONE => array());
+  $node->field_related_product = [LANGUAGE_NONE => []];
   foreach ($xpath->query('/result/relatedpdc/id') as $item) {
-    $node->field_related_product[LANGUAGE_NONE][] = array('target_id' => 'product-' . trim($item->nodeValue));
+    $node->field_related_product[LANGUAGE_NONE][] = ['target_id' => 'product-' . trim($item->nodeValue)];
   }
 
   // Target audience co-operating catalog.
-  $node->field_sc_audience = array(LANGUAGE_NONE => array());
+  $node->field_sc_audience = [LANGUAGE_NONE => []];
   foreach ($xpath->query('/result/doelgroepen/doelgroep') as $item) {
     $audience = trim($item->nodeValue);
 
@@ -398,48 +398,48 @@ function atos_esuite_map_node_product(stdClass $node, DOMDocument $documentDOM, 
         break;
     }
 
-    $node->field_sc_audience[LANGUAGE_NONE][] = array('value' => $audience);
+    $node->field_sc_audience[LANGUAGE_NONE][] = ['value' => $audience];
   }
 
   // Publication date.
   $pub_date = $xpath->query('/result/created')->item(0)->nodeValue;
-  $date[] = array(
+  $date[] = [
     'value' => date('Y-m-d H:i:s', $pub_date),
     'value2' => '',
     'timezone' => variable_get('date_default_timezone'),
     'timezone_db' => 'UTC',
     'date_type' => 'datetime',
-  );
-  $node->field_publication_date = array(LANGUAGE_NONE => $date);
+  ];
+  $node->field_publication_date = [LANGUAGE_NONE => $date];
 
-  $node->body = array(
-    LANGUAGE_NONE => array(
-      array(
+  $node->body = [
+    LANGUAGE_NONE => [
+      [
         'value' => $body,
         'summary' => $summary,
         'format' => $format,
-      ),
-    ),
-  );
+      ],
+    ],
+  ];
 
   // Information stored in Link fields.
-  $links_mapping = array(
+  $links_mapping = [
     'wet' => 'field_product_related_laws',
     // 'field_product_request_online',.
     'formulier' => 'field_product_forms',
     'meer_info' => 'field_product_more_information',
-  );
+  ];
 
   // Inserting links.
   foreach ($links_mapping as $tag => $filed_name) {
     $$tag = trim($xpath->query('/result/' . $tag)->item(0)->nodeValue);
     if (strlen($$tag) > 0) {
-      $node->$filed_name = array(LANGUAGE_NONE => array());
+      $node->$filed_name = [LANGUAGE_NONE => []];
       foreach (_extract_urls($$tag) as $item) {
-        $node->{$filed_name}[LANGUAGE_NONE][] = array(
+        $node->{$filed_name}[LANGUAGE_NONE][] = [
           'url' => isset($item[2]) ? $item[2] : '',
           'title' => isset($item[3]) ? $item[3] : '',
-        );
+        ];
       }
     }
   }
@@ -458,26 +458,26 @@ function atos_esuite_map_node_product(stdClass $node, DOMDocument $documentDOM, 
 function atos_esuite_map_node_faq(stdClass $node, DOMDocument $documentDOM, DOMXPath $xpath) {
 
   // Tags.
-  $node->field_tags = array(LANGUAGE_NONE => array());
+  $node->field_tags = [LANGUAGE_NONE => []];
   foreach ($xpath->query('/result/keywords/keyword') as $item) {
-    $node->field_tags[LANGUAGE_NONE][] = array('tid' => atos_esuite_get_term_tid($item->nodeValue));
+    $node->field_tags[LANGUAGE_NONE][] = ['tid' => atos_esuite_get_term_tid($item->nodeValue)];
   }
 
   // Relate FAQ items.
-  $node->field_related_faq = array(LANGUAGE_NONE => array());
+  $node->field_related_faq = [LANGUAGE_NONE => []];
   foreach ($xpath->query('/result/relatedvac/id') as $item) {
-    $node->field_related_faq[LANGUAGE_NONE][] = array('target_id' => 'faq-' . trim($item->nodeValue));
+    $node->field_related_faq[LANGUAGE_NONE][] = ['target_id' => 'faq-' . trim($item->nodeValue)];
   }
 
   // Related Products.
-  $node->field_related_product = array(LANGUAGE_NONE => array());
+  $node->field_related_product = [LANGUAGE_NONE => []];
   foreach ($xpath->query('/result/relatedpdc/id') as $item) {
-    $node->field_related_product[LANGUAGE_NONE][] = array('target_id' => 'product-' . trim($item->nodeValue));
+    $node->field_related_product[LANGUAGE_NONE][] = ['target_id' => 'product-' . trim($item->nodeValue)];
   }
 
   // This should be disabled for new items.
   if (!isset($node->nid)) {
-    $node->field_show_on_overview[LANGUAGE_NONE][] = array('value' => 0);
+    $node->field_show_on_overview[LANGUAGE_NONE][] = ['value' => 0];
   }
 
   $formats = filter_formats();
@@ -487,25 +487,25 @@ function atos_esuite_map_node_faq(stdClass $node, DOMDocument $documentDOM, DOMX
   // Additional information. Actually not used.
   $more_info = trim($xpath->query('/result/meer_info')->item(0)->nodeValue);
   if (strlen($more_info) > 0) {
-    $node->field_faq_additional_information = array(
-      LANGUAGE_NONE => array(
-        array(
+    $node->field_faq_additional_information = [
+      LANGUAGE_NONE => [
+        [
           'value' => $more_info,
           'format' => $format,
-        ),
-      ),
-    );
+        ],
+      ],
+    ];
   }
 
   // Body.
-  $node->body = array(
-    LANGUAGE_NONE => array(
-      array(
+  $node->body = [
+    LANGUAGE_NONE => [
+      [
         'value' => $xpath->query('/result/antwoord')->item(0)->nodeValue,
         'format' => $format,
-      ),
-    ),
-  );
+      ],
+    ],
+  ];
 }
 
 /**
@@ -550,5 +550,5 @@ function _extract_urls($input) {
     return $matches;
   }
 
-  return array();
+  return [];
 }

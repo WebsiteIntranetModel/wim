@@ -19,29 +19,29 @@ function wim_core_views_bulk_operations_form_alter(&$form, &$form_state, $vbo) {
  * Implements hook_permission().
  */
 function wim_core_permission() {
-  return array(
-    'publishing options tab' => array(
+  return [
+    'publishing options tab' => [
       'title' => t('Access publishing options tab'),
       'description' => t('User can access promoted and publication date.'),
-    ),
-    'access taxonomy pages' => array(
+    ],
+    'access taxonomy pages' => [
       'title' => t('Access taxonomy pages'),
       'description' => t('User can access taxonomy pages like taxonomy/term/[tid].'),
-    ),
-    'change own role' => array(
+    ],
+    'change own role' => [
       'title' => t('Access to change own roles'),
       'description' => t('User has access set own role.'),
-    ),
-  );
+    ],
+  ];
 }
 
 /**
  * Implements hook_admin_paths().
  */
 function wim_core_admin_paths() {
-  $paths = array(
+  $paths = [
     'mass_contact' => TRUE,
-  );
+  ];
   return $paths;
 }
 
@@ -49,144 +49,144 @@ function wim_core_admin_paths() {
  * Implements hook_menu_alter().
  */
 function wim_core_menu_alter(&$items) {
-  $items['taxonomy/term/%taxonomy_term']['access arguments'] = array('access taxonomy pages');
-  $items['taxonomy/term/%taxonomy_term/feed']['access arguments'] = array('access taxonomy pages');
-  $items['admin/reports/status']['access arguments'] = array('access site reports');
+  $items['taxonomy/term/%taxonomy_term']['access arguments'] = ['access taxonomy pages'];
+  $items['taxonomy/term/%taxonomy_term/feed']['access arguments'] = ['access taxonomy pages'];
+  $items['admin/reports/status']['access arguments'] = ['access site reports'];
 }
 
 /**
  * Implements hook_entity_info_alter().
  */
 function wim_core_entity_info_alter(&$entity_info) {
-  $entity_info['node']['view modes']['short'] = array(
+  $entity_info['node']['view modes']['short'] = [
     'label' => t('Short'),
     'custom settings' => FALSE,
-  );
-  $entity_info['node']['view modes']['introduction'] = array(
+  ];
+  $entity_info['node']['view modes']['introduction'] = [
     'label' => t('Introduction'),
     'custom settings' => FALSE,
-  );
+  ];
 }
 
 /**
  * Implements hook_image_default_styles().
  */
 function wim_core_image_default_styles() {
-  $styles = array();
+  $styles = [];
 
-  $styles['teaser'] = array(
+  $styles['teaser'] = [
     'name' => 'teaser',
     'label' => 'Teaser (150x150)',
-    'effects' => array(
-      array(
+    'effects' => [
+      [
         'module' => 'image',
         'name' => 'image_scale_and_crop',
-        'data' => array(
+        'data' => [
           'width' => 150,
           'height' => 150,
-        ),
+        ],
         'weight' => 0,
-      ),
-    ),
-  );
+      ],
+    ],
+  ];
 
-  $styles['icon'] = array(
+  $styles['icon'] = [
     'name' => 'icon',
     'label' => 'Icon (40x40)',
-    'effects' => array(
-      array(
+    'effects' => [
+      [
         'module' => 'image',
         'name' => 'image_scale_and_crop',
-        'data' => array(
+        'data' => [
           'width' => 40,
           'height' => 40,
-        ),
+        ],
         'weight' => 0,
-      ),
-    ),
-  );
+      ],
+    ],
+  ];
 
-  $styles['teaser_mobile'] = array(
+  $styles['teaser_mobile'] = [
     'name' => 'teaser',
     'label' => 'Teaser mobile (430xAUTO)',
-    'effects' => array(
-      array(
+    'effects' => [
+      [
         'module' => 'image',
         'name' => 'image_scale',
-        'data' => array(
+        'data' => [
           'width' => 430,
           'height' => '',
           'upscale' => 0,
-        ),
+        ],
         'weight' => 0,
-      ),
-    ),
-  );
+      ],
+    ],
+  ];
 
-  $styles['teaser_mobile_retina'] = array(
+  $styles['teaser_mobile_retina'] = [
     'name' => 'teaser',
     'label' => 'Teaser retina (860xAUTO)',
-    'effects' => array(
-      array(
+    'effects' => [
+      [
         'module' => 'image',
         'name' => 'image_scale',
-        'data' => array(
+        'data' => [
           'width' => 860,
           'height' => '',
           'upscale' => 0,
-        ),
+        ],
         'weight' => 0,
-      ),
-    ),
-  );
+      ],
+    ],
+  ];
 
-  $styles['list_thumbnail'] = array(
+  $styles['list_thumbnail'] = [
     'name' => 'list_thumbnail',
     'label' => 'List thumbnail (100x100)',
-    'effects' => array(
-      array(
+    'effects' => [
+      [
         'module' => 'image',
         'name' => 'image_scale_and_crop',
-        'data' => array(
+        'data' => [
           'width' => 100,
           'height' => 100,
-        ),
+        ],
         'weight' => 1,
-      ),
-    ),
-  );
+      ],
+    ],
+  ];
 
-  $styles['node_thumbnail'] = array(
+  $styles['node_thumbnail'] = [
     'name' => 'node_thumbnail',
     'label' => 'Node thumbnail (532x225)',
-    'effects' => array(
-      array(
+    'effects' => [
+      [
         'module' => 'image',
         'name' => 'image_scale_and_crop',
-        'data' => array(
+        'data' => [
           'width' => 532,
           'height' => 225,
-        ),
+        ],
         'weight' => 1,
-      ),
-    ),
-  );
+      ],
+    ],
+  ];
 
-  $styles['pictogram'] = array(
+  $styles['pictogram'] = [
     'name' => 'pictogram',
     'label' => 'Pictogram (40x40)',
-    'effects' => array(
-      array(
+    'effects' => [
+      [
         'module' => 'image',
         'name' => 'image_scale_and_crop',
-        'data' => array(
+        'data' => [
           'width' => 40,
           'height' => 40,
-        ),
+        ],
         'weight' => 1,
-      ),
-    ),
-  );
+      ],
+    ],
+  ];
 
   return $styles;
 }
@@ -221,7 +221,7 @@ function wim_core_form_alter(&$form, &$form_state, $form_id) {
     $form['options']['sticky']['#description'] = t('Check if You want to stick this node on top of search result.');
 
     // Move fields to the Publishing options tab.
-    foreach (array('field_publication_date', 'field_promoted') as $field_name) {
+    foreach (['field_publication_date', 'field_promoted'] as $field_name) {
       if (isset($form[$field_name])) {
         $form['options'][$field_name] = $form[$field_name];
         unset($form[$field_name]);
@@ -254,7 +254,7 @@ function wim_core_form_alter(&$form, &$form_state, $form_id) {
   // Fix permission for changing own role.
   if ($form_id === 'user_profile_form') {
     if (!user_access('change own role') && isset($form['account']['roles'])) {
-      $form['account']['roles']['#options'] = array_diff($form['account']['roles']['#options'], array('administrator'));
+      $form['account']['roles']['#options'] = array_diff($form['account']['roles']['#options'], ['administrator']);
     }
 
     if ($user->uid !== '1') {
@@ -313,15 +313,15 @@ function wim_core_form_alter(&$form, &$form_state, $form_id) {
 function wim_core_user_pass_form_validate($form, &$form_state) {
   $name = trim($form_state['values']['name']);
   // Try to load by email.
-  $users = user_load_multiple(array(), array('mail' => $name, 'status' => '1'));
+  $users = user_load_multiple([], ['mail' => $name, 'status' => '1']);
   $account = reset($users);
   if (!$account) {
     // No success, try to load by name.
-    $users = user_load_multiple(array(), array('name' => $name, 'status' => '1'));
+    $users = user_load_multiple([], ['name' => $name, 'status' => '1']);
     $account = reset($users);
   }
   if (isset($account->uid)) {
-    form_set_value(array('#parents' => array('account')), $account, $form_state);
+    form_set_value(['#parents' => ['account']], $account, $form_state);
   }
   elseif ($name) {
     form_set_error('name', '');
@@ -348,11 +348,11 @@ function mass_contact_redirect_submit(array $form, array &$form_state) {
  */
 function wim_core_cronapi($op, $job = NULL) {
 
-  $items['scheduler_cron'] = array(
+  $items['scheduler_cron'] = [
     'description' => 'Run scheduler.',
     'rule' => '*/5 * * * *',
     'callback' => 'scheduler_cron',
-  );
+  ];
 
   return $items;
 }
@@ -362,7 +362,7 @@ function wim_core_cronapi($op, $job = NULL) {
  */
 function wim_core_theme_registry_alter(&$theme_registry) {
   // Add our accessibility preprocess to several theme functions.
-  $field_types = array(
+  $field_types = [
     'textfield',
     'password',
     'file',
@@ -373,7 +373,7 @@ function wim_core_theme_registry_alter(&$theme_registry) {
     'searchfield',
     'webform_number',
     'webform_email',
-  );
+  ];
 
   drupal_alter('accessible_forms_field_types', $field_types);
   foreach ($field_types as $hook) {
@@ -428,7 +428,7 @@ function wim_core_file_link($variables) {
   $url = file_create_url($file->uri);
 
   // Human-readable names, for use as text-alternatives to icons.
-  $mime_name = array(
+  $mime_name = [
     'application/msword' => t('Microsoft Office document'),
     'application/vnd.ms-excel' => t('Office spreadsheet'),
     'application/vnd.ms-powerpoint' => t('Office presentation'),
@@ -443,23 +443,23 @@ function wim_core_file_link($variables) {
     'text/html' => t('HTML'),
     'text/plain' => t('Plain text'),
     'application/octet-stream' => t('Binary Data'),
-  );
+  ];
 
   $mimetype = file_get_mimetype($file->uri);
 
-  $icon = theme('file_icon', array(
+  $icon = theme('file_icon', [
     'file' => $file,
     'icon_directory' => $icon_directory,
     'alt' => !empty($mime_name[$mimetype]) ? $mime_name[$mimetype] : t('File'),
-  ));
+  ]);
 
   // Set options as per anchor format described at
   // http://microformats.org/wiki/file-format-examples
-  $options = array(
-    'attributes' => array(
+  $options = [
+    'attributes' => [
       'type' => $file->filemime . '; length=' . $file->filesize,
-    ),
-  );
+    ],
+  ];
 
   // Use the description as the link text if available.
   if (empty($file->description)) {

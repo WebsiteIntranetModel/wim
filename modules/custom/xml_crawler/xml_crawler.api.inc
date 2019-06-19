@@ -15,7 +15,7 @@
  *    Site object.
  */
 function hook_xml_crawler_pages_alter(&$pages, DOMDocument $dom, $site) {
-  $new_pages = array();
+  $new_pages = [];
   // Process new dom type.
   if ($site->xml_type === 'custom_xml') {
     $pages[] = $new_pages;
@@ -29,5 +29,5 @@ function hook_xml_crawler_pages_alter(&$pages, DOMDocument $dom, $site) {
  *    New types array.
  */
 function hook_xml_crawler_xml_types() {
-  return array('new' => t('New type'));
+  return ['new' => t('New type')];
 }

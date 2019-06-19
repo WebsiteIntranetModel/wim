@@ -8,7 +8,7 @@
  * Implements hook_views_default_views().
  */
 function wim_block_management_views_default_views() {
-  $export = array();
+  $export = [];
 
   $view = new view();
   $view->name = 'admin_bean_block';
@@ -34,53 +34,53 @@ function wim_block_management_views_default_views() {
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '50';
   $handler->display->display_options['style_plugin'] = 'table';
-  $handler->display->display_options['style_options']['columns'] = array(
+  $handler->display->display_options['style_options']['columns'] = [
     'title' => 'title',
     'label' => 'label',
     'delta' => 'delta',
     'type' => 'type',
     'operations' => 'operations',
     'delete_block' => 'operations',
-  );
+  ];
   $handler->display->display_options['style_options']['default'] = 'title';
-  $handler->display->display_options['style_options']['info'] = array(
-    'title' => array(
+  $handler->display->display_options['style_options']['info'] = [
+    'title' => [
       'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
-    ),
-    'label' => array(
+    ],
+    'label' => [
       'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
-    ),
-    'delta' => array(
+    ],
+    'delta' => [
       'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
-    ),
-    'type' => array(
+    ],
+    'type' => [
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
-    ),
-    'operations' => array(
+    ],
+    'operations' => [
       'align' => 'views-align-right',
       'separator' => '',
       'empty_column' => 0,
-    ),
-    'delete_block' => array(
+    ],
+    'delete_block' => [
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
-    ),
-  );
+    ],
+  ];
   /* Header: Global: Result summary */
   $handler->display->display_options['header']['result']['id'] = 'result';
   $handler->display->display_options['header']['result']['table'] = 'views';
@@ -126,12 +126,12 @@ function wim_block_management_views_default_views() {
   $handler->display->display_options['filters']['type']['expose']['label'] = 'Type';
   $handler->display->display_options['filters']['type']['expose']['operator'] = 'type_op';
   $handler->display->display_options['filters']['type']['expose']['identifier'] = 'type';
-  $handler->display->display_options['filters']['type']['expose']['remember_roles'] = array(
+  $handler->display->display_options['filters']['type']['expose']['remember_roles'] = [
     2 => '2',
     1 => 0,
     3 => 0,
     4 => 0,
-  );
+  ];
   /* Filter criterion: Block: Title */
   $handler->display->display_options['filters']['title']['id'] = 'title';
   $handler->display->display_options['filters']['title']['table'] = 'bean';
@@ -163,7 +163,7 @@ function wim_block_management_views_default_views() {
   $handler->display->display_options['menu']['weight'] = '0';
   $handler->display->display_options['menu']['context'] = 0;
   $handler->display->display_options['menu']['context_only_inline'] = 0;
-  $translatables['admin_bean_block'] = array(
+  $translatables['admin_bean_block'] = [
     t('Defaults'),
     t('Bean Block Overview'),
     t('more'),
@@ -187,7 +187,7 @@ function wim_block_management_views_default_views() {
     t('Type'),
     t('Operations'),
     t('Bean Block List'),
-  );
+  ];
   $export['admin_bean_block'] = $view;
 
   return $export;

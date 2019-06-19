@@ -13,41 +13,41 @@ define('EXTERNAL_CRAWLER_ENTITY_TYPE', 'external_crawler');
  * Implements hook_menu().
  */
 function external_crawler_menu() {
-  $menu = array();
+  $menu = [];
 
-  $menu['admin/config/search/external_crawler'] = array(
+  $menu['admin/config/search/external_crawler'] = [
     'title' => 'External Crawler',
     'page callback' => 'external_crawler_page_list',
-    'access arguments' => array('administer external crawler'),
+    'access arguments' => ['administer external crawler'],
     'type' => MENU_NORMAL_ITEM,
     'file' => 'external_crawler.admin.inc',
-  );
+  ];
 
-  $menu['admin/config/search/external_crawler/site/add'] = array(
+  $menu['admin/config/search/external_crawler/site/add'] = [
     'title' => 'Add site',
     'page callback' => 'drupal_get_form',
-    'page arguments' => array('external_crawler_site_add_form'),
-    'access arguments' => array('administer external crawler'),
+    'page arguments' => ['external_crawler_site_add_form'],
+    'access arguments' => ['administer external crawler'],
     'file' => 'external_crawler.admin.inc',
-  );
+  ];
 
-  $menu['admin/config/search/external_crawler/site/%/edit'] = array(
+  $menu['admin/config/search/external_crawler/site/%/edit'] = [
     'title' => 'Edit site',
     'page callback' => 'drupal_get_form',
-    'page arguments' => array('external_crawler_site_edit_form', 5),
-    'access arguments' => array('administer external crawler'),
+    'page arguments' => ['external_crawler_site_edit_form', 5],
+    'access arguments' => ['administer external crawler'],
     'type' => MENU_NORMAL_ITEM,
     'file' => 'external_crawler.admin.inc',
-  );
+  ];
 
-  $menu['admin/config/search/external_crawler/site/%/delete'] = array(
+  $menu['admin/config/search/external_crawler/site/%/delete'] = [
     'title' => 'Delete',
     'page callback' => 'drupal_get_form',
-    'page arguments' => array('external_crawler_site_delete_confirm', 5),
-    'access arguments' => array('administer external crawler'),
+    'page arguments' => ['external_crawler_site_delete_confirm', 5],
+    'access arguments' => ['administer external crawler'],
     'type' => MENU_NORMAL_ITEM,
     'file' => 'external_crawler.admin.inc',
-  );
+  ];
 
   return $menu;
 }
@@ -56,10 +56,10 @@ function external_crawler_menu() {
  * Implements hook_admin_paths().
  */
 function external_crawler_admin_paths() {
-  $paths = array(
+  $paths = [
     'admin/config/search/external_crawler' => TRUE,
     'admin/config/search/external_crawler/site/add' => TRUE,
-  );
+  ];
   return $paths;
 }
 
@@ -67,16 +67,16 @@ function external_crawler_admin_paths() {
  * Implements hook_permission().
  */
 function external_crawler_permission() {
-  return array(
-    'administer external crawler' => array(
+  return [
+    'administer external crawler' => [
       'title' => t('Administer External Crawler'),
       'description' => t('Add/edit and delete external sites.'),
-    ),
-    'access content include/exclude' => array(
+    ],
+    'access content include/exclude' => [
       'title' => t('Administer content exclude/include'),
       'description' => t('Manage CSS selectors for including & excluding content from crawling.'),
-    ),
-  );
+    ],
+  ];
 }
 
 /**
@@ -87,10 +87,10 @@ function external_crawler_menu_local_tasks_alter(&$data, $router_item, $root_pat
   if ($root_path == 'admin/config/search/external_crawler') {
     $item = menu_get_item('admin/config/search/external_crawler/site/add');
     if (is_array($item) && $item['access']) {
-      $data['actions']['output'][] = array(
+      $data['actions']['output'][] = [
         '#theme' => 'menu_local_action',
         '#link' => $item,
-      );
+      ];
     }
   }
 }
@@ -100,12 +100,12 @@ function external_crawler_menu_local_tasks_alter(&$data, $router_item, $root_pat
  */
 function external_crawler_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'facetapi_facet_display_form' && $form['#facetapi']['facet']['name'] == 'external_source') {
-    $form['workflow']['exclude_' . $form['#facetapi']['facet']['name'] . '_from_search'] = array(
+    $form['workflow']['exclude_' . $form['#facetapi']['facet']['name'] . '_from_search'] = [
       '#type' => 'radios',
       '#title' => t('Exclude from search'),
       '#default_value' => variable_get('exclude_' . $form['#facetapi']['facet']['name'] . '_from_search', 0),
-      '#options' => array(t('Disabled'), t('Enabled')),
-    );
+      '#options' => [t('Disabled'), t('Enabled')],
+    ];
     $form['#submit'][] = '_external_crawler_form_submit';
   }
 }
@@ -141,7 +141,7 @@ function external_crawler_cron() {
     $or->condition('p.date', time() - $site->check_interval, '<=');
     $or->isNull('p.date');
     $pages = db_select('external_crawler_page', 'p')
-      ->fields('p', array('url'))
+      ->fields('p', ['url'])
       ->condition('p.site_id', $site->site_id)
       ->condition($or)
       ->orderBy('p.date', 'ASC')
@@ -166,10 +166,10 @@ function external_crawler_cron() {
  */
 function external_crawler_cronapi($op, $job = NULL) {
   // Run every hour.
-  $items['external_crawler_cron'] = array(
+  $items['external_crawler_cron'] = [
     'description' => 'Run External Crawler',
     'rule' => '0 */1 * * *',
-  );
+  ];
 
   return $items;
 }
@@ -233,18 +233,18 @@ function external_crawler_facetapi_searcher_info_alter(array &$searcher_info) {
  * Implements hook_facetapi_facet_info().
  */
 function external_crawler_facetapi_facet_info(array $searcher_info) {
-  $facets = array();
+  $facets = [];
   // Facets are usually associated with the type of content stored in the index.
   if (isset($searcher_info['types']['external_crawler']) && $searcher_info['adapter'] === 'apachesolr') {
-    $facets['external_source'] = array(
+    $facets['external_source'] = [
       'label' => t('External Source'),
       'description' => t('Filter by external source.'),
       'field' => 'entity_id',
       'map callback' => 'external_crawler_source_map',
       'default widget' => 'links',
-      'default sorts' => array(),
-      'alter callbacks' => array('external_crawler_source_alter'),
-    );
+      'default sorts' => [],
+      'alter callbacks' => ['external_crawler_source_alter'],
+    ];
   }
 
   return $facets;
@@ -254,7 +254,7 @@ function external_crawler_facetapi_facet_info(array $searcher_info) {
  * Map callback for external source filter.
  */
 function external_crawler_source_map(array $values) {
-  $map = array();
+  $map = [];
   foreach ($values as $value) {
     $site = _external_crawler_fetch_sites($value);
     if ($site) {

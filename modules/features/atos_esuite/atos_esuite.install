@@ -9,57 +9,57 @@
  */
 function atos_esuite_install() {
   $role = user_role_load_by_name('webmaster');
-  user_role_grant_permissions($role->rid, array('start atos import'));
+  user_role_grant_permissions($role->rid, ['start atos import']);
 }
 
 /**
  * Implements hook_schema().
  */
 function atos_esuite_schema() {
-  $schema = array();
+  $schema = [];
 
-  $schema['atos_esuite'] = array(
+  $schema['atos_esuite'] = [
     'description' => 'Table which saves hashes for the Atos eSuite Import.',
-    'fields' => array(
-      'identifier' => array(
+    'fields' => [
+      'identifier' => [
         'description' => 'Item identifier',
         'type' => 'varchar',
         'length' => '255',
         'not null' => TRUE,
-      ),
-      'type' => array(
+      ],
+      'type' => [
         'description' => 'Item type',
         'type' => 'varchar',
         'length' => '255',
         'not null' => TRUE,
-      ),
-      'hash' => array(
+      ],
+      'hash' => [
         'description' => 'MD5 Hash of XML',
         'type' => 'varchar',
         'length' => '32',
         'not null' => TRUE,
-      ),
-      'nid' => array(
+      ],
+      'nid' => [
         'description' => 'Node id',
         'type' => 'int',
         'unsigned' => TRUE,
         'not null' => TRUE,
-      ),
-      'xml' => array(
+      ],
+      'xml' => [
         'type' => 'text',
         'not null' => TRUE,
-      ),
-      'changed' => array(
+      ],
+      'changed' => [
         'type' => 'int',
         'unsigned' => TRUE,
         'not null' => TRUE,
-      ),
-    ),
-    'primary key' => array('identifier'),
-    'indexes' => array(
-      'nid' => array('nid'),
-    ),
-  );
+      ],
+    ],
+    'primary key' => ['identifier'],
+    'indexes' => [
+      'nid' => ['nid'],
+    ],
+  ];
 
   return $schema;
 }
@@ -77,39 +77,39 @@ function atos_esuite_uninstall() {
  * Implements hook_requirements().
  */
 function atos_esuite_requirements($phase) {
-  $requirements = array();
+  $requirements = [];
   $t = get_t();
   if ($phase === 'runtime') {
     $error = NULL;
     $url = variable_get('atos_esuite_url', '');
     if (empty($url)) {
-      $error = $t('No Atos URL is set in the <a href="@url">Atos eSuite settings</a>.', array(
+      $error = $t('No Atos URL is set in the <a href="@url">Atos eSuite settings</a>.', [
         '@url' => url('admin/config/content/atos-esuite'),
-      ));
+      ]);
     }
     else {
-      $data = drupal_http_request($url, array('timeout', 5));
+      $data = drupal_http_request($url, ['timeout', 5]);
       if ($data->code == 200 && !(substr($data->data, 0, 5) != '<?xml' || substr($data->data, 2, 5) != '<?xml')) {
-        $error = $t('The Atos eSuite can be reached, but is not responding with XML data. The URL is probably not pointing at the search callback. Please review the <a href="@url">Atos eSuite settings</a>.', array(
+        $error = $t('The Atos eSuite can be reached, but is not responding with XML data. The URL is probably not pointing at the search callback. Please review the <a href="@url">Atos eSuite settings</a>.', [
           '@url' => url('admin/config/content/atos-esuite'),
-        ));
+        ]);
       }
       if ($data->code != 200) {
-        $error = $t('The Atos eSuite cannot be reached. The URL is responding with HTTP code @code. Please review the <a href="@url">Atos eSuite settings</a>.', array(
+        $error = $t('The Atos eSuite cannot be reached. The URL is responding with HTTP code @code. Please review the <a href="@url">Atos eSuite settings</a>.', [
           '@code' => $data->code,
           '@url' => url('admin/config/content/atos-esuite'),
-        ));
+        ]);
       }
     }
-    $message = $t('Atos eSuite is importing from %url. If this is incorrect, please change it in the <a href="@url">settings</a>.', array(
+    $message = $t('Atos eSuite is importing from %url. If this is incorrect, please change it in the <a href="@url">settings</a>.', [
       '%url' => $url,
       '@url' => url('admin/config/content/atos-esuite'),
-    ));
-    $requirements['atos-esuite'] = array(
+    ]);
+    $requirements['atos-esuite'] = [
       'title' => $t('Atos eSuite'),
       'value' => $error ? $error : $message,
       'severity' => $error ? REQUIREMENT_ERROR : REQUIREMENT_OK,
-    );
+    ];
   }
   return $requirements;
 }

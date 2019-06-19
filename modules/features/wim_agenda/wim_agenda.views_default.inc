@@ -8,7 +8,7 @@
  * Implements hook_views_default_views().
  */
 function wim_agenda_views_default_views() {
-  $export = array();
+  $export = [];
 
   $view = new view();
   $view->name = 'agenda';
@@ -71,9 +71,9 @@ function wim_agenda_views_default_views() {
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
-  $handler->display->display_options['filters']['type']['value'] = array(
+  $handler->display->display_options['filters']['type']['value'] = [
     'agenda' => 'agenda',
-  );
+  ];
   /* Filter criterion: Content: Date - end date (field_agenda_date:value2) */
   $handler->display->display_options['filters']['field_agenda_date_value2']['id'] = 'field_agenda_date_value2';
   $handler->display->display_options['filters']['field_agenda_date_value2']['table'] = 'field_data_field_agenda_date';
@@ -129,7 +129,7 @@ function wim_agenda_views_default_views() {
   $handler->display->display_options['sorts']['field_agenda_date_value']['id'] = 'field_agenda_date_value';
   $handler->display->display_options['sorts']['field_agenda_date_value']['table'] = 'field_data_field_agenda_date';
   $handler->display->display_options['sorts']['field_agenda_date_value']['field'] = 'field_agenda_date_value';
-  $translatables['agenda'] = array(
+  $translatables['agenda'] = [
     t('Master'),
     t('Agenda'),
     t('more'),
@@ -151,7 +151,7 @@ function wim_agenda_views_default_views() {
     t('Complete agenda'),
     t('Add Agenda node'),
     t('<![CONTENT_IS_REPLACED_IN_CODE]!>'),
-  );
+  ];
   $export['agenda'] = $view;
 
   return $export;

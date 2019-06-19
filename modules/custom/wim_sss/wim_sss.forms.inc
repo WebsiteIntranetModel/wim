@@ -19,17 +19,17 @@ function _wim_sss_process_node_settings_form(&$form) {
 
   $node_type = $form['#node_type']->type;
 
-  $form['wim_sss'] = array(
+  $form['wim_sss'] = [
     '#type'   => 'fieldset',
     '#title'  => t('Social share links'),
     '#group'  => 'additional_settings',
-  );
+  ];
 
   // Enable render.
-  $form['wim_sss']['wim_sss_node_enabled'] = array(
+  $form['wim_sss']['wim_sss_node_enabled'] = [
     '#type'          => 'checkbox',
     '#title'         => t('Enable social sharing links'),
     '#default_value' => variable_get('wim_sss_node_enabled_' . $node_type),
     '#description'   => t('Enable or disable output for this node type.'),
-  );
+  ];
 }

@@ -8,7 +8,7 @@
 /**
  * Helper function for retrieving the page data.
  */
-function _external_crawler_get_pagedata($pagekey, $new_data = array()) {
+function _external_crawler_get_pagedata($pagekey, $new_data = []) {
   $pagedata = db_select('external_crawler_page', 's')
     ->fields('s')
     ->condition('pagekey', $pagekey)
@@ -16,14 +16,14 @@ function _external_crawler_get_pagedata($pagekey, $new_data = array()) {
     ->fetchAssoc();
 
   if (!$pagedata) {
-    $pagedata = $new_data + array(
+    $pagedata = $new_data + [
       'pagekey' => $pagekey,
       'site_id' => NULL,
       'url' => NULL,
       'date' => NULL,
       'depth' => 1,
       'title' => NULL,
-    );
+      ];
   }
   return $pagedata;
 }
@@ -75,23 +75,23 @@ function external_crawler_delete_site($site_id) {
   db_delete('external_crawler_site')->condition('site_id', $site_id)->execute();
 
   $total_limit = _external_crawler_fetch_pages($site_id, NULL, TRUE);
-  $batch = array(
-    'operations' => array(
-      array(
+  $batch = [
+    'operations' => [
+      [
         'external_crawler_batch_delete_pages',
-        array(
+        [
           $site_id,
           $total_limit,
-        ),
-      ),
-    ),
+        ],
+      ],
+    ],
     'finished' => 'external_crawler_batch_delete_pages_finished',
     'title' => t('Removing'),
     'init_message' => t('Preparing to delete pages content from Solr...'),
     'progress_message' => t('Removing external pages from Solr...'),
     'error_message' => t('Removing external pages has encountered an error.'),
     'file' => drupal_get_path('module', 'external_crawler') . '/external_crawler.functions.inc',
-  );
+  ];
 
   batch_set($batch);
 }
@@ -132,11 +132,11 @@ function external_crawler_batch_delete_pages($site_id, $total_limit, &$context) 
     $context['finished'] = TRUE;
   }
 
-  $arguments = array(
+  $arguments = [
     '@current' => $context['sandbox']['progress'],
     '@total' => $context['sandbox']['max'],
     '@deleted' => $context['sandbox']['deleted'],
-  );
+  ];
 
   $context['message'] = t('Inspected @current of @total pages. Deleted @deleted documents from Solr', $arguments);
 
@@ -169,13 +169,13 @@ function external_crawler_save_page($pagedata, $document) {
 
   $env_id = apachesolr_default_environment();
 
-  $documents = array();
+  $documents = [];
   $documents[] = external_crawler_build_document($pagedata['pagekey'], $document['url'], $document['title'], $document['body'], $pagedata['site_id']);
 
   apachesolr_index_send_to_solr($env_id, $documents);
 
   db_merge('external_crawler_page')
-    ->key(array('pagekey' => $pagedata['pagekey']))
+    ->key(['pagekey' => $pagedata['pagekey']])
     ->fields($pagedata)
     ->execute();
 }
@@ -183,7 +183,7 @@ function external_crawler_save_page($pagedata, $document) {
 /**
  * Save site data.
  */
-function external_crawler_save_site($fields = array(), $site = NULL) {
+function external_crawler_save_site($fields = [], $site = NULL) {
   if (!$site) {
     $site = new stdClass();
     $site->site_id = isset($fields['site_id']) ? $fields['site_id'] : NULL;
@@ -200,14 +200,14 @@ function external_crawler_save_site($fields = array(), $site = NULL) {
   // Gives opportunity alter site data before save.
   drupal_alter('external_crawler_save_site', $site, $fields);
 
-  drupal_write_record('external_crawler_site', $site, !empty($site->site_id) ? array('site_id') : array());
+  drupal_write_record('external_crawler_site', $site, !empty($site->site_id) ? ['site_id'] : []);
 }
 
 /**
  * Fetch all sites.
  */
 function _external_crawler_fetch_sites($site_id = NULL) {
-  $sites = &drupal_static(__FUNCTION__, array());
+  $sites = &drupal_static(__FUNCTION__, []);
 
   if (empty($sites)) {
     $query = db_select('external_crawler_site', 's')->fields('s');
@@ -250,7 +250,7 @@ function _external_crawler_fetch_pages($site_id = NULL, $limit = NULL, $only_cou
  */
 function _external_crawler_update_site_date(stdClass $site) {
   $site->last_crawl = time();
-  external_crawler_save_site(array(), $site);
+  external_crawler_save_site([], $site);
 }
 
 /**
@@ -259,7 +259,7 @@ function _external_crawler_update_site_date(stdClass $site) {
 function _external_crawler_clear_body($body) {
   $body = strip_tags($body);
   $body = preg_replace("/\r|\n/", " ", $body);
-  $special_characters = array(
+  $special_characters = [
     ']>',
     '[',
     '<!--',
@@ -267,7 +267,7 @@ function _external_crawler_clear_body($body) {
     '<!',
     ']&gt;',
     '  ',
-  );
+  ];
 
   $body = str_replace($special_characters, ' ', $body);
 

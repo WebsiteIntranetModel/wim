@@ -8,62 +8,62 @@
  * Implements hook_menu().
  */
 function custom_lists_menu() {
-  $items = array();
+  $items = [];
 
-  $items['admin/structure/lists'] = array(
+  $items['admin/structure/lists'] = [
     'title' => 'Lists',
     'description' => 'Configuration for creating your own lists.',
     'page callback' => 'custom_lists_admin',
-    'access arguments' => array('administer custom lists'),
+    'access arguments' => ['administer custom lists'],
     'type' => MENU_NORMAL_ITEM,
     'file' => 'custom_lists.admin.inc',
-  );
+  ];
 
-  $items['admin/structure/lists/add'] = array(
+  $items['admin/structure/lists/add'] = [
     'title' => 'Add list',
     'description' => 'Configuration for creating your own lists.',
     'page callback' => 'drupal_get_form',
-    'page arguments' => array('custom_lists_list_form'),
-    'access arguments' => array('administer custom lists'),
+    'page arguments' => ['custom_lists_list_form'],
+    'access arguments' => ['administer custom lists'],
     'type' => MENU_LOCAL_ACTION,
     'file' => 'custom_lists.admin.inc',
-  );
+  ];
 
-  $items['admin/structure/lists/edit/%'] = array(
+  $items['admin/structure/lists/edit/%'] = [
     'title' => 'Edit list',
     'description' => 'Configuration for creating your own lists.',
     'page callback' => 'drupal_get_form',
-    'page arguments' => array('custom_lists_list_form', 4),
-    'access arguments' => array('administer custom lists'),
+    'page arguments' => ['custom_lists_list_form', 4],
+    'access arguments' => ['administer custom lists'],
     'type' => MENU_CALLBACK,
     'file' => 'custom_lists.admin.inc',
-  );
+  ];
 
-  $items['admin/structure/lists/delete/%'] = array(
+  $items['admin/structure/lists/delete/%'] = [
     'title' => 'Delete list',
     'page callback' => 'drupal_get_form',
-    'page arguments' => array('custom_lists_delete_form', 4),
-    'access arguments' => array('administer custom lists'),
+    'page arguments' => ['custom_lists_delete_form', 4],
+    'access arguments' => ['administer custom lists'],
     'file' => 'custom_lists.admin.inc',
-  );
+  ];
 
-  $items['custom_lists/taxonomy/autocomplete'] = array(
+  $items['custom_lists/taxonomy/autocomplete'] = [
     'title' => 'Autocomplete taxonomy',
     'page callback' => 'custom_lists_taxonomy_autocomplete',
-    'access arguments' => array('administer custom lists'),
+    'access arguments' => ['administer custom lists'],
     'type' => MENU_CALLBACK,
     'file' => 'custom_lists.admin.inc',
-  );
+  ];
 
   $lists = custom_lists_get();
   foreach ($lists as $list) {
     if ($list['provide-page']) {
-      $items[$list['path']] = array(
+      $items[$list['path']] = [
         'title' => $list['title'],
         'page callback' => 'custom_lists_page',
-        'access arguments' => array('access content'),
+        'access arguments' => ['access content'],
         'type' => MENU_NORMAL_ITEM,
-      );
+      ];
     }
   }
 
@@ -74,14 +74,14 @@ function custom_lists_menu() {
  * Implements hook_block_info().
  */
 function custom_lists_block_info() {
-  $blocks = array();
+  $blocks = [];
 
   $lists = custom_lists_get();
   foreach ($lists as $list_key => $list) {
     if ($list['provide-block']) {
-      $blocks[$list_key] = array(
-        'info' => t('Custom List: @title', array('@title' => $list['title'])),
-      );
+      $blocks[$list_key] = [
+        'info' => t('Custom List: @title', ['@title' => $list['title']]),
+      ];
     }
   }
 
@@ -99,17 +99,17 @@ function custom_lists_block_view($delta = '') {
     return FALSE;
   }
 
-  $block = array();
+  $block = [];
   $block['subject'] = _custom_lists_build_title($list);
-  $block['content'] = array();
+  $block['content'] = [];
 
   if ($list['type'] === 'content') {
     $rendered_nodes = custom_lists_render_nodes($list['block-view-mode'], $list['block-items'], $list);
-    $block['content']['items'] = $rendered_nodes ? $rendered_nodes : array();
+    $block['content']['items'] = $rendered_nodes ? $rendered_nodes : [];
   }
   else {
     if ($list['type'] === 'menu') {
-      $items = array();
+      $items = [];
       $tree = _custom_lists_get_menu_tree($list);
 
       foreach ($tree as $link) {
@@ -124,10 +124,10 @@ function custom_lists_block_view($delta = '') {
         $items[] = l($link['link']['link_title'], $link['link']['link_path']);
       }
 
-      $block['content']['items'] = array(
+      $block['content']['items'] = [
         '#theme' => 'item_list',
         '#items' => $items,
-      );
+      ];
     }
   }
 
@@ -137,9 +137,9 @@ function custom_lists_block_view($delta = '') {
   if ($num_items >= $list['block-items']) {
     $more_link_uri = custom_lists_get_more_uri($list);
     if ($more_link_uri) {
-      $block['content']['more-link'] = array(
-        '#markup' => '<div class="more-link">' . l(t('More @display_title', array('@display_title' => $list['display_title'])), $more_link_uri, array('html' => TRUE)) . '</div>',
-      );
+      $block['content']['more-link'] = [
+        '#markup' => '<div class="more-link">' . l(t('More @display_title', ['@display_title' => $list['display_title']]), $more_link_uri, ['html' => TRUE]) . '</div>',
+      ];
     }
   }
 
@@ -164,7 +164,7 @@ function custom_lists_felix_block_view(&$block) {
         }
         $more_link_uri = custom_lists_get_more_uri($list);
         if ($more_link_uri) {
-          $block->subject = l($block->data['subject'], $more_link_uri, array('html' => TRUE));
+          $block->subject = l($block->data['subject'], $more_link_uri, ['html' => TRUE]);
         }
       }
     }
@@ -187,12 +187,12 @@ function custom_lists_module_implements_alter(&$implementations, $hook) {
  * Implements hook_permission().
  */
 function custom_lists_permission() {
-  return array(
-    'administer custom lists' => array(
+  return [
+    'administer custom lists' => [
       'title' => t('Administer custom lists'),
       'description' => t('Add and delete customs lists.'),
-    ),
-  );
+    ],
+  ];
 }
 
 /**
@@ -208,10 +208,10 @@ function custom_lists_page() {
   // Set it again.
   drupal_set_title($found_list['display_title']);
 
-  $output['intro-text'] = array(
+  $output['intro-text'] = [
     '#type' => 'markup',
     '#markup' => check_markup($found_list['intro-text'], 'filtered_html'),
-  );
+  ];
 
   if ($found_list['type'] === 'content') {
     $output += custom_lists_page_content($found_list);
@@ -230,10 +230,10 @@ function custom_lists_page() {
  */
 function custom_lists_page_content($list) {
   $output['nodes'] = custom_lists_render_nodes($list['page-view-mode'], $list['page-items'], $list, TRUE);
-  $output['pager'] = array(
+  $output['pager'] = [
     '#theme' => 'pager',
     '#weight' => 5,
-  );
+  ];
   return $output;
 }
 
@@ -244,22 +244,22 @@ function custom_lists_render_nodes($view_mode, $items, $list, $page = FALSE) {
   $nodes = custom_lists_content_nodes($list, $items, $view_mode !== 'titles');
 
   if (!$nodes) {
-    return array();
+    return [];
   }
 
   if ($view_mode === 'titles' || empty($view_mode)) {
-    $items = array();
+    $items = [];
     foreach ($nodes as $node) {
       $items[] = l($node->title, 'node/' . $node->nid);
     }
 
-    return array(
+    return [
       '#theme' => 'item_list',
       '#items' => $items,
-      '#attributes' => array(
+      '#attributes' => [
         'class' => 'custom-list-view-mode-titles',
-      ),
-    );
+      ],
+    ];
   }
   else {
     $node_list = $nodes ? node_view_multiple($nodes, $view_mode) : '';
@@ -267,7 +267,7 @@ function custom_lists_render_nodes($view_mode, $items, $list, $page = FALSE) {
       return $node_list;
     }
     else {
-      return array(
+      return [
         '#theme' => 'item_list',
         '#items' => array_filter(reset($node_list), function (&$node) {
           if (!is_array($node)) {
@@ -277,10 +277,10 @@ function custom_lists_render_nodes($view_mode, $items, $list, $page = FALSE) {
           $node = drupal_render($node);
           return TRUE;
         }),
-        '#attributes' => array(
+        '#attributes' => [
           'class' => 'custom-list-view-mode-' . $view_mode,
-        ),
-      );
+        ],
+      ];
     }
   }
 }
@@ -293,7 +293,7 @@ function custom_lists_content_nodes($list, $items, $full_load = TRUE) {
   $query = db_select('node', 'n')->extend('PagerDefault');
   $query->addTag('node_access');
   $query
-    ->fields('n', $full_load ? array('nid') : array('nid', 'title'))
+    ->fields('n', $full_load ? ['nid'] : ['nid', 'title'])
     ->condition('n.status', 1)
     ->limit($items);
 
@@ -360,7 +360,7 @@ function custom_lists_content_nodes($list, $items, $full_load = TRUE) {
 function custom_lists_page_menu($list) {
   $tree = _custom_lists_get_menu_tree($list);
 
-  $rows = array();
+  $rows = [];
   foreach ($tree as $link) {
     if ($link['link']['router_path'] === 'node/%') {
       $parts = explode('/', $link['link']['link_path']);
@@ -371,10 +371,10 @@ function custom_lists_page_menu($list) {
     }
 
     // If we are not a node view we just add a link.
-    $rows[] = array(
+    $rows[] = [
       '#type' => 'markup',
       '#markup' => '<h2>' . l($link['link']['link_title'], $link['link']['link_path']) . '</h2>',
-    );
+    ];
   }
 
   $output['rows'] = $rows;
@@ -388,14 +388,14 @@ function _custom_lists_get_menu_tree($list) {
   $menu_item = menu_link_load($list['menu-item']);
 
   return menu_build_tree($menu_item['menu_name'],
-    array(
-      'conditions' => array(
+    [
+      'conditions' => [
         'plid' => $menu_item['mlid'],
         'hidden' => 0,
-      ),
+      ],
       'min_depth' => $menu_item['depth'] + 1,
       'max_depth' => $menu_item['depth'] + 1,
-    )
+    ]
   );
 }
 
@@ -408,7 +408,7 @@ function custom_lists_get($list_key = NULL) {
     $query->condition('cl.lid', $list_key);
   }
   $query->orderBy('cl.title', 'ASC');
-  $lists = array();
+  $lists = [];
   foreach ($query->execute()->fetchAll() as $list) {
     $list->data = unserialize($list->data);
     $list->data['title'] = $list->title;
@@ -418,7 +418,7 @@ function custom_lists_get($list_key = NULL) {
   }
 
   if ($list_key) {
-    return isset($lists[$list_key]) ? $lists[$list_key] : array();
+    return isset($lists[$list_key]) ? $lists[$list_key] : [];
   }
 
   return $lists;
@@ -469,7 +469,7 @@ function custom_lists_add($list_key, $list) {
   $item->title = $list['title'];
   unset($list['title']);
   $item->data = $list;
-  drupal_write_record('custom_lists', $item, $old ? array('lid') : array());
+  drupal_write_record('custom_lists', $item, $old ? ['lid'] : []);
 
   if ($rebuild_menu) {
     variable_set('menu_rebuild_needed', TRUE);
@@ -520,10 +520,10 @@ function custom_lists_hansel_get_parent($path) {
         if (is_array($tags)) {
           foreach ($tags as $item) {
             if (in_array($item['tid'], $list['taxonomy'], TRUE)) {
-              return array(
+              return [
                 'path' => $list['path'],
                 'title' => $list['display_title'],
-              );
+              ];
             }
           }
         }
@@ -571,12 +571,12 @@ function _custom_lists_build_title(array $list) {
   if (isset($list['block-icon-fid']) && $list['block-icon-fid'] != 0) {
     // Icon uploaded, use it in the title.
     $icon = file_load($list['block-icon-fid']);
-    $icon_vars = array(
+    $icon_vars = [
       'path' => file_create_url($icon->uri),
       'alt' => $icon->field_file_image_alt_text,
       'title' => $icon->field_file_image_title_text,
-      'attributes' => array('class' => array('pictogram')),
-    );
+      'attributes' => ['class' => ['pictogram']],
+    ];
 
     return theme('image', $icon_vars) . $list['display_title'];
   }
@@ -590,7 +590,7 @@ function _custom_lists_build_title(array $list) {
  */
 function custom_lists_get_current($page_url = NULL) {
   $lists = custom_lists_get();
-  $current_list = array();
+  $current_list = [];
   if ($page_url && $lists) {
     foreach ($lists as $list) {
       if ($list['path'] === $page_url) {
@@ -616,16 +616,16 @@ function custom_lists_page_build(&$page) {
   if ($list) {
     // Add metadescription for custom lists.
     if (isset($list['meta-description']) && !empty($list['meta-description'])) {
-      $page['content']['metatags']['custom:list']['description']['#attached']['drupal_add_html_head'][] = array(
-        array(
+      $page['content']['metatags']['custom:list']['description']['#attached']['drupal_add_html_head'][] = [
+        [
           '#theme' => 'metatag',
           '#tag' => 'meta',
           '#id' => 'metatag_description',
           '#name' => 'description',
           '#value' => $list['meta-description'],
-        ),
+        ],
         'metatag_description',
-      );
+      ];
     }
   }
 }

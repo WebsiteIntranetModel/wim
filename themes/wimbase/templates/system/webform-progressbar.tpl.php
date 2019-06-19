@@ -23,10 +23,10 @@
 
 <div class="webform-progressbar">
   <?php if ($progressbar_bar): ?>
-    <span><?php print t('Current step: @name', array('@name' => check_plain($page_labels[$page_num - 1])));?></span>
+    <span><?php print t('Current step: @name', ['@name' => check_plain($page_labels[$page_num - 1])]);?></span>
     <div class="progress">
       <?php
-      $value_text = t('Step @num: @name', array('@num' => $page_num, '@name' => check_plain($page_labels[$page_num - 1])));
+      $value_text = t('Step @num: @name', ['@num' => $page_num, '@name' => check_plain($page_labels[$page_num - 1])]);
       $percent_round = number_format($percent, 0);
       if ($percent_round != 33 && $percent_round != 66) {
         $percent_round = substr($percent_round, 0, -1) . '0';
@@ -44,14 +44,14 @@
 
   <?php if ($progressbar_page_number): ?>
     <div class="webform-progressbar-number">
-      <?php print t('Step @start of @end', array('@start' => $page_num, '@end' => $page_count)); ?>
+      <?php print t('Step @start of @end', ['@start' => $page_num, '@end' => $page_count]); ?>
       <?php if ($progressbar_percent): ?>
-        <span class="webform-progressbar-number">(<?php print t('Completed @num%', array('@num' => number_format($percent, 0)));?>)</span>
+        <span class="webform-progressbar-number">(<?php print t('Completed @num%', ['@num' => number_format($percent, 0)]);?>)</span>
       <?php endif; ?>
     </div>
   <?php endif; ?>
 
   <?php if (!$progressbar_page_number && $progressbar_percent): ?>
-    <span class="webform-progressbar-number">(<?php print t('Completed @num%', array('@num' => number_format($percent, 0)));?>)</span>
+    <span class="webform-progressbar-number">(<?php print t('Completed @num%', ['@num' => number_format($percent, 0)]);?>)</span>
   <?php endif; ?>
 </div>

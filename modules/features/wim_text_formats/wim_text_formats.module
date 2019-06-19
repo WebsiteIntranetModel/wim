@@ -28,11 +28,11 @@ function _wim_wysiwyg_profile_install() {
 
   foreach (_wim_wysiwyg_default_profiles() as $profile) {
     db_merge('wysiwyg')
-      ->key(array('format' => $profile['format']))
-      ->fields(array(
+      ->key(['format' => $profile['format']])
+      ->fields([
         'editor' => $profile['editor'],
         'settings' => serialize($profile['settings']),
-      ))
+      ])
       ->execute();
   }
   wysiwyg_profile_cache_clear();
@@ -42,21 +42,21 @@ function _wim_wysiwyg_profile_install() {
  * Helper function holding default profiles.
  */
 function _wim_wysiwyg_default_profiles() {
-  $profiles = array();
+  $profiles = [];
 
   // Exported profile: filtered_html.
-  $profiles['filtered_html'] = array(
+  $profiles['filtered_html'] = [
     'format' => 'filtered_html',
     'editor' => 'ckeditor',
-    'settings' => array(
+    'settings' => [
       'default' => 1,
       'user_choose' => 0,
       'show_toggle' => 1,
       'add_to_summaries' => 1,
       'theme' => '',
       'language' => 'en',
-      'buttons' => array(
-        'default' => array(
+      'buttons' => [
+        'default' => [
           'Bold' => 1,
           'Italic' => 1,
           'BulletedList' => 1,
@@ -77,38 +77,38 @@ function _wim_wysiwyg_default_profiles() {
           'Find' => 1,
           'Replace' => 1,
           'Iframe' => 1,
-        ),
-        'ckeditor_abbrbutton' => array(
+        ],
+        'ckeditor_abbrbutton' => [
           'ckeditor_abbrbutton' => 1,
-        ),
-        'ckeditor_acronym_button' => array(
+        ],
+        'ckeditor_acronym_button' => [
           'ckeditor_acronym_button' => 1,
-        ),
-        'ckeditor_definitionlist_button' => array(
+        ],
+        'ckeditor_definitionlist_button' => [
           'ckeditor_definitionlist_button' => 1,
-        ),
-        'ckeditor_insertionbutton' => array(
+        ],
+        'ckeditor_insertionbutton' => [
           'ckeditor_insertionbutton' => 1,
-        ),
-        'ckeditor_languagebutton' => array(
+        ],
+        'ckeditor_languagebutton' => [
           'ckeditor_languagebutton' => 1,
-        ),
-        'ckeditor_deletionbutton' => array(
+        ],
+        'ckeditor_deletionbutton' => [
           'ckeditor_deletionbutton' => 1,
-        ),
-        'a11ychecker' => array(
+        ],
+        'a11ychecker' => [
           'A11ychecker' => 1,
-        ),
-        'balloonpanel' => array(
+        ],
+        'balloonpanel' => [
           'Balloonpanel' => 1,
-        ),
-        'linkit' => array(
+        ],
+        'linkit' => [
           'linkit' => 1,
-        ),
-        'drupal' => array(
+        ],
+        'drupal' => [
           'media' => 1,
-        ),
-      ),
+        ],
+      ],
       'toolbarLocation' => 'top',
       'resize_enabled' => 1,
       'default_toolbar_grouping' => 0,
@@ -121,22 +121,22 @@ function _wim_wysiwyg_default_profiles() {
       'block_formats' => 'p,address,pre,h2,h3,h4,h5,h6,div',
       'advanced__active_tab' => 'edit-basic',
       'forcePasteAsPlainText' => 0,
-    ),
-  );
+    ],
+  ];
 
   // Exported profile: full_html.
-  $profiles['full_html'] = array(
+  $profiles['full_html'] = [
     'format' => 'full_html',
     'editor' => 'ckeditor',
-    'settings' => array(
+    'settings' => [
       'default' => 1,
       'user_choose' => 0,
       'show_toggle' => 1,
       'add_to_summaries' => 1,
       'theme' => '',
       'language' => 'en',
-      'buttons' => array(
-        'default' => array(
+      'buttons' => [
+        'default' => [
           'Bold' => 1,
           'Italic' => 1,
           'BulletedList' => 1,
@@ -157,41 +157,41 @@ function _wim_wysiwyg_default_profiles() {
           'Find' => 1,
           'Replace' => 1,
           'Iframe' => 1,
-        ),
-        'bootstrap_tabs' => array(
+        ],
+        'bootstrap_tabs' => [
           'addTab' => 1,
-        ),
-        'ckeditor_abbrbutton' => array(
+        ],
+        'ckeditor_abbrbutton' => [
           'ckeditor_abbrbutton' => 1,
-        ),
-        'ckeditor_acronym_button' => array(
+        ],
+        'ckeditor_acronym_button' => [
           'ckeditor_acronym_button' => 1,
-        ),
-        'ckeditor_definitionlist_button' => array(
+        ],
+        'ckeditor_definitionlist_button' => [
           'ckeditor_definitionlist_button' => 1,
-        ),
-        'ckeditor_insertionbutton' => array(
+        ],
+        'ckeditor_insertionbutton' => [
           'ckeditor_insertionbutton' => 1,
-        ),
-        'ckeditor_languagebutton' => array(
+        ],
+        'ckeditor_languagebutton' => [
           'ckeditor_languagebutton' => 1,
-        ),
-        'ckeditor_deletionbutton' => array(
+        ],
+        'ckeditor_deletionbutton' => [
           'ckeditor_deletionbutton' => 1,
-        ),
-        'a11ychecker' => array(
+        ],
+        'a11ychecker' => [
           'A11ychecker' => 1,
-        ),
-        'balloonpanel' => array(
+        ],
+        'balloonpanel' => [
           'Balloonpanel' => 1,
-        ),
-        'linkit' => array(
+        ],
+        'linkit' => [
           'linkit' => 1,
-        ),
-        'drupal' => array(
+        ],
+        'drupal' => [
           'media' => 1,
-        ),
-      ),
+        ],
+      ],
       'toolbarLocation' => 'top',
       'resize_enabled' => 1,
       'default_toolbar_grouping' => 0,
@@ -204,8 +204,8 @@ function _wim_wysiwyg_default_profiles() {
       'block_formats' => 'p,address,pre,h2,h3,h4,h5,h6,div',
       'advanced__active_tab' => 'edit-basic',
       'forcePasteAsPlainText' => 0,
-    ),
-  );
+    ],
+  ];
 
   return $profiles;
 }
@@ -214,15 +214,15 @@ function _wim_wysiwyg_default_profiles() {
  * Add linkit for redirect items.
  */
 function wim_text_formats_form_redirect_edit_form_alter(&$form, &$form_state) {
-  $form['source']['#linkit'] = array(
+  $form['source']['#linkit'] = [
     'profile' => 'menus',
     'enabled' => 1,
     'button_text' => 'Search',
-  );
+  ];
 
-  $form['redirect']['#linkit'] = array(
+  $form['redirect']['#linkit'] = [
     'profile' => 'menus',
     'enabled' => 1,
     'button_text' => 'Search',
-  );
+  ];
 }

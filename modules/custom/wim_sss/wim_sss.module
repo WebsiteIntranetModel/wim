@@ -22,10 +22,10 @@ function wim_sss_node_view($node, $view_mode, $language) {
     $show = FALSE;
   }
   if ($view_mode === 'full' && $show && !drupal_is_front_page() && variable_get('wim_sss_node_enabled_' . $node->type, 0)) {
-    $node->content['wim_sss'] = array(
-      '#markup' => theme('wim_sss_links', array('node' => $node)),
+    $node->content['wim_sss'] = [
+      '#markup' => theme('wim_sss_links', ['node' => $node]),
       '#weight' => 100,
-    );
+    ];
   }
 }
 
@@ -33,13 +33,13 @@ function wim_sss_node_view($node, $view_mode, $language) {
  * Implements hook_theme().
  */
 function wim_sss_theme() {
-  return array(
-    'wim_sss_links' => array(
+  return [
+    'wim_sss_links' => [
     // Wrapper to contain individual social share links.
       'file' => 'wim_sss.theme.inc',
-      'variables' => array(
+      'variables' => [
         'node' => NULL,
-      ),
-    ),
-  );
+      ],
+    ],
+  ];
 }

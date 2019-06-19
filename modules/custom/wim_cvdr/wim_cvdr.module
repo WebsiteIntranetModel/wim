@@ -246,7 +246,7 @@ function _wim_cvdr_process_xml($xml, $xml_id) {
       $parsedRedirectUri = parse_url($url);
       if ($parsedRedirectUri['scheme'] !== $desiredScheme) {
         $parsedUrl = substr_replace($url, $desiredScheme, 0, strlen($parsedRedirectUri['scheme']));
-        $stream = stream_context_create(array("ssl" => array("capture_peer_cert" => TRUE)));
+        $stream = stream_context_create(["ssl" => ["capture_peer_cert" => TRUE]]);
         $read = fopen($parsedUrl, "rb", FALSE, $stream);
         $cont = stream_context_get_params($read);
         $var = ($cont["options"]["ssl"]["peer_certificate"]);
@@ -285,8 +285,8 @@ function _wim_cvdr_process_xml($xml, $xml_id) {
  * Fetch XML URLs.
  */
 function _wim_cvdr_get_urls() {
-  return array(
+  return [
     variable_get('wim_cvdr_url', ''),
     variable_get('wim_cvdr_url_second', ''),
-  );
+  ];
 }

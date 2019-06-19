@@ -8,15 +8,15 @@
  * Implements hook_menu().
  */
 function content_reminder_menu() {
-  $items['admin/config/content/reminder'] = array(
+  $items['admin/config/content/reminder'] = [
     'title' => 'Content Reminder',
     'description' => 'Send reminders for expired content',
     'page callback' => 'drupal_get_form',
-    'page arguments' => array('content_reminder_admin_form'),
-    'access arguments' => array('administer content reminder'),
+    'page arguments' => ['content_reminder_admin_form'],
+    'access arguments' => ['administer content reminder'],
     'type' => MENU_NORMAL_ITEM,
     'file' => 'content_reminder.admin.inc',
-  );
+  ];
 
   return $items;
 }
@@ -25,12 +25,12 @@ function content_reminder_menu() {
  * Implements hook_permission().
  */
 function content_reminder_permission() {
-  return array(
-    'administer content reminder' => array(
+  return [
+    'administer content reminder' => [
       'title' => t('Administer Content Reminder'),
       'description' => t('Configure content reminders.'),
-    ),
-  );
+    ],
+  ];
 }
 
 /**
@@ -56,10 +56,10 @@ function content_reminder_cron() {
  */
 function content_reminder_cronapi($op, $job = NULL) {
 
-  $items['content_reminder_cron'] = array(
+  $items['content_reminder_cron'] = [
     'description' => 'Send content reminder emails.',
     'rule' => '00 10 * * *',
-  );
+  ];
 
   return $items;
 }
@@ -68,16 +68,16 @@ function content_reminder_cronapi($op, $job = NULL) {
  * Implements hook_theme().
  */
 function content_reminder_theme($existing, $type, $theme, $path) {
-  return array(
-    'content_reminder' => array(
-      'variables' => array(
+  return [
+    'content_reminder' => [
+      'variables' => [
         'nodes' => NULL,
         'mailtype' => NULL,
         'content_reminder_text' => NULL,
-      ),
+      ],
       'template' => 'content_reminder',
-    ),
-  );
+    ],
+  ];
 }
 
 /**
@@ -96,7 +96,7 @@ function content_reminder_node_type_insert($info) {
  */
 function content_reminder_ctools_plugin_api($module, $api) {
   if ($module === 'field_group' && $api === 'field_group') {
-    return array('version' => 1);
+    return ['version' => 1];
   }
 }
 
@@ -104,7 +104,7 @@ function content_reminder_ctools_plugin_api($module, $api) {
  * Implements hook_field_group_info().
  */
 function content_reminder_field_group_info() {
-  $field_groups = array();
+  $field_groups = [];
   $node_types = node_type_get_types();
   foreach ($node_types as $type) {
     $type = $type->type;
@@ -117,23 +117,23 @@ function content_reminder_field_group_info() {
     $field_group->bundle = $type;
     $field_group->mode = 'form';
     $field_group->parent_name = '';
-    $field_group->data = array(
+    $field_group->data = [
       'label' => t('Reminder'),
       'weight' => '44',
-      'children' => array(
+      'children' => [
         0 => 'field_reminder_email',
-      ),
+      ],
       'format_type' => 'tab',
-      'format_settings' => array(
+      'format_settings' => [
         'label' => t('Reminder'),
-        'instance_settings' => array(
+        'instance_settings' => [
           'required_fields' => 1,
           'classes' => '',
           'description' => 'Reminder options',
-        ),
+        ],
         'formatter' => 'closed',
-      ),
-    );
+      ],
+    ];
 
     $field_groups["group_reminder|node|$type|form"] = $field_group;
   }
@@ -151,46 +151,46 @@ function content_reminder_field_group_info() {
  *    Instance array.
  */
 function _content_reminder_instance($type) {
-  return array(
+  return [
     'bundle' => $type,
     'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
-    'display' => array(
-      'default' => array(
+    'display' => [
+      'default' => [
         'label' => 'above',
-        'settings' => array(),
+        'settings' => [],
         'type' => 'hidden',
         'weight' => 6,
-      ),
-      'search_result' => array(
+      ],
+      'search_result' => [
         'label' => 'above',
-        'settings' => array(),
+        'settings' => [],
         'type' => 'hidden',
         'weight' => 0,
-      ),
-      'teaser' => array(
+      ],
+      'teaser' => [
         'label' => 'above',
-        'settings' => array(),
+        'settings' => [],
         'type' => 'hidden',
         'weight' => 0,
-      ),
-    ),
+      ],
+    ],
     'entity_type' => 'node',
     'field_name' => 'field_reminder_email',
     'label' => st('Reminder email'),
     'required' => 0,
-    'settings' => array(
+    'settings' => [
       'user_register_form' => FALSE,
-    ),
-    'widget' => array(
+    ],
+    'widget' => [
       'active' => 1,
       'module' => 'email',
-      'settings' => array(
+      'settings' => [
         'size' => 60,
-      ),
+      ],
       'type' => 'email_textfield',
       'weight' => 42,
-    ),
-  );
+    ],
+  ];
 }

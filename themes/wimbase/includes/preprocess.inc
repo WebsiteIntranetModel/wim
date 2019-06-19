@@ -27,7 +27,7 @@ function wimbase_preprocess_node(&$variables) {
     $parameters = drupal_get_query_parameters();
     $variables['product_link'] = NULL;
     if (isset($parameters['product']) && is_numeric($parameters['product'])) {
-      $variables['product_link'] = l(t('Back to product'), '/node/' . $parameters['product'], array('attributes' => array('class' => array('back-link'))));
+      $variables['product_link'] = l(t('Back to product'), '/node/' . $parameters['product'], ['attributes' => ['class' => ['back-link']]]);
     }
   }
 
@@ -48,7 +48,7 @@ function wimbase_preprocess_node(&$variables) {
  */
 function wimbase_preprocess_region(&$variables) {
   $theme_region = $variables['region'];
-  $process_regions = array();
+  $process_regions = [];
 
   $felix_regions = _felix_get_regions();
   // Fetch regions which we will process.
@@ -59,7 +59,7 @@ function wimbase_preprocess_region(&$variables) {
   if (in_array($theme_region, $process_regions)) {
     $output = '';
     $total_col = 0;
-    $rows = array();
+    $rows = [];
     $row_id = 0;
     foreach (element_children($variables['elements']) as $element_id) {
       if (isset($variables['elements'][$element_id]['#block'])) {
@@ -163,9 +163,9 @@ function wimbase_preprocess_block(&$variables) {
         if (entity_access('view', 'bean', $bean) && $bean) {
           $content = $bean->view($bean_view_mode);
           if (!is_array($content)) {
-            $content = array(
+            $content = [
               '#markup' => $content,
-            );
+            ];
           }
           $variables['content'] = drupal_render($content);
         }
@@ -218,10 +218,10 @@ function wimbase_preprocess_field(&$variables, $hook) {
     foreach ($element['#items'] as $id => $item) {
       $faq = $item['entity'];
       if ($uri = entity_uri('node', $item['entity'])) {
-        $options = array('query' => array('product' => $product_id));
-        $variables['items'][$id] = array(
+        $options = ['query' => ['product' => $product_id]];
+        $variables['items'][$id] = [
           '#markup' => l($faq->title, $uri['path'], $options),
-        );
+        ];
       }
     }
   }
@@ -287,9 +287,9 @@ function wimbase_preprocess_search_result(&$variables) {
 
   if ($result['entity_type'] === 'node') {
     if (isset($result['node']) && $node = node_load($result['node']->entity_id)) {
-      $content_types_labels = array(
+      $content_types_labels = [
         'page' => t('General information'),
-      );
+      ];
 
       $variables['node_content'] = node_view($node, 'search_result');
 
@@ -394,12 +394,12 @@ function wimbase_result_source_site($result_link, &$variables) {
   // Add source url.
   $parsed_url = parse_url($result_link);
   $source_url = $parsed_url['scheme'] . '://' . $parsed_url['host'];
-  $variables['source'] = l($source_url, $source_url, array(
+  $variables['source'] = l($source_url, $source_url, [
     'absolute' => TRUE,
-    'attributes' => array(
-      'class' => array('source'),
-    ),
-  ));
+    'attributes' => [
+      'class' => ['source'],
+    ],
+  ]);
 
   // Gives opportunity alter result source link.
   drupal_alter('wimbase_result_source_site', $result_link, $variables);

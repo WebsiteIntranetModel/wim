@@ -20,11 +20,11 @@ class ExpireCustomLists implements ExpireInterface {
    *   Shows whether should we check executed action or just expire list.
    */
   public function expire($item, $action, $skip_action_check = FALSE) {
-    $expire_urls = array();
-    $actions = array(
+    $expire_urls = [];
+    $actions = [
       'update',
       'delete',
-    );
+    ];
 
     // Expire custom list pages.
     if ($item->data['provide-page'] && ($skip_action_check || in_array($action, $actions))) {

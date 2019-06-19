@@ -12,18 +12,18 @@ function scfeed_settings_form($form, &$form_state) {
   $query = db_select('queue', 'q')->condition('q.name', 'scfeed');
   $query->addExpression('COUNT(*)');
   $queue_items = $query->execute()->fetchField();
-  $form['info'] = array(
-    '#markup' => '<p>' . t('There are currently <strong>@count item(s)</strong> in the queue.', array('@count' => $queue_items)) . '</p>',
-  );
+  $form['info'] = [
+    '#markup' => '<p>' . t('There are currently <strong>@count item(s)</strong> in the queue.', ['@count' => $queue_items]) . '</p>',
+  ];
 
-  $form['scfeed_authority'] = array(
+  $form['scfeed_authority'] = [
     '#type' => 'select',
     '#title' => t('Authority'),
     '#options' => scfeed_get_authorities(),
     '#description' => t('Select the authority used in the exported feed.'),
     '#default_value' => variable_get('scfeed_authority', ''),
     '#required' => TRUE,
-  );
+  ];
 
   $form['#submit'][] = 'scfeed_rebuild';
 
@@ -36,10 +36,10 @@ function scfeed_settings_form($form, &$form_state) {
 function scfeed_rebuild_form($form, &$form_state) {
   $form = confirm_form($form, t('Are you sure you want to rebuild all items?'), 'admin/config/services/scfeed');
 
-  $form['delete'] = array(
+  $form['delete'] = [
     '#type' => 'checkbox',
     '#title' => t('Delete existing items before rebuilding'),
-  );
+  ];
 
   return $form;
 }
@@ -58,7 +58,7 @@ function scfeed_rebuild_form_submit($form, &$form_state) {
  * Menu callback for /sc-feed.
  */
 function scfeed_feed_page() {
-  $items = array();
+  $items = [];
 
   $query = db_select('node', 'n')
     ->condition('n.status', 1)
@@ -113,7 +113,7 @@ function scfeed_feed_wrap_items($items) {
  *    List of authorities.
  */
 function scfeed_get_authorities() {
-  $values = array();
+  $values = [];
 
   $dom = new DOMDocument();
   $dom->load(drupal_get_path('module', 'scfeed') . '/assets/authorities.xml');

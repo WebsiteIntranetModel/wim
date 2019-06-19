@@ -8,41 +8,41 @@
  * Implements hook_schema().
  */
 function custom_lists_schema() {
-  $schema = array();
+  $schema = [];
 
-  $schema['custom_lists'] = array(
-    'fields' => array(
-      'lid' => array(
+  $schema['custom_lists'] = [
+    'fields' => [
+      'lid' => [
         'type' => 'varchar',
         'length' => 255,
         'not null' => TRUE,
-      ),
-      'title' => array(
+      ],
+      'title' => [
         'type' => 'varchar',
         'length' => 255,
         'not null' => TRUE,
-      ),
-      'data' => array(
+      ],
+      'data' => [
         'type' => 'blob',
         'not null' => TRUE,
         'serialize' => TRUE,
         'serialized default' => 'a:0:{}',
-      ),
-      'created' => array(
+      ],
+      'created' => [
         'type' => 'int',
         'not null' => TRUE,
         'size' => 'normal',
         'default' => 0,
-      ),
-      'changed' => array(
+      ],
+      'changed' => [
         'type' => 'int',
         'not null' => TRUE,
         'size' => 'normal',
         'default' => 0,
-      ),
-    ),
-    'primary key' => array('lid'),
-  );
+      ],
+    ],
+    'primary key' => ['lid'],
+  ];
 
   return $schema;
 }

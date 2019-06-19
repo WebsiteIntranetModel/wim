@@ -97,7 +97,7 @@ function _wim_set_up_theme() {
   $default_theme = 'wim';
   $base_theme = 'wimbase';
 
-  theme_enable(array($default_theme, $admin_theme, $base_theme));
+  theme_enable([$default_theme, $admin_theme, $base_theme]);
   variable_set('theme_default', $default_theme);
   variable_set('admin_theme', $admin_theme);
   variable_set('node_admin_theme', '1');
@@ -123,7 +123,7 @@ function _wim_set_up_roles_and_permissions() {
 
     // Assign user 1 the "administrator" role.
     db_insert('users_roles')
-      ->fields(array('uid' => 1, 'rid' => $admin_role->rid))
+      ->fields(['uid' => 1, 'rid' => $admin_role->rid])
       ->execute();
 
     user_role_grant_permissions($admin_role->rid, array_keys(module_invoke_all('permission')));
@@ -135,11 +135,11 @@ function _wim_set_up_roles_and_permissions() {
   variable_set('autologout_role_' . $admin_role->rid . '_timeout', 900);
 
   // List of custom roles for WIM.
-  $custom_roles = array(
+  $custom_roles = [
     'webmaster',
     'content manager',
     'content editor',
-  );
+  ];
 
   foreach ($custom_roles as $role_name) {
     // Create roles.
@@ -164,7 +164,7 @@ function _wim_set_up_roles_and_permissions() {
 
   // Get all the users roles and set variable to assign these for webmasters.
   $roles = user_roles();
-  $role_assign = array();
+  $role_assign = [];
   foreach ($roles as $key => $value) {
     if ($value !== 'anonymous user' && $value !== 'authenticated user') {
       if ($value == 'administrator') {
@@ -180,32 +180,32 @@ function _wim_set_up_roles_and_permissions() {
   // Authenticated role.
   user_role_grant_permissions(DRUPAL_AUTHENTICATED_RID, _wim_permissions('authenticated'));
   // Remove change own e-mail permission.
-  user_role_revoke_permissions(DRUPAL_AUTHENTICATED_RID, array('change own e-mail'));
+  user_role_revoke_permissions(DRUPAL_AUTHENTICATED_RID, ['change own e-mail']);
 
   // Anonymous.
   user_role_grant_permissions(DRUPAL_ANONYMOUS_RID, _wim_permissions('anonymous'));
 
   // Revisioning permissions.
-  $permissions = array(
-    'webmaster' => array(
+  $permissions = [
+    'webmaster' => [
       'view revision status messages',
       'edit revisions',
       'publish revisions',
       'unpublish current revision',
-    ),
-    'content manager' => array(
+    ],
+    'content manager' => [
       'view revision status messages',
       'edit revisions',
       'publish revisions',
       'unpublish current revision',
-    ),
-    'content editor' => array(
+    ],
+    'content editor' => [
       'view revision status messages',
       'edit revisions',
       'publish revisions',
       'unpublish current revision',
-    ),
-  );
+    ],
+  ];
 
   foreach ($permissions as $role_name => $permission) {
     $role = user_role_load_by_name($role_name);
@@ -213,11 +213,11 @@ function _wim_set_up_roles_and_permissions() {
   }
 
   // Diff permissions.
-  $permissions = array(
-    'webmaster' => array('diff view changes'),
-    'content manager' => array('diff view changes'),
-    'content editor' => array('diff view changes'),
-  );
+  $permissions = [
+    'webmaster' => ['diff view changes'],
+    'content manager' => ['diff view changes'],
+    'content editor' => ['diff view changes'],
+  ];
 
   foreach ($permissions as $role_name => $permission) {
     $role = user_role_load_by_name($role_name);
@@ -229,41 +229,41 @@ function _wim_set_up_roles_and_permissions() {
  * Set date formats.
  */
 function _wim_set_date_formats() {
-  $types = array(
-    'single_day' => array(
+  $types = [
+    'single_day' => [
       'title' => 'Single day',
       'locked' => 0,
       'is_new' => 1,
       'type' => 'single_day',
       'date_format' => 'd M',
-    ),
-  );
-  $date_formats = array(
-    'long' => array(
+    ],
+  ];
+  $date_formats = [
+    'long' => [
       'format' => 'd F Y - H:i',
       'type' => 'long',
       'locked' => 0,
       'is_new' => 1,
-    ),
-    'medium' => array(
+    ],
+    'medium' => [
       'format' => 'd F Y',
       'type' => 'medium',
       'locked' => 0,
       'is_new' => 1,
-    ),
-    'short' => array(
+    ],
+    'short' => [
       'format' => 'd-m-Y',
       'type' => 'short',
       'locked' => 0,
       'is_new' => 1,
-    ),
-    'single_day' => array(
+    ],
+    'single_day' => [
       'format' => 'd M',
       'type' => 'single_day',
       'locked' => 0,
       'is_new' => 1,
-    ),
-  );
+    ],
+  ];
 
   // Create new format types.
   foreach ($types as $format_type) {
@@ -283,9 +283,9 @@ function _wim_set_date_formats() {
  */
 function _wim_set_blocks() {
   $default_theme = variable_get('theme_default', 'wim');
-  $blocks = array(
+  $blocks = [
     // Menus.
-    array(
+    [
       'module' => 'menu',
       'delta' => 'menu-meta-menu',
       'theme' => $default_theme,
@@ -296,9 +296,9 @@ function _wim_set_blocks() {
       'visibility' => 0,
       'title' => '<none>',
       'cache' => DRUPAL_NO_CACHE,
-    ),
+    ],
     // Search.
-    array(
+    [
       'module' => 'search',
       'delta' => 'form',
       'theme' => $default_theme,
@@ -309,10 +309,10 @@ function _wim_set_blocks() {
       'visibility' => 0,
       'title' => '<none>',
       'cache' => DRUPAL_NO_CACHE,
-    ),
-  );
+    ],
+  ];
 
-  $query = db_insert('block')->fields(array(
+  $query = db_insert('block')->fields([
     'module',
     'delta',
     'theme',
@@ -323,7 +323,7 @@ function _wim_set_blocks() {
     'visibility',
     'title',
     'cache',
-  ));
+  ]);
 
   foreach ($blocks as $block) {
     $query->values($block);
@@ -337,42 +337,42 @@ function _wim_set_blocks() {
  */
 function _wim_import_menu_items() {
   // List of menus with items.
-  $menus = array(
+  $menus = [
     // Meta menu links.
-    'menu-meta-menu' => array(
-      array(
+    'menu-meta-menu' => [
+      [
         'link_title' => st('Home'),
         'link_path' => '<front>',
         'menu_name' => 'menu-meta-menu',
         'weight' => 0,
         'expanded' => 0,
-      ),
-      array(
+      ],
+      [
         'link_title' => st('FAQ'),
         'link_path' => 'faq',
         'menu_name' => 'menu-meta-menu',
         'weight' => 1,
         'expanded' => 0,
         'customized' => 1,
-      ),
-    ),
-    'main-menu' => array(
-      array(
+      ],
+    ],
+    'main-menu' => [
+      [
         'link_title' => st('Home'),
         'link_path' => '<front>',
         'menu_name' => 'main-menu',
         'weight' => 0,
         'expanded' => 0,
-      ),
-      array(
+      ],
+      [
         'link_title' => st('Actual'),
         'link_path' => 'news',
         'menu_name' => 'main-menu',
         'weight' => 1,
         'expanded' => 1,
         'customized' => 1,
-        'children' => array(
-          array(
+        'children' => [
+          [
             'link_title' => st('News'),
             'link_path' => 'news',
             'menu_name' => 'main-menu',
@@ -380,8 +380,8 @@ function _wim_import_menu_items() {
             'expanded' => 0,
             'depth' => 2,
             'customized' => 1,
-          ),
-          array(
+          ],
+          [
             'link_title' => st('Agenda'),
             'link_path' => 'agenda',
             'menu_name' => 'main-menu',
@@ -389,11 +389,11 @@ function _wim_import_menu_items() {
             'expanded' => 0,
             'depth' => 2,
             'customized' => 1,
-          ),
-        ),
-      ),
-    ),
-  );
+          ],
+        ],
+      ],
+    ],
+  ];
 
   foreach ($menus as $menu_name => $items) {
     foreach ($items as $item) {
@@ -452,7 +452,7 @@ function _wim_create_page($page_type, $bundle = 'page', $language = LANGUAGE_NON
     $link = xmlsitemap_node_create_link($node);
     $link['status'] = 0;
     $link['status_override'] = 1;
-    xmlsitemap_link_save($link, array($link['type'] => $node));
+    xmlsitemap_link_save($link, [$link['type'] => $node]);
   }
 
   return isset($node->nid) ? $node->nid : '';
@@ -476,21 +476,21 @@ function _wim_install_language() {
 function _wim_password_policy_install() {
 
   foreach (_wim_password_policy_default_profile() as $profile) {
-    $pid = db_insert('password_policy')->fields(array(
+    $pid = db_insert('password_policy')->fields([
       'name' => $profile['name'],
       'description' => $profile['description'],
       'enabled' => $profile['enabled'],
       'constraints' => serialize($profile['constraints']),
       'expiration' => $profile['expiration'],
       'warning' => $profile['warning'],
-    ))->execute();
+    ])->execute();
 
     // Insert roles.
     foreach ($profile['roles'] as $rid) {
-      db_insert('password_policy_role')->fields(array(
+      db_insert('password_policy_role')->fields([
         'pid' => $pid,
         'rid' => $rid,
-      ))->execute();
+      ])->execute();
     }
   }
   wysiwyg_profile_cache_clear();
@@ -500,29 +500,29 @@ function _wim_password_policy_install() {
  * Helper function holding default password policies.
  */
 function _wim_password_policy_default_profile() {
-  $profiles = array();
+  $profiles = [];
 
   $cm = user_role_load_by_name('content manager');
   // Exported profile: default.
-  $profiles['default'] = array(
+  $profiles['default'] = [
     'name' => 'default',
     'description' => t('WIM 2.0 default password policy'),
     'enabled' => TRUE,
-    'constraints' => array(
+    'constraints' => [
       'character_types' => '1',
       'digit' => '1',
       'history' => '6',
       'length' => '8',
       'punctuation' => '1',
       'uppercase' => '1',
-    ),
+    ],
     'expiration' => 60,
     'warning' => 14,
-    'roles' => array(
+    'roles' => [
       DRUPAL_AUTHENTICATED_RID,
       $cm->rid,
-    ),
-  );
+    ],
+  ];
 
   return $profiles;
 }
@@ -533,11 +533,11 @@ function _wim_password_policy_default_profile() {
 function _wim_create_custom_block($block) {
   // Create custom blocks.
   $block_delta = db_insert('block_custom')
-    ->fields(array(
+    ->fields([
       'body' => $block['body'],
       'info' => $block['info'],
       'format' => $block['format'],
-    ))
+    ])
     ->execute();
 
   return $block_delta;
@@ -547,89 +547,89 @@ function _wim_create_custom_block($block) {
  * Create felix blocks and place them in regions.
  */
 function _wim_place_felix_blocks() {
-  $felix_blocks = array(
-    'top_tasks' => array(
+  $felix_blocks = [
+    'top_tasks' => [
       'region_name' => 'highlighted',
       'path' => variable_get('site_frontpage'),
       'module' => 'menu',
       'delta' => 'menu-top-tasks',
       'detail_path' => NULL,
-      'data' => array(
+      'data' => [
         'subject' => '<none>',
-        'config' => array(
+        'config' => [
           'bootstrap_layout' => 8,
           'new_row' => 0,
-        ),
-      ),
-    ),
-    'latest_news' => array(
+        ],
+      ],
+    ],
+    'latest_news' => [
       'region_name' => 'highlighted',
       'path' => variable_get('site_frontpage'),
       'module' => 'views',
       'delta' => 'news-latest_news',
       'detail_path' => NULL,
-      'data' => array(
+      'data' => [
         'subject' => '',
-        'config' => array(
+        'config' => [
           'bootstrap_layout' => 4,
           'new_row' => 0,
-        ),
-      ),
-    ),
+        ],
+      ],
+    ],
     // Custom blocks.
-    'address' => array(
+    'address' => [
       'region_name' => 'footer',
       'path' => NULL,
       'module' => 'block',
       'delta' => NULL,
       'detail_path' => NULL,
-      'data' => array(
+      'data' => [
         'subject' => '<none>',
-        'config' => array(
+        'config' => [
           'bootstrap_layout' => 4,
           'new_row' => 0,
-        ),
-      ),
-      'custom_block' => array(
+        ],
+      ],
+      'custom_block' => [
         'info' => 'Address',
         'body' => '<h2 class="element-invisible">Address</h2><h3>Post</h3><ul><li>Postbus 10101</li><li>5500 GA Veldhoven</li></ul><h3>E-mail</h3><ul><li>gemeente@gemeente.nl</li></ul><h3>Telefonisch contact</h3><ul><li>14 040 (algemeen)</li></ul><h3>Bezoekadres</h3><ul><li>Meiveld 1</li><li>5501 KA Veldhoven</li></ul>',
         'format' => 'full_html',
-      ),
-    ),
-    'copyright' => array(
+      ],
+    ],
+    'copyright' => [
       'region_name' => 'footer',
       'path' => NULL,
       'module' => 'block',
       'delta' => NULL,
       'detail_path' => NULL,
-      'data' => array(
+      'data' => [
         'subject' => '<none>',
-        'config' => array(
+        'config' => [
           'bootstrap_layout' => 4,
           'new_row' => 0,
-        ),
-      ),
-      'custom_block' => array(
+        ],
+      ],
+      'custom_block' => [
         'info' => 'Copyright',
         'body' => 'Copyright © 2016. All rights reserved.',
         'format' => 'plain_text',
-      ),
-    ),
-    'social_media' => array(
+      ],
+    ],
+    'social_media' => [
       'region_name' => 'footer',
       'path' => NULL,
       'module' => 'menu',
       'delta' => 'menu-social-media',
       'detail_path' => NULL,
-      'data' => array(
+      'data' => [
         'subject' => st('Follow us'),
-        'config' => array(
+        'config' => [
           'bootstrap_layout' => 4,
           'new_row' => 0,
-        ),
-      ),
-    ),
-  );
+        ],
+      ],
+    ],
+  ];
 
   // Add Facetapi blocks if enabled.
   if (module_exists('facetapi')) {
@@ -637,37 +637,37 @@ function _wim_place_felix_blocks() {
     $map = facetapi_get_delta_map();
     // Filter by type.
     $string = facetapi_build_delta('apachesolr@solr', 'block', 'bundle');
-    $felix_blocks['search_filter_types'] = array(
+    $felix_blocks['search_filter_types'] = [
       'region_name' => 'sidebar-first-search',
       'path' => NULL,
       'module' => 'facetapi',
       'delta' => array_search($string, $map),
       'detail_path' => NULL,
-      'data' => array(
+      'data' => [
         'subject' => st('Filter by type'),
-        'config' => array(
+        'config' => [
           'bootstrap_layout' => 12,
           'new_row' => 0,
-        ),
-      ),
-    );
+        ],
+      ],
+    ];
 
     // Filter by date.
     $string = facetapi_build_delta('apachesolr@solr', 'block', 'created');
-    $felix_blocks['search_filter_created'] = array(
+    $felix_blocks['search_filter_created'] = [
       'region_name' => 'sidebar-first-search',
       'path' => NULL,
       'module' => 'facetapi',
       'delta' => array_search($string, $map),
       'detail_path' => NULL,
-      'data' => array(
+      'data' => [
         'subject' => st('Filter by date'),
-        'config' => array(
+        'config' => [
           'bootstrap_layout' => 12,
           'new_row' => 0,
-        ),
-      ),
-    );
+        ],
+      ],
+    ];
   }
 
   foreach ($felix_blocks as $felix_block) {
@@ -688,7 +688,7 @@ function _wim_place_felix_blocks() {
  *
  * @see _felix_add_block
  */
-function _wim_add_felix_block($region_name, $path, $module, $delta, $detail_path = NULL, $data = array()) {
+function _wim_add_felix_block($region_name, $path, $module, $delta, $detail_path = NULL, $data = []) {
   if (module_exists('felix')) {
     if (!$region = _felix_region_by_name($region_name)) {
       return FALSE;
@@ -697,7 +697,7 @@ function _wim_add_felix_block($region_name, $path, $module, $delta, $detail_path
     if ($module === 'node' && is_numeric($delta) && module_exists('translation')) {
       // Add the source translation.
       $tnid = db_select('node', 'n')
-        ->fields('n', array('tnid'))
+        ->fields('n', ['tnid'])
         ->condition('n.nid', $delta)
         ->execute()
         ->fetchField();
@@ -716,7 +716,7 @@ function _wim_add_felix_block($region_name, $path, $module, $delta, $detail_path
     $block->detail_path = $detail_path;
     $block->data = $data;
     $block->hash_parts = $hash->parts;
-    $block->exclude = serialize(array());
+    $block->exclude = serialize([]);
 
     foreach (module_implements('felix_block_insert') as $module) {
       $hook = "{$module}_felix_block_insert";
@@ -738,7 +738,7 @@ function _wim_add_felix_block($region_name, $path, $module, $delta, $detail_path
  * @see userprotect_protected_roles
  */
 function _wim_user_protect_roles() {
-  $settings = array();
+  $settings = [];
   // Grab all roles but the anonymous role, and grab the current default
   // settings.
   $roles = user_roles(TRUE);
@@ -766,14 +766,14 @@ function _wim_user_protect_roles() {
  * Default settings for social share links for content types.
  */
 function _wim_default_sss() {
-  $types = array(
+  $types = [
     'agenda',
     'faq',
     'news',
     'page',
     'person',
     'product',
-  );
+  ];
 
   foreach ($types as $type) {
     variable_set('wim_sss_node_enabled_' . $type, 1);
@@ -790,7 +790,7 @@ function _wim_default_pathauto() {
   variable_set('pathauto_node_pattern', '[node:content-type]/[node:title]');
   $types = node_type_get_types();
 
-  $default_mapping = array(
+  $default_mapping = [
     'agenda' => '[node:hansel-path]',
     'faq' => '[node:hansel-path]',
     'news' => '[node:hansel-path]',
@@ -799,7 +799,7 @@ function _wim_default_pathauto() {
     'product' => '[node:hansel-path]',
     'subject_page' => '[node:hansel-path]',
     'webform' => '[node:hansel-path]',
-  );
+  ];
 
   foreach ($types as $type) {
     variable_set('pathauto_node_' . $type->type . '_pattern', $default_mapping[$type->type]);
@@ -810,9 +810,9 @@ function _wim_default_pathauto() {
  * Gets role permissions.
  */
 function _wim_permissions($role) {
-  $permissions = array(
+  $permissions = [
     // Webmaster.
-    'webmaster' => array(
+    'webmaster' => [
       // System.
       'access administration menu',
       'administer url aliases',
@@ -948,9 +948,9 @@ function _wim_permissions($role) {
       'edit any linked_keywords content',
       'delete own linked_keywords content',
       'delete any linked_keywords content',
-    ),
+    ],
     // Content manager.
-    'content manager' => array(
+    'content manager' => [
       // System.
       'access administration menu',
       'create url aliases',
@@ -1070,9 +1070,9 @@ function _wim_permissions($role) {
       'edit any linked_keywords content',
       'delete own linked_keywords content',
       'delete any linked_keywords content',
-    ),
+    ],
     // Content editor.
-    'content editor' => array(
+    'content editor' => [
       // System.
       'use text format filtered_html',
       'create url aliases',
@@ -1135,22 +1135,22 @@ function _wim_permissions($role) {
       // Linked keywords.
       'create linked_keywords content',
       'edit own linked_keywords content',
-    ),
-    'authenticated' => array(
+    ],
+    'authenticated' => [
       'access content',
       'view any editorial bean',
       'search content',
       'search content',
       'send arbitrary files',
-    ),
-    'anonymous' => array(
+    ],
+    'anonymous' => [
       'access content',
       'view any editorial bean',
       'search content',
       'search content',
       'send arbitrary files',
-    ),
-  );
+    ],
+  ];
 
   // Add permissions for taxonomies.
   foreach (taxonomy_get_vocabularies() as $vocabulary) {
@@ -1171,15 +1171,15 @@ function _wim_permissions($role) {
  * Sets front metatags.
  */
 function _wim_set_front_metatags() {
-  $front_metatags = (object) array(
+  $front_metatags = (object) [
     'cid' => NULL,
     'instance' => 'global:frontpage',
-    'config' => array(
-      'title' => array('value' => '[site:name]'),
-      'canonical' => array('value' => '[site:url]'),
-      'shortlink' => array('value' => '[site:url]'),
-    ),
-  );
+    'config' => [
+      'title' => ['value' => '[site:name]'],
+      'canonical' => ['value' => '[site:url]'],
+      'shortlink' => ['value' => '[site:url]'],
+    ],
+  ];
 
   metatag_config_save($front_metatags);
 }
@@ -1207,13 +1207,13 @@ function _wim_set_webform_attachments() {
  * Enable modules during install without dependent on other modules.
  */
 function _wim_enable_modules() {
-  $modules = array(
+  $modules = [
     'seckit',
     'login_destination',
     'media_bulk_upload',
     'clone',
     'webform_autofill_attribute',
-  );
+  ];
 
   // Enable modules.
   module_enable($modules);
@@ -1225,13 +1225,13 @@ function _wim_enable_modules() {
 function _wim_set_default_login_destination() {
   // Create a common rule.
   db_insert('login_destination')
-    ->fields(array(
+    ->fields([
       'destination' => '<front>',
       'enabled' => 1,
       'triggers' => 'a:0:{}',
       'roles' => 'a:0:{}',
       'pages' => '',
-    ))->execute();
+    ])->execute();
 }
 
 /**
@@ -1239,7 +1239,7 @@ function _wim_set_default_login_destination() {
  */
 function _wim_set_default_node_clone_options() {
   // Set omitted content types.
-  variable_set('clone_omitted', array(
+  variable_set('clone_omitted', [
     'agenda' => 'agenda',
     'page' => 'page',
     'book' => 'book',
@@ -1249,16 +1249,16 @@ function _wim_set_default_node_clone_options() {
     'product' => 'product',
     'subject_page' => 'subject_page',
     'webform' => 0,
-  ));
+  ]);
 }
 
 /**
  * Default settings for seckit miodule.
  */
 function _wim_set_default_seckit() {
-  $defaults = array();
-  $defaults['seckit_xss'] = array(
-    'csp' => array(
+  $defaults = [];
+  $defaults['seckit_xss'] = [
+    'csp' => [
       'checkbox' => 0,
       'report-only' => 0,
       'default-src' => '\'self\'',
@@ -1273,48 +1273,48 @@ function _wim_set_default_seckit() {
       'connect-src' => '',
       'report-uri' => 'report-csp-violation',
       'policy-uri' => '',
-    ),
-    'x_xss' => array(
+    ],
+    'x_xss' => [
       'select' => '2',
-    ),
-    'x_content_type' => array(
+    ],
+    'x_content_type' => [
       'checkbox' => 1,
-    ),
-  );
-  $defaults['seckit_csrf'] = array(
+    ],
+  ];
+  $defaults['seckit_csrf'] = [
     'origin' => 1,
     'origin_whitelist' => '',
-  );
-  $defaults['seckit_clickjacking'] = array(
+  ];
+  $defaults['seckit_clickjacking'] = [
     'x_frame' => '1',
     'x_frame_allow_from' => '',
     'js_css_noscript' => 0,
     'noscript_message' => 'Sorry, you need to enable JavaScript to visit this website.',
-  );
-  $defaults['seckit_ssl'] = array(
+  ];
+  $defaults['seckit_ssl'] = [
     'hsts' => 1,
     'hsts_max_age' => '31536000',
     'hsts_subdomains' => 1,
     'hsts_preload' => 0,
-  );
-  $defaults['seckit_various'] = array(
+  ];
+  $defaults['seckit_various'] = [
     'from_origin' => 0,
     'from_origin_destination' => 'same',
     'disable_autocomplete' => 0,
-  );
-  $defaults['seckit_advanced'] = array(
+  ];
+  $defaults['seckit_advanced'] = [
     'disable_seckit' => 0,
     'unlimited_csp_reports' => 1,
-    'csp_limits' => array(
+    'csp_limits' => [
       'max_size' => '4096',
-      'flood' => array(
+      'flood' => [
         'limit_user' => '100',
         'window_user' => '900',
         'limit_global' => '1000',
         'window_global' => '3600',
-      ),
-    ),
-  );
+      ],
+    ],
+  ];
 
   foreach ($defaults as $name => $option) {
     variable_set($name, $option);

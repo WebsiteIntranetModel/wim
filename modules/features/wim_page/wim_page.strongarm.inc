@@ -8,7 +8,7 @@
  * Implements hook_strongarm().
  */
 function wim_page_strongarm() {
-  $export = array();
+  $export = [];
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -21,60 +21,60 @@ function wim_page_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_node__page';
-  $strongarm->value = array(
-    'view_modes' => array(
-      'teaser' => array(
+  $strongarm->value = [
+    'view_modes' => [
+      'teaser' => [
         'custom_settings' => TRUE,
-      ),
-      'full' => array(
+      ],
+      'full' => [
         'custom_settings' => FALSE,
-      ),
-      'rss' => array(
+      ],
+      'rss' => [
         'custom_settings' => FALSE,
-      ),
-      'diff_standard' => array(
+      ],
+      'diff_standard' => [
         'custom_settings' => FALSE,
-      ),
-      'short' => array(
+      ],
+      'short' => [
         'custom_settings' => FALSE,
-      ),
-      'search_index' => array(
+      ],
+      'search_index' => [
         'custom_settings' => FALSE,
-      ),
-      'search_result' => array(
+      ],
+      'search_result' => [
         'custom_settings' => TRUE,
-      ),
-      'felix' => array(
+      ],
+      'felix' => [
         'custom_settings' => FALSE,
-      ),
-      'token' => array(
+      ],
+      'token' => [
         'custom_settings' => FALSE,
-      ),
-      'introduction' => array(
+      ],
+      'introduction' => [
         'custom_settings' => TRUE,
-      ),
-    ),
-    'extra_fields' => array(
-      'form' => array(
-        'title' => array(
+      ],
+    ],
+    'extra_fields' => [
+      'form' => [
+        'title' => [
           'weight' => '0',
-        ),
-        'locations' => array(
+        ],
+        'locations' => [
           'weight' => '6',
-        ),
-        'metatags' => array(
+        ],
+        'metatags' => [
           'weight' => '9',
-        ),
-        'redirect' => array(
+        ],
+        'redirect' => [
           'weight' => '8',
-        ),
-        'path' => array(
+        ],
+        'path' => [
           'weight' => '7',
-        ),
-      ),
-      'display' => array(),
-    ),
-  );
+        ],
+      ],
+      'display' => [],
+    ],
+  ];
   $export['field_bundle_settings_node__page'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -88,7 +88,7 @@ function wim_page_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'menu_options_page';
-  $strongarm->value = array();
+  $strongarm->value = [];
   $export['menu_options_page'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -102,9 +102,9 @@ function wim_page_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'node_options_page';
-  $strongarm->value = array(
+  $strongarm->value = [
     0 => 'status',
-  );
+  ];
   $export['node_options_page'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -153,10 +153,10 @@ function wim_page_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'xmlsitemap_settings_node_page';
-  $strongarm->value = array(
+  $strongarm->value = [
     'status' => '1',
     'priority' => '0.7',
-  );
+  ];
   $export['xmlsitemap_settings_node_page'] = $strongarm;
 
   return $export;

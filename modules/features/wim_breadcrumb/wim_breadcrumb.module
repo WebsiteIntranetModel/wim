@@ -63,16 +63,16 @@ function hansel_hansel_get_parent($path) {
   if (preg_match('/^node\\/([0-9]+)$/si', $path, $match)) {
 
     // Try to get parent by nodetype settings.
-    $nodetypes = variable_get('hansel_nodetypes', array());
+    $nodetypes = variable_get('hansel_nodetypes', []);
 
     // Override an output to provide translated title.
     if (($node = node_load($match[1])) && isset($nodetypes[$node->type])) {
 
       // @todo: need replace a title to use as translation variable(use like i18n_string() or etc.).
-      return array(
+      return [
         'path' => $nodetypes[$node->type]['path'],
         'title' => $nodetypes[$node->type]['title'],
-      );
+      ];
     }
   }
   return FALSE;

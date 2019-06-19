@@ -8,7 +8,7 @@
  * Implements hook_strongarm().
  */
 function wim_linked_keywords_strongarm() {
-  $export = array();
+  $export = [];
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -35,32 +35,32 @@ function wim_linked_keywords_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_node__linked_keywords';
-  $strongarm->value = array(
-    'view_modes' => array(),
-    'extra_fields' => array(
-      'form' => array(
-        'locations' => array(
+  $strongarm->value = [
+    'view_modes' => [],
+    'extra_fields' => [
+      'form' => [
+        'locations' => [
           'weight' => '30',
-        ),
-        'metatags' => array(
+        ],
+        'metatags' => [
           'weight' => '40',
-        ),
-        'title' => array(
+        ],
+        'title' => [
           'weight' => '-5',
-        ),
-        'path' => array(
+        ],
+        'path' => [
           'weight' => '30',
-        ),
-        'redirect' => array(
+        ],
+        'redirect' => [
           'weight' => '30',
-        ),
-        'xmlsitemap' => array(
+        ],
+        'xmlsitemap' => [
           'weight' => '30',
-        ),
-      ),
-      'display' => array(),
-    ),
-  );
+        ],
+      ],
+      'display' => [],
+    ],
+  ];
   $export['field_bundle_settings_node__linked_keywords'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -74,7 +74,7 @@ function wim_linked_keywords_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'menu_options_linked_keywords';
-  $strongarm->value = array();
+  $strongarm->value = [];
   $export['menu_options_linked_keywords'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -95,9 +95,9 @@ function wim_linked_keywords_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'node_options_linked_keywords';
-  $strongarm->value = array(
+  $strongarm->value = [
     0 => 'status',
-  );
+  ];
   $export['node_options_linked_keywords'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -125,10 +125,10 @@ function wim_linked_keywords_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'xmlsitemap_settings_node_linked_keywords';
-  $strongarm->value = array(
+  $strongarm->value = [
     'status' => '0',
     'priority' => '0.5',
-  );
+  ];
   $export['xmlsitemap_settings_node_linked_keywords'] = $strongarm;
 
   return $export;
