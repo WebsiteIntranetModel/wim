@@ -10,6 +10,7 @@ services:
       - db
       - mailcatcher
       - solr
+      - selenium
     environment:
       - VIRTUAL_HOST=wim.local
       - DRUPAL_SETTINGS=development
@@ -47,12 +48,11 @@ services:
     ports:
       - "4444"
       - "5900"
+    network_mode: "bridge"
     container_name: wim_selenium
     cap_add:
       - NET_ADMIN
       - NET_RAW
-    links:
-      - web
 
 #  proxy:
 #    image: jwilder/nginx-proxy
