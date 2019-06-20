@@ -665,14 +665,14 @@ function wim_core_views_default_views() {
       'aggr_par_column' => '',
     ),
     'delta' => array(
-      'sortable' => 0,
+      'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
-      'has_aggr' => 0,
+      'has_aggr' => 1,
       'aggr' => array(
-        'views_aggregator_first' => 'views_aggregator_first',
+        'views_aggregator_enumerate' => 'views_aggregator_enumerate',
       ),
       'aggr_par' => '',
       'has_aggr_column' => 0,
