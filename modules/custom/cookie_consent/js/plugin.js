@@ -211,7 +211,7 @@ var cc =
       }
     });
     var verstr = jQuery().jquery;
-    if (typeof jQuery == 'undefined' || !/[1-9]\.([4-9].[4-9]|[5-9].[0-9]|[1-9][0-9].[0-9])/.test(verstr)
+    if (typeof jQuery == 'undefined' || /1.([0-3].[0-9]|4.[0-4])/.test(verstr)
     ) {
       alert(cc.strings.jqueryWarning);
     }
