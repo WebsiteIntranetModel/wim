@@ -130,7 +130,12 @@ function scfeed_generate_item($node) {
   $element = $dom->createElement('productID', $node->nid);
   $overheidproduct->appendChild($element);
 
-  $element = $dom->createElement('onlineAanvragen', 'nee');
+  if (isset($node->field_sc_ask_online) && !empty($node->field_sc_ask_online[LANGUAGE_NONE][0]['value'])) {
+    $element = $dom->createElement('onlineAanvragen', $node->field_sc_ask_online[LANGUAGE_NONE][0]['value']);
+  }
+  else {
+    $element = $dom->createElement('onlineAanvragen', 'no');
+  }
   $overheidproduct->appendChild($element);
 
   if (isset($node->field_product_upl) && !empty($node->field_product_upl[LANGUAGE_NONE][0])) {
