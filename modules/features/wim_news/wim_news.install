@@ -23,15 +23,15 @@ function wim_news_update_7001(&$sandbox) {
  * Helper function to set exposed filter filex block.
  */
 function _place_exposed_filter_filex_block() {
-  $data = array(
+  $data = [
     'subject' => '',
     'config' =>
-      array(
+      [
         'bootstrap_layout' => '12',
         'new_row' => 1,
         'row_weight' => '-10',
-      ),
-  );
+      ],
+  ];
 
   _wim_add_felix_block('content', 'news', 'views', '-exp-news-news_overview', NULL, $data);
 }

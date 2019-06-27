@@ -8,15 +8,15 @@
  * Implements hook_wysiwyg_default_profiles().
  */
 function wim_text_formats_wysiwyg_default_profiles() {
-  $profiles = array();
+  $profiles = [];
 
   // Exported profile: filtered_html.
-  $profiles['filtered_html'] = array(
+  $profiles['filtered_html'] = [
     'format' => 'filtered_html',
     'editor' => 'ckeditor',
-    'settings' => array(
-      'buttons' => array(
-        'default' => array(
+    'settings' => [
+      'buttons' => [
+        'default' => [
           'Bold' => 1,
           'Italic' => 1,
           'BulletedList' => 1,
@@ -37,38 +37,38 @@ function wim_text_formats_wysiwyg_default_profiles() {
           'Replace' => 1,
           'Iframe' => 1,
           'Maximize' => 1,
-        ),
-        'ckeditor_abbrbutton' => array(
+        ],
+        'ckeditor_abbrbutton' => [
           'ckeditor_abbrbutton' => 1,
-        ),
-        'ckeditor_acronym_button' => array(
+        ],
+        'ckeditor_acronym_button' => [
           'ckeditor_acronym_button' => 1,
-        ),
-        'ckeditor_definitionlist_button' => array(
+        ],
+        'ckeditor_definitionlist_button' => [
           'ckeditor_definitionlist_button' => 1,
-        ),
-        'ckeditor_insertionbutton' => array(
+        ],
+        'ckeditor_insertionbutton' => [
           'ckeditor_insertionbutton' => 1,
-        ),
-        'ckeditor_languagebutton' => array(
+        ],
+        'ckeditor_languagebutton' => [
           'ckeditor_languagebutton' => 1,
-        ),
-        'ckeditor_deletionbutton' => array(
+        ],
+        'ckeditor_deletionbutton' => [
           'ckeditor_deletionbutton' => 1,
-        ),
-        'a11ychecker' => array(
+        ],
+        'a11ychecker' => [
           'A11ychecker' => 1,
-        ),
-        'balloonpanel' => array(
+        ],
+        'balloonpanel' => [
           'Balloonpanel' => 1,
-        ),
-        'linkit' => array(
+        ],
+        'linkit' => [
           'linkit' => 1,
-        ),
-        'drupal' => array(
+        ],
+        'drupal' => [
           'media' => 1,
-        ),
-      ),
+        ],
+      ],
       'theme' => '',
       'language' => 'en',
       'toolbarLocation' => 'top',
@@ -85,24 +85,24 @@ function wim_text_formats_wysiwyg_default_profiles() {
       'forcePasteAsPlainText' => 0,
       'pasteFromWordPromptCleanup' => 0,
       'pasteFromWordRemoveFontStyles' => 0,
-    ),
-    'preferences' => array(
+    ],
+    'preferences' => [
       'default' => 1,
       'user_choose' => 0,
       'show_toggle' => 1,
       'add_to_summaries' => 1,
       'version' => '4.10.1.59246e9',
-    ),
+    ],
     'name' => 'formatfiltered_html',
-  );
+  ];
 
   // Exported profile: full_html.
-  $profiles['full_html'] = array(
+  $profiles['full_html'] = [
     'format' => 'full_html',
     'editor' => 'ckeditor',
-    'settings' => array(
-      'buttons' => array(
-        'default' => array(
+    'settings' => [
+      'buttons' => [
+        'default' => [
           'Bold' => 1,
           'Italic' => 1,
           'BulletedList' => 1,
@@ -123,41 +123,41 @@ function wim_text_formats_wysiwyg_default_profiles() {
           'Replace' => 1,
           'Iframe' => 1,
           'Maximize' => 1,
-        ),
-        'bootstrap_tabs' => array(
+        ],
+        'bootstrap_tabs' => [
           'addTab' => 1,
-        ),
-        'ckeditor_abbrbutton' => array(
+        ],
+        'ckeditor_abbrbutton' => [
           'ckeditor_abbrbutton' => 1,
-        ),
-        'ckeditor_acronym_button' => array(
+        ],
+        'ckeditor_acronym_button' => [
           'ckeditor_acronym_button' => 1,
-        ),
-        'ckeditor_definitionlist_button' => array(
+        ],
+        'ckeditor_definitionlist_button' => [
           'ckeditor_definitionlist_button' => 1,
-        ),
-        'ckeditor_insertionbutton' => array(
+        ],
+        'ckeditor_insertionbutton' => [
           'ckeditor_insertionbutton' => 1,
-        ),
-        'ckeditor_languagebutton' => array(
+        ],
+        'ckeditor_languagebutton' => [
           'ckeditor_languagebutton' => 1,
-        ),
-        'ckeditor_deletionbutton' => array(
+        ],
+        'ckeditor_deletionbutton' => [
           'ckeditor_deletionbutton' => 1,
-        ),
-        'a11ychecker' => array(
+        ],
+        'a11ychecker' => [
           'A11ychecker' => 1,
-        ),
-        'balloonpanel' => array(
+        ],
+        'balloonpanel' => [
           'Balloonpanel' => 1,
-        ),
-        'linkit' => array(
+        ],
+        'linkit' => [
           'linkit' => 1,
-        ),
-        'drupal' => array(
+        ],
+        'drupal' => [
           'media' => 1,
-        ),
-      ),
+        ],
+      ],
       'theme' => '',
       'language' => 'en',
       'toolbarLocation' => 'top',
@@ -174,16 +174,16 @@ function wim_text_formats_wysiwyg_default_profiles() {
       'forcePasteAsPlainText' => 0,
       'pasteFromWordPromptCleanup' => 0,
       'pasteFromWordRemoveFontStyles' => 0,
-    ),
-    'preferences' => array(
+    ],
+    'preferences' => [
       'default' => 1,
       'user_choose' => 0,
       'show_toggle' => 1,
       'add_to_summaries' => 1,
       'version' => '4.10.1.59246e9',
-    ),
+    ],
     'name' => 'formatfull_html',
-  );
+  ];
 
   return $profiles;
 }

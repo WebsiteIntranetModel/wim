@@ -31,23 +31,23 @@ class WIMTermMigration extends TermMigration {
     $this->destinationVocabulary = $arguments['destination_vocabulary'];
     $this->fileName = $arguments['file_name'];
 
-    $columns = array(
+    $columns = [
       'id' => t('Id'),
       'name' => t('Name'),
-    );
+    ];
 
     $this->source = new MigrateSourceList(new WIMListJSON($this->dataSources . $this->fileName),
-      new WIMItemJSON($this->dataSources . $this->fileName, array()), $columns);
+      new WIMItemJSON($this->dataSources . $this->fileName, []), $columns);
 
     $this->destination = new MigrateDestinationTerm($this->destinationVocabulary);
-    $this->map = new MigrateSQLMap($this->machineName, array(
-      'id' => array(
+    $this->map = new MigrateSQLMap($this->machineName, [
+      'id' => [
         'type' => 'varchar',
         'length' => 6,
         'not null' => TRUE,
         'description' => t('ID'),
-      ),
-    ), MigrateDestinationTerm::getKeySchema());
+      ],
+    ], MigrateDestinationTerm::getKeySchema());
 
     $this->addFieldMapping('name', 'name');
   }

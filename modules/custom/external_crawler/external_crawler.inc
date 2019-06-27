@@ -16,7 +16,7 @@ function external_crawler_build_document($pagekey, $url, $title, $body, $site_id
 
   $document = new ApacheSolrDocument();
   $document->id = apachesolr_document_id($pagekey, 'external_crawler');
-  $document->site = url(NULL, array('absolute' => TRUE));
+  $document->site = url(NULL, ['absolute' => TRUE]);
   $document->hash = apachesolr_site_hash();
   $document->entity_id = $site_id;
   $document->entity_type = EXTERNAL_CRAWLER_ENTITY_TYPE;
@@ -30,7 +30,7 @@ function external_crawler_build_document($pagekey, $url, $title, $body, $site_id
   $document->addField('domain_site', 1);
 
   // Allow other modules to alter the document.
-  $context = array('pagekey' => $pagekey, 'site_id' => $site_id);
+  $context = ['pagekey' => $pagekey, 'site_id' => $site_id];
   drupal_alter('external_crawler_document', $document, $context);
 
   return $document;
@@ -81,16 +81,16 @@ function _external_crawler_index_page_crawl($site, $pagedata, Crawler $nodeCrawl
       if ((isset($link_data['host']) && $link_data['host'] == $url_data['host'] && !$is_excluded) || (isset($site->is_xml) && $site->is_xml)) {
         $new_pagedata = _external_crawler_get_pagedata(
           _external_crawler_generate_pagekey($site, $link->getUri()),
-          array(
+          [
             'site_id' => $site->site_id,
             'url' => $link->getUri(),
             'title' => trim(strip_tags($linkNode->nodeValue)),
             'depth' => $new_depth,
-          )
+          ]
         );
 
         db_merge('external_crawler_page')
-          ->key(array('pagekey' => $new_pagedata['pagekey']))
+          ->key(['pagekey' => $new_pagedata['pagekey']])
           ->fields($new_pagedata)
           ->execute();
       }
@@ -113,17 +113,17 @@ function _external_crawler_index_page($url, stdClass $site) {
   $url = _external_crawler_prepare_url($url);
   // Define a pagekey for use in the db.
   $pagekey = _external_crawler_generate_pagekey($site, $url);
-  $pagedata = _external_crawler_get_pagedata($pagekey, array(
+  $pagedata = _external_crawler_get_pagedata($pagekey, [
     'url' => $url,
     'site_id' => $site->site_id,
-  ));
+  ]);
 
   // Retrieve the page.
-  $result = drupal_http_request($url, array('max_redirects' => 2));
+  $result = drupal_http_request($url, ['max_redirects' => 2]);
 
   if ($result->code == 200 && $result->data) {
     // Setup basic document.
-    $document = array();
+    $document = [];
     $document['url'] = $url;
     $document['title'] = $pagedata['title'];
     $document['body'] = '';
@@ -174,10 +174,10 @@ function _external_crawler_index_page($url, stdClass $site) {
       external_crawler_delete_page($pagekey);
     }
     else {
-      watchdog('external_crawler', 'There was an error crawling !pagekey.<pre>@data</pre>', array(
+      watchdog('external_crawler', 'There was an error crawling !pagekey.<pre>@data</pre>', [
         '!pagekey' => $pagekey,
         '@data' => print_r($result, TRUE),
-      ), WATCHDOG_ERROR);
+      ], WATCHDOG_ERROR);
     }
   }
 }
@@ -202,7 +202,7 @@ function _external_crawler_index_page_html($site, $result, &$document, &$pagedat
       });
   }
   else {
-    $included = array($crawler);
+    $included = [$crawler];
   }
 
   // Set the page title.
@@ -245,10 +245,10 @@ function _external_crawler_index_page_document($site, $result, &$document, &$pag
     catch (Exception $e) {
       // Exceptions from Solr may be transient,
       // or indicate a problem with a specific file.
-      watchdog('Apache Solr Attachments', "Exception occurred sending %filepath to Solr\n!message", array(
+      watchdog('Apache Solr Attachments', "Exception occurred sending %filepath to Solr\n!message", [
         '%filepath' => $filepath,
         '!message' => nl2br(check_plain($e->getMessage())),
-      ), WATCHDOG_ERROR);
+      ], WATCHDOG_ERROR);
       return FALSE;
     }
   }

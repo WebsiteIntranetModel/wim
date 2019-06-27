@@ -24,11 +24,11 @@ function docreader_supported_file_extensions() {
  * Implements hook_permission().
  */
 function docreader_permission() {
-  $permissions = array();
-  $permissions['administer docreader'] = array(
+  $permissions = [];
+  $permissions['administer docreader'] = [
     'title' => t('Dimpact docReader Instellingen'),
     'description' => t('Access rights to the settings page of the WIM docReader-module.'),
-  );
+  ];
 
   return $permissions;
 }
@@ -37,15 +37,15 @@ function docreader_permission() {
  * Implements hook_menu().
  */
 function docreader_menu() {
-  $items = array();
-  $items['admin/config/services/docreader'] = array(
+  $items = [];
+  $items['admin/config/services/docreader'] = [
     'title' => 'docReader',
     'description' => 'This is the setting page for the WIM docReader-module.',
     'page callback' => 'drupal_get_form',
-    'page arguments' => array('docreader_settings_form'),
-    'access arguments' => array('administer docreader'),
+    'page arguments' => ['docreader_settings_form'],
+    'access arguments' => ['administer docreader'],
     'file' => 'docreader.admin.inc',
-  );
+  ];
 
   return $items;
 }
@@ -59,15 +59,15 @@ function docreader_preprocess_page(&$variables) {
     $allowed_extentions = variable_get('docreader_supported_file_extensions', docreader_supported_file_extensions());
     $allowed_extentions = explode(',', trim($allowed_extentions));
 
-    $docreader_settings = array(
+    $docreader_settings = [
       'cid' => variable_get('docreader_cid'),
       'language' => variable_get('docreader_language', 'nl_nl'),
       'supported_file_extensions' => $allowed_extentions,
       'icon' => $module_path . '/images/docreader_icon.gif',
       'button_text' => variable_get('docreader_button_text', 'Read for'),
-    );
+    ];
 
     drupal_add_js($module_path . '/js/docreader.js');
-    drupal_add_js(array('docReader' => $docreader_settings), array('type' => 'setting'));
+    drupal_add_js(['docReader' => $docreader_settings], ['type' => 'setting']);
   }
 }

@@ -33,31 +33,31 @@ class WIMFile extends FileMigration {
     $this->destinationDir = $arguments['destination_dir'];
 
     $this->map = new MigrateSQLMap($this->machineName,
-      array(
-        'sourceid' => array(
+      [
+        'sourceid' => [
           'type' => 'varchar',
           'length' => 255,
           'not null' => TRUE,
-        ),
-      ),
+        ],
+      ],
       MigrateDestinationFile::getKeySchema()
     );
 
-    $directories = array(
+    $directories = [
       $this->sourceDir,
-    );
+    ];
 
     // Edit to include the desired extensions.
     $allowed = 'jpg jpeg gif png pdf docx txt';
     if (module_exists('file_entity')) {
       $allowed = variable_get('file_entity_default_allowed_extensions', $allowed);
     }
-    $file_mask = '/^.*\.(' . str_replace(array(',', ' '), '|', $allowed) . ')$/i';
+    $file_mask = '/^.*\.(' . str_replace([',', ' '], '|', $allowed) . ')$/i';
     $list = new MigrateListFiles($directories, $this->sourceDir, $file_mask);
     // Send FALSE as second argument to prevent loading of file data, which we
     // don't need.
     $item = new MigrateItemFile($this->sourceDir, FALSE);
-    $fields = array('sourceid' => t('File name with path'));
+    $fields = ['sourceid' => t('File name with path')];
     $this->source = new MigrateSourceList($list, $item, $fields);
     $this->destination = new MigrateDestinationFile('file', 'MigrateFileUri');
 

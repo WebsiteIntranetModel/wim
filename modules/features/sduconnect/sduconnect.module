@@ -23,102 +23,102 @@ function sduconnect_ctools_plugin_directory($module, $plugin) {
  * Implements hook_permission().
  */
 function sduconnect_permission() {
-  return array(
-    'administer sduconnect module' => array(
+  return [
+    'administer sduconnect module' => [
       'title' => t('Administer SduConnect module'),
       'description' => t('Change configuration and manage collections.'),
-    ),
-    'view sduconnect info' => array(
+    ],
+    'view sduconnect info' => [
       'title' => t('View SduConnect information'),
       'description' => t('View statistics and start manual imports.'),
-    ),
-  );
+    ],
+  ];
 }
 
 /**
  * Implements hook_menu().
  */
 function sduconnect_menu() {
-  $menu = array();
+  $menu = [];
 
-  $menu['admin/config/content/sduconnect'] = array(
+  $menu['admin/config/content/sduconnect'] = [
     'title' => 'SduConnect',
     'description' => 'Manage SduConnect PDC/VAC import',
     'page callback' => 'sduconnect_admin_page',
-    'access arguments' => array('view sduconnect info'),
+    'access arguments' => ['view sduconnect info'],
     'file' => 'sduconnect.pages.inc',
     'type' => MENU_NORMAL_ITEM,
-  );
+  ];
 
-  $menu['admin/config/content/sduconnect/collections'] = array(
+  $menu['admin/config/content/sduconnect/collections'] = [
     'title' => 'Collections',
     'page callback' => 'sduconnect_admin_page',
-    'access arguments' => array('view sduconnect info'),
+    'access arguments' => ['view sduconnect info'],
     'file' => 'sduconnect.pages.inc',
     'type' => MENU_DEFAULT_LOCAL_TASK,
-  );
+  ];
 
-  $menu['admin/config/content/sduconnect/collections/add'] = array(
+  $menu['admin/config/content/sduconnect/collections/add'] = [
     'title' => 'Add collection',
     'page callback' => 'drupal_get_form',
-    'page arguments' => array('sduconnect_collection_form'),
-    'access arguments' => array('administer sduconnect module'),
+    'page arguments' => ['sduconnect_collection_form'],
+    'access arguments' => ['administer sduconnect module'],
     'file' => 'sduconnect.forms.inc',
     'type' => MENU_LOCAL_ACTION,
-  );
+  ];
 
-  $menu['admin/config/content/sduconnect/collections/%sduconnect_collection/edit'] = array(
+  $menu['admin/config/content/sduconnect/collections/%sduconnect_collection/edit'] = [
     'title' => 'Edit collection',
     'page callback' => 'drupal_get_form',
-    'page arguments' => array('sduconnect_collection_form', 5),
-    'access arguments' => array('administer sduconnect module'),
+    'page arguments' => ['sduconnect_collection_form', 5],
+    'access arguments' => ['administer sduconnect module'],
     'file' => 'sduconnect.forms.inc',
     'type' => MENU_CALLBACK,
-  );
+  ];
 
-  $menu['admin/config/content/sduconnect/collections/%sduconnect_collection/delete'] = array(
+  $menu['admin/config/content/sduconnect/collections/%sduconnect_collection/delete'] = [
     'title' => 'Delete collection',
     'page callback' => 'drupal_get_form',
-    'page arguments' => array('sduconnect_collection_delete_form', 5),
-    'access arguments' => array('administer sduconnect module'),
+    'page arguments' => ['sduconnect_collection_delete_form', 5],
+    'access arguments' => ['administer sduconnect module'],
     'file' => 'sduconnect.forms.inc',
     'type' => MENU_CALLBACK,
-  );
+  ];
 
-  $menu['admin/config/content/sduconnect/collections/%sduconnect_collection/import'] = array(
+  $menu['admin/config/content/sduconnect/collections/%sduconnect_collection/import'] = [
     'title' => 'Start import',
     'page callback' => 'drupal_get_form',
-    'page arguments' => array('sduconnect_collection_import_form', 5),
-    'access arguments' => array('view sduconnect info'),
+    'page arguments' => ['sduconnect_collection_import_form', 5],
+    'access arguments' => ['view sduconnect info'],
     'file' => 'sduconnect.forms.inc',
     'type' => MENU_CALLBACK,
-  );
+  ];
 
-  $menu['admin/config/content/sduconnect/log'] = array(
+  $menu['admin/config/content/sduconnect/log'] = [
     'title' => 'Log',
     'page callback' => 'sduconnect_log_page',
-    'access arguments' => array('view sduconnect info'),
+    'access arguments' => ['view sduconnect info'],
     'file' => 'sduconnect.pages.inc',
     'type' => MENU_LOCAL_TASK,
-  );
+  ];
 
-  $menu['admin/config/content/sduconnect/settings'] = array(
+  $menu['admin/config/content/sduconnect/settings'] = [
     'title' => 'Settings',
     'page callback' => 'drupal_get_form',
-    'page arguments' => array('sduconnect_settings_form'),
-    'access arguments' => array('administer sduconnect module'),
+    'page arguments' => ['sduconnect_settings_form'],
+    'access arguments' => ['administer sduconnect module'],
     'file' => 'sduconnect.forms.inc',
     'type' => MENU_LOCAL_TASK,
-  );
+  ];
 
-  $menu['node/%node/sduconnect-xml'] = array(
+  $menu['node/%node/sduconnect-xml'] = [
     'title' => 'SduConnect XML',
     'page callback' => 'sduconnect_page_xml',
-    'page arguments' => array(1),
-    'access arguments' => array('view sduconnect info'),
+    'page arguments' => [1],
+    'access arguments' => ['view sduconnect info'],
     'file' => 'sduconnect.pages.inc',
     'type' => MENU_CALLBACK,
-  );
+  ];
 
   return $menu;
 }
@@ -135,7 +135,7 @@ function sduconnect_cron() {
 
   // Update collections.
   $collections = db_select('sduconnect_collection', 'c')
-    ->fields('c', array('cid', 'updated_till', 'frequency'))
+    ->fields('c', ['cid', 'updated_till', 'frequency'])
     ->execute()
     ->fetchAll();
   foreach ($collections as $collection) {
@@ -151,11 +151,11 @@ function sduconnect_cron() {
  */
 function sduconnect_cronapi($op, $job = NULL) {
 
-  $items['sduconnect_cron'] = array(
+  $items['sduconnect_cron'] = [
     'description' => 'Run SDU connect import.',
     'rule' => '30 * * * *',
     // Default callback "sduconnect_cron".
-  );
+  ];
 
   return $items;
 }
@@ -164,12 +164,12 @@ function sduconnect_cronapi($op, $job = NULL) {
  * Implements hook_cron_queue_info().
  */
 function sduconnect_cron_queue_info() {
-  return array(
-    'sduconnect' => array(
+  return [
+    'sduconnect' => [
       'worker callback' => 'sduconnect_process_queue_item',
       'time' => 45,
-    ),
-  );
+    ],
+  ];
 }
 
 /**
@@ -191,9 +191,9 @@ function sduconnect_process_queue_item($item) {
  * Implements hook_node_delete().
  */
 function sduconnect_node_delete($node) {
-  if (in_array($node->type, array('product', 'faq'))) {
+  if (in_array($node->type, ['product', 'faq'])) {
     $cid = db_select('sduconnect_item', 'i')
-      ->fields('i', array('cid'))
+      ->fields('i', ['cid'])
       ->condition('i.nid', $node->nid)
       ->execute()
       ->fetchField();
@@ -228,7 +228,7 @@ function sduconnect_collection_load($cid) {
     ->fetchObject();
   if ($collection && module_exists('domain')) {
     $collection->domains = db_select('sduconnect_domain', 'scd')
-      ->fields('scd', array('domain_id'))
+      ->fields('scd', ['domain_id'])
       ->condition('scd.cid', $collection->cid)
       ->execute()
       ->fetchCol();
@@ -246,15 +246,15 @@ function sduconnect_collection_load($cid) {
  *   Collection object.
  */
 function sduconnect_collection_save($collection) {
-  drupal_write_record('sduconnect_collection', $collection, empty($collection->cid) ? array() : array('cid'));
+  drupal_write_record('sduconnect_collection', $collection, empty($collection->cid) ? [] : ['cid']);
   if (module_exists('domain')) {
     $transaction = db_transaction();
     db_delete('sduconnect_domain')->condition('cid', $collection->cid)->execute();
     foreach ($collection->domains as $domain_id) {
-      db_insert('sduconnect_domain')->fields(array(
+      db_insert('sduconnect_domain')->fields([
         'cid' => $collection->cid,
         'domain_id' => $domain_id,
-      ))->execute();
+      ])->execute();
     }
   }
   return $collection;
@@ -283,7 +283,7 @@ function sduconnect_collection_delete($cid) {
  */
 function sduconnect_get_nid_by_id($id) {
   $q = db_select('sduconnect_item', 's')
-    ->fields('s', array('internal_id', 'nid'))
+    ->fields('s', ['internal_id', 'nid'])
     ->condition('s.internal_id', $id);
   $result = $q->execute()->fetch();
   if ($result) {
@@ -303,7 +303,7 @@ function sduconnect_get_nid_by_id($id) {
  */
 function sduconnect_get_id_by_nid($nid) {
   $q = db_select('sduconnect_item', 's')
-    ->fields('s', array('internal_id', 'nid'))
+    ->fields('s', ['internal_id', 'nid'])
     ->condition('s.nid', $nid);
   $result = $q->execute()->fetch();
   if ($result) {
@@ -327,7 +327,7 @@ function sduconnect_get_id_by_nid($nid) {
  * @throws \Exception
  */
 function _sdu_log($type, $collection, $message, $nid) {
-  $type_codes = array(
+  $type_codes = [
     'unreachable' => 1,
     'added' => 2,
     'added_not_found' => 3,
@@ -335,19 +335,19 @@ function _sdu_log($type, $collection, $message, $nid) {
     'changed_not_found' => 5,
     'removed' => 6,
     'removed_not_found' => 7,
-  );
+  ];
   if (!isset($type_codes[$type])) {
     $type = 'changed';
   }
 
   if ($collection->cid) {
-    db_insert('sduconnect_log')->fields(array(
+    db_insert('sduconnect_log')->fields([
       'date' => REQUEST_TIME,
       'type' => $type_codes[$type],
       'cid' => $collection->cid,
       'title' => substr($message, 0, 255),
       'nid' => $nid,
-    ))->execute();
+    ])->execute();
   }
 }
 

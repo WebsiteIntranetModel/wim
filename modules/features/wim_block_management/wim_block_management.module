@@ -168,10 +168,10 @@ function wim_block_management_form_felix_remove_form_alter(&$form, &$form_state,
     $block = $form['#felix_block'];
     $region = $form['#felix_region'];
     $form['info'] = [
-      '#markup' => '<p>' . t('Are you sure you want to delete the block %subject from %region?', array(
+      '#markup' => '<p>' . t('Are you sure you want to delete the block %subject from %region?', [
         '%subject' => strip_tags($block->subject),
         '%region' => $region->title,
-      )) . '</p>',
+        ]) . '</p>',
     ];
   }
 }

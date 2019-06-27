@@ -9,140 +9,140 @@
  */
 function wim_fixtures_migrate_api() {
   $data_sources = DRUPAL_ROOT . '/' . drupal_get_path('module', 'wim_fixtures') . '/data_sources/files';
-  $api = array(
+  $api = [
     'api' => 2,
-    'groups' => array(
-      'WIMMigrate' => array(
+    'groups' => [
+      'WIMMigrate' => [
         'title' => t('WIM Fixtures'),
-      ),
-    ),
-    'migrations' => array(
-      'WIM_User' => array(
+      ],
+    ],
+    'migrations' => [
+      'WIM_User' => [
         'class_name' => 'WIMUsers',
         'group_name' => 'WIMMigrate',
-      ),
-      'WIM_File' => array(
+      ],
+      'WIM_File' => [
         'class_name' => 'WIMFile',
         'group_name' => 'WIMMigrate',
         'default_uid' => 1,
         'source_dir' => $data_sources,
         'destination_dir' => 'public://fixtures',
-      ),
-      'WIM_Term_Tags' => array(
+      ],
+      'WIM_Term_Tags' => [
         'class_name' => 'WIMTermMigration',
         'group_name' => 'WIMMigrate',
         'destination_vocabulary' => 'tags',
         'file_name' => 'tag-terms.json',
-      ),
-      'WIM_Term_Categories' => array(
+      ],
+      'WIM_Term_Categories' => [
         'class_name' => 'WIMTermMigration',
         'group_name' => 'WIMMigrate',
         'destination_vocabulary' => 'news_categories',
         'file_name' => 'news-category-terms.json',
-      ),
-      'WIM_Faq_Categories' => array(
+      ],
+      'WIM_Faq_Categories' => [
         'class_name' => 'WIMTermMigration',
         'group_name' => 'WIMMigrate',
         'destination_vocabulary' => 'faq_categories',
         'file_name' => 'faq-category-terms.json',
-      ),
-      'WIM_Basic_Page' => array(
+      ],
+      'WIM_Basic_Page' => [
         'class_name' => 'BasicPageMigration',
         'group_name' => 'WIMMigrate',
         'content_type' => 'page',
         'file_name' => 'basic-page.json',
-        'dependencies' => array(
+        'dependencies' => [
           'WIM_User',
           'WIM_File',
           'WIM_Term_Tags',
-        ),
-      ),
-      'WIM_Person' => array(
+        ],
+      ],
+      'WIM_Person' => [
         'class_name' => 'PersonMigration',
         'group_name' => 'WIMMigrate',
         'content_type' => 'person',
         'file_name' => 'person.json',
-        'dependencies' => array(
+        'dependencies' => [
           'WIM_User',
           'WIM_File',
           'WIM_Term_Tags',
-        ),
-      ),
-      'WIM_Product' => array(
+        ],
+      ],
+      'WIM_Product' => [
         'class_name' => 'ProductMigration',
         'group_name' => 'WIMMigrate',
         'content_type' => 'product',
         'file_name' => 'product.json',
-        'dependencies' => array(
+        'dependencies' => [
           'WIM_User',
           'WIM_File',
           'WIM_Term_Tags',
-        ),
-      ),
-      'WIM_News' => array(
+        ],
+      ],
+      'WIM_News' => [
         'class_name' => 'NewsMigration',
         'group_name' => 'WIMMigrate',
         'content_type' => 'news',
         'file_name' => 'news.json',
-        'dependencies' => array(
+        'dependencies' => [
           'WIM_Term_Categories',
           'WIM_Term_Tags',
           'WIM_User',
           'WIM_File',
-        ),
-      ),
-      'WIM_Faq' => array(
+        ],
+      ],
+      'WIM_Faq' => [
         'class_name' => 'FaqMigration',
         'group_name' => 'WIMMigrate',
         'content_type' => 'faq',
         'file_name' => 'faq.json',
-        'dependencies' => array(
+        'dependencies' => [
           'WIM_Faq_Categories',
           'WIM_Term_Tags',
           'WIM_User',
-        ),
-      ),
-      'WIM_Agenda' => array(
+        ],
+      ],
+      'WIM_Agenda' => [
         'class_name' => 'AgendaMigration',
         'group_name' => 'WIMMigrate',
         'content_type' => 'agenda',
         'file_name' => 'agenda.json',
-        'dependencies' => array(
+        'dependencies' => [
           'WIM_File',
           'WIM_Term_Tags',
           'WIM_User',
-        ),
-      ),
-      'WIM_BlockCustom' => array(
+        ],
+      ],
+      'WIM_BlockCustom' => [
         'class_name' => 'BlockCustomMigration',
         'group_name' => 'WIMMigrate',
         'file_name' => 'block-custom.json',
-      ),
-      'WIM_TopTasksMenu' => array(
+      ],
+      'WIM_TopTasksMenu' => [
         'class_name' => 'TopTasksMenuMigration',
         'group_name' => 'WIMMigrate',
         'file_name' => 'top-tasks.json',
         'menu_name' => 'menu-top-tasks',
-        'dependencies' => array(
+        'dependencies' => [
           'WIM_File',
-        ),
-      ),
-      'WIM_SocialMediaMenu' => array(
+        ],
+      ],
+      'WIM_SocialMediaMenu' => [
         'class_name' => 'SocialMediaMenuMigration',
         'group_name' => 'WIMMigrate',
         'file_name' => 'social-media.json',
         'menu_name' => 'menu-social-media',
-      ),
-      'WIM_Editorial' => array(
+      ],
+      'WIM_Editorial' => [
         'class_name' => 'EditorialMigration',
         'group_name' => 'WIMMigrate',
         'file_name' => 'editorial.json',
-        'dependencies' => array(
+        'dependencies' => [
           'WIM_File',
-        ),
-      ),
-    ),
-  );
+        ],
+      ],
+    ],
+  ];
 
   return $api;
 }
@@ -194,7 +194,7 @@ class WIMListJSON extends MigrateListJSON {
    *    Id's
    */
   protected function getIDsFromJSON(array $data) { // @codingStandardsIgnoreLine
-    $ids = array();
+    $ids = [];
     foreach ($data as $item) {
       $ids[] = $item['id'];
     }
@@ -207,7 +207,7 @@ class WIMListJSON extends MigrateListJSON {
  * Extended class to handle json data.
  */
 class WIMItemJSON extends MigrateItemJSON {
-  protected $data = array();
+  protected $data = [];
 
   /**
    * Get item.

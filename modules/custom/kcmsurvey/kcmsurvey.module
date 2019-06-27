@@ -8,27 +8,27 @@
  * Implements hook_permission().
  */
 function kcmsurvey_permission() {
-  return array(
-    'administer kcmsurvey' => array(
+  return [
+    'administer kcmsurvey' => [
       'title' => t('Administer KCM Survey module'),
       'description' => t('Set KCM Survey script.'),
-    ),
-  );
+    ],
+  ];
 }
 
 /**
  * Implements hook_menu().
  */
 function kcmsurvey_menu() {
-  $items['admin/config/services/kcmsurvey'] = array(
+  $items['admin/config/services/kcmsurvey'] = [
     'title' => 'KCM Survey',
     'description' => 'Klantcontact Monitor external javascript settings',
     'page callback' => 'drupal_get_form',
-    'page arguments' => array('kcmsurvey_admin_form'),
-    'access arguments' => array('administer kcmsurvey'),
+    'page arguments' => ['kcmsurvey_admin_form'],
+    'access arguments' => ['administer kcmsurvey'],
     'type' => MENU_NORMAL_ITEM,
     'file' => 'kcmsurvey.admin.inc',
-  );
+  ];
 
   return $items;
 }
@@ -47,11 +47,11 @@ function kcmsurvey_page_build(&$page) {
   }
 
   if (!isset($page['page_bottom'])) {
-    $page['page_bottom'] = array();
+    $page['page_bottom'] = [];
   }
-  $page['page_bottom']['kcmsurvey_page_attachments'] = array(
-    '#pre_render' => array('kcm_survey_pre_render'),
-  );
+  $page['page_bottom']['kcmsurvey_page_attachments'] = [
+    '#pre_render' => ['kcm_survey_pre_render'],
+  ];
 }
 
 /**
@@ -79,7 +79,7 @@ function _kcmsurvey_page_attachments(array &$page) {
   if ($kcmsurvey_script_url) {
     // Match path if necessary.
     /** @var array $settings */
-    $settings = variable_get('kcmsurvey', array());
+    $settings = variable_get('kcmsurvey', []);
 
     // Similar for block visibility behavior.
     if (isset($settings['pages'])) {
@@ -105,7 +105,7 @@ function _kcmsurvey_page_attachments(array &$page) {
     }
 
     if ($page_match) {
-      $page['#attached']['js'][$kcmsurvey_script_url] = array('type' => 'external');
+      $page['#attached']['js'][$kcmsurvey_script_url] = ['type' => 'external'];
     }
   }
 }

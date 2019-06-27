@@ -14,11 +14,11 @@ class WIMExampleTestCase extends DrupalUnitTestCase {
    * {@inheritdoc}
    */
   public static function getInfo() {
-    return array(
+    return [
       'name' => 'Example test',
       'description' => 'Simple example test.',
       'group' => 'WIM',
-    );
+    ];
   }
 
   /**

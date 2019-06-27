@@ -8,19 +8,19 @@
  * Implements hook_ckeditor_plugin().
  */
 function ckeditor_bootstrap_tabs_ckeditor_plugin() {
-  return array(
-    'bootstrap_tabs' => array(
+  return [
+    'bootstrap_tabs' => [
       'name' => 'bootstrap_tabs',
       'desc' => t('Create tabs with CKeditor'),
       'path' => drupal_get_path('module', 'ckeditor_bootstrap_tabs') . '/bootstrap_tabs/plugin/',
-      'buttons' => array(
-        'addTab' => array(
+      'buttons' => [
+        'addTab' => [
           'icon' => 'icons/tab.png',
           'label' => t('Add tab'),
-        ),
-      ),
-    ),
-  );
+        ],
+      ],
+    ],
+  ];
 }
 
 /**
@@ -30,14 +30,14 @@ function ckeditor_bootstrap_tabs_wysiwyg_plugin($editor) {
   if ($editor === 'ckeditor') {
     $path = drupal_get_path('module', 'ckeditor_bootstrap_tabs') . '/bootstrap_tabs/plugin';
 
-    $plugins['bootstrap_tabs'] = array(
+    $plugins['bootstrap_tabs'] = [
       'path' => $path,
-      'buttons' => array(
+      'buttons' => [
         'addTab' => t('CKEditor Bootstrap Tabs'),
-      ),
+      ],
       'load' => TRUE,
       'internal' => FALSE,
-    );
+    ];
 
     return $plugins;
   }

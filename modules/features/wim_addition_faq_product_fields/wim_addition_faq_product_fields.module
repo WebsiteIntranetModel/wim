@@ -26,22 +26,22 @@ function wim_addition_faq_product_fields_module_implements_alter(&$implementatio
  */
 function wim_addition_faq_product_fields_modules_enabled($modules) {
   if (in_array('sduconnect', $modules) || in_array('atos_esuite', $modules)) {
-    $fields = array(
+    $fields = [
       'field_related_faq',
       'field_related_product',
-    );
+    ];
 
     foreach ($fields as $name) {
-      db_change_field("field_data_{$name}", "{$name}_target_id", "{$name}_target_id", array(
+      db_change_field("field_data_{$name}", "{$name}_target_id", "{$name}_target_id", [
         'type' => 'varchar',
         'length' => 255,
         'default' => '',
-      ));
-      db_change_field("field_revision_{$name}", "{$name}_target_id", "{$name}_target_id", array(
+      ]);
+      db_change_field("field_revision_{$name}", "{$name}_target_id", "{$name}_target_id", [
         'type' => 'varchar',
         'length' => 255,
         'default' => '',
-      ));
+      ]);
     }
 
     field_cache_clear();
@@ -56,24 +56,24 @@ function wim_addition_faq_product_fields_modules_uninstalled($modules) {
     // Only if both modules are disabled.
     if (!module_exists('sduconnect') && !module_exists('atos_esuite')) {
 
-      $fields = array(
+      $fields = [
         'field_related_faq',
         'field_related_product',
-      );
+      ];
 
       foreach ($fields as $name) {
-        db_change_field("field_data_{$name}", "{$name}_target_id", "{$name}_target_id", array(
+        db_change_field("field_data_{$name}", "{$name}_target_id", "{$name}_target_id", [
           'type' => 'int',
           'length' => 10,
           'default' => '',
           'unsigned' => TRUE,
-        ));
-        db_change_field("field_revision_{$name}", "{$name}_target_id", "{$name}_target_id", array(
+        ]);
+        db_change_field("field_revision_{$name}", "{$name}_target_id", "{$name}_target_id", [
           'type' => 'int',
           'length' => 10,
           'default' => '',
           'unsigned' => TRUE,
-        ));
+        ]);
       }
 
       field_cache_clear();

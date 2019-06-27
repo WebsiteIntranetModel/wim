@@ -13,13 +13,13 @@ include_once 'wim_webform.features.inc';
 function wim_webform_form_webform_client_form_alter(&$form, $form_state) {
   $form['#attributes']['novalidate'] = 'novalidate';
 
-  $form_sets = array(
+  $form_sets = [
     'radios',
     'checkboxes',
     'date',
     'webform_time',
     'webform_grid',
-  );
+  ];
 
   foreach ($form['submitted'] as &$element) {
     if (is_array($element) && in_array($element['#type'], $form_sets) && $element['#title_display'] !== 'none') {

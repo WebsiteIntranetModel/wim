@@ -11,13 +11,13 @@
  *   Array of bootstrap columns.
  */
 function _wim_block_management_get_columns_options() {
-  $options = array(
+  $options = [
     WIM_BLOCK_MANAGEMENT_BOOTSTRAP_FULL_WIDTH => t('Full-width'),
     '8' => t('2/3 of region'),
     '6' => t('1/2 of region'),
     '4' => t('1/3 of region'),
     '3' => t('1/4 of region'),
-  );
+  ];
 
   // Allow alter options.
   drupal_alter('wim_block_management_columns_options', $options);
@@ -27,7 +27,7 @@ function _wim_block_management_get_columns_options() {
 /**
  * Add block to the Felix region.
  */
-function _wim_block_management_add_felix_block($region_name, $path, $module, $delta, $detail_path = NULL, $data = array()) {
+function _wim_block_management_add_felix_block($region_name, $path, $module, $delta, $detail_path = NULL, $data = []) {
   if (!$region = _felix_region_by_name($region_name)) {
     return FALSE;
   }
@@ -35,7 +35,7 @@ function _wim_block_management_add_felix_block($region_name, $path, $module, $de
   if ($module === 'node' && is_numeric($delta) && module_exists('translation')) {
     // Add the source translation.
     $tnid = db_select('node', 'n')
-      ->fields('n', array('tnid'))
+      ->fields('n', ['tnid'])
       ->condition('n.nid', $delta)
       ->execute()
       ->fetchField();
@@ -54,7 +54,7 @@ function _wim_block_management_add_felix_block($region_name, $path, $module, $de
   $block->detail_path = $detail_path;
   $block->data = $data;
   $block->hash_parts = $hash->parts;
-  $block->exclude = serialize(array());
+  $block->exclude = serialize([]);
 
   foreach (module_implements('felix_block_insert') as $module) {
     $hook = "{$module}_felix_block_insert";

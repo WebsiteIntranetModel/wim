@@ -31,7 +31,7 @@ class BasicPageMigration extends NodeMigration {
     $this->fileName = $arguments['file_name'];
     $this->contentType = $arguments['content_type'];
 
-    $columns = array(
+    $columns = [
       'id' => t('Id'),
       'title' => t('Node title'),
       'body' => t('Node body'),
@@ -45,30 +45,30 @@ class BasicPageMigration extends NodeMigration {
       'meta_keywords' => t('Metatag keywords'),
       'meta_description' => t('Metatag description'),
       'author' => t('Node creator'),
-    );
+    ];
 
     $this->source = new MigrateSourceList(new WIMListJSON($this->dataSources . $this->fileName),
-      new WIMItemJSON($this->dataSources . $this->fileName, array()), $columns);
+      new WIMItemJSON($this->dataSources . $this->fileName, []), $columns);
 
     $this->destination = new MigrateDestinationNode($this->contentType);
-    $this->map = new MigrateSQLMap($this->machineName, array(
-      'id' => array(
+    $this->map = new MigrateSQLMap($this->machineName, [
+      'id' => [
         'type' => 'varchar',
         'length' => 6,
         'not null' => TRUE,
         'description' => t('ID'),
-      ),
-    ), MigrateDestinationNode::getKeySchema());
+      ],
+    ], MigrateDestinationNode::getKeySchema());
 
     // Mapped fields.
-    $this->addSimpleMappings(array(
+    $this->addSimpleMappings([
       'title',
       'body',
       'body:summary',
       'field_lead_paragraph',
       'field_publication_date',
       'field_promoted',
-    ));
+    ]);
 
     $this->addFieldMapping('body:format')->defaultValue('full_html');
 
@@ -109,7 +109,7 @@ class PersonMigration extends NodeMigration {
     $this->fileName = $arguments['file_name'];
     $this->contentType = $arguments['content_type'];
 
-    $columns = array(
+    $columns = [
       'id' => t('Id'),
       'title' => t('Person title'),
       'body' => t('Person body'),
@@ -123,23 +123,23 @@ class PersonMigration extends NodeMigration {
       'meta_title' => t('Metatag title'),
       'meta_keywords' => t('Metatag keywords'),
       'meta_description' => t('Metatag description'),
-    );
+    ];
 
     $this->source = new MigrateSourceList(new WIMListJSON($this->dataSources . $this->fileName),
-      new WIMItemJSON($this->dataSources . $this->fileName, array()), $columns);
+      new WIMItemJSON($this->dataSources . $this->fileName, []), $columns);
 
     $this->destination = new MigrateDestinationNode($this->contentType);
-    $this->map = new MigrateSQLMap($this->machineName, array(
-      'id' => array(
+    $this->map = new MigrateSQLMap($this->machineName, [
+      'id' => [
         'type' => 'varchar',
         'length' => 6,
         'not null' => TRUE,
         'description' => t('ID'),
-      ),
-    ), MigrateDestinationNode::getKeySchema());
+      ],
+    ], MigrateDestinationNode::getKeySchema());
 
     // Mapped fields.
-    $this->addSimpleMappings(array(
+    $this->addSimpleMappings([
       'title',
       'body',
       'body:summary',
@@ -147,7 +147,7 @@ class PersonMigration extends NodeMigration {
       'field_person_phone',
       'field_email',
       'field_person_address',
-    ));
+    ]);
 
     $this->addFieldMapping('body:format')->defaultValue('full_html');
     $this->addFieldMapping('field_person_address:format')->defaultValue('full_html');
@@ -189,7 +189,7 @@ class ProductMigration extends NodeMigration {
     parent::__construct($arguments);
     $this->fileName = $arguments['file_name'];
     $this->contentType = $arguments['content_type'];
-    $columns = array(
+    $columns = [
       'id' => t('Id'),
       'title' => t('Node title'),
       'body' => t('Node body'),
@@ -203,28 +203,28 @@ class ProductMigration extends NodeMigration {
       'meta_title' => t('Metatag title'),
       'meta_keywords' => t('Metatag keywords'),
       'meta_description' => t('Metatag description'),
-    );
+    ];
     $this->source = new MigrateSourceList(new WIMListJSON($this->dataSources . $this->fileName),
-      new WIMItemJSON($this->dataSources . $this->fileName, array()), $columns);
+      new WIMItemJSON($this->dataSources . $this->fileName, []), $columns);
 
     $this->destination = new MigrateDestinationNode($this->contentType);
-    $this->map = new MigrateSQLMap($this->machineName, array(
-      'id' => array(
+    $this->map = new MigrateSQLMap($this->machineName, [
+      'id' => [
         'type' => 'varchar',
         'length' => 6,
         'not null' => TRUE,
         'description' => t('ID'),
-      ),
-    ), MigrateDestinationNode::getKeySchema());
+      ],
+    ], MigrateDestinationNode::getKeySchema());
     // Mapped fields.
-    $this->addSimpleMappings(array(
+    $this->addSimpleMappings([
       'title',
       'body',
       'body:summary',
       'field_lead_paragraph',
       'field_publication_date',
       'field_promoted',
-    ));
+    ]);
 
     $this->addFieldMapping('body:format')->defaultValue('full_html');
     $this->addFieldMapping('field_image', 'field_image')
@@ -264,7 +264,7 @@ class NewsMigration extends NodeMigration {
     $this->fileName = $arguments['file_name'];
     $this->contentType = $arguments['content_type'];
 
-    $columns = array(
+    $columns = [
       'id' => t('Id'),
       'title' => t('Node title'),
       'body' => t('Node body'),
@@ -280,30 +280,30 @@ class NewsMigration extends NodeMigration {
       'meta_title' => t('Metatag title'),
       'meta_keywords' => t('Metatag keywords'),
       'meta_description' => t('Metatag description'),
-    );
+    ];
 
     $this->source = new MigrateSourceList(new WIMListJSON($this->dataSources . $this->fileName),
-      new WIMItemJSON($this->dataSources . $this->fileName, array()), $columns);
+      new WIMItemJSON($this->dataSources . $this->fileName, []), $columns);
 
     $this->destination = new MigrateDestinationNode($this->contentType);
-    $this->map = new MigrateSQLMap($this->machineName, array(
-      'id' => array(
+    $this->map = new MigrateSQLMap($this->machineName, [
+      'id' => [
         'type' => 'varchar',
         'length' => 6,
         'not null' => TRUE,
         'description' => t('ID'),
-      ),
-    ), MigrateDestinationNode::getKeySchema());
+      ],
+    ], MigrateDestinationNode::getKeySchema());
 
     // Mapped fields.
-    $this->addSimpleMappings(array(
+    $this->addSimpleMappings([
       'title',
       'body',
       'body:summary',
       'field_lead_paragraph',
       'field_publication_date',
       'field_promoted',
-    ));
+    ]);
 
     $this->addFieldMapping('body:format')->defaultValue('full_html');
     $this->addFieldMapping('field_image', 'field_image')
@@ -354,7 +354,7 @@ class FaqMigration extends NodeMigration {
     $this->fileName = $arguments['file_name'];
     $this->contentType = $arguments['content_type'];
 
-    $columns = array(
+    $columns = [
       'id' => t('Id'),
       'title' => t('Question'),
       'body' => t('Answer'),
@@ -366,28 +366,28 @@ class FaqMigration extends NodeMigration {
       'meta_title' => t('Metatag title'),
       'meta_keywords' => t('Metatag keywords'),
       'meta_description' => t('Metatag description'),
-    );
+    ];
 
     $this->source = new MigrateSourceList(new WIMListJSON($this->dataSources . $this->fileName),
-      new WIMItemJSON($this->dataSources . $this->fileName, array()), $columns);
+      new WIMItemJSON($this->dataSources . $this->fileName, []), $columns);
 
     $this->destination = new MigrateDestinationNode($this->contentType);
-    $this->map = new MigrateSQLMap($this->machineName, array(
-      'id' => array(
+    $this->map = new MigrateSQLMap($this->machineName, [
+      'id' => [
         'type' => 'varchar',
         'length' => 6,
         'not null' => TRUE,
         'description' => t('ID'),
-      ),
-    ), MigrateDestinationNode::getKeySchema());
+      ],
+    ], MigrateDestinationNode::getKeySchema());
 
     // Mapped fields.
-    $this->addSimpleMappings(array(
+    $this->addSimpleMappings([
       'title',
       'body',
       'field_faq_additional_information',
       'field_show_on_overview',
-    ));
+    ]);
 
     $this->addFieldMapping('uid', 'author')
       ->sourceMigration('WIM_User')->defaultValue(1);
@@ -429,7 +429,7 @@ class AgendaMigration extends NodeMigration {
     $this->fileName = $arguments['file_name'];
     $this->contentType = $arguments['content_type'];
 
-    $columns = array(
+    $columns = [
       'id' => t('Id'),
       'title' => t('Title'),
       'body' => t('Body'),
@@ -448,30 +448,30 @@ class AgendaMigration extends NodeMigration {
       'meta_title' => t('Metatag title'),
       'meta_keywords' => t('A comma-separated list of keywords about the page. This meta tag is not supported by most search engines anymore.'),
       'meta_description' => t('Metatag description'),
-    );
+    ];
 
     $this->source = new MigrateSourceList(new WIMListJSON($this->dataSources . $this->fileName),
-      new WIMItemJSON($this->dataSources . $this->fileName, array()), $columns);
+      new WIMItemJSON($this->dataSources . $this->fileName, []), $columns);
 
     $this->destination = new MigrateDestinationNode($this->contentType);
-    $this->map = new MigrateSQLMap($this->machineName, array(
-      'id' => array(
+    $this->map = new MigrateSQLMap($this->machineName, [
+      'id' => [
         'type' => 'varchar',
         'length' => 6,
         'not null' => TRUE,
         'description' => t('ID'),
-      ),
-    ), MigrateDestinationNode::getKeySchema());
+      ],
+    ], MigrateDestinationNode::getKeySchema());
 
     // Mapped fields.
-    $this->addSimpleMappings(array(
+    $this->addSimpleMappings([
       'title',
       'body',
       'body:summary',
       'field_lead_paragraph',
       'field_agenda_date',
       'field_promoted',
-    ));
+    ]);
 
     $this->addFieldMapping('body:format')->defaultValue('full_html');
     $this->addFieldMapping('uid', 'author')

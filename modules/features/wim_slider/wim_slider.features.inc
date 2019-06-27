@@ -9,10 +9,10 @@
  */
 function wim_slider_ctools_plugin_api($module = NULL, $api = NULL) {
   if ($module == "bean_admin_ui" && $api == "bean") {
-    return array("version" => "5");
+    return ["version" => "5"];
   }
   if ($module == "picture" && $api == "default_picture_mapping") {
-    return array("version" => "2");
+    return ["version" => "2"];
   }
 }
 
@@ -20,12 +20,12 @@ function wim_slider_ctools_plugin_api($module = NULL, $api = NULL) {
  * Implements hook_paragraphs_info().
  */
 function wim_slider_paragraphs_info() {
-  $items = array(
-    'slider_item' => array(
+  $items = [
+    'slider_item' => [
       'name' => 'Slider item',
       'bundle' => 'slider_item',
       'locked' => '1',
-    ),
-  );
+    ],
+  ];
   return $items;
 }
