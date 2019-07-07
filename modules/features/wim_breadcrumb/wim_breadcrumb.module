@@ -50,7 +50,7 @@ function _wim_breadcrumb_update_node_alias($link) {
     $old_update_action = variable_get('pathauto_update_action', 0);
     variable_set('pathauto_update_action', 2);
     $node = node_load($components[1]);
-    node_save($node);
+    pathauto_node_update_alias($node, 'update');
 
     variable_set('pathauto_update_action', $old_update_action);
   }

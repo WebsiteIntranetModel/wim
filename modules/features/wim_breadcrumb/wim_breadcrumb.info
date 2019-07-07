@@ -4,6 +4,7 @@ core = 7.x
 package = WIM
 version = 7.x-1.0
 dependencies[] = hansel
+dependencies[] = pathauto
 features[features_api][] = api:2
 features[hansel][] = config
 features[hansel][] = settings
