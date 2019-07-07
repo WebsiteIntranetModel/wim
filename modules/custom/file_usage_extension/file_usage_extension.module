@@ -43,7 +43,7 @@ function file_usage_extension_field_attach_delete_revision($entity_type, $entity
   $files = _file_usage_extension_entity_field_count_files($entity_type, $entity);
   foreach ($files as $fid => $count) {
     if ($file = file_load($fid)) {
-      file_usage_delete($file, 'file_usage_extension', $entity_type, $entity_id, $count);
+      file_usage_delete($file, 'media', $entity_type, $entity_id, $count);
     }
   }
 }
@@ -52,6 +52,14 @@ function file_usage_extension_field_attach_delete_revision($entity_type, $entity
  * Implements hook_entity_delete().
  */
 function file_usage_extension_entity_delete($entity, $type) {
+  list($entity_id) = entity_extract_ids($type, $entity);
+  _file_usage_extension_delete_file_usage_db($entity_id);
+}
+
+/**
+ * Implements hook_entity_presave().
+ */
+function file_usage_extension_entity_presave($entity, $type) {
   list($entity_id) = entity_extract_ids($type, $entity);
   _file_usage_extension_delete_file_usage_db($entity_id);
 }
@@ -71,7 +79,7 @@ function _file_usage_extension_add_file_usage($component) {
     foreach ($file_references as $file_reference) {
       if (!empty($file_reference['fid'])) {
         $file = file_load($file_reference['fid']);
-        file_usage_add($file, 'file_usage_extension', 'node', $component['nid']);
+        file_usage_add($file, 'media', 'node', $component['nid']);
       }
     }
   }
@@ -89,7 +97,7 @@ function _file_usage_extension_delete_file_usage($component) {
     foreach ($file_references as $file_reference) {
       if (!empty($file_reference['fid'])) {
         $file = file_load($file_reference['fid']);
-        file_usage_delete($file, 'file_usage_extension', 'node', $component['nid']);
+        file_usage_delete($file, 'media', 'node', $component['nid']);
       }
     }
   }
@@ -164,33 +172,9 @@ function _file_usage_extension_add_file_usage_from_fields($entity, $entity_type)
 
   list($entity_id, $entity_vid, $entity_bundle) = entity_extract_ids($entity_type, $entity);
 
-  if (empty($entity->revision) && empty($entity->old_vid) && empty($entity->is_new) && !empty($entity->original)) {
-    $old_files = _file_usage_extension_entity_field_count_files($entity_type, $entity->original);
-
-    foreach ($old_files as $fid => $old_file_count) {
-      if (empty($entity_files[$fid])) {
-        $entity_files[$fid] = 0;
-      }
-      if ($old_file_count > $entity_files[$fid]) {
-        $deprecate = $old_file_count - $entity_files[$fid];
-        $file = file_load($fid);
-        if ($file) {
-          file_usage_delete($file, 'file_usage_extension', $entity_type, $entity_id, $deprecate);
-        }
-        unset($entity_files[$fid]);
-      }
-      elseif ($entity_files[$fid] == $old_file_count) {
-        unset($entity_files[$fid]);
-      }
-      else {
-        $entity_files[$fid] = $entity_files[$fid] - $old_file_count;
-      }
-    }
-  }
-
   foreach ($entity_files as $fid => $entity_count) {
     if ($file = file_load($fid)) {
-      file_usage_add($file, 'file_usage_extension', $entity_type, $entity_id, $entity_count);
+      file_usage_add($file, 'media', $entity_type, $entity_id, $entity_count);
     }
   }
 }
@@ -205,7 +189,6 @@ function _file_usage_extension_delete_file_usage_db($id) {
   if (db_table_exists('file_usage')) {
     db_delete('file_usage')
       ->condition('id', $id)
-      ->condition('type', 'file_usage_extension')
       ->execute();
   }
 }
@@ -249,4 +232,26 @@ function _file_usage_extension_filter_parse_from_fields($entity_type, $entity) {
   }
 
   return $file_references;
+}
+
+/**
+ * Implements hook_views_query_alter().
+ */
+function file_usage_extension_views_query_alter(&$view, &$query) {
+  if ($view->name === 'administration_media' && $view->current_display === 'system_1') {
+    $join = new views_join();
+    $join->table = 'bean';
+    $join->field = 'bid';
+    $join->left_table = 'file_usage';
+    $join->left_field = 'id';
+    $join->type = 'left';
+    $join->definition = [
+      'left_table' => 'file_usage',
+      'left_filed' => 'id',
+      'table' => 'bean',
+      'field' => 'bid',
+    ];
+
+    $query->table_queue['field_image_file_managed']['join'] = $join;
+  }
 }
