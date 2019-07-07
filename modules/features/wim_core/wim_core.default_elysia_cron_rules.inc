@@ -8,7 +8,7 @@
  * Implements hook_default_elysia_cron_rules().
  */
 function wim_core_default_elysia_cron_rules() {
-  $cron_rules = array();
+  $cron_rules = [];
 
   $cron_rule = new stdClass();
   $cron_rule->disabled = FALSE; /* Edit this to true to make a default cron_rule disabled initially */

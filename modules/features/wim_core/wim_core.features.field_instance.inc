@@ -8,64 +8,64 @@
  * Implements hook_field_default_field_instances().
  */
 function wim_core_field_default_field_instances() {
-  $field_instances = array();
+  $field_instances = [];
 
   // Exported field_instance: 'file-document-field_title_tag'.
-  $field_instances['file-document-field_title_tag'] = array(
+  $field_instances['file-document-field_title_tag'] = [
     'bundle' => 'document',
     'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
-    'display' => array(
-      'default' => array(
+    'display' => [
+      'default' => [
         'label' => 'above',
-        'settings' => array(),
+        'settings' => [],
         'type' => 'hidden',
         'weight' => 1,
-      ),
-      'preview' => array(
+      ],
+      'preview' => [
         'label' => 'above',
-        'settings' => array(),
+        'settings' => [],
         'type' => 'hidden',
         'weight' => 0,
-      ),
-      'teaser' => array(
+      ],
+      'teaser' => [
         'label' => 'above',
-        'settings' => array(),
+        'settings' => [],
         'type' => 'hidden',
         'weight' => 0,
-      ),
-      'wysiwyg' => array(
+      ],
+      'wysiwyg' => [
         'label' => 'above',
-        'settings' => array(),
+        'settings' => [],
         'type' => 'hidden',
         'weight' => 0,
-      ),
-    ),
+      ],
+    ],
     'entity_type' => 'file',
     'field_name' => 'field_title_tag',
     'label' => 'Title tag',
     'required' => 0,
-    'settings' => array(
-      'linkit' => array(
+    'settings' => [
+      'linkit' => [
         'button_text' => 'Search',
         'enable' => 0,
         'profile' => '',
-      ),
+      ],
       'text_processing' => 0,
       'user_register_form' => FALSE,
       'wysiwyg_override' => 0,
-    ),
-    'widget' => array(
+    ],
+    'widget' => [
       'active' => 1,
       'module' => 'text',
-      'settings' => array(
+      'settings' => [
         'size' => 60,
-      ),
+      ],
       'type' => 'text_textfield',
       'weight' => 1,
-    ),
-  );
+    ],
+  ];
 
   // Translatables
   // Included for use with string extractors like potx.

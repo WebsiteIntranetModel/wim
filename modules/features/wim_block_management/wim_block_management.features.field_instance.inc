@@ -8,120 +8,120 @@
  * Implements hook_field_default_field_instances().
  */
 function wim_block_management_field_default_field_instances() {
-  $field_instances = array();
+  $field_instances = [];
 
   // Exported field_instance: 'bean-editorial-field_aria_label'.
-  $field_instances['bean-editorial-field_aria_label'] = array(
+  $field_instances['bean-editorial-field_aria_label'] = [
     'bundle' => 'editorial',
     'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
-    'display' => array(
-      'default' => array(
+    'display' => [
+      'default' => [
         'label' => 'above',
-        'settings' => array(),
+        'settings' => [],
         'type' => 'hidden',
         'weight' => 4,
-      ),
-      'link_title' => array(
+      ],
+      'link_title' => [
         'label' => 'above',
-        'settings' => array(),
+        'settings' => [],
         'type' => 'hidden',
         'weight' => 0,
-      ),
-    ),
+      ],
+    ],
     'entity_type' => 'bean',
     'field_name' => 'field_aria_label',
     'label' => 'Aria label',
     'required' => 0,
-    'settings' => array(
-      'linkit' => array(
+    'settings' => [
+      'linkit' => [
         'button_text' => 'Search',
         'enable' => 0,
         'profile' => '',
-      ),
+      ],
       'text_processing' => 0,
       'user_register_form' => FALSE,
-    ),
-    'widget' => array(
+    ],
+    'widget' => [
       'active' => 1,
       'module' => 'text',
-      'settings' => array(
+      'settings' => [
         'size' => 60,
-      ),
+      ],
       'type' => 'text_textfield',
       'weight' => 1,
-    ),
-  );
+    ],
+  ];
 
   // Exported field_instance: 'bean-editorial-field_body'.
-  $field_instances['bean-editorial-field_body'] = array(
+  $field_instances['bean-editorial-field_body'] = [
     'bundle' => 'editorial',
     'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
-    'display' => array(
-      'default' => array(
+    'display' => [
+      'default' => [
         'label' => 'hidden',
         'module' => 'text',
-        'settings' => array(),
+        'settings' => [],
         'type' => 'text_default',
         'weight' => 2,
-      ),
-      'link_title' => array(
+      ],
+      'link_title' => [
         'label' => 'above',
-        'settings' => array(),
+        'settings' => [],
         'type' => 'hidden',
         'weight' => 0,
-      ),
-    ),
+      ],
+    ],
     'entity_type' => 'bean',
     'field_name' => 'field_body',
     'label' => 'Body',
     'required' => 0,
-    'settings' => array(
+    'settings' => [
       'text_processing' => 1,
       'user_register_form' => FALSE,
-    ),
-    'widget' => array(
+    ],
+    'widget' => [
       'active' => 1,
       'module' => 'text',
-      'settings' => array(
+      'settings' => [
         'rows' => 5,
-      ),
+      ],
       'type' => 'text_textarea',
       'weight' => 4,
-    ),
-  );
+    ],
+  ];
 
   // Exported field_instance: 'bean-editorial-field_image'.
-  $field_instances['bean-editorial-field_image'] = array(
+  $field_instances['bean-editorial-field_image'] = [
     'bundle' => 'editorial',
     'deleted' => 0,
     'description' => '',
-    'display' => array(
-      'default' => array(
+    'display' => [
+      'default' => [
         'label' => 'hidden',
         'module' => 'image',
-        'settings' => array(
+        'settings' => [
           'image_link' => '',
           'image_style' => 'pictogram',
-        ),
+        ],
         'type' => 'image',
         'weight' => 1,
-      ),
-      'link_title' => array(
+      ],
+      'link_title' => [
         'label' => 'above',
-        'settings' => array(),
+        'settings' => [],
         'type' => 'hidden',
         'weight' => 0,
-      ),
-    ),
+      ],
+    ],
     'entity_type' => 'bean',
     'field_name' => 'field_image',
     'label' => 'Image',
     'required' => 0,
-    'settings' => array(
+    'settings' => [
       'alt_field' => 1,
       'default_image' => 0,
       'file_directory' => 'editorial/images',
@@ -131,63 +131,63 @@ function wim_block_management_field_default_field_instances() {
       'min_resolution' => '',
       'title_field' => 0,
       'user_register_form' => FALSE,
-    ),
-    'widget' => array(
+    ],
+    'widget' => [
       'active' => 1,
       'module' => 'media',
-      'settings' => array(
-        'allowed_schemes' => array(
+      'settings' => [
+        'allowed_schemes' => [
           'public' => 'public',
-        ),
-        'allowed_types' => array(
+        ],
+        'allowed_types' => [
           'image' => 'image',
-        ),
-        'browser_plugins' => array(),
+        ],
+        'browser_plugins' => [],
         'preview_image_style' => 'thumbnail',
         'progress_indicator' => 'throbber',
-      ),
+      ],
       'type' => 'media_generic',
       'weight' => 3,
-    ),
-  );
+    ],
+  ];
 
   // Exported field_instance: 'bean-editorial-field_link'.
-  $field_instances['bean-editorial-field_link'] = array(
+  $field_instances['bean-editorial-field_link'] = [
     'bundle' => 'editorial',
     'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
-    'display' => array(
-      'default' => array(
+    'display' => [
+      'default' => [
         'label' => 'hidden',
-        'settings' => array(),
+        'settings' => [],
         'type' => 'hidden',
         'weight' => 3,
-      ),
-      'link_title' => array(
+      ],
+      'link_title' => [
         'label' => 'above',
-        'settings' => array(),
+        'settings' => [],
         'type' => 'hidden',
         'weight' => 0,
-      ),
-    ),
+      ],
+    ],
     'entity_type' => 'bean',
     'field_name' => 'field_link',
     'label' => 'Link',
     'required' => 0,
-    'settings' => array(
+    'settings' => [
       'absolute_url' => 1,
-      'attributes' => array(
+      'attributes' => [
         'class' => '',
         'configurable_class' => 0,
         'configurable_title' => 0,
         'rel' => '',
         'target' => 'default',
         'title' => '',
-      ),
-      'display' => array(
+      ],
+      'display' => [
         'url_cutoff' => 80,
-      ),
+      ],
       'enable_tokens' => 1,
       'rel_remove' => 'default',
       'title' => 'none',
@@ -197,15 +197,15 @@ function wim_block_management_field_default_field_instances() {
       'url' => 0,
       'user_register_form' => FALSE,
       'validate_url' => 1,
-    ),
-    'widget' => array(
+    ],
+    'widget' => [
       'active' => 0,
       'module' => 'link',
-      'settings' => array(),
+      'settings' => [],
       'type' => 'link_field',
       'weight' => 5,
-    ),
-  );
+    ],
+  ];
 
   // Translatables
   // Included for use with string extractors like potx.

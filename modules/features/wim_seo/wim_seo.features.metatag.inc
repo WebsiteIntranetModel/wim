@@ -8,38 +8,38 @@
  * Implements hook_metatag_export_default().
  */
 function wim_seo_metatag_export_default() {
-  $config = array();
+  $config = [];
 
   // Exported Metatag config instance: global.
-  $config['global'] = array(
+  $config['global'] = [
     'instance' => 'global',
     'disabled' => FALSE,
-    'config' => array(
-      'title' => array(
+    'config' => [
+      'title' => [
         'value' => '[current-page:title] | [current-page:pager][site:name]',
-      ),
-      'generator' => array(
+      ],
+      'generator' => [
         'value' => 'Drupal 7 (http://drupal.org)',
-      ),
-      'canonical' => array(
+      ],
+      'canonical' => [
         'value' => '[current-page:url:absolute]',
-      ),
-      'shortlink' => array(
+      ],
+      'shortlink' => [
         'value' => '[current-page:url:unaliased]',
-      ),
-    ),
-  );
+      ],
+    ],
+  ];
 
   // Exported Metatag config instance: user.
-  $config['user'] = array(
+  $config['user'] = [
     'instance' => 'user',
     'disabled' => TRUE,
-    'config' => array(
-      'title' => array(
+    'config' => [
+      'title' => [
         'value' => '[user:name] | [site:name]',
-      ),
-    ),
-  );
+      ],
+    ],
+  ];
 
   return $config;
 }

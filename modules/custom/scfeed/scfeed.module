@@ -9,46 +9,46 @@
  * Implements hook_permission().
  */
 function scfeed_permission() {
-  return array(
-    'administer scfeed' => array(
+  return [
+    'administer scfeed' => [
       'title' => t('Administer SC Feed module'),
       'description' => t('Change configuration.'),
-    ),
-  );
+    ],
+  ];
 }
 
 /**
  * Implements hook_menu().
  */
 function scfeed_menu() {
-  $menu = array();
+  $menu = [];
 
-  $menu['admin/config/services/scfeed'] = array(
+  $menu['admin/config/services/scfeed'] = [
     'title' => 'Collaborative catalogs',
     'description' => 'Configure Samenwerkende Catalogi XML feed',
     'page callback' => 'drupal_get_form',
-    'page arguments' => array('scfeed_settings_form'),
-    'access arguments' => array('administer scfeed'),
+    'page arguments' => ['scfeed_settings_form'],
+    'access arguments' => ['administer scfeed'],
     'file' => 'scfeed.pages.inc',
     'type' => MENU_NORMAL_ITEM,
-  );
+  ];
 
-  $menu['admin/config/services/scfeed/rebuild'] = array(
+  $menu['admin/config/services/scfeed/rebuild'] = [
     'title' => 'Rebuild XML',
     'page callback' => 'drupal_get_form',
-    'page arguments' => array('scfeed_rebuild_form'),
-    'access arguments' => array('administer scfeed'),
+    'page arguments' => ['scfeed_rebuild_form'],
+    'access arguments' => ['administer scfeed'],
     'file' => 'scfeed.pages.inc',
     'type' => MENU_LOCAL_ACTION,
-  );
+  ];
 
-  $menu['sc-feed'] = array(
+  $menu['sc-feed'] = [
     'title' => 'SC Feed',
     'page callback' => 'scfeed_feed_page',
-    'access arguments' => array('access content'),
+    'access arguments' => ['access content'],
     'file' => 'scfeed.pages.inc',
     'type' => MENU_CALLBACK,
-  );
+  ];
 
   return $menu;
 }
@@ -57,12 +57,12 @@ function scfeed_menu() {
  * Implements hook_cron_queue_info().
  */
 function scfeed_cron_queue_info() {
-  return array(
-    'scfeed' => array(
+  return [
+    'scfeed' => [
       'worker callback' => 'scfeed_process_queue_item',
       'time' => 10,
-    ),
-  );
+    ],
+  ];
 }
 
 /**
@@ -121,7 +121,7 @@ function scfeed_rebuild($delete = FALSE) {
   }
   $queue = DrupalQueue::get('scfeed');
   $nodes = db_select('node', 'n')
-    ->fields('n', array('nid'))
+    ->fields('n', ['nid'])
     ->condition('n.type', 'product')
     ->execute();
   while ($node = $nodes->fetchObject()) {

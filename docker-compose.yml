@@ -15,7 +15,6 @@ services:
       - DRUPAL_SETTINGS=development
     ports:
       - "80"
-    network_mode: "bridge"
     container_name: wim_web
 
   db:
@@ -27,7 +26,6 @@ services:
       - db_data:/var/lib/mysql
     ports:
       - "3308:3306"
-    network_mode: "bridge"
     container_name: wim_db
 
   mailcatcher:
@@ -37,7 +35,6 @@ services:
       - VIRTUAL_PORT=1080
     ports:
       - "1080"
-    network_mode: "bridge"
     container_name: wim_mailcatcher
 
   selenium:
@@ -54,13 +51,13 @@ services:
     links:
       - web
 
-#  proxy:
-#    image: jwilder/nginx-proxy
-#    ports:
-#      - "80:80"
-#    container_name: wim_proxy
-#    volumes:
-#      - /var/run/docker.sock:/tmp/docker.sock:ro
+  proxy:
+    image: jwilder/nginx-proxy
+    ports:
+      - "80:80"
+    container_name: wim_proxy
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
 
 #  solr:
 #    image: mxr576/apachesolr-5.x-drupal-docker
@@ -90,7 +87,6 @@ services:
       - solr-precreate
       - drupal
       - /solr-conf
-    network_mode: "bridge"
     container_name: wim_solr
 
 volumes:

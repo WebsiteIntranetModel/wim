@@ -8,7 +8,7 @@
  * Implements hook_views_default_views().
  */
 function wim_faq_views_default_views() {
-  $export = array();
+  $export = [];
 
   $view = new view();
   $view->name = 'faq';
@@ -78,21 +78,20 @@ function wim_faq_views_default_views() {
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
-  $handler->display->display_options['filters']['type']['value'] = array(
+  $handler->display->display_options['filters']['type']['value'] = [
     'faq' => 'faq',
-  );
+  ];
   /* Filter criterion: Content: Show this FAQ in the FAQ overview (field_show_on_overview) */
   $handler->display->display_options['filters']['field_show_on_overview_value']['id'] = 'field_show_on_overview_value';
   $handler->display->display_options['filters']['field_show_on_overview_value']['table'] = 'field_data_field_show_on_overview';
   $handler->display->display_options['filters']['field_show_on_overview_value']['field'] = 'field_show_on_overview_value';
-  $handler->display->display_options['filters']['field_show_on_overview_value']['value'] = array(
+  $handler->display->display_options['filters']['field_show_on_overview_value']['value'] = [
     1 => '1',
-  );
+  ];
 
   /* Display: FAQ Overview */
   $handler = $view->new_display('page', 'FAQ Overview', 'faq_overview');
   $handler->display->display_options['defaults']['use_more'] = FALSE;
-  $handler->display->display_options['defaults']['use_more_always'] = FALSE;
   $handler->display->display_options['defaults']['use_more_always'] = FALSE;
   $handler->display->display_options['use_more_always'] = TRUE;
   $handler->display->display_options['defaults']['use_more_text'] = FALSE;
@@ -160,9 +159,9 @@ function wim_faq_views_default_views() {
   $handler->display->display_options['arguments']['field_faq_category_tid']['summary_options']['items_per_page'] = '25';
   $handler->display->display_options['arguments']['field_faq_category_tid']['specify_validation'] = TRUE;
   $handler->display->display_options['arguments']['field_faq_category_tid']['validate']['type'] = 'taxonomy_term';
-  $handler->display->display_options['arguments']['field_faq_category_tid']['validate_options']['vocabularies'] = array(
+  $handler->display->display_options['arguments']['field_faq_category_tid']['validate_options']['vocabularies'] = [
     'faq_categories' => 'faq_categories',
-  );
+  ];
   $handler->display->display_options['arguments']['field_faq_category_tid']['validate_options']['type'] = 'convert';
   $handler->display->display_options['arguments']['field_faq_category_tid']['validate_options']['transform'] = TRUE;
   $handler->display->display_options['arguments']['field_faq_category_tid']['validate']['fail'] = 'empty';
@@ -223,9 +222,9 @@ function wim_faq_views_default_views() {
   $handler->display->display_options['filters']['machine_name']['table'] = 'taxonomy_vocabulary';
   $handler->display->display_options['filters']['machine_name']['field'] = 'machine_name';
   $handler->display->display_options['filters']['machine_name']['relationship'] = 'field_faq_category_tid';
-  $handler->display->display_options['filters']['machine_name']['value'] = array(
+  $handler->display->display_options['filters']['machine_name']['value'] = [
     'faq_categories' => 'faq_categories',
-  );
+  ];
   $handler->display->display_options['path'] = 'faq';
 
   /* Display: Admin FAQ */
@@ -243,53 +242,53 @@ function wim_faq_views_default_views() {
   $handler->display->display_options['pager']['options']['quantity'] = '9';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'table';
-  $handler->display->display_options['style_options']['columns'] = array(
+  $handler->display->display_options['style_options']['columns'] = [
     'title' => 'title',
     'field_weight_selector' => 'field_weight_selector',
     'body' => 'body',
     'field_weight' => 'field_weight',
     'edit_node' => 'edit_node',
     'view_node' => 'edit_node',
-  );
+  ];
   $handler->display->display_options['style_options']['default'] = 'field_weight';
-  $handler->display->display_options['style_options']['info'] = array(
-    'title' => array(
+  $handler->display->display_options['style_options']['info'] = [
+    'title' => [
       'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
-    ),
-    'field_weight_selector' => array(
+    ],
+    'field_weight_selector' => [
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
-    ),
-    'body' => array(
+    ],
+    'body' => [
       'sortable' => 0,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
-    ),
-    'field_weight' => array(
+    ],
+    'field_weight' => [
       'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
-    ),
-    'edit_node' => array(
+    ],
+    'edit_node' => [
       'align' => '',
       'separator' => '/',
       'empty_column' => 0,
-    ),
-    'view_node' => array(
+    ],
+    'view_node' => [
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
-    ),
-  );
+    ],
+  ];
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['defaults']['row_options'] = FALSE;
@@ -331,9 +330,9 @@ function wim_faq_views_default_views() {
   $handler->display->display_options['fields']['body']['label'] = 'Answer';
   $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['body']['type'] = 'text_trimmed';
-  $handler->display->display_options['fields']['body']['settings'] = array(
+  $handler->display->display_options['fields']['body']['settings'] = [
     'trim_length' => '200',
-  );
+  ];
   /* Field: Content: Weight */
   $handler->display->display_options['fields']['field_weight']['id'] = 'field_weight';
   $handler->display->display_options['fields']['field_weight']['table'] = 'field_data_field_weight';
@@ -376,19 +375,19 @@ function wim_faq_views_default_views() {
   $handler->display->display_options['filters']['status']['expose']['operator'] = 'status_op';
   $handler->display->display_options['filters']['status']['expose']['identifier'] = 'status';
   $handler->display->display_options['filters']['status']['expose']['required'] = TRUE;
-  $handler->display->display_options['filters']['status']['expose']['remember_roles'] = array(
+  $handler->display->display_options['filters']['status']['expose']['remember_roles'] = [
     2 => '2',
     1 => 0,
     3 => 0,
     4 => 0,
-  );
+  ];
   /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
-  $handler->display->display_options['filters']['type']['value'] = array(
+  $handler->display->display_options['filters']['type']['value'] = [
     'faq' => 'faq',
-  );
+  ];
   /* Filter criterion: Content: Category (field_faq_category) */
   $handler->display->display_options['filters']['field_faq_category_tid']['id'] = 'field_faq_category_tid';
   $handler->display->display_options['filters']['field_faq_category_tid']['table'] = 'field_data_field_faq_category';
@@ -398,52 +397,52 @@ function wim_faq_views_default_views() {
   $handler->display->display_options['filters']['field_faq_category_tid']['expose']['label'] = 'Category';
   $handler->display->display_options['filters']['field_faq_category_tid']['expose']['operator'] = 'field_faq_category_tid_op';
   $handler->display->display_options['filters']['field_faq_category_tid']['expose']['identifier'] = 'field_faq_category_tid';
-  $handler->display->display_options['filters']['field_faq_category_tid']['expose']['remember_roles'] = array(
+  $handler->display->display_options['filters']['field_faq_category_tid']['expose']['remember_roles'] = [
     2 => '2',
     1 => 0,
     3 => 0,
     4 => 0,
-  );
+  ];
   $handler->display->display_options['filters']['field_faq_category_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_faq_category_tid']['vocabulary'] = 'faq_categories';
   /* Filter criterion: Content: Show this FAQ in the FAQ overview (field_show_on_overview) */
   $handler->display->display_options['filters']['field_show_on_overview_value']['id'] = 'field_show_on_overview_value';
   $handler->display->display_options['filters']['field_show_on_overview_value']['table'] = 'field_data_field_show_on_overview';
   $handler->display->display_options['filters']['field_show_on_overview_value']['field'] = 'field_show_on_overview_value';
-  $handler->display->display_options['filters']['field_show_on_overview_value']['value'] = array(
+  $handler->display->display_options['filters']['field_show_on_overview_value']['value'] = [
     1 => '1',
-  );
+  ];
   $handler->display->display_options['filters']['field_show_on_overview_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_show_on_overview_value']['expose']['operator_id'] = 'field_show_on_overview_value_op';
   $handler->display->display_options['filters']['field_show_on_overview_value']['expose']['label'] = 'Show on overview';
   $handler->display->display_options['filters']['field_show_on_overview_value']['expose']['operator'] = 'field_show_on_overview_value_op';
   $handler->display->display_options['filters']['field_show_on_overview_value']['expose']['identifier'] = 'field_show_on_overview_value';
-  $handler->display->display_options['filters']['field_show_on_overview_value']['expose']['remember_roles'] = array(
+  $handler->display->display_options['filters']['field_show_on_overview_value']['expose']['remember_roles'] = [
     2 => '2',
     1 => 0,
     3 => 0,
     4 => 0,
-  );
+  ];
   $handler->display->display_options['filters']['field_show_on_overview_value']['is_grouped'] = TRUE;
   $handler->display->display_options['filters']['field_show_on_overview_value']['group_info']['label'] = 'Show on overview';
   $handler->display->display_options['filters']['field_show_on_overview_value']['group_info']['identifier'] = 'field_show_on_overview_value';
   $handler->display->display_options['filters']['field_show_on_overview_value']['group_info']['default_group'] = '1';
-  $handler->display->display_options['filters']['field_show_on_overview_value']['group_info']['group_items'] = array(
-    1 => array(
+  $handler->display->display_options['filters']['field_show_on_overview_value']['group_info']['group_items'] = [
+    1 => [
       'title' => 'Yes',
       'operator' => 'or',
-      'value' => array(
+      'value' => [
         1 => '1',
-      ),
-    ),
-    2 => array(
+      ],
+    ],
+    2 => [
       'title' => 'No',
       'operator' => 'or',
-      'value' => array(
+      'value' => [
         0 => '0',
-      ),
-    ),
-  );
+      ],
+    ],
+  ];
   $handler->display->display_options['path'] = 'admin/content/faq';
   $handler->display->display_options['menu']['type'] = 'tab';
   $handler->display->display_options['menu']['title'] = 'FAQ Content';
@@ -531,7 +530,7 @@ function wim_faq_views_default_views() {
   $handler->display->display_options['filters']['field_show_on_overview_value']['value'] = array(
     1 => '1',
   );
-  $translatables['faq'] = array(
+  $translatables['faq'] = [
     t('Master'),
     t('FAQ'),
     t('more'),
@@ -571,7 +570,7 @@ function wim_faq_views_default_views() {
     t('Category'),
     t('Show on overview'),
     t('FAQ Overview Block'),
-  );
+  ];
   $export['faq'] = $view;
 
   return $export;

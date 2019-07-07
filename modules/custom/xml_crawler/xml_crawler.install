@@ -8,19 +8,19 @@
  * Implements hook_schema_alter().
  */
 function xml_crawler_schema_alter(&$schema) {
-  $schema['external_crawler_site']['fields']['is_xml'] = array(
+  $schema['external_crawler_site']['fields']['is_xml'] = [
     'type' => 'int',
     'not null' => TRUE,
     'unsigned' => TRUE,
     'default' => 0,
     'description' => 'Indicator if site is xml page.',
-  );
+  ];
 
-  $schema['external_crawler_site']['fields']['xml_type'] = array(
+  $schema['external_crawler_site']['fields']['xml_type'] = [
     'type' => 'varchar',
     'length' => 64,
     'not null' => FALSE,
-  );
+  ];
 }
 
 /**

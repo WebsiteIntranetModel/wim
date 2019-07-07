@@ -60,58 +60,58 @@ function sduconnect_set_pdc_content(DOMXPath $xpath, &$node, $private = FALSE) {
     $summary = $node->body[LANGUAGE_NONE][0]['summary'];
   }
 
-  $node->body = array(
-    LANGUAGE_NONE => array(
-      array(
+  $node->body = [
+    LANGUAGE_NONE => [
+      [
         'value' => $body,
         'format' => $default_format,
         'summary' => $summary,
-      ),
-    ),
-  );
+      ],
+    ],
+  ];
 
   // Related Product items.
   $items = sduconnect_nodelist_to_array($xpath->query('//m:page/m:product/m:product_relaties/m:product_relatie/@base_id'));
   if ($items) {
-    $node->field_related_product = array(LANGUAGE_NONE => array());
+    $node->field_related_product = [LANGUAGE_NONE => []];
     foreach ($items as $item) {
-      $node->field_related_product[LANGUAGE_NONE][] = array('target_id' => SDUCONNECT_PRODUCT . '-' . trim($item));
+      $node->field_related_product[LANGUAGE_NONE][] = ['target_id' => SDUCONNECT_PRODUCT . '-' . trim($item)];
     }
   }
   elseif (empty($items) && !empty($node->field_related_product)) {
     unset($node->field_related_product);
-    $node->field_related_product = array();
+    $node->field_related_product = [];
   }
 
   // Related FAQ items.
   $items = sduconnect_nodelist_to_array($xpath->query('//m:page/m:product/m:vac_relaties/m:vac_relatie/@base_id'));
   if ($items) {
-    $node->field_related_faq = array(LANGUAGE_NONE => array());
+    $node->field_related_faq = [LANGUAGE_NONE => []];
     foreach ($items as $item) {
-      $node->field_related_faq[LANGUAGE_NONE][] = array('target_id' => SDUCONNECT_FAQ . '-' . trim($item));
+      $node->field_related_faq[LANGUAGE_NONE][] = ['target_id' => SDUCONNECT_FAQ . '-' . trim($item)];
     }
   }
   elseif (empty($items) && !empty($node->field_related_faq)) {
     unset($node->field_related_faq);
-    $node->field_related_faq = array();
+    $node->field_related_faq = [];
   }
 
   // More info.
   $names = sduconnect_nodelist_to_array($xpath->query('//m:page/m:product/m:product_links/m:product_link/m:product_link_name'));
   $urls = sduconnect_nodelist_to_array($xpath->query('//m:page/m:product/m:product_links/m:product_link/m:product_link_url'));
-  $items = array();
+  $items = [];
   foreach ($names as $i => $name) {
-    $items[] = array(
+    $items[] = [
       'url' => $urls[$i],
       'title' => $name,
-    );
+    ];
   }
   if ($items) {
-    $node->field_product_more_information = array(LANGUAGE_NONE => $items);
+    $node->field_product_more_information = [LANGUAGE_NONE => $items];
   }
   elseif (empty($items) && !empty($node->field_product_more_information)) {
     unset($node->field_product_more_information);
-    $node->field_product_more_information = array();
+    $node->field_product_more_information = [];
   }
 
   // Product address field.
@@ -162,19 +162,19 @@ function sduconnect_set_pdc_content(DOMXPath $xpath, &$node, $private = FALSE) {
   // Related laws.
   $names = sduconnect_nodelist_to_array($xpath->query('//m:page/m:product/m:law_rules/m:law_rule/m:law_rule_name'));
   $urls = sduconnect_nodelist_to_array($xpath->query('//m:page/m:product/m:law_rules/m:law_rule/m:url'));
-  $items = array();
+  $items = [];
   foreach ($names as $i => $name) {
-    $items[] = array(
+    $items[] = [
       'url' => $urls[$i],
       'title' => $name,
-    );
+    ];
   }
   if ($items) {
-    $node->field_product_related_laws = array(LANGUAGE_NONE => $items);
+    $node->field_product_related_laws = [LANGUAGE_NONE => $items];
   }
   elseif (empty($items) && !empty($node->field_product_related_laws)) {
     unset($node->field_product_related_laws);
-    $node->field_product_related_laws = array();
+    $node->field_product_related_laws = [];
   }
 
   // Uniform Product Names List (UPL).
@@ -216,23 +216,23 @@ function sduconnect_set_pdc_content(DOMXPath $xpath, &$node, $private = FALSE) {
   // Forms.
   $names = sduconnect_nodelist_to_array($xpath->query('//m:page/m:product/m:formulieren_extern/m:formulier/m:label'));
   $urls = sduconnect_nodelist_to_array($xpath->query('//m:page/m:product/m:formulieren_extern/m:formulier/m:href'));
-  $items = array();
+  $items = [];
   foreach ($names as $i => $name) {
-    $items[] = array(
+    $items[] = [
       'url' => $urls[$i],
       'title' => $name,
-    );
+    ];
   }
   if ($items) {
-    $node->field_product_forms = array(LANGUAGE_NONE => $items);
+    $node->field_product_forms = [LANGUAGE_NONE => $items];
   }
   elseif (empty($items) && !empty($node->field_product_forms)) {
     unset($node->field_product_forms);
-    $node->field_product_forms = array();
+    $node->field_product_forms = [];
   }
 
   // Helper array to map xml tags to fields in node.
-  $mapping = array(
+  $mapping = [
 //    '//m:page/m:product/m:uitvoerende_instanties/m:instantie/m:opmerkingen' => 'field_product_locations',
     '//m:page/m:product/m:contact' => 'field_product_contact',
     '//m:page/m:product/m:appeal' => 'field_product_objection',
@@ -246,7 +246,7 @@ function sduconnect_set_pdc_content(DOMXPath $xpath, &$node, $private = FALSE) {
     // '//m:page/m:product/m:subsidies_budget' => 'field_product_subsidies_budget',
     // '//m:page/m:product/m:subsidies_maximale_bijdrage' => 'field_product_subsidies_maximale_bijdrage',
     // @codingStandardsIgnoreEnd
-  );
+  ];
 
   // Here we set mapped fields.
   foreach ($mapping as $query => $field_name) {
@@ -254,43 +254,43 @@ function sduconnect_set_pdc_content(DOMXPath $xpath, &$node, $private = FALSE) {
     if (!empty($field)) {
       // Gives opportunity alter content before save.
       drupal_alter('sduconnect_prepare_content', $field, $field_name);
-      $node->$field_name = array(
-        LANGUAGE_NONE => array(
-          array(
+      $node->$field_name = [
+        LANGUAGE_NONE => [
+          [
             'value' => $field,
             'format' => $default_format,
-          ),
-        ),
-      );
+          ],
+        ],
+      ];
     }
     elseif (strlen($field) == 0 && !empty($node->$field_name)) {
       unset($node->$field_name);
-      $node->$field_name = array();
+      $node->$field_name = [];
     }
   }
 
   // Request online.
   $url = sduconnect_nodelist_to_string($xpath->query('//m:page/m:product/overheidproduct:scproduct/overheidproduct:meta/overheidproduct:scmeta/overheidproduct:aanvraagURL/@resourceIdentifier'));
-  $items = array();
+  $items = [];
   if ($url) {
-    $items[] = array(
+    $items[] = [
       'href' => $url,
       'title' => 'Online aanvragen',
-    );
+    ];
   }
   if ($items) {
-    $node->field_product_request = array(
-      LANGUAGE_NONE => array(
-        array(
-          'value' => theme('links', array('links' => $items)),
+    $node->field_product_request = [
+      LANGUAGE_NONE => [
+        [
+          'value' => theme('links', ['links' => $items]),
           'format' => $default_format,
-        ),
-      ),
-    );
+        ],
+      ],
+    ];
   }
   elseif (empty($items) && !empty($node->field_product_request)) {
     unset($node->field_product_request);
-    $node->field_product_request = array();
+    $node->field_product_request = [];
   }
 
   // Tags.
@@ -301,20 +301,20 @@ function sduconnect_set_pdc_content(DOMXPath $xpath, &$node, $private = FALSE) {
   $e = sduconnect_nodelist_to_array($xpath->query('//m:page/m:product/overheidproduct:scproduct/overheidproduct:meta/overheidproduct:owmsmantel/dcterms:subject'));
   $tags = array_unique(array_merge($a, $b, $c, $d, $e));
   $items = sduconnect_tags($tags);
-  $node->field_tags = array(LANGUAGE_NONE => $items);
+  $node->field_tags = [LANGUAGE_NONE => $items];
 
   // Samenwerkende Catalogi.
   $categories = sduconnect_nodelist_to_array($xpath->query('//m:page/m:product/m:doelgroepen/m:doelgroep'));
-  $items = array();
+  $items = [];
   foreach ($categories as $category) {
     if ($category === 'organisatie/ondernemer') {
       $category = 'ondernemer';
     }
-    $items[] = array(
+    $items[] = [
       'value' => $category,
-    );
+    ];
   }
-  $node->field_sc_audience = array(LANGUAGE_NONE => $items); // @codingStandardsIgnoreLine
+  $node->field_sc_audience = [LANGUAGE_NONE => $items]; // @codingStandardsIgnoreLine
 
   // Start- and end date.
   $start = sduconnect_nodelist_to_string($xpath->query('//m:page/m:product/m:subsidies_startdate'));
@@ -325,28 +325,28 @@ function sduconnect_set_pdc_content(DOMXPath $xpath, &$node, $private = FALSE) {
   if ($end) {
     $end = implode('-', array_reverse(explode('-', $end))) . ' 00:00:00';
   }
-  $items = array();
+  $items = [];
   if ($start) {
-    $items[] = array(
+    $items[] = [
       'value' => $start,
       'value2' => $end,
       'timezone' => variable_get('date_default_timezone', 'Europe/Amsterdam'),
       'timezone_db' => 'UTC',
       'date_type' => 'datetime',
-    );
+    ];
   }
   // $node->field_date = array(LANGUAGE_NONE => $items); // @codingStandardsIgnoreLine
 
   // Publication date.
-  $date[] = array(
+  $date[] = [
     'value' => date('Y-m-d H:i:s', $created),
     'value2' => '',
     'timezone' => variable_get('date_default_timezone'),
     'timezone_db' => 'UTC',
     'date_type' => 'datetime',
-  );
+  ];
 
-  $node->field_publication_date = array(LANGUAGE_NONE => $date);
+  $node->field_publication_date = [LANGUAGE_NONE => $date];
 }
 
 /**
@@ -516,15 +516,15 @@ function sduconnect_set_vac_content($xpath, &$node, $private = FALSE) {
     $summary = $node->body[LANGUAGE_NONE][0]['summary'];
   }
 
-  $node->body = array(
-    LANGUAGE_NONE => array(
-      array(
+  $node->body = [
+    LANGUAGE_NONE => [
+      [
         'value' => $body,
         'format' => $default_format,
         'summary' => $summary,
-      ),
-    ),
-  );
+      ],
+    ],
+  ];
 
   // Address.
   if ($vac_data = sduconnect_nodelist_get_tree($xpath->query('//vac:vacs/vac:vac/vac:body/vac:kanaal/vac:antwoord/vac:antwoordAdres/vac:instantie'))) {
@@ -666,13 +666,13 @@ function sduconnect_set_vac_content($xpath, &$node, $private = FALSE) {
 
   // Explanation.
   $value = sduconnect_nodelist_to_string($xpath->query('//vac:vacs/vac:vac/vac:body/vac:kanaal/vac:toelichting'));
-  $items = array();
+  $items = [];
   if (preg_match('/[a-z0-9]/si', strip_tags($value))) {
-    $items[] = array(
+    $items[] = [
       'value' => $value,
       'format' => $default_format,
-    );
-    $node->field_faq_additional_information = array(LANGUAGE_NONE => $items);
+    ];
+    $node->field_faq_additional_information = [LANGUAGE_NONE => $items];
   }
 
   // Tags.
@@ -680,48 +680,48 @@ function sduconnect_set_vac_content($xpath, &$node, $private = FALSE) {
   $b = sduconnect_nodelist_to_array($xpath->query('//vac:vacs/vac:vac/vac:meta/vac:vacmeta/vac:trefwoord'));
   $tags = array_unique(array_merge($a, $b));
   $items = sduconnect_tags($tags);
-  $node->field_tags = array(LANGUAGE_NONE => $items);
+  $node->field_tags = [LANGUAGE_NONE => $items];
 
   // More information.
   $names = sduconnect_nodelist_to_array($xpath->query('//vac:vacs/vac:vac/vac:body/vac:kanaal/vac:verwijzingOverigeInfo'));
   $urls = sduconnect_nodelist_to_array($xpath->query('//vac:vacs/vac:vac/vac:body/vac:kanaal/vac:verwijzingOverigeInfo/@resourceIdentifier'));
-  $items = array();
+  $items = [];
   foreach ($names as $i => $name) {
-    $items[] = array(
+    $items[] = [
       'url' => $urls[$i],
       'title' => $name,
-    );
+    ];
   }
 
   if ($items) {
-    $node->field_faq_more_information = array(LANGUAGE_NONE => $items);
+    $node->field_faq_more_information = [LANGUAGE_NONE => $items];
   }
   elseif (empty($items) && !empty($node->field_faq_more_information)) {
     unset($node->field_faq_more_information);
-    $node->field_faq_more_information = array();
+    $node->field_faq_more_information = [];
   }
 
   // Related Product items.
   $items = sduconnect_nodelist_to_array($xpath->query('//vac:vacs/vac:vac/vac:body/vac:verwijzingProduct/@resourceIdentifier'));
   if ($items) {
-    $node->field_related_product = array(LANGUAGE_NONE => array());
+    $node->field_related_product = [LANGUAGE_NONE => []];
     foreach ($items as $item) {
-      $node->field_related_product[LANGUAGE_NONE][] = array('target_id' => SDUCONNECT_PRODUCT . '-' . trim($item));
+      $node->field_related_product[LANGUAGE_NONE][] = ['target_id' => SDUCONNECT_PRODUCT . '-' . trim($item)];
     }
   }
 
   // Related FAQ items.
   $items = sduconnect_nodelist_to_array($xpath->query('//vac:vacs/vac:vac/vac:body/vac:verwijzingVac/@resourceIdentifier'));
   if ($items) {
-    $node->field_related_faq = array(LANGUAGE_NONE => array());
+    $node->field_related_faq = [LANGUAGE_NONE => []];
     foreach ($items as $item) {
-      $node->field_related_faq[LANGUAGE_NONE][] = array('target_id' => SDUCONNECT_FAQ . '-' . trim($item));
+      $node->field_related_faq[LANGUAGE_NONE][] = ['target_id' => SDUCONNECT_FAQ . '-' . trim($item)];
     }
   }
 
   // This should be disabled for new items.
   if (!isset($node->nid)) {
-    $node->field_show_on_overview[LANGUAGE_NONE][] = array('value' => 0);
+    $node->field_show_on_overview[LANGUAGE_NONE][] = ['value' => 0];
   }
 }
 
@@ -751,7 +751,7 @@ function sduconnect_nodelist_to_string($node_list) {
  *   Array of values.
  */
 function sduconnect_nodelist_to_array($node_list) {
-  $output = array();
+  $output = [];
   foreach ($node_list as $node) {
     $output[] = $node->nodeValue;
   }
@@ -798,12 +798,12 @@ function sduconnect_nodelist_get_tree($node_list) {
  *   Array of tid's.
  */
 function sduconnect_tags($names) {
-  $output = array();
+  $output = [];
   $vocab = 'tags';
   $names = array_filter(array_unique(array_map('trim', $names)));
   foreach ($names as $name) {
     $query = db_select('taxonomy_term_data', 'td')
-      ->fields('td', array('tid'))
+      ->fields('td', ['tid'])
       ->condition('td.name', $name)
       ->range(0, 1);
     $v = $query->join('taxonomy_vocabulary', 'v', 'td.vid = v.vid');
@@ -811,21 +811,21 @@ function sduconnect_tags($names) {
     $tid = $query->execute()->fetchField();
     if (!$tid) {
       $vid = db_select('taxonomy_vocabulary', 'v')
-        ->fields('v', array('vid'))
+        ->fields('v', ['vid'])
         ->condition('v.machine_name', $vocab)
         ->execute()
         ->fetchField();
-      $term = (object) array(
+      $term = (object) [
         'name' => $name,
         'vid' => $vid,
         'vocabulary_machine_name' => $vocab,
-      );
+      ];
       taxonomy_term_save($term);
       $tid = $term->tid;
     }
-    $output[] = array(
+    $output[] = [
       'tid' => $tid,
-    );
+    ];
   }
   return $output;
 }

@@ -8,36 +8,36 @@
  * Implements hook_field_default_field_bases().
  */
 function wim_agenda_field_default_field_bases() {
-  $field_bases = array();
+  $field_bases = [];
 
   // Exported field_base: 'field_agenda_date'.
-  $field_bases['field_agenda_date'] = array(
+  $field_bases['field_agenda_date'] = [
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
-    'entity_types' => array(),
+    'entity_types' => [],
     'field_name' => 'field_agenda_date',
-    'indexes' => array(),
+    'indexes' => [],
     'locked' => 0,
     'module' => 'date',
-    'settings' => array(
+    'settings' => [
       'cache_count' => 4,
       'cache_enabled' => 0,
-      'granularity' => array(
+      'granularity' => [
         'day' => 'day',
         'hour' => 'hour',
         'minute' => 'minute',
         'month' => 'month',
         'second' => 0,
         'year' => 'year',
-      ),
+      ],
       'timezone_db' => 'UTC',
       'todate' => 'optional',
       'tz_handling' => 'site',
-    ),
+    ],
     'translatable' => 0,
     'type' => 'datetime',
-  );
+  ];
 
   return $field_bases;
 }

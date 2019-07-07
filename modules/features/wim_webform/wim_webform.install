@@ -9,7 +9,7 @@
  */
 function wim_webform_update_7000(&$sandbox) {
   db_update('webform_emails')
-    ->fields(array('html' => 1))
+    ->fields(['html' => 1])
     ->execute();
 }
 
@@ -17,6 +17,6 @@ function wim_webform_update_7000(&$sandbox) {
  * Use antibot instead honeypot.
  */
 function wim_webform_update_7001(&$sandbox) {
-  module_enable(array('antibot'));
+  module_enable(['antibot']);
   features_revert_module('wim_webform');
 }

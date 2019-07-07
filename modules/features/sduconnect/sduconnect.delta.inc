@@ -22,7 +22,7 @@ function sduconnect_delta_import($collection) {
     $ids = sduconnect_delta_download($collection->type, $collection->external_id, $from_time);
 
     $queue = DrupalQueue::get('sduconnect');
-    foreach (array('added', 'changed') as $type) {
+    foreach (['added', 'changed'] as $type) {
       foreach ($ids->{$type} as $id) {
         $item = new stdClass();
         $item->cid = $collection->cid;
@@ -38,15 +38,15 @@ function sduconnect_delta_import($collection) {
       $not_found = '';
       foreach ($to_remove as $nid) {
         if ($title = sduconnect_load_title_by_nid($nid)) {
-          $log = t('Processed item !id: %title', array(
+          $log = t('Processed item !id: %title', [
             '!id' => $nid,
             '%title' => $title,
-          ));
+          ]);
         }
         else {
-          $log = t('Item %id is listed as removed, but was not found in Drupal.', array(
+          $log = t('Item %id is listed as removed, but was not found in Drupal.', [
             '%id' => $nid,
-          ));
+          ]);
           $not_found = '_not_found';
         }
         _sdu_log('removed' . $not_found, $collection, $log, $nid);
@@ -63,10 +63,10 @@ function sduconnect_delta_import($collection) {
     $output->removed = count($ids->removed);
   }
   catch (Exception $e) {
-    $log = t('Got code %code from %url', array(
+    $log = t('Got code %code from %url', [
       '%code' => $e->getCode(),
       '%url' => $e->getMessage(),
-    ));
+    ]);
     _sdu_log('unreachable', $collection, $log, NULL);
   }
   return $output;
@@ -100,9 +100,9 @@ function sduconnect_delta_download($collection_type, $collection_id, $from_date)
       $collection_type, $sduconnect_version, $account_id, $collection_id, $date);
   }
   // The callback to get changed items can be slow. Use a timeout of 5 minutes.
-  $options = array(
+  $options = [
     'timeout' => 300,
-  );
+  ];
   $data = drupal_http_request($url, $options);
   if ($data->code != 200) {
     throw new Exception($url, (int) ($data->code));
@@ -113,8 +113,8 @@ function sduconnect_delta_download($collection_type, $collection_id, $from_date)
   }
   $output = new stdClass();
   $output->servertime = strtotime($xml->servertime);
-  foreach (array('added', 'changed', 'removed') as $type) {
-    $output->{$type} = array();
+  foreach (['added', 'changed', 'removed'] as $type) {
+    $output->{$type} = [];
     foreach ($xml->{$type . 'ids'}->itemid as $id) {
       $output->{$type}[] = (string) $id;
     }
@@ -133,7 +133,7 @@ function sduconnect_delta_download($collection_type, $collection_id, $from_date)
  */
 function sduconnect_load_nids(array $ids) {
   $nids = db_select('sduconnect_item', 'i')
-    ->fields('i', array('nid'))
+    ->fields('i', ['nid'])
     ->condition('i.external_id', $ids, 'IN')
     ->execute()
     ->fetchCol();
@@ -152,7 +152,7 @@ function sduconnect_load_nids(array $ids) {
  */
 function sduconnect_load_title_by_nid($nid) {
   return db_select('node', 'n')
-    ->fields('n', array('title'))
+    ->fields('n', ['title'])
     ->condition('n.nid', $nid)
     ->execute()
     ->fetchField();

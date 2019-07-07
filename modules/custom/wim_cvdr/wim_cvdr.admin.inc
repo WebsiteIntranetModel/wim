@@ -25,14 +25,14 @@ function _wim_cvdr_admin_page() {
     '#default_value' => variable_get('wim_cvdr_url', ''),
   ];
 
-  $form['wim_cvdr_url_second'] = array(
+  $form['wim_cvdr_url_second'] = [
     '#type' => 'textfield',
     '#maxlength' => 600,
     '#size' => 200,
     '#title' => t('CVDR XML URL Beleidsregels (URL-1)'),
     '#description' => t('The full URL to the webservice which outputs an XML file.'),
     '#default_value' => variable_get('wim_cvdr_url_second', ''),
-  );
+  ];
 
   // Modify subject source
   $form['wim_cvdr_subject_source'] = [

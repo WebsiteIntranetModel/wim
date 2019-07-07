@@ -18,47 +18,47 @@ function wim_synonyms_init() {
  * Implements hook_permission().
  */
 function wim_synonyms_permission() {
-  return array(
-    'administer solr synonyms' => array(
+  return [
+    'administer solr synonyms' => [
       'title' => t('Administer Solr Synonyms'),
       'description' => t('Allows users to manage the list of Solr synonyms.'),
-    ),
-  );
+    ],
+  ];
 }
 
 /**
  * Implements hook_menu().
  */
 function wim_synonyms_menu() {
-  $items = array();
+  $items = [];
 
-  $items['admin/config/search/apachesolr/synonyms'] = array(
+  $items['admin/config/search/apachesolr/synonyms'] = [
     'title' => 'Synonyms',
     'page callback' => 'drupal_get_form',
-    'page arguments' => array('wim_synonyms_admin_list_form'),
-    'access arguments' => array('administer solr synonyms'),
+    'page arguments' => ['wim_synonyms_admin_list_form'],
+    'access arguments' => ['administer solr synonyms'],
     'description' => 'Manage Solr synonyms.',
     'type' => MENU_LOCAL_TASK,
     'file' => 'wim_synonyms.admin.inc',
-  );
+  ];
 
-  $items['admin/config/search/apachesolr/synonyms/list'] = array(
+  $items['admin/config/search/apachesolr/synonyms/list'] = [
     'title' => 'List',
     'page callback' => 'drupal_get_form',
-    'page arguments' => array('wim_synonyms_admin_list_form'),
-    'access arguments' => array('administer solr synonyms'),
+    'page arguments' => ['wim_synonyms_admin_list_form'],
+    'access arguments' => ['administer solr synonyms'],
     'description' => 'Manage Solr synonyms.',
     'type' => MENU_DEFAULT_LOCAL_TASK,
     'file' => 'wim_synonyms.admin.inc',
-  );
+  ];
 
-  $items['admin/config/search/apachesolr/synonyms/delete/%'] = array(
+  $items['admin/config/search/apachesolr/synonyms/delete/%'] = [
     'page callback' => 'drupal_get_form',
-    'page arguments' => array('wim_synonyms_admin_list_delete_form', 6),
-    'access arguments' => array('administer solr synonyms'),
+    'page arguments' => ['wim_synonyms_admin_list_delete_form', 6],
+    'access arguments' => ['administer solr synonyms'],
     'type' => MENU_CALLBACK,
     'file' => 'wim_synonyms.admin.inc',
-  );
+  ];
 
   return $items;
 }
@@ -67,14 +67,14 @@ function wim_synonyms_menu() {
  * Implements hook_theme().
  */
 function wim_synonyms_theme($existing, $type, $theme, $path) {
-  return array(
-    'wim_synonyms_table_synonyms' => array(
-      'arguments' => array(
+  return [
+    'wim_synonyms_table_synonyms' => [
+      'arguments' => [
         'form' => NULL
-      ),
+      ],
       'render element' => 'synonyms',
       'file' => 'wim_synonyms.admin.inc',
-    ),
-  );
+    ],
+  ];
 }
 

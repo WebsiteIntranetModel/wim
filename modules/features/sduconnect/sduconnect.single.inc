@@ -26,9 +26,9 @@ function sduconnect_single_import($collection, $id, $type) {
     }
     if ($type === 'removed') {
       if (empty($node->nid)) {
-        throw new Exception(t('Item %id is listed as removed, but was not found in Drupal.', array(
+        throw new Exception(t('Item %id is listed as removed, but was not found in Drupal.', [
           '%id' => $id,
-        )));
+        ]));
       }
       node_delete($node->nid);
     }
@@ -44,22 +44,22 @@ function sduconnect_single_import($collection, $id, $type) {
     }
 
     $nid = $node->nid;
-    $log = t('Processed item !id: %title', array(
+    $log = t('Processed item !id: %title', [
       '!id' => $id,
       '%title' => $node->title,
-    ));
+    ]);
   }
   catch (Exception $e) {
     if ($e->getCode() == 404) {
       $not_found = '_not_found';
     }
     if ($e->getCode()) {
-      $log = t('Got code !code when importing !type !id from !url', array(
+      $log = t('Got code !code when importing !type !id from !url', [
         '!code' => $e->getCode(),
         '!type' => $type,
         '!id' => $id,
         '!url' => $e->getMessage(),
-      ));
+      ]);
     }
     else {
       $log = $e->getMessage();
@@ -119,7 +119,7 @@ function sduconnect_single_download($collection_type, $collection_id, $id) {
  */
 function sduconnect_load_node($collection, $id) {
   $nid = db_select('sduconnect_item', 'i')
-    ->fields('i', array('nid'))
+    ->fields('i', ['nid'])
     ->condition('cid', $collection->cid)
     ->condition('external_id', $id)
     ->execute()
@@ -151,12 +151,12 @@ function sduconnect_save_node($collection, $id, $node) {
   node_submit($node);
   node_save($node);
   if ($new) {
-    db_insert('sduconnect_item')->fields(array(
+    db_insert('sduconnect_item')->fields([
       'nid' => $node->nid,
       'cid' => $collection->cid,
       'external_id' => $id,
       'internal_id' => $collection->type . '-' . $id,
-    ))->execute();
+    ])->execute();
     db_update('sduconnect_collection')
       ->expression('items', 'items + 1')
       ->condition('cid', $collection->cid)

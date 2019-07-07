@@ -73,7 +73,7 @@ class EntityReferenceFieldBehaviorSDU extends EntityReference_BehaviorHandler_Ab
    */
   public function settingsForm($field, $instance) {
 
-    return array();
+    return [];
   }
 
   /**

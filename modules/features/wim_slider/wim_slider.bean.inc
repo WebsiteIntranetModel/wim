@@ -8,7 +8,7 @@
  * Implements hook_bean_admin_ui_types().
  */
 function wim_slider_bean_admin_ui_types() {
-  $export = array();
+  $export = [];
 
   $bean_type = new stdClass();
   $bean_type->disabled = FALSE; /* Edit this to true to make a default bean_type disabled initially */

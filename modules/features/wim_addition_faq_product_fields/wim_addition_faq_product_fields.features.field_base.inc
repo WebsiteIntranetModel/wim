@@ -8,506 +8,506 @@
  * Implements hook_field_default_field_bases().
  */
 function wim_addition_faq_product_fields_field_default_field_bases() {
-  $field_bases = array();
+  $field_bases = [];
 
   // Exported field_base: 'field_faq_address'.
-  $field_bases['field_faq_address'] = array(
+  $field_bases['field_faq_address'] = [
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
-    'entity_types' => array(),
+    'entity_types' => [],
     'field_name' => 'field_faq_address',
-    'indexes' => array(
-      'format' => array(
+    'indexes' => [
+      'format' => [
         0 => 'format',
-      ),
-    ),
+      ],
+    ],
     'locked' => 0,
     'module' => 'text',
-    'settings' => array(),
+    'settings' => [],
     'translatable' => 0,
     'type' => 'text_long',
-  );
+  ];
 
   // Exported field_base: 'field_faq_more_information'.
-  $field_bases['field_faq_more_information'] = array(
+  $field_bases['field_faq_more_information'] = [
     'active' => 1,
     'cardinality' => -1,
     'deleted' => 0,
-    'entity_types' => array(),
+    'entity_types' => [],
     'field_name' => 'field_faq_more_information',
-    'indexes' => array(),
+    'indexes' => [],
     'locked' => 0,
     'module' => 'link',
-    'settings' => array(
-      'attributes' => array(
+    'settings' => [
+      'attributes' => [
         'class' => '',
         'rel' => '',
         'target' => 'default',
-      ),
-      'display' => array(
+      ],
+      'display' => [
         'url_cutoff' => 80,
-      ),
+      ],
       'enable_tokens' => 1,
       'title' => 'optional',
       'title_maxlength' => 128,
       'title_value' => '',
       'url' => 0,
-    ),
+    ],
     'translatable' => 0,
     'type' => 'link_field',
-  );
+  ];
 
   // Exported field_base: 'field_product_address'.
-  $field_bases['field_product_address'] = array(
+  $field_bases['field_product_address'] = [
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
-    'entity_types' => array(),
+    'entity_types' => [],
     'field_name' => 'field_product_address',
-    'indexes' => array(
-      'format' => array(
+    'indexes' => [
+      'format' => [
         0 => 'format',
-      ),
-    ),
+      ],
+    ],
     'locked' => 0,
     'module' => 'text',
-    'settings' => array(),
+    'settings' => [],
     'translatable' => 0,
     'type' => 'text_long',
-  );
+  ];
 
   // Exported field_base: 'field_product_attention'.
-  $field_bases['field_product_attention'] = array(
+  $field_bases['field_product_attention'] = [
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
-    'entity_types' => array(),
+    'entity_types' => [],
     'field_name' => 'field_product_attention',
-    'indexes' => array(
-      'format' => array(
+    'indexes' => [
+      'format' => [
         0 => 'format',
-      ),
-    ),
+      ],
+    ],
     'locked' => 0,
     'module' => 'text',
-    'settings' => array(),
+    'settings' => [],
     'translatable' => 0,
     'type' => 'text_long',
-  );
+  ];
 
   // Exported field_base: 'field_product_conditions'.
-  $field_bases['field_product_conditions'] = array(
+  $field_bases['field_product_conditions'] = [
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
-    'entity_types' => array(),
+    'entity_types' => [],
     'field_name' => 'field_product_conditions',
-    'indexes' => array(
-      'format' => array(
+    'indexes' => [
+      'format' => [
         0 => 'format',
-      ),
-    ),
+      ],
+    ],
     'locked' => 0,
     'module' => 'text',
-    'settings' => array(),
+    'settings' => [],
     'translatable' => 0,
     'type' => 'text_long',
-  );
+  ];
 
   // Exported field_base: 'field_product_contact'.
-  $field_bases['field_product_contact'] = array(
+  $field_bases['field_product_contact'] = [
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
-    'entity_types' => array(),
+    'entity_types' => [],
     'field_name' => 'field_product_contact',
-    'indexes' => array(
-      'format' => array(
+    'indexes' => [
+      'format' => [
         0 => 'format',
-      ),
-    ),
+      ],
+    ],
     'locked' => 0,
     'module' => 'text',
-    'settings' => array(),
+    'settings' => [],
     'translatable' => 0,
     'type' => 'text_long',
-  );
+  ];
 
   // Exported field_base: 'field_product_costs'.
-  $field_bases['field_product_costs'] = array(
+  $field_bases['field_product_costs'] = [
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
-    'entity_types' => array(),
+    'entity_types' => [],
     'field_name' => 'field_product_costs',
-    'indexes' => array(
-      'format' => array(
+    'indexes' => [
+      'format' => [
         0 => 'format',
-      ),
-    ),
+      ],
+    ],
     'locked' => 0,
     'module' => 'text',
-    'settings' => array(),
+    'settings' => [],
     'translatable' => 0,
     'type' => 'text_long',
-  );
+  ];
 
   // Exported field_base: 'field_product_forms'.
-  $field_bases['field_product_forms'] = array(
+  $field_bases['field_product_forms'] = [
     'active' => 1,
     'cardinality' => -1,
     'deleted' => 0,
-    'entity_types' => array(),
+    'entity_types' => [],
     'field_name' => 'field_product_forms',
-    'indexes' => array(),
+    'indexes' => [],
     'locked' => 0,
     'module' => 'link',
-    'settings' => array(
-      'attributes' => array(
+    'settings' => [
+      'attributes' => [
         'class' => '',
         'rel' => '',
         'target' => 'default',
-      ),
-      'display' => array(
+      ],
+      'display' => [
         'url_cutoff' => 80,
-      ),
+      ],
       'enable_tokens' => 1,
       'title' => 'optional',
       'title_maxlength' => 128,
       'title_value' => '',
       'url' => 0,
-    ),
+    ],
     'translatable' => 0,
     'type' => 'link_field',
-  );
+  ];
 
   // Exported field_base: 'field_product_locations'.
-  $field_bases['field_product_locations'] = array(
+  $field_bases['field_product_locations'] = [
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
-    'entity_types' => array(),
+    'entity_types' => [],
     'field_name' => 'field_product_locations',
-    'indexes' => array(
-      'format' => array(
+    'indexes' => [
+      'format' => [
         0 => 'format',
-      ),
-    ),
+      ],
+    ],
     'locked' => 0,
     'module' => 'text',
-    'settings' => array(),
+    'settings' => [],
     'translatable' => 0,
     'type' => 'text_long',
-  );
+  ];
 
   // Exported field_base: 'field_product_more_information'.
-  $field_bases['field_product_more_information'] = array(
+  $field_bases['field_product_more_information'] = [
     'active' => 1,
     'cardinality' => -1,
     'deleted' => 0,
-    'entity_types' => array(),
+    'entity_types' => [],
     'field_name' => 'field_product_more_information',
-    'indexes' => array(),
+    'indexes' => [],
     'locked' => 0,
     'module' => 'link',
-    'settings' => array(
-      'attributes' => array(
+    'settings' => [
+      'attributes' => [
         'class' => '',
         'rel' => '',
         'target' => 'default',
-      ),
-      'display' => array(
+      ],
+      'display' => [
         'url_cutoff' => 80,
-      ),
+      ],
       'enable_tokens' => 1,
       'title' => 'optional',
       'title_maxlength' => 128,
       'title_value' => '',
       'url' => 0,
-    ),
+    ],
     'translatable' => 0,
     'type' => 'link_field',
-  );
+  ];
 
   // Exported field_base: 'field_product_objection'.
-  $field_bases['field_product_objection'] = array(
+  $field_bases['field_product_objection'] = [
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
-    'entity_types' => array(),
+    'entity_types' => [],
     'field_name' => 'field_product_objection',
-    'indexes' => array(
-      'format' => array(
+    'indexes' => [
+      'format' => [
         0 => 'format',
-      ),
-    ),
+      ],
+    ],
     'locked' => 0,
     'module' => 'text',
-    'settings' => array(),
+    'settings' => [],
     'translatable' => 0,
     'type' => 'text_long',
-  );
+  ];
 
   // Exported field_base: 'field_product_particulars'.
-  $field_bases['field_product_particulars'] = array(
+  $field_bases['field_product_particulars'] = [
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
-    'entity_types' => array(),
+    'entity_types' => [],
     'field_name' => 'field_product_particulars',
-    'indexes' => array(
-      'format' => array(
+    'indexes' => [
+      'format' => [
         0 => 'format',
-      ),
-    ),
+      ],
+    ],
     'locked' => 0,
     'module' => 'text',
-    'settings' => array(),
+    'settings' => [],
     'translatable' => 0,
     'type' => 'text_long',
-  );
+  ];
 
   // Exported field_base: 'field_product_period'.
-  $field_bases['field_product_period'] = array(
+  $field_bases['field_product_period'] = [
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
-    'entity_types' => array(),
+    'entity_types' => [],
     'field_name' => 'field_product_period',
-    'indexes' => array(
-      'format' => array(
+    'indexes' => [
+      'format' => [
         0 => 'format',
-      ),
-    ),
+      ],
+    ],
     'locked' => 0,
     'module' => 'text',
-    'settings' => array(),
+    'settings' => [],
     'translatable' => 0,
     'type' => 'text_long',
-  );
+  ];
 
   // Exported field_base: 'field_product_procedure'.
-  $field_bases['field_product_procedure'] = array(
+  $field_bases['field_product_procedure'] = [
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
-    'entity_types' => array(),
+    'entity_types' => [],
     'field_name' => 'field_product_procedure',
-    'indexes' => array(
-      'format' => array(
+    'indexes' => [
+      'format' => [
         0 => 'format',
-      ),
-    ),
+      ],
+    ],
     'locked' => 0,
     'module' => 'text',
-    'settings' => array(),
+    'settings' => [],
     'translatable' => 0,
     'type' => 'text_long',
-  );
+  ];
 
   // Exported field_base: 'field_product_related_laws'.
-  $field_bases['field_product_related_laws'] = array(
+  $field_bases['field_product_related_laws'] = [
     'active' => 1,
     'cardinality' => -1,
     'deleted' => 0,
-    'entity_types' => array(),
+    'entity_types' => [],
     'field_name' => 'field_product_related_laws',
-    'indexes' => array(),
+    'indexes' => [],
     'locked' => 0,
     'module' => 'link',
-    'settings' => array(
-      'attributes' => array(
+    'settings' => [
+      'attributes' => [
         'class' => '',
         'rel' => '',
         'target' => 'default',
-      ),
-      'display' => array(
+      ],
+      'display' => [
         'url_cutoff' => 80,
-      ),
+      ],
       'enable_tokens' => 1,
       'title' => 'optional',
       'title_maxlength' => 128,
       'title_value' => '',
       'url' => 0,
-    ),
+    ],
     'translatable' => 0,
     'type' => 'link_field',
-  );
+  ];
 
   // Exported field_base: 'field_product_request'.
-  $field_bases['field_product_request'] = array(
+  $field_bases['field_product_request'] = [
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
-    'entity_types' => array(),
+    'entity_types' => [],
     'field_name' => 'field_product_request',
-    'indexes' => array(
-      'format' => array(
+    'indexes' => [
+      'format' => [
         0 => 'format',
-      ),
-    ),
+      ],
+    ],
     'locked' => 0,
     'module' => 'text',
-    'settings' => array(),
+    'settings' => [],
     'translatable' => 0,
     'type' => 'text_long',
-  );
+  ];
 
   // Exported field_base: 'field_product_request_online'.
-  $field_bases['field_product_request_online'] = array(
+  $field_bases['field_product_request_online'] = [
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
-    'entity_types' => array(),
+    'entity_types' => [],
     'field_name' => 'field_product_request_online',
-    'indexes' => array(),
+    'indexes' => [],
     'locked' => 0,
     'module' => 'link',
-    'settings' => array(
-      'attributes' => array(
+    'settings' => [
+      'attributes' => [
         'class' => '',
         'rel' => '',
         'target' => 'default',
-      ),
-      'display' => array(
+      ],
+      'display' => [
         'url_cutoff' => 80,
-      ),
+      ],
       'enable_tokens' => 1,
       'title' => 'optional',
       'title_maxlength' => 128,
       'title_value' => '',
       'url' => 0,
-    ),
+    ],
     'translatable' => 0,
     'type' => 'link_field',
-  );
+  ];
 
   // Exported field_base: 'field_product_sdu_introduction'.
-  $field_bases['field_product_sdu_introduction'] = array(
+  $field_bases['field_product_sdu_introduction'] = [
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
-    'entity_types' => array(),
+    'entity_types' => [],
     'field_name' => 'field_product_sdu_introduction',
-    'indexes' => array(
-      'format' => array(
+    'indexes' => [
+      'format' => [
         0 => 'format',
-      ),
-    ),
+      ],
+    ],
     'locked' => 0,
     'module' => 'text',
-    'settings' => array(),
+    'settings' => [],
     'translatable' => 0,
     'type' => 'text_long',
-  );
+  ];
 
   // Exported field_base: 'field_related_faq'.
-  $field_bases['field_related_faq'] = array(
+  $field_bases['field_related_faq'] = [
     'active' => 1,
     'cardinality' => -1,
     'deleted' => 0,
-    'entity_types' => array(),
+    'entity_types' => [],
     'field_name' => 'field_related_faq',
-    'indexes' => array(
-      'target_id' => array(
+    'indexes' => [
+      'target_id' => [
         0 => 'target_id',
-      ),
-    ),
+      ],
+    ],
     'locked' => 0,
     'module' => 'entityreference',
-    'settings' => array(
+    'settings' => [
       'handler' => 'base',
-      'handler_settings' => array(
-        'behaviors' => array(
-          'atos_behavior' => array(
+      'handler_settings' => [
+        'behaviors' => [
+          'atos_behavior' => [
             'status' => 1,
-          ),
-          'sdu_behavior' => array(
+          ],
+          'sdu_behavior' => [
             'status' => 1,
-          ),
-          'views-select-list' => array(
+          ],
+          'views-select-list' => [
             'status' => 0,
-          ),
-        ),
-        'sort' => array(
+          ],
+        ],
+        'sort' => [
           'type' => 'none',
-        ),
-        'target_bundles' => array(
+        ],
+        'target_bundles' => [
           'faq' => 'faq',
-        ),
-      ),
+        ],
+      ],
       'target_type' => 'node',
-    ),
+    ],
     'translatable' => 0,
     'type' => 'entityreference',
-  );
+  ];
 
   // Exported field_base: 'field_related_product'.
-  $field_bases['field_related_product'] = array(
+  $field_bases['field_related_product'] = [
     'active' => 1,
     'cardinality' => -1,
     'deleted' => 0,
-    'entity_types' => array(),
+    'entity_types' => [],
     'field_name' => 'field_related_product',
-    'indexes' => array(
-      'target_id' => array(
+    'indexes' => [
+      'target_id' => [
         0 => 'target_id',
-      ),
-    ),
+      ],
+    ],
     'locked' => 0,
     'module' => 'entityreference',
-    'settings' => array(
+    'settings' => [
       'handler' => 'base',
-      'handler_settings' => array(
-        'behaviors' => array(
-          'atos_behavior' => array(
+      'handler_settings' => [
+        'behaviors' => [
+          'atos_behavior' => [
             'status' => 1,
-          ),
-          'sdu_behavior' => array(
+          ],
+          'sdu_behavior' => [
             'status' => 1,
-          ),
-          'views-select-list' => array(
+          ],
+          'views-select-list' => [
             'status' => 0,
-          ),
-        ),
-        'sort' => array(
+          ],
+        ],
+        'sort' => [
           'type' => 'none',
-        ),
-        'target_bundles' => array(
+        ],
+        'target_bundles' => [
           'product' => 'product',
-        ),
-      ),
+        ],
+      ],
       'target_type' => 'node',
-    ),
+    ],
     'translatable' => 0,
     'type' => 'entityreference',
-  );
+  ];
 
   // Exported field_base: 'field_sc_audience'.
-  $field_bases['field_sc_audience'] = array(
+  $field_bases['field_sc_audience'] = [
     'active' => 1,
     'cardinality' => -1,
     'deleted' => 0,
-    'entity_types' => array(),
+    'entity_types' => [],
     'field_name' => 'field_sc_audience',
-    'indexes' => array(
-      'value' => array(
+    'indexes' => [
+      'value' => [
         0 => 'value',
-      ),
-    ),
+      ],
+    ],
     'locked' => 0,
     'module' => 'list',
-    'settings' => array(
-      'allowed_values' => array(
+    'settings' => [
+      'allowed_values' => [
         'particulier' => 'particulier',
         'ondernemer' => 'ondernemer',
-      ),
+      ],
       'allowed_values_function' => '',
-    ),
+    ],
     'translatable' => 0,
     'type' => 'list_text',
-  );
+  ];
 
   return $field_bases;
 }

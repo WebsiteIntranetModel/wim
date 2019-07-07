@@ -8,7 +8,7 @@
  * Implements hook_apachesolr_environments().
  */
 function wim_search_apachesolr_environments() {
-  $export = array();
+  $export = [];
 
   $environment = new stdClass();
   $environment->api_version = 1;
@@ -16,13 +16,13 @@ function wim_search_apachesolr_environments() {
   $environment->name = 'localhost server';
   $environment->url = 'http://solr:8983/solr/drupal';
   $environment->service_class = '';
-  $environment->conf = array(
+  $environment->conf = [
     'apachesolr_search_changed_boost' => '0:0',
     'apachesolr_search_comment_boost' => '0:0',
     'apachesolr_search_date_boost' => '0:0',
     'apachesolr_search_promote_boost' => '0',
     'apachesolr_search_sticky_boost' => '21.0',
-    'apachesolr_search_type_boosts' => array(
+    'apachesolr_search_type_boosts' => [
       'agenda' => '3.0',
       'audio' => '0',
       'page' => '13.0',
@@ -36,8 +36,8 @@ function wim_search_apachesolr_environments() {
       'subject_page' => '0',
       'video' => '0',
       'webform' => '0',
-    ),
-    'field_bias' => array(
+    ],
+    'field_bias' => [
       '_version_' => '0',
       'bm_field_promoted' => '0',
       'bm_field_show_on_overview' => '0',
@@ -101,10 +101,10 @@ function wim_search_apachesolr_environments() {
       'tos_name_formatted' => '0',
       'ts_comments' => '0.5',
       'url' => '0',
-    ),
-  );
-  $environment->index_bundles = array(
-    'node' => array(
+    ],
+  ];
+  $environment->index_bundles = [
+    'node' => [
       0 => 'agenda',
       1 => 'faq',
       2 => 'news',
@@ -113,11 +113,11 @@ function wim_search_apachesolr_environments() {
       5 => 'product',
       6 => 'webform',
       7 => 'linked_keywords',
-    ),
-    'file' => array(
+    ],
+    'file' => [
       0 => 'document',
-    ),
-  );
+    ],
+  ];
   $export['solr'] = $environment;
 
   return $export;

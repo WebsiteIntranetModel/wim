@@ -26,28 +26,28 @@ function atos_esuite_ctools_plugin_directory($module, $plugin) {
  * Implements hook_permission().
  */
 function atos_esuite_permission() {
-  return array(
-    'start atos import' => array(
+  return [
+    'start atos import' => [
       'title' => t('Start Atos import'),
-    ),
-  );
+    ],
+  ];
 }
 
 /**
  * Implements hook_menu().
  */
 function atos_esuite_menu() {
-  $items = array();
+  $items = [];
 
-  $items['admin/config/content/atos-esuite'] = array(
+  $items['admin/config/content/atos-esuite'] = [
     'title' => 'Atos eSuite',
     'description' => 'Atos import settings.',
-    'page arguments' => array('atos_esuite_admin_settings_form'),
+    'page arguments' => ['atos_esuite_admin_settings_form'],
     'page callback' => 'drupal_get_form',
-    'access arguments' => array('start atos import'),
+    'access arguments' => ['start atos import'],
     'type' => MENU_NORMAL_ITEM,
     'file' => 'atos_esuite.admin.inc',
-  );
+  ];
 
   return $items;
 }
@@ -56,7 +56,7 @@ function atos_esuite_menu() {
  * Implements hook_node_delete().
  */
 function atos_esuite_node_delete($node) {
-  if (in_array($node->type, array('product', 'faq'))) {
+  if (in_array($node->type, ['product', 'faq'])) {
     db_delete('atos_esuite')->condition('nid', $node->nid)->execute();
   }
 }
@@ -74,11 +74,11 @@ function atos_esuite_cron() {
  */
 function atos_esuite_cronapi($op, $job = NULL) {
 
-  $items['atos_esuite_cron'] = array(
+  $items['atos_esuite_cron'] = [
     'description' => 'Run Atos E-suite import.',
     'rule' => '37 3 * * *',
     // Default callback "atos_esuite_cron".
-  );
+  ];
 
   return $items;
 }
@@ -94,7 +94,7 @@ function atos_esuite_cronapi($op, $job = NULL) {
  */
 function atos_esuite_get_nid_by_id($id) {
   $q = db_select('atos_esuite', 'a')
-    ->fields('a', array('identifier', 'nid'))
+    ->fields('a', ['identifier', 'nid'])
     ->condition('a.identifier', $id);
   $rs = $q->execute()->fetch();
   if ($rs) {
@@ -114,7 +114,7 @@ function atos_esuite_get_nid_by_id($id) {
  */
 function atos_esuite_get_id_by_nid($nid) {
   $q = db_select('atos_esuite', 'a')
-    ->fields('a', array('identifier', 'nid'))
+    ->fields('a', ['identifier', 'nid'])
     ->condition('a.nid', $nid);
   $result = $q->execute()->fetch();
   if ($result) {
@@ -132,10 +132,10 @@ function atos_esuite_get_id_by_nid($nid) {
  *   Type of node.
  */
 function atos_esuite_notify($nodes, $type) {
-  drupal_mail('atos_esuite', 'notice', variable_get('site_mail'), LANGUAGE_NONE, array(
+  drupal_mail('atos_esuite', 'notice', variable_get('site_mail'), LANGUAGE_NONE, [
     'nodes' => $nodes,
     'type' => $type,
-  ));
+  ]);
 }
 
 /**
@@ -144,21 +144,21 @@ function atos_esuite_notify($nodes, $type) {
 function atos_esuite_mail($key, &$message, $params) {
   switch ($key) {
     case 'notice':
-      $list = array();
+      $list = [];
       $url = variable_get('atos_esuite_url', '');
       $message['subject'] = t('Atos eSuite import notification');
       foreach ($params['nodes'] as $id => $nid) {
-        $list[] = 'Node: ' . url('node/' . $nid, array('absolute' => TRUE)) . PHP_EOL .
-          'Feed: ' . url($url, array(
+        $list[] = 'Node: ' . url('node/' . $nid, ['absolute' => TRUE]) . PHP_EOL .
+          'Feed: ' . url($url, [
             'external' => TRUE,
-            'query' => array('id' => $id),
-          )) . PHP_EOL;
+            'query' => ['id' => $id],
+          ]) . PHP_EOL;
       }
-      $message['body'][] = t('During import !type this nodes was unpublished.!brPlease check them!br!list', array(
+      $message['body'][] = t('During import !type this nodes was unpublished.!brPlease check them!br!list', [
         '!list' => PHP_EOL . implode(PHP_EOL, $list),
         '!type' => $params['type'],
         '!br' => PHP_EOL,
-      ));
+      ]);
       break;
 
     case 'failed':

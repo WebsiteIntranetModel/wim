@@ -73,7 +73,7 @@ class EntityReferenceFieldBehaviorAtos extends EntityReference_BehaviorHandler_A
    */
   public function settingsForm($field, $instance) {
 
-    return array();
+    return [];
   }
 
   /**

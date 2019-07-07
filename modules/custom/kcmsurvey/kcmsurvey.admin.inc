@@ -9,37 +9,37 @@
  */
 function kcmsurvey_admin_form($form, &$form_state) {
 
-  $form['kcmsurvey_script_url'] = array(
+  $form['kcmsurvey_script_url'] = [
     '#type' => 'textfield',
     '#title' => t('KCM Survey script url'),
     '#default_value' => variable_get('kcmsurvey_script_url'),
     '#description' => t('Script provided by https://www.kcmsurvey.nl/ service.'),
-  );
+  ];
 
-  $description = t("Specify pages by using their paths. Enter one path per line. The '*' character is a wildcard. Example paths are %blog for the blog page and %blog-wildcard for every personal blog. %front is the front page.", array(
+  $description = t("Specify pages by using their paths. Enter one path per line. The '*' character is a wildcard. Example paths are %blog for the blog page and %blog-wildcard for every personal blog. %front is the front page.", [
     '%blog' => 'blog',
     '%blog-wildcard' => 'blog/*',
     '%front' => '<front>',
-  ));
+  ]);
   $title = t('Pages');
 
   /** @var array $pages */
-  $pages = variable_get('kcmsurvey', array());
-  $form['kcmsurvey']['visibility'] = array(
+  $pages = variable_get('kcmsurvey', []);
+  $form['kcmsurvey']['visibility'] = [
     '#type' => 'radios',
     '#title' => t('Pages where the script should be active'),
-    '#options' => array(
+    '#options' => [
       BLOCK_VISIBILITY_NOTLISTED => t('All pages except those listed'),
       BLOCK_VISIBILITY_LISTED => t('Only the listed pages'),
-    ),
+    ],
     '#default_value' => isset($pages['visibility']) ? $pages['visibility'] : BLOCK_VISIBILITY_NOTLISTED,
-  );
-  $form['kcmsurvey']['pages'] = array(
+  ];
+  $form['kcmsurvey']['pages'] = [
     '#type' => 'textarea',
     '#title' => '<span class="element-invisible">' . $title . '</span>',
     '#default_value' => isset($pages['pages']) ? $pages['pages'] : '',
     '#description' => $description,
-  );
+  ];
 
   $form['#tree'] = TRUE;
   return system_settings_form($form);

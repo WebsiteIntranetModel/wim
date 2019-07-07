@@ -8,63 +8,63 @@
  * Implements hook_felix_default_block_sets().
  */
 function wim_block_management_felix_default_block_sets() {
-  $sets = array();
-  $sets['default'] = array(
+  $sets = [];
+  $sets['default'] = [
     'name' => 'default',
     'title' => 'Default',
-    'blocks' => array(
-      0 => array(
+    'blocks' => [
+      0 => [
         'module' => 'aggregator',
         'delta' => '*',
-      ),
-      1 => array(
+      ],
+      1 => [
         'module' => 'bean',
         'delta' => '*',
-      ),
-      2 => array(
+      ],
+      2 => [
         'module' => 'block',
         'delta' => '*',
-      ),
-      3 => array(
+      ],
+      3 => [
         'module' => 'custom_lists',
         'delta' => '*',
-      ),
-      4 => array(
+      ],
+      4 => [
         'module' => 'facetapi',
         'delta' => '*',
-      ),
-      5 => array(
+      ],
+      5 => [
         'module' => 'menu',
         'delta' => '*',
-      ),
-      6 => array(
+      ],
+      6 => [
         'module' => 'menu_block',
         'delta' => '*',
-      ),
-      7 => array(
+      ],
+      7 => [
         'module' => 'views',
         'delta' => '*',
-      ),
-    ),
-    'nodetypes' => array(
-      0 => array(
+      ],
+    ],
+    'nodetypes' => [
+      0 => [
         'nodetype' => 'page',
-      ),
-      1 => array(
+      ],
+      1 => [
         'nodetype' => 'product',
-      ),
-      2 => array(
+      ],
+      2 => [
         'nodetype' => 'webform',
-      ),
-    ),
-    'viewmodes' => array(
-      0 => array(
+      ],
+    ],
+    'viewmodes' => [
+      0 => [
         'viewmode' => 'full',
-      ),
-      1 => array(
+      ],
+      1 => [
         'viewmode' => 'introduction',
-      ),
-    ),
-  );
+      ],
+    ],
+  ];
   return $sets;
 }
