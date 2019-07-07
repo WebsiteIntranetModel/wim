@@ -19,15 +19,15 @@
           <a class="accordion-toggle collapsed"
              data-toggle="collapse"
              data-parent="#views-bootstrap-accordion-<?php print $id ?>"
-             aria-controls="panel-<?php print $key ?>"
-             id="control-panel-<?php print $key ?>"
-             href="#panel-<?php print $key ?>">
+             aria-controls="panel-<?php print $id?>-<?php print $key ?>"
+             id="control-panel-<?php print $id?>-<?php print $key ?>"
+             href="#panel-<?php print $id?>-<?php print $key ?>">
             <?php print $titles[$key] ?>
           </a>
         </h3>
       </div>
 
-      <div id="panel-<?php print $key ?>" class="panel-collapse collapse" aria-labelledby="control-panel-<?php print $key ?>">
+      <div id="panel-<?php print $id?>-<?php print $key ?>" class="panel-collapse collapse" aria-labelledby="control-panel-<?php print $key ?>">
         <div class="panel-body">
           <?php print $row ?>
         </div>
