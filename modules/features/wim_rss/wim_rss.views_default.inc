@@ -41,9 +41,9 @@ function _wim_rss_news_display(&$view) {
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
-  $handler->display->display_options['filters']['type']['value'] = array(
+  $handler->display->display_options['filters']['type']['value'] = [
     'news' => 'news',
-  );
+  ];
   $handler->display->display_options['path'] = 'rss-news';
 
   /* Display: News feed */
@@ -68,15 +68,15 @@ function _wim_rss_news_display(&$view) {
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
-  $handler->display->display_options['filters']['type']['value'] = array(
+  $handler->display->display_options['filters']['type']['value'] = [
     'news' => 'news',
-  );
+  ];
   $handler->display->display_options['path'] = 'rss-news.xml';
-  $handler->display->display_options['displays'] = array(
+  $handler->display->display_options['displays'] = [
     'page_2' => 'page_2',
     'default' => 0,
     'page_1' => 0,
-  );
+  ];
 }
 
 /**
@@ -116,9 +116,9 @@ function _wim_rss_agenda_display(&$view) {
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
-  $handler->display->display_options['filters']['type']['value'] = array(
+  $handler->display->display_options['filters']['type']['value'] = [
     'agenda' => 'agenda',
-  );
+  ];
   $handler->display->display_options['path'] = 'rss-agenda';
 
   /* Display: Agenda feed */
@@ -143,21 +143,21 @@ function _wim_rss_agenda_display(&$view) {
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
-  $handler->display->display_options['filters']['type']['value'] = array(
+  $handler->display->display_options['filters']['type']['value'] = [
     'agenda' => 'agenda',
-  );
+  ];
   $handler->display->display_options['path'] = 'rss-agenda.xml';
-  $handler->display->display_options['displays'] = array(
+  $handler->display->display_options['displays'] = [
     'page_1' => 'page_1',
     'default' => 0,
-  );
+  ];
 }
 
 /**
  * Implements hook_views_default_views().
  */
 function wim_rss_views_default_views() {
-  $export = array();
+  $export = [];
 
   $view = new view();
   $view->name = 'rss_feeds';
@@ -211,7 +211,7 @@ function wim_rss_views_default_views() {
     _wim_rss_agenda_display($view);
   }
 
-  $translatables['rss_feeds'] = array(
+  $translatables['rss_feeds'] = [
     t('Master'),
     t('more'),
     t('Apply'),
@@ -232,7 +232,7 @@ function wim_rss_views_default_views() {
     t('Agenda page'),
     t('RSS agenda'),
     t('Agenda feed'),
-  );
+  ];
 
   $export['rss_feeds'] = $view;
 

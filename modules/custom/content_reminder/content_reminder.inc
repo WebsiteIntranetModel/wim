@@ -29,16 +29,16 @@ function _content_reminder_get_required_nodes() {
     $query = db_select('node', 'n');
     $query->leftjoin('node_revision', 'nr', 'nr.vid = n.vid');
     $query->leftjoin('users', 'u', 'u.uid = nr.uid');
-    $query->fields('n', array('nid', 'title', 'changed', 'type'))
-      ->fields('nr', array('status'))
-      ->fields('u', array('mail'));
+    $query->fields('n', ['nid', 'title', 'changed', 'type'])
+      ->fields('nr', ['status'])
+      ->fields('u', ['mail']);
     $query->condition($orcond)->groupBy('n.nid')->orderBy('n.type', 'ASC');
     $results = $query->execute()->fetchAll();
 
     return $results;
   }
   else {
-    return array();
+    return [];
   }
 }
 
@@ -47,23 +47,23 @@ function _content_reminder_get_required_nodes() {
  */
 function _content_reminder_prepare_nodes($nodes, $mailtype) {
 
-  $email_nodes = array();
+  $email_nodes = [];
   foreach ($nodes as $node) {
     if (!isset($email_nodes[$node->mail])) {
-      $email_nodes[$node->mail] = array();
+      $email_nodes[$node->mail] = [];
     }
-    $node->url = l($node->title, 'node/' . $node->nid, array('absolute' => TRUE));
+    $node->url = l($node->title, 'node/' . $node->nid, ['absolute' => TRUE]);
     $email_nodes[$node->mail][] = $node;
   }
 
-  $loaded_node = array();
+  $loaded_node = [];
   foreach ($nodes as $node) {
     $loaded_node[$node->nid] = node_load($node->nid);
   }
 
-  $emailremindernodes = array();
+  $emailremindernodes = [];
   foreach ($loaded_node as $node) {
-    $emails = array();
+    $emails = [];
     if (!empty($node->field_reminder_email)) {
       foreach ($node->field_reminder_email[LANGUAGE_NONE] as $mail_list) {
         foreach ($mail_list as $value) {
@@ -78,7 +78,7 @@ function _content_reminder_prepare_nodes($nodes, $mailtype) {
       $emailremindernodes[$id][$node->nid]->type = $node->type;
       $emailremindernodes[$id][$node->nid]->mail = implode(', ', $emails);
       $emailremindernodes[$id][$node->nid]->status = $node->status;
-      $emailremindernodes[$id][$node->nid]->url = l($node->title, 'node/' . $node->nid, array('absolute' => TRUE));
+      $emailremindernodes[$id][$node->nid]->url = l($node->title, 'node/' . $node->nid, ['absolute' => TRUE]);
     }
   }
 
@@ -114,10 +114,10 @@ function _content_reminder_get_old_nodes() {
     $query->leftjoin('field_data_field_reminder_email', 're', 're.entity_id = n.nid');
     $query->leftjoin('node_revision', 'nr', 'nr.vid = n.vid');
     $query->leftjoin('users', 'u', 'u.uid = nr.uid');
-    $query->fields('n', array('nid', 'title', 'changed', 'type'))
-      ->fields('nr', array('status'))
-      ->fields('u', array('mail'))
-      ->fields('re', array('field_reminder_email_email'));
+    $query->fields('n', ['nid', 'title', 'changed', 'type'])
+      ->fields('nr', ['status'])
+      ->fields('u', ['mail'])
+      ->fields('re', ['field_reminder_email_email']);
     $query->condition($orcond)->groupBy('n.nid')->orderBy('n.type', 'ASC');
     $mailnodes = $query->execute()->fetchAll();
 
@@ -129,7 +129,7 @@ function _content_reminder_get_old_nodes() {
       if (variable_get('content_reminder_types_' . $type->type . '_depub_box', 0) == 1) {
         $query = db_select('node_revision', 'nr');
         $query->leftjoin('node', 'n', 'n.vid = nr.vid');
-        $query->fields('n', array('nid'));
+        $query->fields('n', ['nid']);
         $query->condition($orcond);
         $results = $query->execute()->fetchAll();
         foreach ($results as $result) {
@@ -146,7 +146,7 @@ function _content_reminder_get_old_nodes() {
             // Remove the moderation record's "published" flag.
             db_update('workbench_moderation_node_history')
               ->condition('hid', $node->workbench_moderation['published']->hid)
-              ->fields(array('published' => 0))
+              ->fields(['published' => 0])
               ->execute();
 
             // Moderate the revision.
@@ -170,7 +170,7 @@ function _content_reminder_get_old_nodes() {
     return $mailnodes;
   }
   else {
-    return array();
+    return [];
   }
 
 }
@@ -180,12 +180,12 @@ function _content_reminder_get_old_nodes() {
  */
 function _content_reminder_send_mails($mailnodes, $mailtype) {
   foreach ($mailnodes as $mail => $nodes) {
-    $build = array(
+    $build = [
       '#theme' => 'content_reminder',
       '#nodes' => $nodes,
       '#mailtype' => $mailtype,
       '#content_reminder_text' => variable_get('content_reminder_' . $mailtype . '_text', 'Inhoud die verlopen is of binnenkort verloopt.'),
-    );
+    ];
 
     if ($mailtype === 'expire') {
       $subject = variable_get('content_reminder_expire_subject', '@count item(s) zijn verlopen en offline geplaatst');
@@ -197,18 +197,18 @@ function _content_reminder_send_mails($mailnodes, $mailtype) {
 
     $mail_token = microtime();
     $from = variable_get('site_mail');
-    $message = array(
+    $message = [
       'id' => 'custom_' . $mail_token,
       'to' => $mail,
       'subject' => $subject,
       'body' => drupal_render($build),
-      'headers' => array(
+      'headers' => [
         'From' => $from,
         'Sender' => $from,
         'Return-Path' => $from,
         'Content-Type' => 'text/html; charset=UTF-8; format=flowed',
-      ),
-    );
+      ],
+    ];
 
     $system = drupal_mail_system('custom', $mail_token);
     $system->mail($message);

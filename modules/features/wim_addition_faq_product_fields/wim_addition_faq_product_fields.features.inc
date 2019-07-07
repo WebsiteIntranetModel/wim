@@ -9,6 +9,6 @@
  */
 function wim_addition_faq_product_fields_ctools_plugin_api($module = NULL, $api = NULL) {
   if ($module == "field_group" && $api == "field_group") {
-    return array("version" => "1");
+    return ["version" => "1"];
   }
 }

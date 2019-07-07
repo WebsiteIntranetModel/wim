@@ -4,64 +4,64 @@
  * Form for callback 'admin/config/search/apachesolr/synonyms'.
  */
 function wim_synonyms_admin_list_form($form, &$form_state) {
-  $form['synonyms'] = array(
+  $form['synonyms'] = [
     '#title' => t("Synonyms"),
     '#type' => 'fieldset',
     '#tree' => TRUE,
     '#theme' => 'wim_synonyms_table_synonyms',
-  );
+  ];
   $rs = db_select('wim_synonyms', 's')
-    ->fields('s', array('keyword', 'synonyms'))
+    ->fields('s', ['keyword', 'synonyms'])
     ->orderBy('s.keyword', 'ASC')
     ->execute();
 
   foreach ($rs as $row) {
-    $form['synonyms'][$row->keyword] = array(
+    $form['synonyms'][$row->keyword] = [
       '#tree' => TRUE,
-    );
-    $form['synonyms'][$row->keyword][$row->keyword . '_keyword'] = array(
+    ];
+    $form['synonyms'][$row->keyword][$row->keyword . '_keyword'] = [
       '#type' => 'textfield',
       '#disabled' => TRUE,
       '#default_value' => $row->keyword,
-    );
-    $form['synonyms'][$row->keyword][$row->keyword . '_synonyms'] = array(
+    ];
+    $form['synonyms'][$row->keyword][$row->keyword . '_synonyms'] = [
       '#type' => 'textfield',
       '#disabled' => TRUE,
       '#default_value' => $row->synonyms,
-    );
-    $form['synonyms'][$row->keyword][$row->keyword . '_delete'] = array(
+    ];
+    $form['synonyms'][$row->keyword][$row->keyword . '_delete'] = [
       '#type' => 'markup',
       '#markup' => l(t('Delete'), 'admin/config/search/apachesolr/synonyms/delete/' . $row->keyword),
-    );
+    ];
 
-    $form['synonyms']['save-button'] = array(
+    $form['synonyms']['save-button'] = [
       '#type' => 'submit',
       '#value' => t('Reload core (required for new changes to take effect)'),
-      '#submit' => array('wim_synonyms_save_submit'),
-    );
+      '#submit' => ['wim_synonyms_save_submit'],
+    ];
   }
 
-  $form['new-synonym'] = array(
+  $form['new-synonym'] = [
     '#title' => t("New synonym"),
     '#type' => 'fieldset',
     '#tree' => TRUE,
-  );
-  $form['new-synonym']['keyword'] = array(
+  ];
+  $form['new-synonym']['keyword'] = [
     '#type' => 'textfield',
     '#title' => t('Keyword'),
     '#description' => t("Comma-separated")
-  );
-  $form['new-synonym']['synonyms'] = array(
+  ];
+  $form['new-synonym']['synonyms'] = [
     '#type' => 'textfield',
     '#title' => t('Synonyms'),
     '#description' => t("Comma-separated")
-  );
-  $form['new-synonym']['add'] = array(
+  ];
+  $form['new-synonym']['add'] = [
     '#type' => 'submit',
     '#value' => t('Add'),
-    '#submit' => array('wim_synonyms_add_synonym_submit'),
-    '#validate' => array('wim_synonyms_add_synonym_validate'),
-  );
+    '#submit' => ['wim_synonyms_add_synonym_submit'],
+    '#validate' => ['wim_synonyms_add_synonym_validate'],
+  ];
 
   return $form;
 }
@@ -76,7 +76,7 @@ function wim_synonyms_save_submit($form, $form_state) {
       $synonyms = $form_state['values']['synonyms'][$key][$key . '_synonyms'];
 
       db_update('wim_synonyms')
-        ->fields(array('synonyms' => $synonyms))
+        ->fields(['synonyms' => $synonyms])
         ->condition('keyword', $keyword)
         ->execute();
     }
@@ -108,7 +108,7 @@ function wim_synonyms_add_synonym_validate($form, $form_state) {
 
   $keyword_exists = db_select('wim_synonyms', 's')
     ->condition('keyword', $new_keyword)
-    ->fields('s', array('keyword'))
+    ->fields('s', ['keyword'])
     ->execute()
     ->fetchField();
 
@@ -125,18 +125,18 @@ function wim_synonyms_add_synonym_submit($form, $form_state) {
   $new_synonyms = $form_state['values']['new-synonym']['synonyms'];
   drupal_set_message(
     t('Added @keyword with synonyms @synonyms',
-      array(
+      [
         '@keyword' => $new_keywords,
         '@synonyms' => $new_synonyms,
-      )
+      ]
     )
   );
 
   db_insert('wim_synonyms')
-    ->fields(array(
+    ->fields([
       'keyword' => $new_keywords,
       'synonyms' => $new_synonyms,
-    ))
+    ])
     ->execute();
 
   // Add to the managed SOLR service.
@@ -180,11 +180,11 @@ function wim_synonyms_add_synonym_submit($form, $form_state) {
 function theme_wim_synonyms_table_synonyms($form) {
   $syn_form = &$form['synonyms']; // Shortcut
 
-  $rows = array();
-  $unrendered = array();
+  $rows = [];
+  $unrendered = [];
   foreach (element_children($syn_form) as $key) {
     if (!isset($syn_form[$key]['#type'])) {
-      $row = array();
+      $row = [];
       $row[] = drupal_render($syn_form[$key][$key . '_keyword']);
       $row[] = drupal_render($syn_form[$key][$key . '_synonyms']);
       $row[] = drupal_render($syn_form[$key][$key . '_delete']);
@@ -196,8 +196,8 @@ function theme_wim_synonyms_table_synonyms($form) {
     }
   }
 
-  $header = array(t('Trefwoord'), t('Synonyms'), t('Actions'));
-  $output = theme('table', array('header' => $header, 'rows' => $rows));
+  $header = [t('Trefwoord'), t('Synonyms'), t('Actions')];
+  $output = theme('table', ['header' => $header, 'rows' => $rows]);
 
   foreach ($unrendered as $key) {
     $output .= drupal_render($syn_form[$key]);
@@ -210,12 +210,12 @@ function theme_wim_synonyms_table_synonyms($form) {
  * Form callback from 'admin/config/search/apachesolr/synonyms/list/delete/%'.
  */
 function wim_synonyms_admin_list_delete_form($form, $form_state, $keyword) {
-  return confirm_form(array(
-    'keyword' => array(
+  return confirm_form([
+    'keyword' => [
       '#type' => 'value',
       '#value' => $keyword,
-    ),
-  ), t('Are you sure you want to remove the synonyms from the keyword %keyword?', array('%keyword' => $keyword)), 'admin/config/search/apachesolr/synonyms', t('This action cannot be undone.'), t('Remove keyword'), t('Cancel'));
+    ],
+  ], t('Are you sure you want to remove the synonyms from the keyword %keyword?', ['%keyword' => $keyword]), 'admin/config/search/apachesolr/synonyms', t('This action cannot be undone.'), t('Remove keyword'), t('Cancel'));
 }
 
 /**
@@ -247,9 +247,9 @@ function wim_synonyms_admin_list_delete_form_submit($form, &$form_state) {
     $repository->deleteByMainWord($delete_keyword, 'mytag');
   }
   
-  drupal_set_message(t('The keyword %keyword has been removed.', array('%keyword' => $form_state['values']['keyword'])));
+  drupal_set_message(t('The keyword %keyword has been removed.', ['%keyword' => $form_state['values']['keyword']]));
 
-  $form_state['redirect'] = array(
+  $form_state['redirect'] = [
     'admin/config/search/apachesolr/synonyms',
-  );
+  ];
 }

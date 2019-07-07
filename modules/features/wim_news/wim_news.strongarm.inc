@@ -8,7 +8,7 @@
  * Implements hook_strongarm().
  */
 function wim_news_strongarm() {
-  $export = array();
+  $export = [];
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -21,57 +21,57 @@ function wim_news_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_node__news';
-  $strongarm->value = array(
-    'view_modes' => array(
-      'teaser' => array(
+  $strongarm->value = [
+    'view_modes' => [
+      'teaser' => [
         'custom_settings' => TRUE,
-      ),
-      'full' => array(
+      ],
+      'full' => [
         'custom_settings' => FALSE,
-      ),
-      'rss' => array(
+      ],
+      'rss' => [
         'custom_settings' => FALSE,
-      ),
-      'diff_standard' => array(
+      ],
+      'diff_standard' => [
         'custom_settings' => FALSE,
-      ),
-      'short' => array(
+      ],
+      'short' => [
         'custom_settings' => TRUE,
-      ),
-      'search_index' => array(
+      ],
+      'search_index' => [
         'custom_settings' => FALSE,
-      ),
-      'search_result' => array(
+      ],
+      'search_result' => [
         'custom_settings' => TRUE,
-      ),
-      'felix' => array(
+      ],
+      'felix' => [
         'custom_settings' => FALSE,
-      ),
-      'token' => array(
+      ],
+      'token' => [
         'custom_settings' => FALSE,
-      ),
-    ),
-    'extra_fields' => array(
-      'form' => array(
-        'title' => array(
+      ],
+    ],
+    'extra_fields' => [
+      'form' => [
+        'title' => [
           'weight' => '0',
-        ),
-        'locations' => array(
+        ],
+        'locations' => [
           'weight' => '8',
-        ),
-        'metatags' => array(
+        ],
+        'metatags' => [
           'weight' => '11',
-        ),
-        'redirect' => array(
+        ],
+        'redirect' => [
           'weight' => '10',
-        ),
-        'path' => array(
+        ],
+        'path' => [
           'weight' => '9',
-        ),
-      ),
-      'display' => array(),
-    ),
-  );
+        ],
+      ],
+      'display' => [],
+    ],
+  ];
   $export['field_bundle_settings_node__news'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -85,7 +85,7 @@ function wim_news_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'menu_options_news';
-  $strongarm->value = array();
+  $strongarm->value = [];
   $export['menu_options_news'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -99,9 +99,9 @@ function wim_news_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'node_options_news';
-  $strongarm->value = array(
+  $strongarm->value = [
     0 => 'status',
-  );
+  ];
   $export['node_options_news'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -171,10 +171,10 @@ function wim_news_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'xmlsitemap_settings_node_news';
-  $strongarm->value = array(
+  $strongarm->value = [
     'status' => '1',
     'priority' => '0.5',
-  );
+  ];
   $export['xmlsitemap_settings_node_news'] = $strongarm;
 
   return $export;

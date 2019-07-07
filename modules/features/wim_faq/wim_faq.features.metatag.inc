@@ -8,21 +8,21 @@
  * Implements hook_metatag_export_default().
  */
 function wim_faq_metatag_export_default() {
-  $config = array();
+  $config = [];
 
   // Exported Metatag config instance: node:faq.
-  $config['node:faq'] = array(
+  $config['node:faq'] = [
     'instance' => 'node:faq',
     'disabled' => FALSE,
-    'config' => array(
-      'title' => array(
+    'config' => [
+      'title' => [
         'value' => '[node:title] | [site:name]',
-      ),
-      'image_src' => array(
+      ],
+      'image_src' => [
         'value' => '[node:field_image]',
-      ),
-    ),
-  );
+      ],
+    ],
+  ];
 
   return $config;
 }

@@ -8,5 +8,5 @@
  * Implements hook_views_api().
  */
 function wim_rss_views_api($module = NULL, $api = NULL) {
-  return array('api' => '3.0');
+  return ['api' => '3.0'];
 }

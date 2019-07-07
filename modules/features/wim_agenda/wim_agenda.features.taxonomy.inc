@@ -8,5 +8,5 @@
  * Implements hook_taxonomy_default_vocabularies().
  */
 function wim_agenda_taxonomy_default_vocabularies() {
-  return array();
+  return [];
 }

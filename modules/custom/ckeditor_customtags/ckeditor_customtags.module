@@ -10,7 +10,7 @@
 function ckeditor_customtags_preprocess_html(&$variables) {
   global $theme;
   if ($theme === 'adminimal') {
-    drupal_add_css(drupal_get_path('module', 'ckeditor_customtags') . '/ckeditor_customtags.adminimal.css', array('weight' => CSS_THEME));
+    drupal_add_css(drupal_get_path('module', 'ckeditor_customtags') . '/ckeditor_customtags.adminimal.css', ['weight' => CSS_THEME]);
   }
 }
 
@@ -34,11 +34,11 @@ function ckeditor_customtags_process_form(&$form, &$form_state) {
   if (!$added && isset($js['setting'])) {
     $setting = call_user_func_array('array_merge_recursive', $js['setting']);
     if (isset($setting['ckeditor']) || isset($setting['wysiwyg']['configs']['ckeditor'])) {
-      drupal_add_js(array(
-        'ckeditor_customtags' => array(
+      drupal_add_js([
+        'ckeditor_customtags' => [
           'module_path' => base_path() . drupal_get_path('module', 'ckeditor_customtags'),
-        ),
-      ), 'setting');
+        ],
+      ], 'setting');
     }
     $added = TRUE;
   }
@@ -51,144 +51,144 @@ function ckeditor_customtags_process_form(&$form, &$form_state) {
 function ckeditor_customtags_wysiwyg_plugin($editor, $version) {
   if ($editor === 'ckeditor') {
     $path = drupal_get_path('module', 'ckeditor_customtags');
-    $plugins['ckeditor_citebutton'] = array(
+    $plugins['ckeditor_citebutton'] = [
       'path' => $path . '/plugins/cite',
       'filename' => 'cite.js',
-      'buttons' => array(
+      'buttons' => [
         'ckeditor_citebutton' => t('Cite'),
-      ),
-      'extensions' => array(
+      ],
+      'extensions' => [
         'ckeditor' => t('ckeditor'),
-      ),
-      'options' => array(),
+      ],
+      'options' => [],
       'load' => TRUE,
       'internal' => FALSE,
-      'extended_valid_elements' => array(),
-    );
+      'extended_valid_elements' => [],
+    ];
 
-    $plugins['ckeditor_abbrbutton'] = array(
+    $plugins['ckeditor_abbrbutton'] = [
       'path' => $path . '/plugins/abbr',
       'filename' => 'abbr.js',
-      'buttons' => array(
+      'buttons' => [
         'ckeditor_abbrbutton' => t('Abbreviation'),
-      ),
-      'extensions' => array(
+      ],
+      'extensions' => [
         'ckeditor' => t('ckeditor'),
-      ),
-      'options' => array(),
+      ],
+      'options' => [],
       'load' => TRUE,
       'internal' => FALSE,
-      'extended_valid_elements' => array(),
-    );
+      'extended_valid_elements' => [],
+    ];
 
-    $plugins['ckeditor_acronym_button'] = array(
+    $plugins['ckeditor_acronym_button'] = [
       'path' => $path . '/plugins/acronym',
       'filename' => 'acronym.js',
-      'buttons' => array(
+      'buttons' => [
         'ckeditor_acronym_button' => t('Acronym'),
-      ),
-      'extensions' => array(
+      ],
+      'extensions' => [
         'ckeditor' => t('ckeditor'),
-      ),
-      'options' => array(),
+      ],
+      'options' => [],
       'load' => TRUE,
       'internal' => FALSE,
-      'extended_valid_elements' => array(),
-    );
+      'extended_valid_elements' => [],
+    ];
 
-    $plugins['ckeditor_definitionlist_button'] = array(
+    $plugins['ckeditor_definitionlist_button'] = [
       'path' => $path . '/plugins/definitionlist',
       'filename' => 'definitionlist.js',
-      'buttons' => array(
+      'buttons' => [
         'ckeditor_definitionlist_button' => t('Definition List'),
-      ),
-      'extensions' => array(
+      ],
+      'extensions' => [
         'ckeditor' => t('ckeditor'),
-      ),
-      'options' => array(),
+      ],
+      'options' => [],
       'load' => TRUE,
       'internal' => FALSE,
-      'extended_valid_elements' => array(),
-    );
+      'extended_valid_elements' => [],
+    ];
 
-    $plugins['ckeditor_insertionbutton'] = array(
+    $plugins['ckeditor_insertionbutton'] = [
       'path' => $path . '/plugins/insertion',
       'filename' => 'insertion.js',
-      'buttons' => array(
+      'buttons' => [
         'ckeditor_insertionbutton' => t('Insertion'),
-      ),
-      'extensions' => array(
+      ],
+      'extensions' => [
         'ckeditor' => t('ckeditor'),
-      ),
-      'options' => array(),
+      ],
+      'options' => [],
       'load' => TRUE,
       'internal' => FALSE,
-      'extended_valid_elements' => array(),
-    );
+      'extended_valid_elements' => [],
+    ];
 
-    $plugins['ckeditor_languagebutton'] = array(
+    $plugins['ckeditor_languagebutton'] = [
       'path' => $path . '/plugins/language',
       'filename' => 'language.js',
-      'buttons' => array(
+      'buttons' => [
         'ckeditor_languagebutton' => t('Language'),
-      ),
-      'extensions' => array(
+      ],
+      'extensions' => [
         'ckeditor' => t('ckeditor'),
-      ),
-      'options' => array(),
+      ],
+      'options' => [],
       'load' => TRUE,
       'internal' => FALSE,
-      'extended_valid_elements' => array(),
-    );
+      'extended_valid_elements' => [],
+    ];
 
-    $plugins['ckeditor_deletionbutton'] = array(
+    $plugins['ckeditor_deletionbutton'] = [
       'path' => $path . '/plugins/deletion',
       'filename' => 'deletion.js',
-      'buttons' => array(
+      'buttons' => [
         'ckeditor_deletionbutton' => t('Deletion'),
-      ),
-      'extensions' => array(
+      ],
+      'extensions' => [
         'ckeditor' => t('ckeditor'),
-      ),
-      'options' => array(),
+      ],
+      'options' => [],
       'load' => TRUE,
       'internal' => FALSE,
-      'extended_valid_elements' => array(),
-    );
+      'extended_valid_elements' => [],
+    ];
 
-    $plugins['imagemaps'] = array(
+    $plugins['imagemaps'] = [
       'path' => $path . '/plugins/imagemaps',
       'filename' => 'plugin.js',
-      'buttons' => array(
+      'buttons' => [
         'imagemaps' => t('Image Maps'),
-      ),
-      'extensions' => array(
+      ],
+      'extensions' => [
         'ckeditor' => t('ckeditor'),
-      ),
-      'options' => array(),
+      ],
+      'options' => [],
       'load' => TRUE,
       'internal' => FALSE,
-      'extended_valid_elements' => array(),
-    );
+      'extended_valid_elements' => [],
+    ];
 
     if (file_exists('sites/all/libraries/ckeditor_plugins/a11ychecker/a11ychecker')) {
-      $plugins['a11ychecker'] = array(
+      $plugins['a11ychecker'] = [
         'path' => 'sites/all/libraries/ckeditor_plugins/a11ychecker/a11ychecker',
-        'buttons' => array(
+        'buttons' => [
           'A11ychecker' => t('Accessibility Checker'),
-        ),
+        ],
         'load' => TRUE,
         'internal' => FALSE,
-      );
+      ];
 
-      $plugins['balloonpanel'] = array(
+      $plugins['balloonpanel'] = [
         'path' => 'sites/all/libraries/ckeditor_plugins/a11ychecker/balloonpanel',
-        'extensions' => array(
+        'extensions' => [
           'Balloonpanel' => t('Accessibility Checker GUI: Balloon panel'),
-        ),
+        ],
         'load' => TRUE,
         'internal' => FALSE,
-      );
+      ];
     }
 
     return $plugins;

@@ -4,26 +4,26 @@
  * Implements hook_schema().
  */
 function wim_synonyms_schema() {
-  $schema = array();
+  $schema = [];
 
-  $schema['wim_synonyms'] = array(
+  $schema['wim_synonyms'] = [
     'description' => 'Table which saves synonyms for solr.',
-    'fields' => array(
-      'keyword' => array(
+    'fields' => [
+      'keyword' => [
         'description' => 'The keyword.',
         'type' => 'varchar',
         'length' => '255',
         'not null' => TRUE,
-      ),
-      'synonyms' => array(
+      ],
+      'synonyms' => [
         'description' => 'The synonyms of the keyword.',
         'type' => 'varchar',
         'length' => '255',
         'not null' => TRUE,
-      ),
-    ),
-    'primary key' => array('keyword'),
-  );
+      ],
+    ],
+    'primary key' => ['keyword'],
+  ];
 
   return $schema;
 }
@@ -33,7 +33,7 @@ function wim_synonyms_schema() {
  */
 function wim_synonyms_install() {
   $role = user_role_load_by_name('webmaster');
-  user_role_grant_permissions($role->rid, array('administer solr synonyms'));
+  user_role_grant_permissions($role->rid, ['administer solr synonyms']);
 }
 
 /**

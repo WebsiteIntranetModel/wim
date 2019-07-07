@@ -8,14 +8,14 @@
  * Implements hook_taxonomy_default_vocabularies().
  */
 function wim_core_taxonomy_default_vocabularies() {
-  return array(
-    'tags' => array(
+  return [
+    'tags' => [
       'name' => 'Tags',
       'machine_name' => 'tags',
       'description' => '',
       'hierarchy' => 0,
       'module' => 'taxonomy',
       'weight' => 0,
-    ),
-  );
+    ],
+  ];
 }

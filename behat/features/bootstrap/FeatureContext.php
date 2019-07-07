@@ -31,7 +31,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
    * @BeforeSuite
    */
   public static function addLogoutItem(BeforeSuiteScope $scope) {
-    $item = array(
+    $item = [
       'link_path' => 'user/logout',
       'link_title' => 'Log out',
       'menu_name' => 'main-menu',
@@ -39,7 +39,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
       'language' => LANGUAGE_NONE,
       'plid' => 0,
       'module' => 'menu',
-    );
+    ];
 
     menu_link_save($item);
   }
@@ -63,7 +63,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
    * @BeforeSuite
    */
   public static function enableFeaturesModules(BeforeSuiteScope $scope) {
-    module_enable(array('atos_esuite'));
+    module_enable(['atos_esuite']);
   }
 
   /**
@@ -72,7 +72,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
    * @BeforeSuite
    */
   public static function enableFixtureModules(BeforeSuiteScope $scope) {
-    module_enable(array('migrate', 'wim_fixtures'));
+    module_enable(['migrate', 'wim_fixtures']);
     variable_set('admin_menu_position_fixed', 0);
 
     $machine_names = self::getAllFixtureMigrations(TRUE);
@@ -98,7 +98,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
   public static function disableFixtureModules(AfterSuiteScope $scope) {
     $machine_names = self::getAllFixtureMigrations();
     self::revertMigrations($machine_names);
-    module_disable(array('migrate', 'wim_fixtures'));
+    module_disable(['migrate', 'wim_fixtures']);
     variable_del('admin_menu_position_fixed');
   }
 
@@ -124,12 +124,12 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
    */
   protected static function getAllFixtureMigrations($register = FALSE) {
     if (!module_exists('wim_fixtures')) {
-      return array();
+      return [];
     }
 
     module_load_include('inc', 'wim_fixtures', 'wim_fixtures.migrate');
     $migrations = wim_fixtures_migrate_api();
-    $machine_names = array();
+    $machine_names = [];
     foreach ($migrations['migrations'] as $name => $migration) {
       $machine_names[] = $name;
     }
@@ -171,7 +171,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
    * @throws \Exception
    */
   protected static function revertMigrations($machine_names) {
-    $dependencies = array();
+    $dependencies = [];
     foreach ($machine_names as $machine_name) {
       $migration = Migration::getInstance($machine_name);
       if ($migration) {
@@ -208,7 +208,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
     $migration = Migration::getInstance($machine_name);
 
     if ($migration) {
-      $migration->processRollback(array('force' => TRUE));
+      $migration->processRollback(['force' => TRUE]);
     }
   }
 
@@ -218,9 +218,9 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
    * @BeforeScenario @cookie
    */
   public function enableCookieModule() {
-    module_enable(array('cookie_consent'));
+    module_enable(['cookie_consent']);
     variable_set('cookie_consent_style', 'custom');
-    variable_set('cookie_consent_roles', drupal_map_assoc(array(DRUPAL_ANONYMOUS_RID)));
+    variable_set('cookie_consent_roles', drupal_map_assoc([DRUPAL_ANONYMOUS_RID]));
     variable_set('cookie_consent_analytics', 'google_analytics/googleanalytics.js');
   }
 
@@ -232,7 +232,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
   public function disableCookieModule($event) {
     variable_del('cookie_consent_style');
     variable_del('cookie_consent_roles');
-    module_disable(array('cookie_consent'));
+    module_disable(['cookie_consent']);
   }
 
   /**
@@ -254,10 +254,10 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
     if (empty($dropDown)) {
       throw new \Exception('The page does not have the dropdown with label "' . $select . '"');
     }
-    $optionField = $dropDown->find('named', array(
+    $optionField = $dropDown->find('named', [
       'option',
       $option,
-    ));
+    ]);
 
     if (NULL === $optionField) {
       throw new ElementNotFoundException($this->getSession(), 'select option field', 'id|name|label|value', $option);
@@ -287,10 +287,10 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
     if (empty($dropDown)) {
       throw new \Exception('The page does not have the dropdown with label "' . $select . '"');
     }
-    $optionField = $dropDown->find('named', array(
+    $optionField = $dropDown->find('named', [
       'option',
       $option,
-    ));
+    ]);
 
     if (NULL === $optionField) {
       throw new ElementNotFoundException($this->getSession(), 'select option field', 'id|name|label|value', $option);
@@ -315,10 +315,10 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
    */
   public function viewingNodeWithTheTitle($type, $title) {
     // Fetch node with given title.
-    $result = db_query("SELECT n.nid FROM {node} n WHERE n.title = :title AND n.type = :type", array(
+    $result = db_query("SELECT n.nid FROM {node} n WHERE n.title = :title AND n.type = :type", [
       ":title" => $title,
       ":type" => $type,
-    ));
+    ]);
     $nid = $result->fetchField();
 
     if (!$nid) {
@@ -394,9 +394,9 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
     $popup_element = $autocomplete->find('xpath', "//div[text() = '{$popup}']");
 
     if (empty($popup_element)) {
-      throw new \Exception(t('Could not find autocomplete popup text @popup', array(
+      throw new \Exception(t('Could not find autocomplete popup text @popup', [
         '@popup' => $popup,
-      )));
+      ]));
     }
 
     $popup_element->click();
@@ -502,10 +502,10 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
       $element = $page->findField($name);
     }
     else {
-      $element = $page->find('named', array(
+      $element = $page->find('named', [
         'button',
         $this->getSession()->getSelectorsHandler()->xpathLiteral($name),
-      ));
+      ]);
     }
 
     if (empty($element)) {
@@ -605,7 +605,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
    */
   public function iClickNthElement($num, $link) {
     $page = $this->getSession()->getPage();
-    $links = $page->findAll('named', array('link', $link));
+    $links = $page->findAll('named', ['link', $link]);
     if ((int) $num > count($links)) {
       throw new \Exception(sprintf('The "%s" nth link was not found on the page %s', $num, $this->getSession()->getCurrentUrl()));
     }

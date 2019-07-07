@@ -10,11 +10,11 @@ module_load_include('inc', 'external_crawler');
  * XML types which we support.
  */
 function _xml_crawler_get_xml_types($type = NULL) {
-  $xml_types = array(
+  $xml_types = [
     'cvdr' => 'CVDR',
     'gvop' => 'GVOP',
     'durp' => 'DURP',
-  );
+  ];
 
   if ($new_types = module_invoke_all('xml_crawler_xml_types')) {
     $xml_types = array_merge($xml_types, $new_types);
@@ -30,7 +30,7 @@ function _xml_crawler_get_xml_types($type = NULL) {
  *    Site object.
  */
 function _xml_crawler_crawle_xml(stdClass $site) {
-  $pages = array();
+  $pages = [];
 
   // Replace tokens.
   $url = token_replace($site->url);
@@ -76,8 +76,8 @@ function _xml_crawler_crawle_xml(stdClass $site) {
  */
 function _xml_crawler_durp_get_pages(DOMDocument $dom) {
   $base_url = NULL;
-  $pages = array();
-  $xml_pages = array();
+  $pages = [];
+  $xml_pages = [];
 
   foreach ($dom->getElementsByTagName('Dossier') as $record) {
     // Get detailed XMLs.
@@ -97,7 +97,7 @@ function _xml_crawler_durp_get_pages(DOMDocument $dom) {
       foreach ($sub_xml_dom->getElementsByTagName('Plan') as $sub_xml_record) {
         // Get basic page URL.
         $base_url = $sub_xml_record->getElementsByTagName('Onderdelen')->item(0)->getAttribute('BasisURL');
-        $sub_pages = array();
+        $sub_pages = [];
         if ($base_url) {
           // Find all subpages.
           foreach ($sub_xml_record->getElementsByTagName('Toelichting') as $sub_record) {
@@ -134,7 +134,7 @@ function _xml_crawler_durp_get_pages(DOMDocument $dom) {
  */
 function _xml_crawler_gvop_get_pages(DOMDocument $dom) {
   $xpath = new DOMXpath($dom);
-  $pages = array();
+  $pages = [];
 
   foreach ($dom->getElementsByTagName('gzd') as $record) {
     // Using xpath to find child element.
@@ -158,7 +158,7 @@ function _xml_crawler_gvop_get_pages(DOMDocument $dom) {
  *    Pages urls.
  */
 function _xml_crawler_cvdr_get_pages(DOMDocument $dom) {
-  $pages = array();
+  $pages = [];
 
   foreach ($dom->getElementsByTagName('gzd') as $record) {
     $page_url = $record->getElementsByTagName('publicatieurl_xhtml')->item(0)->nodeValue;

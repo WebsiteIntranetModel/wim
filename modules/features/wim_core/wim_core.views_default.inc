@@ -8,7 +8,7 @@
  * Implements hook_views_default_views().
  */
 function wim_core_views_default_views() {
-  $export = array();
+  $export = [];
 
   $view = new view();
   $view->name = 'administration_content';
@@ -36,7 +36,7 @@ function wim_core_views_default_views() {
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = 50;
   $handler->display->display_options['style_plugin'] = 'table';
-  $handler->display->display_options['style_options']['columns'] = array(
+  $handler->display->display_options['style_options']['columns'] = [
     'views_bulk_operations' => 'views_bulk_operations',
     'title' => 'title',
     'timestamp' => 'title',
@@ -47,72 +47,72 @@ function wim_core_views_default_views() {
     'changed' => 'changed',
     'edit_node' => 'edit_node',
     'delete_node' => 'edit_node',
-  );
+  ];
   $handler->display->display_options['style_options']['default'] = 'created';
-  $handler->display->display_options['style_options']['info'] = array(
-    'views_bulk_operations' => array(
+  $handler->display->display_options['style_options']['info'] = [
+    'views_bulk_operations' => [
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
-    ),
-    'title' => array(
+    ],
+    'title' => [
       'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '&nbsp;',
       'empty_column' => 0,
-    ),
-    'timestamp' => array(
+    ],
+    'timestamp' => [
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
-    ),
-    'type' => array(
+    ],
+    'type' => [
       'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
-    ),
-    'name' => array(
+    ],
+    'name' => [
       'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
-    ),
-    'status' => array(
+    ],
+    'status' => [
       'sortable' => 1,
       'default_sort_order' => 'desc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
-    ),
-    'created' => array(
+    ],
+    'created' => [
       'sortable' => 1,
       'default_sort_order' => 'desc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
-    ),
-    'changed' => array(
+    ],
+    'changed' => [
       'sortable' => 1,
       'default_sort_order' => 'desc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
-    ),
-    'edit_node' => array(
+    ],
+    'edit_node' => [
       'align' => '',
       'separator' => '&emsp;',
       'empty_column' => 0,
-    ),
-    'delete_node' => array(
+    ],
+    'delete_node' => [
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
-    ),
-  );
+    ],
+  ];
   $handler->display->display_options['style_options']['empty_table'] = TRUE;
   /* Header: Global: Result summary */
   $handler->display->display_options['header']['result']['id'] = 'result';
@@ -136,10 +136,10 @@ function wim_core_views_default_views() {
   $handler->display->display_options['relationships']['term_node_tid']['id'] = 'term_node_tid';
   $handler->display->display_options['relationships']['term_node_tid']['table'] = 'node';
   $handler->display->display_options['relationships']['term_node_tid']['field'] = 'term_node_tid';
-  $handler->display->display_options['relationships']['term_node_tid']['vocabularies'] = array(
+  $handler->display->display_options['relationships']['term_node_tid']['vocabularies'] = [
     'forums' => 0,
     'tags' => 0,
-  );
+  ];
   /* Field: Bulk operations: Content */
   $handler->display->display_options['fields']['views_bulk_operations']['id'] = 'views_bulk_operations';
   $handler->display->display_options['fields']['views_bulk_operations']['table'] = 'views_entity_node';
@@ -152,49 +152,49 @@ function wim_core_views_default_views() {
   $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['row_clickable'] = 1;
   $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['force_single'] = 0;
   $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['entity_load_capacity'] = '10';
-  $handler->display->display_options['fields']['views_bulk_operations']['vbo_operations'] = array(
-    'action::node_assign_owner_action' => array(
+  $handler->display->display_options['fields']['views_bulk_operations']['vbo_operations'] = [
+    'action::node_assign_owner_action' => [
       'selected' => 1,
       'postpone_processing' => 0,
       'skip_confirmation' => 1,
       'override_label' => 1,
       'label' => 'Change author',
-    ),
-    'action::views_bulk_operations_delete_item' => array(
+    ],
+    'action::views_bulk_operations_delete_item' => [
       'selected' => 1,
       'postpone_processing' => 0,
       'skip_confirmation' => 0,
       'override_label' => 1,
       'label' => 'Delete',
-    ),
-    'action::views_bulk_operations_modify_action' => array(
+    ],
+    'action::views_bulk_operations_modify_action' => [
       'selected' => 1,
       'postpone_processing' => 0,
       'skip_confirmation' => 1,
       'override_label' => 1,
       'label' => 'Change value',
-      'settings' => array(
+      'settings' => [
         'show_all_tokens' => 1,
-        'display_values' => array(
+        'display_values' => [
           '_all_' => '_all_',
-        ),
-      ),
-    ),
-    'action::node_publish_action' => array(
+        ],
+      ],
+    ],
+    'action::node_publish_action' => [
       'selected' => 1,
       'postpone_processing' => 0,
       'skip_confirmation' => 1,
       'override_label' => 1,
       'label' => 'Publish',
-    ),
-    'action::node_unpublish_action' => array(
+    ],
+    'action::node_unpublish_action' => [
       'selected' => 1,
       'postpone_processing' => 0,
       'skip_confirmation' => 1,
       'override_label' => 1,
       'label' => 'Unpublish',
-    ),
-  );
+    ],
+  ];
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -265,12 +265,12 @@ function wim_core_views_default_views() {
   $handler->display->display_options['filters']['body_value']['expose']['label'] = 'All words';
   $handler->display->display_options['filters']['body_value']['expose']['operator'] = 'body_value_op';
   $handler->display->display_options['filters']['body_value']['expose']['identifier'] = 'body_value';
-  $handler->display->display_options['filters']['body_value']['expose']['remember_roles'] = array(
+  $handler->display->display_options['filters']['body_value']['expose']['remember_roles'] = [
     2 => '2',
     1 => 0,
     3 => 0,
     4 => 0,
-  );
+  ];
   /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
@@ -314,12 +314,12 @@ function wim_core_views_default_views() {
   $handler->display->display_options['filters']['field_tags_tid']['expose']['operator'] = 'field_tags_tid_op';
   $handler->display->display_options['filters']['field_tags_tid']['expose']['identifier'] = 'tags';
   $handler->display->display_options['filters']['field_tags_tid']['expose']['multiple'] = TRUE;
-  $handler->display->display_options['filters']['field_tags_tid']['expose']['remember_roles'] = array(
+  $handler->display->display_options['filters']['field_tags_tid']['expose']['remember_roles'] = [
     2 => '2',
     1 => 0,
     3 => 0,
     4 => 0,
-  );
+  ];
   $handler->display->display_options['filters']['field_tags_tid']['vocabulary'] = 'tags';
   /* Filter criterion: Content: Promoted (field_promoted) */
   $handler->display->display_options['filters']['field_promoted_value']['id'] = 'field_promoted_value';
@@ -330,12 +330,12 @@ function wim_core_views_default_views() {
   $handler->display->display_options['filters']['field_promoted_value']['expose']['label'] = 'Promoted';
   $handler->display->display_options['filters']['field_promoted_value']['expose']['operator'] = 'field_promoted_value_op';
   $handler->display->display_options['filters']['field_promoted_value']['expose']['identifier'] = 'promoted';
-  $handler->display->display_options['filters']['field_promoted_value']['expose']['remember_roles'] = array(
+  $handler->display->display_options['filters']['field_promoted_value']['expose']['remember_roles'] = [
     2 => '2',
     1 => 0,
     3 => 0,
     4 => 0,
-  );
+  ];
   /* Filter criterion: Content: Sticky */
   $handler->display->display_options['filters']['sticky']['id'] = 'sticky';
   $handler->display->display_options['filters']['sticky']['table'] = 'node';
@@ -347,14 +347,14 @@ function wim_core_views_default_views() {
   $handler->display->display_options['filters']['sticky']['expose']['label'] = 'Sticky';
   $handler->display->display_options['filters']['sticky']['expose']['operator'] = 'sticky_op';
   $handler->display->display_options['filters']['sticky']['expose']['identifier'] = 'sticky';
-  $handler->display->display_options['filters']['sticky']['expose']['remember_roles'] = array(
+  $handler->display->display_options['filters']['sticky']['expose']['remember_roles'] = [
     2 => '2',
     1 => 0,
     3 => 0,
     4 => 0,
     5 => 0,
     6 => 0,
-  );
+  ];
   /* Filter criterion: Date: Date (node) */
   $handler->display->display_options['filters']['date_filter']['id'] = 'date_filter';
   $handler->display->display_options['filters']['date_filter']['table'] = 'node';
@@ -364,18 +364,18 @@ function wim_core_views_default_views() {
   $handler->display->display_options['filters']['date_filter']['expose']['operator_id'] = 'date_filter_op';
   $handler->display->display_options['filters']['date_filter']['expose']['operator'] = 'date_filter_op';
   $handler->display->display_options['filters']['date_filter']['expose']['identifier'] = 'date';
-  $handler->display->display_options['filters']['date_filter']['expose']['remember_roles'] = array(
+  $handler->display->display_options['filters']['date_filter']['expose']['remember_roles'] = [
     2 => '2',
     1 => 0,
     3 => 0,
     4 => 0,
-  );
+  ];
   $handler->display->display_options['filters']['date_filter']['form_type'] = 'date_popup';
-  $handler->display->display_options['filters']['date_filter']['date_fields'] = array(
+  $handler->display->display_options['filters']['date_filter']['date_fields'] = [
     'node.created' => 'node.created',
     'field_data_field_publication_date.field_publication_date_value' => 'field_data_field_publication_date.field_publication_date_value',
     'node.changed' => 'node.changed',
-  );
+  ];
   /* Filter criterion: Content: State */
   $handler->display->display_options['filters']['state']['id'] = 'state';
   $handler->display->display_options['filters']['state']['table'] = 'node';
@@ -385,22 +385,22 @@ function wim_core_views_default_views() {
   $handler->display->display_options['filters']['state']['expose']['label'] = 'State';
   $handler->display->display_options['filters']['state']['expose']['operator'] = 'state_op';
   $handler->display->display_options['filters']['state']['expose']['identifier'] = 'state';
-  $handler->display->display_options['filters']['state']['expose']['remember_roles'] = array(
+  $handler->display->display_options['filters']['state']['expose']['remember_roles'] = [
     2 => '2',
     1 => 0,
     3 => 0,
     4 => 0,
     5 => 0,
     6 => 0,
-  );
+  ];
   /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type_1']['id'] = 'type_1';
   $handler->display->display_options['filters']['type_1']['table'] = 'node';
   $handler->display->display_options['filters']['type_1']['field'] = 'type';
   $handler->display->display_options['filters']['type_1']['operator'] = 'not in';
-  $handler->display->display_options['filters']['type_1']['value'] = array(
+  $handler->display->display_options['filters']['type_1']['value'] = [
     'linked_keywords' => 'linked_keywords',
-  );
+  ];
 
   /* Display: System */
   $handler = $view->new_display('system', 'System', 'system_1');
@@ -408,7 +408,7 @@ function wim_core_views_default_views() {
   $handler->display->display_options['hide_admin_links'] = TRUE;
   $handler->display->display_options['defaults']['access'] = FALSE;
   $handler->display->display_options['path'] = 'admin/content';
-  $translatables['administration_content'] = array(
+  $translatables['administration_content'] = [
     t('Defaults'),
     t('Content'),
     t('more'),
@@ -448,7 +448,7 @@ function wim_core_views_default_views() {
     t('Sticky'),
     t('State'),
     t('System'),
-  );
+  ];
   $export['administration_content'] = $view;
 
   $view = new view();
@@ -481,7 +481,7 @@ function wim_core_views_default_views() {
   $handler->display->display_options['pager']['options']['expose']['items_per_page'] = TRUE;
   $handler->display->display_options['pager']['options']['expose']['items_per_page_options'] = '5, 10, 50, 100, 150';
   $handler->display->display_options['style_plugin'] = 'views_aggregator';
-  $handler->display->display_options['style_options']['columns'] = array(
+  $handler->display->display_options['style_options']['columns'] = [
     'fid' => 'fid',
     'views_bulk_operations' => 'views_bulk_operations',
     'filemime' => 'type',
@@ -496,225 +496,225 @@ function wim_core_views_default_views() {
     'delta' => 'delta',
     'name' => 'name',
     'edit' => 'edit',
-  );
+  ];
   $handler->display->display_options['style_options']['default'] = 'timestamp';
-  $handler->display->display_options['style_options']['info'] = array(
-    'fid' => array(
+  $handler->display->display_options['style_options']['info'] = [
+    'fid' => [
       'sortable' => 0,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
       'has_aggr' => 1,
-      'aggr' => array(
+      'aggr' => [
         'views_aggregator_group_and_compress' => 'views_aggregator_group_and_compress',
-      ),
+      ],
       'aggr_par' => '',
       'has_aggr_column' => 0,
       'aggr_column' => 'views_aggregator_sum',
       'aggr_par_column' => '',
-    ),
-    'views_bulk_operations' => array(
+    ],
+    'views_bulk_operations' => [
       'sortable' => 0,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
       'has_aggr' => 0,
-      'aggr' => array(
+      'aggr' => [
         'views_aggregator_first' => 'views_aggregator_first',
-      ),
+      ],
       'aggr_par' => '',
       'has_aggr_column' => 0,
       'aggr_column' => 'views_aggregator_sum',
       'aggr_par_column' => '',
-    ),
-    'filemime' => array(
+    ],
+    'filemime' => [
       'sortable' => 0,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
       'has_aggr' => 0,
-      'aggr' => array(
+      'aggr' => [
         'views_aggregator_first' => 'views_aggregator_first',
-      ),
+      ],
       'aggr_par' => '',
       'has_aggr_column' => 0,
       'aggr_column' => 'views_aggregator_sum',
       'aggr_par_column' => '',
-    ),
-    'type' => array(
+    ],
+    'type' => [
       'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => ' ',
       'empty_column' => 0,
       'has_aggr' => 0,
-      'aggr' => array(
+      'aggr' => [
         'views_aggregator_first' => 'views_aggregator_first',
-      ),
+      ],
       'aggr_par' => '',
       'has_aggr_column' => 0,
       'aggr_column' => 'views_aggregator_sum',
       'aggr_par_column' => '',
-    ),
-    'filename' => array(
+    ],
+    'filename' => [
       'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
       'has_aggr' => 0,
-      'aggr' => array(
+      'aggr' => [
         'views_aggregator_first' => 'views_aggregator_first',
-      ),
+      ],
       'aggr_par' => '',
       'has_aggr_column' => 0,
       'aggr_column' => 'views_aggregator_sum',
       'aggr_par_column' => '',
-    ),
-    'filesize' => array(
+    ],
+    'filesize' => [
       'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
       'has_aggr' => 0,
-      'aggr' => array(
+      'aggr' => [
         'views_aggregator_first' => 'views_aggregator_first',
-      ),
+      ],
       'aggr_par' => '',
       'has_aggr_column' => 0,
       'aggr_column' => 'views_aggregator_sum',
       'aggr_par_column' => '',
-    ),
-    'timestamp' => array(
+    ],
+    'timestamp' => [
       'sortable' => 1,
       'default_sort_order' => 'desc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
       'has_aggr' => 0,
-      'aggr' => array(
+      'aggr' => [
         'views_aggregator_first' => 'views_aggregator_first',
-      ),
+      ],
       'aggr_par' => '',
       'has_aggr_column' => 0,
       'aggr_column' => 'views_aggregator_sum',
       'aggr_par_column' => '',
-    ),
-    'title' => array(
+    ],
+    'title' => [
       'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
       'has_aggr' => 1,
-      'aggr' => array(
+      'aggr' => [
         'views_aggregator_enumerate' => 'views_aggregator_enumerate',
-      ),
+      ],
       'aggr_par' => '',
       'has_aggr_column' => 0,
       'aggr_column' => 'views_aggregator_sum',
       'aggr_par_column' => '',
-    ),
-    'id' => array(
+    ],
+    'id' => [
       'sortable' => 0,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
       'has_aggr' => 0,
-      'aggr' => array(
+      'aggr' => [
         'views_aggregator_first' => 'views_aggregator_first',
-      ),
+      ],
       'aggr_par' => '',
       'has_aggr_column' => 0,
       'aggr_column' => 'views_aggregator_sum',
       'aggr_par_column' => '',
-    ),
-    'type_1' => array(
+    ],
+    'type_1' => [
       'sortable' => 0,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
       'has_aggr' => 0,
-      'aggr' => array(
+      'aggr' => [
         'views_aggregator_first' => 'views_aggregator_first',
-      ),
+      ],
       'aggr_par' => '',
       'has_aggr_column' => 0,
       'aggr_column' => 'views_aggregator_sum',
       'aggr_par_column' => '',
-    ),
-    'label' => array(
+    ],
+    'label' => [
       'sortable' => 0,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
       'has_aggr' => 0,
-      'aggr' => array(
+      'aggr' => [
         'views_aggregator_first' => 'views_aggregator_first',
-      ),
+      ],
       'aggr_par' => '',
       'has_aggr_column' => 0,
       'aggr_column' => 'views_aggregator_sum',
       'aggr_par_column' => '',
-    ),
-    'delta' => array(
+    ],
+    'delta' => [
       'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
       'has_aggr' => 1,
-      'aggr' => array(
+      'aggr' => [
         'views_aggregator_enumerate' => 'views_aggregator_enumerate',
-      ),
+      ],
       'aggr_par' => '',
       'has_aggr_column' => 0,
       'aggr_column' => 'views_aggregator_sum',
       'aggr_par_column' => '',
-    ),
-    'name' => array(
+    ],
+    'name' => [
       'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
       'has_aggr' => 0,
-      'aggr' => array(
+      'aggr' => [
         'views_aggregator_first' => 'views_aggregator_first',
-      ),
+      ],
       'aggr_par' => '',
       'has_aggr_column' => 0,
       'aggr_column' => 'views_aggregator_sum',
       'aggr_par_column' => '',
-    ),
-    'edit' => array(
+    ],
+    'edit' => [
       'sortable' => 0,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
       'has_aggr' => 0,
-      'aggr' => array(
+      'aggr' => [
         'views_aggregator_first' => 'views_aggregator_first',
-      ),
+      ],
       'aggr_par' => '',
       'has_aggr_column' => 0,
       'aggr_column' => 'views_aggregator_sum',
       'aggr_par_column' => '',
-    ),
-  );
+    ],
+  ];
   $handler->display->display_options['style_options']['column_aggregation']['totals_per_page'] = '1';
-  $handler->display->display_options['style_options']['column_aggregation']['totals_row_position'] = array(
+  $handler->display->display_options['style_options']['column_aggregation']['totals_row_position'] = [
     1 => 0,
     2 => '2',
-  );
+  ];
   $handler->display->display_options['style_options']['column_aggregation']['precision'] = '2';
   /* Header: Global: Result summary */
   $handler->display->display_options['header']['result']['id'] = 'result';
@@ -760,15 +760,15 @@ function wim_core_views_default_views() {
   $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['row_clickable'] = 1;
   $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['force_single'] = 0;
   $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['entity_load_capacity'] = '10';
-  $handler->display->display_options['fields']['views_bulk_operations']['vbo_operations'] = array(
-    'action::views_bulk_operations_delete_item' => array(
+  $handler->display->display_options['fields']['views_bulk_operations']['vbo_operations'] = [
+    'action::views_bulk_operations_delete_item' => [
       'selected' => 1,
       'postpone_processing' => 0,
       'skip_confirmation' => 0,
       'override_label' => 0,
       'label' => '',
-    ),
-  );
+    ],
+  ];
   /* Field: File: Mime type */
   $handler->display->display_options['fields']['filemime']['id'] = 'filemime';
   $handler->display->display_options['fields']['filemime']['table'] = 'file_managed';
@@ -861,101 +861,101 @@ function wim_core_views_default_views() {
   $handler->display->display_options['filters']['filename']['expose']['label'] = 'Name';
   $handler->display->display_options['filters']['filename']['expose']['operator'] = 'filename_op';
   $handler->display->display_options['filters']['filename']['expose']['identifier'] = 'filename';
-  $handler->display->display_options['filters']['filename']['expose']['remember_roles'] = array(
+  $handler->display->display_options['filters']['filename']['expose']['remember_roles'] = [
     2 => '2',
     1 => 0,
     3 => 0,
     4 => 0,
     5 => 0,
     6 => 0,
-  );
+  ];
   /* Filter criterion: File: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'file_managed';
   $handler->display->display_options['filters']['type']['field'] = 'type';
-  $handler->display->display_options['filters']['type']['value'] = array(
+  $handler->display->display_options['filters']['type']['value'] = [
     'all' => 'all',
     'audio' => 'audio',
     'document' => 'document',
     'image' => 'image',
     'video' => 'video',
-  );
+  ];
   $handler->display->display_options['filters']['type']['group'] = 1;
   $handler->display->display_options['filters']['type']['exposed'] = TRUE;
   $handler->display->display_options['filters']['type']['expose']['operator_id'] = 'type_op';
   $handler->display->display_options['filters']['type']['expose']['label'] = 'Type';
   $handler->display->display_options['filters']['type']['expose']['operator'] = 'type_op';
   $handler->display->display_options['filters']['type']['expose']['identifier'] = 'type';
-  $handler->display->display_options['filters']['type']['expose']['remember_roles'] = array(
+  $handler->display->display_options['filters']['type']['expose']['remember_roles'] = [
     2 => '2',
     1 => 0,
     3 => 0,
     4 => 0,
     5 => 0,
     6 => 0,
-  );
+  ];
   $handler->display->display_options['filters']['type']['is_grouped'] = TRUE;
   $handler->display->display_options['filters']['type']['group_info']['label'] = 'Type';
   $handler->display->display_options['filters']['type']['group_info']['identifier'] = 'type';
   $handler->display->display_options['filters']['type']['group_info']['optional'] = FALSE;
   $handler->display->display_options['filters']['type']['group_info']['default_group'] = '1';
-  $handler->display->display_options['filters']['type']['group_info']['group_items'] = array(
-    1 => array(
+  $handler->display->display_options['filters']['type']['group_info']['group_items'] = [
+    1 => [
       'title' => 'Any',
       'operator' => 'in',
-      'value' => array(
+      'value' => [
         'audio' => 'audio',
         'document' => 'document',
         'image' => 'image',
         'video' => 'video',
         'all' => 0,
-      ),
-    ),
-    2 => array(
+      ],
+    ],
+    2 => [
       'title' => 'Audio',
       'operator' => 'in',
-      'value' => array(
+      'value' => [
         'audio' => 'audio',
         'all' => 0,
         'document' => 0,
         'image' => 0,
         'video' => 0,
-      ),
-    ),
-    3 => array(
+      ],
+    ],
+    3 => [
       'title' => 'Document',
       'operator' => 'in',
-      'value' => array(
+      'value' => [
         'document' => 'document',
         'all' => 0,
         'audio' => 0,
         'image' => 0,
         'video' => 0,
-      ),
-    ),
-    4 => array(
+      ],
+    ],
+    4 => [
       'title' => 'Image',
       'operator' => 'in',
-      'value' => array(
+      'value' => [
         'image' => 'image',
         'all' => 0,
         'audio' => 0,
         'document' => 0,
         'video' => 0,
-      ),
-    ),
-    5 => array(
+      ],
+    ],
+    5 => [
       'title' => 'Video',
       'operator' => 'in',
-      'value' => array(
+      'value' => [
         'video' => 'video',
         'all' => 0,
         'audio' => 0,
         'document' => 0,
         'image' => 0,
-      ),
-    ),
-  );
+      ],
+    ],
+  ];
   /* Filter criterion: Date: Date (file_managed) */
   $handler->display->display_options['filters']['date_filter']['id'] = 'date_filter';
   $handler->display->display_options['filters']['date_filter']['table'] = 'file_managed';
@@ -966,25 +966,25 @@ function wim_core_views_default_views() {
   $handler->display->display_options['filters']['date_filter']['expose']['operator_id'] = 'date_filter_op';
   $handler->display->display_options['filters']['date_filter']['expose']['operator'] = 'date_filter_op';
   $handler->display->display_options['filters']['date_filter']['expose']['identifier'] = 'date';
-  $handler->display->display_options['filters']['date_filter']['expose']['remember_roles'] = array(
+  $handler->display->display_options['filters']['date_filter']['expose']['remember_roles'] = [
     2 => '2',
     1 => 0,
     3 => 0,
     4 => 0,
     5 => 0,
     6 => 0,
-  );
+  ];
   $handler->display->display_options['filters']['date_filter']['form_type'] = 'date_popup';
   $handler->display->display_options['filters']['date_filter']['year_range'] = '-3:+1';
-  $handler->display->display_options['filters']['date_filter']['date_fields'] = array(
+  $handler->display->display_options['filters']['date_filter']['date_fields'] = [
     'file_managed.timestamp' => 'file_managed.timestamp',
-  );
+  ];
 
   /* Display: System */
   $handler = $view->new_display('system', 'System', 'system_1');
   $handler->display->display_options['defaults']['access'] = FALSE;
   $handler->display->display_options['path'] = 'admin/content/file';
-  $translatables['administration_media'] = array(
+  $translatables['administration_media'] = [
     t('Master'),
     t('more'),
     t('Apply'),
@@ -1022,7 +1022,7 @@ function wim_core_views_default_views() {
     t('Edit'),
     t('Name'),
     t('System'),
-  );
+  ];
   $export['administration_media'] = $view;
 
   return $export;

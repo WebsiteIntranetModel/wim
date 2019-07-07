@@ -11,10 +11,10 @@ include_once 'wim_search.features.inc';
  */
 function wim_search_entity_info_alter(&$entity_info) {
   // Make search result view mode name more understandable.
-  $entity_info['node']['view modes']['search_result'] = array(
+  $entity_info['node']['view modes']['search_result'] = [
     'label' => t('Search result'),
     'custom settings' => TRUE,
-  );
+  ];
 }
 
 /**
@@ -32,12 +32,12 @@ function wim_search_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'search_admin_settings') {
     $form['highlight']['#type'] = 'fieldset';
     $form['highlight']['#title'] = t('Search keyword highlighting');
-    $form['highlight']['keyword_highlighting_search'] = array(
+    $form['highlight']['keyword_highlighting_search'] = [
       '#type' => 'radios',
       '#title' => t('Highlight keyword'),
       '#default_value' => variable_get('keyword_highlighting_search', 0),
-      '#options' => array(t('Disabled'), t('Enabled')),
-    );
+      '#options' => [t('Disabled'), t('Enabled')],
+    ];
     $form['#submit'][] = '_search_highlighting_form_submit';
   }
   if (in_array($form_id, ['search_block_form', 'apachesolr_search_custom_page_search_form'], TRUE)) {
@@ -74,10 +74,10 @@ function wim_search_preprocess_html(&$vars) {
 
   if (is_array($menu_item) && $menu_item['path'] === 'search/site/%') {
     // Set title for search page.
-    $vars['head_title'] = implode(' | ', array(
+    $vars['head_title'] = implode(' | ', [
       t('Searchpage'),
       variable_get('site_name'),
-    ));
+    ]);
   }
 }
 

@@ -43,7 +43,7 @@ function wimbase_form_element_label(&$variables) {
   // Extract variables.
   $output = '';
   $title = isset($element['#title']) ? filter_xss_admin($element['#title']) . ' ' : '';
-  if ($title && ($required = !empty($element['#required']) ? theme('form_required_marker', array('element' => $element)) : '')) {
+  if ($title && ($required = !empty($element['#required']) ? theme('form_required_marker', ['element' => $element]) : '')) {
     $title .= $required;
   }
   $display = isset($element['#title_display']) ? $element['#title_display'] : 'before';
@@ -175,7 +175,7 @@ function wimbase_menu_link__main_menu($variables) {
       $element['#attributes']['class'][] = 'parent-dropdown';
       $element['#localized_options']['html'] = TRUE;
     }
-    $element['#attributes']['class'] = array_diff($element['#attributes']['class'], array('expanded'));
+    $element['#attributes']['class'] = array_diff($element['#attributes']['class'], ['expanded']);
   }
 
   // On primary navigation menu, class 'active' is not set on active menu item.
@@ -240,7 +240,7 @@ function wimbase_menu_link(array $variables) {
   if (($element['#href'] == $_GET['q'] || ($element['#href'] === '<front>' && drupal_is_front_page())) && (empty($element['#localized_options']['language']))) {
     $element['#attributes']['class'][] = 'active';
   }
-  $element['#attributes']['class'] = array_diff($element['#attributes']['class'], array('expanded'));
+  $element['#attributes']['class'] = array_diff($element['#attributes']['class'], ['expanded']);
 
   $output = l($icon . $element['#title'], $element['#href'], $element['#localized_options']);
   return '<li' . drupal_attributes($element['#attributes']) . '>' . $output . $sub_menu . "</li>\n";
@@ -288,7 +288,7 @@ function wimbase_menu_link__menu_top_tasks(array $variables) {
   if (($element['#href'] == $_GET['q'] || ($element['#href'] === '<front>' && drupal_is_front_page())) && (empty($element['#localized_options']['language']))) {
     $element['#attributes']['class'][] = 'active';
   }
-  $element['#attributes']['class'] = array_diff($element['#attributes']['class'], array('expanded'));
+  $element['#attributes']['class'] = array_diff($element['#attributes']['class'], ['expanded']);
 
   if ($element['#original_link']['depth'] == 1 && !$element['#below']) {
     $element['#localized_options']['attributes']['class'][] = 'dropdown-toggle';
@@ -396,18 +396,18 @@ function wimbase_facetapi_link_active($variables) {
 
   // Theme function variables fro accessible markup.
   // @see http://drupal.org/node/1316580
-  $accessible_vars = array(
+  $accessible_vars = [
     'text' => $variables['text'],
     'active' => TRUE,
-  );
+  ];
 
   // Builds link, passes through t() which gives us the ability to change the
   // position of the widget on a per-language basis.
-  $replacements = array(
+  $replacements = [
     '!facetapi_deactivate_widget' => theme('facetapi_deactivate_widget', $variables),
     '!facetapi_accessible_markup' => theme('facetapi_accessible_markup', $accessible_vars),
     '!link_text' => $link_text,
-  );
+  ];
   $variables['text'] = t('!facetapi_accessible_markup !link_text', $replacements);
   $variables['options']['html'] = TRUE;
   return theme_link($variables);
@@ -445,16 +445,16 @@ function wimbase_status_messages($variables) {
   $display = $variables['display'];
   $output = '';
 
-  $status_heading = array(
+  $status_heading = [
     'status' => t('Status message'),
     'error' => t('Error message'),
     'warning' => t('Warning message'),
     'info' => t('Informative message'),
-  );
+  ];
 
   // Map Drupal message types to their corresponding Bootstrap classes.
   // @see http://twitter.github.com/bootstrap/components.html#alerts
-  $status_class = array(
+  $status_class = [
     'status' => 'success',
     'error' => 'danger',
     'warning' => 'warning',
@@ -462,7 +462,7 @@ function wimbase_status_messages($variables) {
     // @see drupal_set_message()
     // @see theme_status_messages()
     'info' => 'info',
-  );
+  ];
 
   $dismiss_alert = t('Dismiss alert');
 
@@ -486,13 +486,13 @@ function wimbase_status_messages($variables) {
     if (count($messages) > 1) {
       $output .= " <ul>\n";
       foreach ($messages as $message) {
-        $attributes = drupal_attributes(array('id' => md5($message)));
+        $attributes = drupal_attributes(['id' => md5($message)]);
         $output .= '  <li ><span ' . $attributes . '>' . _bootstrap_filter_xss($message) . "</span></li>\n";
       }
       $output .= " </ul>\n";
     }
     else {
-      $attributes = drupal_attributes(array('id' => md5($messages[0])));
+      $attributes = drupal_attributes(['id' => md5($messages[0])]);
       $output .= '<span ' . $attributes . '>' . _bootstrap_filter_xss($messages[0]) . '</span>';
     }
 
