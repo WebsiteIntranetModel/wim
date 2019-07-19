@@ -13,32 +13,32 @@ function custom_lists_admin() {
   $lists = custom_lists_get();
 
   // Setup the rows to show in the table.
-  $rows = array();
+  $rows = [];
   foreach ($lists as $list_key => $list) {
-    $row = array();
+    $row = [];
     $row[] = $list['title'];
     $row[] = $list['provide-page'] ? l($list['path'], $list['path']) : t('No');
     $row[] = $list['provide-block'] ? t('Yes') : t('No');
     $row[] = ucfirst($list['type']);
 
-    $data = array();
+    $data = [];
     if ($list['type'] == 'content') {
       if ($list['node-type'] != '_any') {
-        $data[] = t('Type: !type', array('!type' => $types[$list['node-type']]));
+        $data[] = t('Type: !type', ['!type' => $types[$list['node-type']]]);
       }
       if (!empty($list['taxonomy'])) {
-        $terms = array();
+        $terms = [];
         foreach ($list['taxonomy'] as $term_id) {
           $term = taxonomy_term_load($term_id);
           $terms[] = l($term->name, 'taxonomy/term/' . $term->tid);
         }
-        $data[] = t('Taxonomy: !terms', array('!terms' => implode($terms, ',')));
+        $data[] = t('Taxonomy: !terms', ['!terms' => implode($terms, ',')]);
       }
     }
     else {
       if ($list['type'] == 'menu') {
         $menu_item = menu_link_load($list['menu-item']);
-        $data[] = t('Menu parent: !parent', array('!parent' => l($menu_item['link_title'], $menu_item['link_path'])));
+        $data[] = t('Menu parent: !parent', ['!parent' => l($menu_item['link_title'], $menu_item['link_path'])]);
       }
     }
     $row[] = implode(',', $data);
@@ -48,17 +48,17 @@ function custom_lists_admin() {
     $rows[] = $row;
   }
 
-  return theme('table', array(
-    'header' => array(
+  return theme('table', [
+    'header' => [
       t('TItle'),
       t('Page'),
       t('Block'),
       t('Type'),
       t('Data'),
       t('Operations'),
-    ),
+    ],
     'rows' => $rows,
-  ));
+  ]);
 }
 
 /**
@@ -68,7 +68,7 @@ function custom_lists_delete_form($form, &$form_state, $list_key) {
   $lists = custom_lists_get();
   $form['#listkey'] = $list_key;
 
-  return confirm_form($form, t('Are you sure you want to delete the list !list?', array('!list' => $lists[$list_key]['path'])), 'admin/structure/lists');
+  return confirm_form($form, t('Are you sure you want to delete the list !list?', ['!list' => $lists[$list_key]['path']]), 'admin/structure/lists');
 }
 
 /**
@@ -84,84 +84,84 @@ function custom_lists_delete_form_submit($form, &$form_state) {
  * Form for the add list.
  */
 function custom_lists_list_form($form, &$form_state, $list_key = NULL) {
-  $list = array();
+  $list = [];
   if ($list_key) {
     $lists = custom_lists_get();
     $list = $lists[$list_key];
   }
 
-  $form['general'] = array(
+  $form['general'] = [
     '#type' => 'fieldset',
     '#title' => t('General'),
     '#tree' => FALSE,
-    '#attached' => array(
-      'css' => array(
+    '#attached' => [
+      'css' => [
         drupal_get_path('module', 'custom_lists') . '/custom_lists.css',
-      ),
-      'js' => array(
+      ],
+      'js' => [
         drupal_get_path('module', 'custom_lists') . '/custom_lists.js',
-      ),
-    ),
-  );
+      ],
+    ],
+  ];
 
-  $form['general']['title'] = array(
+  $form['general']['title'] = [
     '#type' => 'textfield',
     '#title' => t('Administration title'),
     '#size' => 30,
     '#required' => TRUE,
     '#description' => t('This title is only used on admin pages to identify the custom list.'),
     '#default_value' => !empty($list['title']) ? $list['title'] : '',
-  );
+  ];
 
-  $form['general']['display_title'] = array(
+  $form['general']['display_title'] = [
     '#type' => 'textfield',
     '#title' => t('Title'),
     '#size' => 30,
     '#required' => TRUE,
     '#description' => t('This title is used as block and page title.'),
     '#default_value' => !empty($list['display_title']) ? $list['display_title'] : '',
-  );
+  ];
 
   if (!empty($list_key)) {
-    $form['general']['key'] = array(
+    $form['general']['key'] = [
       '#type' => 'hidden',
       '#title' => t('Key'),
       '#required' => TRUE,
       '#default_value' => $list_key,
-    );
+    ];
   }
-  $form['general']['type'] = array(
+  $form['general']['type'] = [
     '#type' => 'select',
     '#title' => t('Type'),
-    '#options' => array(
+    '#options' => [
       'content' => t('Content'),
       'menu' => t('Menu'),
-    ),
+    ],
     '#default_value' => !empty($list['type']) ? $list['type'] : 'content',
-  );
+  ];
 
-  $form['type-settings'] = array(
+  $form['type-settings'] = [
     '#type' => 'fieldset',
     '#title' => t('Settings'),
     '#tree' => FALSE,
-  );
+  ];
 
   // Node type data.
   $types = node_type_get_names();
-  $form['type-settings']['node-type'] = array(
+  $form['type-settings']['node-type'] = [
     '#type' => 'select',
     '#title' => t('Nodetype'),
-    '#options' => array('_any' => t('Any')) + node_type_get_names(),
+    '#options' => ['_any' => t('Any')] + node_type_get_names(),
     '#default_value' => !empty($list['node-type']) ? $list['node-type'] : '_any',
-    '#attributes' => array(
-      'class' => array(
+    '#attributes' => [
+      'class' => [
         'type-setting',
         'type-setting-content',
-      ),
-    ),
-  );
+      ],
+    ],
+  ];
 
-  $queues_list = array();
+  $queues_list = [];
   $queues = nodequeue_load_queues(nodequeue_get_all_qids());
 
   if ($queues) {
@@ -170,48 +170,48 @@ function custom_lists_list_form($form, &$form_state, $list_key = NULL) {
     }
   }
 
-  $form['type-settings']['node-queues'] = array(
+  $form['type-settings']['node-queues'] = [
     '#type' => 'select',
     '#title' => t('Nodequeue'),
-    '#options' => array('_any' => t('Any')) + $queues_list,
+    '#options' => ['_any' => t('Any')] + $queues_list,
     '#default_value' => !empty($list['node-queues']) ? $list['node-queues'] : '_any',
-    '#attributes' => array(
-      'class' => array(
+    '#attributes' => [
+      'class' => [
         'type-setting',
         'type-setting-content',
-      ),
-    ),
-  );
+      ],
+    ],
+  ];
 
-  $form['type-settings']['taxonomy'] = array(
+  $form['type-settings']['taxonomy'] = [
     '#type' => 'select',
     '#multiple' => TRUE,
     '#title' => t('Terms'),
     '#chosen' => TRUE,
     '#options' => _custom_lists_get_terms(),
-    '#default_value' => isset($list['taxonomy']) ? $list['taxonomy'] : array(),
-    '#attributes' => array(
-      'class' => array(
+    '#default_value' => isset($list['taxonomy']) ? $list['taxonomy'] : [],
+    '#attributes' => [
+      'class' => [
         'type-setting',
         'type-setting-content',
-      ),
+      ],
       'data-placeholder' => t('Select terms'),
-    ),
-  );
-  $form['type-settings']['extra-filters'] = array(
+    ],
+  ];
+  $form['type-settings']['extra-filters'] = [
     '#type' => 'select',
     '#title' => t('Filters'),
     '#default_value' => !empty($list['extra-filters']) ? $list['extra-filters'] : '_none',
-    '#options' => array(
+    '#options' => [
       '_none' => t('No filter'),
       'node_type_agenda_upcoming' => t('Agenda: Upcoming'),
-    ),
-  );
+    ],
+  ];
 
-  $form['type-settings']['sort'] = array(
+  $form['type-settings']['sort'] = [
     '#type' => 'select',
     '#title' => t('Sort'),
-    '#options' => array(
+    '#options' => [
       'created_desc' => t('Post date: newest first'),
       'created_asc' => t('Post date: oldest first'),
       'changed_desc' => t('Changed date: newest first'),
@@ -224,18 +224,18 @@ function custom_lists_list_form($form, &$form_state, $list_key = NULL) {
       'agenda_desc' => t('Agenda date: descending'),
       'weight_desc' => t('Weight: descending'),
       'weight_asc' => t('Weight: ascending'),
-    ),
+    ],
     '#default_value' => !empty($list['sort']) ? $list['sort'] : '',
-    '#attributes' => array(
-      'class' => array(
+    '#attributes' => [
+      'class' => [
         'type-setting',
         'type-setting-content',
-      ),
-    ),
-  );
+      ],
+    ],
+  ];
 
   // Setup view modes.
-  $modes = array('titles' => t('Titles as link'));
+  $modes = ['titles' => t('Titles as link')];
   $entity_info = entity_get_info('node');
 
   // Filter out view modes like rss and search result.
@@ -247,178 +247,178 @@ function custom_lists_list_form($form, &$form_state, $list_key = NULL) {
   // Menu type data.
   // Generate a list of possible parents.
   $options = _custom_lists_menu_options();
-  $form['type-settings']['menu-item'] = array(
+  $form['type-settings']['menu-item'] = [
     '#type' => 'select',
     '#title' => t('Menu Parent'),
     '#options' => $options,
     '#default_value' => !empty($list['menu-item']) ? $list['menu-item'] : '',
-    '#attributes' => array(
-      'class' => array(
+    '#attributes' => [
+      'class' => [
         'type-setting',
         'type-setting-menu',
         'menu-title-select',
-      ),
-    ),
-  );
+      ],
+    ],
+  ];
 
   // Provide Block.
-  $form['block'] = array(
+  $form['block'] = [
     '#type' => 'fieldset',
     '#title' => t('Block'),
     '#tree' => FALSE,
-  );
-  $form['block']['provide-block'] = array(
+  ];
+  $form['block']['provide-block'] = [
     '#type' => 'checkbox',
     '#title' => t('Provide block'),
     '#default_value' => isset($list['provide-block']) ? $list['provide-block'] : FALSE,
-  );
-  $form['block']['block-view-mode'] = array(
+  ];
+  $form['block']['block-view-mode'] = [
     '#type' => 'select',
     '#title' => t('View mode'),
     '#options' => $modes,
     '#default_value' => !empty($list['block-view-mode']) ? $list['block-view-mode'] : 'titles',
-    '#attributes' => array(
-      'class' => array(
+    '#attributes' => [
+      'class' => [
         'block-setting',
         'block-setting-content',
         'block-setting-menu',
-      ),
-    ),
-  );
-  $form['block']['block-items'] = array(
+      ],
+    ],
+  ];
+  $form['block']['block-items'] = [
     '#type' => 'textfield',
     '#title' => t('# Items'),
     '#required' => TRUE,
     '#default_value' => !empty($list['block-items']) ? $list['block-items'] : 5,
     '#size' => 5,
-    '#attributes' => array(
-      'class' => array(
+    '#attributes' => [
+      'class' => [
         'block-setting',
         'block-setting-content',
         'block-setting-menu',
-      ),
-    ),
-  );
-  $form['block']['show-more-link'] = array(
+      ],
+    ],
+  ];
+  $form['block']['show-more-link'] = [
     '#type' => 'select',
     '#title' => t('Show more link'),
-    '#options' => array(
+    '#options' => [
       'hide' => t('Hide'),
       'default' => t('Default (Links to page)'),
       'custom' => t('Custom (Provide custom uri)'),
-    ),
+    ],
     '#default_value' => !empty($list['show-more-link']) ? $list['show-more-link'] : 'default',
-    '#attributes' => array(
-      'class' => array(
+    '#attributes' => [
+      'class' => [
         'block-setting',
         'block-setting-content',
         'block-setting-menu',
-      ),
-    ),
-  );
-  $form['block']['more-link'] = array(
+      ],
+    ],
+  ];
+  $form['block']['more-link'] = [
     '#type' => 'textfield',
     '#title' => t('Custom more link'),
     '#description' => t("Fill in the Drupal URL for the 'more' link."),
     '#default_value' => !empty($list['more-link']) ? $list['more-link'] : '',
-    '#attributes' => array(
-      'class' => array(
+    '#attributes' => [
+      'class' => [
         'block-setting',
         'block-setting-content',
         'block-setting-menu',
-      ),
-    ),
-  );
+      ],
+    ],
+  ];
 
   // Provide page.
-  $form['page'] = array(
+  $form['page'] = [
     '#type' => 'fieldset',
     '#title' => t('Page'),
     '#tree' => FALSE,
-  );
-  $form['page']['provide-page'] = array(
+  ];
+  $form['page']['provide-page'] = [
     '#type' => 'checkbox',
     '#title' => t('Provide page'),
     '#default_value' => isset($list['provide-page']) ? $list['provide-page'] : TRUE,
-  );
-  $form['page']['path'] = array(
+  ];
+  $form['page']['path'] = [
     '#type' => 'textfield',
     '#title' => t('Path'),
     '#required' => empty($form_state['input']) ? !empty($form['page']['provide-page']) : !empty($form_state['input']['provide-page']),
     '#size' => 30,
     '#default_value' => (!empty($list['path']) && $list['path'] !== '<none>') ? $list['path'] : '',
-    '#attributes' => array(
-      'class' => array(
+    '#attributes' => [
+      'class' => [
         'page-setting',
         'page-setting-content',
         'page-setting-menu',
-      ),
-    ),
-  );
-  $form['page']['page-view-mode'] = array(
+      ],
+    ],
+  ];
+  $form['page']['page-view-mode'] = [
     '#type' => 'select',
     '#title' => t('View mode'),
     '#options' => $modes,
     '#default_value' => !empty($list['page-view-mode']) ? $list['page-view-mode'] : 'teaser',
-    '#attributes' => array(
-      'class' => array(
+    '#attributes' => [
+      'class' => [
         'page-setting',
         'page-setting-content',
         'page-setting-menu',
-      ),
-    ),
-  );
-  $form['page']['page-items'] = array(
+      ],
+    ],
+  ];
+  $form['page']['page-items'] = [
     '#type' => 'textfield',
     '#title' => t('# Items'),
     '#required' => TRUE,
     '#default_value' => !empty($list['page-items']) ? $list['page-items'] : 10,
     '#size' => 5,
-    '#attributes' => array(
-      'class' => array(
+    '#attributes' => [
+      'class' => [
         'page-setting',
         'page-setting-content',
         'page-setting-menu',
-      ),
-    ),
-  );
-  $form['page']['intro-text'] = array(
+      ],
+    ],
+  ];
+  $form['page']['intro-text'] = [
     '#type' => 'text_format',
     '#title' => t('Intro text'),
     '#format' => 'filtered_html',
     '#default_value' => !empty($list['intro-text']) ? $list['intro-text'] : '',
-    '#attributes' => array(
-      'class' => array(
+    '#attributes' => [
+      'class' => [
         'page-setting',
         'page-setting-content',
         'page-setting-menu',
-      ),
-    ),
-  );
+      ],
+    ],
+  ];
 
-  $form['metainfo'] = array(
+  $form['metainfo'] = [
     '#type' => 'fieldset',
     '#title' => t('Metadata info'),
     '#tree' => FALSE,
-  );
+  ];
 
-  $form['metainfo']['meta_description'] = array(
+  $form['metainfo']['meta_description'] = [
     '#type' => 'textarea',
     '#title' => t('Metadata description'),
     '#default_value' => !empty($list['meta-description']) ? $list['meta-description'] : '',
-  );
+  ];
 
-  $form['actions'] = array(
+  $form['actions'] = [
     '#type' => 'actions',
-  );
-  $form['actions']['submit'] = array(
+  ];
+  $form['actions']['submit'] = [
     '#type' => 'submit',
     '#value' => t('Save'),
-  );
-  $form['actions']['cancel'] = array(
+  ];
+  $form['actions']['cancel'] = [
     '#type' => 'markup',
     '#markup' => l(t('Cancel'), 'admin/structure/lists'),
-  );
+  ];
 
   return $form;
 }
@@ -433,10 +433,10 @@ function custom_lists_list_form_validate($form, &$form_state) {
   $error = FALSE;
   if ($form_state['values']['provide-page']) {
     if (empty($form_state['values']['path'])) {
-      form_set_error('path', t('The field %field is required.', array('%field' => 'pad')));
+      form_set_error('path', t('The field %field is required.', ['%field' => 'pad']));
     }
     $sql = 'SELECT path FROM {menu_router} WHERE path=:path';
-    $existing = db_query($sql, array(':path' => $form_state['values']['path']))->fetchField();
+    $existing = db_query($sql, [':path' => $form_state['values']['path']])->fetchField();
     if ($existing) {
       if (isset($form_state['values']['key'])) {
         $list = custom_lists_get($form_state['values']['key']);
@@ -470,7 +470,7 @@ function custom_lists_list_form_submit($form, &$form_state) {
   }
 
   // Setup list data.
-  $list = array(
+  $list = [
     'path' => $form_state['values']['path'],
     'title' => $form_state['values']['title'],
     'display_title' => $form_state['values']['display_title'],
@@ -491,7 +491,7 @@ function custom_lists_list_form_submit($form, &$form_state) {
     'menu-item' => $form_state['values']['menu-item'],
     'intro-text' => $form_state['values']['intro-text']['value'],
     'meta-description' => $form_state['values']['meta_description'],
-  );
+  ];
 
   $list_key = md5(serialize($list));
   if (isset($form_state['values']['key'])) {
@@ -522,13 +522,13 @@ function custom_lists_taxonomy_autocomplete($term_search = '', $node_type = '') 
 
   // Select rows that match by term name.
   $tags_return = $query
-    ->fields('t', array('tid', 'name'))
+    ->fields('t', ['tid', 'name'])
     ->condition('t.name', '%' . db_like($term_search) . '%', 'LIKE')
     ->range(0, 10)
     ->execute()
     ->fetchAllKeyed();
 
-  $term_matches = array();
+  $term_matches = [];
   foreach ($tags_return as $tid => $name) {
     $n = $name;
     // Term names containing commas or quotes must be wrapped in quotes.
@@ -550,19 +550,19 @@ function custom_lists_taxonomy_autocomplete($term_search = '', $node_type = '') 
  *    Array of menu options.
  */
 function _custom_lists_menu_options() {
-  $options = array();
+  $options = [];
 
   $menus = menu_get_menus();
   foreach ($menus as $menu_name => $menu) {
-    if (in_array($menu_name, variable_get('custom_lists_exclude_menus', array(
+    if (in_array($menu_name, variable_get('custom_lists_exclude_menus', [
       'management',
       'navigation',
       'user-menu',
-    )))) {
+    ]))) {
       continue;
     }
 
-    $options[$menu] = array();
+    $options[$menu] = [];
 
     $tree = menu_tree_all_data($menu_name, NULL);
     foreach ($tree as $link) {
@@ -585,10 +585,10 @@ function _custom_lists_menu_options() {
 function _custom_lists_menu_options_filter($link, $prefix = '') {
   if (empty($link['below'])) {
     // If we do not have any childs we are not an option.
-    return array();
+    return [];
   }
 
-  $options = array();
+  $options = [];
   $options[$link['link']['mlid']] = $prefix . $link['link']['link_title'] . ' (' . count($link['below']) . ')';
 
   $sub_prefix = $prefix . $link['link']['link_title'] . '--';
@@ -604,7 +604,7 @@ function _custom_lists_menu_options_filter($link, $prefix = '') {
  * Fetch all terms on the site.
  */
 function _custom_lists_get_terms() {
-  $terms = array();
+  $terms = [];
   $vocabularies = taxonomy_get_vocabularies();
   foreach ($vocabularies as $voc) {
     $tree = taxonomy_get_tree($voc->vid);
@@ -628,7 +628,7 @@ function _custom_lists_get_terms() {
 function _custom_lists_filter_view_modes($view_modes) {
 
   // Define view modes to remove from the list rather then the ones to keep.
-  $filter_list = array(
+  $filter_list = [
     'rss',
     'search_index',
     'search_result',
@@ -636,7 +636,7 @@ function _custom_lists_filter_view_modes($view_modes) {
     'felix',
     'token',
     'short',
-  );
+  ];
 
   foreach ($view_modes as $key => $view_mode) {
     if (in_array($key, $filter_list)) {

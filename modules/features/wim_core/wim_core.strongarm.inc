@@ -8,7 +8,7 @@
  * Implements hook_strongarm().
  */
 function wim_core_strongarm() {
-  $export = array();
+  $export = [];
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -98,21 +98,21 @@ function wim_core_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'views_defaults';
-  $strongarm->value = array(
+  $strongarm->value = [
     'admin_views_node' => TRUE,
     'admin_views_user' => TRUE,
     'admin_views_file' => TRUE,
-  );
+  ];
   $export['views_defaults'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'xmlsitemap_settings_menu_link_main-menu';
-  $strongarm->value = array(
+  $strongarm->value = [
     'status' => '1',
     'priority' => '0.8',
-  );
+  ];
   $export['xmlsitemap_settings_menu_link_main-menu'] = $strongarm;
 
   return $export;

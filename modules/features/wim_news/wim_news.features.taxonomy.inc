@@ -8,14 +8,14 @@
  * Implements hook_taxonomy_default_vocabularies().
  */
 function wim_news_taxonomy_default_vocabularies() {
-  return array(
-    'news_categories' => array(
+  return [
+    'news_categories' => [
       'name' => 'News Categories',
       'machine_name' => 'news_categories',
       'description' => '',
       'hierarchy' => 0,
       'module' => 'taxonomy',
       'weight' => 0,
-    ),
-  );
+    ],
+  ];
 }

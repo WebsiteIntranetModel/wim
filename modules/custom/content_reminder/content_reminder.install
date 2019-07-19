@@ -53,19 +53,19 @@ function content_reminder_install() {
  * Helper function to get field base.
  */
 function _content_reminder_field_base() {
-  $field_bases['field_reminder_email'] = array(
+  $field_bases['field_reminder_email'] = [
     'active' => 1,
     'cardinality' => -1,
     'deleted' => 0,
-    'entity_types' => array(),
+    'entity_types' => [],
     'field_name' => 'field_reminder_email',
-    'indexes' => array(),
+    'indexes' => [],
     'locked' => 0,
     'module' => 'email',
-    'settings' => array(),
+    'settings' => [],
     'translatable' => 0,
     'type' => 'email',
-  );
+  ];
 
   return $field_bases;
 }

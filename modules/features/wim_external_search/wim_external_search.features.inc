@@ -9,6 +9,6 @@
  */
 function wim_external_search_ctools_plugin_api($module = NULL, $api = NULL) {
   if ($module == "facetapi" && $api == "facetapi_defaults") {
-    return array("version" => "1");
+    return ["version" => "1"];
   }
 }

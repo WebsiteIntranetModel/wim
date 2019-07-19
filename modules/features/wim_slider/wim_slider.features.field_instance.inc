@@ -8,19 +8,19 @@
  * Implements hook_field_default_field_instances().
  */
 function wim_slider_field_default_field_instances() {
-  $field_instances = array();
+  $field_instances = [];
 
   // Exported field_instance: 'bean-slider-field_slide_item'.
-  $field_instances['bean-slider-field_slide_item'] = array(
+  $field_instances['bean-slider-field_slide_item'] = [
     'bundle' => 'slider',
     'default_value' => NULL,
     'deleted' => 0,
     'description' => 'Please do not upload more than 10 slides it could cause performance issues.',
-    'display' => array(
-      'default' => array(
+    'display' => [
+      'default' => [
         'label' => 'hidden',
         'module' => 'slick_paragraphs',
-        'settings' => array(
+        'settings' => [
           'adaptiveHeight' => 1,
           'autoplay' => 1,
           'autoplaySpeed' => 5000,
@@ -28,126 +28,126 @@ function wim_slider_field_default_field_instances() {
           'fade' => 1,
           'pause' => 1,
           'view_mode' => 'full',
-        ),
+        ],
         'type' => 'slick_paragraphs',
         'weight' => 0,
-      ),
-      'link_title' => array(
+      ],
+      'link_title' => [
         'label' => 'above',
-        'settings' => array(),
+        'settings' => [],
         'type' => 'hidden',
         'weight' => 0,
-      ),
-    ),
+      ],
+    ],
     'entity_type' => 'bean',
     'field_name' => 'field_slide_item',
     'label' => 'Slide',
     'required' => 1,
-    'settings' => array(
+    'settings' => [
       'add_mode' => 'select',
-      'allowed_bundles' => array(
+      'allowed_bundles' => [
         'slider_item' => 'slider_item',
-      ),
-      'bundle_weights' => array(
+      ],
+      'bundle_weights' => [
         'slider_item' => 2,
-      ),
+      ],
       'default_edit_mode' => 'open',
       'title' => 'slide',
       'title_multiple' => 'slides',
       'user_register_form' => FALSE,
-    ),
-    'widget' => array(
+    ],
+    'widget' => [
       'active' => 0,
       'module' => 'paragraphs',
-      'settings' => array(),
+      'settings' => [],
       'type' => 'paragraphs_embed',
       'weight' => 2,
-    ),
-  );
+    ],
+  ];
 
   // Exported field_instance: 'paragraphs_item-slider_item-field_body'.
-  $field_instances['paragraphs_item-slider_item-field_body'] = array(
+  $field_instances['paragraphs_item-slider_item-field_body'] = [
     'bundle' => 'slider_item',
     'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
-    'display' => array(
-      'default' => array(
+    'display' => [
+      'default' => [
         'label' => 'hidden',
-        'settings' => array(),
+        'settings' => [],
         'type' => 'hidden',
         'weight' => 3,
-      ),
-      'paragraphs_editor_preview' => array(
+      ],
+      'paragraphs_editor_preview' => [
         'label' => 'above',
-        'settings' => array(),
+        'settings' => [],
         'type' => 'hidden',
         'weight' => 0,
-      ),
-    ),
+      ],
+    ],
     'entity_type' => 'paragraphs_item',
     'field_name' => 'field_body',
     'label' => 'Body',
     'required' => 0,
-    'settings' => array(
-      'linkit' => array(
+    'settings' => [
+      'linkit' => [
         'button_text' => 'Search',
         'enable' => 0,
         'profile' => '',
-      ),
+      ],
       'text_processing' => 1,
       'user_register_form' => FALSE,
-    ),
-    'widget' => array(
+    ],
+    'widget' => [
       'active' => 1,
       'module' => 'text',
-      'settings' => array(
+      'settings' => [
         'rows' => 5,
-      ),
+      ],
       'type' => 'text_textarea',
       'weight' => 2,
-    ),
-  );
+    ],
+  ];
 
   // Exported field_instance: 'paragraphs_item-slider_item-field_image'.
-  $field_instances['paragraphs_item-slider_item-field_image'] = array(
+  $field_instances['paragraphs_item-slider_item-field_image'] = [
     'bundle' => 'slider_item',
     'deleted' => 0,
     'description' => '',
-    'display' => array(
-      'default' => array(
+    'display' => [
+      'default' => [
         'label' => 'hidden',
         'module' => 'picture',
-        'settings' => array(
-          'colorbox_settings' => array(
+        'settings' => [
+          'colorbox_settings' => [
             'colorbox_caption' => 'auto',
             'colorbox_caption_custom' => '',
             'colorbox_gallery' => 'post',
             'colorbox_gallery_custom' => '',
             'colorbox_group' => '',
             'colorbox_multivalue_index' => NULL,
-          ),
+          ],
           'fallback_image_style' => 'slider_desktop',
           'image_link' => '',
           'lazyload' => 0,
           'lazyload_aspect_ratio' => 0,
           'picture_mapping' => 'slider',
-        ),
+        ],
         'type' => 'picture',
         'weight' => 0,
-      ),
-      'paragraphs_editor_preview' => array(
+      ],
+      'paragraphs_editor_preview' => [
         'label' => 'above',
-        'settings' => array(),
+        'settings' => [],
         'type' => 'hidden',
         'weight' => 0,
-      ),
-    ),
+      ],
+    ],
     'entity_type' => 'paragraphs_item',
     'field_name' => 'field_image',
     'label' => 'Image',
     'required' => 1,
-    'settings' => array(
+    'settings' => [
       'alt_field' => 1,
       'default_image' => 0,
       'file_directory' => 'slider-item',
@@ -157,70 +157,70 @@ function wim_slider_field_default_field_instances() {
       'min_resolution' => '',
       'title_field' => 0,
       'user_register_form' => FALSE,
-    ),
-    'widget' => array(
+    ],
+    'widget' => [
       'active' => 1,
       'module' => 'media',
-      'settings' => array(
-        'allowed_schemes' => array(
+      'settings' => [
+        'allowed_schemes' => [
           'public' => 'public',
-        ),
-        'allowed_types' => array(
+        ],
+        'allowed_types' => [
           'image' => 'image',
-        ),
-        'browser_plugins' => array(),
+        ],
+        'browser_plugins' => [],
         'preview_image_style' => 'thumbnail',
         'progress_indicator' => 'throbber',
-      ),
+      ],
       'type' => 'media_generic',
       'weight' => 1,
-    ),
-  );
+    ],
+  ];
 
   // Exported field_instance: 'paragraphs_item-slider_item-field_link'.
-  $field_instances['paragraphs_item-slider_item-field_link'] = array(
+  $field_instances['paragraphs_item-slider_item-field_link'] = [
     'bundle' => 'slider_item',
     'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
-    'display' => array(
-      'default' => array(
+    'display' => [
+      'default' => [
         'label' => 'hidden',
         'module' => 'link',
-        'settings' => array(),
+        'settings' => [],
         'type' => 'link_default',
         'weight' => 2,
-      ),
-      'paragraphs_editor_preview' => array(
+      ],
+      'paragraphs_editor_preview' => [
         'label' => 'above',
-        'settings' => array(),
+        'settings' => [],
         'type' => 'hidden',
         'weight' => 0,
-      ),
-    ),
+      ],
+    ],
     'entity_type' => 'paragraphs_item',
     'field_name' => 'field_link',
     'label' => 'Link',
     'required' => 0,
-    'settings' => array(
+    'settings' => [
       'absolute_url' => 1,
-      'attributes' => array(
+      'attributes' => [
         'class' => '',
         'configurable_class' => 0,
         'configurable_title' => 0,
         'rel' => '',
         'target' => 'default',
         'title' => '',
-      ),
-      'display' => array(
+      ],
+      'display' => [
         'url_cutoff' => 80,
-      ),
+      ],
       'enable_tokens' => 1,
-      'linkit' => array(
+      'linkit' => [
         'button_text' => 'Search',
         'enable' => 0,
         'profile' => '',
-      ),
+      ],
       'rel_remove' => 'default',
       'title' => 'none',
       'title_label_use_field_label' => 0,
@@ -229,60 +229,60 @@ function wim_slider_field_default_field_instances() {
       'url' => 0,
       'user_register_form' => FALSE,
       'validate_url' => 1,
-    ),
-    'widget' => array(
+    ],
+    'widget' => [
       'active' => 0,
       'module' => 'link',
-      'settings' => array(),
+      'settings' => [],
       'type' => 'link_field',
       'weight' => 3,
-    ),
-  );
+    ],
+  ];
 
   // Exported field_instance: 'paragraphs_item-slider_item-field_title'.
-  $field_instances['paragraphs_item-slider_item-field_title'] = array(
+  $field_instances['paragraphs_item-slider_item-field_title'] = [
     'bundle' => 'slider_item',
     'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
-    'display' => array(
-      'default' => array(
+    'display' => [
+      'default' => [
         'label' => 'hidden',
         'module' => 'text',
-        'settings' => array(),
+        'settings' => [],
         'type' => 'text_default',
         'weight' => 1,
-      ),
-      'paragraphs_editor_preview' => array(
+      ],
+      'paragraphs_editor_preview' => [
         'label' => 'above',
-        'settings' => array(),
+        'settings' => [],
         'type' => 'hidden',
         'weight' => 0,
-      ),
-    ),
+      ],
+    ],
     'entity_type' => 'paragraphs_item',
     'field_name' => 'field_title',
     'label' => 'Title',
     'required' => 0,
-    'settings' => array(
-      'linkit' => array(
+    'settings' => [
+      'linkit' => [
         'button_text' => 'Search',
         'enable' => 0,
         'profile' => '',
-      ),
+      ],
       'text_processing' => 0,
       'user_register_form' => FALSE,
-    ),
-    'widget' => array(
+    ],
+    'widget' => [
       'active' => 1,
       'module' => 'text',
-      'settings' => array(
+      'settings' => [
         'size' => 60,
-      ),
+      ],
       'type' => 'text_textfield',
       'weight' => 0,
-    ),
-  );
+    ],
+  ];
 
   // Translatables
   // Included for use with string extractors like potx.

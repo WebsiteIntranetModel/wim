@@ -21,7 +21,7 @@ class EditorialMigration extends WIMMigration {
     parent::__construct($arguments);
     $this->fileName = $arguments['file_name'];
 
-    $columns = array(
+    $columns = [
       'id' => t('Id'),
       'label' => t('Label'),
       'title' => t('Title'),
@@ -31,26 +31,26 @@ class EditorialMigration extends WIMMigration {
       'meta_title' => t('Metatag title'),
       'meta_keywords' => t('Metatag keywords'),
       'meta_description' => t('Metatag description'),
-    );
+    ];
 
     $this->source = new MigrateSourceList(new WIMListJSON($this->dataSources . $this->fileName),
-      new WIMItemJSON($this->dataSources . $this->fileName, array()), $columns);
+      new WIMItemJSON($this->dataSources . $this->fileName, []), $columns);
 
     $this->destination = new MigrateDestinationBean('editorial');
-    $this->map = new MigrateSQLMap($this->machineName, array(
-      'id' => array(
+    $this->map = new MigrateSQLMap($this->machineName, [
+      'id' => [
         'type' => 'int',
         'unsigned' => TRUE,
         'description' => 'ID of destination node',
-      ),
-    ), MigrateDestinationBean::getKeySchema());
+      ],
+    ], MigrateDestinationBean::getKeySchema());
 
-    $this->addSimpleMappings(array(
+    $this->addSimpleMappings([
       'label',
       'title',
       'field_body',
       'field_link',
-    ));
+    ]);
 
     $this->addFieldMapping('field_image', 'field_image')
       ->sourceMigration('WIM_File');

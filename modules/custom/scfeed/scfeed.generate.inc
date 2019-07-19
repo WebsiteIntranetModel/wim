@@ -38,7 +38,7 @@ function scfeed_generate_item($node) {
   $owmskern = $dom->createElement('owmskern');
   $meta->appendChild($owmskern);
 
-  $element = $dom->createElementNS($ns_dcterms, 'dcterms:identifier', url('node/' . $node->nid, array('absolute' => TRUE)));
+  $element = $dom->createElementNS($ns_dcterms, 'dcterms:identifier', url('node/' . $node->nid, ['absolute' => TRUE]));
   $owmskern->appendChild($element);
 
   $element = $dom->createElementNS($ns_dcterms, 'dcterms:title');
@@ -149,8 +149,8 @@ function scfeed_generate_item($node) {
 
   $xml = $dom->saveXML($product);
   db_merge('scfeed_item')
-    ->key(array('nid'), array($node->nid))
-    ->fields(array('xml' => $xml))
+    ->key(['nid'], [$node->nid])
+    ->fields(['xml' => $xml])
     ->execute();
 }
 
@@ -168,8 +168,8 @@ function scfeed_generate_body($node) {
   if (!isset($langcode)) {
     $langcode = $GLOBALS['language_content']->language;
   }
-  field_attach_prepare_view('node', array($node->nid => $node), $view_mode, $langcode);
-  entity_prepare_view('node', array($node->nid => $node), $langcode);
+  field_attach_prepare_view('node', [$node->nid => $node], $view_mode, $langcode);
+  entity_prepare_view('node', [$node->nid => $node], $langcode);
   $content = field_attach_view('node', $node, $view_mode, $langcode);
   $body = drupal_render($content);
   if (!empty($body)) {

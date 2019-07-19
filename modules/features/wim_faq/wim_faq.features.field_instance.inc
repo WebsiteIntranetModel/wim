@@ -8,291 +8,291 @@
  * Implements hook_field_default_field_instances().
  */
 function wim_faq_field_default_field_instances() {
-  $field_instances = array();
+  $field_instances = [];
 
   // Exported field_instance: 'node-faq-body'.
-  $field_instances['node-faq-body'] = array(
+  $field_instances['node-faq-body'] = [
     'bundle' => 'faq',
     'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
-    'display' => array(
-      'default' => array(
+    'display' => [
+      'default' => [
         'label' => 'hidden',
         'module' => 'text',
-        'settings' => array(),
+        'settings' => [],
         'type' => 'text_default',
         'weight' => 0,
-      ),
-      'search_result' => array(
+      ],
+      'search_result' => [
         'label' => 'hidden',
         'module' => 'text',
-        'settings' => array(
+        'settings' => [
           'trim_length' => 200,
-        ),
+        ],
         'type' => 'text_summary_or_trimmed',
         'weight' => 0,
-      ),
-      'teaser' => array(
+      ],
+      'teaser' => [
         'label' => 'hidden',
         'module' => 'text',
-        'settings' => array(
+        'settings' => [
           'trim_length' => 600,
-        ),
+        ],
         'type' => 'text_summary_or_trimmed',
         'weight' => 0,
-      ),
-    ),
+      ],
+    ],
     'entity_type' => 'node',
     'field_name' => 'body',
     'label' => 'Answer',
     'required' => 0,
-    'settings' => array(
+    'settings' => [
       'display_summary' => 0,
       'text_processing' => 1,
       'user_register_form' => FALSE,
-    ),
-    'widget' => array(
+    ],
+    'widget' => [
       'active' => 1,
       'module' => 'text',
-      'settings' => array(
+      'settings' => [
         'rows' => 20,
         'summary_rows' => 5,
-      ),
+      ],
       'type' => 'text_textarea_with_summary',
       'weight' => 1,
-    ),
-  );
+    ],
+  ];
 
   // Exported field_instance: 'node-faq-field_faq_additional_information'.
-  $field_instances['node-faq-field_faq_additional_information'] = array(
+  $field_instances['node-faq-field_faq_additional_information'] = [
     'bundle' => 'faq',
     'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
-    'display' => array(
-      'default' => array(
+    'display' => [
+      'default' => [
         'label' => 'above',
         'module' => 'text',
-        'settings' => array(),
+        'settings' => [],
         'type' => 'text_default',
         'weight' => 1,
-      ),
-      'search_result' => array(
+      ],
+      'search_result' => [
         'label' => 'above',
-        'settings' => array(),
+        'settings' => [],
         'type' => 'hidden',
         'weight' => 5,
-      ),
-      'teaser' => array(
+      ],
+      'teaser' => [
         'label' => 'above',
-        'settings' => array(),
+        'settings' => [],
         'type' => 'hidden',
         'weight' => 0,
-      ),
-    ),
+      ],
+    ],
     'entity_type' => 'node',
     'field_name' => 'field_faq_additional_information',
     'label' => 'Additional information',
     'required' => 0,
-    'settings' => array(
+    'settings' => [
       'text_processing' => 1,
       'user_register_form' => FALSE,
-    ),
-    'widget' => array(
+    ],
+    'widget' => [
       'active' => 1,
       'module' => 'text',
-      'settings' => array(
+      'settings' => [
         'rows' => 5,
-      ),
+      ],
       'type' => 'text_textarea',
       'weight' => 2,
-    ),
-  );
+    ],
+  ];
 
   // Exported field_instance: 'node-faq-field_faq_category'.
-  $field_instances['node-faq-field_faq_category'] = array(
+  $field_instances['node-faq-field_faq_category'] = [
     'bundle' => 'faq',
     'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
-    'display' => array(
-      'default' => array(
+    'display' => [
+      'default' => [
         'label' => 'above',
-        'settings' => array(),
+        'settings' => [],
         'type' => 'hidden',
         'weight' => 8,
-      ),
-      'search_result' => array(
+      ],
+      'search_result' => [
         'label' => 'above',
-        'settings' => array(),
+        'settings' => [],
         'type' => 'hidden',
         'weight' => 4,
-      ),
-      'teaser' => array(
+      ],
+      'teaser' => [
         'label' => 'above',
-        'settings' => array(),
+        'settings' => [],
         'type' => 'hidden',
         'weight' => 0,
-      ),
-    ),
+      ],
+    ],
     'entity_type' => 'node',
     'field_name' => 'field_faq_category',
     'label' => 'Category',
     'required' => 1,
-    'settings' => array(
+    'settings' => [
       'user_register_form' => FALSE,
-    ),
-    'widget' => array(
+    ],
+    'widget' => [
       'active' => 1,
       'module' => 'options',
-      'settings' => array(),
+      'settings' => [],
       'type' => 'options_select',
       'weight' => 4,
-    ),
-  );
+    ],
+  ];
 
   // Exported field_instance: 'node-faq-field_show_on_overview'.
-  $field_instances['node-faq-field_show_on_overview'] = array(
+  $field_instances['node-faq-field_show_on_overview'] = [
     'bundle' => 'faq',
-    'default_value' => array(
-      0 => array(
+    'default_value' => [
+      0 => [
         'value' => 1,
-      ),
-    ),
+      ],
+    ],
     'deleted' => 0,
     'description' => '',
-    'display' => array(
-      'default' => array(
+    'display' => [
+      'default' => [
         'label' => 'above',
-        'settings' => array(),
+        'settings' => [],
         'type' => 'hidden',
         'weight' => 9,
-      ),
-      'search_result' => array(
+      ],
+      'search_result' => [
         'label' => 'above',
-        'settings' => array(),
+        'settings' => [],
         'type' => 'hidden',
         'weight' => 3,
-      ),
-      'teaser' => array(
+      ],
+      'teaser' => [
         'label' => 'above',
-        'settings' => array(),
+        'settings' => [],
         'type' => 'hidden',
         'weight' => 0,
-      ),
-    ),
+      ],
+    ],
     'entity_type' => 'node',
     'field_name' => 'field_show_on_overview',
     'label' => 'Show this FAQ in the FAQ overview',
     'required' => 0,
-    'settings' => array(
+    'settings' => [
       'user_register_form' => FALSE,
-    ),
-    'widget' => array(
+    ],
+    'widget' => [
       'active' => 1,
       'module' => 'options',
-      'settings' => array(
+      'settings' => [
         'display_label' => 1,
-      ),
+      ],
       'type' => 'options_onoff',
       'weight' => 5,
-    ),
-  );
+    ],
+  ];
 
   // Exported field_instance: 'node-faq-field_tags'.
-  $field_instances['node-faq-field_tags'] = array(
+  $field_instances['node-faq-field_tags'] = [
     'bundle' => 'faq',
     'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
-    'display' => array(
-      'default' => array(
+    'display' => [
+      'default' => [
         'label' => 'inline',
-        'settings' => array(),
+        'settings' => [],
         'type' => 'hidden',
         'weight' => 6,
-      ),
-      'search_result' => array(
+      ],
+      'search_result' => [
         'label' => 'above',
-        'settings' => array(),
+        'settings' => [],
         'type' => 'hidden',
         'weight' => 1,
-      ),
-      'teaser' => array(
+      ],
+      'teaser' => [
         'label' => 'above',
-        'settings' => array(),
+        'settings' => [],
         'type' => 'hidden',
         'weight' => 0,
-      ),
-    ),
+      ],
+    ],
     'entity_type' => 'node',
     'field_name' => 'field_tags',
     'label' => 'Tags',
     'required' => 0,
-    'settings' => array(
+    'settings' => [
       'user_register_form' => FALSE,
-    ),
-    'widget' => array(
+    ],
+    'widget' => [
       'active' => 0,
       'module' => 'taxonomy',
-      'settings' => array(
+      'settings' => [
         'autocomplete_path' => 'taxonomy/autocomplete',
         'size' => 60,
-      ),
+      ],
       'type' => 'taxonomy_autocomplete',
       'weight' => 6,
-    ),
-  );
+    ],
+  ];
 
   // Exported field_instance: 'node-faq-field_weight'.
-  $field_instances['node-faq-field_weight'] = array(
+  $field_instances['node-faq-field_weight'] = [
     'bundle' => 'faq',
-    'default_value' => array(
-      0 => array(
+    'default_value' => [
+      0 => [
         'value' => 0,
-      ),
-    ),
+      ],
+    ],
     'deleted' => 0,
     'description' => '',
-    'display' => array(
-      'default' => array(
+    'display' => [
+      'default' => [
         'label' => 'above',
-        'settings' => array(),
+        'settings' => [],
         'type' => 'hidden',
         'weight' => 7,
-      ),
-      'search_result' => array(
+      ],
+      'search_result' => [
         'label' => 'above',
-        'settings' => array(),
+        'settings' => [],
         'type' => 'hidden',
         'weight' => 2,
-      ),
-      'teaser' => array(
+      ],
+      'teaser' => [
         'label' => 'above',
-        'settings' => array(),
+        'settings' => [],
         'type' => 'hidden',
         'weight' => 0,
-      ),
-    ),
+      ],
+    ],
     'entity_type' => 'node',
     'field_name' => 'field_weight',
     'label' => 'Weight',
     'required' => 0,
-    'settings' => array(
+    'settings' => [
       'range' => 20,
       'user_register_form' => FALSE,
-    ),
-    'widget' => array(
+    ],
+    'widget' => [
       'active' => 1,
       'module' => 'weight',
-      'settings' => array(
+      'settings' => [
         'range' => 20,
-      ),
+      ],
       'type' => 'weight_selector',
       'weight' => 8,
-    ),
-  );
+    ],
+  ];
 
   // Translatables
   // Included for use with string extractors like potx.

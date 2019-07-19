@@ -42,58 +42,58 @@ function wim_slider_form_felix_attributes_form_alter(&$form, &$form_state, $form
  * Implements hook_image_default_styles().
  */
 function wim_slider_image_default_styles() {
-  $styles = array();
+  $styles = [];
 
-  $styles['slider_desktop'] = array(
+  $styles['slider_desktop'] = [
     'name' => 'slider_desktop',
     'label' => 'Slider desktop (1200xAUTO)',
-    'effects' => array(
-      array(
+    'effects' => [
+      [
         'module' => 'image',
         'name' => 'image_scale',
-        'data' => array(
+        'data' => [
           'width' => 1200,
           'height' => '',
           'upscale' => 0,
-        ),
+        ],
         'weight' => 0,
-      ),
-    ),
-  );
+      ],
+    ],
+  ];
 
-  $styles['slider_tablet'] = array(
+  $styles['slider_tablet'] = [
     'name' => 'slider_tablet',
     'label' => 'Slider tablet (768xAUTO)',
-    'effects' => array(
-      array(
+    'effects' => [
+      [
         'module' => 'image',
         'name' => 'image_scale',
-        'data' => array(
+        'data' => [
           'width' => 768,
           'height' => '',
           'upscale' => 0,
-        ),
+        ],
         'weight' => 0,
-      ),
-    ),
-  );
+      ],
+    ],
+  ];
 
-  $styles['slider_mobile'] = array(
+  $styles['slider_mobile'] = [
     'name' => 'slider_mobile',
     'label' => 'Slider mobile (480xAUTO)',
-    'effects' => array(
-      array(
+    'effects' => [
+      [
         'module' => 'image',
         'name' => 'image_scale',
-        'data' => array(
+        'data' => [
           'width' => 480,
           'height' => '',
           'upscale' => 0,
-        ),
+        ],
         'weight' => 0,
-      ),
-    ),
-  );
+      ],
+    ],
+  ];
 
   return $styles;
 }

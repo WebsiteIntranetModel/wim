@@ -11,16 +11,16 @@
 function external_crawler_page_list() {
   $base_acrions_url = 'admin/config/search/external_crawler/site/';
   $sites = _external_crawler_fetch_sites();
-  $header = array(
+  $header = [
     t('Name'),
     t('Check interval'),
     t('Depth'),
     t('Crawled pages'),
     t('Crawled'),
     t('Actions'),
-  );
+  ];
 
-  $rows = array();
+  $rows = [];
   foreach ($sites as $site) {
     $xml_marker = NULL;
 
@@ -29,24 +29,24 @@ function external_crawler_page_list() {
     }
 
     $actions = l(t('Edit'), $base_acrions_url . $site->site_id . '/edit') . '/' . l(t('Delete'), $base_acrions_url . $site->site_id . '/delete');
-    $rows[] = array(
+    $rows[] = [
       l($site->name, $site->url) . ' ' . $xml_marker,
       format_interval($site->check_interval),
       $site->max_depth,
       _external_crawler_fetch_pages($site->site_id, NULL, TRUE),
       $site->last_crawl ? format_date($site->last_crawl, 'long') : 'n/a',
       $actions,
-    );
+    ];
   }
 
-  return array(
-    'table' => array(
+  return [
+    'table' => [
       '#theme' => 'table',
       '#header' => $header,
       '#rows' => $rows,
       '#empty' => t('No sites defined yet.'),
-    ),
-  );
+    ],
+  ];
 }
 
 /**
@@ -54,85 +54,85 @@ function external_crawler_page_list() {
  */
 function external_crawler_site_add_form() {
 
-  $form = array();
-  $form['name'] = array(
+  $form = [];
+  $form['name'] = [
     '#type' => 'textfield',
     '#title' => t('Site name'),
     '#required' => TRUE,
     '#description' => t('Site name'),
-  );
-  $form['url'] = array(
+  ];
+  $form['url'] = [
     '#type' => 'textarea',
     '#title' => t('URL'),
     '#required' => TRUE,
     '#description' => t('Site start page URL. Crawler will start index from this page.'),
-  );
+  ];
 
-  $form['subquery'] = array(
+  $form['subquery'] = [
     '#type' => 'checkbox',
     '#title' => t('Include subquery'),
     '#default_value' => FALSE,
     '#description' => t('Do you want to include subqueries in the crawler?'),
-  );
+  ];
 
-  $form['max_depth'] = array(
+  $form['max_depth'] = [
     '#type' => 'select',
     '#title' => t('Depth'),
     '#required' => TRUE,
-    '#options' => drupal_map_assoc(array(1, 2, 3, 4, 5)),
+    '#options' => drupal_map_assoc([1, 2, 3, 4, 5]),
     '#default_value' => 1,
     '#description' => t('Depth of pages which crawler should index. If 1 is selected then only one page will be indexed(from URL set above).'),
-  );
+  ];
 
-  $form['check_interval'] = array(
+  $form['check_interval'] = [
     '#type' => 'select',
     '#title' => t('Interval'),
     '#required' => TRUE,
-    '#options' => array(
+    '#options' => [
       2592000 => format_interval(2592000),
       604800 => format_interval(604800),
       86400 => format_interval(86400),
       7200 => format_interval(7200),
       3600 => format_interval(3600),
-    ),
+    ],
     '#default_value' => 86400,
     '#description' => t('Set interval of time after which pages will be reindexed for this site.'),
-  );
+  ];
 
-  $form['max_run'] = array(
+  $form['max_run'] = [
     '#type' => 'select',
     '#title' => t('Process limit'),
     '#required' => TRUE,
-    '#options' => drupal_map_assoc(array(10, 20, 30, 50, 100)),
+    '#options' => drupal_map_assoc([10, 20, 30, 50, 100]),
     '#default_value' => 1,
     '#description' => t('Amount of pages which should be fetched and processed by 1 cron job.'),
-  );
+  ];
 
-  $form['url_exclude'] = array(
+  $form['url_exclude'] = [
     '#type' => 'textarea',
     '#title' => t('Excluded paths'),
     '#description' => t('List of excluded URLs, one per line.'),
-  );
+  ];
 
-  $form['content_exclude'] = array(
+  $form['content_exclude'] = [
     '#type' => 'textfield',
     '#title' => t('Content exclude'),
     '#access' => user_access('access content include/exclude'),
     '#default_value' => 'script, style',
     '#description' => t('CSS selector to exclude elements from index.(e.g "script, a.myclass")'),
-  );
+  ];
 
-  $form['content_include'] = array(
+  $form['content_include'] = [
     '#type' => 'textfield',
     '#title' => t('Content include'),
     '#access' => user_access('access content include/exclude'),
     '#description' => t('CSS selector to include elements to index.(e.g "body > p")'),
-  );
+  ];
 
-  $form['submit'] = array(
+  $form['submit'] = [
     '#type' => 'submit',
     '#value' => t('Save'),
-  );
+  ];
 
   $form['#validate'][] = 'external_crawler_site_form_validate';
 
@@ -163,116 +163,116 @@ function external_crawler_site_add_form_submit(&$form, &$form_state) {
  * Site edit form.
  */
 function external_crawler_site_edit_form($form, &$form_state) {
-  $form = array();
+  $form = [];
   $site = _external_crawler_fetch_sites($form_state['build_info']['args'][0]);
 
   if ($site) {
-    drupal_set_title(t('Edit @site site.', array('@site' => $site->name)));
+    drupal_set_title(t('Edit @site site.', ['@site' => $site->name]));
     $form_state['site'] = $site;
 
-    $form['site_id'] = array(
+    $form['site_id'] = [
       '#type' => 'value',
       '#value' => $site->site_id,
-    );
+    ];
 
-    $form['name'] = array(
+    $form['name'] = [
       '#type' => 'textfield',
       '#title' => t('Site name'),
       '#required' => TRUE,
       '#description' => t('Site name'),
       '#default_value' => $site->name,
-    );
+    ];
 
-    $form['url'] = array(
+    $form['url'] = [
       '#type' => 'textarea',
       '#title' => t('URL'),
       '#required' => TRUE,
       '#description' => t('Site start page URL. Crawler will start index from this page.'),
       '#default_value' => $site->url,
-    );
+    ];
 
-    $form['subquery'] = array(
+    $form['subquery'] = [
       '#type' => 'checkbox',
       '#title' => t('Include subquery'),
       '#default_value' => (isset($site->subquery) ? $site->subquery : FALSE),
       '#description' => t('Do you want to include subqueries in the crawler?'),
-    );
+    ];
 
-    $form['max_depth'] = array(
+    $form['max_depth'] = [
       '#type' => 'select',
       '#title' => t('Depth'),
       '#required' => TRUE,
-      '#options' => drupal_map_assoc(array(1, 2, 3, 4, 5)),
+      '#options' => drupal_map_assoc([1, 2, 3, 4, 5]),
       '#default_value' => $site->max_depth,
       '#description' => t('Depth of pages which crawler should index. If 1 is selected then only one page will be indexed(from URL set above).'),
-    );
+    ];
 
-    $form['check_interval'] = array(
+    $form['check_interval'] = [
       '#type' => 'select',
       '#title' => t('Interval'),
       '#required' => TRUE,
-      '#options' => array(
+      '#options' => [
         2592000 => format_interval(2592000),
         604800 => format_interval(604800),
         86400 => format_interval(86400),
         7200 => format_interval(7200),
         3600 => format_interval(3600),
-      ),
+      ],
       '#default_value' => $site->check_interval,
       '#description' => t('Set interval of time after which pages will be reindexed for this site.'),
-    );
+    ];
 
-    $form['max_run'] = array(
+    $form['max_run'] = [
       '#type' => 'select',
       '#title' => t('Process limit'),
       '#required' => TRUE,
-      '#options' => drupal_map_assoc(array(10, 20, 30, 50, 100)),
+      '#options' => drupal_map_assoc([10, 20, 30, 50, 100]),
       '#default_value' => $site->max_run,
       '#description' => t('Amount of pages which should be fetched and processed by 1 cron job.'),
-    );
+    ];
 
-    $form['url_exclude'] = array(
+    $form['url_exclude'] = [
       '#type' => 'textarea',
       '#title' => t('Excluded paths'),
       '#description' => t('List of excluded URLs, one per line.'),
       '#default_value' => $site->url_exclude,
-    );
+    ];
 
-    $form['content_exclude'] = array(
+    $form['content_exclude'] = [
       '#type' => 'textfield',
       '#title' => t('Content exclude'),
       '#access' => user_access('access content include/exclude'),
       '#default_value' => $site->content_exclude,
       '#description' => t('CSS selector to exclude elements from index, separated by comma.(e.g "script, a.myclass")'),
-    );
+    ];
 
-    $form['content_include'] = array(
+    $form['content_include'] = [
       '#type' => 'textfield',
       '#title' => t('Content include'),
       '#access' => user_access('access content include/exclude'),
       '#default_value' => $site->content_include,
       '#description' => t('CSS selector to specify which element on page should be added to index.(e.g "body > p")'),
-    );
+    ];
 
-    $form['submit'] = array(
+    $form['submit'] = [
       '#type' => 'submit',
       '#value' => t('Save'),
-    );
+    ];
 
-    $form['delete'] = array(
+    $form['delete'] = [
       '#type' => 'submit',
       '#value' => t('Delete'),
-      '#submit' => array('external_crawler_site_edit_form_delete'),
-    );
+      '#submit' => ['external_crawler_site_edit_form_delete'],
+    ];
 
-    $form['cancel'] = array(
-      '#markup' => l(t('Cancel'), 'admin/config/search/external_crawler', array('attributes' => array('id' => 'edit-cancel'))),
-    );
+    $form['cancel'] = [
+      '#markup' => l(t('Cancel'), 'admin/config/search/external_crawler', ['attributes' => ['id' => 'edit-cancel']]),
+    ];
   }
   else {
-    $form['empty'] = array(
+    $form['empty'] = [
       '#markup' => t('Site does not exist.'),
-    );
+    ];
   }
 
   $form['#validate'][] = 'external_crawler_site_form_validate';
@@ -306,8 +306,8 @@ function external_crawler_site_edit_form_delete(&$form, &$form_state) {
  * Delete site confirmation form.
  */
 function external_crawler_site_delete_confirm($form, &$form_state, $site_id) {
-  $form['site_id'] = array('#type' => 'value', '#value' => $site_id);
-  $message = t('Are you sure you want to delete the %site?', array('%site' => $site_id));
+  $form['site_id'] = ['#type' => 'value', '#value' => $site_id];
+  $message = t('Are you sure you want to delete the %site?', ['%site' => $site_id]);
   $caption = '<p>' . t('This action cannot be undone.') . '</p>';
 
   return confirm_form($form, $message, 'admin/config/search/external_crawler', $caption, t('Delete'));

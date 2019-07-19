@@ -13,20 +13,20 @@ function wim_external_search_install() {
   $string = facetapi_build_delta('apachesolr@solr', 'block', 'external_source');
   $delta = facetapi_hash_delta($string);
 
-  $facet_source = array(
+  $facet_source = [
     'region_name' => 'sidebar-first-search',
     'path' => NULL,
     'module' => 'facetapi',
     'delta' => $delta,
     'detail_path' => NULL,
-    'data' => array(
+    'data' => [
       'subject' => st('Filter by External Source'),
-      'config' => array(
+      'config' => [
         'bootstrap_layout' => 12,
         'new_row' => 0,
-      ),
-    ),
-  );
+      ],
+    ],
+  ];
 
   $region = _felix_region_by_name('sidebar-first-search');
 
@@ -45,7 +45,7 @@ function wim_external_search_install() {
   $block->detail_path = $facet_source['detail_path'];
   $block->data = $facet_source['data'];
   $block->hash_parts = $hash->parts;
-  $block->exclude = serialize(array());
+  $block->exclude = serialize([]);
 
   $block->data = serialize($block->data);
   $block->hash_parts = serialize($block->hash_parts);
@@ -85,7 +85,7 @@ function wim_external_search_update_7000() {
     $block->data = unserialize($block->data);
     $block->data['subject'] = t('Filter by External Source');
     $block->data = serialize($block->data);
-    drupal_write_record('felix_block', $block, array('fbid'));
+    drupal_write_record('felix_block', $block, ['fbid']);
   }
 
 }

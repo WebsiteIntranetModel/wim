@@ -24,14 +24,14 @@ function _wim_seo_plupload_element_value(&$element, $input = FALSE, $form_state 
   if (preg_match('/(.*)(--[0-9]+)$/', $id, $reg)) {
     $id = $reg[1];
   }
-  $files = array();
+  $files = [];
   foreach ($form_state['input'] as $key => $value) {
     if (preg_match('/' . $id . '_([0-9]+)_(.*)/', $key, $reg)) {
       $i = $reg[1];
       $key = $reg[2];
 
       // Only add the keys we expect.
-      if (!in_array($key, array('tmpname', 'name', 'status'))) {
+      if (!in_array($key, ['tmpname', 'name', 'status'])) {
         continue;
       }
 
@@ -48,7 +48,7 @@ function _wim_seo_plupload_element_value(&$element, $input = FALSE, $form_state 
       // file names that require munging can be innocent and do not necessarily
       // indicate an attempted exploit. Actual validation of the file names is
       // performed later, in plupload_element_validate().
-      if (in_array($key, array('tmpname', 'name'))) {
+      if (in_array($key, ['tmpname', 'name'])) {
         // Find the whitelist of extensions to use when munging. If there are
         // none, we'll be adding default ones in plupload_element_process(), so
         // use those here.
@@ -86,7 +86,7 @@ function _wim_seo_plupload_element_value(&$element, $input = FALSE, $form_state 
           // We have to add it here or else the file upload will fail.
           if (!empty($extensions)) {
             $element['#upload_validators']['file_validate_extensions'][0] .= ' txt';
-            drupal_set_message(t('For security reasons, your upload has been renamed to %filename.', array('%filename' => $value)));
+            drupal_set_message(t('For security reasons, your upload has been renamed to %filename.', ['%filename' => $value]));
           }
         }
       }

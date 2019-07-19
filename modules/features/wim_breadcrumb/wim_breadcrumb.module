@@ -50,7 +50,7 @@ function _wim_breadcrumb_update_node_alias($link) {
     $old_update_action = variable_get('pathauto_update_action', 0);
     variable_set('pathauto_update_action', 2);
     $node = node_load($components[1]);
-    node_save($node);
+    pathauto_node_update_alias($node, 'update');
 
     variable_set('pathauto_update_action', $old_update_action);
   }
@@ -63,16 +63,16 @@ function hansel_hansel_get_parent($path) {
   if (preg_match('/^node\\/([0-9]+)$/si', $path, $match)) {
 
     // Try to get parent by nodetype settings.
-    $nodetypes = variable_get('hansel_nodetypes', array());
+    $nodetypes = variable_get('hansel_nodetypes', []);
 
     // Override an output to provide translated title.
     if (($node = node_load($match[1])) && isset($nodetypes[$node->type])) {
 
       // @todo: need replace a title to use as translation variable(use like i18n_string() or etc.).
-      return array(
+      return [
         'path' => $nodetypes[$node->type]['path'],
         'title' => $nodetypes[$node->type]['title'],
-      );
+      ];
     }
   }
   return FALSE;

@@ -9,7 +9,7 @@
  */
 function wim_subject_ctools_plugin_api($module = NULL, $api = NULL) {
   if ($module == "strongarm" && $api == "strongarm") {
-    return array("version" => "1");
+    return ["version" => "1"];
   }
 }
 
@@ -17,16 +17,16 @@ function wim_subject_ctools_plugin_api($module = NULL, $api = NULL) {
  * Implements hook_node_info().
  */
 function wim_subject_node_info() {
-  $items = array(
-    'subject_page' => array(
+  $items = [
+    'subject_page' => [
       'name' => t('Subject page'),
       'base' => 'node_content',
       'description' => '',
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',
-    ),
-  );
+    ],
+  ];
   drupal_alter('node_info', $items);
   return $items;
 }

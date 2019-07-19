@@ -8,7 +8,7 @@
  * Implements hook_field_group_info().
  */
 function wim_product_field_group_info() {
-  $field_groups = array();
+  $field_groups = [];
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -19,25 +19,25 @@ function wim_product_field_group_info() {
   $field_group->bundle = 'product';
   $field_group->mode = 'form';
   $field_group->parent_name = '';
-  $field_group->data = array(
+  $field_group->data = [
     'label' => 'Introduction',
     'weight' => '1',
-    'children' => array(
+    'children' => [
       0 => 'field_image',
       1 => 'field_lead_paragraph',
-    ),
+    ],
     'format_type' => 'fieldset',
-    'format_settings' => array(
+    'format_settings' => [
       'label' => 'Introduction',
-      'instance_settings' => array(
+      'instance_settings' => [
         'required_fields' => 1,
         'id' => '',
         'classes' => 'group-introduction field-group-fieldset',
         'description' => '',
-      ),
+      ],
       'formatter' => 'collapsed',
-    ),
-  );
+    ],
+  ];
   $field_groups[''] = $field_group;
 
   // Translatables

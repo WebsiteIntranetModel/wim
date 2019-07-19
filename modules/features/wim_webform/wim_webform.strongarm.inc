@@ -8,7 +8,7 @@
  * Implements hook_strongarm().
  */
 function wim_webform_strongarm() {
-  $export = array();
+  $export = [];
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -41,70 +41,70 @@ webform_client_form_*';
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_node__webform';
-  $strongarm->value = array(
-    'view_modes' => array(
-      'teaser' => array(
+  $strongarm->value = [
+    'view_modes' => [
+      'teaser' => [
         'custom_settings' => TRUE,
-      ),
-      'full' => array(
+      ],
+      'full' => [
         'custom_settings' => FALSE,
-      ),
-      'rss' => array(
+      ],
+      'rss' => [
         'custom_settings' => FALSE,
-      ),
-      'search_index' => array(
+      ],
+      'search_index' => [
         'custom_settings' => FALSE,
-      ),
-      'search_result' => array(
+      ],
+      'search_result' => [
         'custom_settings' => FALSE,
-      ),
-      'diff_standard' => array(
+      ],
+      'diff_standard' => [
         'custom_settings' => FALSE,
-      ),
-      'felix' => array(
+      ],
+      'felix' => [
         'custom_settings' => FALSE,
-      ),
-      'token' => array(
+      ],
+      'token' => [
         'custom_settings' => FALSE,
-      ),
-      'short' => array(
+      ],
+      'short' => [
         'custom_settings' => FALSE,
-      ),
-      'introduction' => array(
+      ],
+      'introduction' => [
         'custom_settings' => FALSE,
-      ),
-    ),
-    'extra_fields' => array(
-      'form' => array(
-        'locations' => array(
+      ],
+    ],
+    'extra_fields' => [
+      'form' => [
+        'locations' => [
           'weight' => '3',
-        ),
-        'title' => array(
+        ],
+        'title' => [
           'weight' => '0',
-        ),
-        'redirect' => array(
+        ],
+        'redirect' => [
           'weight' => '2',
-        ),
-        'metatags' => array(
+        ],
+        'metatags' => [
           'weight' => '40',
-        ),
-        'path' => array(
+        ],
+        'path' => [
           'weight' => '30',
-        ),
-        'xmlsitemap' => array(
+        ],
+        'xmlsitemap' => [
           'weight' => '30',
-        ),
-      ),
-      'display' => array(
-        'webform' => array(
-          'default' => array(
+        ],
+      ],
+      'display' => [
+        'webform' => [
+          'default' => [
             'weight' => '1',
             'visible' => TRUE,
-          ),
-        ),
-      ),
-    ),
-  );
+          ],
+        ],
+      ],
+    ],
+  ];
   $export['field_bundle_settings_node__webform'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -118,9 +118,9 @@ webform_client_form_*';
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'menu_options_webform';
-  $strongarm->value = array(
+  $strongarm->value = [
     0 => 'main-menu',
-  );
+  ];
   $export['menu_options_webform'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -134,9 +134,9 @@ webform_client_form_*';
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'node_options_webform';
-  $strongarm->value = array(
+  $strongarm->value = [
     0 => 'status',
-  );
+  ];
   $export['node_options_webform'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -192,10 +192,10 @@ webform_client_form_*';
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'xmlsitemap_settings_node_webform';
-  $strongarm->value = array(
+  $strongarm->value = [
     'status' => '1',
     'priority' => '0.5',
-  );
+  ];
   $export['xmlsitemap_settings_node_webform'] = $strongarm;
 
   return $export;
