@@ -55,7 +55,8 @@
         $('.menu > li', $topTasksMenu).not(this).removeClass('open');
         if (isMobile()) {
           $(this).toggleClass('open');
-        } else {
+        }
+        else {
           $(this).addClass('open');
         }
       });
@@ -76,33 +77,41 @@
   // Since this is handled by input checkbox.
   Drupal.behaviors.checkboxTabindex = {
     attach: function (context, settings) {
-      $("a.facetapi-checkbox").attr("tabindex","-1");
+      $("a.facetapi-checkbox").attr("tabindex", "-1");
     }
   };
-  
+
   // Global behaviour to hide date field label in webform conditionals.
   Drupal.behaviors.hideWebformDateLabel = {
     attach: function (context, settings) {
-      $.each(['show', 'hide'], function(i, ev) {
+      $.each(['show', 'hide'], function (i, ev) {
         var el = $.fn[ev];
-        $.fn[ev] = function() {
+        $.fn[ev] = function () {
           this.trigger(ev);
           return el.apply(this, arguments);
         };
       });
-      
-      $('fieldset.webform-container .webform-component').each(function() {
+
+      $('fieldset.webform-container .webform-component').each(function () {
         if ($(this).is(":hidden")) {
           $(this).parent().hide();
         }
-        $(this).on('hide', function() {
+        $(this).on('hide', function () {
           $(this).parent().hide();
         });
-        $(this).on('show', function() {
+        $(this).on('show', function () {
           $(this).parent().show();
         });
       });
     }
   };
+
+  Drupal.behaviors.removeAriaExtended = {
+    attach: function (context, settings) {
+      $('div[id^="views-bootstrap-accordion"]').on('show.bs.collapse shown.bs.collapse hide.bs.collapse hidden.bs.collapse', function () {
+        $(this).find('.panel-collapse').removeAttr('aria-expanded');
+      });
+    }
+  }
 
 })(jQuery);
