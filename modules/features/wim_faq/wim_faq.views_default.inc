@@ -503,9 +503,9 @@ function wim_faq_views_default_views() {
   $handler->display->display_options['arguments']['field_faq_category_tid']['summary_options']['items_per_page'] = '25';
   $handler->display->display_options['arguments']['field_faq_category_tid']['specify_validation'] = TRUE;
   $handler->display->display_options['arguments']['field_faq_category_tid']['validate']['type'] = 'taxonomy_term';
-  $handler->display->display_options['arguments']['field_faq_category_tid']['validate_options']['vocabularies'] = array(
+  $handler->display->display_options['arguments']['field_faq_category_tid']['validate_options']['vocabularies'] = [
     'faq_categories' => 'faq_categories',
-  );
+  ];
   $handler->display->display_options['arguments']['field_faq_category_tid']['validate']['fail'] = 'empty';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
@@ -520,16 +520,16 @@ function wim_faq_views_default_views() {
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
-  $handler->display->display_options['filters']['type']['value'] = array(
+  $handler->display->display_options['filters']['type']['value'] = [
     'faq' => 'faq',
-  );
+  ];
   /* Filter criterion: Content: Show this FAQ in the FAQ overview (field_show_on_overview) */
   $handler->display->display_options['filters']['field_show_on_overview_value']['id'] = 'field_show_on_overview_value';
   $handler->display->display_options['filters']['field_show_on_overview_value']['table'] = 'field_data_field_show_on_overview';
   $handler->display->display_options['filters']['field_show_on_overview_value']['field'] = 'field_show_on_overview_value';
-  $handler->display->display_options['filters']['field_show_on_overview_value']['value'] = array(
+  $handler->display->display_options['filters']['field_show_on_overview_value']['value'] = [
     1 => '1',
-  );
+  ];
   $translatables['faq'] = [
     t('Master'),
     t('FAQ'),

@@ -467,52 +467,52 @@ function wim_product_field_default_field_instances() {
   ];
 
   // Exported field_instance: 'node-product-field_sc_ask_online'.
-  $field_instances['node-product-field_sc_ask_online'] = array(
+  $field_instances['node-product-field_sc_ask_online'] = [
     'bundle' => 'product',
     'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
-    'display' => array(
-      'default' => array(
+    'display' => [
+      'default' => [
         'label' => 'above',
-        'settings' => array(),
+        'settings' => [],
         'type' => 'hidden',
         'weight' => 16,
-      ),
-      'introduction' => array(
+      ],
+      'introduction' => [
         'label' => 'above',
-        'settings' => array(),
+        'settings' => [],
         'type' => 'hidden',
         'weight' => 0,
-      ),
-      'search_result' => array(
+      ],
+      'search_result' => [
         'label' => 'above',
-        'settings' => array(),
+        'settings' => [],
         'type' => 'hidden',
         'weight' => 0,
-      ),
-      'teaser' => array(
+      ],
+      'teaser' => [
         'label' => 'above',
-        'settings' => array(),
+        'settings' => [],
         'type' => 'hidden',
         'weight' => 0,
-      ),
-    ),
+      ],
+    ],
     'entity_type' => 'node',
     'field_name' => 'field_sc_ask_online',
     'label' => 'Ask online',
     'required' => 0,
-    'settings' => array(
+    'settings' => [
       'user_register_form' => FALSE,
-    ),
-    'widget' => array(
+    ],
+    'widget' => [
       'active' => 1,
       'module' => 'options',
-      'settings' => array(),
+      'settings' => [],
       'type' => 'options_buttons',
       'weight' => 16,
-    ),
-  );
+    ],
+  ];
 
   // Exported field_instance: 'node-product-field_tags'.
   $field_instances['node-product-field_tags'] = [

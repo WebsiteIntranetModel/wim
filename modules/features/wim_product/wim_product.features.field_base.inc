@@ -56,7 +56,7 @@ function wim_product_field_default_field_bases() {
     ],
     'translatable' => 0,
     'type' => 'link_field',
-  );
+  ];
 
   // Exported field_base: 'field_sc_ask_online'.
   $field_bases['field_sc_ask_online'] = [
