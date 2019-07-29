@@ -134,7 +134,7 @@ function scfeed_generate_item($node) {
     $element = $dom->createElement('onlineAanvragen', $node->field_sc_ask_online[LANGUAGE_NONE][0]['value']);
   }
   else {
-    $element = $dom->createElement('onlineAanvragen', 'no');
+    $element = $dom->createElement('onlineAanvragen', 'nee');
   }
   $overheidproduct->appendChild($element);
 

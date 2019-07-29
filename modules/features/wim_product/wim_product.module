@@ -5,10 +5,3 @@
  */
 
 include_once 'wim_product.features.inc';
-
-/**
- * Implements hook_form_FORM_ID_alter().
- */
-function wim_product_form_product_node_form_alter(&$form, &$form_state, $form_id) {
-  unset($form['field_sc_ask_online'][LANGUAGE_NONE]['#options']['_none']);
-}

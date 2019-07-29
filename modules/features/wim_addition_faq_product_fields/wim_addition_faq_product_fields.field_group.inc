@@ -95,6 +95,7 @@ function wim_addition_faq_product_fields_field_group_info() {
       3 => 'field_product_request_online',
       4 => 'field_sc_audience',
       5 => 'field_product_address',
+      6 => 'field_sc_ask_online',
     ],
     'format_type' => 'tab',
     'format_settings' => [
