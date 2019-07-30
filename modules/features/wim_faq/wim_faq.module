@@ -70,9 +70,9 @@ function wim_faq_felix_block_view(&$block) {
 /**
  * Implements hook_block_view().
  */
-function wim_faq_block_view($delta = '', $config = array()) {
+function wim_faq_block_view($delta = '', $config = []) {
   if (strlen($delta) == 32) {
-    $hashes = variable_get('views_block_hashes', array());
+    $hashes = variable_get('views_block_hashes', []);
     if (!empty($hashes[$delta])) {
       $delta = $hashes[$delta];
     }
