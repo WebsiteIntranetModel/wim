@@ -1,0 +1,98 @@
+<?php
+
+/**
+ * @file
+ * Main file for the wim_add_script module.
+ */
+
+/**
+ * Implements hook_install().
+ *
+ * Add the custom permission to the webmaster role.
+ */
+function wim_add_script_install() {
+  $role = user_role_load_by_name('webmaster');
+  if ($role !== FALSE) {
+    user_role_grant_permissions($role->rid, ['administer custom javascript']);
+  }
+}
+
+/**
+ * Implements hook_uninstall().
+ *
+ * Remove the custom permission from the webmaster role.
+ */
+function wim_add_script_uninstall() {
+  $role = user_role_load_by_name('webmaster');
+  if ($role !== FALSE) {
+    user_role_revoke_permissions($role->rid, ['administer custom javascript']);
+  }
+}
+
+/**
+ * Implements hook_permission().
+ *
+ * Define specific permission for this functionality because it is dangerous.
+ */
+function wim_add_script_permission() {
+  return array(
+    'administer custom javascript' => array(
+      'title' => t('Administer custom JavaScript code'),
+      'description' => t('Allow adding, changing or removing custom JavaScript code to the website.'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_menu().
+ */
+function wim_add_script_menu() {
+  $items['admin/config/wim-custom-script'] = array(
+    'title' => 'WIM add custom JavaScript',
+    'description' => 'Add custom JavaScript to the website.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('_wim_add_script_form'),
+    'access arguments' => array('administer custom javascript'),
+    'type' => MENU_NORMAL_ITEM,
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_page_build().
+ */
+function wim_add_script_page_build(&$page) {
+  $custom_js = variable_get('wim_add_script_js', '');
+  if (!empty($custom_js)) {
+    if (!isset($page['page_bottom'])) {
+      $page['page_bottom'] = array();
+    }
+
+    // Add the script to the bottom of the page by using the page_bottom variable.
+    $page['page_bottom']['wim_add_script_js'] = array(
+      '#type' => 'markup',
+      '#markup' => $custom_js,
+    );
+  }
+}
+
+/**
+ * Generate the administration form.
+ * @return array
+ *  The structure of the administration form.
+ */
+function _wim_add_script_form() {
+  $form = array();
+
+  $current = variable_get('wim_add_script_js', '');
+  $form['wim_add_script_js'] = array(
+    '#type' => 'textarea',
+    '#title' => t('Custom script'),
+    '#description' => t('Place custom JavaScript in this field to embed it on <strong>all</strong> pages. <br />'
+        . '<strong>Invalid/incorrect JavaScript can break the website! Be careful!</strong>'),
+    '#default_value' => $current,
+  );
+
+  return system_settings_form($form);
+}
