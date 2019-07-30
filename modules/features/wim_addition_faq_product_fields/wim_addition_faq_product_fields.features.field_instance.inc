@@ -1357,6 +1357,54 @@ function wim_addition_faq_product_fields_field_default_field_instances() {
     ],
   ];
 
+  // Exported field_instance: 'node-product-field_sc_ask_online'.
+  $field_instances['node-product-field_sc_ask_online'] = [
+    'bundle' => 'product',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => [
+      'default' => [
+        'label' => 'above',
+        'settings' => [],
+        'type' => 'hidden',
+        'weight' => 16,
+      ],
+      'introduction' => [
+        'label' => 'above',
+        'settings' => [],
+        'type' => 'hidden',
+        'weight' => 0,
+      ],
+      'search_result' => [
+        'label' => 'above',
+        'settings' => [],
+        'type' => 'hidden',
+        'weight' => 0,
+      ],
+      'teaser' => [
+        'label' => 'above',
+        'settings' => [],
+        'type' => 'hidden',
+        'weight' => 0,
+      ],
+    ],
+    'entity_type' => 'node',
+    'field_name' => 'field_sc_ask_online',
+    'label' => 'Ask online',
+    'required' => 0,
+    'settings' => [
+      'user_register_form' => FALSE,
+    ],
+    'widget' => [
+      'active' => 1,
+      'module' => 'options',
+      'settings' => [],
+      'type' => 'options_buttons',
+      'weight' => 16,
+    ],
+  ];
+
   // Translatables
   // Included for use with string extractors like potx.
   t('Address');
