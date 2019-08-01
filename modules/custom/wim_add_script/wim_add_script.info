@@ -1,0 +1,5 @@
+name = WIM add script
+description = Allow webmasters to add custom JavaScript to the site.
+core = 7.x
+package = WIM
+

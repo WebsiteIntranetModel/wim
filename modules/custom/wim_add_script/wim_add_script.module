@@ -1,0 +1,139 @@
+<?php
+
+/**
+ * @file
+ * Main file for the wim_add_script module.
+ */
+
+/**
+ * Implements hook_install().
+ *
+ * Add the custom permission to the webmaster role.
+ */
+function wim_add_script_install() {
+  $role = user_role_load_by_name('webmaster');
+  if ($role !== FALSE) {
+    user_role_grant_permissions($role->rid, ['administer custom javascript']);
+  }
+}
+
+/**
+ * Implements hook_uninstall().
+ *
+ * Remove the custom permission from the webmaster role.
+ */
+function wim_add_script_uninstall() {
+  $role = user_role_load_by_name('webmaster');
+  if ($role !== FALSE) {
+    user_role_revoke_permissions($role->rid, ['administer custom javascript']);
+  }
+}
+
+/**
+ * Implements hook_permission().
+ *
+ * Define specific permission for this functionality because it is dangerous.
+ */
+function wim_add_script_permission() {
+  return [
+    'administer custom javascript' => [
+      'title' => t('Administer custom JavaScript code'),
+      'description' => t('Allow adding, changing or removing custom JavaScript code to the website.'),
+    ],
+  ];
+}
+
+/**
+ * Implements hook_menu().
+ */
+function wim_add_script_menu() {
+  $items['admin/config/wim-custom-script'] = [
+    'title' => 'WIM add custom JavaScript',
+    'description' => 'Add custom JavaScript to the website.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => ['_wim_add_script_form'],
+    'access arguments' => ['administer custom javascript'],
+    'type' => MENU_NORMAL_ITEM,
+  ];
+
+  return $items;
+}
+
+/**
+ * Implements hook_page_build().
+ */
+function wim_add_script_page_build(&$page) {
+  $satisfied = FALSE;
+
+  // Get paths configuration.
+  $wim_paths = variable_get('wim_add_script_paths', '');
+  if (!empty($wim_paths)) {
+    // Convert the paths to lowercase before comparison.
+    $paths = drupal_strtolower($wim_paths);
+
+    // Check alias first.
+    $path = drupal_strtolower(drupal_get_path_alias());
+    $satisfied = drupal_match_path($path, $paths);
+
+    // Check if the path is an alias that might have the real path
+    // in the configuration.
+    $normal_path = drupal_get_normal_path($path);
+    if ($path != $normal_path) {
+      $satisfied = $satisfied || drupal_match_path($normal_path, $paths);
+    }
+
+    // Check for destination.
+    $path_parameters = drupal_get_query_parameters();
+    if (is_array($path_parameters) && !empty($path_parameters['destination'])) {
+      // When destination is found in parameters.
+      // Create the full path as a string and check if it matches the
+      // configured patterns.
+      $path_destination = $path . '?destination=' . $path_parameters['destination'];
+      $satisfied = $satisfied || drupal_match_path(drupal_strtolower($path_destination), $paths);
+    }
+  }
+
+  // If paths are not excluded.
+  if ($satisfied === FALSE) {
+    $custom_js = variable_get('wim_add_script_js', '');
+    if (!empty($custom_js)) {
+      if (!isset($page['page_bottom'])) {
+        $page['page_bottom'] = [];
+      }
+
+      // Add the script to the bottom of the page by using the page_bottom variable.
+      $page['page_bottom']['wim_add_script_js'] = [
+        '#type' => 'markup',
+        '#markup' => $custom_js,
+      ];
+    }
+  }
+}
+
+/**
+ * Generate the administration form.
+ * @return array
+ *  The structure of the administration form.
+ */
+function _wim_add_script_form() {
+  $form = [];
+
+  $form['wim_add_script_js'] = [
+    '#type' => 'textarea',
+    '#title' => t('Custom script'),
+    '#description' => t('Place custom JavaScript in this field to embed it on <strong>all</strong> pages. <br />'
+        . '<strong>Invalid/incorrect JavaScript can break the website! Be careful!</strong>'),
+    '#default_value' => variable_get('wim_add_script_js', ''),
+  ];
+
+  $form['wim_add_script_paths'] = [
+    '#type' => 'textarea',
+    '#title' => t('Exclude paths on which the scripts are loaded.'),
+    '#description' => t('List paths on which the script should be excluded. Paths can be an alias or the real path. List paths separated by line ending.'),
+    '#required' => FALSE,
+    '#rows' => 5,
+    '#default_value' => variable_get('wim_add_script_paths', ''),
+  ];
+
+  return system_settings_form($form);
+}

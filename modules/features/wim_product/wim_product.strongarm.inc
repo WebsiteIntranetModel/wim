@@ -63,16 +63,16 @@ function wim_product_strongarm() {
           'weight' => '6',
         ],
         'metatags' => [
-          'weight' => '10',
+          'weight' => '13',
         ],
         'redirect' => [
-          'weight' => '9',
+          'weight' => '10',
         ],
         'path' => [
-          'weight' => '8',
+          'weight' => '9',
         ],
         'xmlsitemap' => [
-          'weight' => '30',
+          'weight' => '15',
         ],
       ],
       'display' => [],

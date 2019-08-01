@@ -57,6 +57,6 @@ function wim_product_field_default_field_bases() {
     'translatable' => 0,
     'type' => 'link_field',
   ];
-  
+
   return $field_bases;
 }

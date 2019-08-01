@@ -509,5 +509,30 @@ function wim_addition_faq_product_fields_field_default_field_bases() {
     'type' => 'list_text',
   ];
 
+  // Exported field_base: 'field_sc_ask_online'.
+  $field_bases['field_sc_ask_online'] = [
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => [],
+    'field_name' => 'field_sc_ask_online',
+    'indexes' => [
+      'value' => [
+        0 => 'value',
+      ],
+    ],
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => [
+      'allowed_values' => [
+        'nee' => 'No',
+        'ja' => 'Yes',
+      ],
+      'allowed_values_function' => '',
+    ],
+    'translatable' => 0,
+    'type' => 'list_text',
+  ];
+
   return $field_bases;
 }
