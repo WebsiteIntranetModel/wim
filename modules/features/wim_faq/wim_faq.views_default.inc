@@ -25,7 +25,6 @@ function wim_faq_views_default_views() {
   $handler->display->display_options['title'] = 'FAQ';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
-  $handler->display->display_options['access']['perm'] = 'access content overview';
   $handler->display->display_options['cache']['type'] = 'time';
   $handler->display->display_options['cache']['results_lifespan'] = '60';
   $handler->display->display_options['cache']['results_lifespan_custom'] = '0';
