@@ -169,15 +169,17 @@ function _external_crawler_index_page($url, stdClass $site) {
     external_crawler_save_page($pagedata, $document);
   }
   else {
-    if ($result->code == 404) {
+    if ($result->code == 404 || $result->code == 403) {
       // Page not found. Delete from solr index and page table.
       external_crawler_delete_page($pagekey);
     }
     else {
-      watchdog('external_crawler', 'There was an error crawling !pagekey.<pre>@data</pre>', [
-        '!pagekey' => $pagekey,
-        '@data' => print_r($result, TRUE),
-      ], WATCHDOG_ERROR);
+      if ($site->enable_debug) {
+        watchdog('external_crawler', 'There was an error crawling !pagekey.<pre>@data</pre>', [
+          '!pagekey' => $pagekey,
+          '@data' => print_r($result, TRUE),
+        ], WATCHDOG_ERROR);
+      }
     }
   }
 }

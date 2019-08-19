@@ -129,6 +129,13 @@ function external_crawler_site_add_form() {
     '#description' => t('CSS selector to include elements to index.(e.g "body > p")'),
   ];
 
+  $form['enable_debug'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Enable debug'),
+    '#default_value' => FALSE,
+    '#description' => t('Do you want to log data in database?'),
+  ];
+
   $form['submit'] = [
     '#type' => 'submit',
     '#value' => t('Save'),
@@ -252,6 +259,13 @@ function external_crawler_site_edit_form($form, &$form_state) {
       '#access' => user_access('access content include/exclude'),
       '#default_value' => $site->content_include,
       '#description' => t('CSS selector to specify which element on page should be added to index.(e.g "body > p")'),
+    ];
+
+    $form['enable_debug'] = [
+      '#type' => 'checkbox',
+      '#title' => t('Enable debug'),
+      '#default_value' => $site->enable_debug,
+      '#description' => t('Do you want to log data in database?'),
     ];
 
     $form['submit'] = [
