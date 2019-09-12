@@ -1,0 +1,16 @@
+<?php
+
+/**
+ * @file
+ * Main file for the wim_add_script module.
+ */
+
+/**
+ * Remove the custom permission from the webmaster role.
+ */
+function wim_add_script_update_7001() {
+  $role = user_role_load_by_name('webmaster');
+  if ($role !== FALSE) {
+    user_role_revoke_permissions($role->rid, ['administer custom javascript']);
+  }
+}
