@@ -6,30 +6,6 @@
  */
 
 /**
- * Implements hook_install().
- *
- * Add the custom permission to the webmaster role.
- */
-function wim_add_script_install() {
-  $role = user_role_load_by_name('webmaster');
-  if ($role !== FALSE) {
-    user_role_grant_permissions($role->rid, ['administer custom javascript']);
-  }
-}
-
-/**
- * Implements hook_uninstall().
- *
- * Remove the custom permission from the webmaster role.
- */
-function wim_add_script_uninstall() {
-  $role = user_role_load_by_name('webmaster');
-  if ($role !== FALSE) {
-    user_role_revoke_permissions($role->rid, ['administer custom javascript']);
-  }
-}
-
-/**
  * Implements hook_permission().
  *
  * Define specific permission for this functionality because it is dangerous.
