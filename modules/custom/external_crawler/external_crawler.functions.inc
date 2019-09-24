@@ -196,6 +196,7 @@ function external_crawler_save_site($fields = [], $site = NULL) {
     $site->url_exclude = check_plain($fields['url_exclude']);
     $site->content_exclude = check_plain($fields['content_exclude']);
     $site->content_include = check_plain($fields['content_include']);
+    $site->enable_debug = check_plain($fields['enable_debug']);
   }
   // Gives opportunity alter site data before save.
   drupal_alter('external_crawler_save_site', $site, $fields);

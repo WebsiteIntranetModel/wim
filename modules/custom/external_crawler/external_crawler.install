@@ -68,6 +68,10 @@ function external_crawler_schema() {
         'type' => 'text',
         'not null' => FALSE,
       ],
+      'enable_debug' => [
+        'type' => 'int',
+        'not null' => FALSE,
+      ],
     ],
     'indexes' => [
       'site_id' => ['site_id'],
@@ -185,6 +189,14 @@ function external_crawler_update_7001() {
 function external_crawler_update_7002() {
   $schema = drupal_get_schema('external_crawler_site');
   db_add_field('external_crawler_site', 'subquery', $schema['fields']['subquery']);
+}
+
+/**
+ * Add field for enable debug.
+ */
+function external_crawler_update_7003() {
+  $schema = drupal_get_schema('external_crawler_site');
+  db_add_field('external_crawler_site', 'enable_debug', $schema['fields']['enable_debug']);
 }
 
 /**
