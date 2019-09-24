@@ -4,5 +4,7 @@ package = Search Toolkit
 core = 7.x
 configure = admin/config/search/external_crawler
 
+files[] = plugins/external_crawler_internal_filter.inc
+
 dependencies[] = file
 dependencies[] = apachesolr
