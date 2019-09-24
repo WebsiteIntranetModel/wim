@@ -5,7 +5,7 @@ core = 7.x
 defaults[projects][subdir] = contrib
 
 ; Contrib
-projects[admin_menu][version] = 3.0-rc5
+projects[admin_menu][version] = 3.0-rc6
 projects[admin_views][version] = 1.6
 projects[adminimal_admin_menu][version] = 1.9
 projects[antibot][version] = 1.2
