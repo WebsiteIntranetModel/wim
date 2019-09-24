@@ -57,7 +57,10 @@ function wim_cvdr_block_view($delta = '') {
     // Check if block is current subject.
     if ($delta === md5('wim_cvdr_' . $machine_name)) {
       // Render subject block.
-      $block['subject'] = trim(str_replace(['(URL-0)', '(URL-1)'],'', $subject));
+      $block['subject'] = trim(str_replace([
+        '(URL-0)',
+        '(URL-1)',
+      ], '', $subject));
 
       // Build the links to the CVDR items.
       $items = _wim_cvdr_retrieve_items($subject);
@@ -150,18 +153,6 @@ function _wim_cvdr_retrieve_elements() {
   if ($cached = cache_get('wim_cvdr_items')) {
     $items = $cached->data;
   }
-  else {
-    $xmls = _wim_cvdr_read_xml();
-    if ($xmls) {
-      foreach ($xmls as $id => $xml) {
-        $items = array_merge($items, _wim_cvdr_process_xml($xml, $id));
-      }
-
-      // Save the cached results to improve performance.
-      $expire = REQUEST_TIME + (variable_get('wim_cvdr_cache_time', 60) * 60);
-      cache_set('wim_cvdr_items', $items, 'cache', $expire);
-    }
-  }
 
   return $items;
 }
@@ -174,7 +165,7 @@ function _wim_cvdr_read_xml() {
   $xml_urls = _wim_cvdr_get_urls();
 
   foreach ($xml_urls as $xml_url) {
-    if($xml_url) {
+    if ($xml_url) {
       // Request the XML from the webservice.
       $xml_response = drupal_http_request($xml_url, ['timeout' => 6]);
 
@@ -289,4 +280,31 @@ function _wim_cvdr_get_urls() {
     variable_get('wim_cvdr_url', ''),
     variable_get('wim_cvdr_url_second', ''),
   ];
+}
+
+/**
+ * Implements hook_cronapi().
+ */
+function wim_cvdr_cronapi($op, $job = NULL) {
+  $items['wim_cvdr_cron'] = [
+    'description' => t('Cache CVDR blocks'),
+    'rule' => '0 */6 * * *',
+  ];
+}
+
+/**
+ * Implements hook_cron().
+ */
+function wim_cvdr_cron() {
+  $items = [];
+  $xmls = _wim_cvdr_read_xml();
+  if ($xmls) {
+    foreach ($xmls as $id => $xml) {
+      $items = array_merge($items, _wim_cvdr_process_xml($xml, $id));
+    }
+
+    // Save the cached results to improve performance.
+    $expire = REQUEST_TIME + (variable_get('wim_cvdr_cache_time', 60) * 60);
+    cache_set('wim_cvdr_items', $items, 'cache', $expire);
+  }
 }
