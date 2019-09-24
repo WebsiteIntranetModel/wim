@@ -45,6 +45,10 @@ function wim_block_management_felix_default_block_sets() {
         'module' => 'views',
         'delta' => '*',
       ],
+      8 => [
+        'module' => 'wim_cvdr',
+        'delta' => '*',
+      ],
     ],
     'nodetypes' => [
       0 => [
