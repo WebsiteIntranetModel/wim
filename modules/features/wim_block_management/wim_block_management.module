@@ -92,6 +92,13 @@ function wim_block_management_form_felix_attributes_form_alter(&$form, &$form_st
       '#description' => t('Select view mode for this block.'),
     ];
   }
+  else {
+    $form['aria_label'] = [
+      '#type' => 'textfield',
+      '#title' => t('Aria label'),
+      '#default_value' => isset($config['aria_label']) ? $config['aria_label'] : '',
+    ];
+  }
 
 }
 
@@ -105,6 +112,7 @@ function wim_block_management_felix_block_config_save($block, $values) {
     'new_row',
     'bean_view_mode',
     'row_weight',
+    'aria_label',
   ];
 
   foreach ($felix_custom_configs as $config) {
@@ -169,8 +177,8 @@ function wim_block_management_form_felix_remove_form_alter(&$form, &$form_state,
     $region = $form['#felix_region'];
     $form['info'] = [
       '#markup' => '<p>' . t('Are you sure you want to delete the block %subject from %region?', [
-        '%subject' => strip_tags($block->subject),
-        '%region' => $region->title,
+          '%subject' => strip_tags($block->subject),
+          '%region' => $region->title,
         ]) . '</p>',
     ];
   }
