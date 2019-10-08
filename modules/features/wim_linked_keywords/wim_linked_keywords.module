@@ -55,6 +55,7 @@ function wim_linked_keywords_form_linked_keywords_node_form_alter(&$form, &$form
 
   $form['#submit'][] = 'wim_linked_keywords_form_alter_node_submit';
   $form['#after_build'][] = 'wim_linked_keywords_form_alter_node_after_build';
+  $form['#attached']['js'][] = drupal_get_path('module', 'wim_linked_keywords') . '/js/wim_linked_keywords.js';
 }
 
 /**
