@@ -536,3 +536,16 @@ function wim_update_7029(&$sandbox) {
   $role = user_role_load_by_name('webmaster');
   user_role_grant_permissions($role->rid, ['administer search']);
 }
+
+/**
+ * Delete Honeypot from the system tables.
+ * Could still exist since we removed it from the drush make file.s
+ */
+function wim_update_7030() {
+  if (!module_exists('honeypot')) {
+    db_delete('system')
+      ->condition('name', 'honeypot')
+      ->condition('type', 'module')
+      ->execute();
+  }
+}
