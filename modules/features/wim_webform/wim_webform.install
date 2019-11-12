@@ -20,3 +20,12 @@ function wim_webform_update_7001(&$sandbox) {
   module_enable(['antibot']);
   features_revert_module('wim_webform');
 }
+
+/**
+ * Set all webforms to confidential.
+ */
+function wim_webform_update_7002(&$sandbox) {
+  db_update('webform')
+    ->fields(['confidential' => 1])
+    ->execute();
+}
