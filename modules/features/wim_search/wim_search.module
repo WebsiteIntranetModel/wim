@@ -104,15 +104,18 @@ function wim_search_apachesolr_process_results(array &$results, DrupalSolrQueryI
     if (isset($result['bundle']) && $result['bundle'] == 'linked_keywords') {
       global $base_url;
       $node = node_load($result['fields']['entity_id']);
+      if ($node) {
+        // Get the node where we are referring to.
+        $referenced_content = $node->field_referenced_content[LANGUAGE_NONE][0];
+        $referenced_node = explode($base_url . '/', $referenced_content['url']);
+        $node_url = count($referenced_node) > 1 ? $referenced_node[1] : $referenced_node[0];
+        $referenced_node = explode('node/', drupal_get_normal_path($node_url));
 
-      // Get the node where we are referring to.
-      $referenced_content = $node->field_referenced_content[LANGUAGE_NONE][0];
-      $referenced_node = explode($base_url . '/', $referenced_content['url']);
-      $node_url = count($referenced_node) > 1 ? $referenced_node[1] : $referenced_node[0];
-      $referenced_node = explode('node/', drupal_get_normal_path($node_url));
-
-      // Set nid for exclude
-      $items_to_exclude[] = $referenced_node[1];
+        // Set nid for exclude
+        if (isset($referenced_node[1])) {
+          $items_to_exclude[] = $referenced_node[1];
+        }
+      }
     }
   }
 
