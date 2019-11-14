@@ -73,3 +73,12 @@ function wim_webform_form_alter(&$form, $form_state) {
     $form['template']['html']['#default_value'] = TRUE;
   }
 }
+
+/**
+ * Implements hook_node_presave().
+ */
+function wim_webform_node_presave($node) {
+  if (isset($node->webform) && $node->is_new) {
+    $node->webform['confidential'] = 1;
+  }
+}

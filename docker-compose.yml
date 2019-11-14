@@ -74,7 +74,7 @@ services:
     image: solr:6.6
     hostname: solr
     volumes:
-      - wim_solr_data:/opt/solr/server/solr/mycores
+#      - wim_solr_data:/opt/solr/server/solr/mycores
       - ./dev-scripts/solr-conf/6.x/:/solr-conf/conf
     environment:
       - SOLR_SOLR_MEM_SIZE=512m
@@ -91,4 +91,4 @@ services:
 
 volumes:
   db_data:
-  wim_solr_data:
+#  wim_solr_data:
