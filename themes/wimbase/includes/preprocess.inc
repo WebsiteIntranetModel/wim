@@ -205,8 +205,17 @@ function wimbase_preprocess_block(&$variables) {
   }
 
   // Add 'aria-label' for all blocks.
-  if(isset($block->data['config']['aria_label'])) {
+  if (isset($block->data['config']['aria_label'])) {
     $variables['aria_label'] = $block->data['config']['aria_label'];
+  }
+  else {
+    if (module_exists('wim_block_management')) {
+      $additional_settings = wim_block_management_additional_settings_array($block->module, $block->delta);
+      if (isset($additional_settings['aria_label'])) {
+        $t='';
+        $variables['aria_label'] = $additional_settings['aria_label'];
+      }
+    }
   }
 }
 
@@ -332,7 +341,7 @@ function wimbase_preprocess_search_result(&$variables) {
         $variables['title'] = $referenced_node->title;
 
         // Set label of entity bundle in result output.
-        $variables['content_type'] = (variable_get('wim_linked_keywords_promoted') &&!empty(variable_get('wim_linked_keywords_promoted_title'))) ?
+        $variables['content_type'] = (variable_get('wim_linked_keywords_promoted') && !empty(variable_get('wim_linked_keywords_promoted_title'))) ?
           t(variable_get('wim_linked_keywords_promoted_title')) :
           t('Promoted');
 

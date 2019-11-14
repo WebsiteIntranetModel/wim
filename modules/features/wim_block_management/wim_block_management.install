@@ -5,8 +5,68 @@
  */
 
 /**
+ * Implements hook_schema().
+ */
+function wim_block_management_schema() {
+  $schema['block_wim_additional_settings'] = [
+    'description' => 'Table for additional settings or block.',
+    'fields' => [
+      'module' => [
+        'type' => 'varchar',
+        'length' => 64,
+        'not null' => TRUE,
+        'description' => "The block's origin module, from {block}.module.",
+      ],
+      'delta' => [
+        'type' => 'varchar',
+        'length' => 32,
+        'not null' => TRUE,
+        'description' => "The block's unique delta within module, from {block}.delta.",
+      ],
+      'settings' => [
+        'type' => 'text',
+        'serialize' => TRUE,
+        'description' => "The block's additional settings string.",
+      ],
+    ],
+    'primary key' => ['module', 'delta'],
+  ];
+}
+
+/**
  * Add aria-label field for editorial bean block type.
  */
 function wim_block_management_update_7001(&$sandbox) {
   features_revert_module('wim_block_management');
+}
+
+/**
+ * Create new table to store additional settings for blocks.
+ */
+function wim_block_management_update_7002(&$sandbox) {
+  $schema['block_wim_additional_settings'] = [
+    'description' => 'Table for additional settings or block.',
+    'fields' => [
+      'module' => [
+        'type' => 'varchar',
+        'length' => 64,
+        'not null' => TRUE,
+        'description' => "The block's origin module, from {block}.module.",
+      ],
+      'delta' => [
+        'type' => 'varchar',
+        'length' => 32,
+        'not null' => TRUE,
+        'description' => "The block's unique delta within module, from {block}.delta.",
+      ],
+      'settings' => [
+        'type' => 'text',
+        'serialize' => TRUE,
+        'description' => "The block's additional settings string.",
+      ],
+    ],
+    'primary key' => ['module', 'delta'],
+  ];
+
+  db_create_table('block_wim_additional_settings', $schema['block_wim_additional_settings']);
 }

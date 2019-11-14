@@ -233,3 +233,89 @@ function get_modules_usage_blocks() {
 
   return $options;
 }
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Adds additional settings to add block form.
+ *
+ * @see block_admin_configure()
+ */
+function wim_block_management_form_block_add_block_form_alter(&$form, &$form_state, $form_id) {
+  wim_block_management_form_block_admin_configure_alter($form, $form_state);
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Adds additional settings to block configuration form.
+ *
+ * @see block_admin_configure()
+ */
+function wim_block_management_form_block_admin_configure_alter(&$form, &$form_state, $form_id) {
+  $additional_settings = wim_block_management_additional_settings_array($form['module']['#value'], $form['delta']['#value']);
+
+  $form['visibility']['wim_settings'] = [
+    '#type' => 'fieldset',
+    '#title' => t('WIM additional settings'),
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+    '#group' => 'visibility',
+    '#weight' => 99,
+  ];
+
+  $form['visibility']['wim_settings']['aria_label'] = [
+    '#type' => 'textfield',
+    '#title' => t('Aria label'),
+    '#default_value' => $additional_settings['aria_label'],
+    '#description' => t('Text for \'aria-label\' attribute.'),
+  ];
+
+  $form['#submit'][] = 'wim_block_management_form_block_admin_configure_submit';
+}
+
+/**
+ * Form submission handler for
+ * wim_block_management_form_block_admin_configure_alter().
+ *
+ * @see wim_block_management_form_block_admin_configure_alter()
+ */
+function wim_block_management_form_block_admin_configure_submit($form, &$form_state) {
+  db_delete('block_wim_additional_settings')
+    ->condition('module', $form_state['values']['module'])
+    ->condition('delta', $form_state['values']['delta'])
+    ->execute();
+
+  $settings = [
+    'aria_label' => $form_state['values']['aria_label'],
+  ];
+
+  db_insert('block_wim_additional_settings')->fields([
+    'module',
+    'delta',
+    'settings',
+  ])->values([
+    'module' => $form_state['values']['module'],
+    'delta' => $form_state['values']['delta'],
+    'settings' => serialize($settings),
+  ])->execute();
+}
+
+/**
+ * Gets additional settings for block.
+ *
+ * @param string $module
+ * @param string $delta
+ *
+ * @return array
+ *   WIM additional settings for block.
+ */
+function wim_block_management_additional_settings_array($module = '', $delta = '') {
+  $query = db_select('block_wim_additional_settings', 'bwas')
+    ->fields('bwas', ['settings'])
+    ->condition('module', $module)
+    ->condition('delta', $delta);
+  $result = $query->execute()->fetchCol();
+
+  return unserialize(reset($result));
+}
