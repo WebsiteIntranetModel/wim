@@ -31,8 +31,8 @@ projects[email][version] = 1.3
 projects[encrypt][version] = 2.3
 projects[entity][version] = 1.9
 projects[entityreference][version] = 1.5
-projects[facetapi][version] = 1.5
-projects[features][version] = 2.10
+projects[facetapi][version] = 1.6
+projects[features][version] = 2.11
 projects[felix][version] = 1.0-beta9
 projects[field_group][version] = 1.5
 projects[file_entity][version] = 2.4
@@ -72,11 +72,11 @@ projects[scheduler][version] = 1.5
 projects[strongarm][version] = 2.0
 projects[special_menu_items][version] = 2.0
 projects[smart_trim][version] = 1.5
-projects[seckit][version] = 1.x-dev
+projects[seckit][version] = 1.11
 projects[token][version] = 1.7
 projects[userprotect][version] = 1.2
 projects[variable][version] = 2.5
-projects[views][version] = 3.21
+projects[views][version] = 3.23
 projects[views_aggregator][version] = 1.4
 projects[views_bootstrap][version] = 3.1
 projects[views_bulk_operations][version] = 3.4
@@ -103,10 +103,6 @@ projects[bootstrap] = 3.22
 ; Fixing bug when Features module can't include file containing exported taxonomy vocabulary because it hasn't included file integrating Features with Taxonomy yet.
 ; https://www.drupal.org/node/2143765#comment-10088780
 projects[features][patch][2143765_7] = https://www.drupal.org/files/issues/features-hook_modules_enabled_include_file_issue-2143765-7.patch
-
-; Fixing Notice: Undefined property: stdClass::$status in features_export_form
-; https://www.drupal.org/node/2324973
-projects[features][patch][2324973_19] = https://www.drupal.org/files/issues/undefined-property-status-2324973-19.patch
 
 ; Apachesolr exclude node
 ; Fix for undefined property when publishing a revision.
@@ -136,13 +132,8 @@ projects[bean][patch][1911234_6] = https://www.drupal.org/files/issues/select-fr
 
 ; Views
 ; Add plural format to views_handler_area_result
-; https://www.drupal.org/node/1793500#comment-10875360
-projects[views][patch][1793500_13] = https://www.drupal.org/files/issues/views-area-results-plural-1793500-13.patch
-
-; Facet API
-; Fix "Show fewer" link for Facet API filters
-; https://www.drupal.org/node/2327997
-projects[facetapi][patch][2327997_3] = https://www.drupal.org/files/issues/facetapi-2327997-3-show-fewer-links.patch
+; https://www.drupal.org/project/views/issues/1793500#comment-13114869
+projects[views][patch][1793500_13] = https://www.drupal.org/files/issues/2019-05-21/views-area-results-plural-1793500-14.patch
 
 ; Felix
 ; Fix notice from Felix module
