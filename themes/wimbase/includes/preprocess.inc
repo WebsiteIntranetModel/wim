@@ -154,7 +154,10 @@ function wimbase_preprocess_block(&$variables) {
     }
     // If new row config exist then use it otherwise move it in a new row.
     $block->new_row = isset($config['new_row']) ? $config['new_row'] : TRUE;
-    $block->row_weight = isset($config['row_weight']) ? $config['row_weight'] : 0;
+
+    if (!empty($config['row_weight'])) {
+      $block->row_weight = $config['row_weight'];
+    }
 
     if ($block->module === 'bean' && $bean) {
       if (isset($config['bean_view_mode']) && $config['bean_view_mode']) {
@@ -320,22 +323,23 @@ function wimbase_preprocess_search_result(&$variables) {
         $referenced_node = explode($base_url . '/', $referenced_content['url']);
         $referenced_node = explode('node/', drupal_get_normal_path($referenced_node[1]));
         $referenced_node = node_load($referenced_node[1]);
+        if ($referenced_node) {
+          // Override an output of linked_keywords data and replace with link of
+          // linked content in the search result.
+          $variables['url'] = $referenced_content['url'];
+          $variables['title'] = $referenced_node->title;
 
-        // Override an output of linked_keywords data and replace with link of
-        // linked content in the search result.
-        $variables['url'] = $referenced_content['url'];
-        $variables['title'] = $referenced_node->title;
+          // Set label of entity bundle in result output.
+          $variables['content_type'] = (variable_get('wim_linked_keywords_promoted') && !empty(variable_get('wim_linked_keywords_promoted_title'))) ?
+            t(variable_get('wim_linked_keywords_promoted_title')) :
+            t('Promoted');
 
-        // Set label of entity bundle in result output.
-        $variables['content_type'] = (variable_get('wim_linked_keywords_promoted') &&!empty(variable_get('wim_linked_keywords_promoted_title'))) ?
-          t(variable_get('wim_linked_keywords_promoted_title')) :
-          t('Promoted');
+          // Set empty string to hide a body and prevent of rendering in the
+          // default mode. @see: search-result.tpl.php.
+          $variables['node_content'] = node_view($referenced_node, 'search_result');
 
-        // Set empty string to hide a body and prevent of rendering in the
-        // default mode. @see: search-result.tpl.php.
-        $variables['node_content'] = node_view($referenced_node, 'search_result');
-
-        $variables['classes_array'][] = 'promoted';
+          $variables['classes_array'][] = 'promoted';
+        }
       }
     }
   }
