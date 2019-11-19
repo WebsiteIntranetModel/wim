@@ -121,6 +121,9 @@ function wimbase_preprocess_block(&$variables) {
   $block->new_row = TRUE;
   $block->bootstrap_layout = WIM_BLOCK_MANAGEMENT_BOOTSTRAP_FULL_WIDTH;
   $bean_view_mode = NULL;
+  // Set empty aria-label
+  // so log will not create notices about not being defined.
+  $variables['aria_label'] = '';
 
   // Process Bean blocks.
   if ($block->module === 'bean' && $bean = bean_load_delta($block->delta)) {
@@ -136,9 +139,6 @@ function wimbase_preprocess_block(&$variables) {
       $variables['classes_array'][] = $has_image_class;
     }
 
-    // Set empty aria-label
-    // so log will not create notices about not being defined.
-    $variables['aria_label'] = '';
     if (isset($bean->field_aria_label) && !empty($bean->field_aria_label[LANGUAGE_NONE][0]['value'])) {
       $variables['aria_label'] = $bean->field_aria_label[LANGUAGE_NONE][0]['value'];
     }
@@ -204,6 +204,20 @@ function wimbase_preprocess_block(&$variables) {
     $node = node_load($block->delta);
     if (isset($node->field_image) && !empty($node->field_image)) {
       $variables['classes_array'][] = $has_image_class;
+    }
+  }
+
+  // Add 'aria-label' for all blocks.
+  if (isset($block->data['config']['aria_label'])) {
+    $variables['aria_label'] = $block->data['config']['aria_label'];
+  }
+  else {
+    if (module_exists('wim_block_management')) {
+      $additional_settings = wim_block_management_additional_settings_array($block->module, $block->delta);
+      if (isset($additional_settings['aria_label'])) {
+        $t='';
+        $variables['aria_label'] = $additional_settings['aria_label'];
+      }
     }
   }
 }
@@ -323,6 +337,23 @@ function wimbase_preprocess_search_result(&$variables) {
         $referenced_node = explode($base_url . '/', $referenced_content['url']);
         $referenced_node = explode('node/', drupal_get_normal_path($referenced_node[1]));
         $referenced_node = node_load($referenced_node[1]);
+
+        // Override an output of linked_keywords data and replace with link of
+        // linked content in the search result.
+        $variables['url'] = $referenced_content['url'];
+        $variables['title'] = $referenced_node->title;
+
+        // Set label of entity bundle in result output.
+        $variables['content_type'] = (variable_get('wim_linked_keywords_promoted') && !empty(variable_get('wim_linked_keywords_promoted_title'))) ?
+          t(variable_get('wim_linked_keywords_promoted_title')) :
+          t('Promoted');
+
+        // Set empty string to hide a body and prevent of rendering in the
+        // default mode. @see: search-result.tpl.php.
+        $variables['node_content'] = node_view($referenced_node, 'search_result');
+
+        $variables['classes_array'][] = 'promoted';
+
         if ($referenced_node) {
           // Override an output of linked_keywords data and replace with link of
           // linked content in the search result.
