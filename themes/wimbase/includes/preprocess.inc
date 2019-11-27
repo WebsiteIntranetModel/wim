@@ -352,7 +352,13 @@ function wimbase_preprocess_search_result(&$variables) {
           // Set empty string to hide a body and prevent of rendering in the
           // default mode. @see: search-result.tpl.php.
           $variables['node_content'] = node_view($referenced_node, 'search_result');
-
+          $variables['classes_array'][] = 'promoted';
+        }
+        else {
+          $variables['content_type'] = (variable_get('wim_linked_keywords_promoted') && !empty(variable_get('wim_linked_keywords_promoted_title'))) ?
+            t(variable_get('wim_linked_keywords_promoted_title')) :
+            t('Promoted');
+          $variables['url'] = $referenced_content['url'];
           $variables['classes_array'][] = 'promoted';
         }
       }
