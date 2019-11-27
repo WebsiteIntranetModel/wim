@@ -31,6 +31,8 @@ function wim_block_management_schema() {
     ],
     'primary key' => ['module', 'delta'],
   ];
+
+  return $schema;
 }
 
 /**
