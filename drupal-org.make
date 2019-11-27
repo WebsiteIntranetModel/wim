@@ -6,7 +6,7 @@ defaults[projects][subdir] = contrib
 
 ; Contrib
 projects[admin_menu][version] = 3.0-rc6
-projects[admin_views][version] = 1.6
+projects[admin_views][version] = 1.7
 projects[adminimal_admin_menu][version] = 1.9
 projects[antibot][version] = 1.2
 projects[apachesolr][version] = 1.8
@@ -54,7 +54,7 @@ projects[migrate][version] = 2.11
 projects[mimemail][version] = 1.1
 projects[module_filter][version] = 2.2
 projects[multiform][version] = 1.4
-projects[nodequeue][version] = 2.1
+projects[nodequeue][version] = 2.2
 projects[node_clone][version] = 1.0
 projects[l10n_update][version] = 2.3
 projects[link][version] = 1.6
