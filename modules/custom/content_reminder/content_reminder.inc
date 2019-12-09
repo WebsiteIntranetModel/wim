@@ -49,11 +49,15 @@ function _content_reminder_prepare_nodes($nodes, $mailtype) {
 
   $email_nodes = [];
   foreach ($nodes as $node) {
-    if (!isset($email_nodes[$node->mail])) {
-      $email_nodes[$node->mail] = [];
+    $send_to_author = variable_get('content_reminder_types_' . $node->type . '_send_to_author', 1);
+
+    if ($send_to_author) {
+      if (!isset($email_nodes[$node->mail])) {
+        $email_nodes[$node->mail] = [];
+      }
+      $node->url = l($node->title, 'node/' . $node->nid, ['absolute' => TRUE]);
+      $email_nodes[$node->mail][] = $node;
     }
-    $node->url = l($node->title, 'node/' . $node->nid, ['absolute' => TRUE]);
-    $email_nodes[$node->mail][] = $node;
   }
 
   $loaded_node = [];
@@ -64,11 +68,17 @@ function _content_reminder_prepare_nodes($nodes, $mailtype) {
   $emailremindernodes = [];
   foreach ($loaded_node as $node) {
     $emails = [];
-    if (!empty($node->field_reminder_email)) {
-      foreach ($node->field_reminder_email[LANGUAGE_NONE] as $mail_list) {
-        foreach ($mail_list as $value) {
-          $emails[] = $value;
+    if (!empty($node->field_reminder_email) || !empty(variable_get('content_reminder_types_' . $node->type . '_email'))) {
+      // Add the email addresses to the node.
+      if (!empty($node->field_reminder_email)) {
+        foreach ($node->field_reminder_email[LANGUAGE_NONE] as $mail_list) {
+          foreach ($mail_list as $value) {
+            $emails[] = $value;
+          }
         }
+      }
+      if (!empty(variable_get('content_reminder_types_' . $node->type . '_email'))) {
+        $emails[] = variable_get('content_reminder_types_' . $node->type . '_email');
       }
       $id = implode(',', $emails);
       $emailremindernodes[$id][$node->nid] = new stdClass();
@@ -82,8 +92,10 @@ function _content_reminder_prepare_nodes($nodes, $mailtype) {
     }
   }
 
-  // Mail the node author (user).
-  _content_reminder_send_mails($email_nodes, $mailtype);
+  if (!empty($email_nodes)) {
+    // Mail the node author (user).
+    _content_reminder_send_mails($email_nodes, $mailtype);
+  }
   // Mail the people defined in the node's "reminder email field".
   _content_reminder_send_mails($emailremindernodes, $mailtype);
 }
@@ -212,5 +224,14 @@ function _content_reminder_send_mails($mailnodes, $mailtype) {
 
     $system = drupal_mail_system('custom', $mail_token);
     $system->mail($message);
+  }
+}
+
+/**
+ * Function which validates the entered email address.
+ */
+function _content_reminder_email_element_validate($element, &$form_state, $form) {
+  if (!empty($element['#value']) && !valid_email_address($element['#value'])) {
+    form_error($element, t('Please enter a valid email address.'));
   }
 }

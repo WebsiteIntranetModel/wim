@@ -61,6 +61,13 @@ function content_reminder_admin_form($form, &$form_state) {
       '#maxlength' => 255,
       '#element_validate' => ['element_validate_number'],
     ];
+    $form['tab_cr_' . $type->type]['content_reminder_types_' . $type->type . '_email'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Email address to notify on.'),
+      '#default_value' => variable_get('content_reminder_types_' . $type->type . '_email'),
+      '#maxlength' => 255,
+      '#element_validate' => array('_content_reminder_email_element_validate'),
+    );
     $form['tab_cr_' . $type->type]['content_reminder_types_' . $type->type . '_depub_box'] = [
       '#type' => 'checkbox',
       '#title' => t('Unpublish content when expired?'),
@@ -73,6 +80,11 @@ function content_reminder_admin_form($form, &$form_state) {
       '#maxlength' => 255,
       '#element_validate' => ['element_validate_number'],
     ];
+    $form['tab_cr_' . $type->type]['content_reminder_types_' . $type->type . '_send_to_author'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Send reminder e-mail to author?'),
+      '#default_value' => variable_get('content_reminder_types_' . $type->type . '_send_to_author', 1),
+    );
   }
 
   return system_settings_form($form);
