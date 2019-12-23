@@ -13,25 +13,25 @@
 <div id="views-bootstrap-accordion-<?php print $id ?>"
      class="<?php print $classes ?>">
   <?php foreach ($rows as $key => $row): ?>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">
-          <a class="accordion-toggle collapsed"
-             data-toggle="collapse"
-             data-parent="#views-bootstrap-accordion-<?php print $id ?>"
-             aria-controls="panel-<?php print $id?>-<?php print $key ?>"
-             id="control-panel-<?php print $id?>-<?php print $key ?>"
-             href="#panel-<?php print $id?>-<?php print $key ?>">
-            <?php print $titles[$key] ?>
-          </a>
-        </h3>
-      </div>
+    <fieldset class="panel panel-default">
+      <legend class="panel-heading">
+        <a class="accordion-toggle collapsed"
+           data-toggle="collapse"
+           data-parent="#views-bootstrap-accordion-<?php print $id ?>"
+           aria-controls="panel-<?php print $id ?>-<?php print $key ?>"
+           id="control-panel-<?php print $id ?>-<?php print $key ?>"
+           href="#panel-<?php print $id ?>-<?php print $key ?>">
+          <?php print $titles[$key] ?>
+        </a>
+      </legend>
 
-      <div id="panel-<?php print $id?>-<?php print $key ?>" class="panel-collapse collapse" aria-labelledby="control-panel-<?php print $key ?>">
+      <div id="panel-<?php print $id ?>-<?php print $key ?>"
+           class="panel-collapse collapse"
+           aria-labelledby="control-panel-<?php print $key ?>">
         <div class="panel-body">
           <?php print $row ?>
         </div>
       </div>
-    </div>
+    </fieldset>
   <?php endforeach ?>
 </div>
