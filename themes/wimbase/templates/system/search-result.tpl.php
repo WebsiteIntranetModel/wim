@@ -63,14 +63,18 @@
   <?php print render($title_prefix); ?>
   <h3 class="title"<?php print $title_attributes; ?>>
     <a href="<?php print $url; ?>"><?php print $title; ?></a>
-    <?php if(isset($content_type)):?>
+    <?php if (isset($content_type)): ?>
       <span class="content-type">
         <?php print ' - ' . $content_type; ?>
       </span>
-    <?php endif;?>
+    <?php endif; ?>
   </h3>
   <?php print render($title_suffix); ?>
-  <?php if (isset($node_content)): ?>
+  <?php if (isset($external_description)): ?>
+    <div class="search-external-description">
+      <?php print $external_description; ?>
+    </div>
+  <?php elseif (isset($node_content)): ?>
     <?php print render($node_content); ?>
   <?php else: ?>
     <div class="search-snippet-info">
@@ -81,7 +85,7 @@
   <?php endif; ?>
   <?php if (isset($source)): ?>
     <div class="source-wrapper">
-      <span><?php print t('Source')?>:</span>
+      <span><?php print t('Source') ?>:</span>
       <?php print $source; ?>
     </div>
   <?php endif; ?>
