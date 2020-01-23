@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * wim_linked_keywords.features.inc

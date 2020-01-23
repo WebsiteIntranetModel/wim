@@ -3788,6 +3788,7 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   font-weight: bold;
 }
 
+.search-results .search-external-description,
 .search-results .search-snippet-info,
 .search-results .field-name-body {
   margin: 8px 0 12px;

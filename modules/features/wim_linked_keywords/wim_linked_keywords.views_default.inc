@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * wim_linked_keywords.views_default.inc
@@ -120,31 +121,31 @@ function wim_linked_keywords_views_default_views() {
       'label' => 'Unpublish',
     ],
   ];
-  /* Field: Content: Referenced Content */
+  /* Field: Content: Keyword */
   $handler->display->display_options['fields']['field_referenced_content_1']['id'] = 'field_referenced_content_1';
   $handler->display->display_options['fields']['field_referenced_content_1']['table'] = 'field_data_field_referenced_content';
   $handler->display->display_options['fields']['field_referenced_content_1']['field'] = 'field_referenced_content';
   $handler->display->display_options['fields']['field_referenced_content_1']['label'] = 'Linked Keyword';
   $handler->display->display_options['fields']['field_referenced_content_1']['click_sort_column'] = 'url';
   $handler->display->display_options['fields']['field_referenced_content_1']['type'] = 'link_title_plain';
-  /* Field: Content: Referenced Content */
+  /* Field: Content: Keyword */
   $handler->display->display_options['fields']['field_referenced_content']['id'] = 'field_referenced_content';
   $handler->display->display_options['fields']['field_referenced_content']['table'] = 'field_data_field_referenced_content';
   $handler->display->display_options['fields']['field_referenced_content']['field'] = 'field_referenced_content';
   $handler->display->display_options['fields']['field_referenced_content']['label'] = 'Linked Content';
   $handler->display->display_options['fields']['field_referenced_content']['click_sort_column'] = 'url';
   $handler->display->display_options['fields']['field_referenced_content']['type'] = 'link_url';
-  /* Field: Content: Published */
+  /* Field: Content: Published status */
   $handler->display->display_options['fields']['status']['id'] = 'status';
   $handler->display->display_options['fields']['status']['table'] = 'node';
   $handler->display->display_options['fields']['status']['field'] = 'status';
   $handler->display->display_options['fields']['status']['not'] = 0;
-  /* Field: Content: Edit link */
+  /* Field: Content: Link to edit content */
   $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
   $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
   $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
-  $handler->display->display_options['fields']['edit_node']['label'] = 'Actions';
-  /* Field: Content: Link */
+  $handler->display->display_options['fields']['edit_node']['label'] = 'Acties';
+  /* Field: Content: Link to content */
   $handler->display->display_options['fields']['view_node']['id'] = 'view_node';
   $handler->display->display_options['fields']['view_node']['table'] = 'views_entity_node';
   $handler->display->display_options['fields']['view_node']['field'] = 'view_node';
@@ -154,7 +155,7 @@ function wim_linked_keywords_views_default_views() {
   $handler->display->display_options['sorts']['created']['table'] = 'node';
   $handler->display->display_options['sorts']['created']['field'] = 'created';
   $handler->display->display_options['sorts']['created']['order'] = 'DESC';
-  /* Filter criterion: Content: Published */
+  /* Filter criterion: Content: Published status */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
   $handler->display->display_options['filters']['status']['field'] = 'status';
@@ -165,14 +166,14 @@ function wim_linked_keywords_views_default_views() {
   $handler->display->display_options['filters']['status']['expose']['label'] = 'Published';
   $handler->display->display_options['filters']['status']['expose']['operator'] = 'status_op';
   $handler->display->display_options['filters']['status']['expose']['identifier'] = 'status';
-  $handler->display->display_options['filters']['status']['expose']['remember_roles'] = [
+  $handler->display->display_options['filters']['status']['expose']['remember_roles'] = array(
     2 => '2',
     1 => 0,
     3 => 0,
     4 => 0,
     5 => 0,
     6 => 0,
-  ];
+  );
   /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
@@ -180,14 +181,14 @@ function wim_linked_keywords_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = [
     'linked_keywords' => 'linked_keywords',
   ];
-  /* Filter criterion: Content: Referenced Content (field_referenced_content:title) */
+  /* Filter criterion: Content: Keyword (field_referenced_content:title) */
   $handler->display->display_options['filters']['field_referenced_content_title']['id'] = 'field_referenced_content_title';
   $handler->display->display_options['filters']['field_referenced_content_title']['table'] = 'field_data_field_referenced_content';
   $handler->display->display_options['filters']['field_referenced_content_title']['field'] = 'field_referenced_content_title';
   $handler->display->display_options['filters']['field_referenced_content_title']['operator'] = 'word';
   $handler->display->display_options['filters']['field_referenced_content_title']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_referenced_content_title']['expose']['operator_id'] = 'field_referenced_content_title_op';
-  $handler->display->display_options['filters']['field_referenced_content_title']['expose']['label'] = 'Title';
+  $handler->display->display_options['filters']['field_referenced_content_title']['expose']['label'] = 'Titel';
   $handler->display->display_options['filters']['field_referenced_content_title']['expose']['operator'] = 'field_referenced_content_title_op';
   $handler->display->display_options['filters']['field_referenced_content_title']['expose']['identifier'] = 'field_referenced_content_title';
   $handler->display->display_options['filters']['field_referenced_content_title']['expose']['remember_roles'] = [
@@ -233,10 +234,11 @@ function wim_linked_keywords_views_default_views() {
     t('Unpublish'),
     t('Linked Keyword'),
     t('Linked Content'),
-    t('Published'),
-    t('Actions'),
+    t('Published status'),
+    t('Acties'),
     t('view'),
-    t('Title'),
+    t('Published'),
+    t('Titel'),
     t('System'),
   ];
   $export['administration_linked_keywords'] = $view;
