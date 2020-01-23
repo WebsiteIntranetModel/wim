@@ -3513,6 +3513,7 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   line-height: 24px;
   font-family: "Roboto Slab", Georgia, "Times New Roman", Times, serif;
   border-radius: 0;
+  float: none;
 }
 
 #accordion .panel-heading h3,
