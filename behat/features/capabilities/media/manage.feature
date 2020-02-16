@@ -8,7 +8,6 @@ Feature: Manage media elements
     Given I am logged in as a "content manager"
     When I am at "admin/content/file"
     And I fill in "edit-filename" with "gorilla"
-    And I break
     And I press "Apply"
     And I wait for 3 seconds
     Then I should see the text "gorilla.jpg"
