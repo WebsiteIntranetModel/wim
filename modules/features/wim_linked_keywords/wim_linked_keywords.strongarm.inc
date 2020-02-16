@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * wim_linked_keywords.strongarm.inc
@@ -40,22 +41,22 @@ function wim_linked_keywords_strongarm() {
     'extra_fields' => [
       'form' => [
         'locations' => [
-          'weight' => '30',
+          'weight' => '1',
         ],
         'metatags' => [
           'weight' => '40',
         ],
         'title' => [
-          'weight' => '-5',
+          'weight' => '0',
         ],
         'path' => [
-          'weight' => '30',
+          'weight' => '2',
         ],
         'redirect' => [
-          'weight' => '30',
+          'weight' => '3',
         ],
         'xmlsitemap' => [
-          'weight' => '30',
+          'weight' => '4',
         ],
       ],
       'display' => [],

@@ -6,6 +6,7 @@ Feature: Webmaster role
 
   Scenario: Check if webmaster has permissions
     Given I am logged in as a "webmaster"
+    And the cache has been cleared
     And I am on "admin/people"
     Then I should not see "No access (403)"
     When I am on "admin/content/blocks"
