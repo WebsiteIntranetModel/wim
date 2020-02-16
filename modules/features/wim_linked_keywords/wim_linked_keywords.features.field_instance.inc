@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * wim_linked_keywords.features.field_instance.inc
@@ -9,6 +10,108 @@
  */
 function wim_linked_keywords_field_default_field_instances() {
   $field_instances = [];
+
+  // Exported field_instance: 'node-linked_keywords-field_external_description'.
+  $field_instances['node-linked_keywords-field_external_description'] = [
+    'bundle' => 'linked_keywords',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Use only for external URLs',
+    'display' => [
+      'default' => [
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => [],
+        'type' => 'text_default',
+        'weight' => 9,
+      ],
+      'search_result' => [
+        'label' => 'above',
+        'settings' => [],
+        'type' => 'hidden',
+        'weight' => 0,
+      ],
+      'teaser' => [
+        'label' => 'above',
+        'settings' => [],
+        'type' => 'hidden',
+        'weight' => 0,
+      ],
+    ],
+    'entity_type' => 'node',
+    'field_name' => 'field_external_description',
+    'label' => 'External description (Optional)',
+    'required' => 0,
+    'settings' => [
+      'linkit' => [
+        'button_text' => 'Search',
+        'enable' => 0,
+        'profile' => '',
+      ],
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ],
+    'widget' => [
+      'active' => 1,
+      'module' => 'text',
+      'settings' => [
+        'rows' => 5,
+      ],
+      'type' => 'text_textarea',
+      'weight' => 7,
+    ],
+  ];
+
+  // Exported field_instance: 'node-linked_keywords-field_external_title'.
+  $field_instances['node-linked_keywords-field_external_title'] = [
+    'bundle' => 'linked_keywords',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Use only for external URLs',
+    'display' => [
+      'default' => [
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => [],
+        'type' => 'text_default',
+        'weight' => 8,
+      ],
+      'search_result' => [
+        'label' => 'above',
+        'settings' => [],
+        'type' => 'hidden',
+        'weight' => 0,
+      ],
+      'teaser' => [
+        'label' => 'above',
+        'settings' => [],
+        'type' => 'hidden',
+        'weight' => 0,
+      ],
+    ],
+    'entity_type' => 'node',
+    'field_name' => 'field_external_title',
+    'label' => 'External title (Optional)',
+    'required' => 0,
+    'settings' => [
+      'linkit' => [
+        'button_text' => 'Search',
+        'enable' => 0,
+        'profile' => '',
+      ],
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ],
+    'widget' => [
+      'active' => 1,
+      'module' => 'text',
+      'settings' => [
+        'size' => 60,
+      ],
+      'type' => 'text_textfield',
+      'weight' => 6,
+    ],
+  ];
 
   // Exported field_instance: 'node-linked_keywords-field_referenced_content'.
   $field_instances['node-linked_keywords-field_referenced_content'] = [
@@ -75,14 +178,62 @@ function wim_linked_keywords_field_default_field_instances() {
       'module' => 'link',
       'settings' => [],
       'type' => 'link_field',
-      'weight' => 43,
+      'weight' => 5,
+    ],
+  ];
+
+  // Exported field_instance: 'node-linked_keywords-field_reminder_email'.
+  $field_instances['node-linked_keywords-field_reminder_email'] = [
+    'bundle' => 'linked_keywords',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => [
+      'default' => [
+        'label' => 'above',
+        'settings' => [],
+        'type' => 'hidden',
+        'weight' => 6,
+      ],
+      'search_result' => [
+        'label' => 'above',
+        'settings' => [],
+        'type' => 'hidden',
+        'weight' => 0,
+      ],
+      'teaser' => [
+        'label' => 'above',
+        'settings' => [],
+        'type' => 'hidden',
+        'weight' => 0,
+      ],
+    ],
+    'entity_type' => 'node',
+    'field_name' => 'field_reminder_email',
+    'label' => 'Reminder email',
+    'required' => 0,
+    'settings' => [
+      'user_register_form' => FALSE,
+    ],
+    'widget' => [
+      'active' => 1,
+      'module' => 'email',
+      'settings' => [
+        'size' => 60,
+      ],
+      'type' => 'email_textfield',
+      'weight' => 42,
     ],
   ];
 
   // Translatables
   // Included for use with string extractors like potx.
   t('Click "Search" to select "Related content" and set a higher priority in the search results.');
-  t('Referenced Content');
+  t('External description (Optional)');
+  t('External title (Optional)');
+  t('Keyword');
+  t('Reminder email');
+  t('Use only for external URLs');
 
   return $field_instances;
 }
