@@ -6,12 +6,12 @@ Feature: Replace media elements
 
   Scenario: Successfully replace media
     Given I am logged in as a "content manager"
-    And I am at "admin/content/file"
-    And I should not see "No access (403)"
+    When I am at "admin/content/file"
+    And I fill in "edit-filename" with "gorilla"
+    And I press "Apply"
     And I wait for 3 seconds
-    And I should see the text "Testing media 2" in the "gorilla.jpg" row
-    Then I click "Edit" in the "gorilla.jpg" row
-    And I should not see "No access (403)"
+    Then I should see the text "Testing media 2" in the "gorilla.jpg" row
+    When I click "Edit" in the "gorilla.jpg" row
     And I attach the file "/fixtures/images/drupal-icon.png" to "Replace file"
     Then I press "Save"
     And I should see "Image gorilla.jpg has been updated."
