@@ -8,7 +8,8 @@ Feature: Manage media elements
     Given I am logged in as a "content manager"
     And I am at "admin/content/file"
     And I should not see "No access (403)"
-    And I should see the text "gorilla-3.jpg" in the "Testing media 2" row
-    And I should see the text "gorilla-3.jpg" in the "Testing media 3" row
-    Then I click "Edit" in the "gorilla-3.jpg" row
+    And I wait for 3 seconds
+    And I should see the text "gorilla.jpg" in the "Testing media 2" row
+    And I should see the text "gorilla.jpg" in the "Testing media 3" row
+    Then I click "Edit" in the "gorilla.jpg" row
     And I should not see "No access (403)"
