@@ -10,7 +10,7 @@ Feature: Replace media elements
     And I fill in "edit-filename" with "gorilla"
     And I press "Apply"
     And I wait for 3 seconds
-    Then I should see the text "Testing media 2" in the "gorilla.jpg" row
+    Then I should see the text "gorilla.jpg"
     When I click "Edit" in the "gorilla.jpg" row
     And I attach the file "/fixtures/images/drupal-icon.png" to "Replace file"
     Then I press "Save"
