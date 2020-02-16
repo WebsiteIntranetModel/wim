@@ -215,7 +215,7 @@ function wimbase_preprocess_block(&$variables) {
     if (module_exists('wim_block_management')) {
       $additional_settings = wim_block_management_additional_settings_array($block->module, $block->delta);
       if (isset($additional_settings['aria_label'])) {
-        $t='';
+        $t = '';
         $variables['aria_label'] = $additional_settings['aria_label'];
       }
     }
@@ -355,6 +355,13 @@ function wimbase_preprocess_search_result(&$variables) {
           $variables['classes_array'][] = 'promoted';
         }
         else {
+          $tags = get_meta_tags($referenced_content['url']);
+          $variables['title'] = isset($tags['title']) ?
+            $tags['title'] :
+            $node->field_external_title[LANGUAGE_NONE][0]['value'];
+          $variables['external_description'] = isset($tags['description']) ?
+            $tags['description'] :
+            $node->field_external_description[LANGUAGE_NONE][0]['value'];
           $variables['content_type'] = (variable_get('wim_linked_keywords_promoted') && !empty(variable_get('wim_linked_keywords_promoted_title'))) ?
             t(variable_get('wim_linked_keywords_promoted_title')) :
             t('Promoted');

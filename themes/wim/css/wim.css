@@ -3513,6 +3513,7 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   line-height: 24px;
   font-family: "Roboto Slab", Georgia, "Times New Roman", Times, serif;
   border-radius: 0;
+  float: none;
 }
 
 #accordion .panel-heading h3,
@@ -3788,6 +3789,7 @@ ul[class^="custom-list-view-mode"]:not([class*="title"]) li {
   font-weight: bold;
 }
 
+.search-results .search-external-description,
 .search-results .search-snippet-info,
 .search-results .field-name-body {
   margin: 8px 0 12px;

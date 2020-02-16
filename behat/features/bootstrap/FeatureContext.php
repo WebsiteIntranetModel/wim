@@ -87,7 +87,8 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
    * @BeforeScenario
    */
   public function resizeWindow() {
-    $this->getSession()->resizeWindow(1280, 2024, 'current');
+    // $this->getSession()->resizeWindow(1280, 2024, 'current');
+    $this->getSession()->getDriver()->maximizeWindow();
   }
 
   /**
