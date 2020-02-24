@@ -169,7 +169,7 @@ function _wim_cvdr_read_xml() {
       // Request the XML from the webservice.
       $xml_response = drupal_http_request($xml_url, ['timeout' => 6]);
 
-      if ($xml_response->code !== '200' || strpos($xml_response->headers['content-type'], 'text/xml') === FALSE) {
+      if ($xml_response->code !== '200' || strpos($xml_response->headers['content-type'], 'application/xml') === FALSE) {
         // Log error and quit.
         watchdog('WIM CVDR',
           'Could not retrieve XML. Debug: !array',
@@ -217,11 +217,16 @@ function _wim_cvdr_process_xml($xml, $xml_id) {
     // Retrieve the needed data by using xpath queries.
     $xpath = new DOMXpath($xml_dom);
     $url = $item->getElementsByTagName('publicatieurl_xhtml')->item(0);
-    $subject = $xpath->query('.//' . $subject_source, $item)->item(0);
-    $title = $xpath->query('.//dcterms:title', $item)->item(0);
     $alternative = $xpath->query('.//dcterms:alternative', $item)->item(0);
-    $date = $xpath->query('.//overheidrg:uitwerkingtredingDatum', $item)
-      ->item(0);
+    $title = $xpath->query('.//dcterms:title', $item)->item(0);
+
+    $subjectQueryResult = $xpath->query('.//' . $subject_source, $item);
+    $subject = ($subjectQueryResult instanceof DOMNodeList) ?
+      $subjectQueryResult->item(0) : t('Other');
+
+    $dateQueryResult = $xpath->query('.//overheidrg:uitwerkingtredingDatum', $item);
+    $date = ($dateQueryResult instanceof DOMNodeList) ?
+      $dateQueryResult->item(0) : NULL;
 
     // Use the official title if this is available.
     if (!empty($alternative->nodeValue)) {
@@ -229,7 +234,7 @@ function _wim_cvdr_process_xml($xml, $xml_id) {
     }
 
     // Only proceed if everything is available.
-    if (isset($url, $subject, $title, $date)) {
+    if (isset($url, $subject, $title)) {
       $url = $url->nodeValue;
 
       // Check and see if the url is available on https.
@@ -246,16 +251,12 @@ function _wim_cvdr_process_xml($xml, $xml_id) {
         }
       }
 
-      $subject = ucfirst($subject->nodeValue) . '(URL-' . $xml_id . ')';;
+      $subject = ucfirst($subject->nodeValue) . ' (URL-' . $xml_id . ')';;
       $title = $title->nodeValue;
       $date = $date->nodeValue;
 
       // Check if no expire date is set or expire date is in the future.
       if (empty($date) || strtotime($date) > REQUEST_TIME) {
-        // Fallback when no subject is set for this item.
-        if (empty($subject)) {
-          $subject = t('Other');
-        }
 
         // Save the item keyed by its subject.
         $items[$subject][] = [
