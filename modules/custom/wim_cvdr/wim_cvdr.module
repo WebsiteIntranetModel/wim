@@ -216,9 +216,18 @@ function _wim_cvdr_process_xml($xml, $xml_id) {
   foreach ($xml_dom->getElementsByTagName('gzd') as $item) {
     // Retrieve the needed data by using xpath queries.
     $xpath = new DOMXpath($xml_dom);
-    $url = $item->getElementsByTagName('publicatieurl_xhtml')->item(0);
-    $alternative = $xpath->query('.//dcterms:alternative', $item)->item(0);
-    $title = $xpath->query('.//dcterms:title', $item)->item(0);
+
+    $urlQueryResult = $item->getElementsByTagName('publicatieurl_xhtml');
+    $url = ($urlQueryResult instanceof DOMNodeList) ?
+      $urlQueryResult->item(0) : NULL;
+
+    $alternativeQueryResult = $xpath->query('.//dcterms:alternative', $item);
+    $alternative = ($alternativeQueryResult instanceof DOMNodeList) ?
+      $alternativeQueryResult->item(0) : NULL;
+
+    $titleQueryResult = $xpath->query('.//dcterms:title', $item);
+    $title = ($titleQueryResult instanceof DOMNodeList) ?
+      $titleQueryResult->item(0) : NULL;
 
     $subjectQueryResult = $xpath->query('.//' . $subject_source, $item);
     $subject = ($subjectQueryResult instanceof DOMNodeList) ?
@@ -253,7 +262,10 @@ function _wim_cvdr_process_xml($xml, $xml_id) {
 
       $subject = ucfirst($subject->nodeValue) . ' (URL-' . $xml_id . ')';;
       $title = $title->nodeValue;
-      $date = $date->nodeValue;
+      
+      if (isset($date)) {
+        $date = $date->nodeValue;
+      }
 
       // Check if no expire date is set or expire date is in the future.
       if (empty($date) || strtotime($date) > REQUEST_TIME) {
