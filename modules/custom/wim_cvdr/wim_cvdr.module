@@ -153,6 +153,19 @@ function _wim_cvdr_retrieve_elements() {
   if ($cached = cache_get('wim_cvdr_items')) {
     $items = $cached->data;
   }
+  // Manual cache clears will trigger the CVDR on page reload.
+  else {
+    $xmls = _wim_cvdr_read_xml();
+    if ($xmls) {
+      foreach ($xmls as $id => $xml) {
+        $items = array_merge($items, _wim_cvdr_process_xml($xml, $id));
+      }
+
+      // Save the cached results to improve performance.
+      $expire = REQUEST_TIME + (variable_get('wim_cvdr_cache_time', 60) * 60);
+      cache_set('wim_cvdr_items', $items, 'cache', $expire);
+    }
+  }
 
   return $items;
 }
