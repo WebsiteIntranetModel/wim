@@ -37,3 +37,30 @@ function wim_cvdr_uninstall() {
     ->condition('module', 'wim_cvdr')
     ->execute();
 }
+
+/**
+ * CVDR url update.
+ *
+ * CVDR has change their website url from zoekdienst.overheid.nl to
+ * zoekservice.overheid.nl and we need to use this url in our CVDR.
+ */
+function wim_cvdr_7001() {
+  $cvdr_urls = [
+    'wim_cvdr_url',
+    'wim_cvdr_url_second'
+  ];
+
+  foreach ($cvdr_urls as $cvdr_url) {
+    $url = variable_get($cvdr_url, '');
+
+    // If the CVDR uses the old url, change it!
+    if (strpos($url,'zoekdienst.overheid.nl') !== false) {
+      $url = str_replace('zoekdienst.overheid.nl','zoekservice.overheid.nl', $url);
+      variable_set($cvdr_url, $url);
+
+      // Clear the cache so the CVDR can run again with the new url.
+      cache_clear_all('wim_cvdr_items', 'cache', TRUE);
+      wim_cvdr_cron();
+    }
+  }
+}
