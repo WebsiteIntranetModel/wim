@@ -49,12 +49,12 @@ function wim_synonyms_admin_list_form($form, &$form_state) {
   $form['new-synonym']['keyword'] = [
     '#type' => 'textfield',
     '#title' => t('Keyword'),
-    '#description' => t("Comma-separated")
+    '#description' => t("Comma-separated"),
   ];
   $form['new-synonym']['synonyms'] = [
     '#type' => 'textfield',
     '#title' => t('Synonyms'),
-    '#description' => t("Comma-separated")
+    '#description' => t("Comma-separated"),
   ];
   $form['new-synonym']['add'] = [
     '#type' => 'submit',
@@ -95,6 +95,9 @@ function wim_synonyms_save_submit($form, $form_state) {
   $ch = curl_init();
   curl_setopt($ch, CURLOPT_URL, $url);
   curl_exec($ch);
+
+  $maneged_url = $environment['scheme'] . '://' . $environment['host'] . ':' . $environment['port'] . '/solr/' . $environment['core'] . '/schema/analysis/synonyms/mytag';
+  wim_synonyms_update_init_arguments_for_solr($maneged_url);
 
   drupal_set_message(t("Synonyms have been updated and the core has been reloaded."));
 }
@@ -155,7 +158,7 @@ function wim_synonyms_add_synonym_submit($form, $form_state) {
 
   $synonymCollection = new \SolrRestApiClient\Api\Client\Domain\Synonym\SynonymCollection();
 
-  $new_keywords = explode(',',$new_keywords);
+  $new_keywords = explode(',', $new_keywords);
 
   // Add the new keywords
   foreach ($new_keywords as $new_keyword) {
@@ -172,6 +175,9 @@ function wim_synonyms_add_synonym_submit($form, $form_state) {
 
     $repository->addAll($synonymCollection, 'mytag');
   }
+
+  $maneged_url = $environment['scheme'] . '://' . $environment['host'] . ':' . $environment['port'] . '/solr/' . $environment['core'] . '/schema/analysis/synonyms/mytag';
+  wim_synonyms_update_init_arguments_for_solr($maneged_url);
 }
 
 /**
@@ -246,10 +252,25 @@ function wim_synonyms_admin_list_delete_form_submit($form, &$form_state) {
   foreach ($delete_keywords as $delete_keyword) {
     $repository->deleteByMainWord($delete_keyword, 'mytag');
   }
-  
+
   drupal_set_message(t('The keyword %keyword has been removed.', ['%keyword' => $form_state['values']['keyword']]));
 
   $form_state['redirect'] = [
     'admin/config/search/apachesolr/synonyms',
   ];
+}
+
+function wim_synonyms_update_init_arguments_for_solr($url) {
+  $ch = curl_init();
+
+  curl_setopt($ch, CURLOPT_URL, $url);
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+  curl_setopt($ch, CURLOPT_POST, 1);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, "{\"initArgs\":{\"ignoreCase\":true}}");
+
+  $headers = [];
+  $headers[] = 'Content-Type: application/json';
+  curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+  curl_exec($ch);
+  curl_close($ch);
 }
