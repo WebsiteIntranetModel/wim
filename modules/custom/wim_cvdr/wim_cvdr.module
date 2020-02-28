@@ -208,6 +208,7 @@ function _wim_cvdr_read_xml() {
  *   With items keyed on subject and sorted.
  */
 function _wim_cvdr_process_xml($xml, $xml_id) {
+
   $subject_source = !empty(variable_get('wim_cvdr_subject_source')) ?
     variable_get('wim_cvdr_subject_source') : 'overheidrg:onderwerp';
   $items = [];
@@ -242,13 +243,14 @@ function _wim_cvdr_process_xml($xml, $xml_id) {
     $title = ($titleQueryResult instanceof DOMNodeList) ?
       $titleQueryResult->item(0) : NULL;
 
-    $subjectQueryResult = $xpath->query('.//' . $subject_source, $item);
-    $subject = ($subjectQueryResult instanceof DOMNodeList) ?
-      $subjectQueryResult->item(0) : t('Other');
+    $overheidNs = 'http://standaarden.overheid.nl/cvdr/terms/';
+    $subjectQuery = $item->getElementsByTagNameNS($overheidNs, 'onderwerp');
+    $subject = !empty($subjectQuery->item(0)->nodeValue) ?
+      $subjectQuery->item(0)->nodeValue : t('Other');
 
-    $dateQueryResult = $xpath->query('.//overheidrg:uitwerkingtredingDatum', $item);
-    $date = ($dateQueryResult instanceof DOMNodeList) ?
-      $dateQueryResult->item(0) : NULL;
+    $dateQuery = $item->getElementsByTagNameNS($overheidNs, 'uitwerkingtredingDatum');
+    $date = !empty($dateQuery->item(0)->nodeValue) ?
+      $dateQuery->item(0)->nodeValue : NULL;
 
     // Use the official title if this is available.
     if (!empty($alternative->nodeValue)) {
@@ -273,12 +275,8 @@ function _wim_cvdr_process_xml($xml, $xml_id) {
         }
       }
 
-      $subject = ucfirst($subject->nodeValue) . ' (URL-' . $xml_id . ')';;
+      $subject = ucfirst($subject) . ' (URL-' . $xml_id . ')';
       $title = $title->nodeValue;
-      
-      if (isset($date)) {
-        $date = $date->nodeValue;
-      }
 
       // Check if no expire date is set or expire date is in the future.
       if (empty($date) || strtotime($date) > REQUEST_TIME) {
