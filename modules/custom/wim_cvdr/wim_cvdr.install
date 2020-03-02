@@ -14,7 +14,7 @@ function wim_cvdr_install() {
     $block->block_set = 'default';
     $block->module = 'wim_cvdr';
     $block->delta = '*';
-    drupal_write_record('felix_block_set_block', $block, 'default-wim_cvdr-*');
+    drupal_write_record('felix_block_set_block', $block, ['block_set', 'module', 'delta']);
   }
 }
 
