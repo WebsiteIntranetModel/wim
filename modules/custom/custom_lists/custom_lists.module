@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Code for the Custom Lists.
@@ -243,6 +244,8 @@ function custom_lists_page_content($list) {
 function custom_lists_render_nodes($view_mode, $items, $list, $page = FALSE) {
   $nodes = custom_lists_content_nodes($list, $items, $view_mode !== 'titles');
 
+  // These nodes can be fetched objects instead of full nodes.
+  // @see: custom_lists_content_nodes().
   if (!$nodes) {
     return [];
   }
@@ -262,21 +265,21 @@ function custom_lists_render_nodes($view_mode, $items, $list, $page = FALSE) {
     ];
   }
   else {
-    $node_list = $nodes ? node_view_multiple($nodes, $view_mode) : '';
+    $node_list = $nodes ? node_view_multiple($nodes, $view_mode) : [];
     if ($page) {
       return $node_list;
     }
     else {
+      $items = [];
+      foreach (reset($node_list) as $nodes) {
+        if (isset($node->nid)) {
+          // We load a node because sometimes they are not the full object.
+          $items[] = render(node_load($node->nid));
+        }
+      }
       return [
         '#theme' => 'item_list',
-        '#items' => array_filter(reset($node_list), function (&$node) {
-          if (!is_array($node)) {
-            return FALSE;
-          }
-
-          $node = drupal_render($node);
-          return TRUE;
-        }),
+        '#items' => array_filter($items),
         '#attributes' => [
           'class' => 'custom-list-view-mode-' . $view_mode,
         ],
@@ -286,7 +289,10 @@ function custom_lists_render_nodes($view_mode, $items, $list, $page = FALSE) {
 }
 
 /**
- * Helper function for retrieving the nodes of a list.
+ * Helper function for retrieving the nodes/db-objects of a list.
+ *
+ * @return mixed
+ *   Warning: In some cases these are full nodes, in other cases db objects.
  */
 function custom_lists_content_nodes($list, $items, $full_load = TRUE) {
   // Default query.
@@ -348,6 +354,7 @@ function custom_lists_content_nodes($list, $items, $full_load = TRUE) {
     $nodes = node_load_multiple($nids);
   }
   else {
+    // @WHY?: Return values called $nodes should be nodes, not fetched db-objects.
     $nodes = $rs->fetchAll();
   }
 
@@ -428,11 +435,11 @@ function custom_lists_get($list_key = NULL) {
  * Helper function for adding a list.
  *
  * @param string $list_key
- *    The list key.
+ *   The list key.
  * @param array $list
- *    List data.
+ *   List data.
  */
-function custom_lists_add($list_key, $list) {
+function custom_lists_add($list_key, array $list) {
   $old = custom_lists_get($list_key);
 
   // Create new item that holds the properties.
@@ -483,7 +490,7 @@ function custom_lists_add($list_key, $list) {
  * Helper function for deleting a list.
  *
  * @param string $list_key
- *    List key.
+ *   List key.
  */
 function custom_lists_delete($list_key) {
   $old = custom_lists_get($list_key);
