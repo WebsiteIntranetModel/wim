@@ -242,7 +242,7 @@ function get_modules_usage_blocks() {
  * @see block_admin_configure()
  */
 function wim_block_management_form_block_add_block_form_alter(&$form, &$form_state, $form_id) {
-  wim_block_management_form_block_admin_configure_alter($form, $form_state);
+  wim_block_management_form_block_admin_configure_alter($form, $form_state, $form_id);
 }
 
 /**
