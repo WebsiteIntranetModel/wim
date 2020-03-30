@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Code for the WIM Block Management feature.
@@ -177,9 +178,9 @@ function wim_block_management_form_felix_remove_form_alter(&$form, &$form_state,
     $region = $form['#felix_region'];
     $form['info'] = [
       '#markup' => '<p>' . t('Are you sure you want to delete the block %subject from %region?', [
-          '%subject' => strip_tags($block->subject),
-          '%region' => $region->title,
-        ]) . '</p>',
+        '%subject' => strip_tags($block->subject),
+        '%region' => $region->title,
+      ]) . '</p>',
     ];
   }
 }
@@ -268,15 +269,14 @@ function wim_block_management_form_block_admin_configure_alter(&$form, &$form_st
     '#type' => 'textfield',
     '#title' => t('Aria label'),
     '#default_value' => $additional_settings['aria_label'],
-    '#description' => t('Text for \'aria-label\' attribute.'),
+    '#description' => t("Text for 'aria-label' attribute."),
   ];
 
   $form['#submit'][] = 'wim_block_management_form_block_admin_configure_submit';
 }
 
 /**
- * Form submission handler for
- * wim_block_management_form_block_admin_configure_alter().
+ * Form submission handler.
  *
  * @see wim_block_management_form_block_admin_configure_alter()
  */
@@ -305,7 +305,9 @@ function wim_block_management_form_block_admin_configure_submit($form, &$form_st
  * Gets additional settings for block.
  *
  * @param string $module
+ *   Module machine name.
  * @param string $delta
+ *   Block delta.
  *
  * @return array
  *   WIM additional settings for block.
