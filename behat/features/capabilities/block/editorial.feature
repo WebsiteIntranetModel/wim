@@ -60,6 +60,6 @@ Feature: Add Editorial blocks
     And I should see "Editorial body content 1"
     When I mouseover the ".region-sidebar-first .block-bean h2" element
     Then I click the ".region-sidebar-first .block-bean a.contextual-links-trigger" element
-    And I wait for "3000"
+    And I wait for "3" seconds
     And I click the ".region-sidebar-first .block-bean .contextual-links-wrapper li.remove" element
     And I press the "Remove" button
