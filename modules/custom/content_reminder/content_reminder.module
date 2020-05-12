@@ -178,7 +178,7 @@ function _content_reminder_instance($type) {
     ],
     'entity_type' => 'node',
     'field_name' => 'field_reminder_email',
-    'label' => st('Reminder email'),
+    'label' => t('Reminder email'),
     'required' => 0,
     'settings' => [
       'user_register_form' => FALSE,

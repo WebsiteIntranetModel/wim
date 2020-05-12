@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Code for the Custom Lists.
@@ -262,38 +263,39 @@ function custom_lists_render_nodes($view_mode, $items, $list, $page = FALSE) {
     ];
   }
   else {
-    $node_list = $nodes ? node_view_multiple($nodes, $view_mode) : '';
     if ($page) {
-      return $node_list;
+      return node_view_multiple($nodes, $view_mode);
     }
     else {
+      $items = [];
+      foreach ($nodes as $node) {
+        $node_view = node_view($node, $view_mode);
+        $items[] = drupal_render($node_view);
+      }
       return [
         '#theme' => 'item_list',
-        '#items' => array_filter(reset($node_list), function (&$node) {
-          if (!is_array($node)) {
-            return FALSE;
-          }
-
-          $node = drupal_render($node);
-          return TRUE;
-        }),
+        '#items' => $items,
         '#attributes' => [
           'class' => 'custom-list-view-mode-' . $view_mode,
         ],
       ];
+
     }
   }
 }
 
 /**
- * Helper function for retrieving the nodes of a list.
+ * Helper function for retrieving the nodes/db-objects of a list.
+ *
+ * @return array
+ *   A list of nodes.
  */
 function custom_lists_content_nodes($list, $items, $full_load = TRUE) {
   // Default query.
   $query = db_select('node', 'n')->extend('PagerDefault');
   $query->addTag('node_access');
   $query
-    ->fields('n', $full_load ? ['nid'] : ['nid', 'title'])
+    ->fields('n', ['nid'])
     ->condition('n.status', 1)
     ->limit($items);
 
@@ -342,16 +344,10 @@ function custom_lists_content_nodes($list, $items, $full_load = TRUE) {
     }
   }
 
-  $rs = $query->execute();
-  if ($full_load) {
-    $nids = $rs->fetchCol();
-    $nodes = node_load_multiple($nids);
-  }
-  else {
-    $nodes = $rs->fetchAll();
-  }
+  $nids = $query->execute()->fetchCol();
+  // DIMPACT-2: Return nodes always, not fetched db-objects.
+  return node_load_multiple($nids);
 
-  return $nodes;
 }
 
 /**
@@ -428,11 +424,11 @@ function custom_lists_get($list_key = NULL) {
  * Helper function for adding a list.
  *
  * @param string $list_key
- *    The list key.
+ *   The list key.
  * @param array $list
- *    List data.
+ *   List data.
  */
-function custom_lists_add($list_key, $list) {
+function custom_lists_add($list_key, array $list) {
   $old = custom_lists_get($list_key);
 
   // Create new item that holds the properties.
@@ -483,7 +479,7 @@ function custom_lists_add($list_key, $list) {
  * Helper function for deleting a list.
  *
  * @param string $list_key
- *    List key.
+ *   List key.
  */
 function custom_lists_delete($list_key) {
   $old = custom_lists_get($list_key);
