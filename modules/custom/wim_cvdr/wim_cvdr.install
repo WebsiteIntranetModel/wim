@@ -12,12 +12,12 @@ function wim_cvdr_install() {
     // Enable a selections of WIM CVDR blocks in the Felix options.
     db_merge('felix_block_set_block')
       ->key([
-        'block_set' =>'default',
+        'block_set' => 'default',
         'module' => 'wim_cvdr',
         'delta' => '*',
       ])
       ->fields([
-        'block_set' =>'default',
+        'block_set' => 'default',
         'module' => 'wim_cvdr',
         'delta' => '*',
       ])
