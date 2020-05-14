@@ -23,22 +23,24 @@ function wim_faq_views_pre_render($view) {
  */
 function wim_faq_form_felix_attributes_form_alter(&$form, &$form_state, $form_id) {
   $felix_block = $form['#felix_block'];
-  $felix_block_config = $felix_block->data['config'];
-  if ($felix_block->delta === 'faq-faq_overview_block') {
-    $faq_vocabulary = taxonomy_vocabulary_machine_name_load('faq_categories');
-    $faq_terms = taxonomy_get_tree($faq_vocabulary->vid);
-    $faq_categories = [];
-    foreach ($faq_terms as $faq_term) {
-      $faq_categories[$faq_term->tid] = $faq_term->name;
-    }
-    if (!empty($faq_categories)) {
-      $form['faq_category'] = [
-        '#type' => 'select',
-        '#title' => t('FAQ category'),
-        '#options' => $faq_categories,
-        '#default_value' => $felix_block_config['faq_category'],
-        '#required' => TRUE,
-      ];
+  if ($felix_block->data['config']){
+    $felix_block_config = $felix_block->data['config'];
+    if ($felix_block->delta === 'faq-faq_overview_block') {
+      $faq_vocabulary = taxonomy_vocabulary_machine_name_load('faq_categories');
+      $faq_terms = taxonomy_get_tree($faq_vocabulary->vid);
+      $faq_categories = [];
+      foreach ($faq_terms as $faq_term) {
+        $faq_categories[$faq_term->tid] = $faq_term->name;
+      }
+      if (!empty($faq_categories)) {
+        $form['faq_category'] = [
+          '#type' => 'select',
+          '#title' => t('FAQ category'),
+          '#options' => $faq_categories,
+          '#default_value' => $felix_block_config['faq_category'],
+          '#required' => TRUE,
+        ];
+      }
     }
   }
 }

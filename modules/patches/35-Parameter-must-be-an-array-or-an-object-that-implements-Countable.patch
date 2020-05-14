@@ -1,0 +1,24 @@
+diff --git a/hansel.module b/hansel.module
+index 96e89b0..ab1c519 100644
+--- a/hansel.module
++++ b/hansel.module
+@@ -628,12 +628,14 @@ function hansel_get_breadcrumbs($test = FALSE, $plaintext = FALSE) {
+         break; // Break while (TRUE) loop
+       }
+       $crumbs = call_user_func($callback, $rules[$rid]->crumb_action_arguments);
+-      for ($i = 0; $i < count($crumbs); $i++) {
+-        if (empty($crumbs[$i]) || (is_array($crumbs[$i]) && empty($crumbs[$i]['title']))) {
+-          // Skip empty breadcrumbs in output.
+-          continue;
++      if (is_array($crumbs)) {
++        for ($i = 0; $i < count($crumbs); $i++) {
++          if (empty($crumbs[$i]) || (is_array($crumbs[$i]) && empty($crumbs[$i]['title']))) {
++            // Skip empty breadcrumbs in output.
++            continue;
++          }
++          $breadcrumbs[] = $crumbs[$i];
+         }
+-        $breadcrumbs[] = $crumbs[$i];
+       }
+       !$test or _hansel_test_message(t('Added %count crumb(s)', array('%count' => count($crumbs))));
+     }
