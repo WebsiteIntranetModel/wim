@@ -153,6 +153,10 @@ projects[webform_clear][patch][2471671] = https://www.drupal.org/files/issues/24
 ; https://www.drupal.org/node/2399645
 projects[hansel][patch][2399645] = https://www.drupal.org/files/issues/hansel-broken-token-generation-2399645-1.patch
 
+; Warning: count(): Parameter must be an array or an object that implements Countable in hansel_get_breadcrumbs()
+; https://www.drupal.org/project/hansel/issues/3136852
+projects[hansel][patch][3136852] = https://www.drupal.org/files/issues/2020-05-15/Parameter-must-be-an-array-or-an-object-that-implements-Countable-3136852-3.patch
+
 ; Link
 ; URL validation rejects existing valid content after upgrade to 7.x-1.4
 ; https://www.drupal.org/node/2666912
