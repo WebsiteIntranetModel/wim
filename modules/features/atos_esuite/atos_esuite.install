@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Install file.
@@ -71,6 +72,11 @@ function atos_esuite_uninstall() {
   variable_del('atos_esuite_url');
   variable_del('atos_esuite_chunk_size');
   variable_del('atos_default_format');
+
+  // DIMPACT-35: Drop table on uninstall to prevent error on reinstall.
+  if (db_table_exists('atos_esuite')) {
+    db_drop_table('atos_esuite');
+  }
 }
 
 /**
