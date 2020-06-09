@@ -179,17 +179,37 @@ function _wim_cvdr_read_xml() {
 
   foreach ($xml_urls as $xml_url) {
     if ($xml_url) {
-      // DIMPACT-26: Removed time-out value to use Drupals default (30s).
+      // Request the XML from the webservice.
       $xml_response = drupal_http_request($xml_url);
 
-      if ($xml_response->code !== '200' || strpos($xml_response->headers['Content-Type'], 'application/xml') === FALSE) {
+      // DIMPACT-26: Check for correct request and response.
+      if ($xml_response->code !== '200') {
         // Log error and quit.
         watchdog('WIM CVDR',
-          'Could not retrieve XML. Debug: !array',
-          ['!array' => print_r($xml_response, TRUE)],
+          'Could not retrieve XML from !url. Debug: !array',
+          [
+            '!url' => $xml_url,
+            '!array' => print_r($xml_response, TRUE),
+          ],
           WATCHDOG_ERROR);
-        return FALSE;
+        continue;
       }
+
+      // Check for valid xml.
+      libxml_use_internal_errors(TRUE);
+      $xml = simplexml_load_string($xml_response->data);
+      if (!$xml) {
+        watchdog('WIM CVDR',
+          'Could not retrieve a valid XML from !url. Debug: !array',
+          [
+            '!url' => $xml_url,
+            '!array' => print_r(libxml_get_errors(), TRUE),
+          ],
+          WATCHDOG_ERROR);
+        libxml_clear_errors();
+        continue;
+      }
+
       $data[] = $xml_response->data;
     }
   }
