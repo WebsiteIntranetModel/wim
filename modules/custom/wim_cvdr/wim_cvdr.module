@@ -179,10 +179,10 @@ function _wim_cvdr_read_xml() {
 
   foreach ($xml_urls as $xml_url) {
     if ($xml_url) {
-      // Request the XML from the webservice.
-      $xml_response = drupal_http_request($xml_url, ['timeout' => 6]);
+      // DIMPACT-26: Removed time-out value to use Drupals default (30s).
+      $xml_response = drupal_http_request($xml_url);
 
-      if ($xml_response->code !== '200' || strpos($xml_response->headers['content-type'], 'application/xml') === FALSE) {
+      if ($xml_response->code !== '200' || strpos($xml_response->headers['Content-Type'], 'application/xml') === FALSE) {
         // Log error and quit.
         watchdog('WIM CVDR',
           'Could not retrieve XML. Debug: !array',
