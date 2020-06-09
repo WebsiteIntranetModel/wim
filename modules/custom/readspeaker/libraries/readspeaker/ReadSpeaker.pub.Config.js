@@ -279,7 +279,7 @@ ReadSpeaker.pub.Config = (function () {
         hlscrollinfo: "Activeert en deactiveert automatisch scrollen. Aan: de pagina zal automatisch scrollen om de gehighlighte tekst te volgen.",
         hliconinfo: "Controleert of een mini-afspeler getoond moet worden als er tekst geselecteerd is.",
         close: "Sluit",
-        sliderseek: "Zoekbalk",
+        sliderseek: "Tekst scrollen",
         slidervolume: "Volumebalk",
         slidervolumedesc: "Wijzig volume",
         touheading: "Gebruiksvoorwaarden voor downloaded audio",
@@ -1412,7 +1412,7 @@ ReadSpeaker.pub.Config = (function () {
       progressDir: "h",
       volumeHandleClass: "rsbtn_volume_handle rsimg",
       volumeDir: "v",
-      player: '<a class="rsbtn_pause rsimg rspart" href="javascript:void(0);" title="Pause"><span class="rsbtn_btnlabel">Pause</span></a>,<a class="rsbtn_stop rsimg rspart" href="javascript:void(0);" title="Stop"><span class="rsbtn_btnlabel">Stop</span></a>,<span class="rsbtn_player rsimg rspart">,\t<span class="rsbtn_progress_container rsimg rsplaypart rsloading">,\t\t<span class="rsbtn_progress_played rsimg"></span>,\t</span>\t,\t<a class="rsbtn_volume rsimg rsplaypart" href="javascript:void(0);" title="Volume"><span class="rsbtn_btnlabel">Volume</span></a>,\t<span class="rsbtn_volume_container rsimg">,\t\t<span class="rsbtn_volume_slider"></span>,\t</span>,\t<a class="rsbtn_settings rsimg rsplaypart" href="javascript:void(0);" title="Settings"><span class="rsbtn_btnlabel">Settings</span></a>,\t<a class="rsbtn_dl rsimg rsplaypart" href="javascript:void(0);" title="Download MP3"><span class="rsbtn_btnlabel">Download mp3</span></a>,</span>,<a class="rsbtn_closer rsimg rspart" href="javascript:void(0);" title="Close Player"><span class="rsbtn_btnlabel">Close</span></a>,<span class="rsbtn_powered rsimg"><span class="rsbtn_btnlabel">Speech-enabled by ReadSpeaker</span></span>'.split(
+      player: '<a class="rsbtn_pause rsimg rspart" href="javascript:void(0);" title="Pause"><span class="rsbtn_btnlabel">' + this.getPhrase("pause") + '</span></a>,<a class="rsbtn_stop rsimg rspart" href="javascript:void(0);" title="Stop"><span class="rsbtn_btnlabel">Stop</span></a>,<span class="rsbtn_player rsimg rspart">,\t<span class="rsbtn_progress_container rsimg rsplaypart rsloading">,\t\t<span class="rsbtn_progress_played rsimg"></span>,\t</span>\t,\t<a class="rsbtn_volume rsimg rsplaypart" href="javascript:void(0);" title="Volume"><span class="rsbtn_btnlabel">Volume</span></a>,\t<span class="rsbtn_volume_container rsimg">,\t\t<span class="rsbtn_volume_slider"></span>,\t</span>,\t<a class="rsbtn_settings rsimg rsplaypart" href="javascript:void(0);" title="Settings"><span class="rsbtn_btnlabel">' + this.getPhrase("settings") + '</span></a>,\t<a class="rsbtn_dl rsimg rsplaypart" href="javascript:void(0);" title="Download MP3"><span class="rsbtn_btnlabel">Download mp3</span></a>,</span>,<a class="rsbtn_closer rsimg rspart" href="javascript:void(0);" title="Close Player"><span class="rsbtn_btnlabel">' + this.getPhrase("close") + '</span></a>,<span class="rsbtn_powered rsimg"><span class="rsbtn_btnlabel">Speech-enabled by ReadSpeaker</span></span>'.split(
         ","
       ),
       popupbutton: [
