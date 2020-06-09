@@ -399,8 +399,8 @@ ReadSpeaker.ui.Slider = function () {
   this.initElement = function (a) {
     if (!i) {
       "string" == typeof a && (a = document.getElementById(a));
-      a.innerHTML += '<a href="javascript:void(0);" role="slider" class="keyLink" style="display:block; border:0;">&nbsp;</a>';
-      var d = a.getElementsByTagName("a"),
+      a.innerHTML += '<input role="slider" class="keyLink" style="display:block; border:0;">&nbsp;</input>';
+      var d = a.getElementsByTagName("input"),
         d = d[d.length - 1],
         e = -1 < c.steps ? c.steps : 100;
       d.relatedElement = a;
@@ -628,7 +628,7 @@ ReadSpeaker.ui.Slider = function () {
           k = "left";
         "v" == c.dir && ((f = c.height), (i = c.top), (k = "top"), (a = d - 1 - a));
         j.ref.style[k] = (f / (d - 1)) * a + i + "px";
-        $rs.setAttr($rs.findIn(j.ref, "a.keyLink"), "aria-valuenow", e);
+        $rs.setAttr($rs.findIn(j.ref, "input.keyLink"), "aria-valuenow", e);
       }
     },
     getInstance: function () {
