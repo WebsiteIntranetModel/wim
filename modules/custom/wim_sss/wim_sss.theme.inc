@@ -64,7 +64,8 @@ function _default_networks(stdClass $node) {
 function theme_wim_sss_links($variables) {
   $node = $variables['node'];
   if (!$node) {
-    return [];
+    // DIMPACT-23: Return string instead of empty array.
+    return '';
   }
 
   $content = [];
