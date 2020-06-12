@@ -58,8 +58,7 @@ function readspeaker_theme($existing, $type, $theme, $path) {
         'title' => NULL,
         'button' => NULL,
       ],
-      'template' => 'readspeaker',
-      'path' => "$path/theme",
+      'template' => 'theme/readspeaker',
     ],
   ];
 }
@@ -85,8 +84,8 @@ function readspeaker_block_view($delta = '') {
   $block = [];
 
   if ($delta === 'readspeaker') {
-    if (variable_get('readspeaker_customerid', NULL)) {
-      $block['content'] = readspeaker_build_player();
+    if ($player = readspeaker_build_player()) {
+      $block['content'] = $player;
     }
     else {
       drupal_set_message(t('Read Speaker: Customer ID is not set or does not exist. Please check configuration.'), 'warning');
@@ -97,30 +96,28 @@ function readspeaker_block_view($delta = '') {
 }
 
 /**
- * Build Read Speaker player output.
+ * Build Readspeaker player output.
  */
 function readspeaker_build_player() {
-  $customerid = variable_get('readspeaker_customerid', NULL);
-  $current_path = check_url(current_path());
-  $module_path = drupal_get_path('module', 'readspeaker');
-  $library_path = $module_path . '/libraries/readspeaker/ReadSpeaker.js?pids=embhl';
-
-  $data = [
-    '#type' => 'markup',
-    '#markup' => '<script type="text/javascript" src="/' . $library_path . '"></script>',
-  ];
-
-  drupal_add_html_head($data, 'readspeaker');
-
-  $player = [
-    '#theme' => 'readspeaker',
-    '#customer_id' => $customerid,
-    '#lang' => variable_get('readspeaker_language', 'nl_nl'),
-    '#url' => url($current_path, ['absolute' => TRUE]),
-    '#title' => variable_get('readspeaker_title', t('Listen to this page using ReadSpeaker')),
-    '#button' => variable_get('readspeaker_button_text', t('Listen')),
-  ];
-
+  $player = [];
+  if ($customerid = variable_get('readspeaker_customerid')) {
+    $player = [
+      '#markup' => theme('readspeaker', [
+        'customer_id' => $customerid,
+        'lang' => variable_get('readspeaker_language', 'nl_nl'),
+        'url' => url(current_path(), ['absolute' => TRUE]),
+        'title' => variable_get('readspeaker_title', t('Listen to this page using ReadSpeaker')),
+        'button' => variable_get('readspeaker_button_text', t('Listen')),
+      ]),
+      '#attached' => [
+        'js' => [
+          '//cdn1.readspeaker.com/script/' . $customerid . '/webReader/webReader.js?pids=wr' => [
+            'type' => 'external',
+          ],
+        ],
+      ],
+    ];
+  }
   return $player;
 }
 
@@ -141,6 +138,5 @@ function readspeaker_supported_languages() {
     'ru_ru' => 'Russisch',
     'ar_ar' => 'Arabisch',
   ];
-
   return $languages;
 }
