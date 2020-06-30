@@ -211,7 +211,7 @@ function wimbase_menu_link(array $variables) {
   $menu_icon = isset($element['#localized_options']['menu_icon']) ? $element['#localized_options']['menu_icon'] : NULL;
   // Add menu item icon.
   if (is_array($menu_icon) && $menu_icon['enable'] && $menu_icon['path']) {
-    $icon = '<span><img alt="' . $element['#title'] . '" class="item-icon rs_skip" src="' . image_style_url($menu_icon['image_style'], $menu_icon['path']) . '"></span>';
+    $icon = '<span><img class="item-icon rs_skip" src="' . image_style_url($menu_icon['image_style'], $menu_icon['path']) . '"></span>';
     $element['#localized_options']['html'] = TRUE;
   }
   if ($element['#below']) {
@@ -268,7 +268,7 @@ function wimbase_menu_link__menu_top_tasks(array $variables) {
   $menu_icon = isset($element['#localized_options']['menu_icon']) ? $element['#localized_options']['menu_icon'] : NULL;
   // Add menu item icon.
   if (is_array($menu_icon) && $menu_icon['enable'] && $menu_icon['path']) {
-    $icon = '<span><img alt="' . $element['#title'] . '" class="item-icon rs_skip" src="' . image_style_url($menu_icon['image_style'], $menu_icon['path']) . '"></span>';
+    $icon = '<span><img class="item-icon rs_skip" src="' . image_style_url($menu_icon['image_style'], $menu_icon['path']) . '"></span>';
     $element['#localized_options']['html'] = TRUE;
   }
   if ($element['#below'] && !empty($element['#original_link']['depth']) && $element['#original_link']['depth'] == 1) {
