@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Administration pages.
@@ -9,7 +10,6 @@
  */
 function readspeaker_settings_form() {
   $form = [];
-
   $form['readspeaker_customerid'] = [
     '#type' => 'textfield',
     '#title' => t('Customer ID'),
