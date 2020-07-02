@@ -273,6 +273,7 @@ function _wim_cvdr_process_xml($xml, $xml_id) {
       $subjectQueryResult = $xpath->query('.//dcterms:subject', $item);
       $subject = ($subjectQueryResult instanceof DOMNodeList) ?
         $subjectQueryResult->item(0) : t('Other');
+      $subject = $subject->nodeValue;
     }
 
     $dateQuery = $item->getElementsByTagNameNS($overheidNs, 'uitwerkingtredingDatum');
@@ -302,7 +303,7 @@ function _wim_cvdr_process_xml($xml, $xml_id) {
         }
       }
 
-      $subject = ucfirst($subject->nodeValue) . ' (URL-' . $xml_id . ')';
+      $subject = ucfirst($subject) . ' (URL-' . $xml_id . ')';
       $title = $title->nodeValue;
 
       // Check if no expire date is set or expire date is in the future.
