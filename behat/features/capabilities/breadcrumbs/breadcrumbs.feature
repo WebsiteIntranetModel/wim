@@ -11,7 +11,7 @@ Feature: View site breadcrumbs
     When I click "Actual"
     Then I should see "Home / Actual / News"
     And I click "Lorem ipsum dolor sit 5"
-    Then I should see "Home / Actual / News / Lorem ipsum dolor sit 5"
+    Then I should see "Home / Nieuws / Lorem ipsum dolor sit 5"
     When I click "FAQ"
     Then I should see "Home / FAQ"
     And I click "Security"
