@@ -9,7 +9,7 @@ Feature: View site breadcrumbs
     When I am on the homepage
     Then I should not see an ".breadcrumb" element
     When I click "Actual"
-    Then I should see "Home / Nieuws"
+    Then I should see "Home / News"
     And I click "Lorem ipsum dolor sit 5"
     Then I should see "Home / Nieuws / Lorem ipsum dolor sit 5"
     When I click "FAQ"
