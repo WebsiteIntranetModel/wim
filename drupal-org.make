@@ -192,3 +192,7 @@ projects[mass_contact][patch][787168] = https://www.drupal.org/files/issues/2019
 
 ; Bootstrap - Add labels to search form output for accessibility
 projects[bootstrap][patch][2540856] = https://www.drupal.org/files/issues/label_accessibility_label_missing_from_search_block-2540856-6.patch
+
+; Hansel 
+; PHP 7 issue - Warning: count(): Parameter must be an array or an object
+projects[hansel][patch][3136852] = https://www.drupal.org/files/issues/2020-05-15/Parameter-must-be-an-array-or-an-object-that-implements-Countable-3136852-3.patch

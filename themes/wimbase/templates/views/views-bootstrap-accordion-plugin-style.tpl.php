@@ -27,7 +27,7 @@
 
       <div id="panel-<?php print $id ?>-<?php print $key ?>"
            class="panel-collapse collapse"
-           aria-labelledby="control-panel-<?php print $key ?>">
+           aria-labelledby="control-panel-<?php print $id ?>-<?php print $key ?>">
         <div class="panel-body">
           <?php print $row ?>
         </div>

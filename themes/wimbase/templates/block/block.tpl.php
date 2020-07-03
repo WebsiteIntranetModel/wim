@@ -46,7 +46,7 @@
  * @ingroup templates
  */
 ?>
-<section <?php if($aria_label): print "aria-label=\"$aria_label\""; endif; ?> id="<?php print $block_html_id; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
+<div <?php if($aria_label): print "aria-label=\"$aria_label\""; endif; ?> id="<?php print $block_html_id; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
 
   <?php print render($title_prefix); ?>
   <?php if ($title): ?>
@@ -56,4 +56,4 @@
 
   <?php print $content ?>
 
-</section>
+</div>

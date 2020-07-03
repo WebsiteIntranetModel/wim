@@ -55,7 +55,7 @@ Feature: Create News
 #    And I should see an ".field-name-field-image img" element
 #    And I should see "pdf-file.pdf"
     And I should see "Share"
-    Then the url should match "/news/test-news"
+    Then the url should match "/nieuws/test-news"
 
     Given I am an anonymous user
     And I visit "node/add/news"
