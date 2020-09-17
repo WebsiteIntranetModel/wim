@@ -354,7 +354,7 @@ function wimbase_breadcrumb($variables) {
     // screen-reader users. Make the heading invisible with .element-invisible.
     $title = '<p id="breadcrums-nav-title" class="element-invisible">'
       . t('You are here') . '</p>';
-    $output = '<nav class="breadcrumb" aria-labelledby="breadcrums-nav-title" role="navigation">'
+    $output = '<nav class="breadcrumb" aria-labelledby="breadcrums-nav-title"">'
       . $title . implode(' / ', $breadcrumb) . '</nav>';
     return $output;
   }

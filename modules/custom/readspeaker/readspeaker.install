@@ -11,5 +11,6 @@ function readspeaker_uninstall() {
   variable_del('readspeaker_customerid');
   variable_del('readspeaker_title');
   variable_del('readspeaker_button_text');
+  variable_del('readspeaker_readcontent');
   variable_del('readspeaker_language');
 }
