@@ -107,6 +107,7 @@ function readspeaker_build_player() {
         'customer_id' => $customerid,
         'lang' => variable_get('readspeaker_language', 'nl_nl'),
         'url' => url(current_path(), ['absolute' => TRUE]),
+        'readfrom_id' => variable_get('readspeaker_readfromid', 'main'),
         'title' => variable_get('readspeaker_title', t('Listen to this page using ReadSpeaker')),
         'button' => variable_get('readspeaker_button_text', t('Listen')),
       ]),
