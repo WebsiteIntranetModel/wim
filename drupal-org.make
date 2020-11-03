@@ -152,6 +152,7 @@ projects[webform_clear][patch][2471671] = https://www.drupal.org/files/issues/24
 ; Token replacement (pathauto patterns) completely broken
 ; https://www.drupal.org/node/2399645
 projects[hansel][patch][2399645] = https://www.drupal.org/files/issues/hansel-broken-token-generation-2399645-1.patch
+projects[hansel][patch][35] = "modules/patches/35-Parameter-must-be-an-array-or-an-object-that-implements-Countable.patch"
 
 ; Link
 ; URL validation rejects existing valid content after upgrade to 7.x-1.4
