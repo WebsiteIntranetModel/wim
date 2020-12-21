@@ -3,7 +3,7 @@ core = 7.x
 
 projects[drupal][type] = core
 
-projects[drupal][version] = 7.75
+projects[drupal][version] = 7.77
 
 ; Patches
 
