@@ -161,7 +161,8 @@ function _xml_crawler_cvdr_get_pages(DOMDocument $dom) {
   $pages = [];
 
   foreach ($dom->getElementsByTagName('gzd') as $record) {
-    $page_url = $record->getElementsByTagName('publicatieurl_xhtml')->item(0)->nodeValue;
+    //$page_url = $record->getElementsByTagName('publicatieurl_xhtml')->item(0)->nodeValue;
+    $page_url = $record->getElementsByTagName('url')->item(0)->nodeValue;
     $page_url = _external_crawler_prepare_url($page_url);
     if (valid_url($page_url)) {
       $pages[] = $page_url;
