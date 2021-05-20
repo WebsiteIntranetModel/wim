@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Code for the WIM FAQ feature.
@@ -23,7 +24,6 @@ function wim_faq_views_pre_render($view) {
  */
 function wim_faq_form_felix_attributes_form_alter(&$form, &$form_state, $form_id) {
   $felix_block = $form['#felix_block'];
-  $felix_block_config = $felix_block->data['config'];
   if ($felix_block->delta === 'faq-faq_overview_block') {
     $faq_vocabulary = taxonomy_vocabulary_machine_name_load('faq_categories');
     $faq_terms = taxonomy_get_tree($faq_vocabulary->vid);
@@ -36,9 +36,11 @@ function wim_faq_form_felix_attributes_form_alter(&$form, &$form_state, $form_id
         '#type' => 'select',
         '#title' => t('FAQ category'),
         '#options' => $faq_categories,
-        '#default_value' => $felix_block_config['faq_category'],
         '#required' => TRUE,
       ];
+      if (isset($felix_block->data['config']['faq_category'])) {
+        $form['faq_category']['#default_value'] = $felix_block->data['config']['faq_category'];
+      }
     }
   }
 }
@@ -108,6 +110,4 @@ function wim_faq_block_view($delta = '', $config = []) {
 
   return NULL;
 
-
-  $t='';
 }
