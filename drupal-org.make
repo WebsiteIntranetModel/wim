@@ -73,6 +73,7 @@ projects[strongarm][version] = 2.0
 projects[special_menu_items][version] = 2.0
 projects[smart_trim][version] = 1.5
 projects[seckit][version] = 1.11
+projects[tfa][version] = 2.1
 projects[token][version] = 1.7
 projects[username_enumeration_prevention][version] = 1.3
 projects[userprotect][version] = 1.3
