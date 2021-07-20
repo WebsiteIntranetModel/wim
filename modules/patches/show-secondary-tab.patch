@@ -1,0 +1,15 @@
+diff --git a/includes/css/style_settings.css b/includes/css/style_settings.css
+index 4ac1387..284474a 100644
+--- a/includes/css/style_settings.css
++++ b/includes/css/style_settings.css
+@@ -338,10 +338,6 @@ div.mo2f-message-status {
+   border-color: #ed541d;
+ }
+ 
+-.tabs-secondary {
+-  display: none;
+-}
+-
+ .googleauth-table {
+   width: 100%;
+   margin-top: 10px;
