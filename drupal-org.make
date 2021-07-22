@@ -203,5 +203,4 @@ projects[hansel][patch][3136852] = https://www.drupal.org/files/issues/2020-05-1
 ; in_array() parameter 2 is null
 projects[apachesolr_autocomplete][patch][2917503] = https://www.drupal.org/files/issues/null-array.patch
 
-; Miniorange_2fa - Show secondary tab, hidden by miniorange.
-projects[miniorange_2fa][patch][] = modules/patches/show-secondary-tab.patch
+; Patch
