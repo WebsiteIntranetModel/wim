@@ -52,7 +52,6 @@ projects[menu_icons][version] = 3.0-beta4
 projects[metatag][version] = 1.21
 projects[migrate][version] = 2.11
 projects[mimemail][version] = 1.1
-projects[miniorange_2fa][version] = 2.13
 projects[module_filter][version] = 2.2
 projects[multiform][version] = 1.4
 projects[nodequeue][version] = 2.2
