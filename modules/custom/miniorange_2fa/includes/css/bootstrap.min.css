@@ -1,0 +1,79 @@
+.mo2fa_btn {
+    display: inline-block;
+    /*padding: 6px 12px;*/
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+	text-decoration: none
+}
+
+
+.mo2fa_btn:focus,.mo2fa_btn:active:focus,.mo2fa_btn.active:focus,.mo2fa_btn.focus,.mo2fa_btn:active.focus,.mo2fa_btn.active.focus
+{
+	outline: thin dotted;
+	outline: 5px auto -webkit-focus-ring-color;
+	outline-offset: -2px
+}
+
+.mo2fa_btn:hover,.mo2fa_btn:focus,.mo2fa_btn.focus {
+	text-decoration: none
+}
+
+.mo2fa_btn:active,.mo2fa_btn.active {
+	background-image: none;
+	outline: 0;
+	-webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+	box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125)
+}
+
+.mo2fa_btn.disabled,.mo2fa_btn[disabled],fieldset[disabled] .mo2fa_btn {
+	pointer-events: none;
+	cursor: not-allowed;
+	filter: alpha(opacity = 65);
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	opacity: .65
+}
+
+.mo2fa_btn-primary {
+	color: #fff;
+	background-color: #337ab7;
+	border-color: #2e6da4
+}
+
+.mo2fa_btn-primary:hover,.mo2fa_btn-primary:focus,.mo2fa_btn-primary.focus,.mo2fa_btn-primary:active,.mo2fa_btn-primary.active,.open>.dropdown-toggle.mo2fa_btn-primary
+	{
+	color: #fff;
+	background-color: #286090;
+	border-color: #204d74
+}
+
+.mo2fa_btn-primary:active,.mo2fa_btn-primary.active,.open>.dropdown-toggle.mo2fa_btn-primary
+	{
+	background-image: none
+}
+
+.mo2fa_btn-primary.disabled,.mo2fa_btn-primary[disabled],fieldset[disabled] .mo2fa_btn-primary,.mo2fa_btn-primary.disabled:hover,.mo2fa_btn-primary[disabled]:hover,fieldset[disabled] .mo2fa_btn-primary:hover,.mo2fa_btn-primary.disabled:focus,.mo2fa_btn-primary[disabled]:focus,fieldset[disabled] .mo2fa_btn-primary:focus,.mo2fa_btn-primary.disabled.focus,.mo2fa_btn-primary[disabled].focus,fieldset[disabled] .mo2fa_btn-primary.focus,.mo2fa_btn-primary.disabled:active,.mo2fa_btn-primary[disabled]:active,fieldset[disabled] .mo2fa_btn-primary:active,.mo2fa_btn-primary.disabled.active,.mo2fa_btn-primary[disabled].active,fieldset[disabled] .mo2fa_btn-primary.active
+	{
+	background-color: #337ab7;
+	border-color: #2e6da4
+}
+
+.mo2fa_btn-primary .badge {
+	color: #337ab7;
+	background-color: #fff
+}

@@ -1,0 +1,798 @@
+.mo2f_table_layout {
+  border-radius: 1px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  background-color:#FFFFFF;
+  border:1px solid #CCCCCC;
+  margin: 0 2% 2% 0;
+}
+
+.mo2f_highlight_background_note{
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  padding: 0.55em;
+  width: 99%;
+}
+
+.form-submit{
+  background-color: #008CBA;
+}
+
+.mo2f_container
+{
+  width: 60%;
+  padding:25px;
+  float: left;
+  margin-right: 15px !important;
+}
+
+.mo2f_table_layout_1
+{
+  background-color:#e0e0d8;
+  /*width: 97%;*/
+  padding:2%;
+  overflow: hidden;
+}
+
+.mo2f_table_layout_support_2{
+  border-radius: 1px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  float: left;
+  width: 29%;
+  background-color:#FFFFFF;
+  border:1px solid #CCCCCC;
+  padding:20px 20px 25px 20px;
+  margin-bottom: 10px;
+}
+
+.form-textarea{
+
+  padding: 2px !important;
+  box-sizing: border-box !important;
+  padding: 0.3em 0.4em 0.3em 0.5em !important;
+  border: 1px solid #b8b8b8 !important;
+  border-top-color: #999 !important;
+  border-radius: 2px !important;
+  background: #fcfcfa !important;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.125) !important;
+}
+
+.mo2f_red_color_star{
+  color: red;
+}
+
+@media only screen and (max-width:641px) { .form-textarea { width:100% !important;}}
+
+.form-text{
+  padding: 2px !important;
+  box-sizing: border-box !important;
+  padding: 0.3em 0.4em 0.3em 0.5em !important;
+  border: 1px solid #b8b8b8 !important;
+  border-top-color: #999 !important;
+  border-radius: 2px !important;
+  background: #fcfcfa !important;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.125) !important;
+}
+
+@media only screen and (max-width:641px) { .form-text { width:100% !important;}}
+
+.password-parent{
+  width: 60% !important;
+}
+
+@media only screen and (max-width:641px) { .password-parent { width:100% !important;}}
+
+.confirm-parent {
+  width: 100%;
+}
+
+@media only screen and (max-width:641px) { .confirm-parent { width:100% !important;}}
+
+.form-select{
+  padding: 2px !important;
+  box-sizing: border-box !important;
+  padding: 0.3em 0.4em 0.3em 0.5em !important;
+  border: 1px solid #b8b8b8 !important;
+  border-top-color: #999 !important;
+  border-radius: 2px !important;
+  background: #fcfcfa !important;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.125) !important;
+}
+
+@media only screen and (max-width:641px) { .form-select { width:100% !important;}}
+
+.mo2f_configure_message{
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 13.5px;
+  border-radius: 8px;
+  border: 1px solid #fb9a9a;
+  color: red;
+  background-color: rgba(255,0,0,0.1);
+  padding: 5px;
+}
+
+.mo2f-setup-header {
+  padding-bottom: 6px;
+  font-size: 1.1em;
+  width: 100%;
+  line-height: 1.3em;
+  border-bottom: 1px solid #D3D3D3;
+}
+
+.mo2f-setup-header-top-left {
+  width: 33%;
+  text-align: left;
+  font-weight: bold;
+  display: inline-block;
+}
+
+.mo2f-setup-header-top-center {
+  width: 33%;
+  text-align: center;
+  color: rgb(24, 203, 45);
+  margin-top: 1px;
+  display: inline-block;
+}
+
+.mo2f-setup-header-top-right {
+  width: 33%;
+  text-align: right;
+  display: inline-block;
+}
+
+.mo2f-info {
+  /* padding: 8px 0px; */
+  margin: 12px 0px;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+.mo2f-setup-methods-info-wrap {
+  padding-bottom: 25px;
+  width: 100%;
+  line-height: 1.3em;
+  margin-left: 0px;
+}
+
+.mo2f-setup-methods-info-left {
+  display: inline-block;
+  width: 33%;
+  text-align: left;
+}
+
+.mo2f-setup-methods-info-center {
+  display: inline-block;
+  width: 33%;
+  text-align: center;
+}
+
+.mo2f-setup-methods-info-right {
+  display: inline-block;
+  width: 33%;
+  text-align: right;
+}
+
+.mo2f-color-icon {
+  vertical-align: middle;
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  margin-left: 20px;
+  margin-right: 10px;
+}
+
+.mo2f-active-method {
+  background-color: rgba(54, 157, 4, 0.42) !important;
+}
+
+.mo2f-configured-method {
+  background-color: rgba(99, 143, 223, 0.42) !important;
+}
+
+.mo2f-unconfigured-method {
+  background-color: rgba(221, 221, 221, 0.66) !important;
+}
+
+#mo-auth-setup-twofactor .form-radios .form-item {
+  float: left;
+  width: 30%;
+  min-width: 325px;
+  height: 142px;
+  padding: 10px;
+  margin: 5px 5px 5px 5px;
+  line-height: 1.42857143;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  -webkit-transition: border .2s ease-in-out;
+  -o-transition: border .2s ease-in-out;
+  transition: border .2s ease-in-out;
+}
+
+#mo-auth-setup-twofactor .form-radios .form-item p {
+  height: 55px;
+}
+
+#mo-auth-setup-twofactor .form-item .form-radio {
+  float: left;
+  margin-right: 10px;
+}
+
+#mo-auth-setup-twofactor .form-item label.option {
+  font-size: 1em;
+}
+
+.mo2f-method {
+  border-bottom: 1px solid #D3D3D3;
+  padding: 0px 5px 5px 5px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.mo2f-laptop {
+  background: url(../images/laptop.png) no-repeat right;
+  padding: 10px;
+  margin-bottom: 0px;
+}
+
+.mo2f-smartphone {
+  background: url(../images/smartphone.png) no-repeat right;
+  padding: 10px;
+  margin-bottom: 0px;
+}
+
+.mo2f-hardware-token {
+  background: url(../images/hardware-token.png) no-repeat right;
+  padding: 10px;
+  margin-bottom: 0px;
+}
+
+.mo2f-smartphone-feature-phone {
+  background: url(../images/smart-feature.png) no-repeat right;
+  padding: 10px;
+  margin-bottom: 0px;
+}
+
+.mo2f-landline {
+  background: url(../images/landline.png) no-repeat right;
+  padding: 10px;
+  margin-bottom: 0px;
+}
+
+.mo2f-text-center {
+  text-align: center;
+}
+/* The Modal(background) */
+.mo2f-modal {
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.mo2f-modal-content {
+  background-color: #fefefe;
+  margin: 7% auto; /* 15% from the top and centered */
+  /* border: 1px solid #888; */
+  width: 50%; /* Could be more or less, depending on screen size */
+  border-radius: 10px;
+}
+
+.mo2f-modal-container {
+  padding: 0.01em 16px;
+}
+
+.mo2f-modal-header {
+  color: #4a4a4a !important;
+  background-color: #ededed !important;
+  padding: 12px 15px;
+  font-size: 15pt;
+  border-radius: 10px 10px 0px 0px;
+}
+
+.mo2f-modal-footer, .mo2f-modal-footer a {
+  /* color: #fff !important; */
+  background-color: #ededed !important;
+  text-align: right;
+  font-size: 12pt;
+  padding: 12px 15px;
+  border-radius: 0px 0px 10px 10px;
+}
+
+.mo2f-modal-footer>div.form-actions {
+  padding-top: 0px;
+  margin-top: 0px;
+}
+
+.mo2f-modal-footer a {
+  text-decoration: underline !important;
+}
+
+.mo2f-message {
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  padding: 10px 10px 10px 50px;
+  background-repeat: no-repeat;
+  margin: 7px 0px;
+  background-position: 8px 8px;
+  border: 1px solid;
+}
+
+div.mo2f-message-status {
+  background-color: #f8fff0;
+  color: #234600;
+  background-image: url(../../../../../../misc/message-24-ok.png);
+  border-color: #be7;
+}
+
+.mo2f-message-error {
+  background-color: #fef5f1;
+  color: #8c2e0b;
+  background-image: url(../../../../../../misc/message-24-error.png);
+  border-color: #ed541d;
+}
+
+.googleauth-table {
+  width: 100%;
+  margin-top: 10px;
+  border: none !important;
+}
+
+.googleauth-table tr:first-child td {
+  font-size: 15.5px;
+  font-weight: bold;
+  border-bottom: 1px solid #dedede;
+}
+
+.googleauth-table td {
+  vertical-align: top;
+  width: 33%;
+  padding: 5px 10px;
+}
+
+.googleauth-table td:first-child {
+  border-right: 1px solid #ededed;
+}
+
+.mo2f_googleauth-download-manual {
+  border: 1px solid #dedede;
+  border-radius: 7px;
+  border-color: #d6e9c6;
+  margin: 5px 15px 5px 0px;
+  padding: 0px 15px 20px 15px;
+  height: 250px;
+}
+
+.mo2f_googleauth-download-qrcode {
+  border: 1px solid #dedede;
+  border-radius: 5px;
+  border-color: #d6e9c6;
+  margin: 5px 15px 5px 0px;
+  padding: 0px 15px 20px 15px;
+  height: 250px;
+}
+
+.mo2f_googleauth-download-header {
+  border-bottom: 1px solid #d6e9c6;
+  text-align: center;
+  font-size: 11pt;
+  padding: 7px;
+}
+
+.mo2f_googleauth-steps {
+  padding: 8px 0px;
+  font-size: 10.8pt
+}
+
+.mo2f_googleauth-secret {
+  background-color: #5cb85c;
+  width: 250px;
+  margin-left: 100px;
+  border: 0px;
+  border-radius: 9px;
+  color: #fff;
+}
+
+.mo2f-textbox {
+  display: block;
+  width: 100%;
+  height: 34px;
+  padding: 6px !important;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow
+    ease-in-out .15s;
+  -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out
+    .15s;
+  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  text-rendering: auto;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  text-align: start;
+  -webkit-writing-mode: horizontal-tb;
+  box-sizing: border-box;
+}
+
+/*.mo_email{
+  font-size: 13.5px;
+}*/
+
+/*.mo_support_send_query{
+  margin: 0 auto !important;
+  display: block !important;
+}*/
+
+.mo2f-textbox-otp {
+  width: 40%;
+  font-size: 13pt;
+}
+
+#mo-auth-setup-twofactor .form-radios {
+  display: inline-block;
+}
+
+.mo2f_btn-primary-faq{
+  float: left;
+  color: #48a0dc;
+  border: 2px solid #48a0dc !important;
+  border-color: #2e6da4;
+  background-color: white;
+  text-decoration: none;
+}
+
+.mo2f_btn_faq_buttons{
+  padding:5px 5px;
+  float:right;
+  border-color: #0073aa #006799 #006799;
+  color: #fff;
+  text-decoration: none;
+}
+
+.mo2f_btn_faq_buttons:hover{
+  transform: scale(1.1);
+}
+
+
+.mo2f-pricing-button {
+  background: #0085ba;
+  border-color: #0073aa #006799 #006799;
+  box-shadow: 0 1px 0 #006799;
+  color: #fff;
+  text-shadow: 0 -1px 1px #006799, 1px 0 1px #006799, 0 1px 1px #006799,
+    -1px 0 1px #006799;
+  height: 30px;
+  line-height: 28px;
+  padding: 3px 12px 2px;
+  vertical-align: top;
+  display: inline-block;
+  font-size: 13px;
+  margin: 0;
+  cursor: pointer;
+  border-width: 1px;
+  border-style: solid;
+  -webkit-appearance: none;
+  white-space: nowrap;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 15px;
+}
+
+.mo2f-kba-row {
+  margin: 15px 0px;
+}
+
+.mo2f-kba-header {
+  font-weight: bold;
+}
+
+.mo2f-kba-srno {
+  display: inline-block;
+  width: 5%;
+}
+
+.mo2f-kba-question {
+  display: inline-block;
+  width: 60%;
+  max-width: 450px;
+}
+
+.mo2f-kba-answer {
+  display: inline-block;
+  width: 30%;
+  max-width: 200px;
+}
+
+.mo2f-kba-question input {
+  width: 85%;
+  padding-right: 0px;
+}
+
+.mo2f-kba-question select {
+  width: 86%;
+}
+
+.mo2f_email_textbox {
+  width: 45%;
+  text-align: center;
+  height: 35px;
+  font-size: 18px;
+  border-radius: 5px;
+}
+
+.mo2f-grayed-out {
+  background-color: rgba(128, 128, 128, 0.05) !important;
+  opacity: .5;
+}
+
+.mo_auth_forgot_phone_btn_class{
+  float:left;
+}
+
+/* FAQ button and Ask question on forum button*/
+
+.mo2f_text_center{
+  text-align: center;
+}
+
+.mo_faq_button_left{
+  float: inherit;
+  color: #48a0dc;
+  border: 2px solid #48a0dc;
+  padding: 5px;
+}
+
+.mo_faq_button_left:hover{
+  transform: scale(1.1);
+}
+
+.mo_faq_button_right{
+  float: inherit;
+  color: #48a0dc;
+  border: 2px solid #48a0dc;
+  padding: 5px;
+  margin-left: 10px;
+}
+
+.mo_faq_button_right:hover{
+  transform: scale(1.1);
+}
+
+/* CSS for Licensing Tab */
+
+.mo2f_container_1{
+  width: 100%;
+}
+
+#mo2f_pricing-table {
+  padding-top: 30px;
+}
+
+#mo2f_pricing-table li{
+  height: 40px;
+  color: black;
+  text-align: center;
+  overflow: hidden;
+}
+
+.mo2f_class_inline_1{
+  width: 42%;
+  margin-left: 2%;
+  display: inline-block;
+  padding-top: 198px;
+}
+
+.mo2f_class_inline{
+  width: 26%;
+  display: inline-block;
+  vertical-align: top;
+}
+
+#mo2f_pricing-table .mo2f_pricing {
+  margin-left: 10px;
+  padding: 0;
+  font-family: 'Robot', sans-serif;
+}
+#mo2f_pricing-table .mo2f_pricing .mo2f_pricing-table {
+  padding-bottom: 15px;
+}
+#mo2f_pricing-table .mo2f_pricing .mo2f_pricing-table .mo2f_pricing-header {
+  position: relative;
+  background: #34495e;
+  padding: 6px 18px;
+  text-align: center;
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+}
+#mo2f_pricing-table .mo2f_pricing .mo2f_pricing-table .mo2f_pricing-header .mo2f_pricing-title {
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 18px;
+  text-align: center;
+  font-weight: 500;
+}
+#mo2f_pricing-table .mo2f_pricing .mo2f_pricing-table .mo2f_pricing-header .mo2f_pricing-rate {
+  font-size: 12px;
+  font-weight: 600;
+  color: #ffffff;
+  position: relative;
+  text-align: center;
+}
+#mo2f_pricing-table .mo2f_pricing .mo2f_pricing-table .mo2f_pricing-header .mo2f_pricing-rate sup {
+  font-size: 24px;
+  position: relative;
+  top: -30px;
+  color: #bdc3c7;
+}
+#mo2f_pricing-table .mo2f_pricing .mo2f_pricing-table .mo2f_pricing-header .mo2f_pricing-rate span {
+  font-size: 13px;
+  color: #bdc3c7;
+  text-transform: uppercase;
+}
+#mo2f_pricing-table .mo2f_pricing .mo2f_pricing-list {
+  padding: 20px 0 40px 0;
+  background: #c4baba1c;
+  border: 1px solid #e3e3e3;
+}
+#mo2f_pricing-table .mo2f_pricing .mo2f_pricing-list ul {
+  padding: 0px;
+  display: table;
+  margin: 0px auto;
+  width: 100%;
+  text-align: center;
+}
+#mo2f_pricing-table .mo2f_pricing .mo2f_pricing-list ul li {
+  list-style: none;
+  border-bottom: 1px solid #EAECEB;
+  color: black;
+  font-size: 15px;
+  line-height: 42px;
+}
+#mo2f_pricing-table .mo2f_pricing .mo2f_pricing-list ul li:last-child {
+  border: none;
+}
+#mo2f_pricing-table .mo2f_pricing .mo2f_pricing-list ul li i {
+  margin-right: 12px;
+  color: #bdc3c7;
+}
+#mo2f_pricing-table .mo2f_pricing .mo2f_pricing-list ul li span {
+  color: #34495e;
+}
+
+.mo2f_pricing-rate:last-of-type {
+  margin-top:36px;
+}
+
+.mo2f_pricing-title>span{
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+p.mo2f_pricing-title{
+  height: 7px;
+}
+p.mo2f_pricing-rate{
+  margin-bottom: 25px;
+}
+.mo2f_filler-class{
+  height: 0px;
+}
+.mo2f_pricing-list li:nth-of-type(2n+1) {
+  background-color: rgba(23, 61, 80, 0.06);
+}
+.mo2f_space{
+  margin-left: 33px;
+  margin-right: 10px;
+}
+
+#edit-mo-pricing-dropdown,#edit-mo-pricing-dropdown-2,#edit-do-it-yourself-pricing,#edit-do-it-yourself-pricing-2{
+  color: black;
+}
+
+/* bootstrap classes */
+.mo2f_btn {
+    display: inline-block;
+    /*padding: 6px 12px;*/
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 2px solid #34495e;
+    border-radius: 4px;
+  text-decoration: none
+}
+
+
+.mo2f_btn:focus,.mo2f_btn:active:focus,.mo2f_btn.active:focus,.mo2f_btn.focus,.mo2f_btn:active.focus,.mo2f_btn.active.focus
+{
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px
+}
+
+.mo2f_btn:hover,.mo2f_btn:focus,.mo2f_btn.focus {
+  text-decoration: none
+}
+
+.mo2f_btn:active,.mo2f_btn.active {
+  background-image: none;
+  outline: 0;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125)
+}
+
+.mo2f_btn.disabled,.mo2f_btn[disabled],fieldset[disabled] .mo2f_btn {
+  pointer-events: none;
+  cursor: not-allowed;
+  filter: alpha(opacity = 65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  opacity: .65
+}
+
+/* CSS for themes */
+
+.mo2f_button, .mo2f_image{
+  width: auto !important;
+}
+
+.mo2f_select{
+  height: auto !important;
+}
+
+.mo2f_bold{
+  font-size: 100% !important;
+}
+
+
+
+.mo_tfa_summary{
+  cursor: pointer;
+  color: #0074bd;
+  text-shadow: 0 1px 0 white;
+  text-transform: uppercase;
+  font-weight: bold;
+  display: block;
+
+}
+.mo_tfa_summary:hover{
+  text-decoration: underline;
+}
+details{
+  padding: 0.95em 1.45em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  border: 1px solid #bfbfbf;
+  border-radius: 3px;
+  background-color: #fcfcfa;
+}
+.mo_tfa_summary:focus{
+  outline: none;
+
+}

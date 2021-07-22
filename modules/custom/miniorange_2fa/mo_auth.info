@@ -1,0 +1,52 @@
+name = miniOrange Two-Factor Authentication
+description = Easily add Two Factor Authentication to protect sites from unauthorized login attempts. Support SMS, QR Code, Push, Google Authenticator, Authy, Device ID.
+core = 7.x
+configure = admin/config/people/mo_auth
+files[] = classes/CustomerSetup.php
+files[] = classes/Utilities.php
+files[] = classes/Constants.php
+files[] = classes/CustomerSupport.php
+files[] = classes/CustomerProfile.php
+files[] = classes/User.php
+files[] = classes/UsersAPIHandler.php
+files[] = classes/AuthenticationAPIHandler.php
+files[] = classes/AuthenticationType.php
+files[] = classes/LoginSettings.php
+files[] = classes/MoAuthPasswordValidator.php
+files[] = classes/MoAuthRBA.php
+stylesheets[all][] = includes/css/style_settings.css
+scripts[] = includes/js/mo_authentication.js
+scripts[] = includes/js/mo_settings.js
+dependencies[] = jquery_update
+
+; Information added by Drupal.org packaging script on 2017-08-04
+version = "7.x-1.15"
+core = "7.x"
+project = "miniorange_2fa"
+datestamp = "1501846338"
+
+
+; Information added by Drupal.org packaging script on 2018-02-23
+version = "7.x-1.20"
+core = "7.x"
+project = "miniorange_2fa"
+datestamp = "1519383512"
+
+
+; Information added by Drupal.org packaging script on 2019-11-18
+version = "7.x-1.232"
+core = "7.x"
+project = "miniorange_2fa"
+datestamp = "1574065991"
+
+; Information added by Drupal.org packaging script on 2020-09-03
+version = "7.x-2.1"
+core = "7.x"
+project = "miniorange_2fa"
+datestamp = "1599121197"
+
+; Information added by Drupal.org packaging script on 2021-06-28
+version = "7.x-2.13"
+core = "7.x"
+project = "miniorange_2fa"
+datestamp = "1624854296"
