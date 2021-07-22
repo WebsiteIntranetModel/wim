@@ -1,0 +1,232 @@
+<?php
+/**
+ * @file
+ * Installation file for miniOrange Two-Factor Module.
+ */
+
+include 'miniorange_2fa_feedback.php';
+
+/**
+ * Implements hook_install().
+ */
+function mo_auth_install() {
+  $field_bases = array();
+  $field_bases['mo_auth_password_checked'] = array(
+    'field_name' => 'mo_auth_password_checked',
+    'settings' => array('max_length' => 255),
+    'type' => 'text',
+  );
+  $field_bases['miniorange_registered_email'] = array(
+      'field_name' => 'miniorange_registered_email',
+      'settings' => array('max_length' => 255),
+      'type' => 'text',
+    );
+
+  $field_bases['configured_auth_methods'] = array(
+    'field_name' => 'configured_auth_methods',
+    'cardinality' => FIELD_CARDINALITY_UNLIMITED,
+    'settings' => array(
+      'allowed_values' => array(
+        'OUT OF BAND EMAIL' => 'OUT OF BAND EMAIL',
+        'MOBILE AUTHENTICATION' => 'MOBILE AUTHENTICATION',
+        'GOOGLE AUTHENTICATOR' => 'GOOGLE AUTHENTICATOR',
+	'SOFT TOKEN' => 'SOFT TOKEN',
+	'PUSH NOTIFICATIONS' => 'PUSH NOTIFICATIONS',
+	'SMS' => 'SMS',
+	'SMS AND EMAIL' => 'SMS AND EMAIL'
+      ),
+    ),
+    'type' => 'list_text',
+  );
+
+  foreach($field_bases as $field) {
+    field_create_field($field);
+  }
+
+  $field_instances['user-user-miniorange_registered_email'] = array(
+    'bundle' => 'user',
+    'entity_type' => 'user',
+    'field_name' => 'miniorange_registered_email',
+    'label' => 'Registered Email for Second Factor',
+  );
+  $field_instances['user-user-mo_auth_password_checked'] = array(
+        'bundle' => 'user',
+        'entity_type' => 'user',
+        'field_name' => 'mo_auth_password_checked',
+        'label' => 'mo_auth_password_checked',
+      );
+
+  $field_instances['user-user-configured_auth_methods'] = array(
+    'bundle' => 'user',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 1,
+      ),
+    ),
+    'entity_type' => 'user',
+    'field_name' => 'configured_auth_methods',
+    'label' => 'Configured Methods for Second Factor',
+  );
+  $field_instances['user-user-configured_auth_methods'] = array(
+      'bundle' => 'user',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => 1,
+        ),
+      ),
+      'entity_type' => 'user',
+      'field_name' => 'configured_auth_methods',
+      'label' => 'Configured Methods for Second Factor',
+    );
+
+
+  foreach($field_instances as $instance) {
+    field_create_instance($instance);
+  }
+   if(!db_table_exists('mo_auth_user_track')){
+  	  drupal_install_schema('mo_auth');
+    }
+
+}
+
+function mo_auth_update_7101() {
+
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function mo_auth_uninstall() {
+  variable_del('mo_auth_status');
+  variable_del('mo_auth_customer_admin_email');
+  variable_del('mo_auth_customer_admin_phone');
+  variable_del('mo_auth_customer_admin_token');
+  variable_del('mo_auth_customer_token_key');
+  variable_del('mo_auth_customer_id');
+  variable_del('mo_auth_customer_api_key');
+  variable_del('mo_auth_customer_app_secret');
+  variable_del('mo_auth_tx_id');
+  variable_del('mo_auth_enable_two_factor');
+  variable_del('mo_auth_enforce_inline_registration');
+  variable_del('mo_auth_2fa_license_type');
+  variable_del('mo_auth_2fa_license_plan');
+  variable_del('mo_auth_2fa_license_no_of_users');
+  variable_del('mo_auth_two_factor_instead_password');
+  variable_del('mo_auth_enable_role_based_2fa');
+  variable_del('mo_auth_role_based_2fa_roles');
+  variable_del('mo_auth_2fa_domain_exception_emails');
+  variable_del('mo_auth_enable_allowed_2fa_methods');
+  variable_del('mo_auth_2fa_allow_reconfigure_2fa');
+  variable_del('mo_2fa_domain_and_role_rule');
+  variable_del('mo_auth_selected_2fa_methods');
+  variable_del('mo_auth_remove_5th_step');
+  variable_del('mo_auth_customer_domain_name');
+
+  variable_del('mo_auth_enable_password_checks');
+  variable_del('mo_2fa_unique_password');
+  variable_del('mo_2fa_password_min_length');
+  variable_del('mo_2fa_password_max_length');
+  variable_del('mo_2fa_password_password_variation_up_char');
+  variable_del('mo_2fa_password_password_variation_low_char');
+  variable_del('mo_2fa_password_password_variation_num_char');
+  variable_del('mo_2fa_password_password_variation_special_char');
+  variable_del('miniorange_2fa_enable_backdoor');
+
+  variable_del('mo_2fa_password_must_not_be_email');
+  variable_del('mo_2fa_password_must_not_be_firstname');
+  variable_del('mo_2fa_password_must_not_be_fname_text');
+  variable_del('mo_2fa_password_must_not_lastname');
+  variable_del('mo_2fa_password_must_not_be_lname_text');
+
+  unset($_SESSION['mo_other']);
+
+  $field_instances = array();
+
+  // Exported field_instance: 'user-user-field_miniorange_email'.
+  $field_instances['user-user-miniorange_registered_email'] = array(
+    'bundle' => 'user',
+    'entity_type' => 'user',
+    'field_name' => 'miniorange_registered_email',
+    'label' => 'miniOrange Registered Email',
+  );
+  $field_instances['user-user-mo_auth_password_checked'] = array(
+      'bundle' => 'user',
+      'entity_type' => 'user',
+      'field_name' => 'mo_auth_password_checked',
+      'label' => 'mo_auth_password_checked',
+    );
+
+  $field_instances['user-user-configured_auth_methods'] = array(
+    'bundle' => 'user',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 1,
+      ),
+    ),
+    'entity_type' => 'user',
+    'field_name' => 'configured_auth_methods',
+    'label' => 'Configured Auth Methods',
+  );
+
+  foreach ($field_instances as $instance) {
+    field_delete_instance($instance);
+    field_purge_batch(100);
+  }
+
+   if(db_table_exists('mo_auth_user_track')){
+  	drupal_uninstall_schema('mo_auth');
+    }
+}
+
+/**
+* Implementation of hook_schema().
+*/
+function mo_auth_schema() {
+  $schema['mo_auth_user_track'] = array(
+    'description' => t('User Storage'),
+    'fields' => array(
+	  'id' => array(
+        'description' => 'The primary identifier.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+	  ),
+	  'uid' => array(
+        'type' => 'int',
+        'not null' => FALSE,
+        'description' => t('The {user}.uid of the user.'),
+      ),
+	  'pass' => array(
+        'description' => 'The mail of the user.',
+        'type' => 'varchar',
+        'length' => 128,
+	  ),
+
+	),
+	'primary key' => array('id'),
+  );
+  return $schema;
+}
+
+
+/**
+ * Implements hook_disable().
+ */
+
+function mo_auth_disable() {
+    if(!isset($_SESSION['mo_other']))
+        $_SESSION['mo_other'] = "False";
+	    miniorange_2fa_feedback();
+}
