@@ -536,3 +536,13 @@ function wim_update_7029(&$sandbox) {
   $role = user_role_load_by_name('webmaster');
   user_role_grant_permissions($role->rid, ['administer search']);
 }
+
+/**
+ * TFA is not compatible with php7.4.
+ */
+function wim_update_7030() {
+  if (module_exists('tfa')) {
+    module_disable(['tfa']);
+    drupal_uninstall_modules(array('tfa'));
+  }
+}
