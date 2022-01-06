@@ -86,7 +86,7 @@ projects[webform_autofill_attribute][version] = 1.2
 projects[webform_clear][version] = 2.0
 projects[webform_encrypt][version] = 1.2
 projects[weight][version] = 3.1
-projects[wysiwyg][version] = 2.x-dev
+projects[wysiwyg][version] = 2.9
 projects[xmlsitemap][version] = 2.6
 
 ; Get a specific commit of redirect so patch below will always apply
