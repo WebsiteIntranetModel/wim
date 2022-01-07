@@ -86,7 +86,7 @@ projects[webform_autofill_attribute][version] = 1.2
 projects[webform_clear][version] = 2.0
 projects[webform_encrypt][version] = 1.2
 projects[weight][version] = 3.1
-projects[wysiwyg][version] = 2.x-dev
+projects[wysiwyg][version] = 2.9
 projects[xmlsitemap][version] = 2.6
 
 ; Get a specific commit of redirect so patch below will always apply
@@ -201,5 +201,3 @@ projects[hansel][patch][3136852] = https://www.drupal.org/files/issues/2020-05-1
 ; Apache Solr autocomplete
 ; in_array() parameter 2 is null
 projects[apachesolr_autocomplete][patch][2917503] = https://www.drupal.org/files/issues/null-array.patch
-
-; Patch
