@@ -539,10 +539,14 @@ function wim_update_7029(&$sandbox) {
 
 /**
  * TFA is not compatible with php7.4.
+ *
+ * But it is with 7.2 so we leave it as it is.
  */
-function wim_update_7030() {
-  if (module_exists('tfa')) {
-    module_disable(['tfa']);
-    drupal_uninstall_modules(array('tfa'));
-  }
-}
+/**
+* Function wim_update_7030() {
+*  if (module_exists('tfa')) {
+*    module_disable(['tfa']);
+*    drupal_uninstall_modules(array('tfa'));
+*  }
+* }
+*/
