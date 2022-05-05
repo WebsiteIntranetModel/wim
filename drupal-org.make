@@ -154,6 +154,11 @@ projects[webform_clear][patch][2471671] = https://www.drupal.org/files/issues/24
 ; https://www.drupal.org/node/2399645
 projects[hansel][patch][2399645] = https://www.drupal.org/files/issues/hansel-broken-token-generation-2399645-1.patch
 
+; Link
+; URL validation rejects existing valid content after upgrade to 7.x-1.4
+; https://www.drupal.org/node/2666912
+projects[link][patch][2666912] = https://www.drupal.org/files/issues/2019-11-18/link-fix-internal-validation-2666912-55.patch
+
 ; Linkit
 ; Allow Linkit support for any eligible element type
 ; https://www.drupal.org/node/2651404
